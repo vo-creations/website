@@ -7,6 +7,7 @@ import CTABlock from "@/components/CTABlock";
 import Label from "@/components/Label";
 import ResultCard from "@/components/ResultCard";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import Image from "next/image";
 
 const steps = [
   {
@@ -128,12 +129,14 @@ const team = [
     role: "Co-Founder",
     bio: "From 3 minimum-wage jobs to 100M+ views. Built Vo Creations from scratch.",
     initials: "TV",
+    image: "/videos/team-thienvu.jpg",
   },
   {
     name: "Daniel Yun",
     role: "Co-Founder",
     bio: "Self-taught. 100M+ views. 6-figure earner. Creative force behind Vo Creations.",
     initials: "DY",
+    image: "/videos/team-daniel.jpg",
   },
 ];
 
@@ -170,7 +173,7 @@ export default function Home() {
         <h1 className="relative text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1">
           We don&apos;t hire creators.
           <br />
-          We <span className="font-accent italic font-normal text-accent">build</span> them.
+          We <span className="text-accent">build</span> them.
         </h1>
 
         <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
@@ -243,7 +246,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Content that goes <span className="font-accent italic font-normal text-accent">viral</span>
+            Content that goes <span className="text-accent">viral</span>
           </h2>
           <p className="text-base text-text-secondary mb-8">
             Real UGC from our trained creator network.
@@ -306,7 +309,7 @@ export default function Home() {
           <Label>Our story</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             The training program that became an{" "}
-            <span className="font-accent italic font-normal text-accent">agency.</span>
+            <span className="text-accent">agency.</span>
           </h2>
           <p className="text-base text-text-secondary mb-8">
             From 3 minimum-wage jobs to 100+ creators and 50+ brands.
@@ -408,7 +411,7 @@ export default function Home() {
           <Label>Our format</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Talking-head only. No text-on-screen.{" "}
-            <span className="font-accent italic font-normal text-accent">Ever.</span>
+            <span className="text-accent">Ever.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Every platform&apos;s algorithm rewards authentic human content. A real face converts better than text overlays.
@@ -650,7 +653,7 @@ export default function Home() {
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Pricing</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
-            Simple pricing. <span className="font-accent italic font-normal text-accent">No hidden fees.</span>
+            Simple pricing. <span className="text-accent">No hidden fees.</span>
           </h2>
 
           <div className="bg-bg-card rounded-2xl border border-border p-8 text-center">
@@ -680,7 +683,7 @@ export default function Home() {
         <div className="max-w-[1000px] mx-auto px-6">
           <Label>Case Studies</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Undeniable <span className="font-accent italic font-normal text-accent">impact.</span>
+            Undeniable <span className="text-accent">impact.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Click any card for the full story.
@@ -831,8 +834,14 @@ export default function Home() {
                 key={t.name}
                 className="bg-bg-card rounded-2xl p-6 border border-border flex gap-4 items-start"
               >
-                <div className="w-16 h-16 min-w-[64px] rounded-full bg-bg-elevated flex items-center justify-center text-base font-black text-accent">
-                  {t.initials}
+                <div className="w-16 h-16 min-w-[64px] rounded-xl overflow-hidden bg-bg-elevated">
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <div className="text-[17px] font-bold">{t.name}</div>
@@ -850,96 +859,6 @@ export default function Home() {
       </section>
 
       <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
-      {/* WHAT TO EXPECT */}
-      <section className="py-[100px]">
-        <div className="max-w-[720px] mx-auto px-6">
-          <Label>What to expect</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
-            1 million organic views.{" "}
-            <span className="font-accent italic font-normal text-accent">Guaranteed.</span>
-          </h2>
-
-          <div className="space-y-5 text-[15px] text-text-secondary leading-relaxed">
-            <p>
-              Baseline: 1M+ organic views in the first month across 4 platforms. Most campaigns land 3–10M. Some go higher when a format breaks through.
-            </p>
-          </div>
-
-          <div className="mt-8 bg-bg-card rounded-2xl border border-accent/30 p-6">
-            <div className="text-xs text-accent font-semibold uppercase tracking-wide mb-2">
-              View guarantee
-            </div>
-            <p className="text-base text-text font-semibold">
-              1,000,000 organic views, or 50% refund.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/*
-        VoC METHOD SECTION — removed from display for now. Content preserved:
-        - Week 1: Format experiments (one new format per creator per day, 7 tested in 7 days)
-        - End of Week 1: Cut bottom performers (4 lowest replaced with new ones)
-        - Week 2: Refine survivors (double down on traction, iterate hooks/pacing/CTAs)
-        - Viral trigger: Triple down (when a video goes viral, every creator pivots)
-        - Constraint: Talking-head storytelling only (15-40s, never text-on-screen)
-      */}
-
-
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
-      {/* PARTNERSHIPS */}
-      <section className="py-[100px]">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <Label>Partnerships</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Who we partner with
-          </h2>
-          <p className="text-base text-text-secondary mb-10">
-            Tools and platforms we work alongside to deliver campaigns at scale.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                name: "SideShift",
-                desc: "UGC operating system we use to recruit creators, run campaigns, track results, and automate payouts.",
-                href: "https://sideshift.app/",
-              },
-              {
-                name: "Content Rewards",
-                desc: "Performance-based creator network that pays out on video results, helping us scale top formats faster.",
-                href: "https://contentrewards.com/",
-              },
-              {
-                name: "Museon",
-                desc: "AI tool that surfaces trending content and generates variations, accelerating our VoC format testing.",
-                href: "https://museon.ai/",
-              },
-            ].map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-bg-card rounded-2xl border border-border p-6 hover:border-accent/40 transition-all"
-              >
-                <div className="text-[17px] font-bold tracking-tight mb-2 group-hover:text-accent transition-colors">
-                  {p.name}
-                </div>
-                <p className="text-sm text-text-secondary leading-relaxed mb-4">
-                  {p.desc}
-                </p>
-                <span className="text-[13px] text-accent font-medium">
-                  Visit site &#8599;
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ */}
       <section className="py-[100px]" id="faq">

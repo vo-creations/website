@@ -54,11 +54,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['DM Sans', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
-        space: ['var(--font-space)', 'Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-        accent: ['var(--font-accent-serif)', 'Instrument Serif', 'serif'],
       },
       keyframes: {
         fadeUp: {

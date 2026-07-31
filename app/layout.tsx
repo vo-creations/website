@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, Space_Grotesk, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  weight: ["400", "500", "600", "700"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-accent-serif",
-  weight: ["400"],
-  style: ["italic"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -128,7 +115,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${dmSans.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         {children}
         <Analytics />
       </body>
