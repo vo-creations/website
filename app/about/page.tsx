@@ -4,23 +4,20 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import Image from "next/image";
 import Link from "next/link";
 
 const team = [
   {
     name: "Thienvu Vo",
-    role: "CEO & Founder",
+    role: "Co-Founder",
     bio: "From 3 minimum-wage jobs to 100M+ views. Built Vo Creations from scratch.",
     initials: "TV",
-    image: "/videos/team-thienvu.jpg",
   },
   {
     name: "Daniel Yun",
-    role: "CCO (Chief Creative Officer)",
+    role: "Co-Founder",
     bio: "Self-taught. 100M+ views. 6-figure earner. Creative force behind Vo Creations.",
     initials: "DY",
-    image: "/videos/team-daniel.jpg",
   },
 ];
 
@@ -327,14 +324,8 @@ export default function AboutPage() {
                 key={t.name}
                 className="bg-bg-card rounded-2xl p-6 border border-border flex gap-4 items-start"
               >
-                <div className="w-16 h-16 min-w-[64px] rounded-xl overflow-hidden bg-bg-elevated">
-                  <Image
-                    src={t.image}
-                    alt={t.name}
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-16 h-16 min-w-[64px] rounded-full bg-bg-elevated flex items-center justify-center text-base font-black text-accent">
+                  {t.initials}
                 </div>
                 <div>
                   <div className="text-[17px] font-bold">{t.name}</div>

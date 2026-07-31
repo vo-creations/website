@@ -50,7 +50,7 @@ const showcaseVideos = [
 ];
 
 const agencyFaqs = [
-  { q: "How many creators will be on my campaign?", a: "3 vetted creators for Starter, 6 for Growth. Every creator is trained through our program. No freelancers." },
+  { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
   { q: "What platforms do you post on?", a: "TikTok, Instagram Reels, YouTube Shorts, and Facebook. All four platforms, simultaneously." },
   { q: "How quickly can a campaign start?", a: "9 days from signed contract to first videos going live. Strategy and creator matching happen in Days 1-2." },
   { q: "What happens if creators underperform?", a: "We cut underperformers and replace them. That's the VoC Method. Test 7 formats, keep the winners, triple down." },
@@ -327,82 +327,26 @@ export default function Home() {
       <section className="py-[100px]">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Pricing</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
             Simple pricing. <span className="font-accent italic font-normal text-accent">No hidden fees.</span>
           </h2>
-          <p className="text-base text-text-secondary mb-10">
-            All creators are trained through our in-house program. All campaigns
-            include the VoC Method. Paid upfront.
-          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Starter */}
-            <div className="bg-bg-card rounded-2xl border border-border p-7">
-              <div className="text-xs text-text-dim font-semibold uppercase tracking-wide mb-1">
-                Starter
-              </div>
-              <div className="text-[40px] font-black text-text tracking-tight leading-none mb-1">
-                $10,000
-                <span className="text-base font-medium text-text-dim">/mo</span>
-              </div>
-              <div className="h-px bg-border my-5" />
-              <ul className="space-y-3">
-                {[
-                  "180 unique videos / 720 posts",
-                  "3 vetted creators",
-                  "TikTok · Instagram · YouTube · Facebook",
-                  "30-day campaign",
-                  "VoC Method included",
-                  "Weekly optimization",
-                ].map((item) => (
-                  <li key={item} className="flex gap-2.5 text-sm text-text-secondary">
-                    <span className="text-accent mt-0.5 shrink-0">&#10003;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          <div className="bg-bg-card rounded-2xl border border-border p-8 text-center">
+            <p className="text-base text-text-secondary leading-relaxed max-w-[520px] mx-auto">
+              Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo
+              unlocks 6 creators and double the output. Paid upfront, no hidden fees.
+            </p>
+
+            <div className="mt-7">
+              <a
+                href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-bg font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
+              >
+                Apply for a campaign slot →
+              </a>
             </div>
-
-            {/* Growth */}
-            <div className="bg-bg-card rounded-2xl border border-accent/30 p-7 relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-accent text-bg text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-bl-lg">
-                Popular
-              </div>
-              <div className="text-xs text-accent font-semibold uppercase tracking-wide mb-1">
-                Growth
-              </div>
-              <div className="text-[40px] font-black text-text tracking-tight leading-none mb-1">
-                $20,000
-                <span className="text-base font-medium text-text-dim">/mo</span>
-              </div>
-              <div className="h-px bg-border my-5" />
-              <ul className="space-y-3">
-                {[
-                  "360 unique videos / 1,440 posts",
-                  "6 vetted creators",
-                  "TikTok · Instagram · YouTube · Facebook",
-                  "30-day campaign",
-                  "VoC Method included",
-                  "Weekly optimization",
-                ].map((item) => (
-                  <li key={item} className="flex gap-2.5 text-sm text-text-secondary">
-                    <span className="text-accent mt-0.5 shrink-0">&#10003;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <a
-              href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-bg font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
-            >
-              Apply for a campaign slot →
-            </a>
           </div>
         </div>
       </section>
