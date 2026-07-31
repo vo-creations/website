@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-sm font-bold text-accent">
+              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-sm font-bold text-accent">
                 V
               </div>
               <span className="text-lg font-extrabold tracking-tight">
@@ -73,7 +73,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-full bg-white/[0.05] flex items-center justify-center text-text-secondary hover:text-text hover:bg-white/[0.1] transition-colors"
+                  className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center text-text-secondary hover:text-text hover:bg-black/[0.08] transition-colors"
                 >
                   {s.icon}
                 </a>
@@ -108,7 +108,7 @@ export default function Footer() {
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-sm px-8 py-3.5 rounded-full hover:shadow-[0_0_32px_rgba(245,166,35,0.3)] hover:-translate-y-px transition-all"
+              className="inline-flex items-center gap-2 bg-accent text-text font-bold text-sm px-8 py-3.5 rounded-full hover:shadow-[0_0_32px_rgba(245,166,35,0.3)] hover:-translate-y-px transition-all"
             >
               make them remember.
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">

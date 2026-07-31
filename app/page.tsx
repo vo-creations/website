@@ -90,7 +90,7 @@ export default function Home() {
         <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
           <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-            The team behind 100M+ views
+            The team behind 1B+ views
           </span>
         </div>
 
@@ -110,13 +110,13 @@ export default function Home() {
             href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-bg font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
+            className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-text font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
           >
             Apply for a campaign slot →
           </a>
           <a
             href="#results"
-            className="inline-flex items-center gap-2 bg-transparent text-text font-medium text-base px-9 py-4 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/[0.03] transition-all"
+            className="inline-flex items-center gap-2 bg-transparent text-text font-medium text-base px-9 py-4 rounded-full border border-border hover:border-black/20 hover:bg-black/[0.03] transition-all"
           >
             See results →
           </a>
@@ -124,7 +124,7 @@ export default function Home() {
 
         <div className="relative grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto animate-fade-up-delay-4">
           {[
-            ["100M+", "Views generated"],
+            ["1B+", "Views generated"],
             ["30+", "Brands scaled"],
             ["100+", "Trained creators"],
             ["9", "Days to launch"],
@@ -342,7 +342,7 @@ export default function Home() {
                 href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-bg font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-text font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
               >
                 Apply for a campaign slot →
               </a>

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s | Vo Creations",
   },
   description:
-    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. 9 days to launch. 100M+ views generated for brands like Fable, Cluely, and Codedex.",
+    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. 9 days to launch. 1B+ views generated for brands like Fable, Cluely, and Codedex.",
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
     canonical: "/",

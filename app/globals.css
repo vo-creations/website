@@ -22,17 +22,17 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F0D0B;
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.15);
   border-radius: 3px;
 }
 
 /* Selection */
 ::selection {
   background: rgba(245,166,35,0.3);
-  color: #F5EDE3;
+  color: #141210;
 }
 
 /* Ultra-bold headings — push past font-weight 900 */
@@ -43,7 +43,7 @@ body {
 
 /* Hex/honeycomb texture for hero backgrounds (good-marketing.co-inspired) */
 .bg-hex {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16V50L28 66L0 50V16Z' fill='none' stroke='rgba(245,166,35,0.07)' stroke-width='1'/%3E%3Cpath d='M28 34L56 50V84L28 100L0 84V50Z' fill='none' stroke='rgba(245,166,35,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16V50L28 66L0 50V16Z' fill='none' stroke='rgba(245,166,35,0.15)' stroke-width='1'/%3E%3Cpath d='M28 34L56 50V84L28 100L0 84V50Z' fill='none' stroke='rgba(245,166,35,0.15)' stroke-width='1'/%3E%3C/svg%3E");
   background-size: 56px 100px;
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 0%, transparent 75%);
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 0%, transparent 75%);

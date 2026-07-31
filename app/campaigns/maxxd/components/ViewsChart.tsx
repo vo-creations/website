@@ -63,13 +63,13 @@ export function ViewsChart({ data }: ViewsChartProps) {
                 y1={g.y}
                 x2={width - padding.right}
                 y2={g.y}
-                stroke="rgba(255,255,255,0.04)"
+                stroke="rgba(0,0,0,0.06)"
                 strokeWidth="1"
               />
               <text
                 x={padding.left + 2}
                 y={g.y - 4}
-                fill="#6b6558"
+                fill="#8C877D"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
               >
@@ -99,7 +99,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
 
           {/* Data points */}
           {points.map((p, i) => (
-            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#0F0D0B" stroke="#F5A623" strokeWidth="1.5" />
+            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#FFFFFF" stroke="#F5A623" strokeWidth="1.5" />
           ))}
 
           {/* Peak marker */}
@@ -115,7 +115,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
                 key={p.date}
                 x={p.x}
                 y={height - 8}
-                fill="#6b6558"
+                fill="#8C877D"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
                 textAnchor="middle"
