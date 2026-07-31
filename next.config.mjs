@@ -10,6 +10,33 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Single-page consolidation (2026-07): /about, /creators, /roi, /blog
+      // merged into homepage sections. See docs/DECISIONS.md (topic: single-page-site).
+      {
+        source: "/about",
+        destination: "/#team",
+        permanent: true,
+      },
+      {
+        source: "/creators",
+        destination: "/#creators",
+        permanent: true,
+      },
+      {
+        source: "/roi",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/blog",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/blog/:path*",
+        destination: "/",
+        permanent: true,
+      },
       // Old Squarespace pages → homepage (permanent redirects)
       {
         source: "/home",

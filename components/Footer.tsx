@@ -40,9 +40,8 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-  { href: "/about", label: "About" },
-  { href: "/creators", label: "Creators" },
-  { href: "/blog", label: "Blog" },
+  { href: "/#team", label: "About" },
+  { href: "/#creators", label: "Creators" },
 ];
 
 export default function Footer() {

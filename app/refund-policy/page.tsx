@@ -287,7 +287,7 @@ export default function RefundPolicyPage() {
             Email hello@vocreations.com &rarr;
           </a>
           <Link
-            href="/about"
+            href="/#team"
             className="inline-flex items-center gap-2 bg-transparent text-text font-medium text-base px-9 py-4 rounded-full border border-border hover:border-black/20 hover:bg-black/[0.03] transition-all"
           >
             About Vo Creations &rarr;

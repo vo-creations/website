@@ -549,3 +549,49 @@ something visitors buy into directly. Supersedes the mentorship-funnel parts of
 copy and `/daniel`/`/danny`/`/thienvu` landings from that entry are unaffected.
 No Stripe/payment wiring changed (`topic: payments` still holds) — the removed
 pages had no payment links.
+
+## topic: single-page-site — _2026-07-30_
+
+Built on branch `redesign/agency-only` (not yet merged to `main`): collapsed
+`/about`, `/creators`, and `/roi` into `app/page.tsx` as homepage sections
+(`good-marketing.co`-style — nav shows only a few anchors, the page itself
+has more scrollable sections than the nav lists). `/blog` (and its only post,
+`/blog/text-on-screen-ugc`) is deleted outright, not merged; the user doesn't
+maintain it. `next.config.mjs` `redirects()` sends the four old paths to their
+new homes permanently: `/about` → `/#team`, `/creators` → `/#creators`, `/roi`
+→ `/`, `/blog` and `/blog/*` → `/`.
+
+- **Deduped, not concatenated.** About, Creators, and ROI each had their own
+  near-identical "market stats" block (`marketStats`/`marketStats2`, UGC-spend
+  figures) and Creators + ROI both had the same budget-calculator
+  implementation. The merged homepage keeps exactly one of each — sourced from
+  ROI's copy/styling, since the task named ROI as the source for both. About's
+  "Our Network" video grid was also dropped as a duplicate: it showcased the
+  same 4 posts (same view counts) as the homepage's existing "Content that
+  goes viral" section, just with less data (no likes/engagement). Only About's
+  founder-story video block (YouTube + 3 vertical clips) was merged, as
+  `#our-story`-equivalent content ahead of "How it works."
+- **Not everything on About came over.** The task named exactly three About
+  sections to merge (story/video, differentiators, team); the "UGC + Paid Ads"
+  comparison block wasn't on that list and was left behind when the page was
+  deleted, not merged.
+- **New anchors:** `#creators` (roster grid) and `#team` (founders) placed
+  right after `#results` (Case Studies) — "see the case studies" → "meet the
+  creators and founders who made them." Market stats + calculator sit between
+  "Our Format" and "Pricing" — market education and ROI math before the price
+  ask, same funnel position they held on the standalone ROI page.
+- **Nav trimmed to match good-marketing.co's pattern.** `components/Nav.tsx`
+  now lists exactly 3 anchors (Case Studies, Our Team, FAQ's) plus the Book a
+  Call CTA; Creators and the market/calculator content are reachable by
+  scrolling but not linked from nav, by design. `components/Footer.tsx`'s
+  links now point at `/#team` and `/#creators`; the Blog link was removed.
+- **Orphaned components deleted alongside `/blog`:** all of `components/blog/`
+  (17 files + `hooks/`) — nothing outside `app/blog/` imported any of them,
+  confirmed by grep before deletion. `components/VideoPlaceholder.tsx`,
+  `AnimateIn.tsx`, `InstagramEmbed.tsx`, and `WistiaEmbed.tsx` are also unused
+  repo-wide but predate this change (not orphaned *by* this merge), so they
+  were left alone rather than swept up as unrelated cleanup.
+- `app/sitemap.ts` now lists only the homepage; `/about`, `/creators`, `/roi`,
+  and both `/blog` entries removed since those routes no longer exist.
+  `docs/SITE.md`'s Routes section never enumerated these pages (it only calls
+  out non-obvious wiring), so nothing there needed updating.
