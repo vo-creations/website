@@ -31,6 +31,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `payments` — no website checkout; direct Stripe links; webhook → Slack (#ka-ching)
 - `mercury-webhook` — Mercury bank events → Slack #ka-ching (incoming only)
 - `marketing-2026-06` — guarantee + mentorship reframe (supersedes the old 3M / two-month framing)
+- `agency-only-redesign` — on branch `redesign/agency-only` (not yet merged): dropped `/mentorship` + `/pre-call` funnel, softened copy to "in-house training program," pill nav + Instrument Serif accent + hero/Case Studies redesign. Supersedes the mentorship-funnel parts of `marketing-2026-06`.
 - `leaderboard` — removed 2026-06, rebuilding from scratch on the data platform (old Apps Script/middleware path scrapped)
 - `canonical-domain` — non-www is canonical; www 308-redirects
 - `showcase-video` — `#t=0.1` media fragment for iOS Safari thumbnails

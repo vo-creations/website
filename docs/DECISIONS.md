@@ -527,3 +527,25 @@ does not enumerate routes/env), this file, and `scripts/docs-check.mjs` +
 **Why:** single source of truth for docs across website repos; the version-skew
 check replaces the previous hand-rolled "known-broken 30-day expiry" check.
 `build.yml` (runs `next build` on PRs) is kept separately, outside the standard.
+
+## topic: agency-only-redesign — _2026-07-30_
+
+Built on branch `redesign/agency-only` (not yet merged to `main`): dropped the
+mentorship enrollment funnel and reframed the site as agency-only, plus a visual
+refresh. Deleted `app/mentorship/` and `app/pre-call/` (and their nav/footer/
+sitemap links); remaining "mentorship" copy on `app/page.tsx`, `app/about/page.tsx`,
+`app/layout.tsx`, `app/creators/page.tsx`/`layout.tsx`, and
+`app/campaigns/maxxd/page.tsx` was softened to "in-house training program"
+language. Visually: a floating pill-style `Nav.tsx`, an Instrument Serif italic
+accent font on key headline words, a redesigned homepage hero (kicker badge,
+hex-texture background, "Trusted by" client strip), and the "Results" section
+reframed as "Case Studies."
+
+**Why:** mentorship was sold as a standalone enrollment product (`topic:
+marketing-2026-06`); this removes that funnel entirely and repositions the company
+as agency-only, with training framed as an internal differentiator rather than
+something visitors buy into directly. Supersedes the mentorship-funnel parts of
+`marketing-2026-06` (the `/pre-call` route and mentorship framing); the guarantee
+copy and `/daniel`/`/danny`/`/thienvu` landings from that entry are unaffected.
+No Stripe/payment wiring changed (`topic: payments` still holds) — the removed
+pages had no payment links.
