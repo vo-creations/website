@@ -49,7 +49,7 @@ export default function CreatorsPage() {
             <span className="text-accent">500M+ views</span> and counting.
           </h1>
           <p className="text-[clamp(16px,2vw,19px)] text-text-secondary max-w-[520px] mx-auto leading-relaxed">
-            Every creator trained through our mentorship. No freelancers. No marketplace.
+            Every creator trained through our program. No freelancers. No marketplace.
           </p>
         </div>
       </section>
@@ -255,16 +255,6 @@ export default function CreatorsPage() {
         sub="We match creators to your brand, audience, and goals. No marketplace. Handpicked."
         buttonText="Apply for a campaign slot →"
       />
-
-      {/* Mentorship link */}
-      <div className="text-center py-10">
-        <Link
-          href="/mentorship"
-          className="text-sm text-text-secondary hover:text-text transition-colors underline underline-offset-4 decoration-white/15"
-        >
-          Want to become a creator? Learn more here →
-        </Link>
-      </div>
 
       <Footer />
     </>

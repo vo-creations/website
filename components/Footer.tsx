@@ -40,8 +40,8 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-  { href: "/about", label: "For Brands" },
-  { href: "/mentorship", label: "For Creators" },
+  { href: "/about", label: "About" },
+  { href: "/creators", label: "Creators" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -62,7 +62,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-text-secondary leading-relaxed max-w-[320px] mb-6">
-              The viral UGC mentorship that became an agency.<br />
+              The UGC agency that trains its own creators.<br />
               Scaling brands through authentic creator content.
             </p>
             <div className="flex gap-3">

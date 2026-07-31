@@ -58,6 +58,7 @@ const config: Config = {
         outfit: ['Outfit', 'sans-serif'],
         space: ['var(--font-space)', 'Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        accent: ['var(--font-accent-serif)', 'Instrument Serif', 'serif'],
       },
       keyframes: {
         fadeUp: {

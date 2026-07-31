@@ -29,7 +29,7 @@ const differentiators = [
   {
     num: "01",
     title: "We train our own creators",
-    desc: "Every creator went through our mentorship. They know our system, standards, and formats.",
+    desc: "Every creator went through our training program. They know our system, standards, and formats.",
   },
   {
     num: "02",
@@ -82,8 +82,8 @@ export default function AboutPage() {
         <div className="max-w-[720px] mx-auto text-center">
           <Label>For brands</Label>
           <h1 className="text-[clamp(32px,5vw,52px)] font-black leading-[1.05] tracking-tighter mb-6">
-            The mentorship that<br />
-            became an <span className="text-accent">agency</span>
+            The training program that<br />
+            became an <span className="font-accent italic font-normal text-accent">agency.</span>
           </h1>
           <p className="text-[clamp(16px,2vw,19px)] text-text-secondary max-w-[520px] mx-auto leading-relaxed">
             From 3 minimum-wage jobs to 100+ creators and 50+ brands.
@@ -158,10 +158,10 @@ export default function AboutPage() {
             <Label>Our network</Label>
             <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
               100+ trained creators.{" "}
-              <span className="text-accent">500M+ views</span> and counting.
+              <span className="font-accent italic font-normal text-accent">500M+ views</span> and counting.
             </h2>
             <p className="text-base text-text-secondary">
-              Every creator trained through our mentorship. No freelancers. No marketplace.
+              Every creator trained through our program. No freelancers. No marketplace.
             </p>
           </div>
 
@@ -279,7 +279,7 @@ export default function AboutPage() {
           <Label>UGC + paid ads</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             UGC isn&apos;t a replacement.{" "}
-            <span className="text-accent">It&apos;s the multiplier.</span>
+            <span className="font-accent italic font-normal text-accent">It&apos;s the multiplier.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
             UGC is top-of-funnel. A compounding brand engine. Your attention layer that makes everything else in your marketing stack convert better.
@@ -387,7 +387,7 @@ export default function AboutPage() {
           Want to work with us?
         </h3>
         <p className="text-base text-text-secondary mb-6">
-          Whether you&apos;re a brand or a future creator, let&apos;s talk.
+          Tell us about your brand and let&apos;s talk.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -398,12 +398,6 @@ export default function AboutPage() {
           >
             Apply for a campaign &rarr;
           </a>
-          <Link
-            href="/mentorship"
-            className="inline-flex items-center gap-2 bg-transparent text-text font-medium text-base px-9 py-4 rounded-full border border-white/10 hover:border-white/20 hover:bg-white/[0.03] transition-all"
-          >
-            Become a creator &rarr;
-          </Link>
         </div>
       </section>
 

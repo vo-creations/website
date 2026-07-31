@@ -205,7 +205,7 @@ export default function MaxxdCampaignPage() {
               {
                 num: "01",
                 title: "Train, don't hire.",
-                body: "6 creators from VoC's in-house mentorship network, trained on talking-head storytelling, hook iteration, and platform-native format. No marketplace randoms.",
+                body: "6 creators from VoC's in-house creator network, trained on talking-head storytelling, hook iteration, and platform-native format. No marketplace randoms.",
               },
               {
                 num: "02",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -15,13 +15,20 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-accent-serif",
+  weight: ["400"],
+  style: ["italic"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Vo Creations: UGC Agency for Startups & Consumer Apps",
     template: "%s | Vo Creations",
   },
   description:
-    "Vo Creations is a UGC agency that trains its own creators through live mentorship. 180 talking-head videos across 4 platforms. 9 days to launch. 100M+ views generated for brands like Fable, Cluely, and Codedex.",
+    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. 9 days to launch. 100M+ views generated for brands like Fable, Cluely, and Codedex.",
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
     canonical: "/",
@@ -36,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vo Creations: Make Them Remember.",
     description:
-      "Trained creators. Proven formats. Predictable virality. The only UGC agency that builds its own creator supply chain through mentorship.",
+      "Trained creators. Proven formats. Predictable virality. The only UGC agency that builds its own creator supply chain in-house.",
     siteName: "Vo Creations",
     type: "website",
     images: [
@@ -64,7 +71,7 @@ const organizationJsonLd = {
   url: "https://vocreations.com",
   logo: "https://vocreations.com/VoCreations Logo.webp",
   description:
-    "UGC agency that trains its own creators through live mentorship. Specializing in talking-head storytelling for AI startups and consumer apps.",
+    "UGC agency that trains its own creators in-house. Specializing in talking-head storytelling for AI startups and consumer apps.",
   founder: {
     "@type": "Person",
     name: "Thienvu Vo",
@@ -121,7 +128,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${dmSans.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         {children}
         <Analytics />
       </body>

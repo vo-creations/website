@@ -50,12 +50,12 @@ const showcaseVideos = [
 ];
 
 const agencyFaqs = [
-  { q: "How many creators will be on my campaign?", a: "3 vetted creators for Starter, 6 for Growth. Every creator is trained through our mentorship. No freelancers." },
+  { q: "How many creators will be on my campaign?", a: "3 vetted creators for Starter, 6 for Growth. Every creator is trained through our program. No freelancers." },
   { q: "What platforms do you post on?", a: "TikTok, Instagram Reels, YouTube Shorts, and Facebook. All four platforms, simultaneously." },
   { q: "How quickly can a campaign start?", a: "9 days from signed contract to first videos going live. Strategy and creator matching happen in Days 1-2." },
   { q: "What happens if creators underperform?", a: "We cut underperformers and replace them. That's the VoC Method. Test 7 formats, keep the winners, triple down." },
   { q: "Do you guarantee views or conversions?", a: "Yes. 1,000,000 organic views minimum, or 50% of your fee back. Only organic views count toward the guarantee, no paid views. We don't fake attribution or promise conversion rates we can't prove." },
-  { q: "How is this different from hiring freelance creators?", a: "Our creators are trained through a 2-month mentorship. They know our format system, they've been tested, and they work as a coordinated team, not solo freelancers." },
+  { q: "How is this different from hiring freelance creators?", a: "Our creators are trained through a 2-month in-house program. They know our format system, they've been tested, and they work as a coordinated team, not solo freelancers." },
   { q: "Can I see examples of past campaigns?", a: "Yes. Check the Results section above. We're happy to walk through case studies on a call." },
 ];
 
@@ -83,21 +83,29 @@ export default function Home() {
       <Nav />
 
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[140px] pb-20 relative overflow-hidden">
-        <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(245,166,35,0.04)_0%,transparent_60%)] pointer-events-none" />
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-hex pointer-events-none" />
+        <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(245,166,35,0.06)_0%,transparent_60%)] pointer-events-none" />
 
-        <h1 className="text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1">
+        <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
+            The team behind 100M+ views
+          </span>
+        </div>
+
+        <h1 className="relative text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1">
           We don&apos;t hire creators.
           <br />
-          We <span className="text-accent">build</span> them.
+          We <span className="font-accent italic font-normal text-accent">build</span> them.
         </h1>
 
-        <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
+        <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
           Trained creators. Proven formats. Predictable virality.
           The only UGC agency that builds its own creator supply chain.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
+        <div className="relative flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
           <a
             href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
             target="_blank"
@@ -114,7 +122,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto animate-fade-up-delay-4">
+        <div className="relative grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto animate-fade-up-delay-4">
           {[
             ["100M+", "Views generated"],
             ["30+", "Brands scaled"],
@@ -138,12 +146,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUSTED BY */}
+      <section className="pb-[80px] px-6">
+        <div className="max-w-[900px] mx-auto text-center">
+          <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
+            Trusted by
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 opacity-70">
+            {["Fable", "Codedex", "BlackBox AI", "Makon AI"].map((name) => (
+              <span
+                key={name}
+                className="text-xl md:text-2xl font-extrabold tracking-tight text-text-secondary hover:text-text transition-colors"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CONTENT THAT GOES VIRAL */}
       <section className="py-[100px]">
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Content that goes <span className="text-accent">viral</span>
+            Content that goes <span className="font-accent italic font-normal text-accent">viral</span>
           </h2>
           <p className="text-base text-text-secondary mb-8">
             Real UGC from our trained creator network.
@@ -242,7 +269,7 @@ export default function Home() {
           <Label>Our format</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Talking-head only. No text-on-screen.{" "}
-            <span className="text-accent">Ever.</span>
+            <span className="font-accent italic font-normal text-accent">Ever.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Every platform&apos;s algorithm rewards authentic human content. A real face converts better than text overlays.
@@ -264,7 +291,7 @@ export default function Home() {
               ["Format", "Talking-head storytelling", "Text-on-screen, mixed formats"],
               ["Length", "15–40 seconds", "Varies (15s–3min)"],
               ["Why it works", "Authentic. Feels like a friend's recommendation.", "Looks “produced.” Platforms are deprioritizing it."],
-              ["Creator skill", "High, from mentorship training", "Low, anyone can overlay text"],
+              ["Creator skill", "High, from in-house training", "Low, anyone can overlay text"],
               ["Scroll-stop", "A real face holds attention", "Text competes with every other overlay"],
             ].map(([label, vo, others]) => (
               <div
@@ -301,10 +328,10 @@ export default function Home() {
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Pricing</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Simple pricing. <span className="text-accent">No hidden fees.</span>
+            Simple pricing. <span className="font-accent italic font-normal text-accent">No hidden fees.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
-            All creators are trained through our mentorship. All campaigns
+            All creators are trained through our in-house program. All campaigns
             include the VoC Method. Paid upfront.
           </p>
 
@@ -385,9 +412,9 @@ export default function Home() {
       {/* RESULTS */}
       <section className="py-[100px]" id="results">
         <div className="max-w-[1000px] mx-auto px-6">
-          <Label>Results</Label>
+          <Label>Case Studies</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Real campaigns. Real numbers.
+            Undeniable <span className="font-accent italic font-normal text-accent">impact.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Click any card for the full story.
@@ -477,7 +504,7 @@ export default function Home() {
           <Label>What to expect</Label>
           <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
             1 million organic views.{" "}
-            <span className="text-accent">Guaranteed.</span>
+            <span className="font-accent italic font-normal text-accent">Guaranteed.</span>
           </h2>
 
           <div className="space-y-5 text-[15px] text-text-secondary leading-relaxed">

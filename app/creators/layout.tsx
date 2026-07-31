@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/creators" },
   title: "Our Creator Network: Trained UGC Creators",
   description:
-    "Browse Vo Creations' trained creator network. Every creator completes a 2-month mentorship before joining campaigns. 100M+ combined views.",
+    "Browse Vo Creations' trained creator network. Every creator completes a 2-month in-house training program before joining campaigns. 100M+ combined views.",
   openGraph: {
     title: "Creator Network | Vo Creations",
     description:
-      "Trained UGC creators ready for your campaign. Every creator completes a 2-month mentorship.",
+      "Trained UGC creators ready for your campaign. Every creator completes a 2-month in-house training program.",
     type: "website",
   },
 };
