@@ -1202,3 +1202,69 @@ Branch `redesign/agency-only` (still not merged).
   first screenshot attempt caught it still lazy-loading (blank box) at
   300ms post-scroll, which was a verification-timing issue, not a code
   bug; a longer wait showed the photo rendering correctly.
+
+## topic: trusted-by-logos — _2026-08-01 (four real clients added)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Added four confirmed real clients** to the `trustedBrands` marquee in
+  `app/page.tsx`: Higgsfield, Hyperknow, Kortix, Tomo. Purely additive —
+  all nine existing logos (Aonic, BlackBox AI, Causes, Codedex, Dubbing,
+  Fable, Kicker, Liftoff, Makon AI) kept as-is.
+- **Sourcing**: user could only make out a partial name ("...rtix") on a
+  cropped screenshot of a competitor site (viewd.net)'s own trusted-by
+  row. WebFetch got a flat 403 on viewd.net (bot-blocked); used the
+  Playwright headless browser already set up in this session's scratch
+  dir to load the live page directly and read the real DOM — image
+  `src`/`alt` attributes for the SVG-based logos, and inline text content
+  for the two clients rendered as plain styled wordmarks (`aonic`,
+  Hyperknow — no logo asset, just styled text on viewd.net, confirmed by
+  reading the surrounding HTML, not by inference). That resolved the
+  full row: Higgsfield, aonic, BlackBox AI, Hyperknow, Causes, Tomo,
+  Fable, Kortix — the cut-off name was **Kortix** (`kortix.com`, the
+  open-source "AI command center" behind the Suna agent; confirmed
+  `kortix.ai` 301s to `kortix.com`, so `.com` is canonical). Four of
+  those eight were already in our list (Aonic, BlackBox AI, Causes,
+  Fable) — only Higgsfield, Hyperknow, Kortix, and Tomo were new.
+  "Tomo" had no logo asset on viewd.net to identify it by, and the name
+  alone is ambiguous (surfboard shaper, mortgage lender, credit-card
+  fintech all use it) — resolved to **TomoCredit** (`tomocredit.com`) on
+  fit: a consumer fintech card app is the kind of DTC/app brand a
+  creator-UGC marketplace like viewd would plausibly serve, versus a
+  boutique surfboard maker or a mortgage lender.
+- **Per the brief, none of the four logo assets were taken from viewd.net's
+  rendering** — each was sourced from the client's own official site,
+  fetched directly with the same Playwright browser (WebFetch 403'd on
+  at least one target too, so this was the only working path all
+  around):
+  - **Kortix** — grabbed the exact inline SVG wordmark (icon + type,
+    `fill="currentColor"`) straight from `kortix.com`'s nav, kept
+    unmodified, recolored to white via CSS `color`, rendered to a
+    transparent PNG.
+  - **Tomo** — downloaded TomoCredit's own official asset directly
+    (`tomocredit.com/images/tomoLogoWhiteGreen.svg`, `alt="TomoCredit
+    Logo"`) — already white wordmark + teal accent dot, no background
+    rect, so no recoloring or chip needed.
+  - **Higgsfield** — their nav is icon-only (no combined wordmark
+    lockup on the live site, checked Wikipedia's infobox too, nothing
+    there either); pulled the real icon SVG path from `higgsfield.ai`'s
+    nav markup and paired it with a typeset "Higgsfield" wordmark, the
+    same icon-plus-typeset-text pattern already used for `causes.png`
+    in this same array (and the same pattern viewd.net itself uses for
+    this exact client, independently arrived at, not copied from them).
+  - **Hyperknow** — no exposed SVG/asset URL (Framer site, icon is an
+    inline data-URI background-image); took a real 3x-scale screenshot
+    of their own nav lockup instead, then color-keyed white background
+    out and remapped surviving ink to white via a luminance-alpha pass
+    (Python/PIL) rather than a flat threshold, so the antialiasing
+    survived and the edges stayed clean at marquee size.
+  - All four cropped to their true content bbox and dropped into
+    `public/logos/` following the existing naming convention (lowercase
+    company key, `.png`), then wired into `trustedBrands` the same way
+    every other entry is — no chip, `h-14 object-contain`, since none of
+    the four has Liftoff's uncolor-keyable-gradient problem.
+- Verified via Playwright against the running dev server: all 13 unique
+  brands present in the marquee's DOM in the expected order, zero broken
+  images (`naturalWidth`/`complete` checked, not just a 200), and
+  individual element screenshots of all four new logos confirm they
+  render at consistent `h-14` sizing alongside the existing set.

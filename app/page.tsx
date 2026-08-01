@@ -57,11 +57,15 @@ const trustedBrands = [
   { name: "Codedex", file: "codedex.png" },
   { name: "Dubbing", file: "dubbing.png" },
   { name: "Fable", file: "fable.png" },
+  { name: "Higgsfield", file: "higgsfield.png" },
+  { name: "Hyperknow", file: "hyperknow.png" },
   { name: "Kicker", file: "kicker.png" },
+  { name: "Kortix", file: "kortix.png" },
   // Liftoff's source is a diagonal blue gradient, not a flat color — can't be
   // cleanly color-keyed to transparent, so it gets a small dark chip instead.
   { name: "Liftoff", file: "liftoff.jpeg", needsChip: true },
   { name: "Makon AI", file: "makon1.png" },
+  { name: "Tomo", file: "tomo.png" },
 ];
 
 const agencyFaqs = [
