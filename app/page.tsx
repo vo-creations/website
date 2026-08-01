@@ -116,17 +116,18 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — left-aligned, single column. Headline is Inter (not the Bricolage display
-          font) at heavy weight, normal case — small-caps at this size on a heavy display
-          font read blocky/circus-like; small-caps stays reserved for the small tagline
-          usage in Nav/Footer. No amber here specifically (deliberate); otherwise inherits
-          the page's dark tokens. The .bg-dots texture lives on its own decorative div
-          behind the content — applying it (or its mask-image) to a container that also
-          holds text/buttons dims everything, which is exactly what broke here before. */}
+      {/* HERO — left-aligned, single column, flat background (no texture, Playkit-style).
+          Headline is Inter (not the Bricolage display font) at heavy weight, normal case —
+          small-caps at this size on a heavy display font read blocky/circus-like;
+          small-caps stays reserved for the small tagline usage in Nav/Footer. No amber
+          here specifically (deliberate); otherwise inherits the page's dark tokens.
+          IMPORTANT: the wrapper below must NOT have mx-auto — that centers the whole
+          max-w column as a block, which reads as "centered" even with text-left/items-start
+          on its children. Left-aligned means the column itself hugs the section's left
+          edge (only px-6 padding, no auto margins), not just left-aligned text inside a
+          centered column. */}
       <section className="min-h-screen flex flex-col justify-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
-        <div className="absolute inset-0 bg-dots pointer-events-none" />
-
-        <div className="relative max-w-[720px] w-full mx-auto flex flex-col items-start text-left">
+        <div className="relative max-w-[720px] flex flex-col items-start text-left">
           <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             <span className="text-[12px] font-semibold text-text-secondary tracking-wide">

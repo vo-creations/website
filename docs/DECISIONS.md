@@ -1001,3 +1001,45 @@ Branch `redesign/agency-only` (still not merged):
   - Every processed file verified by compositing onto the actual page
     background color and viewing the result, not just confirming the
     script ran without error.
+
+## topic: agency-only-redesign — _2026-08-01 (hero left-align actually fixed, texture removed)_
+
+Branch `redesign/agency-only` (still not merged). The previous entry's
+left-align fix didn't actually take — root cause and a real fix this time.
+
+- **Root cause: `mx-auto` on the hero's content wrapper.** The wrapper had
+  `max-w-[720px] w-full mx-auto flex flex-col items-start text-left`.
+  `items-start`/`text-left` correctly left-align each child *within* the
+  wrapper, but `mx-auto` centers the wrapper itself as a block inside the
+  section — on a wide viewport that puts a 720px column floating in the
+  middle of the screen, which reads as "centered" regardless of what
+  alignment is set inside it. Fix: dropped `mx-auto` (and the now-pointless
+  `w-full`) entirely, so the wrapper is a plain block that starts at the
+  section's own left padding edge, same as every other block element
+  without auto margins.
+- **`.bg-dots` removed from the hero and deleted from `globals.css`
+  entirely** (grepped first — it had no other callers) — flat solid
+  background, matching the Playkit.co reference, no texture at all.
+- **Verified this time with a real headless browser, not just markup
+  inspection.** No Playwright/Chromium was installed; installed both
+  (`npx playwright install chromium`, plus the `playwright` npm package
+  in a scratch dir outside the repo) and used actual
+  `getBoundingClientRect()` calls against the running dev server to
+  confirm the kicker pill, headline, subheading, and hero CTA all sit at
+  `x=24px` (the viewport edge plus the section's own `px-6` padding) —
+  not `x≈360px`, which is where they'd sit if still centered on a 1440px
+  viewport. Confirmed at both a 1440px desktop and a 390px mobile
+  viewport, and took real screenshots of both to visually confirm the
+  result (readable, cleanly left-aligned, flat black background, no
+  visible dot texture).
+- **Headline weight/tracking already maxed out within the current type
+  system, left as-is.** `tracking-tighter` is Tailwind's tightest
+  built-in letter-spacing utility (tighter than the `tracking-tight` the
+  brief suggested trying) and `font-extrabold` (800) is the heaviest
+  weight actually loaded for Inter in `app/layout.tsx` — a heavier class
+  would either be clamped to the same 800 by the browser or trigger
+  synthetic/faux bolding, which tends to look worse, not better. Did not
+  touch the site-wide `-webkit-text-stroke` on `.font-extrabold` in
+  `globals.css` (a deliberate, established convention affecting every
+  bold heading, not hero-specific) without being able to confirm removing
+  it for just this headline would actually help.

@@ -56,16 +56,3 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-
-/* Soft dot-grid texture for hero backgrounds. Deliberately not a repeating
-   geometric pattern like a hex/honeycomb grid — apply only to a dedicated
-   decorative div (e.g. `absolute inset-0 bg-dots pointer-events-none`) that
-   sits behind real content, never directly on a container that also holds
-   text/buttons — the mask-image below fades the whole painted element,
-   content included. */
-.bg-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1.5px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 0%, transparent 75%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 0%, transparent 75%);
-}
