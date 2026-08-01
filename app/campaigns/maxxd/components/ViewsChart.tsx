@@ -99,7 +99,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
 
           {/* Data points */}
           {points.map((p, i) => (
-            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#120F0A" stroke="#F5A623" strokeWidth="1.5" />
+            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#121110" stroke="#F5A623" strokeWidth="1.5" />
           ))}
 
           {/* Peak marker */}

@@ -10,10 +10,10 @@ const config: Config = {
       colors: {
         // Agency theme (amber, dark, "cookies and cream")
         bg: {
-          DEFAULT: '#120F0A',
-          card: '#1E1810',
-          elevated: '#2A2216',
-          subtle: '#110D08',
+          DEFAULT: '#121110',
+          card: '#1C1917',
+          elevated: '#262220',
+          subtle: '#0F0E0D',
         },
         accent: {
           DEFAULT: '#F5A623',

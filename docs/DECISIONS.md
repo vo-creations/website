@@ -1134,3 +1134,71 @@ Branch `redesign/agency-only` (still not merged).
     (`#F7F0DD`), body background resolves to `rgb(18, 15, 10)`
     (`#120F0A`) — confirmed the token change actually propagates, not
     just assumed it from editing one file.
+
+## topic: agency-only-redesign — _2026-08-01 (bg tokens desaturated, case-study card cleanup, Thienvu photo)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **`bg.*` tokens were reading as brown/orange, not near-black.** Root
+  cause: the previous round's warming pass (`text: single-line headline,
+  star badge, warm palette` above) nudged `bg.DEFAULT`/`card`/`elevated`/
+  `subtle` warmer by eye without checking hue — turns out all four sat at
+  ~hue 30-37°, essentially the same hue family as `accent`'s `#F5A623`
+  (~hue 37°), just darkened and desaturated to ~29-30%. At that low a
+  lightness, a 30% saturation matching the accent hue reads as literal
+  brown, not "near-black with warmth." Desaturated all four to ~9-10%
+  while keeping their relative lightness ordering (`subtle` < `DEFAULT` <
+  `card` < `elevated`): `#120F0A`→`#121110`, `#1E1810`→`#1C1917`,
+  `#2A2216`→`#262220`, `#110D08`→`#0F0E0D`. Re-synced the same three
+  hardcoded-hex duplicates flagged last round: `globals.css` scrollbar-
+  track, `InstagramEmbed.tsx` placeholder background, `ViewsChart.tsx`
+  data-point hollow fill (all matched `bg.DEFAULT`/`bg.card`, not
+  independent choices — see prior entry for why these three specifically
+  need to move with the token). Verified via computed styles: body now
+  `rgb(18,17,16)`, case-study/team/CTA cards now `rgb(28,25,23)` — R-G-B
+  spread dropped from ~14-18 to 5, i.e. genuinely near-neutral rather
+  than same-hue-as-accent-but-dark.
+- **Audited `ResultCard.tsx` and the team section for leftover
+  `text-accent`/`border-accent` instances the user flagged as "still
+  orange."** Found none — the quote mark, mini-stat values, view count,
+  and verified badge were already on `text-text`/`text-text-secondary`
+  from an earlier sweep this session. Concluded the orange the user was
+  seeing was the `bg.*` hue issue above (a same-hue-family dark brown
+  reads as "orange" against the cream text), not leftover accent text.
+  Left the two remaining accent uses in `ResultCard.tsx`
+  (`hover:border-accent/25` on the card border, `bg-accent/[0.03]` quote-
+  bar tint) as-is — both pre-approved in an earlier round as
+  intentionally subtle, not part of this complaint.
+- **Case-study card cleanup** (`components/ResultCard.tsx`), scoped to
+  "cleaner," not a rebuild:
+  - View-count block: added a "Total views" eyebrow label above the
+    number and moved the inline "views" suffix out of the big number
+    (it was crowding the `text-5xl` figure); `viewsSub` now sits below
+    on its own line. Gives the stat a clear label → number → detail
+    reading order instead of number-with-suffix + unlabeled detail.
+  - Expandable Challenge/Approach/Result block: replaced inline
+    `<strong>Challenge:</strong>` labels (competing for weight with the
+    paragraph's own bold spans elsewhere on the card) with small
+    uppercase eyebrow labels above each paragraph, `space-y-5` between
+    blocks instead of `mt-3.5` per-paragraph, `leading-[1.7]` instead of
+    `leading-relaxed`. Reads as three distinct labeled sections instead
+    of a wall of bolded-inline text.
+  - Minor spacing tightening for consistency: header block `pb-5`→`pb-6`,
+    quote bar `py-5`→`py-6`, mini-stat tiles `p-3.5`→`p-4`/`gap-2.5`→
+    `gap-3`, quote mark `text-4xl opacity-40`→`text-3xl text-text-dim`
+    (was competing visually with the view-count number at the same
+    opacity-driven weight).
+- **Thienvu Vo's headshot swapped.** New file saved to
+  `public/videos/team-thienvu-new.jpg` — arrived on disk as
+  `team-thienvu-new.JPG` (uppercase extension); renamed to lowercase
+  before referencing it, since macOS's case-insensitive-but-case-
+  preserving filesystem would have hidden a mismatch that breaks on
+  Vercel's case-sensitive Linux filesystem in prod. `team` array's
+  `image` field in `app/page.tsx` now points at the new file; old
+  `team-thienvu.jpg` left on disk unreferenced rather than deleted.
+  Confirmed via Playwright (`naturalWidth`/`naturalHeight` + screenshot,
+  not just a 200 on the file request) that it renders at full resolution
+  and crops correctly under the card's `aspect-square object-cover` —
+  first screenshot attempt caught it still lazy-loading (blank box) at
+  300ms post-scroll, which was a verification-timing issue, not a code
+  bug; a longer wait showed the photo rendering correctly.

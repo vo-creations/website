@@ -94,7 +94,7 @@ const team = [
     location: "Richmond, VA",
     statLine: "Founder of Vo Creations Mentorship",
     detailLine: "Led students to $1M in earnings & 500M+ views",
-    image: "/videos/team-thienvu.jpg",
+    image: "/videos/team-thienvu-new.jpg",
   },
   {
     name: "Daniel Yun",

@@ -42,8 +42,8 @@ export default function ResultCard({
       className={`bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-accent/25 ${expandable ? "cursor-pointer" : ""}`}
       onClick={() => expandable && setOpen(!open)}
     >
-      <div className="p-7 pb-5">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+      <div className="p-7 pb-6">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-5">
           <div>
             <div className="flex items-center gap-3">
               {logo && (
@@ -61,7 +61,7 @@ export default function ResultCard({
                 {company}
               </div>
             </div>
-            <div className="flex flex-wrap gap-2 mt-3">
+            <div className="flex flex-wrap gap-2 mt-3.5">
               {tags.map((tag) => (
                 <span
                   key={tag}
@@ -72,14 +72,14 @@ export default function ResultCard({
               ))}
             </div>
           </div>
-          <div className="text-right">
+          <div className="text-right shrink-0">
+            <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1">
+              Total views
+            </div>
             <div className="text-5xl md:text-[48px] font-black text-text tracking-tighter leading-none">
               {views}
-              <span className="text-base text-text-secondary font-normal ml-1">
-                views
-              </span>
             </div>
-            <div className="text-xs text-text-dim mt-1 font-medium">
+            <div className="text-xs text-text-dim mt-2 font-medium">
               {viewsSub}
             </div>
           </div>
@@ -87,15 +87,15 @@ export default function ResultCard({
       </div>
 
       {/* Quote bar */}
-      {quote && <div className="px-7 py-5 bg-accent/[0.03] border-t border-border flex gap-3.5 items-start">
-        <div className="text-4xl text-text font-serif leading-none opacity-40 shrink-0 -mt-1">
+      {quote && <div className="px-7 py-6 bg-accent/[0.03] border-t border-border flex gap-3.5 items-start">
+        <div className="text-3xl text-text-dim font-serif leading-none shrink-0 -mt-1">
           &ldquo;
         </div>
         <div>
           <div className="text-sm text-text-secondary leading-relaxed italic">
             {quote}
           </div>
-          <div className="text-xs text-text-dim mt-1.5 not-italic font-medium">
+          <div className="text-xs text-text-dim mt-2 not-italic font-medium">
             {quoteSource}
           </div>
         </div>
@@ -110,31 +110,43 @@ export default function ResultCard({
 
       {/* Expandable detail */}
       {expandable && open && (
-        <div className="px-7 pb-7 border-t border-border">
+        <div className="px-7 py-6 border-t border-border space-y-5">
           {challenge && (
-            <p className="text-sm text-text-secondary leading-relaxed mt-3.5">
-              <strong className="text-text font-semibold">Challenge:</strong>{" "}
-              {challenge}
-            </p>
+            <div>
+              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
+                Challenge
+              </div>
+              <p className="text-sm text-text-secondary leading-[1.7]">
+                {challenge}
+              </p>
+            </div>
           )}
           {approach && (
-            <p className="text-sm text-text-secondary leading-relaxed mt-3.5">
-              <strong className="text-text font-semibold">Approach:</strong>{" "}
-              {approach}
-            </p>
+            <div>
+              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
+                Approach
+              </div>
+              <p className="text-sm text-text-secondary leading-[1.7]">
+                {approach}
+              </p>
+            </div>
           )}
           {result && (
-            <p className="text-sm text-text-secondary leading-relaxed mt-3.5">
-              <strong className="text-text font-semibold">Result:</strong>{" "}
-              {result}
-            </p>
+            <div>
+              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
+                Result
+              </div>
+              <p className="text-sm text-text-secondary leading-[1.7]">
+                {result}
+              </p>
+            </div>
           )}
           {miniStats && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mt-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-1">
               {miniStats.map((s) => (
                 <div
                   key={s.label}
-                  className="bg-bg-elevated rounded-[10px] p-3.5 text-center"
+                  className="bg-bg-elevated rounded-[10px] p-4 text-center"
                 >
                   <div className="text-xl font-extrabold text-text tracking-tight">
                     {s.value}
