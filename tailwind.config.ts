@@ -76,6 +76,10 @@ const config: Config = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       animation: {
         'fade-up': 'fadeUp 0.7s ease forwards',
@@ -89,6 +93,7 @@ const config: Config = {
         // Same keyframe as `scroll`, slower — the video showcase row has much
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 70s linear infinite',
+        float: 'float 5s ease-in-out infinite',
       },
     },
   },

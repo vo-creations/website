@@ -21,10 +21,10 @@ export default function CTABlock({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
+        className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
       >
         <Image
-          src="/vocreations-mark-black.png"
+          src="/vocreations-mark-white.png"
           alt=""
           width={18}
           height={19}

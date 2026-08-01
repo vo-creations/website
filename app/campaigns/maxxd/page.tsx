@@ -248,10 +248,10 @@ export default function MaxxdCampaignPage() {
             </p>
             <a
               href="/apply"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-black font-outfit font-semibold rounded-lg hover:bg-white/90 transition-colors duration-200"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent text-white border border-white font-outfit font-semibold rounded-lg hover:bg-white/10 transition-colors duration-200"
             >
               <Image
-                src="/vocreations-mark-black.png"
+                src="/vocreations-mark-white.png"
                 alt=""
                 width={18}
                 height={19}

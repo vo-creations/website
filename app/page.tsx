@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Nav, { NAV_CONTAINER, NAV_INNER_PADDING } from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
@@ -10,6 +10,72 @@ import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
 import Image from "next/image";
+
+// DECISION: hero stats count up from 0 once the row scrolls into view (fires
+// immediately on mount if already in view, e.g. tall viewports). "1B+" has no
+// honest literal count-up (0→1 isn't a count, 0→1,000,000,000 isn't readable),
+// so it counts 0→1000 formatted as "M+" and swaps to the fixed "1B+" label
+// only on the final frame — reads as a satisfying climb through big numbers
+// that lands on the real figure. See docs/DECISIONS.md (topic: hero-stats-countup).
+function useInView<T extends HTMLElement>(threshold = 0.3) {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+function useCountUp(target: number, trigger: boolean, duration = 1400) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!trigger) return;
+    let raf: number;
+    let start: number | null = null;
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    const step = (ts: number) => {
+      if (start === null) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      setValue(Math.round(target * easeOutCubic(progress)));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [trigger, target, duration]);
+  return value;
+}
+
+function StatCounter({
+  target,
+  trigger,
+  format,
+}: {
+  target: number;
+  trigger: boolean;
+  format: (n: number) => string;
+}) {
+  const value = useCountUp(target, trigger);
+  return <>{format(value)}</>;
+}
+
+const heroStats = [
+  { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
+  { target: 30, format: (n: number) => `${n}+`, label: "Brands scaled" },
+  { target: 500, format: (n: number) => `${n}+`, label: "Trained creators" },
+  { target: 9, format: (n: number) => `${n}`, label: "Days to launch" },
+];
 
 const steps = [
   {
@@ -132,6 +198,7 @@ const team = [
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
 
   return (
     <>
@@ -153,7 +220,46 @@ export default function Home() {
           max-w so the headline wraps at roughly half-to-two-thirds of the viewport
           instead of stretching the full 1100px container. */}
       <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden bg-bg">
-        <div className={`relative ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING} flex flex-col items-start text-left`}>
+        {/* Floating showcase card — decorative only (same clip already appears in
+            "Content that goes viral" below), aria-hidden, absolutely positioned in
+            the empty right margin outside the text's line length so it never
+            overlaps the headline/subhead/buttons/stats at any width the `xl:block`
+            breakpoint allows. z-0 vs. the text column's z-10 is a deliberate
+            belt-and-suspenders: they shouldn't overlap by position alone, but the
+            two-column hero attempt earlier this branch taught us not to assume —
+            see docs/DECISIONS.md (topic: hero-floating-card). */}
+        <div
+          aria-hidden="true"
+          className="hidden xl:block absolute right-6 2xl:right-16 top-1/2 -translate-y-1/2 w-[220px] z-0 animate-float pointer-events-none"
+        >
+          <div className="bg-bg-card rounded-2xl overflow-hidden border border-border shadow-2xl pointer-events-auto">
+            <div className="relative aspect-[9/16]">
+              <video
+                src="/videos/post-2.mp4#t=0.1"
+                playsInline
+                muted
+                loop
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
+                onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
+              />
+              <div className="absolute top-3 left-3">
+                <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                  3.7M views
+                </span>
+              </div>
+            </div>
+            <div className="p-3 flex items-center justify-between">
+              <div className="flex gap-3 text-[11px] text-text-dim font-medium">
+                <span>♥ 189K</span>
+                <span>5.10% eng.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING} flex flex-col items-start text-left`}>
           <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
             <span className="text-white text-[10px] leading-none">✦</span>
             <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
@@ -176,10 +282,10 @@ export default function Home() {
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
             >
               <Image
-                src="/vocreations-mark-black.png"
+                src="/vocreations-mark-white.png"
                 alt=""
                 width={18}
                 height={19}
@@ -195,24 +301,22 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4">
-            {[
-              ["1B+", "Views generated"],
-              ["30+", "Brands scaled"],
-              ["500+", "Trained creators"],
-              ["9", "Days to launch"],
-            ].map(([num, lbl], i) => (
+          <div
+            ref={statsRef}
+            className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4"
+          >
+            {heroStats.map((stat, i) => (
               <div
-                key={lbl}
+                key={stat.label}
                 className={`text-left py-6 sm:py-0 ${
                   i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
                 } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
               >
-                <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
-                  {num}
+                <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text tabular-nums">
+                  <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
                 </div>
                 <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
-                  {lbl}
+                  {stat.label}
                 </div>
               </div>
             ))}

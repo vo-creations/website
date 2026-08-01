@@ -1511,3 +1511,104 @@ Branch `redesign/agency-only` (still not merged).
   the Facebook reel all render their real content cleanly via each
   platform's official embed method. Verified with real network requests
   against the live URLs during development, not just code review.
+
+## topic: hero-stats-countup — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Hero stats (1B+ / 30+ / 500+ / 9) count up from 0 on scroll-into-view**,
+  via a small local `useInView` (IntersectionObserver, `threshold: 0.3`,
+  disconnects after first fire — fires immediately on mount if the row is
+  already in the initial viewport, which it usually is on a `min-h-screen`
+  hero) and `useCountUp` (`requestAnimationFrame`, easeOutCubic, 1400ms)
+  defined inline in `app/page.tsx` — hero-only usage, didn't justify a
+  `hooks/` directory for a first hook.
+- **"1B+" has no honest literal count-up** (0→1 isn't a count; 0→1,000,000,000
+  isn't readable at 60fps). Counts 0→1000 formatted as `${n}M+` while
+  animating, and only on the final frame (`n >= 1000`) swaps to the fixed
+  "1B+" label — reads as a satisfying climb through large numbers that
+  lands on the real headline figure, not a literal frame-accurate count.
+  "30+"/"500+" count straight to their value with a "+" suffix; "9" counts
+  straight with no suffix.
+- `StatCounter` is a separate child component (not a hook call inside
+  `.map()`) — calling a hook conditionally-per-iteration inside a loop
+  violates React's rules of hooks even when the array is a static
+  constant; a child component per stat sidesteps that legitimately, each
+  instance manages its own hook state independently.
+- **Verified the count-up actually animates, not just jumps to the final
+  value** — an early test polling every 250ms after `waitUntil: "load"`
+  showed only the settled end state every time; the real cause was
+  `"load"` plus the round-trip to read the DOM already eating most of the
+  1400ms window before the first sample, not a broken animation. Re-ran
+  polling every 100ms from `domcontentloaded` and captured the real climb
+  (`0 → 166M+ → 370M+ → ... → 907M+ → 1B+`), confirmed easing and duration
+  match spec before trusting it.
+
+## topic: hero-floating-card — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Single floating showcase-post mockup added to the hero's right side**,
+  `hidden xl:block` (1280px+) — explicitly not the two-column
+  copy-left/cards-right layout from the `nav logo/border, two-column hero`
+  entry above, which was reverted for unrelated reasons (a `mask-image`
+  dimming bug, not the floating-card idea itself) but is the reason this
+  round got tested carefully rather than assumed safe.
+  - **Positioning**: `absolute right-6 2xl:right-16 top-1/2
+    -translate-y-1/2`, sized `w-[220px]`, anchored to the `<section>`
+    (not the `NAV_CONTAINER`-capped text column), so it sits in the
+    empty right margin outside the text's line length rather than
+    inside the same constrained container as the copy. Verified with
+    real screenshots at 1280/1440/1600/1920px — the headline, subhead,
+    buttons, and stats never come near the card's left edge at any of
+    them — plus 1024px/390px to confirm the `xl:` breakpoint actually
+    hides it below that width rather than leaving a half-collapsed state.
+  - **z-index**: text column is `relative z-10`, card wrapper is `z-0`
+    with `pointer-events-none` (the inner card itself is
+    `pointer-events-auto`, so hover-to-play on the video still works) —
+    belt-and-suspenders given the positioning alone should already
+    prevent overlap; kept both rather than relying on position math
+    alone a second time on this branch.
+  - `aria-hidden="true"` on the wrapper — it's decorative, the same clip
+    already exists non-decoratively in "Content that goes viral" below.
+- **Content**: reuses `post-2.mp4` (3.7M views, 189K likes, 5.10% eng.),
+  the better-performing of the two self-hosted clips still in
+  `showcaseVideos` after the marquee round's trim — same
+  `aspect-[9/16]` card shape, view-count badge, and hover-to-play/`#t=0.1`
+  thumbnail handling as the showcase section's own cards, so it reads as
+  the same design language rather than a one-off.
+- **New `float` keyframe** in `tailwind.config.ts`
+  (`translateY(0) ↔ translateY(-10px)`, `ease-in-out`, 5s, infinite) —
+  verified via `getComputedStyle(...).transform` polling that it's
+  actually oscillating (not frozen at one frame), not just visually
+  eyeballed from a single screenshot.
+
+## topic: hero-copy — _2026-08-01 (Let's Talk button restyled)_
+
+Branch `redesign/agency-only` (still not merged, supersedes the CTA-copy
+part of the same-named entry above — that entry is still current for the
+"Let's Talk" text/icon-inclusion decision, this one only changes the
+button's visual treatment).
+
+- **"Let's Talk" restyled from a solid white pill to an outlined pill**
+  (`border border-white`, `bg-transparent`/`hover:bg-white/10`, closer to
+  good-marketing.co's button treatment) at all three call sites (hero,
+  `CTABlock` default, `campaigns/maxxd`) — explicitly kept monochrome
+  white/cream, not good-marketing's amber/gold, per the standing
+  no-orange-on-buttons decision.
+- **New `public/vocreations-mark-white.png`** — the outline button needs
+  white text/icon on a transparent background, and the icon file that
+  existed (`vocreations-mark-black.png`, made for the old *solid white*
+  button) is black ink, invisible against the dark page background an
+  outline button now shows through. Extracted the same way as the black
+  version — luminance-alpha off `vocreations-logo.webp`, just filled
+  white instead of black — rather than trying to reuse or recolor the
+  black one at render time.
+  - No separate "boxed icon" bug existed to fix — the icon was already a
+    plain inline `<Image>` with no background wrapper in the JSX; the
+    solid-white-pill treatment just made a black glyph against a bright
+    white pill look more visually separated/boxed than it does now
+    against a transparent/outlined button. Addressed by matching the
+    requested end state (icon plain and inline, no visual box) rather
+    than hunting for a "background box" that turned out not to be there
+    in the markup.
