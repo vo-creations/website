@@ -52,7 +52,7 @@ export default function Footer() {
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-accent text-text font-bold text-sm px-8 py-3.5 rounded-full hover:shadow-[0_0_32px_rgba(245,166,35,0.3)] hover:-translate-y-px transition-all"
+              className="inline-flex items-center gap-2 bg-accent text-bg font-bold text-sm px-8 py-3.5 rounded-full hover:shadow-[0_0_32px_rgba(245,166,35,0.3)] hover:-translate-y-px transition-all"
             >
               make them remember.
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">

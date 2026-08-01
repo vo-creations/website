@@ -8,12 +8,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Agency theme (amber, light)
+        // Agency theme (amber, dark)
         bg: {
-          DEFAULT: '#FFFFFF',
-          card: '#F5F4F1',
-          elevated: '#EEEDE9',
-          subtle: '#FAFAF8',
+          DEFAULT: '#0F0D0B',
+          card: '#1A1714',
+          elevated: '#241F1A',
+          subtle: '#0e0d0a',
         },
         accent: {
           DEFAULT: '#F5A623',
@@ -23,13 +23,13 @@ const config: Config = {
           glow: 'rgba(245,166,35,0.3)',
         },
         text: {
-          DEFAULT: '#141210',
-          secondary: '#5B564E',
-          dim: '#8C877D',
+          DEFAULT: '#F5EDE3',
+          secondary: '#9A9088',
+          dim: '#6b6558',
         },
         border: {
-          DEFAULT: 'rgba(0,0,0,0.08)',
-          accent: 'rgba(245,166,35,0.25)',
+          DEFAULT: 'rgba(255,255,255,0.06)',
+          accent: 'rgba(245,166,35,0.2)',
         },
         green: '#4ade80',
         red: '#f87171',

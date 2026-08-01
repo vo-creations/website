@@ -684,3 +684,66 @@ column are otherwise unchanged.
   `organizationJsonLd` are untouched on purpose — that's structured data
   about the company's social presence, a different concern from the visible
   footer icon row that was actually asked to be removed.
+
+## topic: agency-only-redesign — _2026-07-31 (theme reverted to dark)_
+
+The light-theme flip (this same topic, earlier entry) is reversed. Branch
+`redesign/agency-only` (still not merged) is back to the original dark
+palette: `tailwind.config.ts`'s `bg`/`text`/`border` tokens restored to
+their pre-flip hex values (`bg.DEFAULT #0F0D0B`, `text.DEFAULT #F5EDE3`,
+etc.); `accent` (amber) was never touched either direction.
+`globals.css`'s scrollbar track/thumb, `::selection`, and the `.bg-hex`
+texture stroke opacity are reverted to their dark-calibrated values too.
+
+- **The `text-bg`/`text-text` button-contrast trick flips with the theme,
+  by design — reverted along with it.** Buttons need dark text on the
+  amber accent background regardless of theme; which *token* is dark
+  depends on which theme is active. Light theme: `bg.DEFAULT` is white, so
+  buttons used `text-text` (dark in light theme). Dark theme:
+  `bg.DEFAULT` is near-black again, so buttons revert to `text-bg` — the
+  original trick. All 6 call sites (`Nav`, `Footer`, `CTABlock`,
+  `SaaStrLanding`, `campaigns/maxxd`, `refund-policy`) flipped back.
+  Same logic for the handful of hardcoded `black/opacity` chrome utilities
+  (nav pill hovers, secondary-button outlines) that were flipped to
+  `white/opacity` for the light theme — reverted to black, EXCEPT the
+  video-thumbnail overlays (`bg-black/50` badges, `from-black/85`
+  gradients, embed play-button scrims), which were correctly never touched
+  in either direction — those stay dark regardless of page theme by
+  design.
+- **The hero no longer hardcodes `bg-black`.** With the page dark again,
+  `bg-bg` (`#0F0D0B`) is close enough to true black that the hero's own
+  background override was redundant and looked like a seam at the section
+  boundary. Swapped to the `bg-bg` token so it's pixel-identical to every
+  other section's background. Same for every hero element that was neutral
+  (not fighting amber) — kicker pill border/text, tagline, headline base
+  color, subheading, stat dividers/numbers/labels — all switched from
+  hardcoded `white/opacity` back to the normal `border-border` /
+  `text-text` / `text-text-secondary` / `text-text-dim` tokens, so the hero
+  reads as "just another section" rather than a separate design. What
+  stays hardcoded, deliberately: the kicker dot (`bg-white`, since the
+  token equivalent would be amber), the headline's emphasized clause
+  (`text-text-secondary`, replacing what would otherwise be an amber
+  span), and both CTA buttons (`bg-white text-black` primary, bold
+  `border-white` outline secondary) — those are the actual "no amber in
+  the hero" requirement from two sessions ago, preserved as-is.
+
+## topic: trusted-by-logos — _2026-07-31_
+
+Wired real client logos into the homepage's "Trusted by" marquee
+(`app/page.tsx`), replacing the bold-text placeholder from the prior
+session. 9 files landed in `public/logos/`: `aonic.jpg`, `blackbox.png`,
+`causes.png`, `codedex.jpg`, `dubbing.png`, `fable.png`, `kicker.png`,
+`liftoff.jpeg`, `makon1.png` — filenames matched what was specified
+exactly, no discrepancies. (They were actually dropped in a `logos/`
+folder at the repo root, not `public/logos/`; moved before wiring, since
+only `public/` is served statically.)
+
+- **Each logo sits in its own `bg-white rounded-xl` chip** (not a bare
+  `<Image>`), because several of the source files have an opaque
+  white/light background baked in rather than transparency — chipping
+  every logo the same way, even the ones that would've floated free on
+  transparent backgrounds, keeps all 9 visually consistent instead of some
+  showing an awkward box and others not.
+- Marquee mechanics (duplicate list once, `animate-scroll`,
+  `overflow-hidden` wrapper) are unchanged from the placeholder version —
+  just swapped `<span>{name}</span>` for the chip + `<Image>`.

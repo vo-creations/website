@@ -50,10 +50,17 @@ const showcaseVideos = [
   { src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
 ];
 
-// TODO: placeholder text logos. Real client logo files need to be dropped into
-// public/logos/ (e.g. fable.svg, codedex.svg, blackbox-ai.svg, makon-ai.svg) and
-// swapped in here as <Image> elements — none exist in the repo yet.
-const trustedBrands = ["Fable", "Codedex", "BlackBox AI", "Makon AI"];
+const trustedBrands = [
+  { name: "Aonic", file: "aonic.jpg" },
+  { name: "BlackBox AI", file: "blackbox.png" },
+  { name: "Causes", file: "causes.png" },
+  { name: "Codedex", file: "codedex.jpg" },
+  { name: "Dubbing", file: "dubbing.png" },
+  { name: "Fable", file: "fable.png" },
+  { name: "Kicker", file: "kicker.png" },
+  { name: "Liftoff", file: "liftoff.jpeg" },
+  { name: "Makon AI", file: "makon1.png" },
+];
 
 const agencyFaqs = [
   { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
@@ -148,26 +155,26 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — monochrome, scoped to this section only; rest of the page keeps the light/amber theme */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-black text-white">
-        <span className="relative text-[11px] text-white/50 [font-variant:small-caps] tracking-[0.12em] mb-4 animate-fade-up">
+      {/* HERO — no amber here specifically (deliberate); otherwise inherits the page's dark tokens */}
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
+        <span className="relative text-[11px] text-text-dim [font-variant:small-caps] tracking-[0.12em] mb-4 animate-fade-up">
           make them remember.
         </span>
 
-        <div className="relative inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+        <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
           <span className="w-1.5 h-1.5 rounded-full bg-white" />
-          <span className="text-[12px] font-semibold text-white/70 tracking-wide">
+          <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
             The team behind 1B+ views
           </span>
         </div>
 
-        <h1 className="relative font-display text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-white">
+        <h1 className="relative font-display text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
           We&apos;re not an agency.
           <br />
-          We&apos;re your <span className="text-white/70">in-house UGC program.</span>
+          We&apos;re your <span className="text-text-secondary">in-house UGC program.</span>
         </h1>
 
-        <p className="relative text-[clamp(16px,2.2vw,20px)] text-white/60 max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
+        <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
           Trained creators. Proven formats. Predictable virality.
           We run as an extension of your team, not an outside vendor.
         </p>
@@ -199,13 +206,13 @@ export default function Home() {
             <div
               key={lbl}
               className={`text-center py-6 sm:py-0 ${
-                i % 2 === 0 ? "border-r border-white/20 sm:border-r-0" : ""
-              } ${i < 2 ? "border-b border-white/20 sm:border-b-0" : ""}`}
+                i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
+              } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
             >
-              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-white">
+              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
                 {num}
               </div>
-              <div className="text-[11px] font-medium text-white/50 tracking-wide uppercase mt-2">
+              <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
                 {lbl}
               </div>
             </div>
@@ -213,7 +220,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY — marquee; placeholder text logos until real files land in public/logos/ */}
+      {/* TRUSTED BY — marquee with real client logos, chipped for contrast consistency */}
       <section className="pb-[80px]">
         <div className="max-w-[900px] mx-auto text-center px-6">
           <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
@@ -221,14 +228,20 @@ export default function Home() {
           </div>
         </div>
         <div className="overflow-hidden">
-          <div className="flex w-max items-center gap-x-16 animate-scroll opacity-70">
-            {[...trustedBrands, ...trustedBrands].map((name, i) => (
-              <span
-                key={`${name}-${i}`}
-                className="shrink-0 text-xl md:text-2xl font-extrabold tracking-tight text-text-secondary hover:text-text transition-colors"
+          <div className="flex w-max items-center gap-x-5 animate-scroll">
+            {[...trustedBrands, ...trustedBrands].map((brand, i) => (
+              <div
+                key={`${brand.name}-${i}`}
+                className="shrink-0 bg-white rounded-xl px-6 py-3.5 flex items-center justify-center"
               >
-                {name}
-              </span>
+                <Image
+                  src={`/logos/${brand.file}`}
+                  alt={brand.name}
+                  width={140}
+                  height={48}
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
             ))}
           </div>
         </div>
