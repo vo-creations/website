@@ -879,3 +879,40 @@ Branch `redesign/agency-only` (still not merged):
   — none of it had any remaining reader once the calculator section was
   gone. Grepped after removal to confirm nothing else in the file
   referenced any of it.
+
+## topic: agency-only-redesign — _2026-07-31 (nav logo/border, two-column hero)_
+
+Branch `redesign/agency-only` (still not merged):
+
+- **Nav brand mark** now reuses the same `/vocreations-logo.webp` +
+  wordmark pattern already established in `Footer.tsx`, sized down for the
+  smaller nav pill (32px vs. the footer's 40px). The "make them remember."
+  tagline that used to sit under the wordmark is gone — it moved into the
+  hero as the new H1 (below), so it wasn't lost, just relocated.
+- **Nav pill border** flipped from the barely-visible `border-border`
+  (dark theme's `rgba(255,255,255,0.06)`) to `border-white/20`, on both
+  the desktop pill and the mobile dropdown, so the nav reads as a
+  deliberately outlined pill rather than a borderless floating bar.
+- **Hero rebuilt as a two-column layout** (good-marketing.co-style): copy
+  left, floating video-preview cards right, collapsing to a single
+  centered column below the `lg` breakpoint (the right column is
+  `hidden lg:block`, not resized down — floating overlapping cards don't
+  translate to narrow screens, and the same videos are already visible
+  in the "Content that goes viral" carousel further down, so nothing is
+  lost on mobile).
+  - The old H1 ("We're not an agency...") is gone. "make them remember."
+    (previously a tiny Nav/Footer-style tagline) is now the actual H1,
+    scaled up to hero size, keeping the same `[font-variant:small-caps]`
+    treatment it always had. A second line, "Content that converts.," sits
+    under it in the same size/weight but muted (`text-text-secondary`) —
+    same subtle-distinction pattern used elsewhere for a headline's second
+    clause, applied here to the whole second line instead of one word.
+  - Subheading replaced outright with the single line specified: "Scale
+    your B2C product with your own world-class in-house UGC program."
+  - Applied `.bg-hex` to the hero background — it was defined in
+    `globals.css` from an earlier session but never actually applied
+    anywhere; confirmed via grep before adding it.
+  - Floating cards reuse `showcaseVideos[0]` and `[1]` (already defined
+    further down the file for the video carousel) with the same
+    hover-to-play/tap-to-unmute handlers as every other video on the page,
+    plus a small eye-icon + view-count badge in the corner of each.

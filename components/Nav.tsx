@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -16,17 +17,21 @@ export default function Nav() {
 
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-24px)] max-w-[1100px]">
-      <div className="bg-bg/90 backdrop-blur-[20px] border border-border rounded-full px-5 md:px-6 py-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+      <div className="bg-bg/90 backdrop-blur-[20px] border border-white/20 rounded-full px-5 md:px-6 py-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="flex flex-col leading-none shrink-0"
+          className="flex items-center gap-2 shrink-0"
         >
+          <Image
+            src="/vocreations-logo.webp"
+            alt="Vo Creations"
+            width={32}
+            height={32}
+            className="w-7 h-7 md:w-8 md:h-8 object-contain"
+          />
           <span className="text-base md:text-lg font-extrabold tracking-tight text-text">
             Vo Creations
-          </span>
-          <span className="hidden sm:block text-[10px] text-text-dim [font-variant:small-caps] tracking-[0.12em] mt-1">
-            make them remember.
           </span>
         </Link>
 
@@ -87,7 +92,7 @@ export default function Nav() {
           open ? "max-h-80 opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-bg/95 backdrop-blur-[20px] border border-border rounded-3xl px-6 py-4 flex flex-col">
+        <div className="bg-bg/95 backdrop-blur-[20px] border border-white/20 rounded-3xl px-6 py-4 flex flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.href}

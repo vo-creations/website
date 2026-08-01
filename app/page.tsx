@@ -114,68 +114,114 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — no amber here specifically (deliberate); otherwise inherits the page's dark tokens */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
-        <span className="relative text-[11px] text-text-dim [font-variant:small-caps] tracking-[0.12em] mb-4 animate-fade-up">
-          make them remember.
-        </span>
+      {/* HERO — two-column (text left, floating video previews right), good-marketing.co-style.
+          No amber here specifically (deliberate); otherwise inherits the page's dark tokens. */}
+      <section className="relative overflow-hidden bg-bg bg-hex min-h-screen flex items-center px-6 pt-[140px] pb-20">
+        <div className="relative max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+          {/* LEFT — copy */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
+              <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
+                The team behind 1B+ views
+              </span>
+            </div>
 
-        <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-          <span className="w-1.5 h-1.5 rounded-full bg-white" />
-          <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-            The team behind 1B+ views
-          </span>
-        </div>
+            <h1 className="font-display [font-variant:small-caps] text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
+              make them remember.
+              <br />
+              <span className="text-text-secondary">Content that converts.</span>
+            </h1>
 
-        <h1 className="relative font-display text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-          We&apos;re not an agency.
-          <br />
-          We&apos;re your <span className="text-text-secondary">in-house UGC program.</span>
-        </h1>
+            <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[480px] leading-relaxed mb-10 animate-fade-up-delay-2">
+              Scale your B2C product with your own world-class in-house UGC program.
+            </p>
 
-        <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
-          Trained creators. Proven formats. Predictable virality.
-          We run as an extension of your team, not an outside vendor.
-        </p>
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
+              <a
+                href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
+              >
+                Apply for a campaign slot →
+              </a>
+              <a
+                href="#results"
+                className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
+              >
+                See results →
+              </a>
+            </div>
 
-        <div className="relative flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
-          <a
-            href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
-          >
-            Apply for a campaign slot →
-          </a>
-          <a
-            href="#results"
-            className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
-          >
-            See results →
-          </a>
-        </div>
+            <div className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto lg:mx-0 animate-fade-up-delay-4">
+              {[
+                ["1B+", "Views generated"],
+                ["30+", "Brands scaled"],
+                ["500+", "Trained creators"],
+                ["9", "Days to launch"],
+              ].map(([num, lbl], i) => (
+                <div
+                  key={lbl}
+                  className={`text-center sm:text-left py-6 sm:py-0 ${
+                    i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
+                  } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+                >
+                  <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
+                    {num}
+                  </div>
+                  <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
+                    {lbl}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="relative grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto animate-fade-up-delay-4">
-          {[
-            ["1B+", "Views generated"],
-            ["30+", "Brands scaled"],
-            ["500+", "Trained creators"],
-            ["9", "Days to launch"],
-          ].map(([num, lbl], i) => (
-            <div
-              key={lbl}
-              className={`text-center py-6 sm:py-0 ${
-                i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
-              } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
-            >
-              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
-                {num}
-              </div>
-              <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
-                {lbl}
+          {/* RIGHT — floating video previews, desktop only */}
+          <div className="relative hidden lg:block h-[560px]">
+            <div className="absolute top-6 right-4 w-[230px] aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-[0_20px_60px_rgba(0,0,0,0.5)] rotate-[4deg]">
+              <video
+                src={`${showcaseVideos[1].src}#t=0.1`}
+                playsInline
+                muted
+                loop
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
+                onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
+                onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
+              />
+              <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-white">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-[11px] font-bold text-white">{showcaseVideos[1].views}</span>
               </div>
             </div>
-          ))}
+
+            <div className="absolute bottom-6 left-4 z-10 w-[250px] aspect-[9/16] rounded-2xl overflow-hidden border border-border shadow-[0_20px_60px_rgba(0,0,0,0.5)] -rotate-[3deg]">
+              <video
+                src={`${showcaseVideos[0].src}#t=0.1`}
+                playsInline
+                muted
+                loop
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
+                onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
+                onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
+              />
+              <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-white">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-[11px] font-bold text-white">{showcaseVideos[0].views}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
