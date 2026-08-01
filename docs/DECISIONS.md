@@ -916,3 +916,33 @@ Branch `redesign/agency-only` (still not merged):
     further down the file for the video carousel) with the same
     hover-to-play/tap-to-unmute handlers as every other video on the page,
     plus a small eye-icon + view-count badge in the corner of each.
+
+## topic: agency-only-redesign — _2026-07-31 (hero dimming bug fixed, reverted to centered)_
+
+On branch `redesign/agency-only` (still not merged): the two-column hero
+from the previous entry didn't work out and is reverted.
+
+- **Root cause of the "everything looks dim" report:** `.bg-hex` (and its
+  successor `.bg-dots`) carries a `mask-image` intended to fade a
+  *decorative* layer at the edges. The two-column hero applied the class
+  directly to the `<section>` that also held the actual headline/CTAs —
+  `mask-image` masks the whole element's painted output, descendants
+  included, not just its own `background-image`. Every piece of real
+  content inherited that same edge-fade, reading as a semi-transparent
+  film over everything. Fixed by moving the texture back onto its own
+  `absolute inset-0 ... pointer-events-none` div, sitting behind the
+  content in DOM order — the pattern this file used before the
+  two-column experiment, and the only correct way to use a masked
+  decorative layer. Left a comment at both the CSS rule and the JSX call
+  site spelling out why, so this doesn't regress a third time.
+- **Two-column layout reverted to the original centered single column.**
+  No more `lg:grid-cols-2` split, no floating video-preview cards, no
+  `hidden lg:block` right column. The copy changes from that session
+  (headline "make them remember." / "Content that converts.," the new
+  one-line subheading) are kept — only the *layout* and the side videos
+  were the problem, not the words.
+- **Texture redesigned while fixing the bug**, per the separate ask to
+  move off good-marketing.co's exact hex pattern: replaced with a plain
+  CSS `radial-gradient` dot grid (`.bg-dots`, 28px spacing, 8% white
+  opacity, same edge-fade mask as before) — no SVG needed, no repeating
+  geometric shape, distinct from a honeycomb.
