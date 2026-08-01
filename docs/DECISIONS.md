@@ -1375,3 +1375,139 @@ Branch `redesign/agency-only` (still not merged).
   natural `translateX(0)` position and every element is reachable;
   re-ran the check and confirmed all 18 logos load with real
   `naturalWidth`/`naturalHeight` and paint correctly.
+
+## topic: trusted-by-logos — _2026-08-01 (Makon/Tomo/Liftoff color restore)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Makon, Tomo, and Liftoff were flat white/monochrome in the marquee
+  while other logos showed real color** — not a shared filter bug (grepped
+  the marquee JSX, confirmed no `grayscale`/`filter` class applied to any
+  logo, `Image` elements are plain `object-contain`) and not corrupted
+  files — each was a deliberate full recolor-to-white in the prior
+  round's re-sourcing pass, made without checking whether the source
+  actually had brand color to lose. Investigated each individually
+  rather than assuming the same root cause for all three:
+  - **Tomo**: the nav mark (`fill: rgb(44,37,17)`, a dark ink color) really
+    is near-monochrome on their own site — but their `apple-icon.png`
+    (`tomo.ai/apple-icon.png`) shows the same flower/face glyph rendered
+    in real color (yellow petals, green face). Recolored the icon's
+    petal path to `#FFE566` (sampled from the app icon) and the two eye
+    paths to a dark ink `#2C2511`, kept the "Tomo" wordmark white.
+  - **Makon**: the panda mark is genuinely black-and-white everywhere
+    checked (nav, `favicon.svg`, `apple-touch-icon.png`) — no hidden
+    color on the mark itself. But `makon.ai`'s primary CTA button uses a
+    real brand purple, `rgb(139,44,251)` / `#8B2CFB` — recolored the
+    "makon" wordmark to that purple, left the panda icon white
+    (monochrome by design, not a bug).
+  - **Liftoff**: the nav SVG's gradient stops are genuinely
+    `white`→`white` (confirmed both from the static markup and
+    `getComputedStyle(stop).stopColor` on the live page) — not a
+    processing artifact, their nav mark really is flat white on their
+    dark-navy site. The color lives in their app-icon/logo.png asset
+    instead: a light-to-medium blue background chip
+    (`rgb(43-71,171-183,255)`, roughly `#4FB2FF`) behind the same glyph
+    rendered in dark navy. Recolored the icon itself to `#4FB2FF`
+    (rather than reproducing the background-chip treatment, to stay
+    consistent with how every other marquee logo is unboxed) and kept
+    "Liftoff" white.
+  - Verified against the live dev server, not just the static PNGs:
+    screenshotted each logo's `<img>` element directly out of the
+    running marquee and confirmed yellow/purple/blue render correctly
+    in place.
+
+## topic: hero-copy — _2026-08-01 (lowercase tagline, Let's Talk CTA)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Headline lowercased**: "Make them remember." → "make them remember."
+  per README's brand section (tagline is lowercase/small-caps with a
+  trailing period; the hero headline hadn't been matched to it until now).
+- **"Apply for a campaign slot →" replaced with "Let's Talk" sitewide**,
+  plus a small Vo Creations mark icon inside the button next to the text.
+  Grepped for the exact string first rather than guessing at call sites —
+  three occurrences, not one: the hero CTA (`app/page.tsx`), `CTABlock`'s
+  default `buttonText` prop (`components/CTABlock.tsx`, used once,
+  unconfigured, so the default IS the live copy), and a separate,
+  differently-styled button on the `campaigns/maxxd` dashboard page that
+  a page-scoped grep for `app/page.tsx` alone would have missed.
+  - The nav/footer logo (`/vocreations-logo.webp`) is a flat RGB webp
+    with a near-black square baked into the background (no alpha
+    channel) — unusable directly on a white button. Extracted just the
+    white "V" glyph via the same luminance-alpha technique used
+    throughout this session, recolored to black (the button is
+    `bg-white text-black`), and saved as
+    `public/vocreations-mark-black.png` for reuse in all three buttons.
+- **"TRUSTED BY" label now gets the same ✦-flanked treatment as the
+  hero's kicker badge** — same character, same `text-white text-[10px]
+  leading-none` styling, just without the badge's pill border (the label
+  wasn't pill-shaped to begin with and didn't need to become one).
+
+## topic: showcase-marquee — _2026-08-01 (auto-scroll conversion, embeds)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **"Content that goes viral" converted from manual horizontal-scroll
+  to an auto-scrolling marquee**, reusing the exact mechanism the
+  Trusted By logo strip already uses: `overflow-hidden` wrapper, inner
+  track duplicated (`[...items, ...items]`) and animated
+  `translateX(0) → translateX(-50%)` for a seamless loop. Added a
+  slower `animate-scroll-slow` (70s vs. the logo strip's 35s) in
+  `tailwind.config.ts` — same `scroll` keyframe, just slower, since
+  these cards are far bigger than a logo and 35s reads as frantic.
+  - **Pauses on hover** (`hover:[animation-play-state:paused]`, a
+    Tailwind arbitrary-property utility, no config change needed) —
+    not explicitly requested, but without it the two self-hosted
+    videos' existing hover-to-play/tap-to-unmute interaction would
+    fight the card sliding out from under the cursor mid-hover.
+    Platform embeds don't have an equivalent interaction to protect,
+    but pausing is harmless for them too.
+- **Removed post-1.mp4 and post-3.mp4** from `showcaseVideos`, kept
+  post-2.mp4 and post-4.mp4. Added 10 new entries as platform embeds
+  (8 Instagram, 2 TikTok, 1 Facebook reel — one Instagram link doubles
+  the total to 10) rather than self-hosted files, per instruction not
+  to download/rehost external posts. `showcaseVideos` is now a mixed
+  union type (`type: "video"` for self-hosted, `type: "instagram" |
+  "tiktok" | "facebook"` for embeds) rendered with a per-type branch in
+  the marquee map.
+- **Instagram**: reused the existing `components/InstagramEmbed.tsx`
+  unmodified — its default (unloaded) state is already a simple
+  `{url}/embed` iframe in an `aspect-[9/16]` box, which needs no click
+  interaction to show real content and was already the right shape for
+  a marquee card. Confirmed via Playwright against the actual embed URLs
+  (not assumed): the bare iframe does render Instagram's full post
+  chrome (header, media, like/comment icons) within the box, just takes
+  a few seconds longer to paint than a local asset would.
+- **TikTok**: new `components/TikTokEmbed.tsx`, using TikTok's official
+  `tiktok-embed` blockquote + `embed.js` widget script — confirmed
+  working end-to-end against both real URLs. TikTok's `embed.js`
+  exposes no public re-scan/render API (`window.tiktokEmbed` only has
+  `lib.receiveMessage`), so instead of a shared one-time script load
+  (the `InstagramEmbed` pattern), each `TikTokEmbed` instance injects
+  its own fresh `<script>` tag on mount — confirmed via an isolated
+  test that appending the script *after* the blockquote already exists
+  in the DOM (the React mount order) still gets it processed, since the
+  script's `onload` does a full re-scan rather than a one-time init.
+- **Facebook**: new `components/FacebookEmbed.tsx`, using the iframe
+  Video Plugin (`facebook.com/plugins/video.php?href=...`), not the
+  JS-SDK/`fb-root` approach — confirmed the plugin renders the specific
+  public reel without an App ID and without the viewer needing to be
+  logged in, even though navigating to the reel URL directly now hits a
+  Facebook login wall (verified both paths independently: direct nav →
+  login modal; plugin iframe → real video content, likes/comments count
+  visible). This is the one embed most likely to have been "genuinely
+  hard to extract cleanly" and it turned out fine.
+- **All three new/reused embed components share the same shape**:
+  `bg-bg-card rounded-2xl aspect-[9/16] border border-border overflow-hidden`,
+  matching the self-hosted video cards' box so every card in the row is
+  the same width and aspect ratio. Self-hosted cards are ~39px taller
+  than embed cards (an extra footer row for likes/engagement/view-post
+  link that the embeds don't have — their platform chrome already shows
+  engagement inline) — acceptable per the brief ("official embeds...
+  can't be hover-styled exactly... that's expected and fine"), and
+  `items-center` on the track keeps the row visually aligned despite
+  the height difference.
+- **No embed needed a fallback** — Instagram, TikTok (both links), and
+  the Facebook reel all render their real content cleanly via each
+  platform's official embed method. Verified with real network requests
+  against the live URLs during development, not just code review.

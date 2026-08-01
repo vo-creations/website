@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import {
@@ -249,8 +250,14 @@ export default function MaxxdCampaignPage() {
               href="/apply"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-black font-outfit font-semibold rounded-lg hover:bg-white/90 transition-colors duration-200"
             >
-              Apply for a campaign slot
-              <span aria-hidden="true">&rarr;</span>
+              <Image
+                src="/vocreations-mark-black.png"
+                alt=""
+                width={18}
+                height={19}
+                className="w-[15px] h-auto"
+              />
+              Let&apos;s Talk
             </a>
           </div>
         </section>

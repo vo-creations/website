@@ -86,6 +86,9 @@ const config: Config = {
         'fade-down': 'fadeDown 0.6s ease',
         pulse: 'pulse 2s ease infinite',
         scroll: 'scroll 35s linear infinite',
+        // Same keyframe as `scroll`, slower — the video showcase row has much
+        // wider/taller cards than the logo strip and reads as frantic at 35s.
+        'scroll-slow': 'scroll 70s linear infinite',
       },
     },
   },

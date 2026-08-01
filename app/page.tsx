@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
 import Label from "@/components/Label";
 import ResultCard from "@/components/ResultCard";
+import InstagramEmbed from "@/components/InstagramEmbed";
+import TikTokEmbed from "@/components/TikTokEmbed";
+import FacebookEmbed from "@/components/FacebookEmbed";
 import Image from "next/image";
 
 const steps = [
@@ -43,11 +46,26 @@ const steps = [
 
 // DECISION: showcase <video> uses the #t=0.1 thumbnail trick (and onMouseLeave resets
 // to 0.1) for iOS Safari. Keep all blocks identical. See docs/DECISIONS.md (topic: showcase-video).
-const showcaseVideos = [
-  { src: "/videos/post-1.mp4", views: "3.8M", likes: "306K", engagement: "7.98%", postUrl: "https://www.instagram.com/p/DTFU5uGjgqV/" },
-  { src: "/videos/post-2.mp4", views: "3.7M", likes: "189K", engagement: "5.10%", postUrl: "https://www.instagram.com/p/DTRCvh2E1Lu/" },
-  { src: "/videos/post-3.mp4", views: "2.9M", likes: "152K", engagement: "5.36%", postUrl: "https://www.instagram.com/p/DTGTfgsGI62/" },
-  { src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
+// DECISION: mixed self-hosted + platform-embed showcase row. Self-hosted entries keep
+// hover-to-play; embeds (Instagram/TikTok/Facebook) use each platform's official embed
+// method and don't support the same hover interaction — see docs/DECISIONS.md
+// (topic: showcase-marquee).
+const showcaseVideos: (
+  | { type: "video"; src: string; views: string; likes: string; engagement: string; postUrl: string }
+  | { type: "instagram" | "tiktok" | "facebook"; url: string; label: string }
+)[] = [
+  { type: "video", src: "/videos/post-2.mp4", views: "3.7M", likes: "189K", engagement: "5.10%", postUrl: "https://www.instagram.com/p/DTRCvh2E1Lu/" },
+  { type: "video", src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
+  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram" },
+  { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook" },
+  { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DZ6qfKHRJG6/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram" },
+  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
+  { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram" },
 ];
 
 const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
@@ -145,7 +163,7 @@ export default function Home() {
           </div>
 
           <h1 className="font-sans text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-            Make them remember.
+            make them remember.
           </h1>
 
           <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[760px] leading-relaxed mb-10 animate-fade-up-delay-2">
@@ -160,7 +178,14 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
             >
-              Apply for a campaign slot →
+              <Image
+                src="/vocreations-mark-black.png"
+                alt=""
+                width={18}
+                height={19}
+                className="w-[15px] h-auto"
+              />
+              Let&apos;s Talk
             </a>
             <a
               href="#results"
@@ -202,8 +227,12 @@ export default function Home() {
           the prior Liftoff asset needed it, the official vector doesn't). */}
       <section className="pb-[80px]">
         <div className="max-w-[900px] mx-auto text-center px-6">
-          <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
-            Trusted by
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="text-white text-[10px] leading-none">✦</span>
+            <span className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em]">
+              Trusted by
+            </span>
+            <span className="text-white text-[10px] leading-none">✦</span>
           </div>
         </div>
         <div className="overflow-hidden">
@@ -237,7 +266,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTENT THAT GOES VIRAL */}
+      {/* CONTENT THAT GOES VIRAL — auto-scrolling marquee, same animate-scroll mechanism
+          as Trusted By (track duplicated, translateX(-50%) loop), just a slower duration
+          (animate-scroll-slow) since these cards are much bigger. Paused on hover so the
+          two self-hosted videos' hover-to-play/tap-to-unmute still works without the card
+          sliding out from under the cursor mid-interaction. Platform embeds (Instagram/
+          TikTok/Facebook) can't support that same hover interaction — see docs/DECISIONS.md
+          (topic: showcase-marquee). */}
       <section className="py-[100px]">
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
@@ -247,55 +282,62 @@ export default function Home() {
           <p className="text-base text-text-secondary mb-8">
             Real UGC from our trained creator network.
           </p>
+        </div>
 
-          {/* Horizontal scroll, not auto-marquee — these need hover-to-play / tap-to-unmute,
-              which a moving carousel would fight with. Cards are wide enough that even today's
-              4 videos overflow the container and peek at the edge; scales to any number more. */}
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide">
-            {showcaseVideos.map((v) => (
-              <div
-                key={v.src}
-                className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px] snap-center"
-              >
-                <div className="relative aspect-[9/16]">
-                  <video
-                    src={`${v.src}#t=0.1`}
-                    playsInline
-                    muted
-                    loop
-                    preload="metadata"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
-                    onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
-                    onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
-                  />
-                  <div className="absolute top-3 left-3 flex flex-col gap-1">
-                    <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                      {v.views} views
-                    </span>
+        <div className="overflow-hidden">
+          <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
+            {[...showcaseVideos, ...showcaseVideos].map((v, i) =>
+              v.type === "video" ? (
+                <div
+                  key={`${v.src}-${i}`}
+                  className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px]"
+                >
+                  <div className="relative aspect-[9/16]">
+                    <video
+                      src={`${v.src}#t=0.1`}
+                      playsInline
+                      muted
+                      loop
+                      preload="metadata"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
+                      onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
+                      onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
+                    />
+                    <div className="absolute top-3 left-3 flex flex-col gap-1">
+                      <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                        {v.views} views
+                      </span>
+                    </div>
+                    <div className="absolute bottom-3 left-3">
+                      <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
+                        Tap to unmute
+                      </span>
+                    </div>
                   </div>
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
-                      Tap to unmute
-                    </span>
+                  <div className="p-3 flex items-center justify-between">
+                    <div className="flex gap-3 text-[11px] text-text-dim font-medium">
+                      <span>♥ {v.likes}</span>
+                      <span>{v.engagement} eng.</span>
+                    </div>
+                    <a
+                      href={v.postUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-text-secondary hover:underline hover:text-text font-medium"
+                    >
+                      View post ↗
+                    </a>
                   </div>
                 </div>
-                <div className="p-3 flex items-center justify-between">
-                  <div className="flex gap-3 text-[11px] text-text-dim font-medium">
-                    <span>♥ {v.likes}</span>
-                    <span>{v.engagement} eng.</span>
-                  </div>
-                  <a
-                    href={v.postUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[11px] text-text-secondary hover:underline hover:text-text font-medium"
-                  >
-                    View post ↗
-                  </a>
+              ) : (
+                <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
+                  {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} />}
+                  {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} />}
+                  {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </section>

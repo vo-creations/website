@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function CTABlock({
   heading = "Ready to scale with UGC?",
   sub = "10 new campaigns per month. Tell us about your brand.",
-  buttonText = "Apply for a campaign slot →",
+  buttonText = "Let's Talk",
   href = "https://calendar.app.google/8x72A8nxr3gQpVfx7",
 }: {
   heading?: string;
@@ -21,6 +23,13 @@ export default function CTABlock({
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
       >
+        <Image
+          src="/vocreations-mark-black.png"
+          alt=""
+          width={18}
+          height={19}
+          className="w-[15px] h-auto"
+        />
         {buttonText}
       </a>
     </section>
