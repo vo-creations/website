@@ -1043,3 +1043,44 @@ left-align fix didn't actually take — root cause and a real fix this time.
   `globals.css` (a deliberate, established convention affecting every
   bold heading, not hero-specific) without being able to confirm removing
   it for just this headline would actually help.
+
+## topic: agency-only-redesign — _2026-08-01 (hero inset shared with Nav, headline max-width)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Hero's left edge now genuinely tracks the nav logo's left edge at
+  every viewport width**, not just one hardcoded padding number. The nav
+  bar's actual box model is non-trivial — `w-[calc(100%-24px)]
+  max-w-[1100px]` on the fixed, transform-centered `<nav>`, plus a
+  separate `px-5 md:px-6` on the inner pill — so a flat `px-6` on the
+  hero (the previous "fix") only matched at one specific viewport width
+  by coincidence, not by construction. Extracted `NAV_CONTAINER` and
+  `NAV_INNER_PADDING` as exported constants from `components/Nav.tsx`
+  (used by Nav's own JSX too, not just copied into it — genuinely one
+  source of truth) and imported them into `app/page.tsx`'s hero wrapper:
+  `${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}` reproduces the nav's
+  centering (via `mx-auto`, the natural-flow equivalent of the nav's
+  fixed-position `left-1/2 -translate-x-1/2` trick) and left padding
+  exactly. Verified with real `getBoundingClientRect()` calls at 1024px,
+  1440px, and 1920px viewports — nav logo and hero content left edges
+  land within 1px of each other at all three (the 1px is the nav pill's
+  own border-width, imperceptible).
+- **Headline gets its own `max-w-[720px]`**, separate from the wrapper's
+  now-wider `max-w-[1100px]` (matching nav) — wraps at roughly
+  half-to-two-thirds of the viewport as specified (measured ratios: 0.61
+  at 1024px, 0.48 at 1440px, 0.36 at 1920px), instead of stretching the
+  full container width.
+- **Vertical nav-to-content gap** (147px, nav bottom to kicker pill top
+  at 1440px) left unchanged — no real Playkit.co reference was available
+  to calibrate against (see below), and the actual rendered screenshot
+  reads as comfortably spaced, neither cramped nor excessive.
+- **`playkit.co` does not resolve to a UGC/creator-marketing site.**
+  Fetched it directly (via a headless Chromium instance installed this
+  session — see the previous entry) expecting the "build your viral
+  growth channel with tech ugc" hero referenced earlier in this thread;
+  it's actually Subsplash, a church-management software company ("Grow
+  your church every day of the week"). Flagged to the user rather than
+  silently treating Subsplash's layout as if it were the intended
+  reference, or silently proceeding without checking at all. The
+  headline max-width ratio was satisfied using the explicit numeric
+  target given directly in the request instead.

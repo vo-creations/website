@@ -11,13 +11,22 @@ const navLinks = [
   { href: "/#faq", label: "FAQ's" },
 ];
 
+// Shared with the hero (app/page.tsx) so its content's left edge always lines up
+// with the logo below, instead of two hardcoded numbers drifting apart over time.
+// NAV_CONTAINER is the same width/cap the nav bar itself uses (mx-auto for a
+// normal-flow element does the same centering the nav gets from its fixed-position
+// left-1/2/-translate-x-1/2 trick). NAV_INNER_PADDING matches the pill's own
+// left padding, since that's what actually offsets the logo from the container edge.
+export const NAV_CONTAINER = "w-[calc(100%-24px)] max-w-[1100px]";
+export const NAV_INNER_PADDING = "px-5 md:px-6";
+
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-24px)] max-w-[1100px]">
-      <div className="bg-bg/90 backdrop-blur-[20px] border border-white/20 rounded-full px-5 md:px-6 py-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+    <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] ${NAV_CONTAINER}`}>
+      <div className={`bg-bg/90 backdrop-blur-[20px] border border-white/20 rounded-full ${NAV_INNER_PADDING} py-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]`}>
         <Link
           href="/"
           onClick={() => setOpen(false)}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Nav from "@/components/Nav";
+import Nav, { NAV_CONTAINER, NAV_INNER_PADDING } from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
 import Label from "@/components/Label";
@@ -121,13 +121,14 @@ export default function Home() {
           small-caps at this size on a heavy display font read blocky/circus-like;
           small-caps stays reserved for the small tagline usage in Nav/Footer. No amber
           here specifically (deliberate); otherwise inherits the page's dark tokens.
-          IMPORTANT: the wrapper below must NOT have mx-auto — that centers the whole
-          max-w column as a block, which reads as "centered" even with text-left/items-start
-          on its children. Left-aligned means the column itself hugs the section's left
-          edge (only px-6 padding, no auto margins), not just left-aligned text inside a
-          centered column. */}
-      <section className="min-h-screen flex flex-col justify-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
-        <div className="relative max-w-[720px] flex flex-col items-start text-left">
+          IMPORTANT: the outer wrapper uses NAV_CONTAINER + NAV_INNER_PADDING (imported
+          from Nav.tsx, same values the nav pill itself uses for its width cap and left
+          padding) so the hero's left edge tracks the nav logo's left edge at every
+          viewport width, not just at one hardcoded number. The h1 gets its own narrower
+          max-w so the headline wraps at roughly half-to-two-thirds of the viewport
+          instead of stretching the full 1100px container. */}
+      <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden bg-bg">
+        <div className={`relative ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING} flex flex-col items-start text-left`}>
           <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
@@ -135,7 +136,7 @@ export default function Home() {
             </span>
           </div>
 
-          <h1 className="font-sans text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
+          <h1 className="font-sans max-w-[720px] text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
             Make them remember.
             <br />
             <span className="text-text-secondary">Content that converts.</span>
