@@ -595,3 +595,20 @@ new homes permanently: `/about` → `/#team`, `/creators` → `/#creators`, `/ro
   and both `/blog` entries removed since those routes no longer exist.
   `docs/SITE.md`'s Routes section never enumerated these pages (it only calls
   out non-obvious wiring), so nothing there needed updating.
+
+## topic: single-page-site — _2026-07-31_
+
+Follow-up on branch `redesign/agency-only` (still not merged): removed the
+`#creators` roster-grid section and the standalone `#pricing` section from
+the homepage (pricing folded into a new FAQ item, "What's the investment?",
+right after the existing creator-count FAQ). Rebuilt the `#team` section to
+a good-marketing.co-style card (large photo, name + verified-badge icon,
+location + pin icon, bold-italic accent stat line, plain detail line) with
+real bios; the earlier "Co-Founder" title field is dropped, not part of
+this card format.
+
+- **`id="creators"` no longer exists.** `components/Footer.tsx`'s "Creators"
+  link (`/#creators`) is removed, and `next.config.mjs`'s `/creators`
+  redirect now points at `/` instead of the now-dead `/#creators` anchor —
+  same pattern as `/roi`'s redirect. `#team` and `#faq` anchors are
+  unaffected; `id="pricing"` was never set, so no redirect referenced it.

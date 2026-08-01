@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         source: "/creators",
-        destination: "/#creators",
+        destination: "/",
         permanent: true,
       },
       {

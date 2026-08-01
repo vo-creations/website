@@ -53,6 +53,7 @@ const showcaseVideos = [
 
 const agencyFaqs = [
   { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
+  { q: "What's the investment?", a: "Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo unlocks 6 creators and double the output. Paid upfront, no hidden fees." },
   { q: "What platforms do you post on?", a: "TikTok, Instagram Reels, YouTube Shorts, and Facebook. All four platforms, simultaneously." },
   { q: "How quickly can a campaign start?", a: "9 days from signed contract to first videos going live. Strategy and creator matching happen in Days 1-2." },
   { q: "What happens if creators underperform?", a: "We cut underperformers and replace them. That's the VoC Method. Test 7 formats, keep the winners, triple down." },
@@ -114,28 +115,19 @@ const marketStats2 = [
   { num: "93%", text: "creator supply growth 2024-25", source: "Market growth" },
 ];
 
-const creators = [
-  { name: "Daniel Yun", months: "24 months", views: "100M+", platforms: "TikTok · IG · YT · FB", duration: "0:38", initials: "DY" },
-  { name: "Beo K.", months: "12 months", views: "12M+", platforms: "TikTok · IG · YT", duration: "0:42", initials: "BK" },
-  { name: "Mae E.", months: "8 months", views: "8M+", platforms: "TikTok · IG · FB", duration: "0:35", initials: "ME" },
-  { name: "Tammy L.", months: "8 months", views: "5M+", platforms: "YouTube · TikTok", duration: "2:42", initials: "TL" },
-  { name: "Zane R.", months: "6 months", views: "4M+", platforms: "TikTok · IG", duration: "0:29", initials: "ZR" },
-  { name: "Chad H.", months: "10 months", views: "3M+", platforms: "TikTok · IG · YT", duration: "0:46", initials: "CH" },
-];
-
 const team = [
   {
     name: "Thienvu Vo",
-    role: "Co-Founder",
-    bio: "From 3 minimum-wage jobs to 100M+ views. Built Vo Creations from scratch.",
-    initials: "TV",
+    location: "Richmond, VA",
+    statLine: "Founder of Mentorship",
+    detailLine: "Led students to $1M in earnings & 500M+ views",
     image: "/videos/team-thienvu.jpg",
   },
   {
     name: "Daniel Yun",
-    role: "Co-Founder",
-    bio: "Self-taught. 100M+ views. 6-figure earner. Creative force behind Vo Creations.",
-    initials: "DY",
+    location: "Los Angeles, CA",
+    statLine: "150M+ views as a creator",
+    detailLine: "$200K+ in earnings",
     image: "/videos/team-daniel.jpg",
   },
 ];
@@ -648,36 +640,6 @@ export default function Home() {
 
       <div className="max-w-[1000px] mx-auto h-px bg-border" />
 
-      {/* PRICING */}
-      <section className="py-[100px]">
-        <div className="max-w-[720px] mx-auto px-6">
-          <Label>Pricing</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
-            Simple pricing. <span className="text-accent">No hidden fees.</span>
-          </h2>
-
-          <div className="bg-bg-card rounded-2xl border border-border p-8 text-center">
-            <p className="text-base text-text-secondary leading-relaxed max-w-[520px] mx-auto">
-              Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo
-              unlocks 6 creators and double the output. Paid upfront, no hidden fees.
-            </p>
-
-            <div className="mt-7">
-              <a
-                href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-text font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
-              >
-                Apply for a campaign slot →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
       {/* RESULTS */}
       <section className="py-[100px]" id="results">
         <div className="max-w-[1000px] mx-auto px-6">
@@ -767,56 +729,6 @@ export default function Home() {
 
       <div className="max-w-[1000px] mx-auto h-px bg-border" />
 
-      {/* CREATORS */}
-      <section className="py-[100px]" id="creators">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <Label>Our creators</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            100+ trained creators.{" "}
-            <span className="text-accent">500M+ views</span> and counting.
-          </h2>
-          <p className="text-base text-text-secondary mb-10">
-            Every creator trained through our program. No freelancers. No marketplace.
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {creators.map((c) => (
-              <div
-                key={c.name}
-                className="bg-bg-card rounded-2xl aspect-[9/14] relative overflow-hidden border border-border flex items-center justify-center"
-              >
-                {/* Placeholder avatar */}
-                <div className="text-4xl font-black text-accent/20">
-                  {c.initials}
-                </div>
-
-                {/* Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-3.5 bg-gradient-to-t from-black/85 to-transparent">
-                  <div className="text-sm font-bold">{c.name}, <span className="text-accent font-semibold">{c.months}</span></div>
-                  <div className="text-xs text-accent mt-0.5 font-semibold">
-                    {c.views} views
-                  </div>
-                  <div className="text-[11px] text-text-dim mt-0.5">
-                    {c.platforms}
-                  </div>
-                </div>
-
-                {/* Duration badge */}
-                <div className="absolute bottom-3.5 right-3.5 text-[11px] text-text bg-black/60 px-2 py-0.5 rounded">
-                  {c.duration}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-sm text-text-dim mt-8 font-medium">
-            Showing 6 of 100+ creators.
-          </p>
-        </div>
-      </section>
-
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
       {/* TEAM */}
       <section className="py-[100px]" id="team">
         <div className="max-w-[720px] mx-auto px-6">
@@ -825,31 +737,41 @@ export default function Home() {
             Small team. Senior operators.
           </h2>
           <p className="text-base text-text-secondary mb-10">
-            The people who built the system run your campaign.
+            Proven creators, turned agency owners
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {team.map((t) => (
               <div
                 key={t.name}
-                className="bg-bg-card rounded-2xl p-6 border border-border flex gap-4 items-start"
+                className="bg-bg-card rounded-2xl border border-border overflow-hidden"
               >
-                <div className="w-16 h-16 min-w-[64px] rounded-xl overflow-hidden bg-bg-elevated">
+                <div className="relative aspect-square bg-bg-elevated">
                   <Image
                     src={t.image}
                     alt={t.name}
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
-                <div>
-                  <div className="text-[17px] font-bold">{t.name}</div>
-                  <div className="text-xs text-accent font-semibold mt-0.5 mb-2">
-                    {t.role}
+                <div className="p-6">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[17px] font-bold">{t.name}</span>
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-accent shrink-0">
+                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
                   </div>
-                  <div className="text-sm text-text-secondary leading-relaxed">
-                    {t.bio}
+                  <div className="flex items-center gap-1 text-sm text-text-secondary mt-1 mb-4">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 shrink-0">
+                      <path fillRule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clipRule="evenodd" />
+                    </svg>
+                    {t.location}
+                  </div>
+                  <div className="text-[15px] font-bold italic text-accent">
+                    {t.statLine}
+                  </div>
+                  <div className="text-sm text-text-secondary mt-1">
+                    {t.detailLine}
                   </div>
                 </div>
               </div>
