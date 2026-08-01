@@ -162,14 +162,14 @@ export default function Home() {
         </div>
 
         <h1 className="relative font-display text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-white">
-          We don&apos;t hire creators.
+          We&apos;re not an agency.
           <br />
-          We <span className="text-white/70">build</span> them.
+          We&apos;re your <span className="text-white/70">in-house UGC program.</span>
         </h1>
 
         <p className="relative text-[clamp(16px,2.2vw,20px)] text-white/60 max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
           Trained creators. Proven formats. Predictable virality.
-          The only UGC agency that builds its own creator supply chain.
+          We run as an extension of your team, not an outside vendor.
         </p>
 
         <div className="relative flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">

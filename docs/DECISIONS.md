@@ -652,3 +652,35 @@ it.
   treatment, just animated. Real logo files need to land in `public/logos/`
   before this is done; a `TODO` comment above `trustedBrands` in
   `app/page.tsx` flags this at the code site.
+
+## topic: in-house-positioning — _2026-07-31_
+
+On branch `redesign/agency-only` (still not merged): reframed the core
+pitch from "outside UGC agency" to "your embedded in-house UGC program."
+Three spots updated: hero headline ("We're not an agency. We're your
+in-house UGC program.", accent-italic treatment moved from "build" to
+"in-house UGC program."), hero subheading ("...We run as an extension of
+your team, not an outside vendor."), and the footer brand tagline ("Your
+in-house UGC program, without the overhead.") — the old tagline's "UGC
+agency that trains its own creators" line is gone along with it.
+
+Also removed the footer's social icon row (TikTok/Instagram/YouTube/X)
+entirely per direct request — brand mark, tagline, Links column, and CTA
+column are otherwise unchanged.
+
+- **Not a full sweep — flagged, not fixed, by design.** The user asked to
+  scan `app/page.tsx` for other "agency"-framed headline copy and report
+  back rather than have it rewritten wholesale. Found one direct conflict:
+  the Team section's subtext still reads "Proven creators, turned **agency**
+  owners" (`id="team"`, right under "Small team. Senior operators.") —
+  left as-is, flagged for a decision.
+- **Also flagged (out of the requested file scope, so untouched):**
+  `app/layout.tsx`'s SEO surface repeats the old "UGC agency that trains its
+  own creators" / "builds its own creator supply chain" framing four times —
+  `metadata.description`, `openGraph.description`, `twitter.description`,
+  and `organizationJsonLd.description`. None of these render on-page, but
+  they'll surface in Google results and social-share previews, now out of
+  step with the new hero copy. The `sameAs` social-profile URLs in
+  `organizationJsonLd` are untouched on purpose — that's structured data
+  about the company's social presence, a different concern from the visible
+  footer icon row that was actually asked to be removed.
