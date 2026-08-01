@@ -50,22 +50,25 @@ const showcaseVideos = [
   { src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
 ];
 
-const trustedBrands = [
+const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Aonic", file: "aonic.png" },
   { name: "BlackBox AI", file: "blackbox.png" },
   { name: "Causes", file: "causes.png" },
   { name: "Codedex", file: "codedex.png" },
+  { name: "Cooksat", file: "cooksat.png" },
+  { name: "Dealism", file: "dealism.png" },
   { name: "Dubbing", file: "dubbing.png" },
   { name: "Fable", file: "fable.png" },
   { name: "Higgsfield", file: "higgsfield.png" },
   { name: "Hyperknow", file: "hyperknow.png" },
   { name: "Kicker", file: "kicker.png" },
   { name: "Kortix", file: "kortix.png" },
-  // Liftoff's source is a diagonal blue gradient, not a flat color — can't be
-  // cleanly color-keyed to transparent, so it gets a small dark chip instead.
-  { name: "Liftoff", file: "liftoff.jpeg", needsChip: true },
+  { name: "Liftoff", file: "liftoff.png" },
   { name: "Makon AI", file: "makon1.png" },
+  { name: "Notta", file: "notta.png" },
+  { name: "Softr", file: "softr.png" },
   { name: "Tomo", file: "tomo.png" },
+  { name: "Yorby", file: "yorby.png" },
 ];
 
 const agencyFaqs = [
@@ -192,9 +195,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY — marquee with real client logos, backgrounds stripped to transparent.
-          No wrapper chip except Liftoff (needsChip), whose source gradient can't be
-          color-keyed cleanly — see the note by trustedBrands above. */}
+      {/* TRUSTED BY — marquee with real client logos, all recolored to transparent-
+          background white/monochrome (or kept in original brand color where the
+          source icon is multi-color, e.g. Causes, Fable). needsChip is an escape
+          hatch for a source that can't be cleanly color-keyed (unused currently —
+          the prior Liftoff asset needed it, the official vector doesn't). */}
       <section className="pb-[80px]">
         <div className="max-w-[900px] mx-auto text-center px-6">
           <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">

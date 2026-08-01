@@ -1268,3 +1268,110 @@ Branch `redesign/agency-only` (still not merged).
   images (`naturalWidth`/`complete` checked, not just a 200), and
   individual element screenshots of all four new logos confirm they
   render at consistent `h-14` sizing alongside the existing set.
+
+## topic: trusted-by-logos — _2026-08-01 (re-sourced all 9 originals, fixed Tomo, added 5 more)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Re-sourced all nine original hand-saved logos** (Aonic, BlackBox AI,
+  Causes, Codedex, Dubbing, Fable, Kicker, Liftoff, Makon AI) directly
+  from each brand's live site rather than trusting the old files, which
+  had baked-in backgrounds and inconsistent quality. Used the same
+  Playwright scratch setup as before, scanning each site's header/nav
+  for the actual logo asset (`<img src>` on real URLs, or an inline
+  `<svg>`) instead of screenshotting rendered pixels, so every source is
+  a real vector or an original transparent-background raster:
+  - **Direct asset downloads** (already transparent, no recoloring
+    needed beyond white-ifying monochrome ones): Aonic
+    (`aoniclife.com/cdn/shop/files/AONIC_LOGO_BOLD.png`, a Shopify CDN
+    file), Causes (`_next/static/media/Causes-logo.*.svg`, icon only),
+    Codedex (`/images/coin-cropped.png`, icon only), Dubbing AI
+    (`/assets/logo_header_icon-*.png`, icon+wordmark combined), Kicker
+    (`/logo-icon.png` + `/logo-text.png`, served separately by their own
+    Next app), Makon AI (`/_astro/logo-mark-onlight.svg` +
+    `/_astro/logo-word-onlight.svg`, an Astro site).
+  - **Inline SVGs pulled from live nav markup**: BlackBox AI
+    (`fill="currentColor"`, recolored via CSS), Fable (multi-color badge
+    icon + already-white "fable" text — used completely unmodified, no
+    recoloring needed), Liftoff (icon only).
+  - **Liftoff's `needsChip` requirement is gone.** The old hand-saved
+    `liftoff.jpeg` had a baked-in diagonal blue gradient background that
+    couldn't be color-keyed. The real vector, pulled straight from
+    `liftoffrank.com`'s nav, turned out to use a `linearGradient` whose
+    stops are both `white` (i.e. flat white dressed up as a gradient,
+    presumably for a since-unused theming hook) — genuinely flat, no
+    chip needed. Paired with typeset "Liftoff" text, same as the icon-
+    only sources below. `needsChip` stays in the code as a dead but
+    harmless escape hatch — flagged in a comment rather than deleted,
+    since a future source could need it again.
+  - **Icon-only sources paired with typeset wordmark text** (matching
+    the existing Causes-style pattern from the prior Higgsfield/
+    Hyperknow round): Causes, Codedex ("Codédex"), Liftoff.
+  - **Selective recolor, not full monochrome**: Softr's SVG has the
+    3-color icon (blue/pink/yellow blocks) plus a near-black `#030712`
+    wordmark fill — recolored only that one fill to white, left the
+    icon colors untouched. Dubbing AI's PNG has a colorful mascot icon
+    to the left and a dark navy-gray "Dubbing AI" wordmark to the
+    right, baked into one raster with no way to select-by-fill — split
+    the image at the icon/text pixel boundary (found by column-scanning
+    for the icon's cyan/blue vs. the text's navy-gray) and recolored
+    only the text half, keeping the icon's original alpha channel
+    verbatim rather than re-deriving it from luminance (an earlier pass
+    used a luminance-derived alpha for the recolored text and it came
+    out visibly gray instead of crisp white — fixed by keeping the
+    source pixel's own alpha and just overwriting RGB to pure white).
+  - **Makon AI's icon needed a black/white swap**, not a flat recolor:
+    the source is black ink (eyes, nose) on a near-white face fill,
+    designed for a light background. Recoloring black→white directly
+    would have produced a solid white blob (ink and fill both white,
+    no contrast). Fixed by swapping instead: black ink → white,
+    white/`#FFFEFE` face fill → transparent — result is a white linework
+    panda-face silhouette against our dark background, which is the
+    correct read for a dark-mode variant of a light-mode-only asset.
+  - One extraction bug caught and fixed: Tomo's wordmark SVG (see
+    below) was pulled via `element.outerHTML`, which does not include
+    the `xmlns` namespace declaration present on the live DOM node —
+    fine inline in a browser page (namespace is inherited from the
+    parent HTML document) but invisible/unrenderable once saved as a
+    standalone `.svg` file and loaded via `<img src>`. Fixed by adding
+    `xmlns="http://www.w3.org/2000/svg"` back before rendering; the
+    other extracted inline SVGs happened to already carry their own
+    xmlns attribute in the source markup and didn't need the fix.
+- **Tomo was mis-sourced last round.** The prior entry resolved "Tomo"
+  to TomoCredit (`tomocredit.com`) by inference — a plausible fit for a
+  DTC/app-brand creator marketplace's client roster, but not confirmed.
+  This round the user confirmed the correct site is `tomo.ai` (a
+  flower/sun-mark companion app, "500,000+ people ❤️ Tomo" on their own
+  homepage) — different company entirely. Replaced `tomo.png` with
+  `tomo.ai`'s actual icon + wordmark, both inline SVGs (`fill="currentColor"`)
+  pulled from their nav and recolored to white.
+- **Added five more real clients**: Cooksat (`cooksat.com`, `/assets/
+  graphics/branding/CookSAT_vector_logo.svg` icon, paired with typeset
+  "CookSAT"), Softr (`softr.io`, full combined SVG lockup from their
+  Webflow CDN), Yorby (`yorby.ai`, `/yorby-logo-new.png` icon — a pale
+  lavender abstract mark, left in its native soft tone rather than
+  forced to pure white since that's the actual brand color and it reads
+  fine against our dark background — paired with typeset "Yorby"),
+  Dealism (`dealism.ai`, a Framer site — pulled the full lockup image
+  straight from `framerusercontent.com`, recolored the dark wordmark to
+  white), Notta (`notta.ai`, logo was embedded as a base64-encoded SVG
+  data URI directly in the page's `<img src>` rather than a fetchable
+  URL — decoded it, recolored `fill="black"` to white).
+- **Full final roster, 18 clients**: Aonic, BlackBox AI, Causes,
+  Codedex, Cooksat, Dealism, Dubbing AI, Fable, Higgsfield, Hyperknow,
+  Kicker, Kortix, Liftoff, Makon AI, Notta, Softr, Tomo, Yorby.
+- Verified via Playwright against the running dev server. One real
+  finding during verification, not a logo bug: the marquee's infinite-
+  scroll track (`.animate-scroll`, a CSS `transform: translateX(...)`
+  keyframe animation) freezes at an arbitrary mid-animation offset when
+  paused via `animationPlayState`, which can leave a given logo's
+  element sitting at a negative x position outside the viewport —
+  `scrollIntoViewIfNeeded()` does nothing for a transform-positioned
+  element (there's no scrollable overflow to scroll), so a screenshot
+  taken right after landed blank for whichever logo the pause happened
+  to catch off-screen, which briefly looked like a broken asset (it
+  wasn't). Fixed the verification method by removing the animation
+  class entirely instead of pausing it, so the track sits at its
+  natural `translateX(0)` position and every element is reachable;
+  re-ran the check and confirmed all 18 logos load with real
+  `naturalWidth`/`naturalHeight` and paint correctly.
