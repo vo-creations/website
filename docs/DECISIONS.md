@@ -1084,3 +1084,53 @@ Branch `redesign/agency-only` (still not merged).
   reference, or silently proceeding without checking at all. The
   headline max-width ratio was satisfied using the explicit numeric
   target given directly in the request instead.
+
+## topic: agency-only-redesign — _2026-08-01 (single-line headline, star badge, warm palette)_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Hero headline is now just "Make them remember."** — the "Content that
+  converts." second line is gone. Removed the h1's `max-w-[720px]` cap
+  entirely (it was sized for the old two-line phrase); a caught-in-review
+  bug: `element.getClientRects().length` on a block element always
+  returns `1` regardless of internal line wraps — it does not measure
+  visual lines the way `Range.getClientRects()` over the text content
+  does. Trusting that method first reported "1 line" when the headline
+  was actually wrapping to two at 1440px; the screenshot was what caught
+  it. Re-verified afterward with a corrected line-count helper (a `Range`
+  over the element's text, rects deduped by rounded `top`) across six
+  viewports: single line for both headline and subheading from 768px up,
+  natural two/three-line wraps only at 390px and 320px — matching "one
+  line unless it naturally wraps at smaller widths" as specified.
+- **Subheading**: widened `max-w-[540px]` → `max-w-[760px]` so the full
+  sentence fits on one line at typical desktop widths (confirmed single-
+  line from 768px up) instead of wrapping at all; also wrapped "in-house"
+  in a `whitespace-nowrap` span as a safeguard for whenever it does wrap
+  narrower (confirmed intact through 320px).
+- **Kicker badge**: text now title-case ("The Team Behind 1B+ Views"),
+  flanked by a `✦` character on each side in place of the single dot
+  indicator.
+- **Palette warmed toward "cookies and cream."** `text.DEFAULT`
+  `#F5EDE3` → `#F7F0DD` (the brief's first suggested value). Checked
+  `bg.DEFAULT`/`card`/`elevated` first rather than assuming — all three
+  already had R>G>B (warm-biased, not neutral/cool), consistent with the
+  "Agency theme (amber)" origins — but nudged them slightly warmer anyway
+  per the brief's "warm those slightly too" (`#0F0D0B`→`#120F0A`,
+  `#1A1714`→`#1E1810`, `#241F1A`→`#2A2216`, `#0e0d0a`→`#110D08`) for a
+  more deliberately rich near-black rather than an incidentally-warm one.
+  `text.secondary`/`dim` were already warm and weren't called out
+  specifically, so left unchanged.
+  - Grepped for every hardcoded hex duplicating the old token values
+    (Tailwind classes pick up config changes automatically; raw hex
+    strings don't) and updated the ones that were background-matching,
+    not independent style choices: `globals.css`'s scrollbar-track and
+    `::selection` color, `InstagramEmbed.tsx`'s placeholder background,
+    and the hollow-center fill on `ViewsChart.tsx`'s data points (in
+    `campaigns/maxxd`, otherwise out of scope for style changes — this
+    one hex was purely "match the page background," not a stylistic
+    choice, so it needed to move with the token).
+  - Verified sitewide via computed styles, not just the hero: Case
+    Studies/Team/FAQ `h2` elements all resolve to `rgb(247, 240, 221)`
+    (`#F7F0DD`), body background resolves to `rgb(18, 15, 10)`
+    (`#120F0A`) — confirmed the token change actually propagates, not
+    just assumed it from editing one file.

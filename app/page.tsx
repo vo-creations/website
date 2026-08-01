@@ -130,20 +130,20 @@ export default function Home() {
       <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden bg-bg">
         <div className={`relative ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING} flex flex-col items-start text-left`}>
           <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-            <span className="w-1.5 h-1.5 rounded-full bg-white" />
+            <span className="text-white text-[10px] leading-none">✦</span>
             <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-              The team behind 1B+ views
+              The Team Behind 1B+ Views
             </span>
+            <span className="text-white text-[10px] leading-none">✦</span>
           </div>
 
-          <h1 className="font-sans max-w-[720px] text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
+          <h1 className="font-sans text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
             Make them remember.
-            <br />
-            <span className="text-text-secondary">Content that converts.</span>
           </h1>
 
-          <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
-            Scale your B2C product with your own world-class in-house UGC program.
+          <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[760px] leading-relaxed mb-10 animate-fade-up-delay-2">
+            Scale your B2C product with your own world-class{" "}
+            <span className="whitespace-nowrap">in-house</span> UGC program.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
