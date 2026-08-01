@@ -31,7 +31,7 @@ export default function SaaStrLanding({ name, slug }: Props) {
 
       <a
         href="/"
-        className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-bg font-bold text-base px-8 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all relative z-10"
+        className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-8 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all relative z-10"
       >
         Learn more about B2C2B UGC &rarr;
       </a>

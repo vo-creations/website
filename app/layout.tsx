@@ -62,7 +62,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Vo Creations",
   url: "https://vocreations.com",
-  logo: "https://vocreations.com/VoCreations Logo.webp",
+  logo: "https://vocreations.com/vocreations-logo.webp",
   description:
     "UGC agency that trains its own creators in-house. Specializing in talking-head storytelling for AI startups and consumer apps.",
   founder: {

@@ -843,3 +843,39 @@ the prior session's pass on the same items didn't fully land.
   `globals.css` (no Tailwind scrollbar plugin installed) — the
   scrollbar-hiding requirement from the brief had been missed entirely
   the first time around.
+
+## topic: agency-only-redesign — _2026-07-31 (buttons monochrome, real logo, four sections cut)_
+
+Branch `redesign/agency-only` (still not merged):
+
+- **Every amber-background button, sitewide, converted to the hero's
+  white-bg/black-text style** (dropping the `from-accent to-[#E08A1E]`
+  gradient in favor of plain white — no gradient needed once it's
+  monochrome). Found by grepping for `bg-accent`/the gradient pattern and
+  filtering to actual buttons vs. incidental low-opacity accent tints
+  (card/callout backgrounds, the quote bar in `ResultCard`, Nav's inert
+  active-link pill) — tints were left alone, only real CTAs changed.
+  6 buttons total: Nav "Book a call," Footer "make them remember,"
+  `CTABlock`'s default "Apply for a campaign slot," the same button
+  duplicated in `refund-policy` and `campaigns/maxxd`, and
+  `SaaStrLanding`'s CTA on the `/daniel`/`/danny`/`/thienvu` pages.
+  Unlike the text-color sweep, no file was carved out here — the brief's
+  wording ("every ... button sitewide") didn't leave room for treating
+  `campaigns/maxxd` as a separate product this time.
+- **Footer brand mark is now the real logo**, not a "V" in a circle.
+  `public/VoCreations Logo.webp` renamed to `public/vocreations-logo.webp`
+  (URL-safe, no encoding needed) — which meant also fixing
+  `organizationJsonLd.logo` in `app/layout.tsx`, the only other reference
+  to the old filename, or the JSON-LD would've pointed at a 404.
+- **Four sections deleted outright**, no replacement: "Our Format" (the
+  talking-head comparison table), "What Makes Us Different" (the 01-04
+  differentiators list), "The Market" (UGC-spend stat cards), and "Your
+  Budget" (the influencer-cost calculator). All four were consecutive in
+  the DOM, so removed as one contiguous block between "How It Works" and
+  "Case Studies," leaving exactly one divider at the seam. Also removed:
+  the now-dead `differentiators`/`marketStats`/`marketStats2` data arrays,
+  and the `budget`/`videos` `useState` pair plus every value derived from
+  them (`influencerCost`, `vocCostPerVideo`, `savings`, `savingsPercent`)
+  — none of it had any remaining reader once the calculator section was
+  gone. Grepped after removal to confirm nothing else in the file
+  referenced any of it.
