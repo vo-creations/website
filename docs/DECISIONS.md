@@ -946,3 +946,58 @@ from the previous entry didn't work out and is reverted.
   CSS `radial-gradient` dot grid (`.bg-dots`, 28px spacing, 8% white
   opacity, same edge-fade mask as before) — no SVG needed, no repeating
   geometric shape, distinct from a honeycomb.
+
+## topic: agency-only-redesign — _2026-08-01 (hero type/alignment, logo background removal)_
+
+Branch `redesign/agency-only` (still not merged):
+
+- **Hero headline: dropped small-caps + the Bricolage display font,
+  switched to normal sentence case in Inter at `font-extrabold` (800).**
+  Small-caps at hero size on a heavy display font was reading blocky;
+  small-caps stays reserved for the small tagline usage in Nav/Footer,
+  where it originated. Headline is "Make them remember." / "Content that
+  converts." now (was already this copy, just re-cased).
+- **Hero reverted to left-aligned** (was centered): wrapped the content in
+  a `max-w-[720px] mx-auto` column that self-centers as a block while
+  everything inside it — kicker, headline, subhead, CTAs, and the stats
+  row — is left-aligned (`items-start text-left`). Stats row moved off
+  `text-center`/`mx-auto` to match the rest of the column.
+- **Logo background removal**, `public/logos/`: no ImageMagick in this
+  environment; installed Pillow + numpy via pip (neither was present) and
+  wrote a from-scratch fuzzy-color-to-transparent implementation (distance
+  from a sampled target color, with a soft ramp zone instead of a hard
+  cutoff to avoid jagged edges), auto-cropped to content bounding box
+  after stripping.
+  - **First pass revealed a second problem the naive approach didn't
+    catch**: several logos (Aonic, Causes, Fable, Makon AI) have a dark/
+    black wordmark, not just a light background. Stripping only the
+    background left black-on-near-black — invisible against the page.
+    Fixed by also recoloring genuinely dark, low-saturation pixels
+    (`sat < 0.30, val < 0.55`, HSV) to white — tuned iteratively by
+    actually viewing composited before/after renders (dark page bg
+    behind each processed logo) via the Read tool's image support, not
+    just checking that the command exited 0. Threshold required real
+    tuning: value-only cutoffs wiped out genuinely dark-but-saturated
+    icon colors (Causes' green/blue rings, Makon's purple mascot);
+    saturation-only cutoffs missed Dubbing AI's slightly-blue-tinted
+    gray text (sat 0.26) and left Fable's rich-black text hollow-outlined
+    (its "black" ink has sat 0.27, computed saturation being numerically
+    unstable at near-zero brightness). The combined threshold works
+    because in every affected asset, real icon colors sit at
+    `val > 0.5` even when as vivid as `sat = 1.0`, while the problem
+    text sits at `val < 0.4` regardless of its (often near-zero, noisy)
+    saturation.
+  - `kicker.png` was deliberately excluded from recoloring — its black
+    text sits on the logo's own cream card, not on the page background,
+    so lightening it would've broken it against its own card.
+  - `aonic.jpg` and `codedex.jpg` came out as `.png` (alpha requires it);
+    old `.jpg` originals deleted, all references updated (marquee array
+    + the Codedex `ResultCard`, which had its own separate reference to
+    the old filename).
+  - `liftoff.jpeg` has a genuine diagonal gradient background, not a flat
+    color — can't be color-keyed. Left as an opaque JPEG, wrapped in a
+    small `bg-bg-elevated` chip in the marquee (`needsChip` flag on its
+    `trustedBrands` entry) instead of forcing a bad key.
+  - Every processed file verified by compositing onto the actual page
+    background color and viewing the result, not just confirming the
+    script ran without error.

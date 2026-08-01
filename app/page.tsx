@@ -51,14 +51,16 @@ const showcaseVideos = [
 ];
 
 const trustedBrands = [
-  { name: "Aonic", file: "aonic.jpg" },
+  { name: "Aonic", file: "aonic.png" },
   { name: "BlackBox AI", file: "blackbox.png" },
   { name: "Causes", file: "causes.png" },
-  { name: "Codedex", file: "codedex.jpg" },
+  { name: "Codedex", file: "codedex.png" },
   { name: "Dubbing", file: "dubbing.png" },
   { name: "Fable", file: "fable.png" },
   { name: "Kicker", file: "kicker.png" },
-  { name: "Liftoff", file: "liftoff.jpeg" },
+  // Liftoff's source is a diagonal blue gradient, not a flat color — can't be
+  // cleanly color-keyed to transparent, so it gets a small dark chip instead.
+  { name: "Liftoff", file: "liftoff.jpeg", needsChip: true },
   { name: "Makon AI", file: "makon1.png" },
 ];
 
@@ -114,73 +116,79 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — centered, single column. No amber here specifically (deliberate); otherwise
-          inherits the page's dark tokens. The .bg-dots texture lives on its own decorative
-          div behind the content — applying it (or its mask-image) to a container that also
+      {/* HERO — left-aligned, single column. Headline is Inter (not the Bricolage display
+          font) at heavy weight, normal case — small-caps at this size on a heavy display
+          font read blocky/circus-like; small-caps stays reserved for the small tagline
+          usage in Nav/Footer. No amber here specifically (deliberate); otherwise inherits
+          the page's dark tokens. The .bg-dots texture lives on its own decorative div
+          behind the content — applying it (or its mask-image) to a container that also
           holds text/buttons dims everything, which is exactly what broke here before. */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
+      <section className="min-h-screen flex flex-col justify-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-bg">
         <div className="absolute inset-0 bg-dots pointer-events-none" />
 
-        <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-          <span className="w-1.5 h-1.5 rounded-full bg-white" />
-          <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-            The team behind 1B+ views
-          </span>
-        </div>
+        <div className="relative max-w-[720px] w-full mx-auto flex flex-col items-start text-left">
+          <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+            <span className="w-1.5 h-1.5 rounded-full bg-white" />
+            <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
+              The team behind 1B+ views
+            </span>
+          </div>
 
-        <h1 className="relative font-display [font-variant:small-caps] text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-          make them remember.
-          <br />
-          <span className="text-text-secondary">Content that converts.</span>
-        </h1>
+          <h1 className="font-sans text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
+            Make them remember.
+            <br />
+            <span className="text-text-secondary">Content that converts.</span>
+          </h1>
 
-        <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
-          Scale your B2C product with your own world-class in-house UGC program.
-        </p>
+          <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
+            Scale your B2C product with your own world-class in-house UGC program.
+          </p>
 
-        <div className="relative flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
-          <a
-            href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
-          >
-            Apply for a campaign slot →
-          </a>
-          <a
-            href="#results"
-            className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
-          >
-            See results →
-          </a>
-        </div>
-
-        <div className="relative grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none mx-auto animate-fade-up-delay-4">
-          {[
-            ["1B+", "Views generated"],
-            ["30+", "Brands scaled"],
-            ["500+", "Trained creators"],
-            ["9", "Days to launch"],
-          ].map(([num, lbl], i) => (
-            <div
-              key={lbl}
-              className={`text-center py-6 sm:py-0 ${
-                i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
-              } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
+            <a
+              href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
             >
-              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
-                {num}
+              Apply for a campaign slot →
+            </a>
+            <a
+              href="#results"
+              className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
+            >
+              See results →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4">
+            {[
+              ["1B+", "Views generated"],
+              ["30+", "Brands scaled"],
+              ["500+", "Trained creators"],
+              ["9", "Days to launch"],
+            ].map(([num, lbl], i) => (
+              <div
+                key={lbl}
+                className={`text-left py-6 sm:py-0 ${
+                  i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
+                } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+              >
+                <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text">
+                  {num}
+                </div>
+                <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
+                  {lbl}
+                </div>
               </div>
-              <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
-                {lbl}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* TRUSTED BY — marquee with real client logos, no wrapper chip (some logos have their
-          own baked-in background — that's the source image, not something we're adding) */}
+      {/* TRUSTED BY — marquee with real client logos, backgrounds stripped to transparent.
+          No wrapper chip except Liftoff (needsChip), whose source gradient can't be
+          color-keyed cleanly — see the note by trustedBrands above. */}
       <section className="pb-[80px]">
         <div className="max-w-[900px] mx-auto text-center px-6">
           <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
@@ -189,16 +197,31 @@ export default function Home() {
         </div>
         <div className="overflow-hidden">
           <div className="flex w-max items-center gap-x-12 animate-scroll">
-            {[...trustedBrands, ...trustedBrands].map((brand, i) => (
-              <Image
-                key={`${brand.name}-${i}`}
-                src={`/logos/${brand.file}`}
-                alt={brand.name}
-                width={200}
-                height={80}
-                className="shrink-0 h-14 w-auto object-contain"
-              />
-            ))}
+            {[...trustedBrands, ...trustedBrands].map((brand, i) =>
+              brand.needsChip ? (
+                <div
+                  key={`${brand.name}-${i}`}
+                  className="shrink-0 bg-bg-elevated rounded-lg px-3 py-2 overflow-hidden"
+                >
+                  <Image
+                    src={`/logos/${brand.file}`}
+                    alt={brand.name}
+                    width={200}
+                    height={80}
+                    className="h-8 w-auto object-contain rounded"
+                  />
+                </div>
+              ) : (
+                <Image
+                  key={`${brand.name}-${i}`}
+                  src={`/logos/${brand.file}`}
+                  alt={brand.name}
+                  width={200}
+                  height={80}
+                  className="shrink-0 h-14 w-auto object-contain"
+                />
+              )
+            )}
           </div>
         </div>
       </section>
@@ -337,7 +360,7 @@ export default function Home() {
 
             <ResultCard
               company="Codedex"
-              logo="/logos/codedex.jpg"
+              logo="/logos/codedex.png"
               tags={["Learn-to-code platform", "Brooklyn, NY", "$1M raised", "Hustle Fund, Goodwater"]}
               views="10M+"
               viewsSub="2 months"
