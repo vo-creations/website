@@ -612,3 +612,43 @@ this card format.
   redirect now points at `/` instead of the now-dead `/#creators` anchor —
   same pattern as `/roi`'s redirect. `#team` and `#faq` anchors are
   unaffected; `id="pricing"` was never set, so no redirect referenced it.
+
+## topic: single-page-site — _2026-07-31 (hero + fonts)_
+
+Second follow-up on branch `redesign/agency-only` (still not merged): deleted
+the "Our Story" section (About's founder video block, merged into the
+homepage two sessions ago) entirely — no replacement, no anchor pointed at
+it.
+
+- **Hero is intentionally monochrome, scoped to that one `<section>`.**
+  Black background, white text, no amber — kicker pill, the "build" accent
+  word, and both CTA buttons are white/black/gray only. This is a one-off
+  exception to the site's light/amber theme (`topic: agency-only-redesign`),
+  not a token change: `tailwind.config.ts`'s `bg`/`text`/`accent` tokens are
+  untouched, the rest of the page still reads off them. Also dropped the
+  `.bg-hex` texture and the amber radial-gradient glow from the hero (both
+  were amber-tinted); the class itself stays in `globals.css` for reuse
+  elsewhere, unused, not deleted. Added "make them remember." as a
+  small-caps kicker line above the pill badge, matching the treatment
+  already used in Nav/Footer.
+- **New display font: Bricolage Grotesque** (`next/font/google`,
+  `--font-bricolage`), wired as `tailwind.config.ts` `fontFamily.display`.
+  Applied to the hero `<h1>` and every major section `<h2>` sitewide
+  (`app/page.tsx` and `app/refund-policy/page.tsx`, matched by their shared
+  `text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight` class).
+  Inter (`topic` two entries up) stays the body font everywhere.
+- **Hero stat "100+ Trained creators" → "500+."** Grepped the repo for other
+  aggregate creator-count claims first — the only other one
+  ("From 3 minimum-wage jobs to 100+ creators...") lived in the now-deleted
+  Story section, so no separate edit was needed. Individual per-person
+  stats (Daniel's/Thienvu's personal view counts) are unrelated and
+  untouched.
+- **"Trusted by" is now a marquee**, using the `scroll` keyframe /
+  `animate-scroll` utility that already existed in `tailwind.config.ts`
+  unused. The logo list is duplicated once in the DOM (`[...trustedBrands,
+  ...trustedBrands]`) for a seamless `translateX(-50%)` loop.
+  **No real client logo files exist anywhere in the repo** (checked
+  `public/` and `design/`) — this still renders the bold-text placeholder
+  treatment, just animated. Real logo files need to land in `public/logos/`
+  before this is done; a `TODO` comment above `trustedBrands` in
+  `app/page.tsx` flags this at the code site.

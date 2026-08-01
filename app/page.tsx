@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
 import Label from "@/components/Label";
 import ResultCard from "@/components/ResultCard";
-import YouTubeEmbed from "@/components/YouTubeEmbed";
 import Image from "next/image";
 
 const steps = [
@@ -51,6 +50,11 @@ const showcaseVideos = [
   { src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
 ];
 
+// TODO: placeholder text logos. Real client logo files need to be dropped into
+// public/logos/ (e.g. fable.svg, codedex.svg, blackbox-ai.svg, makon-ai.svg) and
+// swapped in here as <Image> elements — none exist in the repo yet.
+const trustedBrands = ["Fable", "Codedex", "BlackBox AI", "Makon AI"];
+
 const agencyFaqs = [
   { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
   { q: "What's the investment?", a: "Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo unlocks 6 creators and double the output. Paid upfront, no hidden fees." },
@@ -74,12 +78,6 @@ const faqJsonLd = {
     },
   })),
 };
-
-const verticalVideos = [
-  { label: "My Story", src: "/videos/my-story.mp4", postUrl: "https://www.instagram.com/itsthienvuvo/reel/DOhA4Sakaku/" },
-  { label: "Creator success", src: "/videos/creator-success.mp4", postUrl: "https://www.instagram.com/reel/DKucBvzMHbK/" },
-  { label: "Creator example", src: "/videos/creator-example.mp4", postUrl: "https://www.instagram.com/reels/DHJSBnYO2As/" },
-];
 
 const differentiators = [
   {
@@ -150,25 +148,26 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-hex pointer-events-none" />
-        <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(245,166,35,0.06)_0%,transparent_60%)] pointer-events-none" />
+      {/* HERO — monochrome, scoped to this section only; rest of the page keeps the light/amber theme */}
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-[160px] pb-20 relative overflow-hidden bg-black text-white">
+        <span className="relative text-[11px] text-white/50 [font-variant:small-caps] tracking-[0.12em] mb-4 animate-fade-up">
+          make them remember.
+        </span>
 
-        <div className="relative inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
+        <div className="relative inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+          <span className="w-1.5 h-1.5 rounded-full bg-white" />
+          <span className="text-[12px] font-semibold text-white/70 tracking-wide">
             The team behind 1B+ views
           </span>
         </div>
 
-        <h1 className="relative text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1">
+        <h1 className="relative font-display text-[clamp(36px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-white">
           We don&apos;t hire creators.
           <br />
-          We <span className="text-accent">build</span> them.
+          We <span className="text-white/70">build</span> them.
         </h1>
 
-        <p className="relative text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
+        <p className="relative text-[clamp(16px,2.2vw,20px)] text-white/60 max-w-[540px] leading-relaxed mb-10 animate-fade-up-delay-2">
           Trained creators. Proven formats. Predictable virality.
           The only UGC agency that builds its own creator supply chain.
         </p>
@@ -178,13 +177,13 @@ export default function Home() {
             href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-br from-accent to-[#E08A1E] text-text font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(245,166,35,0.3)] hover:-translate-y-0.5 transition-all"
+            className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 transition-all"
           >
             Apply for a campaign slot →
           </a>
           <a
             href="#results"
-            className="inline-flex items-center gap-2 bg-transparent text-text font-medium text-base px-9 py-4 rounded-full border border-border hover:border-black/20 hover:bg-black/[0.03] transition-all"
+            className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
           >
             See results →
           </a>
@@ -194,19 +193,19 @@ export default function Home() {
           {[
             ["1B+", "Views generated"],
             ["30+", "Brands scaled"],
-            ["100+", "Trained creators"],
+            ["500+", "Trained creators"],
             ["9", "Days to launch"],
           ].map(([num, lbl], i) => (
             <div
               key={lbl}
               className={`text-center py-6 sm:py-0 ${
-                i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
-              } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+                i % 2 === 0 ? "border-r border-white/20 sm:border-r-0" : ""
+              } ${i < 2 ? "border-b border-white/20 sm:border-b-0" : ""}`}
             >
-              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none">
+              <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-white">
                 {num}
               </div>
-              <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
+              <div className="text-[11px] font-medium text-white/50 tracking-wide uppercase mt-2">
                 {lbl}
               </div>
             </div>
@@ -214,17 +213,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY */}
-      <section className="pb-[80px] px-6">
-        <div className="max-w-[900px] mx-auto text-center">
+      {/* TRUSTED BY — marquee; placeholder text logos until real files land in public/logos/ */}
+      <section className="pb-[80px]">
+        <div className="max-w-[900px] mx-auto text-center px-6">
           <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
             Trusted by
           </div>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 opacity-70">
-            {["Fable", "Codedex", "BlackBox AI", "Makon AI"].map((name) => (
+        </div>
+        <div className="overflow-hidden">
+          <div className="flex w-max items-center gap-x-16 animate-scroll opacity-70">
+            {[...trustedBrands, ...trustedBrands].map((name, i) => (
               <span
-                key={name}
-                className="text-xl md:text-2xl font-extrabold tracking-tight text-text-secondary hover:text-text transition-colors"
+                key={`${name}-${i}`}
+                className="shrink-0 text-xl md:text-2xl font-extrabold tracking-tight text-text-secondary hover:text-text transition-colors"
               >
                 {name}
               </span>
@@ -237,7 +238,7 @@ export default function Home() {
       <section className="py-[100px]">
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Content that goes <span className="text-accent">viral</span>
           </h2>
           <p className="text-base text-text-secondary mb-8">
@@ -295,77 +296,11 @@ export default function Home() {
 
       <div className="max-w-[1000px] mx-auto h-px bg-border" />
 
-      {/* STORY */}
-      <section className="py-[100px]">
-        <div className="max-w-[720px] mx-auto px-6">
-          <Label>Our story</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            The training program that became an{" "}
-            <span className="text-accent">agency.</span>
-          </h2>
-          <p className="text-base text-text-secondary mb-8">
-            From 3 minimum-wage jobs to 100+ creators and 50+ brands.
-          </p>
-
-          <div className="mb-5">
-            <YouTubeEmbed
-              videoId="xL3zWBso9mw"
-              title="Thienvu: How I built Vo Creations"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {verticalVideos.map((v) => (
-              <div
-                key={v.label}
-                className="bg-bg-card rounded-2xl overflow-hidden border border-border"
-              >
-                <div className="relative aspect-[9/16]">
-                  <video
-                    src={`${v.src}#t=0.1`}
-                    playsInline
-                    muted
-                    loop
-                    preload="metadata"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
-                    onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
-                    onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="text-xs font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                      {v.label}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-3 left-3">
-                    <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
-                      Tap to unmute
-                    </span>
-                  </div>
-                </div>
-                <div className="p-3 flex items-center justify-end">
-                  <a
-                    href={v.postUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[11px] text-accent hover:underline font-medium"
-                  >
-                    View on Instagram ↗
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
       {/* HOW IT WORKS */}
       <section className="py-[100px]">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>How it works</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             From signed to viral in 9 days
           </h2>
           <p className="text-base text-text-secondary mb-10">
@@ -401,7 +336,7 @@ export default function Home() {
       <section className="py-[100px]">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Our format</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Talking-head only. No text-on-screen.{" "}
             <span className="text-accent">Ever.</span>
           </h2>
@@ -461,7 +396,7 @@ export default function Home() {
       <section className="py-[100px]">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>What makes us different</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
             Four things nobody else does.
           </h2>
 
@@ -492,7 +427,7 @@ export default function Home() {
         <div className="max-w-[1000px] mx-auto">
           <div className="max-w-[720px] mx-auto text-center mb-2">
             <Label>The market</Label>
-            <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+            <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
               UGC is eating{" "}
               <span className="text-accent">marketing budgets</span>
             </h2>
@@ -548,7 +483,7 @@ export default function Home() {
       <section className="py-[100px]">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Your budget</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Run the numbers
           </h2>
           <p className="text-base text-text-secondary mb-10">
@@ -644,7 +579,7 @@ export default function Home() {
       <section className="py-[100px]" id="results">
         <div className="max-w-[1000px] mx-auto px-6">
           <Label>Case Studies</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Undeniable <span className="text-accent">impact.</span>
           </h2>
           <p className="text-base text-text-secondary mb-10">
@@ -733,7 +668,7 @@ export default function Home() {
       <section className="py-[100px]" id="team">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>The team</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Small team. Senior operators.
           </h2>
           <p className="text-base text-text-secondary mb-10">
@@ -786,7 +721,7 @@ export default function Home() {
       <section className="py-[100px]" id="faq">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>FAQ</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
             Common questions
           </h2>
 

@@ -210,7 +210,7 @@ export default function RefundPolicyPage() {
       <section className="py-[100px] px-6">
         <div className="max-w-[720px] mx-auto">
           <Label>Required process</Label>
-          <h2 className="text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-3">
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-3">
             Dispute resolution
           </h2>
           <p className="text-[15px] text-text-secondary leading-relaxed mb-6">

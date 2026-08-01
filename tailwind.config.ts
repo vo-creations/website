@@ -55,6 +55,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        display: ['var(--font-bricolage)', 'Bricolage Grotesque', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
