@@ -747,3 +747,53 @@ only `public/` is served statically.)
 - Marquee mechanics (duplicate list once, `animate-scroll`,
   `overflow-hidden` wrapper) are unchanged from the placeholder version —
   just swapped `<span>{name}</span>` for the chip + `<Image>`.
+
+## topic: agency-only-redesign — _2026-07-31 (monochrome text, moody bg, team/case-study polish)_
+
+On branch `redesign/agency-only` (still not merged):
+
+- **Amber removed from all TEXT color, buttons untouched.** Swept
+  `components/Label.tsx`, `components/Nav.tsx`, `components/Footer.tsx`,
+  and every `text-accent` in `app/page.tsx` individually — headline
+  highlight words (`viral`, `Ever.`, `marketing budgets`, `impact.`) had
+  their accent `<span>` removed outright rather than recolored, since
+  the whole headline is already `font-extrabold` and an inline color was
+  the only differentiator; stat numbers/badges/checkmarks switched to
+  `text-text` (bright) so they still read as emphasized via brightness,
+  not color. `components/ResultCard.tsx`'s own `text-accent` (the big
+  view-count number, the decorative quote mark) was deliberately **not**
+  touched — the task scoped the systematic sweep to `app/page.tsx` and
+  `Nav.tsx`; flagged for a decision rather than assumed in scope.
+- **Subtle warm-dark gradient, body-level.** `globals.css`'s `body` rule
+  gained two low-alpha (`0.07`–`0.08`) maroon `radial-gradient`s pinned to
+  opposite corners via `background-attachment: fixed`, layered under the
+  existing `bg-bg` solid color. Intentionally applied page-wide rather than
+  hero-only — the hero was just unified with the rest of the page's
+  background in the prior session, so a hero-only gradient would have
+  recreated the "separate box" problem that fix solved.
+- **Team section:** heading → "Proven Viral Creators", subtitle line
+  removed entirely (was "Proven creators, turned agency owners" —
+  conflicted with the in-house-positioning work anyway, since it called
+  Vo Creations an "agency"). Both members now show a "Co-Founder" tag
+  (hardcoded once in JSX, not duplicated per-record — both say the exact
+  same thing). Thienvu's credential line → "Founder of Vo Creations
+  Mentorship".
+- **Thienvu's team photo is blurry because the source file is
+  160×160px** (`public/videos/team-thienvu.jpg`) — Daniel's is 600×600px.
+  Confirmed via `file`/`sips`, and confirmed there's no CSS blur filter or
+  object-fit difference between the two `<Image>` calls (identical code).
+  Needs a higher-resolution source file; not something fixable in code.
+- **Case study logos**, `ResultCard.tsx`: new optional `logo` prop, reused
+  the same white-chip treatment as the "Trusted by" marquee for the same
+  reason (source files have opaque light backgrounds). Wired the 4 that
+  exist: `fable.png`, `codedex.jpg`, `blackbox.png`, `makon1.png`.
+- **Video showcase → horizontal scroll, not a marquee.** Unlike "Trusted
+  by," these videos need hover-to-play / tap-to-unmute, which a
+  continuously-moving carousel would fight with — used
+  `overflow-x-auto snap-x snap-mandatory` instead (manual, user-driven).
+  Cards are fixed-width and `shrink-0`, so any number of future videos
+  just extends the scroll area — no redesign needed to add a 5th, 10th, etc.
+- **Footer's dangling "Links" column** (previously just a stale `/#about`
+  link) repopulated with the same 3 anchors as the main nav (Case Studies /
+  Our Team / FAQ's) rather than deleted — gives the column real utility
+  instead of leaving a visibly empty grid cell.

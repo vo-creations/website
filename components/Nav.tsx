@@ -23,7 +23,7 @@ export default function Nav() {
           className="flex flex-col leading-none shrink-0"
         >
           <span className="text-base md:text-lg font-extrabold tracking-tight text-text">
-            Vo <span className="text-accent">Creations</span>
+            Vo Creations
           </span>
           <span className="hidden sm:block text-[10px] text-text-dim [font-variant:small-caps] tracking-[0.12em] mt-1">
             make them remember.
@@ -37,7 +37,7 @@ export default function Nav() {
               href={link.href}
               className={`px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-colors ${
                 pathname === link.href
-                  ? "text-accent bg-accent/10"
+                  ? "text-text bg-accent/10"
                   : "text-text-secondary hover:text-text hover:bg-bg-elevated"
               }`}
             >
@@ -94,7 +94,7 @@ export default function Nav() {
               href={link.href}
               onClick={() => setOpen(false)}
               className={`py-3 text-[15px] font-medium border-b border-border last:border-b-0 ${
-                pathname === link.href ? "text-accent" : "text-text-secondary"
+                pathname === link.href ? "text-text" : "text-text-secondary"
               }`}
             >
               {link.label}

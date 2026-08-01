@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type MiniStat = { value: string; label: string };
 
 interface ResultCardProps {
   company: string;
+  logo?: string;
   tags: string[];
   views: string;
   viewsSub: string;
@@ -20,6 +22,7 @@ interface ResultCardProps {
 
 export default function ResultCard({
   company,
+  logo,
   tags,
   views,
   viewsSub,
@@ -42,8 +45,21 @@ export default function ResultCard({
       <div className="p-7 pb-5">
         <div className="flex flex-col md:flex-row justify-between items-start gap-4">
           <div>
-            <div className="text-[22px] font-extrabold tracking-tight">
-              {company}
+            <div className="flex items-center gap-3">
+              {logo && (
+                <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                  <Image
+                    src={logo}
+                    alt={`${company} logo`}
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+              )}
+              <div className="text-[22px] font-extrabold tracking-tight">
+                {company}
+              </div>
             </div>
             <div className="flex flex-wrap gap-2 mt-3">
               {tags.map((tag) => (

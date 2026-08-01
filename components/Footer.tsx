@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "/#team", label: "About" },
+  { href: "/#results", label: "Case Studies" },
+  { href: "/#team", label: "Our Team" },
+  { href: "/#faq", label: "FAQ's" },
 ];
 
 export default function Footer() {
@@ -13,7 +15,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-sm font-bold text-accent">
+              <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-sm font-bold text-text">
                 V
               </div>
               <span className="text-lg font-extrabold tracking-tight">

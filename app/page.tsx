@@ -124,7 +124,7 @@ const team = [
   {
     name: "Thienvu Vo",
     location: "Richmond, VA",
-    statLine: "Founder of Mentorship",
+    statLine: "Founder of Vo Creations Mentorship",
     detailLine: "Led students to $1M in earnings & 500M+ views",
     image: "/videos/team-thienvu.jpg",
   },
@@ -252,17 +252,19 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Content that goes <span className="text-accent">viral</span>
+            Content that goes viral
           </h2>
           <p className="text-base text-text-secondary mb-8">
             Real UGC from our trained creator network.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {/* Horizontal scroll, not auto-marquee — these need hover-to-play / tap-to-unmute,
+              which a moving carousel would fight with. Scales to any number of videos. */}
+          <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2">
             {showcaseVideos.map((v) => (
               <div
                 key={v.src}
-                className="bg-bg-card rounded-2xl overflow-hidden border border-border group"
+                className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[220px] sm:w-[240px] snap-start"
               >
                 <div className="relative aspect-[9/16]">
                   <video
@@ -296,7 +298,7 @@ export default function Home() {
                     href={v.postUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] text-accent hover:underline font-medium"
+                    className="text-[11px] text-text-secondary hover:underline hover:text-text font-medium"
                   >
                     View post ↗
                   </a>
@@ -323,7 +325,7 @@ export default function Home() {
           <div className="flex flex-col gap-5">
             {steps.map((s) => (
               <div key={s.num} className="flex gap-5 items-start">
-                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
                   {s.num}
                 </div>
                 <div>
@@ -350,8 +352,7 @@ export default function Home() {
         <div className="max-w-[720px] mx-auto px-6">
           <Label>Our format</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Talking-head only. No text-on-screen.{" "}
-            <span className="text-accent">Ever.</span>
+            Talking-head only. No text-on-screen. Ever.
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Every platform&apos;s algorithm rewards authentic human content. A real face converts better than text overlays.
@@ -362,7 +363,7 @@ export default function Home() {
             {/* Header */}
             <div className="grid grid-cols-2 md:grid-cols-[140px_1fr_1fr] gap-4 md:gap-6 py-4 border-b border-border">
               <div className="hidden md:block"></div>
-              <div className="text-[11px] text-accent font-semibold uppercase tracking-wider">
+              <div className="text-[11px] text-text font-semibold uppercase tracking-wider">
                 Vo Creations
               </div>
               <div className="text-[11px] text-text-dim font-semibold uppercase tracking-wider">
@@ -384,7 +385,7 @@ export default function Home() {
                   {label}
                 </div>
                 <div className="flex gap-2 items-start">
-                  <span className="text-accent leading-snug shrink-0">&#10003;</span>
+                  <span className="text-text leading-snug shrink-0">&#10003;</span>
                   <span className="text-sm text-text leading-snug">{vo}</span>
                 </div>
                 <div className="flex gap-2 items-start">
@@ -416,7 +417,7 @@ export default function Home() {
           <div className="flex flex-col gap-5">
             {differentiators.map((d) => (
               <div key={d.num} className="flex gap-5 items-start">
-                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
                   {d.num}
                 </div>
                 <div>
@@ -441,8 +442,7 @@ export default function Home() {
           <div className="max-w-[720px] mx-auto text-center mb-2">
             <Label>The market</Label>
             <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-              UGC is eating{" "}
-              <span className="text-accent">marketing budgets</span>
+              UGC is eating marketing budgets
             </h2>
             <p className="text-base text-text-secondary mb-10">
               Source: Mordor Intelligence, Fortune Insights, Whop,
@@ -456,7 +456,7 @@ export default function Home() {
                 key={s.num}
                 className="bg-bg-card rounded-2xl p-7 text-center border border-border hover:border-border-accent transition-colors"
               >
-                <div className="text-[28px] font-extrabold text-accent tracking-tight">
+                <div className="text-[28px] font-extrabold text-text tracking-tight">
                   {s.num}
                 </div>
                 <div className="text-[13px] text-text-secondary mt-2 leading-snug">
@@ -475,7 +475,7 @@ export default function Home() {
                 key={s.num}
                 className="bg-bg-card rounded-2xl p-7 text-center border border-border hover:border-border-accent transition-colors"
               >
-                <div className="text-[28px] font-extrabold text-accent tracking-tight">
+                <div className="text-[28px] font-extrabold text-text tracking-tight">
                   {s.num}
                 </div>
                 <div className="text-[13px] text-text-secondary mt-2 leading-snug">
@@ -508,7 +508,7 @@ export default function Home() {
             <div>
               <div className="flex justify-between items-center mb-3">
                 <span className="text-sm font-medium">Monthly content budget</span>
-                <span className="text-lg font-bold text-accent">
+                <span className="text-lg font-bold text-text">
                   ${budget.toLocaleString()}
                 </span>
               </div>
@@ -530,7 +530,7 @@ export default function Home() {
             <div>
               <div className="flex justify-between items-center mb-3">
                 <span className="text-sm font-medium">Videos needed per month</span>
-                <span className="text-lg font-bold text-accent">{videos}</span>
+                <span className="text-lg font-bold text-text">{videos}</span>
               </div>
               <input
                 type="range"
@@ -593,7 +593,7 @@ export default function Home() {
         <div className="max-w-[1000px] mx-auto px-6">
           <Label>Case Studies</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Undeniable <span className="text-accent">impact.</span>
+            Undeniable impact.
           </h2>
           <p className="text-base text-text-secondary mb-10">
             Click any card for the full story.
@@ -602,6 +602,7 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <ResultCard
               company="Fable"
+              logo="/logos/fable.png"
               tags={["Social reading app", "Palo Alto", "$28M raised", "Tiger Global, Redpoint"]}
               views="25.4M"
               viewsSub="4 weeks / 3 creators"
@@ -620,6 +621,7 @@ export default function Home() {
 
             <ResultCard
               company="Codedex"
+              logo="/logos/codedex.jpg"
               tags={["Learn-to-code platform", "Brooklyn, NY", "$1M raised", "Hustle Fund, Goodwater"]}
               views="10M+"
               viewsSub="2 months"
@@ -638,6 +640,7 @@ export default function Home() {
 
             <ResultCard
               company="BlackBox AI"
+              logo="/logos/blackbox.png"
               tags={["AI Developer Tools", "Coding assistant"]}
               views="11.5M"
               viewsSub="20 days / 40-60 paid-organic mix"
@@ -656,6 +659,7 @@ export default function Home() {
 
             <ResultCard
               company="Makon AI"
+              logo="/logos/makon1.png"
               tags={["EdTech", "SAT prep", "AI-powered"]}
               views="10.2M"
               viewsSub="2 months / 8 creators"
@@ -681,12 +685,9 @@ export default function Home() {
       <section className="py-[100px]" id="team">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>The team</Label>
-          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Small team. Senior operators.
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
+            Proven Viral Creators
           </h2>
-          <p className="text-base text-text-secondary mb-10">
-            Proven creators, turned agency owners
-          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {team.map((t) => (
@@ -705,17 +706,20 @@ export default function Home() {
                 <div className="p-6">
                   <div className="flex items-center gap-1.5">
                     <span className="text-[17px] font-bold">{t.name}</span>
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-accent shrink-0">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-text-secondary shrink-0">
                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-text-secondary mt-1 mb-4">
+                  <div className="text-xs text-text-dim font-semibold uppercase tracking-wide mt-1.5">
+                    Co-Founder
+                  </div>
+                  <div className="flex items-center gap-1 text-sm text-text-secondary mt-1.5 mb-4">
                     <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 shrink-0">
                       <path fillRule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clipRule="evenodd" />
                     </svg>
                     {t.location}
                   </div>
-                  <div className="text-[15px] font-bold italic text-accent">
+                  <div className="text-[15px] font-bold italic text-text">
                     {t.statLine}
                   </div>
                   <div className="text-sm text-text-secondary mt-1">
@@ -749,7 +753,7 @@ export default function Home() {
                     {faq.q}
                   </span>
                   <span
-                    className={`text-[22px] text-accent font-light shrink-0 ml-4 transition-transform ${
+                    className={`text-[22px] text-text-secondary font-light shrink-0 ml-4 transition-transform ${
                       openFaq === i ? "rotate-45" : ""
                     }`}
                   >
