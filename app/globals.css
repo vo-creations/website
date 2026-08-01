@@ -47,6 +47,16 @@ body {
   -webkit-text-stroke: 0.75px currentColor;
 }
 
+/* Hide scrollbar on horizontally-scrollable rows (carousels) while keeping them
+   touch/trackpad/drag scrollable. No Tailwind scrollbar plugin is installed. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Hex/honeycomb texture for hero backgrounds (good-marketing.co-inspired) */
 .bg-hex {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16V50L28 66L0 50V16Z' fill='none' stroke='rgba(245,166,35,0.07)' stroke-width='1'/%3E%3Cpath d='M28 34L56 50V84L28 100L0 84V50Z' fill='none' stroke='rgba(245,166,35,0.07)' stroke-width='1'/%3E%3C/svg%3E");

@@ -29,7 +29,7 @@ export default function RefundPolicyPage() {
         <div className="max-w-[720px] mx-auto text-center">
           <Label>Legal and policies</Label>
           <h1 className="text-[clamp(32px,5vw,52px)] font-black leading-[1.05] tracking-tighter mb-6">
-            Refund <span className="text-accent">Policy</span>
+            Refund Policy
           </h1>
           <p className="text-[clamp(15px,1.6vw,17px)] text-text-secondary max-w-[560px] mx-auto leading-relaxed">
             Last updated: May 2026. Applies to all Vo Creations products and services.
@@ -42,7 +42,7 @@ export default function RefundPolicyPage() {
       {/* OVERVIEW */}
       <section className="pt-[80px] pb-[40px] px-6">
         <div className="max-w-[720px] mx-auto flex gap-5 items-start">
-          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
             01
           </div>
           <div className="flex-1 min-w-0">
@@ -59,7 +59,7 @@ export default function RefundPolicyPage() {
       {/* MENTORSHIP PROGRAM — primary section */}
       <section className="py-[40px] px-6">
         <div className="max-w-[720px] mx-auto flex gap-5 items-start">
-          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
             02
           </div>
           <div className="flex-1 min-w-0">
@@ -95,7 +95,7 @@ export default function RefundPolicyPage() {
 
             {/* Performance Guarantee */}
             <div className="bg-accent/[0.04] border border-accent/20 rounded-2xl p-6 mb-8">
-              <div className="text-[11px] font-semibold tracking-[2.5px] uppercase text-accent mb-3">
+              <div className="text-[11px] font-semibold tracking-[2.5px] uppercase text-text-secondary mb-3">
                 4-month performance guarantee
               </div>
               <p className="text-[15px] text-text-secondary leading-relaxed mb-4">
@@ -162,7 +162,7 @@ export default function RefundPolicyPage() {
       {/* DIGITAL PRODUCTS */}
       <section className="py-[40px] px-6">
         <div className="max-w-[720px] mx-auto flex gap-5 items-start">
-          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
             03
           </div>
           <div className="flex-1 min-w-0">
@@ -179,7 +179,7 @@ export default function RefundPolicyPage() {
       {/* REFUND PROCESSING */}
       <section className="pt-[40px] pb-[80px] px-6">
         <div className="max-w-[720px] mx-auto flex gap-5 items-start">
-          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-accent">
+          <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
             04
           </div>
           <div className="flex-1 min-w-0">
@@ -222,7 +222,7 @@ export default function RefundPolicyPage() {
               Email:{" "}
               <a
                 href="mailto:hello@vocreations.com"
-                className="text-accent hover:underline font-semibold"
+                className="text-text-secondary hover:text-text hover:underline font-semibold"
               >
                 hello@vocreations.com
               </a>
@@ -261,7 +261,7 @@ export default function RefundPolicyPage() {
             </p>
           </div>
           <div className="bg-accent/[0.04] rounded-2xl p-6 border border-accent/20">
-            <h3 className="text-[17px] font-bold tracking-tight mb-3 text-accent">
+            <h3 className="text-[17px] font-bold tracking-tight mb-3 text-text">
               Agreement
             </h3>
             <p className="text-[14px] text-text-secondary leading-relaxed">

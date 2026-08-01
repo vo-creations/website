@@ -220,7 +220,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY — marquee with real client logos, chipped for contrast consistency */}
+      {/* TRUSTED BY — marquee with real client logos, no wrapper chip (some logos have their
+          own baked-in background — that's the source image, not something we're adding) */}
       <section className="pb-[80px]">
         <div className="max-w-[900px] mx-auto text-center px-6">
           <div className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em] mb-6">
@@ -228,20 +229,16 @@ export default function Home() {
           </div>
         </div>
         <div className="overflow-hidden">
-          <div className="flex w-max items-center gap-x-5 animate-scroll">
+          <div className="flex w-max items-center gap-x-12 animate-scroll">
             {[...trustedBrands, ...trustedBrands].map((brand, i) => (
-              <div
+              <Image
                 key={`${brand.name}-${i}`}
-                className="shrink-0 bg-white rounded-xl px-6 py-3.5 flex items-center justify-center"
-              >
-                <Image
-                  src={`/logos/${brand.file}`}
-                  alt={brand.name}
-                  width={140}
-                  height={48}
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
+                src={`/logos/${brand.file}`}
+                alt={brand.name}
+                width={200}
+                height={80}
+                className="shrink-0 h-14 w-auto object-contain"
+              />
             ))}
           </div>
         </div>
@@ -259,12 +256,13 @@ export default function Home() {
           </p>
 
           {/* Horizontal scroll, not auto-marquee — these need hover-to-play / tap-to-unmute,
-              which a moving carousel would fight with. Scales to any number of videos. */}
-          <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2">
+              which a moving carousel would fight with. Cards are wide enough that even today's
+              4 videos overflow the container and peek at the edge; scales to any number more. */}
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide">
             {showcaseVideos.map((v) => (
               <div
                 key={v.src}
-                className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[220px] sm:w-[240px] snap-start"
+                className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px] snap-center"
               >
                 <div className="relative aspect-[9/16]">
                   <video

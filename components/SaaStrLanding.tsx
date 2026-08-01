@@ -10,7 +10,7 @@ export default function SaaStrLanding({ name, slug }: Props) {
     <main className="min-h-screen bg-bg text-text flex flex-col items-center justify-center px-6 py-16 relative overflow-hidden">
       <div className="absolute -top-[300px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-[radial-gradient(circle,rgba(245,166,35,0.05)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="inline-flex items-center gap-2 bg-accent-dim border border-border-accent rounded-full px-4 py-1.5 text-[10px] font-semibold tracking-[1.5px] uppercase text-accent mb-6 relative z-10">
+      <div className="inline-flex items-center gap-2 bg-accent-dim border border-border-accent rounded-full px-4 py-1.5 text-[10px] font-semibold tracking-[1.5px] uppercase text-text-secondary mb-6 relative z-10">
         SaaStr Annual 2026
       </div>
 

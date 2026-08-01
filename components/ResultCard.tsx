@@ -73,7 +73,7 @@ export default function ResultCard({
             </div>
           </div>
           <div className="text-right">
-            <div className="text-5xl md:text-[48px] font-black text-accent tracking-tighter leading-none">
+            <div className="text-5xl md:text-[48px] font-black text-text tracking-tighter leading-none">
               {views}
               <span className="text-base text-text-secondary font-normal ml-1">
                 views
@@ -88,7 +88,7 @@ export default function ResultCard({
 
       {/* Quote bar */}
       {quote && <div className="px-7 py-5 bg-accent/[0.03] border-t border-border flex gap-3.5 items-start">
-        <div className="text-4xl text-accent font-serif leading-none opacity-40 shrink-0 -mt-1">
+        <div className="text-4xl text-text font-serif leading-none opacity-40 shrink-0 -mt-1">
           &ldquo;
         </div>
         <div>
@@ -136,7 +136,7 @@ export default function ResultCard({
                   key={s.label}
                   className="bg-bg-elevated rounded-[10px] p-3.5 text-center"
                 >
-                  <div className="text-xl font-extrabold text-accent tracking-tight">
+                  <div className="text-xl font-extrabold text-text tracking-tight">
                     {s.value}
                   </div>
                   <div className="text-[10px] text-text-dim uppercase tracking-wide mt-1 font-medium">

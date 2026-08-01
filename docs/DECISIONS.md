@@ -797,3 +797,49 @@ On branch `redesign/agency-only` (still not merged):
   link) repopulated with the same 3 anchors as the main nav (Case Studies /
   Our Team / FAQ's) rather than deleted — gives the column real utility
   instead of leaving a visibly empty grid cell.
+
+## topic: agency-only-redesign — _2026-07-31 (follow-through: photo, amber sweep, logos, carousel)_
+
+Four corrections on branch `redesign/agency-only` (still not merged), after
+the prior session's pass on the same items didn't fully land.
+
+- **Thienvu's team photo, re-confirmed as a source-file problem, not code.**
+  `public/videos/team-thienvu.jpg` is 160×160px / 5.8KB (`file` + `sips`);
+  `team-daniel.jpg` is 600×600px / 88KB. Both render through the exact same
+  single `<Image fill className="object-cover" />` call inside one
+  `team.map()` — no per-person branching, no `quality` prop, no filter, no
+  transform. At the card's rendered size a 160px source has to upscale
+  ~2–2.5x, which is the blur. Needs a higher-resolution source file; still
+  not something fixable in code, confirmed a second time.
+- **Amber-text sweep widened past `app/page.tsx`/`Nav.tsx`.** This time
+  `components/ResultCard.tsx` (explicitly flagged last round, now fixed):
+  the big view-count number, the decorative quote mark, and mini-stat
+  values all switched `text-accent` → `text-text`. Also fixed for sitewide
+  consistency: `app/refund-policy/page.tsx` (7 spots — headline highlight,
+  4× numbered-step badges, a callout kicker, the contact-email link, the
+  "Agreement" card heading) and `components/SaaStrLanding.tsx` (the SaaStr
+  badge kicker on the `/daniel`/`/danny`/`/thienvu` QR pages). Left alone,
+  deliberately: `app/campaigns/maxxd/**` (7 spots) — a separate internal
+  client-dashboard tool with its own established accent-heavy stat
+  aesthetic (`font-mono` stat displays, chart line color), never part of
+  this redesign's scope; and `components/VideoPlaceholder.tsx` — confirmed
+  dead code, imported nowhere. `border-accent`/`border-border-accent` was
+  left everywhere it appears — borders, not text, and the task explicitly
+  allowed keeping those.
+- **Marquee logo chip wrapper removed.** The `bg-white rounded-xl` chip
+  added last round is gone; each logo now renders bare via `<Image
+  className="h-14 w-auto object-contain" />` at a visibly larger, uniform
+  height. Several source files (Fable, Aonic, Dubbing AI, Kicker, Causes,
+  Liftoff) still show their own baked-in light background — that's the
+  source pixels, not a wrapper we're adding, and expected per the brief.
+- **Video showcase carousel: root-caused why it looked static.** The
+  `overflow-x-auto`/`snap-x` classes were already present, but at
+  `w-[240px]` per card, 4 cards fit entirely inside the `max-w-[1100px]`
+  section on any normal desktop viewport (996px of content in ~1052px of
+  space) — nothing ever overflowed, so there was nothing to scroll.
+  Widened cards to `w-[260px] sm:w-[300px]` (now ~1248px of content vs.
+  ~1052px available, guaranteeing overflow and an edge peek even with
+  only today's 4 videos) and added a `.scrollbar-hide` utility to
+  `globals.css` (no Tailwind scrollbar plugin installed) — the
+  scrollbar-hiding requirement from the brief had been missed entirely
+  the first time around.
