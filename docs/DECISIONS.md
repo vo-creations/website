@@ -2017,3 +2017,39 @@ the same topic name above.
   approach as the original interleave.
 - **Subheading platform order**: "...across TT, IG, FB & YT." → "...across
   IG, TT, FB & YT."
+
+## topic: result-card-simplify — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged). Supersedes the card
+structure from the `result-card-orange-audit` entry above (that entry's
+orange fixes and the `bg-white` → `bg-bg-elevated` logo-visibility fix
+are both still current, just the chip itself is gone now).
+
+- **Removed three things from every card**: the logo's boxed chip
+  background (logo is now a plain `<Image>` in a fixed `h-9 w-[100px]`
+  box, `object-contain`, no background — same fixed-box-plus-
+  object-contain principle as the Trusted By marquee logos, scaled down
+  for sitting inline next to a company name instead of alone in a
+  row), the tag-pills row entirely (`tags` prop removed from the
+  component and every call site, not just hidden), and the quote bar
+  entirely (`quote`/`quoteSource` removed from the component and every
+  call site — the four cards that had real quotes lost them too, per
+  the brief).
+- **Every card is expandable now** — `expandable` used to be computed
+  from `!!(challenge || approach || result)`, so the three factless
+  cards (Liftoff/Higgsfield/Aonic) rendered with no click affordance at
+  all. Removed that gate; every card always shows "Click for full case
+  study" and toggles open. The three factless cards' expanded state is
+  the `miniStats` grid only (views/creators/timeframe, all real
+  numbers already used elsewhere on each card) — no challenge/approach/
+  result invented for them, matching the brief exactly. Also removed
+  the unused `note` prop (`"non-expandable cards like Lore"` — that
+  pattern is obsolete now that nothing is non-expandable).
+  - `miniStats` grid now goes 3-wide instead of 4-wide when there are
+    exactly 3 stats (`miniStats.length === 3 ? "md:grid-cols-3" :
+    "md:grid-cols-4"`) — the three new cards only have 3 real numbers
+    (views/creators/timeframe), and a 4-column grid with one empty slot
+    read visibly lopsided.
+- **Reordered all 7 cards by view count**: Liftoff (151M+) → Higgsfield
+  (65M+) → Aonic (31M+) → Fable (25.4M) → BlackBox AI (11.5M) → Makon AI
+  (10.2M) → Codedex (10M+).

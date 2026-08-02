@@ -8,68 +8,47 @@ type MiniStat = { value: string; label: string };
 interface ResultCardProps {
   company: string;
   logo?: string;
-  tags: string[];
   views: string;
   viewsSub: string;
-  quote?: string;
-  quoteSource?: string;
   challenge?: string;
   approach?: string;
   result?: string;
   miniStats?: MiniStat[];
-  note?: string;
 }
 
 export default function ResultCard({
   company,
   logo,
-  tags,
   views,
   viewsSub,
-  quote,
-  quoteSource,
   challenge,
   approach,
   result,
   miniStats,
-  note,
 }: ResultCardProps) {
   const [open, setOpen] = useState(false);
-  const expandable = !!(challenge || approach || result);
 
   return (
     <div
-      className={`bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-white/20 ${expandable ? "cursor-pointer" : ""}`}
-      onClick={() => expandable && setOpen(!open)}
+      className="bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-white/20 cursor-pointer"
+      onClick={() => setOpen(!open)}
     >
       <div className="p-7 pb-6">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-5">
-          <div>
-            <div className="flex items-center gap-3">
-              {logo && (
-                <div className="w-10 h-10 rounded-lg bg-bg-elevated flex items-center justify-center shrink-0 overflow-hidden">
-                  <Image
-                    src={logo}
-                    alt={`${company} logo`}
-                    width={36}
-                    height={36}
-                    className="w-full h-full object-contain p-1.5"
-                  />
-                </div>
-              )}
-              <div className="text-[22px] font-extrabold tracking-tight">
-                {company}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-5">
+          <div className="flex items-center gap-3">
+            {logo && (
+              <div className="h-9 w-[100px] flex items-center shrink-0">
+                <Image
+                  src={logo}
+                  alt={`${company} logo`}
+                  width={160}
+                  height={56}
+                  className="max-w-full max-h-full w-auto h-auto object-contain"
+                />
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-3.5">
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[11px] text-text-secondary bg-bg-elevated px-3 py-1 rounded-md font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
+            )}
+            <div className="text-[22px] font-extrabold tracking-tight">
+              {company}
             </div>
           </div>
           <div className="text-right shrink-0">
@@ -86,30 +65,15 @@ export default function ResultCard({
         </div>
       </div>
 
-      {/* Quote bar */}
-      {quote && <div className="px-7 py-6 bg-white/[0.03] border-t border-border flex gap-3.5 items-start">
-        <div className="text-3xl text-text-dim font-serif leading-none shrink-0 -mt-1">
-          &ldquo;
-        </div>
-        <div>
-          <div className="text-sm text-text-secondary leading-relaxed italic">
-            {quote}
-          </div>
-          <div className="text-xs text-text-dim mt-2 not-italic font-medium">
-            {quoteSource}
-          </div>
-        </div>
-      </div>}
-
       {/* Expand hint */}
-      {expandable && !open && (
+      {!open && (
         <div className="text-xs text-text-dim px-7 pb-4 font-medium">
           Click for full case study &#8599;
         </div>
       )}
 
       {/* Expandable detail */}
-      {expandable && open && (
+      {open && (
         <div className="px-7 py-6 border-t border-border space-y-5">
           {challenge && (
             <div>
@@ -142,7 +106,9 @@ export default function ResultCard({
             </div>
           )}
           {miniStats && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-1">
+            <div
+              className={`grid grid-cols-2 ${miniStats.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"} gap-3 pt-1`}
+            >
               {miniStats.map((s) => (
                 <div
                   key={s.label}
@@ -159,11 +125,6 @@ export default function ResultCard({
             </div>
           )}
         </div>
-      )}
-
-      {/* Simple note (non-expandable cards like Lore) */}
-      {note && (
-        <div className="px-7 pb-5 text-sm text-text-dim">{note}</div>
       )}
     </div>
   );

@@ -418,14 +418,51 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col gap-4">
+            {/* Ordered by view count, highest to lowest. Liftoff/Higgsfield/Aonic
+                have no real quote or challenge/approach/result narrative on file —
+                their expanded state is the factual miniStats grid only, same as
+                the other four, just without invented prose. */}
+            <ResultCard
+              company="Liftoff"
+              logo="/logos/liftoff.png"
+              views="151M+"
+              viewsSub="3 months / 50 creators"
+              miniStats={[
+                { value: "151M+", label: "Views" },
+                { value: "50", label: "Creators" },
+                { value: "3", label: "Months" },
+              ]}
+            />
+
+            <ResultCard
+              company="Higgsfield"
+              logo="/logos/higgsfield.png"
+              views="65M+"
+              viewsSub="30 days / 45 creators"
+              miniStats={[
+                { value: "65M+", label: "Views" },
+                { value: "45", label: "Creators" },
+                { value: "30", label: "Days" },
+              ]}
+            />
+
+            <ResultCard
+              company="Aonic"
+              logo="/logos/aonic.png"
+              views="31M+"
+              viewsSub="30 days / 6 creators"
+              miniStats={[
+                { value: "31M+", label: "Views" },
+                { value: "6", label: "Creators" },
+                { value: "30", label: "Days" },
+              ]}
+            />
+
             <ResultCard
               company="Fable"
               logo="/logos/fable.png"
-              tags={["Social reading app", "Palo Alto", "$28M raised", "Tiger Global, Redpoint"]}
               views="25.4M"
               viewsSub="4 weeks / 3 creators"
-              quote="Vo Creations delivered 3M views in just 7 days. Their creators truly understand how to create content that resonates."
-              quoteSource="Fable team"
               challenge="Break through in competitive book discovery. Traditional marketing wasn't reaching Gen Z readers where they spend time."
               approach="3 creators, 180 videos, 4 platforms. Applied the VoC Method: 7 format experiments in week 1, tracked performance, cut the bottom 4 formats, tripled down on the winners. One talking-head format hit 3.5M views. Every creator pivoted."
               result="25.4M total views in 30 days. The methodology that now powers every VoC campaign was born here."
@@ -438,32 +475,10 @@ export default function Home() {
             />
 
             <ResultCard
-              company="Codedex"
-              logo="/logos/codedex.png"
-              tags={["Learn-to-code platform", "Brooklyn, NY", "$1M raised", "Hustle Fund, Goodwater"]}
-              views="10M+"
-              viewsSub="2 months"
-              quote="We tried influencer marketing before, but Vo Creations gave us 10x the results at a fraction of the cost."
-              quoteSource="Codedex team"
-              challenge="Reach Gen Z developers. Technical audience, hard to engage with traditional marketing."
-              approach="Matched creators who are actual developers from our network. Content that spoke the audience's language authentically."
-              result="10M+ views in 2 months. Strong community engagement and meaningful user acquisition."
-              miniStats={[
-                { value: "10M+", label: "Views" },
-                { value: "4", label: "Platforms" },
-                { value: "60", label: "Days" },
-                { value: "Gen Z", label: "Audience" },
-              ]}
-            />
-
-            <ResultCard
               company="BlackBox AI"
               logo="/logos/blackbox.png"
-              tags={["AI Developer Tools", "Coding assistant"]}
               views="11.5M"
               viewsSub="20 days / 40-60 paid-organic mix"
-              quote="Vo Creations made our paid ads indistinguishable from organic creator content. That's what scaled us."
-              quoteSource="BlackBox AI team"
               challenge="AI coding tools are niche and intimidating for mass short-form audiences. Traditional ads triggered ad blindness."
               approach="UGC-first paid ads designed to look identical to organic creator content. Problem → payoff storytelling: open with relatable pain (debugging frustration, time pressure), show BlackBox AI as the unlock. 420 paid ad variations tested with a 40/60 paid-to-organic content mix."
               result="11.5M organic views in just 20 days. 420 paid ads produced and deployed at scale. Strong engagement from developers, students, and builders asking workflow questions and tagging peers."
@@ -478,11 +493,8 @@ export default function Home() {
             <ResultCard
               company="Makon AI"
               logo="/logos/makon1.png"
-              tags={["EdTech", "SAT prep", "AI-powered"]}
               views="10.2M"
               viewsSub="2 months / 8 creators"
-              quote="Vo Creations turned SAT prep, one of the hardest categories to make viral, into bingeable short-form content."
-              quoteSource="Makon AI team"
               challenge="SAT prep is perceived as boring and transactional. Most competitors relied on dense demos and jargon that students scrolled past."
               approach="Creator-led talking-head videos that felt personal and raw. Students speaking to students. Story-first, product-second: open with emotional tension (stress, burnout, parental pressure), then naturally introduce Makon AI as the turning point."
               result="10.2M organic views in 2 months. Comment sections filled with students asking questions, sharing stress, and tagging friends. Makon positioned as a modern, student-first SAT solution."
@@ -494,32 +506,20 @@ export default function Home() {
               ]}
             />
 
-            {/* Lighter, non-expandable cards — no quote/challenge/approach/result
-                on file for these three, so none is invented. Just the verified
-                stat line, matching the compact "timeframe / creator count"
-                format the fuller cards above already use in viewsSub. */}
             <ResultCard
-              company="Liftoff"
-              logo="/logos/liftoff.png"
-              tags={["Fitness app"]}
-              views="151M+"
-              viewsSub="3 months / 50 creators"
-            />
-
-            <ResultCard
-              company="Aonic"
-              logo="/logos/aonic.png"
-              tags={["Health & wellness"]}
-              views="31M+"
-              viewsSub="30 days / 6 creators"
-            />
-
-            <ResultCard
-              company="Higgsfield"
-              logo="/logos/higgsfield.png"
-              tags={["AI video generation"]}
-              views="65M+"
-              viewsSub="30 days / 45 creators"
+              company="Codedex"
+              logo="/logos/codedex.png"
+              views="10M+"
+              viewsSub="2 months"
+              challenge="Reach Gen Z developers. Technical audience, hard to engage with traditional marketing."
+              approach="Matched creators who are actual developers from our network. Content that spoke the audience's language authentically."
+              result="10M+ views in 2 months. Strong community engagement and meaningful user acquisition."
+              miniStats={[
+                { value: "10M+", label: "Views" },
+                { value: "4", label: "Platforms" },
+                { value: "60", label: "Days" },
+                { value: "Gen Z", label: "Audience" },
+              ]}
             />
           </div>
         </div>
