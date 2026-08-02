@@ -12,7 +12,13 @@ export default function CTABlock({
   href?: string;
 }) {
   return (
-    <section className="text-center py-20">
+    // FAQ's own bottom padding (py-[100px]) + this section's top padding
+    // (pt-20 = 80px) puts 180px between the last FAQ card and this card.
+    // Footer's inner wrapper only has pt-16 (64px) before its own content
+    // starts, so matching bottom padding here (pb-20) left the card 36px
+    // closer to the footer than to the FAQ above it. pb-[116px] makes both
+    // gaps 180px. Re-derive if FAQ's py or Footer's pt-16 ever change.
+    <section className="text-center pt-20 pb-[116px]">
       <div className="max-w-[560px] mx-auto px-10 py-14 rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm">
         <h3 className="text-[28px] font-extrabold tracking-tight mb-3">
           {heading}

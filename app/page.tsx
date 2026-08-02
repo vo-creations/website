@@ -169,19 +169,19 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Yorby", file: "yorby.png" },
 ];
 
-// DECISION: trimmed from 8 questions to 6 — removed the guarantee question
-// (referenced a "1M organic views or 50% refund" guarantee that was pulled
-// off the page entirely, leaving it contradicting content that no longer
-// exists) and the "see past campaigns" question (redundant with the Case
-// Studies section directly above this one on the page). See
-// docs/DECISIONS.md (topic: faq-restyle).
+// DECISION: replaced wholesale (2026-08) to match new business terms — flat
+// $30,000/mo package floor (was tiered $10k/3 creators, $20k/6 creators),
+// 10-14 day posting start (was "9 days to launch"), 90-day minimum
+// commitment, month-to-month billing with no refunds (no more "paid
+// upfront" framing). See docs/DECISIONS.md (topic: pricing-terms-2026-08).
 const agencyFaqs = [
-  { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
-  { q: "What's the investment?", a: "Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo unlocks 6 creators and double the output. Paid upfront, no hidden fees." },
-  { q: "What platforms do you post on?", a: "TikTok, Instagram Reels, YouTube Shorts, and Facebook. All four platforms, simultaneously." },
-  { q: "How quickly can a campaign start?", a: "9 days from signed contract to first videos going live. Strategy and creator matching happen in Days 1-2." },
-  { q: "What happens if creators underperform?", a: "We cut underperformers and replace them. That's the VoC Method. Test 7 formats, keep the winners, triple down." },
-  { q: "How is this different from hiring freelance creators?", a: "Our creators are trained through a 2-month in-house program. They know our format system, they've been tested, and they work as a coordinated team, not solo freelancers." },
+  { q: "What is Tech UGC?", a: "Tech UGC is user-generated content built for SaaS and consumer app brands. Instead of polished ads, everyday creators make short-form videos that demo, explain, and sell your product authentically on TikTok and Instagram. Vo Creations runs tech UGC campaigns at scale, producing 1,200+ videos per month per brand and generating organic views before any paid spend is applied." },
+  { q: "How long do results take?", a: "Minimum commitment starts at 90 days. That gives us adequate time to establish a proper UGC system." },
+  { q: "How involved is the process?", a: "As involved as you want to be. Most clients join a weekly sync to review performance and share product updates. Beyond that, we handle everything: your dedicated team manages creators, reviews content, and iterates strategy daily without needing your input at every step. Some clients stay deeply involved in creative direction, others check in once a week and let us run it. Either way, the engine keeps moving." },
+  { q: "Can I select my creators?", a: "Yes. We'll work together to choose the best creators for your campaign." },
+  { q: "What would next steps look like?", a: "We move quick. We'll set up a consultation, then an onboarding call. From there, we start sourcing creators and posting within 10-14 days." },
+  { q: "What is the investment?", a: "Packages start at $30,000/mo. A second invoice is sent monthly to cover creator bonuses." },
+  { q: "Do you offer refunds?", a: "We don't offer refunds, but we operate month to month, no long-term contracts required. If something isn't working, we'd rather have an honest conversation and fix it than have you locked into something that isn't delivering. Our track record speaks for itself, and we're confident enough in our process to let results do the talking." },
 ];
 
 const faqJsonLd = {
