@@ -1950,3 +1950,70 @@ the same topic name above.
   not just eyeballed from a screenshot. Track gap tightened from
   `gap-x-12` to `gap-x-10` since the now-uniform boxes read a little
   emptier at the old spacing.
+
+## topic: result-card-orange-audit — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged). Orange kept resurfacing
+in this section across earlier rounds, so this pass was a full grep, not
+a spot check — every instance found is listed here, not just the ones
+fixed.
+
+- **Full search performed**: `text-accent`, `border-accent`, `bg-accent`,
+  `fill-accent`, `stroke-accent` (case-insensitive), plus the three known
+  amber hex literals (`#F5A623`, `#E08A1E`, `#f7c157`), across
+  `components/ResultCard.tsx` and the Case Studies section wrapper in
+  `app/page.tsx` (including `Label.tsx`, its section kicker). Exactly
+  two hits, both in `ResultCard.tsx`, both already covered above — no
+  hardcoded hex, nothing in the Case Studies wrapper itself, nothing in
+  hover/focus states beyond the two found:
+  1. `hover:border-accent/25` on the card's outer border (line 42) —
+     the card's border brightened to amber on hover.
+  2. `bg-accent/[0.03]` on the quote bar (line 90) — a near-invisible
+     but real amber tint behind every quote.
+  Fixed both to the neutral equivalent at the same opacity:
+  `hover:border-white/20` and `bg-white/[0.03]`.
+- **Real, separate bug found while adding logos to the 3 new cards**:
+  the logo chip (`bg-white`) was making most logos *invisible*, not
+  orange — checked actual pixel data on all 7 case-study logo files and
+  found `blackbox.png`, `aonic.png`, and `higgsfield.png` are 100% white
+  ink (monochrome, sourced for the dark Trusted By marquee), so on a
+  white chip they rendered as blank space; `fable.png`/`codedex.png`/
+  `liftoff.png` are partially white and only their colored portions
+  survived. Not what was asked for this round, but directly blocks "add
+  logos to all case study cards" from actually being visible, so fixed
+  it: chip background `bg-white` → `bg-bg-elevated` (the same token
+  every other elevated surface in the card already uses — tag pills,
+  mini-stat tiles), padding `p-1` → `p-1.5` for a touch more breathing
+  room against the darker background. All 7 logos (4 existing + 3 new)
+  now genuinely visible, confirmed by screenshot, not just present in
+  the DOM.
+- **3 new case-study cards** (Liftoff, Aonic, Higgsfield) use
+  `ResultCard`'s existing lighter path — no `quote`/`challenge`/
+  `approach`/`result` passed (made `quote`/`quoteSource` optional on the
+  interface rather than passing empty-string workarounds), so
+  `expandable` is `false` and no "Click for full case study" / expand
+  affordance appears, matching the brief's "non-expandable pattern"
+  with zero changes to the component's rendering logic. Creator counts
+  ride in `viewsSub` ("3 months / 50 creators" etc.) — the same compact
+  format the four existing cards already use, not a new field. Tags are
+  a single verified-not-guessed category each: Liftoff "Fitness app"
+  and Aonic "Health & wellness" both confirmed by fetching their own
+  sites' meta description just now (`aoniclife.com`: "Make healthy
+  living enjoyable."), Higgsfield "AI video generation" from the
+  research already on file from the trusted-by-logos round. No funding/
+  location/specific claims invented for any of the three.
+- `higgsfield.png` already existed in `public/logos/` from the earlier
+  trusted-by-logos round — no new logo sourcing needed for this batch.
+
+## topic: showcase-marquee — _2026-08-01 (3 more videos folded in)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entries of
+the same topic name above.
+
+- **Added 2 Instagram + 1 TikTok**, bringing the carousel to 17 items
+  (11 Instagram, 3 TikTok, 1 Facebook, 2 YouTube). Folded into the
+  existing interleaved order rather than appended after the last item —
+  inserted where they best broke up existing same-platform runs, same
+  approach as the original interleave.
+- **Subheading platform order**: "...across TT, IG, FB & YT." → "...across
+  IG, TT, FB & YT."

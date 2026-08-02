@@ -11,8 +11,8 @@ interface ResultCardProps {
   tags: string[];
   views: string;
   viewsSub: string;
-  quote: string;
-  quoteSource: string;
+  quote?: string;
+  quoteSource?: string;
   challenge?: string;
   approach?: string;
   result?: string;
@@ -39,7 +39,7 @@ export default function ResultCard({
 
   return (
     <div
-      className={`bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-accent/25 ${expandable ? "cursor-pointer" : ""}`}
+      className={`bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-white/20 ${expandable ? "cursor-pointer" : ""}`}
       onClick={() => expandable && setOpen(!open)}
     >
       <div className="p-7 pb-6">
@@ -47,13 +47,13 @@ export default function ResultCard({
           <div>
             <div className="flex items-center gap-3">
               {logo && (
-                <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                <div className="w-10 h-10 rounded-lg bg-bg-elevated flex items-center justify-center shrink-0 overflow-hidden">
                   <Image
                     src={logo}
                     alt={`${company} logo`}
                     width={36}
                     height={36}
-                    className="w-full h-full object-contain p-1"
+                    className="w-full h-full object-contain p-1.5"
                   />
                 </div>
               )}
@@ -87,7 +87,7 @@ export default function ResultCard({
       </div>
 
       {/* Quote bar */}
-      {quote && <div className="px-7 py-6 bg-accent/[0.03] border-t border-border flex gap-3.5 items-start">
+      {quote && <div className="px-7 py-6 bg-white/[0.03] border-t border-border flex gap-3.5 items-start">
         <div className="text-3xl text-text-dim font-serif leading-none shrink-0 -mt-1">
           &ldquo;
         </div>

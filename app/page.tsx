@@ -123,11 +123,11 @@ const showcaseVideos: {
   label: string;
 }[] = [
   // DECISION: interleaved by platform (not grouped) so consecutive cards are
-  // usually different platforms — Instagram is the majority (9 of 14) so a
+  // usually different platforms — Instagram is the majority (11 of 17) so a
   // few adjacent IG-IG pairs are unavoidable, but nothing is ever blocked
-  // together in a long run. The 2 original self-hosted mp4s are gone — both
-  // replaced with the real Instagram embed of the same underlying post. See
-  // docs/DECISIONS.md (topic: showcase-marquee).
+  // together in a long run. Zero self-hosted mp4s — every entry is a real
+  // platform embed. New additions get folded into the existing order, not
+  // appended at the end. See docs/DECISIONS.md (topic: showcase-marquee).
   { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram" },
   { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok" },
@@ -141,6 +141,9 @@ const showcaseVideos: {
   { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram" },
   { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram" },
+  { type: "tiktok", url: "https://www.tiktok.com/@liftwithpeej/video/7643895537434971422", label: "TikTok" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram" },
   { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube" },
 ];
 
@@ -383,7 +386,7 @@ export default function Home() {
             Content that goes viral
           </h2>
           <p className="text-base text-text-secondary mb-8">
-            Real UGC from our trained creator network across TT, IG, FB &amp; YT.
+            Real UGC from our trained creator network across IG, TT, FB &amp; YT.
           </p>
         </div>
 
@@ -489,6 +492,34 @@ export default function Home() {
                 { value: "60", label: "Days" },
                 { value: "Gen Z", label: "Audience" },
               ]}
+            />
+
+            {/* Lighter, non-expandable cards — no quote/challenge/approach/result
+                on file for these three, so none is invented. Just the verified
+                stat line, matching the compact "timeframe / creator count"
+                format the fuller cards above already use in viewsSub. */}
+            <ResultCard
+              company="Liftoff"
+              logo="/logos/liftoff.png"
+              tags={["Fitness app"]}
+              views="151M+"
+              viewsSub="3 months / 50 creators"
+            />
+
+            <ResultCard
+              company="Aonic"
+              logo="/logos/aonic.png"
+              tags={["Health & wellness"]}
+              views="31M+"
+              viewsSub="30 days / 6 creators"
+            />
+
+            <ResultCard
+              company="Higgsfield"
+              logo="/logos/higgsfield.png"
+              tags={["AI video generation"]}
+              views="65M+"
+              viewsSub="30 days / 45 creators"
             />
           </div>
         </div>
