@@ -303,9 +303,11 @@ export default function Home() {
                 clips/numbers already exist non-decoratively further down the page). */}
             <div
               aria-hidden="true"
-              className="hidden xl:block w-[264px] shrink-0 animate-float"
+              className="hidden xl:block w-[264px] shrink-0 animate-phone-entrance"
             >
-              <HeroStoryCard />
+              <div className="animate-float">
+                <HeroStoryCard />
+              </div>
             </div>
           </div>
         </div>

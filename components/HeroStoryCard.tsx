@@ -328,13 +328,20 @@ export default function HeroStoryCard() {
     // matching real button placement. Dynamic-island cutout sized down
     // slightly (72x22 vs 76x24) to match the thinner bezel. See
     // docs/DECISIONS.md (topic: hero-story-card-v2).
+    // DECISION: recolored from a gray/brown titanium finish to the "cosmic
+    // orange" copper finish (Apple's iPhone 17 Pro Max colorway) — same
+    // multi-stop gradient structure (bright/dark/bright rhythm standing in
+    // for a brushed-metal highlight sweep), just recolored warm copper
+    // instead of gray-brown. This mockup only ever shows the front (screen
+    // content across all 6 stages), so there's no rear camera bump to
+    // recolor — the color read comes entirely from the edge/button gradient.
     <div ref={ref} className="relative">
-      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
-      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
-      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
-      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
+      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
+      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
+      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
+      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
 
-      <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#6b665d_0%,#37332e_18%,#181614_38%,#2c2824_52%,#141210_72%,#524d44_88%,#201d19_100%)]">
+      <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#e0975c_0%,#a8672f_18%,#5c3319_38%,#8a4f24_52%,#3d2211_72%,#c17b3f_88%,#6b3a1c_100%)]">
         <div className="bg-bg-card rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
           <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
             <Image
