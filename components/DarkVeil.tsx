@@ -107,13 +107,13 @@ interface DarkVeilProps {
   desaturate?: number;
   /** How strongly the grayscale luminance is recolored through `tint`. */
   tintAmount?: number;
-  /** RGB in 0-1 range, multiplied against luminance. Defaults to the site's cream text color (#F7F0DD). */
+  /** RGB in 0-1 range, multiplied against luminance. Deliberately warmer/more saturated than the site's literal cream text token (#F7F0DD, only ~10% spread between channels) — at the low brightness this pattern actually renders at, that subtle a spread reads as neutral gray, not cream. */
   tint?: [number, number, number];
   /** Gamma applied to luminance before tinting (values <1 lift darks). This network's output runs dark on average, so the default lifts it well above 1:1. */
   gamma?: number;
 }
 
-const DEFAULT_TINT: [number, number, number] = [247 / 255, 240 / 255, 221 / 255];
+const DEFAULT_TINT: [number, number, number] = [1, 0.9, 0.72];
 
 export default function DarkVeil({
   hueShift = 0,
@@ -123,8 +123,8 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
-  desaturate = 0.92,
-  tintAmount = 0.75,
+  desaturate = 0.97,
+  tintAmount = 0.92,
   tint = DEFAULT_TINT,
   gamma = 0.3,
 }: DarkVeilProps) {
@@ -142,8 +142,14 @@ export default function DarkVeil({
     const supportsWebGL = !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
     if (!supportsWebGL) return;
 
+    // resolutionScale controls internal render resolution via dpr, not the
+    // args passed to setSize below — ogl's Renderer.setSize sets the canvas's
+    // CSS style.width/height (not just the drawing buffer) to whatever width/
+    // height it's given, so passing pre-scaled dimensions there shrinks the
+    // canvas's actual visible box instead of just its pixel density, leaving
+    // the rest of the container (right/bottom edges) uncovered.
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio, 2) * resolutionScale,
       canvas,
     });
 
@@ -173,7 +179,7 @@ export default function DarkVeil({
     const resize = () => {
       const w = parent.clientWidth;
       const h = parent.clientHeight;
-      renderer.setSize(w * resolutionScale, h * resolutionScale);
+      renderer.setSize(w, h);
       program.uniforms.uResolution.value.set(w, h);
     };
 
