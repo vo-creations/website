@@ -242,7 +242,7 @@ export default function Home() {
           Headline is Inter (not the Bricolage display font) at heavy weight, normal
           case — small-caps at this size on a heavy display font read blocky/circus-
           like; small-caps stays reserved for the small tagline usage in Nav/Footer. */}
-      <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden bg-bg">
+      <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden">
         <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
           <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-12 xl:gap-10">
             <div className="flex flex-col items-start text-left xl:max-w-[620px]">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import AmbientGlow from "@/components/AmbientGlow";
 import "./globals.css";
 
 const inter = Inter({
@@ -122,6 +123,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${bricolageGrotesque.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+        <AmbientGlow />
         {children}
         <Analytics />
       </body>

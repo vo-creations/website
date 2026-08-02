@@ -80,6 +80,19 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        // Two distinct paths/durations (not the same keyframe mirrored) so the
+        // two glow blobs don't move in lockstep — reads as organic drift, not
+        // a mechanical bounce. Transform-only (translate + rotate), no
+        // layout-affecting properties, so the browser can composite this on
+        // the GPU without repainting on every frame.
+        glowDriftA: {
+          '0%, 100%': { transform: 'translate(-6%, -4%) rotate(-14deg)' },
+          '50%': { transform: 'translate(6%, 5%) rotate(-6deg)' },
+        },
+        glowDriftB: {
+          '0%, 100%': { transform: 'translate(5%, 4%) rotate(18deg)' },
+          '50%': { transform: 'translate(-7%, -6%) rotate(26deg)' },
+        },
       },
       animation: {
         'fade-up': 'fadeUp 0.7s ease forwards',
@@ -96,6 +109,8 @@ const config: Config = {
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
         float: 'float 5s ease-in-out infinite',
+        'glow-drift-a': 'glowDriftA 18s ease-in-out infinite',
+        'glow-drift-b': 'glowDriftB 22s ease-in-out infinite 1.5s',
       },
     },
   },

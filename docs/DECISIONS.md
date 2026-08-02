@@ -2107,3 +2107,49 @@ the same topic name above.
   stat; `company` stays in the props (used for the image's `alt` text
   and a text fallback if a card is ever added without a `logo`), it
   just no longer renders as a second, redundant visible label.
+
+## topic: ambient-glow — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **New `components/AmbientGlow.tsx`**, rendered once in `app/layout.tsx`
+  (`position: fixed`, `-z-10`, `pointer-events-none`) so it's present
+  site-wide rather than restarting per-section — two soft radial-
+  gradient ellipses (cream/white, not the reference image's gold, per
+  the brief — this site is monochrome) on independent transform-only
+  keyframe animations (`translate` + `rotate`, 18s/22s, ease-in-out,
+  infinite, offset by a 1.5s delay so they don't move in lockstep).
+  Softness comes from the gradient's own falloff, not a `blur()`
+  filter — blurring an element this large every frame is real paint
+  cost, a gradient that's already soft at the DOM level animates for
+  free since only `transform` changes.
+- **Real blocker found and fixed**: the glow initially rendered
+  correctly in the DOM (`-z-10`, confirmed via computed style) but was
+  completely invisible in the hero — the hero `<section>` had its own
+  explicit `bg-bg`, an opaque box that paints over anything behind it
+  regardless of z-index or color similarity to what's underneath.
+  `z-index: -1` only protects a fixed element from being covered by
+  *content*, not from being painted under an opaque sibling's own box
+  background. Fixed by removing the hero's `bg-bg` — it was redundant
+  with `body`'s own `bg-bg` (same token, painted as the canvas
+  background either way), so the fix has zero visual effect with the
+  glow off and unblocks it in the hero specifically. Left `CTABlock`'s
+  and the footer's own explicit backgrounds alone — those were added
+  earlier this branch to fix a real bug (the body's separate maroon
+  corner-glow gradient bleeding through into the footer's bottom bar),
+  and undoing them risks reintroducing that, for a section where the
+  ambient glow already isn't the point.
+- Verified glow presence + text legibility by screenshotting every
+  section (hero, Trusted By, Our Work, Case Studies, Team, How It
+  Works, FAQ, CTA/footer) — visible and non-distracting everywhere it
+  has an unobstructed opaque-free background, fully absent only where
+  a section/card has its own solid `bg-bg-card`/`bg-bg-elevated` (by
+  design, not a bug — those cards are opaque for unrelated reasons).
+  Confirmed the animation is actually running (not a single static
+  frame) by polling `getComputedStyle(...).transform` on both blobs 3s
+  apart and seeing both matrices change independently. Confirmed no
+  interactive element is blocked: FAQ accordion still expands on
+  click, nav links still navigate, and `document.elementFromPoint()`
+  at the "Let's Talk" button's exact center returns the button itself,
+  not the glow div, proving `pointer-events: none` holds even directly
+  over the glow's brightest point.
