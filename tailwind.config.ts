@@ -89,10 +89,12 @@ const config: Config = {
         'fade-up-delay-4': 'fadeUp 0.7s ease 0.4s both',
         'fade-down': 'fadeDown 0.6s ease',
         pulse: 'pulse 2s ease infinite',
-        scroll: 'scroll 35s linear infinite',
+        // 35s → 60s and 70s → 120s: both read as too fast to actually track
+        // a given logo/card as it passed — ~1.7x slower on both.
+        scroll: 'scroll 60s linear infinite',
         // Same keyframe as `scroll`, slower — the video showcase row has much
         // wider/taller cards than the logo strip and reads as frantic at 35s.
-        'scroll-slow': 'scroll 70s linear infinite',
+        'scroll-slow': 'scroll 120s linear infinite',
         float: 'float 5s ease-in-out infinite',
       },
     },

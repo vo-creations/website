@@ -3,16 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { useCountUp } from "./useCountUp";
 
-// DECISION: a 4-stage looping mockup (account → posting → views → revenue)
-// standing in for the hero's old single static video card — walks through
-// the actual growth story instead of showing one frozen data point. Stages
-// crossfade (StageWrap opacity) and each stage's own counters replay from 0
-// every time it becomes active again, not just once. Only advances while
-// the card itself is on-screen (IntersectionObserver, not disconnected —
-// this one needs to keep tracking, unlike the hero-stats one-shot trigger).
-// See docs/DECISIONS.md (topic: hero-story-card).
+// DECISION: a 6-stage looping mockup (source → strategize → warm up → post →
+// views/engagement → revenue/users/awareness) standing in for the hero's old
+// single static video card — walks through the actual growth process instead
+// of showing one frozen data point. Stages crossfade (StageWrap opacity) and
+// each stage's own counters replay from 0 every time it becomes active again,
+// not just once. Only advances while the card itself is on-screen
+// (IntersectionObserver, not disconnected — this one needs to keep tracking,
+// unlike the hero-stats one-shot trigger). Stage 3 (warm up) and the account
+// stat row take styling cues from Vo Creations' real Instagram profile
+// (@vocreations) — circular avatar, username next to it, stacked number-over-
+// label stat pairs — rather than a generic placeholder. See docs/DECISIONS.md
+// (topic: hero-story-card).
 const STAGE_MS = 2800;
-const STAGE_COUNT = 4;
+const STAGE_COUNT = 6;
 
 function useElementInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T>(null);
@@ -53,21 +57,94 @@ function StageLabel({ text }: { text: string }) {
   );
 }
 
-function StageAccountCreated({ active }: { active: boolean }) {
+function StageSourcingCreators({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
-      <div className="flex-1 flex flex-col items-center justify-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-bg-elevated border border-border" />
-        <div className="text-center">
-          <div className="h-3 w-24 bg-bg-elevated rounded-full mx-auto mb-3" />
-          <div className="text-xs text-text-dim">0 posts &middot; 0 followers</div>
+      <div className="flex-1 flex flex-col items-center justify-center gap-5">
+        <div className="flex gap-3">
+          {[0, 1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="relative w-11 h-11 rounded-full bg-bg-elevated border border-border"
+            >
+              <div
+                className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-[10px] transition-all duration-400"
+                style={{
+                  opacity: active ? 1 : 0,
+                  transform: active ? "scale(1)" : "scale(0)",
+                  transitionDelay: active ? `${400 + i * 350}ms` : "0ms",
+                }}
+              >
+                &#10003;
+              </div>
+            </div>
+          ))}
         </div>
+        <div className="text-xs text-text-dim">Matched to your niche</div>
       </div>
-      <StageLabel text="Account created" />
+      <StageLabel text="Sourcing creators" />
     </StageWrap>
   );
 }
 
+const STRATEGY_ITEMS = ["Content pillars", "Format testing plan", "Platform mix", "Posting cadence"];
+
+function StageBuildingStrategy({ active }: { active: boolean }) {
+  return (
+    <StageWrap active={active}>
+      <div className="flex-1 flex flex-col justify-center">
+        <div className="bg-bg-elevated rounded-xl border border-border p-4 flex flex-col gap-3.5">
+          {STRATEGY_ITEMS.map((item, i) => (
+            <div
+              key={item}
+              className="flex items-center gap-2.5 transition-all duration-500"
+              style={{
+                opacity: active ? 1 : 0,
+                transform: active ? "translateX(0)" : "translateX(-8px)",
+                transitionDelay: active ? `${i * 280}ms` : "0ms",
+              }}
+            >
+              <span className="w-4 h-4 rounded-full border border-text-dim shrink-0 flex items-center justify-center text-[9px] text-text">
+                &#10003;
+              </span>
+              <span className="text-[11px] text-text-secondary font-medium">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <StageLabel text="Building strategy" />
+    </StageWrap>
+  );
+}
+
+// DECISION: mirrors the real @vocreations Instagram layout — circular avatar,
+// username placeholder beside it, stat pairs stacked number-over-label rather
+// than one inline sentence (their actual profile: "9 Followers / 7 Following").
+function StageAccountsWarming({ active }: { active: boolean }) {
+  return (
+    <StageWrap active={active}>
+      <div className="flex-1 flex flex-col items-center justify-center gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-14 h-14 rounded-full bg-bg-elevated border border-border shrink-0" />
+          <div className="h-3 w-20 bg-bg-elevated rounded-full" />
+        </div>
+        <div className="flex gap-8">
+          <div className="text-center">
+            <div className="text-sm font-bold text-text tabular-nums">0</div>
+            <div className="text-[10px] text-text-dim mt-0.5">posts</div>
+          </div>
+          <div className="text-center">
+            <div className="text-sm font-bold text-text tabular-nums">0</div>
+            <div className="text-[10px] text-text-dim mt-0.5">followers</div>
+          </div>
+        </div>
+      </div>
+      <StageLabel text="Accounts warming up" />
+    </StageWrap>
+  );
+}
+
+// Unchanged from the 4-stage version — already built, already reads well.
 function StagePostingContent({ active }: { active: boolean }) {
   const count = useCountUp(180, active, 1800);
   return (
@@ -98,11 +175,12 @@ function StagePostingContent({ active }: { active: boolean }) {
 const BAR_HEIGHTS = [30, 45, 40, 62, 75, 95];
 
 function StageViewsClimbing({ active }: { active: boolean }) {
-  const raw = useCountUp(38, active, 1800);
+  const views = useCountUp(38, active, 1800);
+  const engagement = useCountUp(51, active, 1800);
   return (
     <StageWrap active={active}>
-      <div className="flex-1 flex flex-col justify-center gap-6">
-        <div className="flex items-end gap-2 h-24 px-1">
+      <div className="flex-1 flex flex-col justify-center gap-4">
+        <div className="flex items-end gap-2 h-20 px-1">
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
@@ -116,22 +194,37 @@ function StageViewsClimbing({ active }: { active: boolean }) {
         </div>
         <div className="text-center">
           <div className="text-2xl font-extrabold text-text tabular-nums">
-            {(raw / 10).toFixed(1)}M
+            {(views / 10).toFixed(1)}M
           </div>
           <div className="text-xs text-text-dim mt-1">views and climbing</div>
         </div>
+        <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-text-secondary">
+          <span className="text-green">&#9650;</span>
+          <span className="tabular-nums">{(engagement / 10).toFixed(1)}%</span> engagement
+        </div>
       </div>
-      <StageLabel text="Views climbing" />
+      <StageLabel text="Views &amp; engagement" />
     </StageWrap>
   );
 }
 
+function StatChip({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="bg-bg-elevated rounded-lg border border-border py-2 text-center">
+      <div className="text-sm font-extrabold text-text tabular-nums">{value}</div>
+      <div className="text-[9px] text-text-dim uppercase tracking-wide mt-0.5">{label}</div>
+    </div>
+  );
+}
+
 function StageRevenueGrowing({ active }: { active: boolean }) {
-  const value = useCountUp(42, active, 1800);
+  const revenue = useCountUp(42, active, 1800);
+  const users = useCountUp(28, active, 1800);
+  const awareness = useCountUp(64, active, 1800);
   return (
     <StageWrap active={active}>
-      <div className="flex-1 flex flex-col justify-center gap-6">
-        <div className="flex items-end gap-2 h-24 px-1">
+      <div className="flex-1 flex flex-col justify-center gap-4">
+        <div className="flex items-end gap-2 h-20 px-1">
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
@@ -143,19 +236,13 @@ function StageRevenueGrowing({ active }: { active: boolean }) {
             />
           ))}
         </div>
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl font-extrabold text-text tabular-nums">
-              ${value}K
-            </span>
-            <span className="text-[11px] font-bold text-green px-1.5 py-0.5 rounded bg-green/10">
-              &#9650; 24%
-            </span>
-          </div>
-          <div className="text-xs text-text-dim mt-1">revenue generated</div>
+        <div className="grid grid-cols-3 gap-2">
+          <StatChip value={`$${revenue}K`} label="Revenue" />
+          <StatChip value={`${users}K`} label="Users" />
+          <StatChip value={`+${awareness}%`} label="Awareness" />
         </div>
       </div>
-      <StageLabel text="Revenue growing" />
+      <StageLabel text="Revenue &amp; growth" />
     </StageWrap>
   );
 }
@@ -185,10 +272,12 @@ export default function HeroStoryCard() {
           </div>
         ))}
       </div>
-      <StageAccountCreated active={stage === 0} />
-      <StagePostingContent active={stage === 1} />
-      <StageViewsClimbing active={stage === 2} />
-      <StageRevenueGrowing active={stage === 3} />
+      <StageSourcingCreators active={stage === 0} />
+      <StageBuildingStrategy active={stage === 1} />
+      <StageAccountsWarming active={stage === 2} />
+      <StagePostingContent active={stage === 3} />
+      <StageViewsClimbing active={stage === 4} />
+      <StageRevenueGrowing active={stage === 5} />
     </div>
   );
 }

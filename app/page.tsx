@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Nav, { NAV_CONTAINER, NAV_INNER_PADDING } from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
@@ -12,6 +12,19 @@ import FacebookEmbed from "@/components/FacebookEmbed";
 import HeroStoryCard from "@/components/HeroStoryCard";
 import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
+
+// DECISION: both auto-scroll marquees (Trusted By, Content that goes viral)
+// mask their edges so items fade into darkness instead of hard-cutting at the
+// container boundary — applied to the `overflow-hidden` wrapper, not the
+// scrolling track, so it doesn't move with the animation. Needs both the
+// unprefixed and -webkit- properties; Safari doesn't support unprefixed
+// mask-image yet. See docs/DECISIONS.md (topic: marquee-polish).
+const EDGE_FADE_MASK =
+  "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)";
+const edgeFadeStyle: CSSProperties = {
+  WebkitMaskImage: EDGE_FADE_MASK,
+  maskImage: EDGE_FADE_MASK,
+};
 
 // DECISION: hero stats count up from 0 once the row scrolls into view (fires
 // immediately on mount if already in view, e.g. tall viewports). "1B+" has no
@@ -303,7 +316,7 @@ export default function Home() {
             <span className="text-white text-[10px] leading-none">✦</span>
           </div>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden" style={edgeFadeStyle}>
           <div className="flex w-max items-center gap-x-12 animate-scroll">
             {[...trustedBrands, ...trustedBrands].map((brand, i) =>
               brand.needsChip ? (
@@ -352,7 +365,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden" style={edgeFadeStyle}>
           <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
             {[...showcaseVideos, ...showcaseVideos].map((v, i) =>
               v.type === "video" ? (

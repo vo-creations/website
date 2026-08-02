@@ -1696,3 +1696,58 @@ Branch `redesign/agency-only` (still not merged).
   on the final value. The story card's own internal counters stayed at
   their original ~1.8s (tuned to fit inside a single ~2.8s stage
   window, a different constraint than the hero stats').
+
+## topic: hero-story-card — _2026-08-01 (4 stages → 6, real process)_
+
+Branch `redesign/agency-only` (still not merged). Extends, doesn't
+supersede, the entry above of the same topic name.
+
+- **Expanded from 4 stages to 6** to cover the actual process end to
+  end: sourcing creators → building strategy → accounts warming up
+  (was "account created") → posting content (unchanged) → views &
+  engagement (was "views climbing," added a secondary engagement-%
+  stat) → revenue & growth (was "revenue growing," added a 3-chip row
+  for revenue/users/awareness instead of one number). Same loop
+  mechanic, same ~2.8s/stage, same card size — only the stage content
+  changed. `StagePostingContent` left byte-for-byte unchanged per the
+  brief ("already built, already reads well, don't change it").
+- **Stage 3 (accounts warming up) and its stat row now take real
+  styling cues from Vo Creations' actual Instagram**, not a generic
+  mockup — checked `instagram.com/vocreations` directly (its `og:
+  description` confirms the real stat-line convention: "9 Followers, 7
+  Following, 0 Posts") and matched the layout it actually renders:
+  circular avatar with the username beside it (not stacked above/
+  below), and stat pairs as a bold number over a small label, side by
+  side — replaced the old single inline sentence
+  ("0 posts · 0 followers") with that two-stat-pair layout.
+- **New stages (sourcing, strategy)**: sourcing shows 4 avatar circles
+  with a checkmark badge landing on each in a staggered sequence;
+  strategy shows a small checklist card (4 items) fading/sliding in
+  top to bottom. Both follow the same "real content, simple execution"
+  bar as the existing stages — no new visual language introduced.
+- **Reverified no overflow on any of the 6 stages** the same way the
+  4-stage version's bug was caught last time: `scrollHeight ===
+  clientHeight` on the card plus a screenshot of every stage
+  individually (not just spot-checking one or two) — all six fit
+  cleanly inside the same fixed `aspect-[9/16]` card with room to
+  spare, no repeat of the aspect-ratio mistake from last round.
+
+## topic: marquee-polish — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Both marquees (Trusted By, Content that goes viral) now fade to
+  the background color at their left/right edges** instead of hard-
+  cutting — a `mask-image` linear-gradient (transparent → opaque over
+  the first/last ~12% of the container width) on the `overflow-hidden`
+  wrapper, not the scrolling track (masking the track would have moved
+  the fade with the animation instead of anchoring it to the
+  container). Needs both `maskImage` and `WebkitMaskImage` — Safari
+  doesn't support the unprefixed property. Shared as one
+  `edgeFadeStyle` object in `app/page.tsx` rather than duplicated
+  inline on both wrappers, since it's the same mask for both.
+- **Both marquees slowed ~1.7x** (`scroll`: 35s→60s, `scroll-slow`:
+  70s→120s, in `tailwind.config.ts`) — both read as too fast to
+  actually track a given logo or card as it passed. Verified the
+  computed `animationDuration` on the live page (60s/120s) rather than
+  just trusting the config value made it through the build unchanged.
