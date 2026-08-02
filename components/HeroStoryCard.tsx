@@ -21,13 +21,29 @@ const STAGE_COUNT = 6;
 
 // Real photos/thumbnails (public/videos/) standing in for the flat placeholder
 // shapes inside the mockup — see docs/DECISIONS.md (topic: hero-story-card-v2).
+// DECISION: team-danny.png (a formal studio headshot) read as a generic stock
+// photo next to the other three casual creator selfies, so it's out. Only 3
+// distinct real people are available (Thienvu, Daniel, Vincent) plus one
+// additional candid Daniel photo (team-daniel-candid.png, copied from the
+// source asset dump) — not enough for 6 unique faces, so the grid reuses
+// Thienvu and Vincent once each, arranged so no repeat sits directly above/
+// below or beside itself (a loose Latin square), so it doesn't read as an
+// obvious duplicate at a glance the way 3 flat repeating columns would.
 const SOURCING_AVATARS = [
   "/videos/team-thienvu-new.jpg",
   "/videos/team-daniel.jpg",
   "/videos/team-vincent.jpg",
-  "/videos/team-danny.png",
+  "/videos/team-daniel-candid.png",
+  "/videos/team-vincent.jpg",
+  "/videos/team-thienvu-new.jpg",
 ];
+// Only 3 distinct real thumbnails exist. A naive i % 3 fill repeats the same
+// row 3 times over (0,1,2 / 0,1,2 / 0,1,2), which is exactly the "same clip
+// tiled" look this was meant to fix. This index order is a Latin square (no
+// row or column repeats a source image) so the 3 real thumbnails still fill
+// a fuller 3x3 grid without any two identical tiles lining up.
 const POST_THUMBS = ["/videos/thumb-1.png", "/videos/thumb-2.png", "/videos/thumb-3.png"];
+const POST_THUMB_ORDER = [0, 1, 2, 1, 2, 0, 2, 0, 1];
 
 function useElementInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T>(null);
@@ -72,24 +88,24 @@ function StageSourcingCreators({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-5">
-        <div className="flex gap-3">
-          {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="relative w-11 h-11 shrink-0">
-              <div className="w-11 h-11 rounded-full overflow-hidden border border-border">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-3">
+          {SOURCING_AVATARS.map((src, i) => (
+            <div key={i} className="relative w-9 h-9 shrink-0">
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-border">
                 <Image
-                  src={SOURCING_AVATARS[i]}
+                  src={src}
                   alt=""
                   fill
-                  sizes="44px"
+                  sizes="36px"
                   className="object-cover"
                 />
               </div>
               <div
-                className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-[10px] transition-all duration-400"
+                className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-white text-black flex items-center justify-center text-[9px] transition-all duration-400"
                 style={{
                   opacity: active ? 1 : 0,
                   transform: active ? "scale(1)" : "scale(0)",
-                  transitionDelay: active ? `${400 + i * 350}ms` : "0ms",
+                  transitionDelay: active ? `${400 + i * 220}ms` : "0ms",
                 }}
               >
                 &#10003;
@@ -134,34 +150,47 @@ function StageBuildingStrategy({ active }: { active: boolean }) {
   );
 }
 
-// DECISION: mirrors the real @vocreations Instagram layout — circular avatar,
-// username placeholder beside it, stat pairs stacked number-over-label rather
-// than one inline sentence (their actual profile: "9 Followers / 7 Following").
+const WARMUP_ITEMS = ["Profile optimized", "Engagement started", "Algorithm trust building"];
+
+// DECISION: kept the avatar+username row from the real @vocreations Instagram
+// layout (circular avatar, username placeholder beside it) so this still
+// reads as "an account," but swapped the static 0-posts/0-followers pair for
+// a staggered checklist (same pattern as StageBuildingStrategy) — a single
+// frozen checkmark didn't read as a process happening over time the way a
+// list checking off in sequence does.
 function StageAccountsWarming({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="relative w-14 h-14 rounded-full overflow-hidden border border-border shrink-0">
+          <div className="relative w-11 h-11 rounded-full overflow-hidden border border-border shrink-0">
             <Image
               src="/videos/team-thienvu-new.jpg"
               alt=""
               fill
-              sizes="56px"
+              sizes="44px"
               className="object-cover"
             />
           </div>
           <div className="h-3 w-20 bg-bg-elevated rounded-full" />
         </div>
-        <div className="flex gap-8">
-          <div className="text-center">
-            <div className="text-sm font-bold text-text tabular-nums">0</div>
-            <div className="text-[10px] text-text-dim mt-0.5">posts</div>
-          </div>
-          <div className="text-center">
-            <div className="text-sm font-bold text-text tabular-nums">0</div>
-            <div className="text-[10px] text-text-dim mt-0.5">followers</div>
-          </div>
+        <div className="w-full bg-bg-elevated rounded-xl border border-border p-4 flex flex-col gap-3">
+          {WARMUP_ITEMS.map((item, i) => (
+            <div
+              key={item}
+              className="flex items-center gap-2.5 transition-all duration-500"
+              style={{
+                opacity: active ? 1 : 0,
+                transform: active ? "translateX(0)" : "translateX(-8px)",
+                transitionDelay: active ? `${400 + i * 500}ms` : "0ms",
+              }}
+            >
+              <span className="w-4 h-4 rounded-full border border-text-dim shrink-0 flex items-center justify-center text-[9px] text-text">
+                &#10003;
+              </span>
+              <span className="text-[11px] text-text-secondary font-medium">{item}</span>
+            </div>
+          ))}
         </div>
       </div>
       <StageLabel text="Accounts warming up" />
@@ -170,12 +199,11 @@ function StageAccountsWarming({ active }: { active: boolean }) {
 }
 
 function StagePostingContent({ active }: { active: boolean }) {
-  const count = useCountUp(180, active, 1800);
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col justify-center gap-5">
         <div className="grid grid-cols-3 gap-1.5">
-          {Array.from({ length: 9 }).map((_, i) => (
+          {POST_THUMB_ORDER.map((thumbIndex, i) => (
             <div
               key={i}
               className="relative aspect-square rounded-md overflow-hidden border border-border transition-all duration-500 origin-center"
@@ -186,7 +214,7 @@ function StagePostingContent({ active }: { active: boolean }) {
               }}
             >
               <Image
-                src={POST_THUMBS[i % POST_THUMBS.length]}
+                src={POST_THUMBS[thumbIndex]}
                 alt=""
                 fill
                 sizes="80px"
@@ -195,8 +223,8 @@ function StagePostingContent({ active }: { active: boolean }) {
             </div>
           ))}
         </div>
-        <div className="text-center text-lg font-extrabold text-text tabular-nums">
-          {count} videos posted
+        <div className="text-center text-sm font-extrabold text-text">
+          600-1,200 videos posted a month
         </div>
       </div>
       <StageLabel text="Posting content" />
