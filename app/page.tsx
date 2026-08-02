@@ -330,8 +330,20 @@ export default function Home() {
           background white/monochrome (or kept in original brand color where the
           source icon is multi-color, e.g. Causes, Fable). needsChip is an escape
           hatch for a source that can't be cleanly color-keyed (unused currently —
-          the prior Liftoff asset needed it, the official vector doesn't). */}
-      <section className="pb-[80px] px-6">
+          the prior Liftoff asset needed it, the official vector doesn't).
+          DECISION: this section had no top padding, so the gap above the panel
+          was much smaller than the gap below it. pt-[80px] fixed the local
+          section-boundary asymmetry, but the hero above is `min-h-screen` +
+          vertically centered — its content (the stats row) sits well above the
+          hero section's own bottom edge, with the remainder made of flex-
+          centering slack that scales with viewport height, not a fixed padding
+          value. Measured via getBoundingClientRect (not eyeballed) at a
+          1440x900 viewport: stats-row-bottom to panel-top = 228.86px, so
+          pb-[129px] (129+Our Work's pt-[100px]=229) matches it there. This
+          can't be made exact at every window height without changing the
+          hero's centering behavior — it drifts on taller/shorter viewports
+          since the hero's slack does and this section's padding can't. */}
+      <section className="pt-[80px] pb-[129px] px-6">
         <div className="max-w-[1100px] mx-auto rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm py-10">
           <div className="max-w-[900px] mx-auto text-center px-6">
             <div className="inline-flex items-center gap-2 mb-6">
