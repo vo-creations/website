@@ -169,15 +169,19 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Yorby", file: "yorby.png" },
 ];
 
+// DECISION: trimmed from 8 questions to 6 — removed the guarantee question
+// (referenced a "1M organic views or 50% refund" guarantee that was pulled
+// off the page entirely, leaving it contradicting content that no longer
+// exists) and the "see past campaigns" question (redundant with the Case
+// Studies section directly above this one on the page). See
+// docs/DECISIONS.md (topic: faq-restyle).
 const agencyFaqs = [
   { q: "How many creators will be on my campaign?", a: "3 vetted creators at $10,000/mo, 6 at $20,000/mo. Every creator is trained through our program. No freelancers." },
   { q: "What's the investment?", a: "Starting at $10,000/mo for 3 vetted creators and 180 videos. $20,000/mo unlocks 6 creators and double the output. Paid upfront, no hidden fees." },
   { q: "What platforms do you post on?", a: "TikTok, Instagram Reels, YouTube Shorts, and Facebook. All four platforms, simultaneously." },
   { q: "How quickly can a campaign start?", a: "9 days from signed contract to first videos going live. Strategy and creator matching happen in Days 1-2." },
   { q: "What happens if creators underperform?", a: "We cut underperformers and replace them. That's the VoC Method. Test 7 formats, keep the winners, triple down." },
-  { q: "Do you guarantee views or conversions?", a: "Yes. 1,000,000 organic views minimum, or 50% of your fee back. Only organic views count toward the guarantee, no paid views. We don't fake attribution or promise conversion rates we can't prove." },
   { q: "How is this different from hiring freelance creators?", a: "Our creators are trained through a 2-month in-house program. They know our format system, they've been tested, and they work as a coordinated team, not solo freelancers." },
-  { q: "Can I see examples of past campaigns?", a: "Yes. Check the Results section above. We're happy to walk through case studies on a call." },
 ];
 
 const faqJsonLd = {
@@ -608,30 +612,39 @@ export default function Home() {
 
       <div className="max-w-[1000px] mx-auto h-px bg-border" />
 
-      {/* FAQ */}
+      {/* FAQ — each question is its own bordered card (rounded-2xl, subtle
+          border, internal padding) stacked with a gap, rather than a flat
+          list with divider lines between items. See docs/DECISIONS.md
+          (topic: faq-restyle). */}
       <section className="py-[100px]" id="faq">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>FAQ</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
-            Common questions
+            Frequently Asked Questions
           </h2>
 
-          <div className="max-w-[640px]">
+          <div className="max-w-[640px] flex flex-col gap-3">
             {agencyFaqs.map((faq, i) => (
-              <div key={i} className="border-b border-border py-[22px]">
+              <div
+                key={i}
+                className="border border-border rounded-2xl px-6 py-5 bg-bg-card"
+              >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex justify-between items-center text-left"
+                  className="w-full flex justify-between items-center text-left gap-4"
                 >
                   <span className="text-base font-semibold tracking-tight">
                     {faq.q}
                   </span>
                   <span
-                    className={`text-[22px] text-text-secondary font-light shrink-0 ml-4 transition-transform ${
+                    className={`shrink-0 w-7 h-7 rounded-full border border-border flex items-center justify-center text-text-secondary transition-transform ${
                       openFaq === i ? "rotate-45" : ""
                     }`}
                   >
-                    +
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-3.5 h-3.5">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
                   </span>
                 </button>
                 {openFaq === i && (

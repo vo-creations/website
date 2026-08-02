@@ -2246,3 +2246,52 @@ stage.
   its `StageWrap`, and the new button/bezel elements don't clip or spill
   outside the card's own layout box at the hero's fixed 1280-1920px
   range.
+
+## topic: faq-restyle — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Heading changed** "Common questions" → "Frequently Asked Questions".
+- **Each FAQ item restyled as its own bordered card** (`border
+  border-border rounded-2xl px-6 py-5 bg-bg-card`), stacked with a
+  `gap-3`, replacing the old flat list where items were separated only
+  by a `border-b` divider line. Toggle indicator changed from a bare
+  `+`/rotated-45° text glyph to the same glyph wrapped in a small
+  circular bordered button (`w-7 h-7 rounded-full border`), which reads
+  as a real UI control rather than decorative text.
+- **Trimmed from 8 questions to 6.** Two removed:
+  - "Do you guarantee views or conversions?" — its answer referenced
+    the "1,000,000 organic views or 50% refund" guarantee, which was
+    pulled off the page entirely in an earlier round
+    (`marketing-2026-06` / `agency-only-redesign`). Left in place, the
+    FAQ was actively contradicting the rest of the page. Removed
+    outright rather than rewritten — "What happens if creators
+    underperform?" already covers the underlying "what if it doesn't
+    work" concern without promising a specific guarantee we don't
+    offer.
+  - "Can I see examples of past campaigns?" — directly redundant with
+    the Case Studies section immediately above the FAQ on the page;
+    the answer was itself just "see the Results section above."
+  - Kept all 6 remaining questions, each answering something genuinely
+    distinct and not covered elsewhere: creator count, investment/
+    pricing, platforms, campaign start timeline, what happens if
+    creators underperform, and how this differs from freelancers.
+    `agencyFaqs` in `app/page.tsx` is the source of truth; `faqJsonLd`
+    (schema.org FAQPage markup) derives from the same array, so the
+    trim and the restyle both automatically apply there too.
+
+## topic: footer-polish — _2026-08-01 (bottom bar simplified)_
+
+Branch `redesign/agency-only` (still not merged). Extends the
+`footer-polish` entry above — only the bottom bar changed.
+
+- **Bottom bar simplified to brand + copyright only**, matching
+  Athlete's Pen's minimal treatment: removed the Privacy/Terms/Refunds
+  link row entirely, leaving a single centered line ("Vo Creations ©
+  2026. All rights reserved."). The `/privacy`, `/terms`, and
+  `/refund-policy` routes themselves were left untouched in the
+  codebase — Vercel/Stripe compliance may still reference them
+  elsewhere — this only removes the footer's navigational links to
+  them, not the pages.
+- The footer's upper "Links" column (Case Studies / Our Team / FAQ's)
+  is unrelated and unchanged.

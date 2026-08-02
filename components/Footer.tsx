@@ -76,22 +76,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Bottom bar — DECISION: minimal treatment (brand + copyright only,
+            no Privacy/Terms/Refunds links row), matching Athlete's Pen's
+            bottom bar. The /privacy, /terms, /refund-policy routes stay in
+            the codebase untouched (Vercel/Stripe compliance may still
+            reference them) — this only removes the footer nav links to
+            them. See docs/DECISIONS.md (topic: footer-polish). */}
+        <div className="border-t border-border pt-6 flex justify-center md:justify-start">
           <p className="text-[13px] text-text-dim">
-            &copy; 2026 Vo Creations. All rights reserved.
+            Vo Creations &copy; 2026. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/privacy" className="text-[13px] text-text-dim hover:text-text-secondary transition-colors">
-              Privacy
-            </Link>
-            <Link href="/terms" className="text-[13px] text-text-dim hover:text-text-secondary transition-colors">
-              Terms
-            </Link>
-            <Link href="/refund-policy" className="text-[13px] text-text-dim hover:text-text-secondary transition-colors">
-              Refunds
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
