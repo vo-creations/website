@@ -1751,3 +1751,111 @@ Branch `redesign/agency-only` (still not merged).
   actually track a given logo or card as it passed. Verified the
   computed `animationDuration` on the live page (60s/120s) rather than
   just trusting the config value made it through the build unchanged.
+
+## topic: homepage-section-order — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Reordered homepage sections in `app/page.tsx`**: Case Studies
+  (`id="results"`) now sits directly after "Our Work" (Content that
+  goes viral), and How It Works now sits directly after Team, right
+  before FAQ. New order: Hero → Trusted By → Our Work → Case Studies →
+  Team → How It Works → FAQ → Final CTA. Pure relocation — moved the
+  How It Works block (comment + `<section>`) as one unit and removed
+  the now-doubled-up divider next to it; no content inside any section
+  changed.
+
+## topic: lets-talk-button-polish — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Icon moved from the left of "Let's Talk" to the right**, at all
+  three call sites (hero, `CTABlock` default, `campaigns/maxxd`) — now
+  reads "Let's Talk [mark]" instead of "[mark] Let's Talk".
+- **Real bug found and fixed**: the "visible box around the icon" the
+  user reported wasn't a wrapper `<div>` (there wasn't one) — it was
+  `public/vocreations-mark-white.png` (and `-black.png`) carrying a
+  faint non-zero alpha across almost the *entire* canvas, not just the
+  glyph. Root cause: the luminance-alpha extraction script mapped
+  alpha directly from luminance with no cutoff, and the source
+  `vocreations-logo.webp`'s "black" background is actually
+  `rgb(~10,11,15)`, not pure black — that small non-zero luminance
+  became a small non-zero alpha (~12/255) *everywhere*, reading as a
+  faint light haze/box behind the glyph once composited onto the
+  button. Fixed by adding a luminance threshold (0.10) below which
+  alpha is forced to exactly 0, then rescaling the remaining range so
+  the glyph's own antialiased edges stay smooth — re-verified corner
+  alpha is exactly 0 post-fix (was 12) and the bbox crop shrank to the
+  glyph's real bounds (was inflated by the haze). Regenerated both
+  `vocreations-mark-white.png` and `-black.png` with the same fixed
+  script since both shared the same root cause.
+
+## topic: showcase-marquee — _2026-08-01 (self-hosted cards unified with embeds)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entry of
+the same topic name above.
+
+- **Self-hosted video cards restyled to match the embed cards'
+  structure** — they were the odd one out: `aspect-[9/16]` video
+  *plus* a separate `p-3` footer row below it (likes/engagement/view-
+  post link), making them taller overall than the Instagram/TikTok/
+  Facebook cards, which are a single `aspect-[9/16]` box with the
+  label/link overlaid via an absolute-positioned bottom gradient bar.
+  Moved the self-hosted cards to the same pattern: outer wrapper is
+  now `bg-bg-card rounded-2xl aspect-[9/16] relative overflow-hidden
+  border border-border` (identical classes to the embed components),
+  video fills it via `absolute inset-0`, and the likes/engagement/
+  view-post row is now an absolute bottom gradient overlay instead of
+  a separate box below. Moved "Tap to unmute" from bottom-left to
+  top-right to free up the bottom edge for the new overlay. Net
+  result: every card in the row — self-hosted or embedded — is now
+  the same aspect ratio, corner radius, and border treatment, matching
+  as closely as each platform's embed constraints allow (per the
+  brief; embeds still can't be hover-styled identically, that's
+  expected).
+
+## topic: team-section-polish — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Heading**: "Proven Viral Creators" → "Proven Viral Creators,
+  Turned Agency Operators."
+- **Bios rewritten**: Thienvu's title "Founder of Vo Creations
+  Mentorship" → "CEO of VoC Mentorship" (second line unchanged).
+  Daniel's title "150M+ views as a creator" → "COO of VoC Mentorship";
+  his second line expanded from "$200K+ in earnings" to a full
+  creator-economy-operator bio that folds the old figure back in
+  ("...Also generated 150M+ views as a creator and $200K+ in
+  earnings").
+- **Thienvu's photo crop**: default `object-position: center` left
+  too much empty grass/pillar above him. Added a per-team-member
+  `imagePosition` field to the `team` array (`"center 75%"` for
+  Thienvu, plain `"center"` for Daniel, who didn't need a change),
+  applied via inline `style={{ objectPosition: t.imagePosition }}`
+  rather than a Tailwind utility class — the value needs to vary per
+  team member at runtime, which Tailwind's JIT can't do from a
+  dynamic string. Chose an inline style over a second hardcoded
+  Tailwind class conditional since a plain CSS value here is simpler
+  and just as explicit.
+
+## topic: footer-polish — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **Footer's bottom bar had a brown tint** — not a bad token choice
+  like the CTA-block fix earlier in this branch, but the `<footer>`
+  itself has no background color at all, so it's transparent to
+  `body`'s `background-image` in `globals.css`: two maroon radial
+  gradients (`rgba(120,24,24,...)`) anchored to the *viewport's*
+  top-left and bottom-right corners via `background-attachment:
+  fixed`. Since the footer is the last thing on the page, it's
+  usually sitting right where the bottom-right corner gradient is
+  strongest when scrolled into view — the bottom bar specifically,
+  being the lowest content, catches the most concentrated dose. Fixed
+  by giving the whole `<footer>` an explicit `bg-bg` (not just the
+  bottom-bar div) so nothing in it is transparent to that fixed
+  gradient, rather than patching only the specific div the user
+  flagged — the same root cause could just as easily show up higher
+  in the footer on a short viewport.
+- **Tagline**: "Your in-house UGC program, without the overhead." →
+  "Your world-class in-house UGC program, without the overhead."

@@ -250,6 +250,7 @@ export default function MaxxdCampaignPage() {
               href="/apply"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent text-white border border-white font-outfit font-semibold rounded-lg hover:bg-white/10 transition-colors duration-200"
             >
+              Let&apos;s Talk
               <Image
                 src="/vocreations-mark-white.png"
                 alt=""
@@ -257,7 +258,6 @@ export default function MaxxdCampaignPage() {
                 height={19}
                 className="w-[15px] h-auto"
               />
-              Let&apos;s Talk
             </a>
           </div>
         </section>

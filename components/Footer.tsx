@@ -9,7 +9,13 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
+    // bg-bg (not transparent) — the body's fixed-attachment corner glow
+    // (globals.css) is strongest right at the viewport's bottom-right corner,
+    // which is usually exactly where the footer sits when scrolled into view;
+    // came through as an unwanted brown tint, most visible on the bottom bar,
+    // rather than the intended subtle warmth. See docs/DECISIONS.md (topic:
+    // footer-polish).
+    <footer className="border-t border-border bg-bg">
       <div className="max-w-[1200px] mx-auto px-8 pt-16 pb-8">
         {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-12 mb-16">
@@ -28,7 +34,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-text-secondary leading-relaxed max-w-[320px] mb-6">
-              Your in-house UGC program, without the overhead.
+              Your world-class in-house UGC program, without the overhead.
             </p>
           </div>
 

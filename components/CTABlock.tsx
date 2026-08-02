@@ -23,6 +23,7 @@ export default function CTABlock({
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
       >
+        {buttonText}
         <Image
           src="/vocreations-mark-white.png"
           alt=""
@@ -30,7 +31,6 @@ export default function CTABlock({
           height={19}
           className="w-[15px] h-auto"
         />
-        {buttonText}
       </a>
     </section>
   );

@@ -183,16 +183,22 @@ const team = [
   {
     name: "Thienvu Vo",
     location: "Richmond, VA",
-    statLine: "Founder of Vo Creations Mentorship",
+    statLine: "CEO of VoC Mentorship",
     detailLine: "Led students to $1M in earnings & 500M+ views",
     image: "/videos/team-thienvu-new.jpg",
+    // DECISION: default center crop left too much empty space (grass/pillar)
+    // above him; shifted down so he reads centered in the card. See
+    // docs/DECISIONS.md (topic: team-section-polish).
+    imagePosition: "center 75%",
   },
   {
     name: "Daniel Yun",
     location: "Los Angeles, CA",
-    statLine: "150M+ views as a creator",
-    detailLine: "$200K+ in earnings",
+    statLine: "COO of VoC Mentorship",
+    detailLine:
+      "Creator-economy operator. Built and managed campaigns that generated over 500M+ views & millions of users across consumer apps. Also generated 150M+ views as a creator and $200K+ in earnings",
     image: "/videos/team-daniel.jpg",
+    imagePosition: "center",
   },
 ];
 
@@ -250,6 +256,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
                 >
+                  Let&apos;s Talk
                   <Image
                     src="/vocreations-mark-white.png"
                     alt=""
@@ -257,7 +264,6 @@ export default function Home() {
                     height={19}
                     className="w-[15px] h-auto"
                   />
-                  Let&apos;s Talk
                 </a>
                 <a
                   href="#results"
@@ -371,33 +377,31 @@ export default function Home() {
               v.type === "video" ? (
                 <div
                   key={`${v.src}-${i}`}
-                  className="bg-bg-card rounded-2xl overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px]"
+                  className="bg-bg-card rounded-2xl aspect-[9/16] relative overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px]"
                 >
-                  <div className="relative aspect-[9/16]">
-                    <video
-                      src={`${v.src}#t=0.1`}
-                      playsInline
-                      muted
-                      loop
-                      preload="metadata"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
-                      onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
-                      onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
-                    />
-                    <div className="absolute top-3 left-3 flex flex-col gap-1">
-                      <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                        {v.views} views
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-3">
-                      <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
-                        Tap to unmute
-                      </span>
-                    </div>
+                  <video
+                    src={`${v.src}#t=0.1`}
+                    playsInline
+                    muted
+                    loop
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
+                    onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
+                    onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                      {v.views} views
+                    </span>
                   </div>
-                  <div className="p-3 flex items-center justify-between">
-                    <div className="flex gap-3 text-[11px] text-text-dim font-medium">
+                  <div className="absolute top-3 right-3">
+                    <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
+                      Tap to unmute
+                    </span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-3 py-2.5 bg-gradient-to-t from-black/70 to-transparent">
+                    <div className="flex gap-3 text-[11px] text-white font-medium">
                       <span>♥ {v.likes}</span>
                       <span>{v.engagement} eng.</span>
                     </div>
@@ -405,7 +409,7 @@ export default function Home() {
                       href={v.postUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] text-text-secondary hover:underline hover:text-text font-medium"
+                      className="text-[11px] text-white/80 hover:text-white font-medium"
                     >
                       View post ↗
                     </a>
@@ -419,42 +423,6 @@ export default function Home() {
                 </div>
               )
             )}
-          </div>
-        </div>
-      </section>
-
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
-
-      {/* HOW IT WORKS */}
-      <section className="py-[100px]">
-        <div className="max-w-[720px] mx-auto px-6">
-          <Label>How it works</Label>
-          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            From signed to viral in 9 days
-          </h2>
-          <p className="text-base text-text-secondary mb-10">
-            A methodology refined across 50+ campaigns. Not a black box.
-          </p>
-
-          <div className="flex flex-col gap-5">
-            {steps.map((s) => (
-              <div key={s.num} className="flex gap-5 items-start">
-                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
-                  {s.num}
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-bold tracking-tight mb-1">
-                    {s.title}
-                  </h4>
-                  <p className="text-[15px] text-text-secondary leading-relaxed">
-                    {s.desc}
-                  </p>
-                  <div className="text-xs text-text-dim mt-1 font-medium">
-                    {s.time}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -559,7 +527,7 @@ export default function Home() {
         <div className="max-w-[720px] mx-auto px-6">
           <Label>The team</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
-            Proven Viral Creators
+            Proven Viral Creators, Turned Agency Operators
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -574,6 +542,7 @@ export default function Home() {
                     alt={t.name}
                     fill
                     className="object-cover"
+                    style={{ objectPosition: t.imagePosition }}
                   />
                 </div>
                 <div className="p-6">
@@ -597,6 +566,42 @@ export default function Home() {
                   </div>
                   <div className="text-sm text-text-secondary mt-1">
                     {t.detailLine}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-[1000px] mx-auto h-px bg-border" />
+
+      {/* HOW IT WORKS */}
+      <section className="py-[100px]">
+        <div className="max-w-[720px] mx-auto px-6">
+          <Label>How it works</Label>
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
+            From signed to viral in 9 days
+          </h2>
+          <p className="text-base text-text-secondary mb-10">
+            A methodology refined across 50+ campaigns. Not a black box.
+          </p>
+
+          <div className="flex flex-col gap-5">
+            {steps.map((s) => (
+              <div key={s.num} className="flex gap-5 items-start">
+                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
+                  {s.num}
+                </div>
+                <div>
+                  <h4 className="text-[17px] font-bold tracking-tight mb-1">
+                    {s.title}
+                  </h4>
+                  <p className="text-[15px] text-text-secondary leading-relaxed">
+                    {s.desc}
+                  </p>
+                  <div className="text-xs text-text-dim mt-1 font-medium">
+                    {s.time}
                   </div>
                 </div>
               </div>
