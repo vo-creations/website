@@ -1859,3 +1859,94 @@ Branch `redesign/agency-only` (still not merged).
   in the footer on a short viewport.
 - **Tagline**: "Your in-house UGC program, without the overhead." →
   "Your world-class in-house UGC program, without the overhead."
+
+## topic: hero-story-card — _2026-08-01 (real iPhone shell, not a generic card)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entries of
+the same topic name above — only the outer shell changed, stage content
+is untouched except where noted.
+
+- **Outer container rebuilt as a real iPhone mockup**, not a plain
+  rounded card: an outer "bezel" div (`rounded-[42px]`, a subtle metal-
+  toned gradient, thin light border) wraps an inner "screen" div at a
+  smaller radius (`rounded-[34px]`) with visible bezel band between
+  them — the two-radius structure is what actually reads as a phone
+  rather than a big rounded rectangle. A dynamic-island cutout (solid
+  black pill, top-center) replaced the old bare progress-bar strip as
+  the top-most element; the strip didn't disappear, it moved to sit
+  just below the island (matching how real iOS apps like Instagram
+  Stories lay out their own progress segments in the safe area under
+  the island, not overlapping it).
+- **Vo Creations mark now lives inside the island itself** — a tiny
+  white V-mark (`vocreations-mark-white.png`) centered in the pill, as
+  if the phone were mid-way through a branded Live Activity — rather
+  than a separate watermark badge bolted onto a corner. Directly
+  addresses "reads as distinctly Vo Creations branded, not a generic
+  phone screen."
+- **Card widened** from `w-[240px]` to `w-[264px]` ("slightly bigger").
+  Re-verified no hero overlap at 1280/1440/1920px afterward — margin
+  to the viewport edge is unchanged (114-434px, same as before the
+  resize, since the card grew into its own already-generous gap rather
+  than encroaching on the text column), gap between text and card
+  dropped from 192px to 168px, still comfortable.
+- Every `StageWrap` needed more top clearance for the taller new chrome
+  (island + repositioned progress bar takes real vertical space the
+  old bare strip didn't) — changed from uniform `p-5` to `px-5 pb-5
+  pt-16`. Reverified all six stages individually for overflow the same
+  way as every prior round on this card: `scrollHeight === clientHeight`
+  plus a screenshot of each stage, not just the first one.
+
+## topic: showcase-marquee — _2026-08-01 (zero self-hosted videos left, YouTube added, interleaved)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entries of
+the same topic name above.
+
+- **The 2 remaining self-hosted mp4 cards are gone.** Both were the
+  *same underlying posts* as two existing Instagram links already in
+  the array's source data (`postUrl` on the old video entries pointed
+  at `DTRCvh2E1Lu`/`DUMI_NwD0Xa`) — replaced with the real Instagram
+  embed of each post instead of re-hosting or re-deriving anything.
+  `showcaseVideos`' type union dropped `"video"` entirely; the carousel
+  JSX lost its whole self-hosted-video branch (video element, hover-
+  play handlers, `#t=0.1` thumbnail trick) — now a single 4-branch
+  embed-only render (Instagram/TikTok/Facebook/YouTube). Confirmed via
+  `document.querySelectorAll("video").length === 0` on the live page,
+  not just by reading the code.
+- **Added 2 YouTube Shorts** via a rebuilt `components/YouTubeEmbed.tsx`
+  — it existed already but was unused anywhere on the site and shaped
+  for a different context (`{videoId, title, watchUrl}` props,
+  `aspect-video` landscape box, from what looks like leftover
+  scaffolding). Realigned it to the same `{url, label}` prop shape and
+  `aspect-[9/16]` card treatment as TikTok/Facebook/Instagram, since
+  it's unused elsewhere so realigning it carried zero regression risk.
+  Extracts the video ID from a `/shorts/{id}` URL (also handles
+  `?v=`/`youtu.be/` in case a non-Shorts link is ever added) and shows
+  a click-to-load thumbnail (`img.youtube.com/vi/{id}/hqdefault.jpg`)
+  with a YouTube-red play button, matching the other embeds' lazy-load
+  pattern.
+- **Interleaved by platform** — 14 items total (2 TikTok, 9 Instagram,
+  1 Facebook, 2 YouTube), reordered so consecutive cards are usually a
+  different platform. Instagram is the clear majority (9 of 14), so by
+  the pigeonhole principle a handful of adjacent Instagram-Instagram
+  pairs are mathematically unavoidable in any arrangement — targeted
+  "never more than 2 in a row, no platform blocked together" rather
+  than zero adjacent repeats, which isn't achievable with this mix.
+- **Subheading**: "Real UGC from our trained creator network." → "Real
+  UGC from our trained creator network across TT, IG, FB & YT."
+
+## topic: trusted-by-logos — _2026-08-01 (uniform visual footprint)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entry of
+the same topic name above.
+
+- **Every logo now renders inside the same fixed `w-[130px] h-14` box**
+  (both the normal branch and the unused-but-kept `needsChip` branch),
+  with the `<Image>` itself set to `max-w-full max-h-full w-auto h-auto
+  object-contain` so it scales to fit the box on whichever axis is
+  tighter for that logo's aspect ratio, instead of the old fixed-height-
+  only (`h-14 w-auto`) rule that let wide wordmarks render much wider
+  than compact icon+text logos. Verified via `getBoundingClientRect()`
+  on six consecutive logos in the live marquee — all exactly 130×56,
+  not just eyeballed from a screenshot. Track gap tightened from
+  `gap-x-12` to `gap-x-10` since the now-uniform boxes read a little
+  emptier at the old spacing.

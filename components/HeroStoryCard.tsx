@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useCountUp } from "./useCountUp";
 
 // DECISION: a 6-stage looping mockup (source → strategize → warm up → post →
@@ -37,7 +38,7 @@ function useElementInView<T extends HTMLElement>(threshold = 0.2) {
 function StageWrap({ active, children }: { active: boolean; children: React.ReactNode }) {
   return (
     <div
-      className={`absolute inset-0 flex flex-col p-5 transition-opacity duration-500 ${
+      className={`absolute inset-0 flex flex-col px-5 pb-5 pt-16 transition-opacity duration-500 ${
         active ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -258,26 +259,44 @@ export default function HeroStoryCard() {
   }, [inView]);
 
   return (
+    // DECISION: a real iPhone shell, not just a rounded card — outer "bezel" div
+    // (metal-gradient border, large corner radius scaled to real device
+    // proportions) wraps an inner "screen" div at a smaller radius, so there's
+    // a visible bezel band between them like an actual phone. Dynamic-island
+    // cutout carries a tiny Vo Creations mark (a nod to a Live Activity/branded
+    // notification, not just a logo pasted on) so the mockup reads as ours, not
+    // a generic phone screenshot. See docs/DECISIONS.md (topic: hero-story-card).
     <div
       ref={ref}
-      className="bg-bg-card rounded-2xl border border-border shadow-2xl aspect-[9/16] relative overflow-hidden"
+      className="rounded-[42px] bg-gradient-to-b from-[#3a352e] to-[#141210] p-2 border border-white/10 shadow-2xl"
     >
-      <div className="absolute top-3 left-3 right-3 flex gap-1.5 z-10">
-        {Array.from({ length: STAGE_COUNT }).map((_, i) => (
-          <div key={i} className="flex-1 h-[3px] rounded-full bg-white/15 overflow-hidden">
-            <div
-              className={`h-full bg-white rounded-full ${stage === i ? "w-full transition-[width]" : "w-0"}`}
-              style={stage === i ? { transitionDuration: `${STAGE_MS}ms`, transitionTimingFunction: "linear" } : undefined}
-            />
-          </div>
-        ))}
+      <div className="bg-bg-card rounded-[34px] aspect-[9/16] relative overflow-hidden">
+        <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[76px] h-[24px] bg-black rounded-full z-20 flex items-center justify-center">
+          <Image
+            src="/vocreations-mark-white.png"
+            alt=""
+            width={12}
+            height={13}
+            className="w-[10px] h-auto opacity-80"
+          />
+        </div>
+        <div className="absolute top-[46px] left-5 right-5 flex gap-1.5 z-10">
+          {Array.from({ length: STAGE_COUNT }).map((_, i) => (
+            <div key={i} className="flex-1 h-[3px] rounded-full bg-white/15 overflow-hidden">
+              <div
+                className={`h-full bg-white rounded-full ${stage === i ? "w-full transition-[width]" : "w-0"}`}
+                style={stage === i ? { transitionDuration: `${STAGE_MS}ms`, transitionTimingFunction: "linear" } : undefined}
+              />
+            </div>
+          ))}
+        </div>
+        <StageSourcingCreators active={stage === 0} />
+        <StageBuildingStrategy active={stage === 1} />
+        <StageAccountsWarming active={stage === 2} />
+        <StagePostingContent active={stage === 3} />
+        <StageViewsClimbing active={stage === 4} />
+        <StageRevenueGrowing active={stage === 5} />
       </div>
-      <StageSourcingCreators active={stage === 0} />
-      <StageBuildingStrategy active={stage === 1} />
-      <StageAccountsWarming active={stage === 2} />
-      <StagePostingContent active={stage === 3} />
-      <StageViewsClimbing active={stage === 4} />
-      <StageRevenueGrowing active={stage === 5} />
     </div>
   );
 }

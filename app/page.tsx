@@ -9,6 +9,7 @@ import ResultCard from "@/components/ResultCard";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import HeroStoryCard from "@/components/HeroStoryCard";
 import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
@@ -116,22 +117,31 @@ const steps = [
 // hover-to-play; embeds (Instagram/TikTok/Facebook) use each platform's official embed
 // method and don't support the same hover interaction — see docs/DECISIONS.md
 // (topic: showcase-marquee).
-const showcaseVideos: (
-  | { type: "video"; src: string; views: string; likes: string; engagement: string; postUrl: string }
-  | { type: "instagram" | "tiktok" | "facebook"; url: string; label: string }
-)[] = [
-  { type: "video", src: "/videos/post-2.mp4", views: "3.7M", likes: "189K", engagement: "5.10%", postUrl: "https://www.instagram.com/p/DTRCvh2E1Lu/" },
-  { type: "video", src: "/videos/post-4.mp4", views: "1.5M", likes: "59.6K", engagement: "4.91%", postUrl: "https://www.instagram.com/p/DUMI_NwD0Xa/" },
-  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok" },
+const showcaseVideos: {
+  type: "instagram" | "tiktok" | "facebook" | "youtube";
+  url: string;
+  label: string;
+}[] = [
+  // DECISION: interleaved by platform (not grouped) so consecutive cards are
+  // usually different platforms — Instagram is the majority (9 of 14) so a
+  // few adjacent IG-IG pairs are unavoidable, but nothing is ever blocked
+  // together in a long run. The 2 original self-hosted mp4s are gone — both
+  // replaced with the real Instagram embed of the same underlying post. See
+  // docs/DECISIONS.md (topic: showcase-marquee).
   { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram" },
-  { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook" },
+  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok" },
   { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram" },
+  { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube" },
   { type: "instagram", url: "https://www.instagram.com/p/DZ6qfKHRJG6/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram" },
-  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
+  { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook" },
   { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram" },
+  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
+  { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram" },
+  { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube" },
 ];
 
 const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
@@ -299,7 +309,7 @@ export default function Home() {
                 clips/numbers already exist non-decoratively further down the page). */}
             <div
               aria-hidden="true"
-              className="hidden xl:block w-[240px] shrink-0 animate-float"
+              className="hidden xl:block w-[264px] shrink-0 animate-float"
             >
               <HeroStoryCard />
             </div>
@@ -323,30 +333,36 @@ export default function Home() {
           </div>
         </div>
         <div className="overflow-hidden" style={edgeFadeStyle}>
-          <div className="flex w-max items-center gap-x-12 animate-scroll">
+          <div className="flex w-max items-center gap-x-10 animate-scroll">
             {[...trustedBrands, ...trustedBrands].map((brand, i) =>
               brand.needsChip ? (
                 <div
                   key={`${brand.name}-${i}`}
-                  className="shrink-0 bg-bg-elevated rounded-lg px-3 py-2 overflow-hidden"
+                  className="shrink-0 w-[130px] h-14 flex items-center justify-center"
+                >
+                  <div className="bg-bg-elevated rounded-lg px-3 py-2 overflow-hidden flex items-center justify-center max-w-full max-h-full">
+                    <Image
+                      src={`/logos/${brand.file}`}
+                      alt={brand.name}
+                      width={200}
+                      height={80}
+                      className="h-8 w-auto max-w-full object-contain rounded"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  key={`${brand.name}-${i}`}
+                  className="shrink-0 w-[130px] h-14 flex items-center justify-center"
                 >
                   <Image
                     src={`/logos/${brand.file}`}
                     alt={brand.name}
                     width={200}
                     height={80}
-                    className="h-8 w-auto object-contain rounded"
+                    className="max-w-full max-h-full w-auto h-auto object-contain"
                   />
                 </div>
-              ) : (
-                <Image
-                  key={`${brand.name}-${i}`}
-                  src={`/logos/${brand.file}`}
-                  alt={brand.name}
-                  width={200}
-                  height={80}
-                  className="shrink-0 h-14 w-auto object-contain"
-                />
               )
             )}
           </div>
@@ -367,62 +383,20 @@ export default function Home() {
             Content that goes viral
           </h2>
           <p className="text-base text-text-secondary mb-8">
-            Real UGC from our trained creator network.
+            Real UGC from our trained creator network across TT, IG, FB &amp; YT.
           </p>
         </div>
 
         <div className="overflow-hidden" style={edgeFadeStyle}>
           <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
-            {[...showcaseVideos, ...showcaseVideos].map((v, i) =>
-              v.type === "video" ? (
-                <div
-                  key={`${v.src}-${i}`}
-                  className="bg-bg-card rounded-2xl aspect-[9/16] relative overflow-hidden border border-border group shrink-0 w-[260px] sm:w-[300px]"
-                >
-                  <video
-                    src={`${v.src}#t=0.1`}
-                    playsInline
-                    muted
-                    loop
-                    preload="metadata"
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
-                    onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
-                    onClick={(e) => { e.currentTarget.muted = !e.currentTarget.muted; }}
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                      {v.views} views
-                    </span>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <span className="text-[11px] text-white/70 bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm cursor-pointer">
-                      Tap to unmute
-                    </span>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-3 py-2.5 bg-gradient-to-t from-black/70 to-transparent">
-                    <div className="flex gap-3 text-[11px] text-white font-medium">
-                      <span>♥ {v.likes}</span>
-                      <span>{v.engagement} eng.</span>
-                    </div>
-                    <a
-                      href={v.postUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] text-white/80 hover:text-white font-medium"
-                    >
-                      View post ↗
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
-                  {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} />}
-                  {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} />}
-                  {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
-                </div>
-              )
-            )}
+            {[...showcaseVideos, ...showcaseVideos].map((v, i) => (
+              <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
+                {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} />}
+                {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} />}
+                {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
+                {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
+              </div>
+            ))}
           </div>
         </div>
       </section>
