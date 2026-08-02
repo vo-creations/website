@@ -82,33 +82,18 @@ const heroStats = [
 const steps = [
   {
     num: "01",
-    title: "Apply and qualify",
-    desc: "We review your product, audience, and goals. Not every brand is a fit, and we'll be honest about it.",
-    time: "Day 1",
+    title: "Apply & Qualify",
+    desc: "We review your product, audience, and goals. Not every brand is a fit, and we'll tell you if it's not.",
   },
   {
     num: "02",
-    title: "Strategy + creator matching",
-    desc: "Campaign brief, format strategy, handpicked creators from our trained network. Not a marketplace.",
-    time: "Days 1-2",
+    title: "Strategy & Creator Selection",
+    desc: "Every creator goes through an application, interview, and a week-long paid training campaign before they ever post for a client. We accept the top 1%. Your dedicated UGC engineer then builds a custom content strategy for your product: target audience, account warming, hooks, and messaging angles. Nothing templated.",
   },
   {
     num: "03",
-    title: "Account warmup + launch",
-    desc: "Creators warm up accounts and go live. 180 videos across TikTok, Instagram, YouTube, and Facebook.",
-    time: "Days 3-9",
-  },
-  {
-    num: "04",
-    title: "Optimize with the VoC Method",
-    desc: "Weekly format testing: try 7 formats, cut the bottom 4, triple down on winners. The methodology behind our 24M-view campaign.",
-    time: "Ongoing weekly",
-  },
-  {
-    num: "05",
-    title: "Review + scale",
-    desc: "Monthly performance review with your team. What's working, what's next, whether to scale up.",
-    time: "Month end",
+    title: "Launch & Scale",
+    desc: "Every script and video is manually approved before it goes live across TikTok, Instagram, YouTube, and Facebook. Real-time tracking in our software, Trackr, shows what's converting, so weekly format testing and monthly reviews are never guesswork.",
   },
 ];
 
@@ -591,9 +576,15 @@ export default function Home() {
 
       <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
-      {/* HOW IT WORKS */}
+      {/* HOW IT WORKS — bento grid: 01 is a large left card spanning both
+          rows, 02/03 stack on the right. Borrows the grid structure and
+          large-accent-number/bold-headline typography from a reference
+          screenshot, restyled to the site's own cream/dark card treatment
+          (bg-bg-card/border-border, same as FAQ/team/results cards) instead
+          of the reference's blue-on-navy palette. No day/tag labels in the
+          corner — just the three steps. */}
       <section className="py-[100px]">
-        <div className="max-w-[720px] mx-auto px-6">
+        <div className="max-w-[1100px] mx-auto px-6">
           <Label>How it works</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             From signed to viral in 9 days
@@ -602,23 +593,33 @@ export default function Home() {
             A methodology refined across 50+ campaigns. Not a black box.
           </p>
 
-          <div className="flex flex-col gap-5">
-            {steps.map((s) => (
-              <div key={s.num} className="flex gap-5 items-start">
-                <div className="w-11 h-11 min-w-[44px] bg-bg-elevated rounded-[10px] flex items-center justify-center text-[15px] font-bold text-text">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="md:row-span-2 bg-bg-card rounded-2xl border border-border p-8 md:p-10 flex flex-col justify-center">
+              <div className="text-6xl font-black text-accent tracking-tight mb-6">
+                {steps[0].num}
+              </div>
+              <h3 className="text-2xl font-extrabold tracking-tight mb-3">
+                {steps[0].title}
+              </h3>
+              <p className="text-[15px] text-text-secondary leading-relaxed">
+                {steps[0].desc}
+              </p>
+            </div>
+
+            {steps.slice(1).map((s) => (
+              <div
+                key={s.num}
+                className="bg-bg-card rounded-2xl border border-border p-8"
+              >
+                <div className="text-4xl font-black text-accent tracking-tight mb-4">
                   {s.num}
                 </div>
-                <div>
-                  <h4 className="text-[17px] font-bold tracking-tight mb-1">
-                    {s.title}
-                  </h4>
-                  <p className="text-[15px] text-text-secondary leading-relaxed">
-                    {s.desc}
-                  </p>
-                  <div className="text-xs text-text-dim mt-1 font-medium">
-                    {s.time}
-                  </div>
-                </div>
+                <h3 className="text-xl font-extrabold tracking-tight mb-3">
+                  {s.title}
+                </h3>
+                <p className="text-[15px] text-text-secondary leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
