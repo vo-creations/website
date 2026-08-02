@@ -342,7 +342,7 @@ export default function HeroStoryCard() {
       <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
 
       <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#e0975c_0%,#a8672f_18%,#5c3319_38%,#8a4f24_52%,#3d2211_72%,#c17b3f_88%,#6b3a1c_100%)]">
-        <div className="bg-bg-card rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
+        <div className="bg-bg-card/50 backdrop-blur-sm rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
           <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
             <Image
               src="/vocreations-mark-white.png"

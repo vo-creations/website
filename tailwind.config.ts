@@ -80,18 +80,18 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
-        // One-shot entrance for the hero phone mockup: swirls in from a
-        // rotated/scaled-down/offset start, overshoots slightly past resting
-        // rotation twice (45%, 70%) before settling flat — reads as a quick
-        // spin-and-settle rather than a plain fade or slide. Runs on a
-        // separate wrapper from `float` (continuous vertical bob) since two
-        // animations on the same element both targeting `transform` would
-        // clobber each other, not compose.
+        // One-shot entrance for the hero phone mockup: one full 360° spin
+        // (not a small wobble — rotate(360deg) is a complete revolution that
+        // lands back at visually 0deg) while scaling up from half-size and
+        // fading in over the first 20%, decelerating into its resting
+        // position via the easing curve on the animation itself rather than
+        // extra keyframe stops. Runs on a separate wrapper from `float`
+        // (continuous vertical bob) since two animations on the same element
+        // both targeting `transform` would clobber each other, not compose.
         phoneEntrance: {
-          '0%': { transform: 'rotate(-28deg) scale(0.75) translateY(-14px)', opacity: '0' },
-          '45%': { transform: 'rotate(9deg) scale(1.04) translateY(3px)', opacity: '1' },
-          '70%': { transform: 'rotate(-4deg) scale(0.98) translateY(-2px)' },
-          '100%': { transform: 'rotate(0deg) scale(1) translateY(0)' },
+          '0%': { transform: 'rotate(0deg) scale(0.5) translateY(-20px)', opacity: '0' },
+          '20%': { opacity: '1' },
+          '100%': { transform: 'rotate(360deg) scale(1) translateY(0)', opacity: '1' },
         },
       },
       animation: {
@@ -109,7 +109,7 @@ const config: Config = {
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
         float: 'float 5s ease-in-out infinite',
-        'phone-entrance': 'phoneEntrance 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'phone-entrance': 'phoneEntrance 1s linear both',
       },
     },
   },
