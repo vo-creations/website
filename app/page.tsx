@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CTABlock from "@/components/CTABlock";
 import Label from "@/components/Label";
 import ResultCard from "@/components/ResultCard";
+import LogoImage from "@/components/LogoImage";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
@@ -341,31 +342,21 @@ export default function Home() {
               brand.needsChip ? (
                 <div
                   key={`${brand.name}-${i}`}
-                  className="shrink-0 w-[130px] h-14 flex items-center justify-center"
+                  className="shrink-0 w-[130px] h-14 bg-bg-elevated rounded-lg overflow-hidden"
                 >
-                  <div className="bg-bg-elevated rounded-lg px-3 py-2 overflow-hidden flex items-center justify-center max-w-full max-h-full">
-                    <Image
-                      src={`/logos/${brand.file}`}
-                      alt={brand.name}
-                      width={200}
-                      height={80}
-                      className="h-8 w-auto max-w-full object-contain rounded"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div
-                  key={`${brand.name}-${i}`}
-                  className="shrink-0 w-[130px] h-14 flex items-center justify-center"
-                >
-                  <Image
+                  <LogoImage
                     src={`/logos/${brand.file}`}
                     alt={brand.name}
-                    width={200}
-                    height={80}
-                    className="max-w-full max-h-full w-auto h-auto object-contain"
+                    boxClassName="w-full h-full px-3 py-2"
                   />
                 </div>
+              ) : (
+                <LogoImage
+                  key={`${brand.name}-${i}`}
+                  src={`/logos/${brand.file}`}
+                  alt={brand.name}
+                  boxClassName="w-[130px] h-14"
+                />
               )
             )}
           </div>

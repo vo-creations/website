@@ -2053,3 +2053,57 @@ are both still current, just the chip itself is gone now).
 - **Reordered all 7 cards by view count**: Liftoff (151M+) → Higgsfield
   (65M+) → Aonic (31M+) → Fable (25.4M) → BlackBox AI (11.5M) → Makon AI
   (10.2M) → Codedex (10M+).
+
+## topic: logo-sizing-fix — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged). Fixes the actual root
+cause behind a complaint that had already come up once before ("Aonic
+too big, BlackBox too small") and been half-addressed with per-file
+sizing tweaks rather than the systemic fix below.
+
+- **The Aonic logo was not missing, broken, or falling back to text** —
+  `public/logos/aonic.png` is a real, valid 720×213 PNG (verified:
+  opened it, confirmed a genuine "Aonic" wordmark when composited onto
+  a dark background — the file just reads as blank white when previewed
+  on a white background, the same white-ink-on-transparent situation
+  that's come up repeatedly this branch). The actual bug: its content
+  filled 100% of the canvas, zero transparent padding on any edge.
+- **Real root cause, checked across all 18 files in `public/logos/`
+  via bbox-vs-canvas measurement**: every logo was sized with
+  `object-contain` inside a fixed box, which fits the image's full
+  *canvas* dimensions into the box — not its visible content. Files
+  varied from 0% baked-in padding (`aonic.png`, `dealism.png`,
+  `dubbing.png`, `higgsfield.png`, `hyperknow.png`, `kortix.png`) up to
+  62% vertical padding (`causes.png`, `cooksat.png`, `makon1.png`).
+  A zero-padding file's real content fills its fitted box entirely; a
+  62%-padding file's real content only fills a fraction of the same
+  box — same CSS treatment, wildly different visual weight, entirely
+  explained by how each file happened to be cropped when it was
+  originally sourced/processed, not a rendering bug.
+  - Fixed at the source: cropped all 18 files in `public/logos/` to
+    their tight content bbox in place (`Image.getbbox()` +
+    `.crop(bbox)`), removing 100% of the baked-in padding from every
+    file. Now the canvas *is* the content for every logo, so
+    `object-contain` in a fixed box produces consistent visual weight
+    everywhere, by construction, not by chance.
+- **New `components/LogoImage.tsx`** — the one place the fixed-box +
+  `object-contain` technique is implemented, used by both the Trusted
+  By marquee and `ResultCard.tsx` (the caller supplies the box size via
+  `boxClassName`; the sizing *mechanism* is identical everywhere). This
+  is the "systemic fix, not a one-off tweak" the brief asked for — any
+  third place logos get added later inherits the same correct behavior
+  automatically instead of needing its own bespoke sizing rule.
+- Verified via `getBoundingClientRect()` on all 7 case-study logos live
+  on the page: every box is exactly 130×36, not just eyeballed from a
+  screenshot.
+
+## topic: result-card-simplify — _2026-08-01 (redundant name text removed)_
+
+Branch `redesign/agency-only` (still not merged). Extends the entry of
+the same topic name above.
+
+- **Removed the company-name text sitting next to the logo** — the
+  header row is now just the logo (via `LogoImage`) and the big view
+  stat; `company` stays in the props (used for the image's `alt` text
+  and a text fallback if a card is ever added without a `logo`), it
+  just no longer renders as a second, redundant visible label.

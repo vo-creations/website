@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import LogoImage from "./LogoImage";
 
 type MiniStat = { value: string; label: string };
 
@@ -35,22 +35,13 @@ export default function ResultCard({
     >
       <div className="p-7 pb-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-5">
-          <div className="flex items-center gap-3">
-            {logo && (
-              <div className="h-9 w-[100px] flex items-center shrink-0">
-                <Image
-                  src={logo}
-                  alt={`${company} logo`}
-                  width={160}
-                  height={56}
-                  className="max-w-full max-h-full w-auto h-auto object-contain"
-                />
-              </div>
-            )}
+          {logo ? (
+            <LogoImage src={logo} alt={`${company} logo`} boxClassName="h-9 w-[130px]" />
+          ) : (
             <div className="text-[22px] font-extrabold tracking-tight">
               {company}
             </div>
-          </div>
+          )}
           <div className="text-right shrink-0">
             <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1">
               Total views
