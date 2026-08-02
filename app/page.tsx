@@ -534,7 +534,7 @@ export default function Home() {
             {team.map((t) => (
               <div
                 key={t.name}
-                className="bg-bg-card rounded-2xl border border-border overflow-hidden"
+                className="bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
               >
                 <div className="relative aspect-square bg-bg-elevated">
                   <Image
@@ -594,8 +594,8 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="md:row-span-2 bg-bg-card rounded-2xl border border-border p-8 md:p-10 flex flex-col justify-center">
-              <div className="text-6xl font-black text-accent tracking-tight mb-6">
+            <div className="md:row-span-2 bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 p-8 md:p-10 flex flex-col justify-center">
+              <div className="text-6xl font-black text-text tracking-tight mb-6">
                 {steps[0].num}
               </div>
               <h3 className="text-2xl font-extrabold tracking-tight mb-3">
@@ -609,9 +609,9 @@ export default function Home() {
             {steps.slice(1).map((s) => (
               <div
                 key={s.num}
-                className="bg-bg-card rounded-2xl border border-border p-8"
+                className="bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 p-8"
               >
-                <div className="text-4xl font-black text-accent tracking-tight mb-4">
+                <div className="text-4xl font-black text-text tracking-tight mb-4">
                   {s.num}
                 </div>
                 <h3 className="text-xl font-extrabold tracking-tight mb-3">
@@ -643,7 +643,7 @@ export default function Home() {
             {agencyFaqs.map((faq, i) => (
               <div
                 key={i}
-                className="border border-border rounded-2xl px-6 py-5 bg-bg-card"
+                className="border border-white/10 rounded-2xl px-6 py-5 bg-bg-card/50 backdrop-blur-sm"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}

@@ -30,7 +30,7 @@ export default function ResultCard({
 
   return (
     <div
-      className="bg-bg-card rounded-[20px] border border-border overflow-hidden transition-colors hover:border-white/20 cursor-pointer"
+      className="bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 cursor-pointer"
       onClick={() => setOpen(!open)}
     >
       <div className="p-7 pb-6">
