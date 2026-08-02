@@ -9,6 +9,8 @@ import ResultCard from "@/components/ResultCard";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
+import HeroStoryCard from "@/components/HeroStoryCard";
+import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
 
 // DECISION: hero stats count up from 0 once the row scrolls into view (fires
@@ -16,7 +18,9 @@ import Image from "next/image";
 // honest literal count-up (0→1 isn't a count, 0→1,000,000,000 isn't readable),
 // so it counts 0→1000 formatted as "M+" and swaps to the fixed "1B+" label
 // only on the final frame — reads as a satisfying climb through big numbers
-// that lands on the real figure. See docs/DECISIONS.md (topic: hero-stats-countup).
+// that lands on the real figure. 2.2s duration (not the useCountUp default) —
+// the first cut ran at 1.4s and read as too fast to actually track.
+// See docs/DECISIONS.md (topic: hero-stats-countup).
 function useInView<T extends HTMLElement>(threshold = 0.3) {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
@@ -38,24 +42,7 @@ function useInView<T extends HTMLElement>(threshold = 0.3) {
   return { ref, inView };
 }
 
-function useCountUp(target: number, trigger: boolean, duration = 1400) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!trigger) return;
-    let raf: number;
-    let start: number | null = null;
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-    const step = (ts: number) => {
-      if (start === null) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      setValue(Math.round(target * easeOutCubic(progress)));
-      if (progress < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [trigger, target, duration]);
-  return value;
-}
+const STATS_COUNT_DURATION = 2200;
 
 function StatCounter({
   target,
@@ -66,7 +53,7 @@ function StatCounter({
   trigger: boolean;
   format: (n: number) => string;
 }) {
-  const value = useCountUp(target, trigger);
+  const value = useCountUp(target, trigger, STATS_COUNT_DURATION);
   return <>{format(value)}</>;
 }
 
@@ -208,118 +195,95 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — left-aligned, single column, flat background (no texture, Playkit-style).
-          Headline is Inter (not the Bricolage display font) at heavy weight, normal case —
-          small-caps at this size on a heavy display font read blocky/circus-like;
-          small-caps stays reserved for the small tagline usage in Nav/Footer. No amber
-          here specifically (deliberate); otherwise inherits the page's dark tokens.
-          IMPORTANT: the outer wrapper uses NAV_CONTAINER + NAV_INNER_PADDING (imported
-          from Nav.tsx, same values the nav pill itself uses for its width cap and left
-          padding) so the hero's left edge tracks the nav logo's left edge at every
-          viewport width, not just at one hardcoded number. The h1 gets its own narrower
-          max-w so the headline wraps at roughly half-to-two-thirds of the viewport
-          instead of stretching the full 1100px container. */}
+      {/* HERO — two columns from `xl` up (copy left, story card right), both living
+          inside the same NAV_CONTAINER-capped wrapper so their widths are a real
+          proportional split rather than the text column claiming the full 1100px
+          and the card floating in whatever margin happens to be left outside it —
+          that version clipped/crowded the card at common laptop widths (1280-1440px)
+          because the leftover outer margin was too thin. Left column now caps at
+          max-w-[620px] so the right column always has real dedicated space; verified
+          no overlap at 1280/1440/1600/1920 after the change (previously verified at
+          those same widths and still found it too tight). Collapses to a single
+          centered column below `xl` (card hidden, not stacked — see
+          docs/DECISIONS.md, topic: hero-floating-card, for why hidden was chosen).
+          Headline is Inter (not the Bricolage display font) at heavy weight, normal
+          case — small-caps at this size on a heavy display font read blocky/circus-
+          like; small-caps stays reserved for the small tagline usage in Nav/Footer. */}
       <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden bg-bg">
-        {/* Floating showcase card — decorative only (same clip already appears in
-            "Content that goes viral" below), aria-hidden, absolutely positioned in
-            the empty right margin outside the text's line length so it never
-            overlaps the headline/subhead/buttons/stats at any width the `xl:block`
-            breakpoint allows. z-0 vs. the text column's z-10 is a deliberate
-            belt-and-suspenders: they shouldn't overlap by position alone, but the
-            two-column hero attempt earlier this branch taught us not to assume —
-            see docs/DECISIONS.md (topic: hero-floating-card). */}
-        <div
-          aria-hidden="true"
-          className="hidden xl:block absolute right-6 2xl:right-16 top-1/2 -translate-y-1/2 w-[220px] z-0 animate-float pointer-events-none"
-        >
-          <div className="bg-bg-card rounded-2xl overflow-hidden border border-border shadow-2xl pointer-events-auto">
-            <div className="relative aspect-[9/16]">
-              <video
-                src="/videos/post-2.mp4#t=0.1"
-                playsInline
-                muted
-                loop
-                preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover"
-                onMouseEnter={(e) => { const el = e.currentTarget; el.play(); }}
-                onMouseLeave={(e) => { const el = e.currentTarget; el.pause(); el.currentTime = 0.1; }}
-              />
-              <div className="absolute top-3 left-3">
-                <span className="text-[13px] font-bold text-white bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                  3.7M views
+        <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
+          <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-12 xl:gap-10">
+            <div className="flex flex-col items-start text-left xl:max-w-[620px]">
+              <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
+                <span className="text-white text-[10px] leading-none">✦</span>
+                <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
+                  The Team Behind 1B+ Views
                 </span>
+                <span className="text-white text-[10px] leading-none">✦</span>
               </div>
-            </div>
-            <div className="p-3 flex items-center justify-between">
-              <div className="flex gap-3 text-[11px] text-text-dim font-medium">
-                <span>♥ 189K</span>
-                <span>5.10% eng.</span>
+
+              <h1 className="font-sans text-[clamp(40px,5.5vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
+                make them remember.
+              </h1>
+
+              <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[560px] leading-relaxed mb-10 animate-fade-up-delay-2">
+                Scale your B2C product with your own world-class{" "}
+                <span className="whitespace-nowrap">in-house</span> UGC program.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
+                <a
+                  href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+                >
+                  <Image
+                    src="/vocreations-mark-white.png"
+                    alt=""
+                    width={18}
+                    height={19}
+                    className="w-[15px] h-auto"
+                  />
+                  Let&apos;s Talk
+                </a>
+                <a
+                  href="#results"
+                  className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
+                >
+                  See results →
+                </a>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING} flex flex-col items-start text-left`}>
-          <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-            <span className="text-white text-[10px] leading-none">✦</span>
-            <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-              The Team Behind 1B+ Views
-            </span>
-            <span className="text-white text-[10px] leading-none">✦</span>
-          </div>
-
-          <h1 className="font-sans text-[clamp(40px,6vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-            make them remember.
-          </h1>
-
-          <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[760px] leading-relaxed mb-10 animate-fade-up-delay-2">
-            Scale your B2C product with your own world-class{" "}
-            <span className="whitespace-nowrap">in-house</span> UGC program.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
-            <a
-              href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
-            >
-              <Image
-                src="/vocreations-mark-white.png"
-                alt=""
-                width={18}
-                height={19}
-                className="w-[15px] h-auto"
-              />
-              Let&apos;s Talk
-            </a>
-            <a
-              href="#results"
-              className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
-            >
-              See results →
-            </a>
-          </div>
-
-          <div
-            ref={statsRef}
-            className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4"
-          >
-            {heroStats.map((stat, i) => (
               <div
-                key={stat.label}
-                className={`text-left py-6 sm:py-0 ${
-                  i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
-                } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+                ref={statsRef}
+                className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4"
               >
-                <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text tabular-nums">
-                  <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
-                </div>
-                <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
-                  {stat.label}
-                </div>
+                {heroStats.map((stat, i) => (
+                  <div
+                    key={stat.label}
+                    className={`text-left py-6 sm:py-0 ${
+                      i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
+                    } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
+                  >
+                    <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text tabular-nums">
+                      <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
+                    </div>
+                    <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Story card — decorative, aria-hidden, hidden below `xl` (same growth
+                clips/numbers already exist non-decoratively further down the page). */}
+            <div
+              aria-hidden="true"
+              className="hidden xl:block w-[240px] shrink-0 animate-float"
+            >
+              <HeroStoryCard />
+            </div>
           </div>
         </div>
       </section>

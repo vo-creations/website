@@ -1612,3 +1612,87 @@ button's visual treatment).
     requested end state (icon plain and inline, no visual box) rather
     than hunting for a "background box" that turned out not to be there
     in the markup.
+
+## topic: hero-story-card — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged). Supersedes the
+`hero-floating-card` entry above's *content* (still a single floating
+card, still `hidden xl:block`, still `animate-float` — only what's inside
+the card changed, from a static video to a 4-stage loop).
+
+- **Confirmed the 4-stage animation had never actually been built** before
+  starting — the previous turn's summary described it, but `app/page.tsx`
+  still had the single static `post-2.mp4` card verbatim. Checked via
+  `grep` before writing any code rather than trusting the prior summary,
+  per the user's explicit framing of this turn ("if it did get built...
+  skip to the fixes"). It hadn't.
+- **New `components/HeroStoryCard.tsx`**: a self-contained looping
+  mockup — account created → posting content → views climbing → revenue
+  growing, ~2.8s per stage, crossfades via opacity on absolutely-stacked
+  `StageWrap`s inside one fixed `aspect-[9/16]` card. Each stage's own
+  counters (`useCountUp`) reset and replay from 0 every time that stage
+  becomes active again, not just on first mount, so the loop feels alive
+  on every pass, not just the first. A thin 4-segment progress bar at
+  the top (Instagram-story-style) fills over each stage's dwell time —
+  not explicitly requested, but a natural, cheap companion to a staged
+  loop that makes the cycling legible at a glance.
+  - Only advances while the card itself is on-screen
+    (`IntersectionObserver`, kept alive rather than disconnected after
+    first match — the hero-stats `useInView` disconnects after one fire
+    since it only needs to trigger once, this one needs to keep tracking
+    to pause/resume as the user scrolls).
+  - **Real bug caught before shipping**: stage 2's 3×3 video-thumbnail
+    grid used `aspect-[9/16]` per cell (a full vertical-video ratio) —
+    at the card's actual 240px width that grid alone was taller than
+    the whole card, and the "Posting content" label silently clipped
+    off the bottom edge (the card's `overflow-hidden` hides overflow
+    rather than growing the box). Caught by screenshotting each stage
+    individually rather than only checking stage 1, fixed by making the
+    thumbnails `aspect-square` (how a real profile grid actually looks),
+    reverified via `scrollHeight === clientHeight` on the card plus
+    fresh screenshots of all four stages showing no clipping.
+- **Extracted `useCountUp` into `components/useCountUp.ts`**, shared
+  between the hero stats and the new story card rather than duplicated —
+  it's now used in two genuinely different places with different
+  trigger semantics (fire-once vs. replay-on-reactivate), which the
+  hook already handled correctly (resets to 0 whenever `trigger` goes
+  false), so no behavior needed to change to make it shared.
+
+## topic: hero-layout-proportions — _2026-08-01_
+
+Branch `redesign/agency-only` (still not merged).
+
+- **The floating card was crowding/nearly touching the right edge of the
+  viewport at common laptop widths** (1280-1440px) — margin to the
+  viewport edge measured -24px to -64px relative to where I'd checked
+  before (i.e., inside the section's `overflow-hidden`, not actually
+  clipped, but close enough to read as cut off with zero breathing
+  room). Root cause: the card was `absolute`-positioned in the margin
+  *outside* the `NAV_CONTAINER`-capped text column (max 1100px,
+  centered), not inside it — so its available space was whatever the
+  browser happened to leave outside a container sized independently of
+  it, not a real proportional share. At 1280px that outside margin is
+  only ~90px, thinner than the card itself.
+  - **Fixed by making it a real two-column layout inside the same
+    container** instead: `NAV_CONTAINER` wraps a `flex xl:flex-row
+    xl:justify-between` row, left column capped `xl:max-w-[620px]`
+    (down from the effectively-unbounded width it had before), right
+    column a fixed `w-[240px]`. Both now draw from the same 1100px
+    budget, so the split is proportional at every width rather than
+    dependent on leftover space. Re-measured: margin to viewport edge
+    is now 114px (1280px) up to 434px (1920px), gap between text and
+    card is a constant 192px at every width checked.
+  - Headline now wraps to two lines ("make them" / "remember.") at the
+    narrower column width instead of one — a clean word-boundary break,
+    not a mid-word hyphenation, and a very common hero pattern; not
+    treated as a regression. Subheading's own `max-w` tightened from
+    760px to 560px since the parent column is now the binding constraint
+    at `xl`+ anyway.
+- **Hero stats count-up slowed from 1.4s to 2.2s** (`STATS_COUNT_DURATION`
+  in `app/page.tsx`) — the first cut was too fast to actually read the
+  numbers climbing, confirmed by polling the DOM every 200ms and finding
+  it settled well under a second in practice. Re-verified after the
+  change: samples now show a visible climb out to ~2.4s before landing
+  on the final value. The story card's own internal counters stayed at
+  their original ~1.8s (tuned to fit inside a single ~2.8s stage
+  window, a different constraint than the hero stats').
