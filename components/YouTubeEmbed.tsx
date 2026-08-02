@@ -12,10 +12,18 @@ interface YouTubeEmbedProps {
 // aspect-video {videoId, title, watchUrl} shape this component originally had —
 // it was unused anywhere on the site, so no regression risk in aligning it.
 // See docs/DECISIONS.md (topic: showcase-marquee).
+// YouTube always returns 200 for any resolution, even ones a video doesn't
+// have — a missing maxresdefault/sddefault silently serves a tiny 120x90 gray
+// placeholder instead of 404ing, so an HTTP-status check can't tell them
+// apart. Falls back on the real signal: naturalWidth of the loaded image.
+const THUMBNAIL_FALLBACK_CHAIN = ["maxresdefault", "sddefault", "hqdefault"];
+const PLACEHOLDER_WIDTH = 120;
+
 export default function YouTubeEmbed({ url, label }: YouTubeEmbedProps) {
   const [loaded, setLoaded] = useState(false);
+  const [thumbTier, setThumbTier] = useState(0);
   const videoId = url.match(/(?:shorts\/|v=|youtu\.be\/)([\w-]+)/)?.[1] ?? "";
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_FALLBACK_CHAIN[thumbTier]}.jpg`;
 
   return (
     <div className="bg-bg-card rounded-2xl aspect-[9/16] relative border border-border overflow-hidden group">
@@ -35,6 +43,14 @@ export default function YouTubeEmbed({ url, label }: YouTubeEmbedProps) {
             alt={label || "Video thumbnail"}
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
+            onLoad={(e) => {
+              if (
+                e.currentTarget.naturalWidth <= PLACEHOLDER_WIDTH &&
+                thumbTier < THUMBNAIL_FALLBACK_CHAIN.length - 1
+              ) {
+                setThumbTier((t) => t + 1);
+              }
+            }}
           />
           <div
             onClick={() => setLoaded(true)}
