@@ -143,7 +143,7 @@ const showcaseVideos: {
   { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram" },
-  { type: "tiktok", url: "https://www.tiktok.com/@liftwithpeej/video/7643895537434971422", label: "TikTok" },
+  { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok" },
   { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram" },
   { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube" },
 ];
