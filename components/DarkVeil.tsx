@@ -113,7 +113,7 @@ interface DarkVeilProps {
   gamma?: number;
 }
 
-const DEFAULT_TINT: [number, number, number] = [1, 0.9, 0.72];
+const DEFAULT_TINT: [number, number, number] = [1, 0.88, 0.62];
 
 export default function DarkVeil({
   hueShift = 0,
@@ -123,8 +123,8 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
-  desaturate = 0.97,
-  tintAmount = 0.92,
+  desaturate = 1,
+  tintAmount = 1,
   tint = DEFAULT_TINT,
   gamma = 0.3,
 }: DarkVeilProps) {
