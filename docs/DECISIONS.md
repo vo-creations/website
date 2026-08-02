@@ -2153,3 +2153,96 @@ Branch `redesign/agency-only` (still not merged).
   at the "Let's Talk" button's exact center returns the button itself,
   not the glow div, proving `pointer-events: none` holds even directly
   over the glow's brightest point.
+
+## topic: ambient-glow-v2 — _2026-08-01 (rebuilt as a swirling beam, was too subtle)_
+
+Branch `redesign/agency-only` (still not merged). Supersedes the shape/
+opacity/motion details of the entry above; the fixed-position/z-index/
+transform-only architecture is unchanged.
+
+- **Two roughly-square, low-opacity blobs → three elongated "ribbon"
+  shapes.** Each ribbon is a wide/short box (`w-[120-150vw] h-[18-24vw]`)
+  with an ordinary centered `radial-gradient` inside it — the box's own
+  aspect ratio does the elongation, not an eccentric gradient shape. A
+  static rotation (`-8deg` to `-34deg`) plus three different positions
+  gives each ribbon a distinct diagonal. Three ribbons at three angles,
+  each independently animated, is what reads as a curving/swirling beam
+  — a single ribbon would just look like a bar sliding back and forth.
+- **Opacity roughly tripled** (peak core up to 55% white, was 16%) —
+  the first version read as a faint darkening, not a visible glow.
+  Re-verified text contrast across every section afterward (see below);
+  raising visibility meaningfully doesn't cost legibility because the
+  gradient still falls off to fully transparent by ~78% of the shape.
+- **Motion redone**: two keyframes with 0/50/100% stops → three
+  keyframes (`glowDriftA/B/C` in `tailwind.config.ts`) with 4 stops each
+  (0/33/66/100%) and larger translate/rotate magnitude, so each ribbon's
+  path is a loose organic loop instead of a simple back-and-forth.
+  Durations kept in the requested 15-20s band (17s/20s/15s) with
+  staggered delays so the three never move in lockstep. Still
+  transform-only (translate + rotate) — no `blur()`, no layout
+  properties — so this stays GPU-composited with zero extra paint cost
+  per frame versus the v1 version.
+- Reverified everything the v1 entry verified, at the new higher
+  opacity: screenshotted every section for legibility, polled
+  `getComputedStyle(...).transform` on all three ribbons 3s apart and
+  confirmed all three matrices changed (animation genuinely live, not a
+  static frame), and confirmed `document.elementFromPoint()` at the
+  "Let's Talk" button's center still returns the button, not a ribbon
+  div, even at the glow's brightest point.
+
+## topic: hero-story-card-v2 — _2026-08-01 (real iPhone 17 Pro Max shell + real photos/color)_
+
+Branch `redesign/agency-only` (still not merged). Extends the
+`hero-story-card` entries above — stage *logic* (crossfade, counters,
+stage order) is unchanged; this is the outer shell plus what fills each
+stage.
+
+- **Bezel thinned and re-proportioned for current iPhone design
+  language**: outer radius `42px → 46px`, bezel band `p-2 (8px) →
+  p-[3px]`, inner screen radius `34px → 43px` (kept concentric with the
+  thinner band). A flat two-stop gradient border (`from-[#3a352e]
+  to-[#141210]`) was replaced with a 7-stop diagonal gradient
+  (`linear-gradient(135deg, ...)`) alternating lighter/darker tones to
+  read as a brushed titanium edge rather than one flat metal color.
+- **Side buttons added**: four small divs on the outer `relative`
+  wrapper (not the `overflow-hidden` screen div, which would clip
+  anything positioned outside its own bounds) — action button + volume
+  up/down as three separate protrusions on the left edge, power button
+  as one longer protrusion on the right edge, matching real button
+  placement and relative lengths.
+- **Dynamic Island resized** `76×24px → 72×22px` to stay proportional
+  to the thinner bezel; still a solid black pill carrying the small
+  white Vo Creations mark, unchanged from the prior round.
+- **Real photos replace flat placeholder shapes**:
+  - Stage 1 (Sourcing creators): the 4 avatar circles now render
+    `team-thienvu-new.jpg` / `team-daniel.jpg` / `team-vincent.jpg` /
+    `team-danny.png` (all `public/videos/`) via `next/image` `fill` +
+    `object-cover`, cropped into a circle by an inner
+    `overflow-hidden` wrapper — the checkmark badge stayed on the
+    *outer* (non-clipping) div since it's deliberately positioned
+    outside the circle's own bounds.
+  - Stage 3 (Accounts warming up): the single avatar circle now renders
+    `team-thienvu-new.jpg` (same crop pattern as above).
+  - Stage 4 (Posting content): the 3×3 grid now renders `thumb-1.png` /
+    `thumb-2.png` / `thumb-3.png` (real showcase-video thumbnail frames
+    with creator faces, `public/videos/`), cycled `i % 3` to fill all 9
+    cells.
+  - `stats-1..4.png` (real analytics dashboard screenshots) were
+    considered for stages 5/6 and rejected — they're white-background
+    screenshots that would visually clash sitting inside a dark phone
+    UI; kept the existing abstract bar-chart/stat-chip UI and gave it
+    real color instead (below).
+- **Real color replaces monochrome gray**: stage 5's bar chart
+  (`from-text/15 to-text/60`, a gray token) → sky blue
+  (`from-sky-500/20 to-sky-400/90`). Stage 6's bar chart brightened
+  (`from-green/15 to-green/70 → from-green/25 to-green/90`) and its
+  three `StatChip`s — previously plain gray text — now take a
+  `colorClass` prop: green for Revenue, sky blue for Users, fuchsia for
+  Awareness. Deliberately not amber/orange anywhere in either stage —
+  this site's amber is reserved for button backgrounds only.
+- Reverified all 6 stages by screenshotting each individually (same
+  practice as every prior round on this component): every image loads
+  (`img.complete === true`, correct `naturalWidth`), no stage overflows
+  its `StageWrap`, and the new button/bezel elements don't clip or spill
+  outside the card's own layout box at the hero's fixed 1280-1920px
+  range.

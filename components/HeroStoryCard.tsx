@@ -15,9 +15,19 @@ import { useCountUp } from "./useCountUp";
 // stat row take styling cues from Vo Creations' real Instagram profile
 // (@vocreations) — circular avatar, username next to it, stacked number-over-
 // label stat pairs — rather than a generic placeholder. See docs/DECISIONS.md
-// (topic: hero-story-card).
+// (topic: hero-story-card, hero-story-card-v2).
 const STAGE_MS = 2800;
 const STAGE_COUNT = 6;
+
+// Real photos/thumbnails (public/videos/) standing in for the flat placeholder
+// shapes inside the mockup — see docs/DECISIONS.md (topic: hero-story-card-v2).
+const SOURCING_AVATARS = [
+  "/videos/team-thienvu-new.jpg",
+  "/videos/team-daniel.jpg",
+  "/videos/team-vincent.jpg",
+  "/videos/team-danny.png",
+];
+const POST_THUMBS = ["/videos/thumb-1.png", "/videos/thumb-2.png", "/videos/thumb-3.png"];
 
 function useElementInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T>(null);
@@ -64,10 +74,16 @@ function StageSourcingCreators({ active }: { active: boolean }) {
       <div className="flex-1 flex flex-col items-center justify-center gap-5">
         <div className="flex gap-3">
           {[0, 1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="relative w-11 h-11 rounded-full bg-bg-elevated border border-border"
-            >
+            <div key={i} className="relative w-11 h-11 shrink-0">
+              <div className="w-11 h-11 rounded-full overflow-hidden border border-border">
+                <Image
+                  src={SOURCING_AVATARS[i]}
+                  alt=""
+                  fill
+                  sizes="44px"
+                  className="object-cover"
+                />
+              </div>
               <div
                 className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-white text-black flex items-center justify-center text-[10px] transition-all duration-400"
                 style={{
@@ -126,7 +142,15 @@ function StageAccountsWarming({ active }: { active: boolean }) {
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-full bg-bg-elevated border border-border shrink-0" />
+          <div className="relative w-14 h-14 rounded-full overflow-hidden border border-border shrink-0">
+            <Image
+              src="/videos/team-thienvu-new.jpg"
+              alt=""
+              fill
+              sizes="56px"
+              className="object-cover"
+            />
+          </div>
           <div className="h-3 w-20 bg-bg-elevated rounded-full" />
         </div>
         <div className="flex gap-8">
@@ -145,7 +169,6 @@ function StageAccountsWarming({ active }: { active: boolean }) {
   );
 }
 
-// Unchanged from the 4-stage version — already built, already reads well.
 function StagePostingContent({ active }: { active: boolean }) {
   const count = useCountUp(180, active, 1800);
   return (
@@ -155,13 +178,21 @@ function StagePostingContent({ active }: { active: boolean }) {
           {Array.from({ length: 9 }).map((_, i) => (
             <div
               key={i}
-              className="aspect-square rounded-md bg-bg-elevated border border-border transition-all duration-500 origin-center"
+              className="relative aspect-square rounded-md overflow-hidden border border-border transition-all duration-500 origin-center"
               style={{
                 transitionDelay: active ? `${i * 100}ms` : "0ms",
                 opacity: active ? 1 : 0,
                 transform: active ? "scale(1)" : "scale(0.6)",
               }}
-            />
+            >
+              <Image
+                src={POST_THUMBS[i % POST_THUMBS.length]}
+                alt=""
+                fill
+                sizes="80px"
+                className="object-cover"
+              />
+            </div>
           ))}
         </div>
         <div className="text-center text-lg font-extrabold text-text tabular-nums">
@@ -185,7 +216,7 @@ function StageViewsClimbing({ active }: { active: boolean }) {
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
-              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-text/15 to-text/60 origin-bottom transition-transform duration-700"
+              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-sky-500/20 to-sky-400/90 origin-bottom transition-transform duration-700"
               style={{
                 transform: active ? `scaleY(${h / 100})` : "scaleY(0)",
                 transitionDelay: active ? `${i * 90}ms` : "0ms",
@@ -209,10 +240,10 @@ function StageViewsClimbing({ active }: { active: boolean }) {
   );
 }
 
-function StatChip({ value, label }: { value: string; label: string }) {
+function StatChip({ value, label, colorClass }: { value: string; label: string; colorClass: string }) {
   return (
     <div className="bg-bg-elevated rounded-lg border border-border py-2 text-center">
-      <div className="text-sm font-extrabold text-text tabular-nums">{value}</div>
+      <div className={`text-sm font-extrabold tabular-nums ${colorClass}`}>{value}</div>
       <div className="text-[9px] text-text-dim uppercase tracking-wide mt-0.5">{label}</div>
     </div>
   );
@@ -229,7 +260,7 @@ function StageRevenueGrowing({ active }: { active: boolean }) {
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
-              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-green/15 to-green/70 origin-bottom transition-transform duration-700"
+              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-green/25 to-green/90 origin-bottom transition-transform duration-700"
               style={{
                 transform: active ? `scaleY(${h / 100})` : "scaleY(0)",
                 transitionDelay: active ? `${i * 90}ms` : "0ms",
@@ -238,9 +269,9 @@ function StageRevenueGrowing({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="grid grid-cols-3 gap-2">
-          <StatChip value={`$${revenue}K`} label="Revenue" />
-          <StatChip value={`${users}K`} label="Users" />
-          <StatChip value={`+${awareness}%`} label="Awareness" />
+          <StatChip value={`$${revenue}K`} label="Revenue" colorClass="text-green" />
+          <StatChip value={`${users}K`} label="Users" colorClass="text-sky-400" />
+          <StatChip value={`+${awareness}%`} label="Awareness" colorClass="text-fuchsia-400" />
         </div>
       </div>
       <StageLabel text="Revenue &amp; growth" />
@@ -259,43 +290,50 @@ export default function HeroStoryCard() {
   }, [inView]);
 
   return (
-    // DECISION: a real iPhone shell, not just a rounded card — outer "bezel" div
-    // (metal-gradient border, large corner radius scaled to real device
-    // proportions) wraps an inner "screen" div at a smaller radius, so there's
-    // a visible bezel band between them like an actual phone. Dynamic-island
-    // cutout carries a tiny Vo Creations mark (a nod to a Live Activity/branded
-    // notification, not just a logo pasted on) so the mockup reads as ours, not
-    // a generic phone screenshot. See docs/DECISIONS.md (topic: hero-story-card).
-    <div
-      ref={ref}
-      className="rounded-[42px] bg-gradient-to-b from-[#3a352e] to-[#141210] p-2 border border-white/10 shadow-2xl"
-    >
-      <div className="bg-bg-card rounded-[34px] aspect-[9/16] relative overflow-hidden">
-        <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[76px] h-[24px] bg-black rounded-full z-20 flex items-center justify-center">
-          <Image
-            src="/vocreations-mark-white.png"
-            alt=""
-            width={12}
-            height={13}
-            className="w-[10px] h-auto opacity-80"
-          />
+    // DECISION: a real iPhone shell, not just a rounded card. Rebuilt for
+    // iPhone 17 Pro Max fidelity — thinner bezel band (p-[3px], was p-2),
+    // a titanium-style edge (multi-stop diagonal gradient standing in for a
+    // brushed-metal highlight instead of one flat color), and small
+    // protruding divs on the outer `relative` wrapper (not the overflow-
+    // hidden screen, which would clip them) for the action button + volume
+    // rocker on the left edge and the power button on the right edge,
+    // matching real button placement. Dynamic-island cutout sized down
+    // slightly (72x22 vs 76x24) to match the thinner bezel. See
+    // docs/DECISIONS.md (topic: hero-story-card-v2).
+    <div ref={ref} className="relative">
+      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
+      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
+      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
+      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#7a756c] via-[#4a463f] to-[#2a2723]" />
+
+      <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#6b665d_0%,#37332e_18%,#181614_38%,#2c2824_52%,#141210_72%,#524d44_88%,#201d19_100%)]">
+        <div className="bg-bg-card rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
+          <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
+            <Image
+              src="/vocreations-mark-white.png"
+              alt=""
+              width={12}
+              height={13}
+              className="w-[9px] h-auto opacity-80"
+            />
+          </div>
+          <div className="absolute top-[40px] left-5 right-5 flex gap-1.5 z-10">
+            {Array.from({ length: STAGE_COUNT }).map((_, i) => (
+              <div key={i} className="flex-1 h-[3px] rounded-full bg-white/15 overflow-hidden">
+                <div
+                  className={`h-full bg-white rounded-full ${stage === i ? "w-full transition-[width]" : "w-0"}`}
+                  style={stage === i ? { transitionDuration: `${STAGE_MS}ms`, transitionTimingFunction: "linear" } : undefined}
+                />
+              </div>
+            ))}
+          </div>
+          <StageSourcingCreators active={stage === 0} />
+          <StageBuildingStrategy active={stage === 1} />
+          <StageAccountsWarming active={stage === 2} />
+          <StagePostingContent active={stage === 3} />
+          <StageViewsClimbing active={stage === 4} />
+          <StageRevenueGrowing active={stage === 5} />
         </div>
-        <div className="absolute top-[46px] left-5 right-5 flex gap-1.5 z-10">
-          {Array.from({ length: STAGE_COUNT }).map((_, i) => (
-            <div key={i} className="flex-1 h-[3px] rounded-full bg-white/15 overflow-hidden">
-              <div
-                className={`h-full bg-white rounded-full ${stage === i ? "w-full transition-[width]" : "w-0"}`}
-                style={stage === i ? { transitionDuration: `${STAGE_MS}ms`, transitionTimingFunction: "linear" } : undefined}
-              />
-            </div>
-          ))}
-        </div>
-        <StageSourcingCreators active={stage === 0} />
-        <StageBuildingStrategy active={stage === 1} />
-        <StageAccountsWarming active={stage === 2} />
-        <StagePostingContent active={stage === 3} />
-        <StageViewsClimbing active={stage === 4} />
-        <StageRevenueGrowing active={stage === 5} />
       </div>
     </div>
   );
