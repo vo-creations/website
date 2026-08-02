@@ -331,39 +331,41 @@ export default function Home() {
           source icon is multi-color, e.g. Causes, Fable). needsChip is an escape
           hatch for a source that can't be cleanly color-keyed (unused currently —
           the prior Liftoff asset needed it, the official vector doesn't). */}
-      <section className="pb-[80px]">
-        <div className="max-w-[900px] mx-auto text-center px-6">
-          <div className="inline-flex items-center gap-2 mb-6">
-            <span className="text-white text-[10px] leading-none">✦</span>
-            <span className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em]">
-              Trusted by
-            </span>
-            <span className="text-white text-[10px] leading-none">✦</span>
+      <section className="pb-[80px] px-6">
+        <div className="max-w-[1100px] mx-auto rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm py-10">
+          <div className="max-w-[900px] mx-auto text-center px-6">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="text-white text-[10px] leading-none">✦</span>
+              <span className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em]">
+                Trusted by
+              </span>
+              <span className="text-white text-[10px] leading-none">✦</span>
+            </div>
           </div>
-        </div>
-        <div className="overflow-hidden" style={edgeFadeStyle}>
-          <div className="flex w-max items-center gap-x-10 animate-scroll">
-            {[...trustedBrands, ...trustedBrands].map((brand, i) =>
-              brand.needsChip ? (
-                <div
-                  key={`${brand.name}-${i}`}
-                  className="shrink-0 w-[130px] h-14 bg-bg-elevated rounded-lg overflow-hidden"
-                >
+          <div className="overflow-hidden" style={edgeFadeStyle}>
+            <div className="flex w-max items-center gap-x-10 animate-scroll">
+              {[...trustedBrands, ...trustedBrands].map((brand, i) =>
+                brand.needsChip ? (
+                  <div
+                    key={`${brand.name}-${i}`}
+                    className="shrink-0 w-[130px] h-14 bg-bg-elevated rounded-lg overflow-hidden"
+                  >
+                    <LogoImage
+                      src={`/logos/${brand.file}`}
+                      alt={brand.name}
+                      boxClassName="w-full h-full px-3 py-2"
+                    />
+                  </div>
+                ) : (
                   <LogoImage
+                    key={`${brand.name}-${i}`}
                     src={`/logos/${brand.file}`}
                     alt={brand.name}
-                    boxClassName="w-full h-full px-3 py-2"
+                    boxClassName="w-[130px] h-14"
                   />
-                </div>
-              ) : (
-                <LogoImage
-                  key={`${brand.name}-${i}`}
-                  src={`/logos/${brand.file}`}
-                  alt={brand.name}
-                  boxClassName="w-[130px] h-14"
-                />
-              )
-            )}
+                )
+              )}
+            </div>
           </div>
         </div>
       </section>
