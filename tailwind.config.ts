@@ -80,30 +80,6 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
-        // Three distinct multi-point paths/durations (not the same keyframe
-        // mirrored) so the three glow ribbons don't move in lockstep — each
-        // has its own drift + rotation swing, which combined with their
-        // staggered angles/positions is what reads as a curving/swirling
-        // beam rather than three shapes sliding in parallel. 4 keyframe
-        // stops (not just 0%/50%) so the path itself isn't a simple back-
-        // and-forth — closer to a loose, organic loop. Transform-only
-        // (translate + rotate), no layout-affecting properties, so the
-        // browser composites this on the GPU without repainting on scroll.
-        glowDriftA: {
-          '0%, 100%': { transform: 'translate(-10%, -8%) rotate(-34deg)' },
-          '33%': { transform: 'translate(9%, 6%) rotate(-24deg)' },
-          '66%': { transform: 'translate(-4%, 10%) rotate(-40deg)' },
-        },
-        glowDriftB: {
-          '0%, 100%': { transform: 'translate(8%, 7%) rotate(-20deg)' },
-          '33%': { transform: 'translate(-11%, -9%) rotate(-10deg)' },
-          '66%': { transform: 'translate(6%, -8%) rotate(-28deg)' },
-        },
-        glowDriftC: {
-          '0%, 100%': { transform: 'translate(-7%, 9%) rotate(-8deg)' },
-          '33%': { transform: 'translate(10%, -6%) rotate(-18deg)' },
-          '66%': { transform: 'translate(-9%, -4%) rotate(2deg)' },
-        },
       },
       animation: {
         'fade-up': 'fadeUp 0.7s ease forwards',
@@ -120,9 +96,6 @@ const config: Config = {
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
         float: 'float 5s ease-in-out infinite',
-        'glow-drift-a': 'glowDriftA 17s ease-in-out infinite',
-        'glow-drift-b': 'glowDriftB 20s ease-in-out infinite 1.2s',
-        'glow-drift-c': 'glowDriftC 15s ease-in-out infinite 0.6s',
       },
     },
   },

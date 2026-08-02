@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import AmbientGlow from "@/components/AmbientGlow";
+import DarkVeil from "@/components/DarkVeil";
 import "./globals.css";
 
 const inter = Inter({
@@ -123,7 +123,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${bricolageGrotesque.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
-        <AmbientGlow />
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-20"
+        >
+          <DarkVeil speed={0.35} resolutionScale={0.75} />
+        </div>
         {children}
         <Analytics />
       </body>
