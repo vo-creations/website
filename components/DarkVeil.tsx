@@ -23,6 +23,7 @@ uniform float uWarp;
 uniform float uDesaturate;
 uniform float uTintAmount;
 uniform vec3 uTint;
+uniform float uGamma;
 #define iTime uTime
 #define iResolution uResolution
 
@@ -82,6 +83,12 @@ void main(){
     // than colorful blobs. hueShift alone only rotates existing hue, it
     // can't get here.
     float lum=dot(col.rgb,vec3(0.299,0.587,0.114));
+    // This network's sigmoid output sits mostly in a low-luminance range
+    // (avg lum well under 0.1 across most of the frame) so tinting straight
+    // off raw lum reads as flat black even at full opacity. uGamma<1 lifts
+    // darks disproportionately (pow curve) without blowing out the rare
+    // bright spots, which is what actually makes the pattern legible.
+    lum=pow(clamp(lum,0.0,1.0),uGamma);
     vec3 desaturated=mix(col.rgb,vec3(lum),uDesaturate);
     vec3 tinted=mix(desaturated,uTint*lum,uTintAmount);
     gl_FragColor=vec4(clamp(tinted,0.0,1.0),1.0);
@@ -102,6 +109,8 @@ interface DarkVeilProps {
   tintAmount?: number;
   /** RGB in 0-1 range, multiplied against luminance. Defaults to the site's cream text color (#F7F0DD). */
   tint?: [number, number, number];
+  /** Gamma applied to luminance before tinting (values <1 lift darks). This network's output runs dark on average, so the default lifts it well above 1:1. */
+  gamma?: number;
 }
 
 const DEFAULT_TINT: [number, number, number] = [247 / 255, 240 / 255, 221 / 255];
@@ -117,6 +126,7 @@ export default function DarkVeil({
   desaturate = 0.92,
   tintAmount = 0.75,
   tint = DEFAULT_TINT,
+  gamma = 0.3,
 }: DarkVeilProps) {
   const ref = useRef<HTMLCanvasElement | null>(null);
 
@@ -154,6 +164,7 @@ export default function DarkVeil({
         uDesaturate: { value: desaturate },
         uTintAmount: { value: tintAmount },
         uTint: { value: tint },
+        uGamma: { value: gamma },
       },
     });
 
@@ -182,6 +193,7 @@ export default function DarkVeil({
       program.uniforms.uDesaturate.value = desaturate;
       program.uniforms.uTintAmount.value = tintAmount;
       program.uniforms.uTint.value = tint;
+      program.uniforms.uGamma.value = gamma;
       renderer.render({ scene: mesh });
       frame = requestAnimationFrame(loop);
     };
@@ -203,6 +215,7 @@ export default function DarkVeil({
     desaturate,
     tintAmount,
     tint,
+    gamma,
   ]);
 
   return <canvas ref={ref} className="darkveil-canvas" />;

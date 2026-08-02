@@ -125,7 +125,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${bricolageGrotesque.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         <div
           aria-hidden="true"
-          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-20"
+          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-50"
         >
           <DarkVeil speed={0.35} resolutionScale={0.75} />
         </div>
