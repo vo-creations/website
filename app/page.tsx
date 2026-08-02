@@ -202,7 +202,8 @@ const team = [
     name: "Thienvu Vo",
     location: "Richmond, VA",
     statLine: "CEO of VoC Mentorship",
-    detailLine: "Led students to $1M in earnings & 500M+ views",
+    detailLine:
+      "Grew his own IG past 70K followers, then proved it wasn't a fluke by teaching other creators exactly how he did it. His students have earned $1M+ and generated 500M+ views. Not from one lucky post. From content that performs the same way every time. That's not a growth story. That's a system. And it's the same one every brand at Vo Creations gets.",
     image: "/videos/team-thienvu-new.jpg",
     // DECISION: default center crop left too much empty space (grass/pillar)
     // above him; shifted down so he reads centered in the card. See
@@ -214,7 +215,7 @@ const team = [
     location: "Los Angeles, CA",
     statLine: "COO of VoC Mentorship",
     detailLine:
-      "Creator-economy operator. Built and managed campaigns that generated over 500M+ views & millions of users across consumer apps. Also generated 150M+ views as a creator and $200K+ in earnings",
+      "Before Daniel ran a single campaign for anyone else, he was the one on camera, racking up 150M+ views and $200K+ earned from his own content, from scratch. That's the seat most agency operators never sit in. Since then, his campaigns for consumer apps have pulled in 500M+ views and reached 10M+ users, because he already knows what makes someone stop scrolling.",
     image: "/videos/team-daniel.jpg",
     imagePosition: "center",
   },

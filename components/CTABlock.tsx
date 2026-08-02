@@ -12,18 +12,7 @@ export default function CTABlock({
   href?: string;
 }) {
   return (
-    <section className="relative text-center py-20 bg-bg-card">
-      {/* The section above this (FAQ) has no background of its own, so the
-          fixed DarkVeil layer shows through it and hits this section's solid
-          bg-bg-card as a hard seam. This overlaps DarkVeil's last ~180px with
-          a gradient into the same solid color instead of a flat cutoff — it's
-          a child of this (relative) section so it stacks above the FAQ
-          section's static content per normal CSS paint order, without
-          touching DarkVeil itself or extending the pattern behind the CTA. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-[180px] h-[180px] bg-gradient-to-b from-transparent to-bg-card"
-      />
+    <section className="text-center py-20">
       <h3 className="text-[28px] font-extrabold tracking-tight mb-3">
         {heading}
       </h3>
