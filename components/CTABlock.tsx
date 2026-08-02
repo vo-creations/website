@@ -13,25 +13,27 @@ export default function CTABlock({
 }) {
   return (
     <section className="text-center py-20">
-      <h3 className="text-[28px] font-extrabold tracking-tight mb-3">
-        {heading}
-      </h3>
-      <p className="text-base text-text-secondary mb-6">{sub}</p>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
-      >
-        {buttonText}
-        <Image
-          src="/vocreations-mark-white.png"
-          alt=""
-          width={18}
-          height={19}
-          className="w-[15px] h-auto"
-        />
-      </a>
+      <div className="max-w-[560px] mx-auto px-10 py-14 rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm">
+        <h3 className="text-[28px] font-extrabold tracking-tight mb-3">
+          {heading}
+        </h3>
+        <p className="text-base text-text-secondary mb-6">{sub}</p>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+        >
+          {buttonText}
+          <Image
+            src="/vocreations-mark-white.png"
+            alt=""
+            width={18}
+            height={19}
+            className="w-[15px] h-auto"
+          />
+        </a>
+      </div>
     </section>
   );
 }

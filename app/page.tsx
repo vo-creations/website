@@ -400,7 +400,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
+      <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
       {/* RESULTS */}
       <section className="py-[100px]" id="results">
@@ -521,7 +521,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
+      <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
       {/* TEAM */}
       <section className="py-[100px]" id="team">
@@ -575,7 +575,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
+      <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
       {/* HOW IT WORKS */}
       <section className="py-[100px]">
@@ -611,7 +611,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-[1000px] mx-auto h-px bg-border" />
+      <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
       {/* FAQ — each question is its own bordered card (rounded-2xl, subtle
           border, internal padding) stacked with a gap, rather than a flat

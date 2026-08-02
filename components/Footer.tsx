@@ -76,10 +76,9 @@ export default function Footer() {
             the codebase untouched (Vercel/Stripe compliance may still
             reference them) — this only removes the footer nav links to
             them. See docs/DECISIONS.md (topic: footer-polish). */}
-        <div className="border-t border-border pt-6 flex justify-center md:justify-start">
-          <p className="text-[13px] text-text-dim">
-            Vo Creations &copy; 2026. All rights reserved.
-          </p>
+        <div className="border-t border-border pt-6 flex justify-between items-center gap-4">
+          <p className="text-[13px] text-text-dim">Vo Creations</p>
+          <p className="text-[13px] text-text-dim">&copy; 2026 Vo Creations</p>
         </div>
       </div>
     </footer>
