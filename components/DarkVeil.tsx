@@ -107,13 +107,13 @@ interface DarkVeilProps {
   desaturate?: number;
   /** How strongly the grayscale luminance is recolored through `tint`. */
   tintAmount?: number;
-  /** RGB in 0-1 range, multiplied against luminance. Deliberately warmer/more saturated than the site's literal cream text token (#F7F0DD, only ~10% spread between channels) — at the low brightness this pattern actually renders at, that subtle a spread reads as neutral gray, not cream. */
+  /** RGB in 0-1 range, multiplied against luminance. Equal channels (no spread) so the pattern reads as neutral white/silver — the site moved off the cream/copper palette to pure black-and-white, so there's no warm tint to compensate for anymore. */
   tint?: [number, number, number];
   /** Gamma applied to luminance before tinting (values <1 lift darks). This network's output runs dark on average, so the default lifts it well above 1:1. */
   gamma?: number;
 }
 
-const DEFAULT_TINT: [number, number, number] = [1, 0.88, 0.62];
+const DEFAULT_TINT: [number, number, number] = [1, 1, 1];
 
 export default function DarkVeil({
   hueShift = 0,

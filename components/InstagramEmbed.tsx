@@ -61,7 +61,7 @@ export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
         data-instgrm-captioned
         data-instgrm-permalink={url}
         style={{
-          background: "#1C1917",
+          background: "#1C1C1C",
           border: 0,
           borderRadius: "16px",
           margin: 0,

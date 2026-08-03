@@ -244,7 +244,7 @@ function StageViewsClimbing({ active }: { active: boolean }) {
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
-              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-sky-500/20 to-sky-400/90 origin-bottom transition-transform duration-700"
+              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-white/15 to-white/80 origin-bottom transition-transform duration-700"
               style={{
                 transform: active ? `scaleY(${h / 100})` : "scaleY(0)",
                 transitionDelay: active ? `${i * 90}ms` : "0ms",
@@ -259,7 +259,7 @@ function StageViewsClimbing({ active }: { active: boolean }) {
           <div className="text-xs text-text-dim mt-1">views and climbing</div>
         </div>
         <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-text-secondary">
-          <span className="text-green">&#9650;</span>
+          <span className="text-white">&#9650;</span>
           <span className="tabular-nums">{(engagement / 10).toFixed(1)}%</span> engagement
         </div>
       </div>
@@ -268,11 +268,18 @@ function StageViewsClimbing({ active }: { active: boolean }) {
   );
 }
 
-function StatChip({ value, label, colorClass }: { value: string; label: string; colorClass: string }) {
+// DECISION: "Liquid Glass" treatment (Apple's current UI language) —
+// translucent frosted panel (bg-white/[0.08] + backdrop-blur-md, not a flat
+// bg-bg-elevated fill), pill-shaped (rounded-full, not rounded-lg), with a
+// soft inset highlight along the top edge standing in for glass refraction.
+// Colors dropped entirely (was text-green/text-sky-400/text-fuchsia-400) as
+// part of the sitewide black-and-white conversion — all three chips read as
+// white now, distinguished only by their label.
+function StatChip({ value, label }: { value: string; label: string }) {
   return (
-    <div className="bg-bg-elevated rounded-lg border border-border py-2 text-center">
-      <div className={`text-sm font-extrabold tabular-nums ${colorClass}`}>{value}</div>
-      <div className="text-[9px] text-text-dim uppercase tracking-wide mt-0.5">{label}</div>
+    <div className="bg-white/[0.08] backdrop-blur-md rounded-full border border-white/15 py-2.5 px-2 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+      <div className="text-sm font-extrabold tabular-nums text-white">{value}</div>
+      <div className="text-[9px] text-white/55 uppercase tracking-wide mt-0.5">{label}</div>
     </div>
   );
 }
@@ -288,7 +295,7 @@ function StageRevenueGrowing({ active }: { active: boolean }) {
           {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
-              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-green/25 to-green/90 origin-bottom transition-transform duration-700"
+              className="flex-1 h-full rounded-t-md bg-gradient-to-t from-white/20 to-white/90 origin-bottom transition-transform duration-700"
               style={{
                 transform: active ? `scaleY(${h / 100})` : "scaleY(0)",
                 transitionDelay: active ? `${i * 90}ms` : "0ms",
@@ -297,9 +304,9 @@ function StageRevenueGrowing({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="grid grid-cols-3 gap-2">
-          <StatChip value={`$${revenue}K`} label="Revenue" colorClass="text-green" />
-          <StatChip value={`${users}K`} label="Users" colorClass="text-sky-400" />
-          <StatChip value={`+${awareness}%`} label="Awareness" colorClass="text-fuchsia-400" />
+          <StatChip value={`$${revenue}K`} label="Revenue" />
+          <StatChip value={`${users}K`} label="Users" />
+          <StatChip value={`+${awareness}%`} label="Awareness" />
         </div>
       </div>
       <StageLabel text="Revenue &amp; growth" />
@@ -328,20 +335,21 @@ export default function HeroStoryCard() {
     // matching real button placement. Dynamic-island cutout sized down
     // slightly (72x22 vs 76x24) to match the thinner bezel. See
     // docs/DECISIONS.md (topic: hero-story-card-v2).
-    // DECISION: recolored from a gray/brown titanium finish to the "cosmic
-    // orange" copper finish (Apple's iPhone 17 Pro Max colorway) — same
-    // multi-stop gradient structure (bright/dark/bright rhythm standing in
-    // for a brushed-metal highlight sweep), just recolored warm copper
-    // instead of gray-brown. This mockup only ever shows the front (screen
-    // content across all 6 stages), so there's no rear camera bump to
-    // recolor — the color read comes entirely from the edge/button gradient.
+    // DECISION: recolored again — from the "cosmic orange" copper finish to
+    // a neutral silver/titanium finish, matching the site's move to a pure
+    // black-and-white palette. Same multi-stop gradient structure (bright/
+    // dark/bright rhythm standing in for a brushed-metal highlight sweep),
+    // just recolored neutral gray instead of copper. This mockup only ever
+    // shows the front (screen content across all 6 stages), so there's no
+    // rear camera bump to recolor — the color read comes entirely from the
+    // edge/button gradient.
     <div ref={ref} className="relative">
-      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
-      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
-      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
-      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8a06a] via-[#b8702f] to-[#5c3319]" />
+      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
 
-      <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#e0975c_0%,#a8672f_18%,#5c3319_38%,#8a4f24_52%,#3d2211_72%,#c17b3f_88%,#6b3a1c_100%)]">
+      <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#e8e8e8_0%,#a8a8a8_18%,#5c5c5c_38%,#8a8a8a_52%,#3d3d3d_72%,#c7c7c7_88%,#6b6b6b_100%)]">
         <div className="bg-bg-card/50 backdrop-blur-sm rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
           <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
             <Image

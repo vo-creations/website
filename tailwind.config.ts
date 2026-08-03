@@ -8,28 +8,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Agency theme (amber, dark, "cookies and cream")
+        // DECISION: converted from the "cookies and cream" amber/cream
+        // palette to pure black-and-white/grayscale. bg tokens had a barely
+        // perceptible warm cast (R slightly > G > B, e.g. #121110) from the
+        // original palette — neutralized to true R=G=B grays so nothing in
+        // the base surface colors carries hue, not just the text/accent
+        // tokens. accent used to be amber (#F5A623) for CTAs/badges/borders
+        // sitewide (including non-homepage pages: refund-policy, campaigns/
+        // maxxd, Nav) — now a neutral white-based scale so every consumer of
+        // `accent` cascades to grayscale automatically.
         bg: {
-          DEFAULT: '#121110',
-          card: '#1C1917',
-          elevated: '#262220',
-          subtle: '#0F0E0D',
+          DEFAULT: '#121212',
+          card: '#1C1C1C',
+          elevated: '#242424',
+          subtle: '#0F0F0F',
         },
         accent: {
-          DEFAULT: '#F5A623',
-          light: '#f7c157',
-          dim: 'rgba(245,166,35,0.15)',
-          mid: 'rgba(245,166,35,0.25)',
-          glow: 'rgba(245,166,35,0.3)',
+          DEFAULT: '#FFFFFF',
+          light: '#F5F5F5',
+          dim: 'rgba(255,255,255,0.12)',
+          mid: 'rgba(255,255,255,0.2)',
+          glow: 'rgba(255,255,255,0.3)',
         },
         text: {
-          DEFAULT: '#F7F0DD',
-          secondary: '#9A9088',
-          dim: '#6b6558',
+          DEFAULT: '#FFFFFF',
+          secondary: '#A3A3A3',
+          dim: '#6B6B6B',
         },
         border: {
           DEFAULT: 'rgba(255,255,255,0.06)',
-          accent: 'rgba(245,166,35,0.2)',
+          accent: 'rgba(255,255,255,0.2)',
         },
         green: '#4ade80',
         red: '#f87171',
