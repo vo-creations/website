@@ -33,6 +33,10 @@ const STAGE_COUNT = 6;
 // platforms' CDN URLs are signed with expiry timestamps and reject direct
 // curl requests outside the original browser session anyway. See
 // docs/DECISIONS.md (topic: hero-story-card-v3).
+// 10 distinct real creators (up from 6) — reads as an actual pool being
+// matched against, not a handful of repeats. 3 TikTok + 7 Instagram, same
+// capture method as before (avatar image intercepted from the platform's
+// own embed render).
 const SOURCING_AVATARS = [
   "/creators/tiktok-jacobw-avatar.jpg",
   "/creators/ig-1-avatar.jpg",
@@ -40,18 +44,29 @@ const SOURCING_AVATARS = [
   "/creators/ig-2-avatar.jpg",
   "/creators/tiktok-abgetsfit-avatar.jpg",
   "/creators/ig-3-avatar.jpg",
+  "/creators/ig-4-avatar.jpg",
+  "/creators/ig-5-avatar.jpg",
+  "/creators/ig-6-avatar.jpg",
+  "/creators/ig-7-avatar.jpg",
 ];
-// Real video thumbnails from the same 3 TikTok posts (the ones with a
-// still-frame thumbnail available via the embed, vs. Instagram posts which
-// only exposed avatar images through this capture method, not preview
-// frames). Latin-square order still applies since there are only 3 unique
-// images for a 3x3 grid — see the POST_THUMB_ORDER comment below.
+// 9 genuinely distinct real thumbnails now (3 TikTok + 6 Instagram, the
+// latter using each post's actual main content image, not its avatar —
+// captured the same way, just filtering for the largest same-path response,
+// since Instagram's embed also loads small "suggested posts" thumbnails
+// from unrelated accounts that aren't really "our content"). No repeats
+// needed anymore — straight 1:1 index into the grid.
 const POST_THUMBS = [
   "/creators/tiktok-jacobw-thumb.jpg",
   "/creators/tiktok-codewithsam4-thumb.jpg",
   "/creators/tiktok-abgetsfit-thumb.jpg",
+  "/creators/ig-content-1.jpg",
+  "/creators/ig-content-2.jpg",
+  "/creators/ig-content-3.jpg",
+  "/creators/ig-content-4.jpg",
+  "/creators/ig-content-5.jpg",
+  "/creators/ig-content-6.jpg",
 ];
-const POST_THUMB_ORDER = [0, 1, 2, 1, 2, 0, 2, 0, 1];
+const POST_THUMB_ORDER = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 // Small monochrome line icons for the Building Strategy / Accounts Warming
 // checklists — plain checkmarks read as a placeholder list; a distinct icon
@@ -150,24 +165,24 @@ function StageSourcingCreators({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-5">
-        <div className="grid grid-cols-3 gap-x-3 gap-y-3">
+        <div className="grid grid-cols-5 gap-x-2.5 gap-y-3">
           {SOURCING_AVATARS.map((src, i) => (
-            <div key={i} className="relative w-9 h-9 shrink-0">
-              <div className="w-9 h-9 rounded-full overflow-hidden border border-border">
+            <div key={i} className="relative w-8 h-8 shrink-0">
+              <div className="w-8 h-8 rounded-full overflow-hidden border border-border">
                 <Image
                   src={src}
                   alt=""
                   fill
-                  sizes="36px"
+                  sizes="32px"
                   className="object-cover"
                 />
               </div>
               <div
-                className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-white text-black flex items-center justify-center text-[9px] transition-all duration-400"
+                className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-white text-black flex items-center justify-center text-[8px] transition-all duration-400"
                 style={{
                   opacity: active ? 1 : 0,
                   transform: active ? "scale(1)" : "scale(0)",
-                  transitionDelay: active ? `${400 + i * 220}ms` : "0ms",
+                  transitionDelay: active ? `${300 + i * 180}ms` : "0ms",
                 }}
               >
                 &#10003;
@@ -237,7 +252,15 @@ const WARMUP_ITEMS = [
 // card (solid, no blur) — same fix as StageBuildingStrategy: individual glass
 // pills (bg-white/[0.08] + backdrop-blur-md + border-white/15) with a per-item
 // icon instead of one card of plain checkmark+text rows.
+// DECISION: the realistic signal of an account mid-warm-up is following
+// climbing (the account follows others to build algorithm trust) while
+// followers stays flat at 0 (nothing posted yet to earn any) — not a
+// generic "0/0" pair. Swapped the placeholder gray bar for Thienvu's real
+// name + his actual handle (@itsthienvuvo, same one referenced in this
+// site's own JSON-LD sameAs links) so this reads as one of our actual
+// creators' accounts, not a stand-in.
 function StageAccountsWarming({ active }: { active: boolean }) {
+  const following = useCountUp(340, active, 1800);
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
@@ -251,7 +274,20 @@ function StageAccountsWarming({ active }: { active: boolean }) {
               className="object-cover"
             />
           </div>
-          <div className="h-3 w-20 bg-white/10 rounded-full" />
+          <div className="flex flex-col">
+            <span className="text-[13px] font-bold text-white leading-tight">Thienvu Vo</span>
+            <span className="text-[10px] text-white/50 leading-tight">@itsthienvuvo</span>
+          </div>
+        </div>
+        <div className="flex gap-8">
+          <div className="text-center">
+            <div className="text-sm font-bold text-white tabular-nums">{following}</div>
+            <div className="text-[9px] text-white/50 uppercase tracking-wide mt-0.5">following</div>
+          </div>
+          <div className="text-center">
+            <div className="text-sm font-bold text-white tabular-nums">0</div>
+            <div className="text-[9px] text-white/50 uppercase tracking-wide mt-0.5">followers</div>
+          </div>
         </div>
         <div className="w-full flex flex-col gap-2">
           {WARMUP_ITEMS.map(({ text, Icon }, i) => (
@@ -335,10 +371,10 @@ function StageViewsClimbing({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="text-center">
-          <div className="text-2xl font-extrabold text-text tabular-nums">
+          <div className="text-[32px] font-extrabold tracking-tighter leading-none text-white tabular-nums">
             {(views / 10).toFixed(1)}M
           </div>
-          <div className="text-xs text-text-dim mt-1">views and climbing</div>
+          <div className="text-xs text-text-dim mt-2">views and climbing</div>
         </div>
         <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-text-secondary">
           <span className="text-white">&#9650;</span>
@@ -359,9 +395,9 @@ function StageViewsClimbing({ active }: { active: boolean }) {
 // white now, distinguished only by their label.
 function StatChip({ value, label }: { value: string; label: string }) {
   return (
-    <div className="bg-white/[0.08] backdrop-blur-md rounded-full border border-white/15 py-2.5 px-2 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
-      <div className="text-sm font-extrabold tabular-nums text-white">{value}</div>
-      <div className="text-[9px] text-white/55 uppercase tracking-wide mt-0.5">{label}</div>
+    <div className="bg-white/[0.08] backdrop-blur-md rounded-full border border-white/15 py-3 px-2 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+      <div className="text-xl font-extrabold tracking-tighter leading-none tabular-nums text-white">{value}</div>
+      <div className="text-[9px] text-white/55 uppercase tracking-wide mt-1.5">{label}</div>
     </div>
   );
 }
