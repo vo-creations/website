@@ -19,31 +19,93 @@ import { useCountUp } from "./useCountUp";
 const STAGE_MS = 2800;
 const STAGE_COUNT = 6;
 
-// Real photos/thumbnails (public/videos/) standing in for the flat placeholder
-// shapes inside the mockup — see docs/DECISIONS.md (topic: hero-story-card-v2).
-// DECISION: team-danny.png (a formal studio headshot) read as a generic stock
-// photo next to the other three casual creator selfies, so it's out. Only 3
-// distinct real people are available (Thienvu, Daniel, Vincent) plus one
-// additional candid Daniel photo (team-daniel-candid.png, copied from the
-// source asset dump) — not enough for 6 unique faces, so the grid reuses
-// Thienvu and Vincent once each, arranged so no repeat sits directly above/
-// below or beside itself (a loose Latin square), so it doesn't read as an
-// obvious duplicate at a glance the way 3 flat repeating columns would.
+// DECISION: previously used team headshots (agency operators, not creators)
+// as a stand-in, padded out with repeats since only 3-4 distinct photos
+// existed. Replaced with real avatars/thumbnails pulled from the actual
+// creators in the "Our Work" showcase carousel (app/page.tsx showcaseVideos)
+// — captured via Playwright by loading each post's platform embed and
+// intercepting the real avatar/thumbnail image response (not the site's own
+// oEmbed call, which only returns skeleton-placeholder HTML with no real
+// image data; the real assets only exist once the platform's embed.js
+// renders client-side). 6 distinct creators: 3 TikTok (jacobw.health,
+// codewithsam4, abgetsfit_) + 3 Instagram posts from the same carousel.
+// Saved locally in public/creators/ rather than hotlinking — both
+// platforms' CDN URLs are signed with expiry timestamps and reject direct
+// curl requests outside the original browser session anyway. See
+// docs/DECISIONS.md (topic: hero-story-card-v3).
 const SOURCING_AVATARS = [
-  "/videos/team-thienvu-new.jpg",
-  "/videos/team-daniel.jpg",
-  "/videos/team-vincent.jpg",
-  "/videos/team-daniel-candid.png",
-  "/videos/team-vincent.jpg",
-  "/videos/team-thienvu-new.jpg",
+  "/creators/tiktok-jacobw-avatar.jpg",
+  "/creators/ig-1-avatar.jpg",
+  "/creators/tiktok-codewithsam4-avatar.jpg",
+  "/creators/ig-2-avatar.jpg",
+  "/creators/tiktok-abgetsfit-avatar.jpg",
+  "/creators/ig-3-avatar.jpg",
 ];
-// Only 3 distinct real thumbnails exist. A naive i % 3 fill repeats the same
-// row 3 times over (0,1,2 / 0,1,2 / 0,1,2), which is exactly the "same clip
-// tiled" look this was meant to fix. This index order is a Latin square (no
-// row or column repeats a source image) so the 3 real thumbnails still fill
-// a fuller 3x3 grid without any two identical tiles lining up.
-const POST_THUMBS = ["/videos/thumb-1.png", "/videos/thumb-2.png", "/videos/thumb-3.png"];
+// Real video thumbnails from the same 3 TikTok posts (the ones with a
+// still-frame thumbnail available via the embed, vs. Instagram posts which
+// only exposed avatar images through this capture method, not preview
+// frames). Latin-square order still applies since there are only 3 unique
+// images for a 3x3 grid — see the POST_THUMB_ORDER comment below.
+const POST_THUMBS = [
+  "/creators/tiktok-jacobw-thumb.jpg",
+  "/creators/tiktok-codewithsam4-thumb.jpg",
+  "/creators/tiktok-abgetsfit-thumb.jpg",
+];
 const POST_THUMB_ORDER = [0, 1, 2, 1, 2, 0, 2, 0, 1];
+
+// Small monochrome line icons for the Building Strategy / Accounts Warming
+// checklists — plain checkmarks read as a placeholder list; a distinct icon
+// per item makes each row legible as its own concept at a glance.
+function IconLayers() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <path d="M8 2.5 2.5 5.5 8 8.5l5.5-3Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+      <path d="M2.5 8.5 8 11.5l5.5-3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+      <path d="M2.5 11.5 8 14.5l5.5-3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function IconTrending() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <path d="M2 12l4-4 2.5 2.5L13.5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 5h3.5v3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function IconGrid() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  );
+}
+function IconClock() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M8 5v3.2l2 1.3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+function IconProfile() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <circle cx="8" cy="5.5" r="2.5" stroke="currentColor" strokeWidth="1.3" />
+      <path d="M2.5 14c0-2.8 2.5-4.5 5.5-4.5s5.5 1.7 5.5 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+function IconEngagement() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0">
+      <path d="M8 13.5s-5.5-3.4-5.5-7A3 3 0 0 1 8 4.7 3 3 0 0 1 13.5 6.5c0 3.6-5.5 7-5.5 7Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 function useElementInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T>(null);
@@ -120,44 +182,61 @@ function StageSourcingCreators({ active }: { active: boolean }) {
   );
 }
 
-const STRATEGY_ITEMS = ["Content pillars", "Format testing plan", "Platform mix", "Posting cadence"];
+const STRATEGY_ITEMS = [
+  { text: "Content pillars", Icon: IconLayers },
+  { text: "Format testing plan", Icon: IconTrending },
+  { text: "Platform mix", Icon: IconGrid },
+  { text: "Posting cadence", Icon: IconClock },
+];
 
+// DECISION: was a single flat bg-bg-elevated card (solid, no blur) — clashed
+// with the Liquid Glass treatment used elsewhere on the phone (the Revenue
+// stage's StatChip pills). Rebuilt as individual glass pills (one per item,
+// bg-white/[0.08] + backdrop-blur-md + border-white/15 + inset highlight,
+// same recipe as StatChip) instead of one card holding plain text rows —
+// matches the established language and gives each item its own icon instead
+// of a bare checkmark.
 function StageBuildingStrategy({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="bg-bg-elevated rounded-xl border border-border p-4 flex flex-col gap-3.5">
-          {STRATEGY_ITEMS.map((item, i) => (
-            <div
-              key={item}
-              className="flex items-center gap-2.5 transition-all duration-500"
-              style={{
-                opacity: active ? 1 : 0,
-                transform: active ? "translateX(0)" : "translateX(-8px)",
-                transitionDelay: active ? `${i * 280}ms` : "0ms",
-              }}
-            >
-              <span className="w-4 h-4 rounded-full border border-text-dim shrink-0 flex items-center justify-center text-[9px] text-text">
-                &#10003;
-              </span>
-              <span className="text-[11px] text-text-secondary font-medium">{item}</span>
-            </div>
-          ))}
-        </div>
+      <div className="flex-1 flex flex-col justify-center gap-2">
+        {STRATEGY_ITEMS.map(({ text, Icon }, i) => (
+          <div
+            key={text}
+            className="flex items-center gap-2.5 bg-white/[0.08] backdrop-blur-md rounded-full border border-white/15 px-3.5 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-500"
+            style={{
+              opacity: active ? 1 : 0,
+              transform: active ? "translateX(0)" : "translateX(-8px)",
+              transitionDelay: active ? `${i * 280}ms` : "0ms",
+            }}
+          >
+            <span className="w-5 h-5 rounded-full bg-white/10 shrink-0 flex items-center justify-center text-white">
+              <Icon />
+            </span>
+            <span className="text-[11px] text-white font-medium flex-1">{text}</span>
+            <span className="w-3.5 h-3.5 rounded-full bg-white text-black shrink-0 flex items-center justify-center text-[8px]">
+              &#10003;
+            </span>
+          </div>
+        ))}
       </div>
       <StageLabel text="Building strategy" />
     </StageWrap>
   );
 }
 
-const WARMUP_ITEMS = ["Profile optimized", "Engagement started", "Algorithm trust building"];
+const WARMUP_ITEMS = [
+  { text: "Profile optimized", Icon: IconProfile },
+  { text: "Engagement started", Icon: IconEngagement },
+  { text: "Algorithm trust building", Icon: IconTrending },
+];
 
 // DECISION: kept the avatar+username row from the real @vocreations Instagram
 // layout (circular avatar, username placeholder beside it) so this still
-// reads as "an account," but swapped the static 0-posts/0-followers pair for
-// a staggered checklist (same pattern as StageBuildingStrategy) — a single
-// frozen checkmark didn't read as a process happening over time the way a
-// list checking off in sequence does.
+// reads as "an account." The checklist below was a single flat bg-bg-elevated
+// card (solid, no blur) — same fix as StageBuildingStrategy: individual glass
+// pills (bg-white/[0.08] + backdrop-blur-md + border-white/15) with a per-item
+// icon instead of one card of plain checkmark+text rows.
 function StageAccountsWarming({ active }: { active: boolean }) {
   return (
     <StageWrap active={active}>
@@ -172,23 +251,26 @@ function StageAccountsWarming({ active }: { active: boolean }) {
               className="object-cover"
             />
           </div>
-          <div className="h-3 w-20 bg-bg-elevated rounded-full" />
+          <div className="h-3 w-20 bg-white/10 rounded-full" />
         </div>
-        <div className="w-full bg-bg-elevated rounded-xl border border-border p-4 flex flex-col gap-3">
-          {WARMUP_ITEMS.map((item, i) => (
+        <div className="w-full flex flex-col gap-2">
+          {WARMUP_ITEMS.map(({ text, Icon }, i) => (
             <div
-              key={item}
-              className="flex items-center gap-2.5 transition-all duration-500"
+              key={text}
+              className="flex items-center gap-2.5 bg-white/[0.08] backdrop-blur-md rounded-full border border-white/15 px-3.5 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-500"
               style={{
                 opacity: active ? 1 : 0,
                 transform: active ? "translateX(0)" : "translateX(-8px)",
                 transitionDelay: active ? `${400 + i * 500}ms` : "0ms",
               }}
             >
-              <span className="w-4 h-4 rounded-full border border-text-dim shrink-0 flex items-center justify-center text-[9px] text-text">
+              <span className="w-5 h-5 rounded-full bg-white/10 shrink-0 flex items-center justify-center text-white">
+                <Icon />
+              </span>
+              <span className="text-[11px] text-white font-medium flex-1">{text}</span>
+              <span className="w-3.5 h-3.5 rounded-full bg-white text-black shrink-0 flex items-center justify-center text-[8px]">
                 &#10003;
               </span>
-              <span className="text-[11px] text-text-secondary font-medium">{item}</span>
             </div>
           ))}
         </div>
@@ -344,13 +426,13 @@ export default function HeroStoryCard() {
     // rear camera bump to recolor — the color read comes entirely from the
     // edge/button gradient.
     <div ref={ref} className="relative">
-      <div className="absolute -left-[2px] top-[78px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
-      <div className="absolute -left-[2px] top-[104px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
-      <div className="absolute -left-[2px] top-[138px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
-      <div className="absolute -right-[2px] top-[112px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -left-[2px] top-[95px] w-[3px] h-[16px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -left-[2px] top-[127px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -left-[2px] top-[168px] w-[3px] h-[26px] rounded-l-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
+      <div className="absolute -right-[2px] top-[136px] w-[3px] h-[52px] rounded-r-[2px] bg-gradient-to-b from-[#e8e8e8] via-[#a8a8a8] to-[#4a4a4a]" />
 
       <div className="rounded-[46px] p-[3px] shadow-2xl bg-[linear-gradient(135deg,#e8e8e8_0%,#a8a8a8_18%,#5c5c5c_38%,#8a8a8a_52%,#3d3d3d_72%,#c7c7c7_88%,#6b6b6b_100%)]">
-        <div className="bg-bg-card/50 backdrop-blur-sm rounded-[43px] aspect-[9/16] relative overflow-hidden border border-black/40">
+        <div className="bg-bg-card/50 backdrop-blur-sm rounded-[43px] aspect-[9/19.5] relative overflow-hidden border border-black/40">
           <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
             <Image
               src="/vocreations-mark-white.png"
