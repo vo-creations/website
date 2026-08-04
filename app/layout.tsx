@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Vo Creations",
   },
   description:
-    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. Posting live in 10-14 days. 1B+ views generated for brands like Fable, Cluely, and Codedex.",
+    "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
     canonical: "/",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vo Creations: Make Them Remember.",
     description:
-      "Trained creators. Proven formats. Predictable virality. The only UGC agency that builds its own creator supply chain in-house.",
+      "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
     siteName: "Vo Creations",
     type: "website",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vo Creations: Make Them Remember.",
     description:
-      "The only UGC agency that trains its own creators. 180 videos, 4 platforms, posting live in 10-14 days.",
+      "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
     images: ["/og-image.png"],
   },
 };

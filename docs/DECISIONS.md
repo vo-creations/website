@@ -3024,3 +3024,32 @@ landing on the homepage.
   `/mentorship` and `/pre-call` both returned `308` to `/`; `/about`
   spot-checked alongside to confirm the existing redirects still work
   unchanged.
+
+## topic: seo-metadata-refresh — _2026-08-04_
+
+`app/layout.tsx`'s root metadata (`description`, plus `openGraph` and
+`twitter` descriptions) still cited "180 talking-head videos across 4
+platforms" and "10-14 days" — stale figures left over from before this
+session's redesign work, out of sync with the current hero stats
+(1B+ views, 500+ trained creators) and the phone mockup's "2,400+"
+posting figure (see `hero-story-card-stats-update`). `<title>`'s
+`default` was already correct ("Vo Creations: UGC Agency for Startups
+& Consumer Apps") and untouched.
+
+- New description everywhere it appears: "Vo Creations builds and
+  runs your in-house UGC program — 1B+ views generated, 500+ trained
+  creators, 2,400+ videos produced monthly across TikTok, Instagram,
+  YouTube, and Facebook."
+- Used the *exact same string* for `metadata.description`,
+  `openGraph.description`, and `twitter.description` rather than
+  three independently-worded variants — guarantees Google's search
+  snippet and social-share previews (iMessage/Slack/Twitter) can never
+  drift out of sync with each other again. `openGraph.title`/
+  `twitter.title` left as the branded "Vo Creations: Make Them
+  Remember." tagline, unchanged (title mismatch across surfaces isn't
+  the problem being solved here, stat mismatch was).
+- Verified against a production build (`next start`), not just source:
+  curled the rendered HTML and grepped the actual `<title>`,
+  `<meta name="description">`, `og:title`, `og:description`,
+  `twitter:title`, `twitter:description` tags to confirm the live
+  markup matches, not just the source file.
