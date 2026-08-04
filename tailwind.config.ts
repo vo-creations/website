@@ -88,18 +88,42 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
-        // One-shot entrance for the hero phone mockup: one full 360° spin
-        // (not a small wobble — rotate(360deg) is a complete revolution that
-        // lands back at visually 0deg) while scaling up from half-size and
-        // fading in over the first 20%, decelerating into its resting
-        // position via the easing curve on the animation itself rather than
-        // extra keyframe stops. Runs on a separate wrapper from `float`
-        // (continuous vertical bob) since two animations on the same element
-        // both targeting `transform` would clobber each other, not compose.
+        // One-shot entrance for the hero phone mockup: a plain settle, no
+        // rotation — replaces an earlier version that did a full 360° spin
+        // on load, which read as unprofessional/gimmicky. Just scales up
+        // slightly from 96% and drops in a few px while fading in, landing
+        // via the animation's own easing curve (no extra keyframe stops
+        // needed for a deceleration feel). Runs on a separate wrapper from
+        // `float` (continuous vertical bob) since two animations on the
+        // same element both targeting `transform` would clobber each
+        // other, not compose. See docs/DECISIONS.md (topic:
+        // hero-phone-entrance).
         phoneEntrance: {
-          '0%': { transform: 'rotate(0deg) scale(0.5) translateY(-20px)', opacity: '0' },
-          '20%': { opacity: '1' },
-          '100%': { transform: 'rotate(360deg) scale(1) translateY(0)', opacity: '1' },
+          '0%': { transform: 'scale(0.96) translateY(10px)', opacity: '0' },
+          '100%': { transform: 'scale(1) translateY(0)', opacity: '1' },
+        },
+        // Screen "power on" — the phone shell settles in dark/off, then the
+        // screen brightens with a brief flicker (a quick dip-and-recover in
+        // the black overlay's opacity, not a transform/jitter) before
+        // landing fully transparent, standing in for a real phone waking up.
+        // Runs once (animation fill-mode `both`), then the lockscreen stage
+        // fades in via its own opacity transition once this completes.
+        screenPowerOn: {
+          '0%': { opacity: '1' },
+          '35%': { opacity: '0.92' },
+          '50%': { opacity: '0.08' },
+          '65%': { opacity: '0.5' },
+          '100%': { opacity: '0' },
+        },
+        // Brief glow bloom behind the lockscreen's passcode row once the
+        // typed phrase completes — a soft white flash standing in for the
+        // "unlocked" moment, opacity+scale only (no jitter). Runs once,
+        // fill-mode `both`, then the whole lockscreen fades out via its own
+        // opacity transition as the intro hands off to the stage loop.
+        passcodeUnlock: {
+          '0%': { opacity: '0', transform: 'scale(0.85)' },
+          '35%': { opacity: '0.85', transform: 'scale(1.05)' },
+          '100%': { opacity: '0', transform: 'scale(1.2)' },
         },
       },
       animation: {
@@ -117,7 +141,9 @@ const config: Config = {
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
         float: 'float 5s ease-in-out infinite',
-        'phone-entrance': 'phoneEntrance 1s linear both',
+        'phone-entrance': 'phoneEntrance 0.6s cubic-bezier(0.16,1,0.3,1) both',
+        'screen-poweron': 'screenPowerOn 650ms ease-out 500ms both',
+        'passcode-unlock': 'passcodeUnlock 380ms ease-out both',
       },
     },
   },

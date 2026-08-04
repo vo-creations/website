@@ -2295,3 +2295,711 @@ Branch `redesign/agency-only` (still not merged). Extends the
   them, not the pages.
 - The footer's upper "Links" column (Case Studies / Our Team / FAQ's)
   is unrelated and unchanged.
+
+## topic: trusted-by-logos — _2026-08-02 (cut to 10, fomo/Krea added, Makon re-sourced)_
+
+Branch `redesign/agency-only` (still not merged). Supersedes the client
+roster in every earlier entry of this topic — the marquee is now a
+fixed 10, not 18.
+
+- **`trustedBrands` cut from 18 to exactly 10**, in this order:
+  Higgsfield, BlackBox AI, Liftoff, fomo.family, Krea AI, Fable, Notta,
+  Softr, Aonic, Makon AI. Removed: Causes, Codedex, Cooksat, Dealism,
+  Dubbing, Hyperknow, Kicker, Kortix, Tomo, Yorby — their PNGs deleted
+  from `public/logos/` (not just dropped from the array) so no orphaned
+  assets linger.
+- **fomo.family** (`fomo.png`) and **Krea AI** (`krea.png`) are new to
+  the strip. Both sourced straight from the live sites, not
+  hand-drawn: fomo's wordmark came from `fomo.family`'s own sprite
+  sheet (`images/sprite.svg`, symbol `fomo-logo`), Krea's mark from the
+  inline `<svg aria-label="Krea Logo">` on `krea.ai`'s homepage. Both
+  recolored from their source `currentColor`/brand-color fill to flat
+  white (matches the strip's mostly-monochrome convention) and
+  rasterized via a one-off Playwright SVG-to-transparent-PNG script
+  (loads a local HTML wrapper, screenshots just the `<svg>` element
+  with `omitBackground: true`) since no `rsvg-convert`/`cairosvg`/
+  `inkscape` was available locally.
+- **Makon AI re-sourced from scratch** (`makon.png`, replaces the old
+  `makon1.png` which is deleted). The previous file was low-quality;
+  the real brand mark turns out to be a panda-face icon, not the
+  abstract shape previously used. Pulled both the icon and the
+  "Makon" wordmark from `makon.ai`'s own hashed Astro build assets
+  (`_astro/logo-mark-ondark.*.svg` / `logo-word-ondark.*.svg` — the
+  "ondark" variant, i.e. light-colored for dark backgrounds; "onlight"
+  is the wrong one for our site and 404s if you guess the filename
+  without the content hash, which the raw homepage HTML has to supply).
+  Composited icon + wordmark side by side into one lockup at build
+  time (not two separate logo entries) since that's how Makon's own
+  site pairs them. One real bug caught before finalizing: the
+  wordmark's source path data uses `fill="black"` in the variant
+  fetched, which is invisible against this site's dark background —
+  had to override those specific paths to `#FFFEFE` (leaving the
+  panda's genuinely-black facial details untouched) before it read
+  correctly. Verified via the same black-background composite-preview
+  technique as fomo/Krea.
+- Final roster re-verified live in the browser (marquee scrolled to
+  multiple positions, animation frozen via injected CSS, screenshotted)
+  to confirm all 10 render and nothing from the removed list survived
+  in the DOM.
+
+## topic: trusted-by-logos — _2026-08-03 (full QA pass: colors, domains, sizing)_
+
+Branch `redesign/agency-only` (still not merged). A full audit against
+each brand's real official site, triggered by two real bugs: Krea was
+rendering icon-only with no readable name, and the strip's sizing was
+visibly inconsistent logo-to-logo. Every one of the 10 was re-verified
+against its live site before deciding whether to touch it.
+
+- **Two logos were wrong assets entirely, not just wrong color.**
+  `liftoff.png` was sourced from `liftoff.io` (mobile ad-tech, blue
+  brand) — the actual client is `liftoffrank.com` (a gym-ranking
+  fitness app, unrelated company, white rocket-badge icon + "Liftoff"
+  wordmark in Figtree). `aonic.png` was a low-res (720×213) wordmark of
+  unconfirmed origin; re-sourced at full resolution (1000×295) directly
+  from `aoniclife.com`'s own CDN asset (`AONIC_LOGO_BOLD.png`), then
+  inverted the near-black ink to white (their site is light-themed with
+  no dark-bg variant provided, so inversion is the standard treatment
+  for a monochrome wordmark — not an invented color).
+- **Krea AI**: was icon-only (the abstract "K" mark), unreadable as a
+  company name on its own, exactly as flagged. `krea.ai`'s own header
+  is icon-only too (no lockup to copy) and their favicons confirm the
+  brand is genuinely black/white with no hidden color, so the fix was
+  pairing the existing white icon with a typed "Krea" wordmark (system
+  sans-serif — their actual site font, "Suisse Intl", is a paid
+  commercial font with no redistribution rights, so it wasn't embedded).
+- **fomo.family and BlackBox.AI and Higgsfield were already correct.**
+  Checked each against its own site (fomo: header nav color +
+  app-icon colors both confirm genuine white/near-white brand, no
+  hidden color; BlackBox.AI and Higgsfield: both confirmed monochrome
+  white icon+wordmark on their own dark nav). Not touched.
+- **Notta upgraded from wordmark-only to icon+wordmark.** Notta's own
+  header uses a plain black "notta" wordmark (no icon, meant for their
+  light-themed site) — inverted to white for the same reason as Aonic.
+  But their favicon revealed a real brand-color asset the header
+  doesn't surface: a blue-to-pink gradient rounded-square with a white
+  "n", pulled at 128×128 from their own CDN. Composited icon + (now
+  white) wordmark into one lockup, matching the Fable/Softr pattern of
+  "real color icon + white text" rather than flattening everything to
+  white.
+- **Makon AI re-checked, left unchanged.** Confirmed their own site
+  never shows the icon+wordmark lockup on anything but a white nav
+  pill (never picks up the page's purple background), and the only
+  on-colored-background glyph they use live is a simplified flat-white
+  "Po" mascot badge with no wordmark — neither is a better source than
+  the "ondark" hashed asset pair already used (see the 2026-08-02
+  entry above), which is a real named dark-background variant Makon
+  ships, not an inference from a screenshot.
+- **Sizing bug root-caused**: `LogoImage`'s box was `w-[130px] h-14` —
+  width- and height-fixed with `object-contain`, so the render height
+  actually taken by each logo depended on its own aspect ratio (a
+  square icon like old Krea would hit the 56px height ceiling; a wide
+  icon+wordmark lockup like Makon's ~5:1 lockup would hit the 130px
+  width ceiling first and render at only ~25px tall). That's what
+  "some logos look bigger than others" actually was, not a per-file
+  export mistake. Fixed at the layout call site (`app/page.tsx`, the
+  Trusted By section only — `ResultCard.tsx`'s own `LogoImage` usage
+  is a different fixed-chip context and wasn't touched) by switching
+  `boxClassName` from `w-[130px] h-14` to `h-9 w-auto`: a fixed-height,
+  auto-width box, so `object-contain` always scales by height and
+  every logo is height-constrained the same way regardless of aspect
+  ratio. Verified with `getBoundingClientRect()` in a live Playwright
+  page, not eyeballed: all 10 logos measured exactly 36px tall, widths
+  varying naturally from 90px (Fable) to 236px (BlackBox.AI) per their
+  real content, same as any real trusted-by strip. Gap spacing
+  (`gap-x-10`) was already uniform in the flex track; it only *looked*
+  uneven before because the wildly different logo heights made the
+  visual rhythm inconsistent, not because the gap value itself varied.
+
+## topic: trusted-by-logos — _2026-08-03 (retina sizing bug: next/image → plain img)_
+
+Branch `redesign/agency-only` (still not merged). The `h-9 w-auto`
+fixed-height fix above was verified only at 1x DPR (the default
+Playwright viewport) and looked uniform there — but on a real 2x
+(retina) display, 4 of the 10 logos rendered visibly smaller than the
+other 6, which is what actually prompted this follow-up.
+
+- **Root cause**: `LogoImage` used `next/image`, which auto-generates a
+  `srcset` with "1x"/"2x" candidates. On a 2x-DPR display the browser
+  divides the chosen candidate's actual pixel dimensions by 2 for CSS
+  layout (per the srcset spec — a "2x" resource is expected to have
+  double the pixel density). Next's image optimizer never upscales past
+  a source file's native resolution, so for the 4 smallest source PNGs
+  (`higgsfield.png` 313×58, `blackbox.png` 390×60, `fable.png` 148×59,
+  `softr.png` 124×38 — all comfortably under the 640px width Next
+  requests for the "2x" candidate), the browser ended up serving the
+  *native* small file but still dividing it by 2 for layout, producing
+  an artificially tiny effective CSS size (e.g. softr: native height 38
+  ÷ 2 = 19px) that landed **under** the 36px `max-height` ceiling and
+  never got scaled back up (`max-height` is a ceiling, not a target).
+  The 6 other logos' source files are all large enough (570px+ wide)
+  that their "2x" candidate is a genuine double-resolution image, so
+  dividing by 2 still leaves them taller than 36px, where `max-height`
+  correctly clamps them down to exactly 36px. Confirmed by direct
+  comparison: fetching the same file through Next's `/_next/image`
+  endpoint returned the untouched native resolution for the 4 small
+  files and a proper 640px-wide downscale for the other 6.
+- **This is why Notta/Aonic looked "bigger"**: they weren't oversized —
+  they were two of the six rendering at the *correct* 36px while
+  Higgsfield/BlackBox/Fable/Softr were incorrectly shrunk to 19-30px.
+  Root-caused, not patched per-file: switched `LogoImage.tsx` from
+  `next/image`'s `<Image>` to a plain `<img>` tag (no `srcset`, so no
+  DPR-dependent candidate selection — natural-size auto-sizing +
+  `max-height` is deterministic at every screen density). Verified via
+  `getBoundingClientRect()` in a real 2x-DPR Playwright session (not the
+  default 1x that missed this the first time): all 10 logos now measure
+  35.98-36.00px tall, a sub-pixel spread from browser rounding, not a
+  real difference. Also re-verified visually via cleanly-cropped,
+  non-clipped screenshots of all 10 stacked together (the first crop
+  attempt used a browser viewport wider than the Trusted By card itself,
+  which silently clipped 4 logos via the card's own `overflow-hidden` —
+  not a rendering bug, a test-harness mistake, caught by re-checking
+  before reporting).
+- `LogoImage` is one shared component, so this fix applies everywhere
+  it's used, not just Trusted By: `ResultCard.tsx`'s chip usage
+  (`boxClassName="h-9 w-[130px]"`, a fixed width+height box, not a
+  responsive-height row) also moved from `next/image` to a plain
+  `<img>`. That context wasn't exhibiting the retina bug itself (a
+  fixed w+h box doesn't have the auto-sizing-meets-srcset interaction
+  that caused it), but there was no reason to keep two different
+  `<img>`-rendering strategies behind one shared component, and no
+  regression risk — these are small local transparent PNGs, not
+  LCP-relevant photos, so losing `next/image`'s lazy-loading/
+  responsive-optimization isn't a real cost here.
+
+## topic: trusted-by-logos — _2026-08-03 (real fix: normalize icon-height to text cap-height, not just container)_
+
+Branch `redesign/agency-only` (still not merged). The retina/`next.js
+srcset` fix above made every logo's *container* height identical
+(35.98-36.00px, confirmed with `getBoundingClientRect()`) — but Notta
+and Aonic still visibly read bigger than Higgsfield/Liftoff/Krea/Softr
+after that fix. The container was never the whole story.
+
+- **Root cause, the real one this time**: for every icon+wordmark
+  combo logo, the file's bounding-box height was set by whichever
+  element was taller — the icon or the text — not by the text alone.
+  Measured directly (isolating the icon and text into separate crops
+  by finding the vertical gap between them, then reading each crop's
+  own tight bbox height): `higgsfield` icon:text = 1.10, `blackbox`
+  1.58, `fable` 2.19, `softr` 1.31, `liftoff` 2.22, `krea` 1.95, `notta`
+  0.88, `makon` 0.98. When the *whole* bbox is scaled to fill a fixed
+  container height, a logo whose icon is 2x taller than its own text
+  (liftoff, krea, fable) ends up with text at roughly half the visual
+  size of a logo where icon and text are already close to equal height
+  (makon, notta) — identical container, wildly different readable text
+  size. `fomo` and `aonic` are word-only (no icon), so their full bbox
+  *is* the text, i.e. an implicit 100%-fill ratio — which is why they
+  read "full-size" and the icon-heavy ones read smaller by comparison.
+  Confirms this was never actually about Notta/Aonic being "too big" —
+  they were the ones closest to the correct proportion the whole time.
+- **Fix**: rescaled every icon so its height exactly equals its own
+  logo's text cap-height (ratio 1.00, confirmed post-fix for all 8
+  icon+wordmark logos; `notta` lands at 1.01 from a single rounding
+  pixel, not a real gap), then recomposited icon+text with a
+  proportional gap and re-trimmed. This is deliberately *not* matching
+  each brand's own "native" proportions — BlackBox's real official
+  combined-lockup SVG (fetched fresh from blackbox.ai, see below) is
+  itself 1.57 icon:text, and that's presumably a legitimate design
+  choice by BlackBox's own team. Applying it as-is would have
+  reintroduced the same cross-logo inconsistency this fix exists to
+  remove, so the 1:1 rule was applied uniformly across all 10 with no
+  exceptions, prioritizing strip-wide consistency over any single
+  brand's native internal balance.
+- **Re-sourced 4 files at proper resolution while fixing this**:
+  `higgsfield.png`, `blackbox.png`, `fable.png`, `softr.png` were still
+  the small original files from an earlier session (313×58, 390×60,
+  148×59, 124×38). Raster-editing them directly (crop icon/text,
+  resize, recomposite) would have produced a *new* under-resolution
+  bug — a first attempt at this exact fix did exactly that: the
+  resized-down `fable.png`/`softr.png` output landed at 27px and 29px
+  tall, just *under* the 30px display target, and since CSS `auto`
+  sizing only shrinks to fit `max-height` and never stretches a smaller
+  image up to fill it, those two rendered at their tiny native size
+  instead of the target height — the same fundamental "under-resolved
+  source" failure mode as the retina bug above, just crossing the
+  threshold at 1x instead of 2x DPR this time. Fixed properly by
+  re-fetching real, high-resolution vector source for all 4 instead of
+  editing the old raster files:
+  - `higgsfield.png`: icon is `higgsfield.ai`'s own inline SVG
+    (`hf-logo__glyph`, viewBox 0 0 20 20, `fill="currentColor"`,
+    extracted live from the page — it's a client-rendered SPA, not in
+    the static HTML). Wordmark typed in "Space Grotesk" 700 (a free
+    Google Font — confirmed via `getComputedStyle` that this is their
+    actual real site font, not a guess).
+  - `blackbox.png`: `blackbox.ai` ships its ENTIRE lockup (icon +
+    "BLACKBOX.AI" wordmark) as one single official SVG
+    (`viewBox="0 0 2026 312"`, `color:#F2F2F0`, found directly in the
+    page's server-rendered HTML — no live-DOM extraction needed this
+    time). Used as the source for icon/text splitting rather than
+    reconstructing it by hand.
+  - `fable.png`: same pattern — `fable.co` ships one combined SVG
+    (`viewBox="0 0 82 33"`, `aria-label="Fable logo"`), extracted live
+    (client-rendered SPA) in six verified non-overlapping 600-char
+    chunks after an initial attempt with unverified chunk boundaries
+    produced a silent duplicate-substring corruption that broke one
+    letterform (caught by rendering and visually inspecting before
+    trusting it, not assumed correct from the fetch succeeding).
+  - `softr.png`: `softr.io`'s official `Logo.svg` (100×48, from their
+    Webflow asset CDN, found directly in static HTML) is the combined
+    icon+wordmark. Text ships as `fill="#030712"` (near-black, meant
+    for their light-themed site) — inverted to white for our dark bg,
+    same treatment as Aonic/Notta's wordmarks; the 3-color icon
+    (yellow/pink/blue) was left at its real brand colors.
+  - All 4 rasterized at a large explicit pixel size (removing/
+    overriding any inline `height:Npx` style the source SVG carried,
+    which otherwise silently caps the screenshot-based rasterizer's
+    output back down to that small size regardless of the requested
+    canvas) before the icon/text split + resize, so the final files
+    are 148-225px tall — comfortably above any real display target.
+- Every one of the 10 final files' icon-to-text ratio and pixel
+  resolution was re-verified by script (not eyeballed) after the
+  rebuild, and the full strip was re-screenshotted at
+  `deviceScaleFactor: 2` and visually compared logo-by-logo before
+  reporting this done.
+
+## topic: hero-phone-entrance — _2026-08-03_
+
+Branch `redesign/agency-only` (still not merged). The hero phone
+mockup's load-in animation previously did a full 360° rotation
+(`phoneEntrance` keyframes in `tailwind.config.ts`, `rotate(0deg)` →
+`rotate(360deg)` while scaling up from 50% and fading in) — read as
+unprofessional/gimmicky and was removed entirely, not toned down.
+
+- **New phone-shell entrance**: plain settle, no rotation at all —
+  fades in while scaling up from 96% and dropping in 10px, landing via
+  `cubic-bezier(0.16,1,0.3,1)` (a fast-then-decelerate curve) over
+  600ms, replacing the old 1s **linear** spin (linear read mechanical;
+  the new curve reads as a soft product-moment "settle").
+- **New screen-level intro sequence**, added inside
+  `components/HeroStoryCard.tsx` on top of the existing 6-stage
+  looping mockup (source → strategize → warm up → post → views →
+  revenue), which is unchanged and still runs exactly as before once
+  the intro finishes:
+  1. **Screen stays black** for the shell's first ~500ms (matches the
+     shell-entrance duration) via a `bg-black` overlay `div`
+     (`z-30`, full `inset-0`) driven by a new `screen-poweron` Tailwind
+     animation (`animation-delay: 500ms`).
+  2. **Power-on flicker**: the overlay's opacity runs `1 → 0.92 → 0.08
+     → 0.5 → 0` over 650ms — a quick near-full brighten, a small dip
+     back down, then fully clear. Opacity-only, no transform, so
+     there's no jitter/motion, just a brightness flicker like a real
+     display waking up.
+  3. **Lockscreen stage** (new `StageLockscreen` component): once the
+     power-on animation completes (tracked via a `setTimeout` in JS
+     matched to the CSS animation's own delay+duration, not
+     independently guessed), a centered Vo mark
+     (`/vocreations-mark-white.png`, the same file already used in the
+     phone's dynamic-island cutout) + "Vo Creations" + the tagline
+     "make them remember." fades in over 700ms, holds for
+     `LOCKSCREEN_HOLD_MS` (2200ms), then fades back out — styled
+     plain and centered like a real iOS lockscreen, no extra chrome.
+  4. **Handoff into the existing loop**: a new `introPhase` state
+     (`"poweron" | "lockscreen" | "stages"`) gates the pre-existing
+     stage-cycling `setInterval` — it doesn't start until `introPhase
+     === "stages"`, so the 6-stage loop can't tick underneath the
+     lockscreen. The top progress-bar row (the 6 segments showing
+     which stage is active) is also opacity-gated on `stagesActive`,
+     since it has no meaning during the lockscreen. Every existing
+     stage's `active` prop became `stagesActive && stage === i`
+     (was just `stage === i`) — one extra condition, no other change
+     to any of the 6 stages' own internals.
+- **Verified by measurement, not by eye**: timed screenshots against
+  the actual production build (`next build && next start` — the dev
+  server's on-demand compile made naive wall-clock timing tests
+  unreliable, since first-request compile delay was initially
+  misread as a sequencing bug before re-testing against a warmed-up
+  prod server) plus `getComputedStyle().opacity` read at multiple
+  timestamps for both the overlay and the lockscreen confirmed: overlay
+  fully opaque through the 500ms delay, fading per the keyframe
+  schedule after; lockscreen opacity genuinely 0 throughout the
+  power-on phase (not just visually assumed), fading in once the
+  overlay clears, holding at 1, then fading out before the first loop
+  stage becomes active. No rotation at any point in the capture.
+
+## topic: hero-lockscreen-passcode — _2026-08-03_
+
+Branch `redesign/agency-only` (still not merged). Extended the hero
+phone's lockscreen stage (see `hero-phone-entrance` above) with a
+passcode-unlock moment before it hands off to the existing 6-stage
+loop — the branding hold (mark + "Vo Creations" + tagline) is
+unchanged; a passcode row was added beneath it.
+
+- **Passcode row**: one small underline slot per non-space character
+  of `PASSCODE_PHRASE = "make them remember"` (the tagline above it,
+  minus the trailing period — a passcode field doesn't type
+  punctuation), spaces get a plain wider gap with no underline. Same
+  plain sans-serif as the rest of the lockscreen (no monospace/mono
+  font swapped in), just small (9px) and bold so it reads as UI chrome
+  rather than body copy. Letters fade in above their own underline as
+  `typedCount` advances, matching the "typed like a passcode instead
+  of numbers" ask.
+- **Unlock glow**: a soft white blur bloom (`animate-passcode-unlock`,
+  a new Tailwind keyframe — opacity+scale only, no jitter, 380ms,
+  same one-shot `both`-fill-mode pattern as `screen-poweron`) renders
+  behind the passcode row once typing finishes, standing in for the
+  "unlocked" moment the brief asked for instead of a hard cut.
+- **Real bug caught and fixed during this build, not shipped**: the
+  first version had the parent (`HeroStoryCard`) independently
+  `setTimeout` its way from "unlocking" to "stages" after a guessed
+  duration (`PASSCODE_PHRASE.length * PASSCODE_LETTER_MS +
+  UNLOCK_FLASH_MS`), while `StageLockscreen` separately ran its own
+  `setInterval` to advance `typedCount`. Under real per-tick overhead
+  (each tick triggers a React re-render, which isn't free, and this
+  sandbox's headless Chromium showed that overhead compounding
+  noticeably under load — confirmed by direct measurement: 8 of 18
+  ticks completed in 1467ms, ~183ms/tick actual against a coded 65ms),
+  the interval fell behind the parent's fixed-duration timer. The
+  parent moved on to "stages" before typing ever reached the end of
+  the phrase — cutting the passcode off mid-word and never firing the
+  unlock glow at all. Confirmed as a genuine, reproducible bug (not a
+  measurement artifact) via Playwright's `waitForFunction` polling for
+  the glow element: it timed out completely (30s) against the
+  buggy version, then succeeded immediately once fixed.
+- **Fix**: `StageLockscreen` now drives its own typing loop off
+  elapsed wall-clock time (`Date.now()` delta each
+  `requestAnimationFrame`, not a naive per-letter `setInterval` tick
+  count) — self-correcting against drift instead of compounding it —
+  and signals the parent via an `onUnlocked` callback once typing has
+  *actually* finished (plus the flash duration), rather than the
+  parent guessing when that will be. The parent's own timer now only
+  covers the two genuinely fixed-duration phases (poweron→lockscreen,
+  lockscreen→unlocking); the unlocking→stages transition has no
+  timeout of its own at all, so it structurally cannot fire early
+  regardless of how slow or fast the browser's timers run.
+- Total passcode-to-unlock time is nominally ~1.55s (18 chars ×
+  65ms + 380ms flash), inside the requested 1.5-2s budget; because the
+  transition is now callback-driven rather than time-boxed, actual
+  wall-clock duration will vary slightly by device/browser speed —
+  intentional, since the alternative (a hard timeout) is the exact
+  bug described above.
+- Verified after the fix: `waitForFunction` finds the unlock-glow
+  element (previously never appeared); the full phrase
+  (`"makethemremember"`, all 16 non-space characters, correctly
+  ordered) is present in the DOM before the phase ever advances;
+  zero console errors/warnings across a full played-through sequence
+  in real Chromium; a plain page reload with no automation-driven
+  timing at all landed a clean screenshot of the complete phrase fully
+  typed into the passcode row, matching the design intent exactly.
+
+## topic: result-card-uniform — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). Every case study card
+now matches the plain style of the original 3 (Liftoff/Higgsfield/Aonic)
+— logo, total views stat, timeframe/creators line, and "Click for full
+case study" link. No card shows challenge/approach/result prose anymore.
+
+- Removed `challenge`, `approach`, and `result` from `ResultCard`'s
+  props interface and its expandable-detail rendering entirely (not
+  just stopped passing them) — `components/ResultCard.tsx` no longer
+  has any code path that renders that kind of text, so it can't
+  silently come back on a future card. The 4 cards that had this prose
+  (Fable, BlackBox AI, Makon AI, Codédex) had it deleted at the call
+  site in `app/page.tsx`; their expanded state is now the factual
+  `miniStats` grid only, same as the other 3.
+- `Codédex`'s `company` prop corrected from `"Codedex"` to `"Codédex"`
+  (the real brand name, with the accent) to match the actual logo now
+  in use and the alt text derived from it.
+
+## topic: result-card-logos — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). Full logo audit of
+all 7 case study cards, triggered by two broken logos: `Makon AI` was
+still pointing at `/logos/makon1.png` and `Codédex` at
+`/logos/codedex.png` — both files were deleted during the Trusted By
+cleanup (2026-08-02/03, see the `trusted-by-logos` entries) since
+neither brand is in that strip, but nobody had gone back to fix the
+two case-study cards that still referenced them. Both were rendering
+as broken images.
+
+- **Makon AI**: repointed to `/logos/makon.png` — the real panda-mark +
+  wordmark lockup already sourced from makon.ai's own "ondark" assets
+  for the Trusted By strip (see `trusted-by-logos`, 2026-08-02). No new
+  sourcing needed, just fixing the stale path.
+- **Codédex**: had no asset in `public/logos/` at all (never re-sourced
+  after the original file was deleted), so this one needed fresh
+  sourcing, not just a path fix. Icon is their real gold-coin mark
+  (`coin-cropped.png`, 907×1033, fetched directly from codedex.io's own
+  site — a classic pixel-art coin, not a stand-in). Their actual
+  wordmark font (`PixelGridM`, confirmed via `getComputedStyle` on the
+  live site) is a proprietary/custom font with no redistribution
+  rights, so "Codédex" is set in "Press Start 2P" instead — a free
+  Google Font in the same 8-bit-pixel spirit as their whole brand
+  (matches the precedent from `hero-lockscreen-passcode`/`Krea`: use
+  the real font when it's free, a thematically-close free substitute
+  when it isn't). Same icon-height-to-text-cap-height 1:1 normalization
+  applied as every other logo re-sourced this cycle (icon was 1.63:1
+  before, corrected to 1.00).
+- **The other 5 cards' logos** (Liftoff, Higgsfield, Aonic, Fable,
+  BlackBox AI) were already correct — same shared `public/logos/*.png`
+  files already fixed for real brand colors and 1:1 icon/text ratio
+  during the Trusted By logo work, since `ResultCard` and the Trusted
+  By marquee draw from the same directory. No changes needed.
+- **Sizing**: confirmed `ResultCard.tsx` was already using the shared
+  `LogoImage` component (not a separate/unfixed one) — but its own
+  `boxClassName` was still the old fixed `w-[130px]` **and** `h-9`,
+  the exact width+height-both-fixed pattern that caused the Trusted By
+  inconsistent-height bug in the first place (see `trusted-by-logos`
+  sizing entries). Dropped the fixed width (`h-9 w-auto`, matching the
+  Trusted By fix's technique, kept at the card's own existing 36px
+  scale rather than the marquee's smaller 30px since this is a bigger,
+  more prominent placement). Verified via `getComputedStyle` in a live
+  page, not eyeballed: all 7 logos now measure 35.99-36.00px tall,
+  widths varying naturally from 122px (Aonic) to 343px (BlackBox.AI)
+  per their real content.
+
+## topic: showcase-tiktok-reliability — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). The "Content that
+converts and goes viral" carousel's 3 TikTok embeds were 403ing on raw
+`*.tiktokcdn-us.com/.../video/tos/...` CDN URLs on every page load,
+flooding the console and reading as a stuck/broken page.
+
+- **Root-caused before touching anything**: full `grep` audit of
+  `app/` and `components/` found zero raw CDN URLs or `<video src>`
+  hotlinking anywhere in this codebase (the one `<video>` tag that
+  existed, in a dead `VideoPlaceholder.tsx`, was unused — see below).
+  `TikTokEmbed.tsx` was already using the correct official
+  `<blockquote class="tiktok-embed">` + `embed.js` pattern. So the
+  raw CDN URLs in the console were never something *our* code
+  requested directly — they're what TikTok's own official embed
+  iframe (`tiktok.com/embed/v2/{id}`) legitimately fetches
+  internally once `embed.js` converts the blockquote.
+- **Proved the 403 is upstream, not ours, before accepting that as the
+  explanation**: fetched TikTok's real oEmbed API
+  (`tiktok.com/oembed?url=...`) for one of the 3 videos, got back
+  their exact official embed HTML (confirms the video is genuinely
+  meant to be publicly embeddable), pasted that HTML verbatim onto a
+  bare static page on a plain Python `http.server` — zero React,
+  zero Next.js, zero of this repo's code involved — and reproduced
+  the identical 403s and `ERR_ABORTED` failures on the same
+  `video/tos/` CDN paths. Also re-tested with basic anti-bot-detection
+  evasion (spoofed `navigator.webdriver`, real Chrome UA) in case this
+  was simple headless-browser fingerprinting; the 403s persisted
+  regardless. This is a TikTok-side embed/CDN reliability issue,
+  reproducible with their own unmodified official markup — not
+  something fixable by changing how we embed, because we were already
+  embedding correctly.
+- **What was actually fixable, and is the real fix**: the old
+  `TikTokEmbed.tsx` auto-loaded all 3 TikTok iframes on component
+  mount (no gate), unlike `InstagramEmbed.tsx` and `YouTubeEmbed.tsx`,
+  which both already click-to-load. That meant every visitor hit
+  TikTok's flakiness immediately and simultaneously on every page
+  load, which is what was actually flooding the console and making
+  the page feel stuck — not a bug in the embed markup itself.
+  `TikTokEmbed.tsx` now matches the same click-to-load pattern:
+  renders a lightweight placeholder (play button + label + "View on
+  TikTok" link, `bg-black` — no hotlinked thumbnail, since TikTok's
+  oEmbed `thumbnail_url` is itself a short-lived signed URL and
+  hardcoding it would just be the same expiring-URL problem one
+  layer up) until clicked, then injects the real
+  `<blockquote>`/`embed.js`. Confirmed via a live Playwright run:
+  zero TikTok blockquotes/iframes exist in the DOM, zero console
+  errors, zero failed requests on a full page load — the 403s (and
+  the `accelerometer` permissions-policy violation, which comes from
+  TikTok's own iframe once it loads, not anything in this repo's
+  headers — confirmed no CSP/Permissions-Policy is set anywhere in
+  `next.config.mjs`/`middleware.ts`, and the same violation reproduces
+  on the zero-header bare static-page test above) now only occur if
+  and when a visitor actually clicks to play, not for everyone by
+  default. Markup was also brought in line with TikTok's real
+  oEmbed-API HTML output while touching this (`data-embed-from`,
+  populated `<section>` fallback content instead of empty) as a
+  correctness cleanup, though that alone does not change the CDN
+  reliability, only the click-gate does.
+- **Audited every embed in the carousel per the request, not just
+  TikTok**: `InstagramEmbed.tsx` uses Instagram's own sanctioned
+  `/embed` iframe endpoint for the click-to-load preview, then the
+  official `blockquote.instagram-media` + `embed.js` on click —
+  correct. `FacebookEmbed.tsx` uses Facebook's official
+  `plugins/video.php` iframe endpoint — correct. `YouTubeEmbed.tsx`
+  uses `youtube-nocookie.com/embed/` on click plus `img.youtube.com`
+  for thumbnails (YouTube's own public, sanctioned, non-expiring
+  thumbnail CDN — not the same failure class as TikTok's signed
+  URLs) — already the most robust of the four, unchanged. No other
+  raw-CDN-hotlinking pattern found anywhere else in the codebase.
+- **Deleted `components/VideoPlaceholder.tsx`** — a completely unused
+  (zero imports anywhere) dead component that rendered a raw
+  `<video src={src}>` tag directly. It wasn't wired to anything and
+  wasn't the source of this bug, but it's exactly the anti-pattern
+  this fix exists to avoid, sitting in the codebase where a future
+  change could plausibly resurrect it by mistake. Removed rather than
+  left as a "ticking time bomb," per the audit ask.
+
+## topic: result-card-logos — _2026-08-04 (sized down to modest)_
+
+Branch `redesign/agency-only` (still not merged). Extends the
+2026-08-04 `result-card-logos` entry above (which fixed the two broken
+logos and switched `ResultCard`'s `LogoImage` box from fixed
+`w-[130px] h-9` to `h-9 w-auto`, matching the Trusted By fix's
+technique). All 7 logos were already rendering at an identical height
+at that point, but 36px read as too heavy/dominant next to the card's
+small text labels (10-12px "TOTAL VIEWS" / timeframe copy) — sized
+down to `h-7` (28px), close to Trusted By's own 30px scale. Same
+technique (fixed-height, auto-width, `object-contain`), just a more
+modest value for this larger card context. Verified via
+`getComputedStyle` in a live page: all 7 logos now measure 27.98-28px
+tall, not eyeballed.
+
+## topic: hero-stat-users-converted — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). The "30+ / BRANDS
+SCALED" hero stat replaced with "5M+ / USERS CONVERTED" — same
+`StatCounter` mechanism as the other three (`target: 5, format: (n) =>
+\`${n}M+\`), counts 0→5 on scroll-into-view like the rest, label
+lowercased in source ("Users converted") since the `uppercase` CSS
+class handles the display casing, same as every other stat.
+
+## topic: hero-cta-hierarchy — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). The hero's two CTAs
+("Let's Talk" / "See results") used the identical outline-pill style,
+no visual hierarchy between primary and secondary action. "Let's Talk"
+(the hero only — `components/CTABlock.tsx`'s own default "Let's Talk"
+button and any other page's copy of this button were not touched, this
+was scoped to the hero specifically) now matches the nav's solid
+"Book a call" treatment: `bg-white text-black`, same
+shadow-on-hover/lift-on-hover pattern. The V-mark icon inside the
+button switched from `/vocreations-mark-white.png` to the already-
+existing `/vocreations-mark-black.png` (white icon on a now-white
+button background was invisible). "See results" is untouched, still
+the outline pill — it's now visibly secondary by contrast rather than
+matching CTA weight for weight.
+
+## topic: hero-lockscreen-passcode — _2026-08-04 (legibility fix)_
+
+Branch `redesign/agency-only` (still not merged). Extends the
+2026-08-03 `hero-lockscreen-passcode` entry. The passcode row's text
+was plain white directly on the phone shell's diagonal gradient sheen
+— legible while the gradient happened to sit dark behind it, but lost
+contrast wherever the gradient ran light, which meant it wasn't
+reliably readable in a static screenshot (only really worked "in
+motion" when the gradient's bright band wasn't currently behind the
+text). Wrapped the whole passcode row (both the letters and the
+underline dashes) in its own `bg-black/45` scrim
+(`rounded-lg px-3 py-1.5`) — this guarantees contrast against a known,
+fixed-darkness background regardless of what the shell gradient is
+doing at any given moment, in motion or in a still frame. Underline
+dash opacity also bumped `white/35` → `white/50` while touching this,
+same reasoning. Verified by catching a live frame mid-typing via
+Playwright `waitForFunction` (not guessed/eyeballed): the full phrase
+renders crisp and clearly legible against the scrim.
+
+## topic: darkveil-cream-tint — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). Reintroduced a
+subtle cream (`#F7F0DD`) tint to `components/DarkVeil.tsx`'s ambient
+WebGL background (`app/layout.tsx`) — not the old dramatic cookies-
+and-cream palette from before the black-and-white conversion, just
+enough that the site doesn't read as a fully generic grayscale
+template. `tint={[0.9686, 0.9412, 0.8667]}` (the hex normalized to
+0-1), `tintAmount={0.8}` (not DarkVeil's own default of `1.0`, and not
+the first value tried, `0.4` — that first attempt was verified via
+actual pixel sampling on a real screenshot, not eyeballed, and
+produced only a ~2-4/255 R-vs-B channel spread even at the pattern's
+brightest points, imperceptible in practice; `0.8` was re-measured the
+same way and lands closer to a 4-5/255 spread, better without
+overshooting). Cream is an inherently low-saturation color, so even at
+higher `tintAmount` values the resulting spread stays modest — this
+isn't a return to a saturated warm palette, just a faint, verified-not-
+assumed warm cast. `DarkVeil` renders once, sitewide, from `layout.tsx`
+(not hero-scoped), but reads most strongly behind the hero specifically
+since every section below it sits on its own opaque/near-opaque card
+background that mostly covers this layer — the practical effect is
+concentrated where it was asked for even though the prop change is
+technically global.
+
+## topic: hero-story-card-stats-update — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). Five content updates
+to `components/HeroStoryCard.tsx`'s stage loop, mostly to keep its
+numbers consistent with other stats already updated elsewhere on the
+page (hero stats, FAQ) rather than left stale/inconsistent.
+
+- **Sourcing creators: 2 rows → 4 rows (10 → 20 avatars).** Only 14
+  genuinely distinct real creators exist across this site's entire
+  showcase pool (11 Instagram + 3 TikTok in `app/page.tsx`'s
+  `showcaseVideos` — the 1 Facebook reel and 2 YouTube Shorts don't
+  expose a fetchable creator avatar the same way Instagram/TikTok
+  embed responses do). Sourced 4 new real avatars (`ig-8` through
+  `ig-11-avatar.jpg`, same interception technique as the rest — from
+  Instagram posts already referenced in `showcaseVideos` that hadn't
+  had an avatar captured yet: `DTRCvh2E1Lu`, `DUMI_NwD0Xa`,
+  `DWtNDXqjl3I`, `DXzgEEwRXm2`) to reach 14 distinct, then repeated the
+  first 6 to fill the remaining slots rather than invent/hotlink
+  placeholder faces — positioned 14+ slots away from their originals
+  (2+ full rows down) so no repeat reads as an adjacent duplicate in
+  the rendered grid. **Real bug caught while extending this**: the
+  per-avatar checkmark stagger (`300 + i*180ms`, tuned for 10 items)
+  would have put the last checkmark's pop-in past `STAGE_MS` (2800ms)
+  entirely for 20 items — recomputed to `150 + i*95ms` so the last one
+  (i=19) settles by ~2355ms, preserving roughly the same buffer before
+  the stage advances that the original had. Verified by sampling
+  checkmark opacity at multiple points during a live stage cycle (not
+  just checked once) — 6/20 visible at ~730ms, 15/20 at ~1546ms,
+  consistent with the new formula, correctly reset to 0 when the stage
+  cycles away.
+- **Posting content**: "600-1,200 videos posted a month" → "2,400+
+  videos posted a month", matching the FAQ's "What is Tech UGC?"
+  answer (updated same day) which already cites 2,400+.
+- **Revenue & growth**: revenue $42K→$250K, users 28K→5M+ (format
+  changed from `${n}K` to `${n}M+` to match the hero's own "5M+ users
+  converted" stat, not just the number), awareness +64%→+150%.
+- **Accounts warming up (Thienvu's profile)**: followers now animates
+  0→70K+ over the stage's `useCountUp` (was a static "0", with an
+  explicit prior DECISION explaining that was intentional — "day one
+  of warm-up, nothing earned yet"). That rationale is superseded: 70K+
+  matches Thienvu's real bio stat in the Team section ("Grew his own
+  IG past 70K followers"), so this stage now reads as his actual
+  account rather than a literal day-one snapshot. Comment updated to
+  reflect the new reasoning, not left contradicting the code.
+- **Views & engagement**: views "3.8M" → "1B+", now using the exact
+  same convention as the hero's own primary stat (`app/page.tsx`
+  `heroStats[0]`) — counts 0→1000 displayed as raw "M+", swaps to
+  "1B+" only on the last frame, since there's no honest literal count
+  for a billion. Previously this stage used a different one-decimal
+  "3.8M" display convention; now it matches the hero stat's mechanism,
+  not just its final number. Engagement 5.1% → 12.4%.
+- All 5 changes verified against a live production build (`next
+  start`, not `next dev`) via direct DOM/text inspection at each
+  stage's active window, not eyeballed or assumed from source reading
+  alone; zero console errors across a full stage-cycle watch (the one
+  404 present is the pre-existing, expected Vercel Analytics script
+  that only resolves on an actual Vercel deploy).
+
+## topic: result-card-numbers-update — _2026-08-04_
+
+Branch `redesign/agency-only` (still not merged). Case study view
+counts and a couple of expanded `miniStats` rows updated in
+`app/page.tsx` — content-only, no `ResultCard.tsx` component changes
+needed (its `miniStats.length === 3 ? "md:grid-cols-3" :
+"md:grid-cols-4"` grid logic already handles either count).
+
+- Liftoff 151M+→170M+, Higgsfield 65M+→70M+, Fable 25.4M→25M+,
+  BlackBox AI 11.5M→15M+, Makon AI 10.2M→11M+ (both the card's top
+  `views` stat and the matching entry inside `miniStats` updated
+  together, same as the existing pattern on every other card — Aonic
+  and Codédex's view counts were left untouched, not asked for).
+- Fable's expanded row dropped the "180 / Videos" stat (kept Creators,
+  Total views, Days — 4 items → 3, grid auto-adjusts to 3 columns).
+- Makon AI's and Codédex's expanded rows both dropped the "Gen Z /
+  Audience" stat (Makon kept Views/Creators/Days; Codédex kept
+  Views/Platforms/Days).
+- Order comment ("Ordered by view count, highest to lowest") still
+  holds after these changes without reshuffling any card's position:
+  170/70/31/25/15/11/10M+, still strictly descending.
+- Verified against a live page (not just source read): clicked every
+  one of the 7 cards open and dumped each expanded miniStats row's
+  actual rendered text, confirmed each stat present/absent exactly as
+  specified; zero console errors.
+
+Same-day follow-up (two small fixes to the above):
+
+- Codédex's "4 / Platforms" `miniStats` entry relabeled to "4 /
+  Creators" — a semantic change, not a copy fix: the "4" now
+  represents creator count, not platform count (value itself
+  unchanged).
+- Fable's `miniStats` order swapped so "25M+ / Total views" leads and
+  "3 / Creators" is second; "30 / Days" stays last, unchanged.
+- Verified live: rebuilt (`rm -rf .next && npm run build`), restarted
+  dev server, dumped both cards' expanded stat-box text directly from
+  the DOM (`["25M+Total views","3Creators","30Days"]` and
+  `["10M+Views","4Creators","60Days"]`), zero console errors.

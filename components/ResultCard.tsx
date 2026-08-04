@@ -10,9 +10,6 @@ interface ResultCardProps {
   logo?: string;
   views: string;
   viewsSub: string;
-  challenge?: string;
-  approach?: string;
-  result?: string;
   miniStats?: MiniStat[];
 }
 
@@ -21,9 +18,6 @@ export default function ResultCard({
   logo,
   views,
   viewsSub,
-  challenge,
-  approach,
-  result,
   miniStats,
 }: ResultCardProps) {
   const [open, setOpen] = useState(false);
@@ -36,7 +30,7 @@ export default function ResultCard({
       <div className="p-7 pb-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-5">
           {logo ? (
-            <LogoImage src={logo} alt={`${company} logo`} boxClassName="h-9 w-[130px]" />
+            <LogoImage src={logo} alt={`${company} logo`} boxClassName="h-7 w-auto" />
           ) : (
             <div className="text-[22px] font-extrabold tracking-tight">
               {company}
@@ -66,36 +60,6 @@ export default function ResultCard({
       {/* Expandable detail */}
       {open && (
         <div className="px-7 py-6 border-t border-border space-y-5">
-          {challenge && (
-            <div>
-              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
-                Challenge
-              </div>
-              <p className="text-sm text-text-secondary leading-[1.7]">
-                {challenge}
-              </p>
-            </div>
-          )}
-          {approach && (
-            <div>
-              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
-                Approach
-              </div>
-              <p className="text-sm text-text-secondary leading-[1.7]">
-                {approach}
-              </p>
-            </div>
-          )}
-          {result && (
-            <div>
-              <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1.5">
-                Result
-              </div>
-              <p className="text-sm text-text-secondary leading-[1.7]">
-                {result}
-              </p>
-            </div>
-          )}
           {miniStats && (
             <div
               className={`grid grid-cols-2 ${miniStats.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"} gap-3 pt-1`}

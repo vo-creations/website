@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Vo Creations",
   },
   description:
-    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. 9 days to launch. 1B+ views generated for brands like Fable, Cluely, and Codedex.",
+    "Vo Creations is a UGC agency that trains its own creators in-house. 180 talking-head videos across 4 platforms. Posting live in 10-14 days. 1B+ views generated for brands like Fable, Cluely, and Codedex.",
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
     canonical: "/",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vo Creations: Make Them Remember.",
     description:
-      "The only UGC agency that trains its own creators. 180 videos, 4 platforms, 9 days to launch.",
+      "The only UGC agency that trains its own creators. 180 videos, 4 platforms, posting live in 10-14 days.",
     images: ["/og-image.png"],
   },
 };
@@ -127,7 +127,28 @@ export default function RootLayout({
           aria-hidden="true"
           className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-50"
         >
-          <DarkVeil speed={0.35} resolutionScale={0.75} />
+          {/* DECISION 2026-08: reintroduced a subtle cream (#F7F0DD) tint,
+              not the old full sepia wash from before the black-and-white
+              conversion. tintAmount 0.8, not DarkVeil's default 1.0 (fully
+              tinted) or the first attempt's 0.4 (measured via actual pixel
+              sampling on a real screenshot, not eyeballed — 0.4 produced
+              only a ~2-4/255 R-vs-B channel spread even at the pattern's
+              brightest points, imperceptible in practice). Cream itself is
+              a low-saturation color, so even at 0.8 the spread stays
+              modest; this isn't the old dramatic cookies-and-cream palette
+              back, just enough to read as intentional warmth instead of a
+              fully neutral grayscale template. Sitewide (this component
+              renders once in layout), but it's most visible behind the
+              hero specifically, since every section below it sits on its
+              own opaque/near-opaque card background that mostly covers
+              this layer. See docs/DECISIONS.md (topic:
+              darkveil-cream-tint). */}
+          <DarkVeil
+            speed={0.35}
+            resolutionScale={0.75}
+            tint={[0.9686, 0.9412, 0.8667]}
+            tintAmount={0.8}
+          />
         </div>
         {children}
         <Analytics />

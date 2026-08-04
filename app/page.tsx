@@ -74,26 +74,26 @@ function StatCounter({
 
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
-  { target: 30, format: (n: number) => `${n}+`, label: "Brands scaled" },
+  { target: 5, format: (n: number) => `${n}M+`, label: "Users converted" },
   { target: 500, format: (n: number) => `${n}+`, label: "Trained creators" },
-  { target: 9, format: (n: number) => `${n}`, label: "Days to launch" },
+  { target: 14, format: (n: number) => (n >= 14 ? "10-14" : `${n}`), label: "Days to post" },
 ];
 
 const steps = [
   {
     num: "01",
     title: "Apply & Qualify",
-    desc: "We review your product, audience, and goals. Not every brand is a fit, and we'll tell you if it's not.",
+    desc: "We review your product, audience, and goals before saying yes. Not every brand is a fit, and we'd rather tell you that upfront than waste your budget finding out later.",
   },
   {
     num: "02",
     title: "Strategy & Creator Selection",
-    desc: "Every creator goes through an application, interview, and a week-long paid training campaign before they ever post for a client. We accept the top 1%. Your dedicated UGC engineer then builds a custom content strategy for your product: target audience, account warming, hooks, and messaging angles. Nothing templated.",
+    desc: "Every creator applies, interviews, and completes a two week-long paid trial campaign before they ever touch your account. We accept the top 1%. From there, your dedicated campaign manager builds a strategy around your product specifically: audience, account warming, hooks, messaging, even how creators respond to comments. Nothing recycled from another client.",
   },
   {
     num: "03",
     title: "Launch & Scale",
-    desc: "Every script and video is manually approved before it goes live across TikTok, Instagram, YouTube, and Facebook. Real-time tracking in our software, Trackr, shows what's converting, so weekly format testing and monthly reviews are never guesswork.",
+    desc: "Every script and video is manually approved before it goes live, across TikTok, Instagram, YouTube, and Facebook. Real-time tracking in our internal tool shows exactly what's converting, so weekly testing and monthly reviews are built on data, not guesswork.",
   },
 ];
 
@@ -134,24 +134,16 @@ const showcaseVideos: {
 ];
 
 const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
-  { name: "Aonic", file: "aonic.png" },
-  { name: "BlackBox AI", file: "blackbox.png" },
-  { name: "Causes", file: "causes.png" },
-  { name: "Codedex", file: "codedex.png" },
-  { name: "Cooksat", file: "cooksat.png" },
-  { name: "Dealism", file: "dealism.png" },
-  { name: "Dubbing", file: "dubbing.png" },
-  { name: "Fable", file: "fable.png" },
   { name: "Higgsfield", file: "higgsfield.png" },
-  { name: "Hyperknow", file: "hyperknow.png" },
-  { name: "Kicker", file: "kicker.png" },
-  { name: "Kortix", file: "kortix.png" },
+  { name: "BlackBox AI", file: "blackbox.png" },
   { name: "Liftoff", file: "liftoff.png" },
-  { name: "Makon AI", file: "makon1.png" },
+  { name: "fomo.family", file: "fomo.png" },
+  { name: "Krea AI", file: "krea.png" },
+  { name: "Fable", file: "fable.png" },
   { name: "Notta", file: "notta.png" },
   { name: "Softr", file: "softr.png" },
-  { name: "Tomo", file: "tomo.png" },
-  { name: "Yorby", file: "yorby.png" },
+  { name: "Aonic", file: "aonic.png" },
+  { name: "Makon AI", file: "makon.png" },
 ];
 
 // DECISION: replaced wholesale (2026-08) to match new business terms — flat
@@ -160,13 +152,12 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
 // commitment, month-to-month billing with no refunds (no more "paid
 // upfront" framing). See docs/DECISIONS.md (topic: pricing-terms-2026-08).
 const agencyFaqs = [
-  { q: "What is Tech UGC?", a: "Tech UGC is user-generated content built for SaaS and consumer app brands. Instead of polished ads, everyday creators make short-form videos that demo, explain, and sell your product authentically on TikTok and Instagram. Vo Creations runs tech UGC campaigns at scale, producing 1,200+ videos per month per brand and generating organic views before any paid spend is applied." },
-  { q: "How long do results take?", a: "Minimum commitment starts at 90 days. That gives us adequate time to establish a proper UGC system." },
-  { q: "How involved is the process?", a: "As involved as you want to be. Most clients join a weekly sync to review performance and share product updates. Beyond that, we handle everything: your dedicated team manages creators, reviews content, and iterates strategy daily without needing your input at every step. Some clients stay deeply involved in creative direction, others check in once a week and let us run it. Either way, the engine keeps moving." },
-  { q: "Can I select my creators?", a: "Yes. We'll work together to choose the best creators for your campaign." },
-  { q: "What would next steps look like?", a: "We move quick. We'll set up a consultation, then an onboarding call. From there, we start sourcing creators and posting within 10-14 days." },
-  { q: "What is the investment?", a: "Packages start at $30,000/mo. A second invoice is sent monthly to cover creator bonuses." },
-  { q: "Do you offer refunds?", a: "We don't offer refunds, but we operate month to month, no long-term contracts required. If something isn't working, we'd rather have an honest conversation and fix it than have you locked into something that isn't delivering. Our track record speaks for itself, and we're confident enough in our process to let results do the talking." },
+  { q: "What is Tech UGC?", a: "Tech UGC swaps traditional ad production for real creators showing your product in action: demoing it, explaining it, reacting to it, the way an actual user would. No studio, no script that sounds like a script. It's also one of the cheapest organic marketing channels out there: creator-made content costs a fraction of traditional production while still driving real reach. We run these campaigns at scale across TikTok, Instagram, YouTube, and Facebook, producing 2,400+ videos a month per brand and building organic reach before a single dollar of paid spend gets involved." },
+  { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project." },
+  { q: "How involved is the process?", a: "Whatever level works for you. Most brands hop on a weekly call to see what's performing and share updates on their end. Everything else runs without needing you in the loop. Creators get managed, content gets reviewed, strategy gets adjusted daily, all on our side. If you want more say in creative direction, we'll bring you in further. If you'd rather set it and check in once a week, that works too. Either way, nothing stalls waiting on you." },
+  { q: "What would next steps look like?", a: "Fast. After a quick consultation and onboarding call, we're already sourcing creators: first content goes live within 10-14 days of kickoff." },
+  { q: "What is the investment?", a: "Campaigns start at $30K/month. Creator bonuses are billed separately each month, on top of that base, so you always know exactly what's going toward strategy and management versus what's going directly to the creators making your content." },
+  { q: "Do you offer refunds?", a: "No refunds, but also no long-term lock-in. We run month to month, so if something's genuinely not working, you're never stuck waiting out a contract to fix it or walk away. That's what you'd expect from a world-class in-house UGC team, backed by the same mentorship program that's already put $1M+ in students' pockets, without the overhead of actually building that team yourself. We're confident enough in the process to let it prove itself every single month, not just at signing." },
 ];
 
 const faqJsonLd = {
@@ -200,7 +191,7 @@ const team = [
     location: "Los Angeles, CA",
     statLine: "COO of VoC Mentorship",
     detailLine:
-      "Before Daniel ran a single campaign for anyone else, he was the one on camera, racking up 150M+ views and $200K+ earned from his own content, from scratch. That's the seat most agency operators never sit in. Since then, his campaigns for consumer apps have pulled in 500M+ views and reached 10M+ users, because he already knows what makes someone stop scrolling.",
+      "Before Daniel ran a single campaign for anyone else, he was the one on camera, racking up 150M+ views and $200K+ earned from his own content, from scratch. That's the seat most agency operators never sit in. Since then, his campaigns for consumer apps have pulled in 500M+ views and converted into 5M+ users, because he already knows what makes someone stop scrolling.",
     image: "/videos/team-daniel.jpg",
     imagePosition: "center",
   },
@@ -258,11 +249,11 @@ export default function Home() {
                   href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+                  className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_24px_rgba(255,255,255,0.3)] hover:-translate-y-0.5 transition-all"
                 >
                   Let&apos;s Talk
                   <Image
-                    src="/vocreations-mark-white.png"
+                    src="/vocreations-mark-black.png"
                     alt=""
                     width={18}
                     height={19}
@@ -313,11 +304,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY — marquee with real client logos, all recolored to transparent-
-          background white/monochrome (or kept in original brand color where the
-          source icon is multi-color, e.g. Causes, Fable). needsChip is an escape
-          hatch for a source that can't be cleanly color-keyed (unused currently —
-          the prior Liftoff asset needed it, the official vector doesn't).
+      {/* TRUSTED BY — marquee with real client logos, transparent-background
+          PNGs trimmed to tight bbox. Monochrome white where the brand's own
+          site only ships a black/white mark (inverted for our dark bg where
+          needed); real brand-color icons kept where one exists (Fable,
+          Softr, Notta) paired with a white wordmark. All logos render at a
+          fixed container height (via LogoImage's boxClassName="h-[30px]
+          w-auto") — but container height alone isn't enough to make logos
+          read as the same size: every icon+wordmark PNG was also rebuilt so
+          the ICON's height exactly equals its own file's TEXT cap-height
+          (ratio 1.00, applied uniformly to all 10, verified by script, not
+          eyeballed) before the fixed-height container is applied. Skipping
+          that step is what caused a real, previously-shipped bug where
+          Notta/Aonic read bigger than Higgsfield/Liftoff/Krea/Softr despite
+          every container already measuring the identical height — the
+          logos with a much-taller-than-text icon had their actual
+          READABLE TEXT scaled down disproportionately when the whole file
+          got fit to the container. LogoImage also renders via a plain
+          <img>, not next/image, for a separate reason (a retina-only
+          srcset bug) — see docs/DECISIONS.md, topic: trusted-by-logos
+          sizing, all three 2026-08-03 entries, before changing any of
+          this again. needsChip is an escape hatch for a source that can't
+          be cleanly color-keyed (unused currently).
           DECISION: this section had no top padding, so the gap above the panel
           was much smaller than the gap below it. pt-[80px] fixed the local
           section-boundary asymmetry, but the hero above is `min-h-screen` +
@@ -360,7 +368,7 @@ export default function Home() {
                     key={`${brand.name}-${i}`}
                     src={`/logos/${brand.file}`}
                     alt={brand.name}
-                    boxClassName="w-[130px] h-14"
+                    boxClassName="h-[30px] w-auto"
                   />
                 )
               )}
@@ -380,7 +388,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>Our work</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            Content that goes viral
+            Content that converts and goes viral.
           </h2>
           <p className="text-base text-text-secondary mb-8">
             Real UGC from our trained creator network across IG, TT, FB &amp; YT.
@@ -415,17 +423,18 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col gap-4">
-            {/* Ordered by view count, highest to lowest. Liftoff/Higgsfield/Aonic
-                have no real quote or challenge/approach/result narrative on file —
-                their expanded state is the factual miniStats grid only, same as
-                the other four, just without invented prose. */}
+            {/* Ordered by view count, highest to lowest. Every card is uniform:
+                logo, total views stat, timeframe/creators line, and an
+                expandable factual miniStats grid — no challenge/approach/result
+                prose on any card (removed 2026-08, see docs/DECISIONS.md,
+                topic: result-card-uniform). */}
             <ResultCard
               company="Liftoff"
               logo="/logos/liftoff.png"
-              views="151M+"
+              views="170M+"
               viewsSub="3 months / 50 creators"
               miniStats={[
-                { value: "151M+", label: "Views" },
+                { value: "170M+", label: "Views" },
                 { value: "50", label: "Creators" },
                 { value: "3", label: "Months" },
               ]}
@@ -434,10 +443,10 @@ export default function Home() {
             <ResultCard
               company="Higgsfield"
               logo="/logos/higgsfield.png"
-              views="65M+"
+              views="70M+"
               viewsSub="30 days / 45 creators"
               miniStats={[
-                { value: "65M+", label: "Views" },
+                { value: "70M+", label: "Views" },
                 { value: "45", label: "Creators" },
                 { value: "30", label: "Days" },
               ]}
@@ -458,15 +467,11 @@ export default function Home() {
             <ResultCard
               company="Fable"
               logo="/logos/fable.png"
-              views="25.4M"
+              views="25M+"
               viewsSub="4 weeks / 3 creators"
-              challenge="Break through in competitive book discovery. Traditional marketing wasn't reaching Gen Z readers where they spend time."
-              approach="3 creators, 180 videos, 4 platforms. Applied the VoC Method: 7 format experiments in week 1, tracked performance, cut the bottom 4 formats, tripled down on the winners. One talking-head format hit 3.5M views. Every creator pivoted."
-              result="25.4M total views in 30 days. The methodology that now powers every VoC campaign was born here."
               miniStats={[
-                { value: "180", label: "Videos" },
+                { value: "25M+", label: "Total views" },
                 { value: "3", label: "Creators" },
-                { value: "25.4M", label: "Total views" },
                 { value: "30", label: "Days" },
               ]}
             />
@@ -474,13 +479,10 @@ export default function Home() {
             <ResultCard
               company="BlackBox AI"
               logo="/logos/blackbox.png"
-              views="11.5M"
+              views="15M+"
               viewsSub="20 days / 40-60 paid-organic mix"
-              challenge="AI coding tools are niche and intimidating for mass short-form audiences. Traditional ads triggered ad blindness."
-              approach="UGC-first paid ads designed to look identical to organic creator content. Problem → payoff storytelling: open with relatable pain (debugging frustration, time pressure), show BlackBox AI as the unlock. 420 paid ad variations tested with a 40/60 paid-to-organic content mix."
-              result="11.5M organic views in just 20 days. 420 paid ads produced and deployed at scale. Strong engagement from developers, students, and builders asking workflow questions and tagging peers."
               miniStats={[
-                { value: "11.5M", label: "Views" },
+                { value: "15M+", label: "Views" },
                 { value: "420", label: "Paid ads" },
                 { value: "20", label: "Days" },
                 { value: "40/60", label: "Paid/organic" },
@@ -489,33 +491,25 @@ export default function Home() {
 
             <ResultCard
               company="Makon AI"
-              logo="/logos/makon1.png"
-              views="10.2M"
+              logo="/logos/makon.png"
+              views="11M+"
               viewsSub="2 months / 8 creators"
-              challenge="SAT prep is perceived as boring and transactional. Most competitors relied on dense demos and jargon that students scrolled past."
-              approach="Creator-led talking-head videos that felt personal and raw. Students speaking to students. Story-first, product-second: open with emotional tension (stress, burnout, parental pressure), then naturally introduce Makon AI as the turning point."
-              result="10.2M organic views in 2 months. Comment sections filled with students asking questions, sharing stress, and tagging friends. Makon positioned as a modern, student-first SAT solution."
               miniStats={[
-                { value: "10.2M", label: "Views" },
+                { value: "11M+", label: "Views" },
                 { value: "8", label: "Creators" },
                 { value: "60", label: "Days" },
-                { value: "Gen Z", label: "Audience" },
               ]}
             />
 
             <ResultCard
-              company="Codedex"
+              company="Codédex"
               logo="/logos/codedex.png"
               views="10M+"
               viewsSub="2 months"
-              challenge="Reach Gen Z developers. Technical audience, hard to engage with traditional marketing."
-              approach="Matched creators who are actual developers from our network. Content that spoke the audience's language authentically."
-              result="10M+ views in 2 months. Strong community engagement and meaningful user acquisition."
               miniStats={[
                 { value: "10M+", label: "Views" },
-                { value: "4", label: "Platforms" },
+                { value: "4", label: "Creators" },
                 { value: "60", label: "Days" },
-                { value: "Gen Z", label: "Audience" },
               ]}
             />
           </div>
@@ -529,7 +523,9 @@ export default function Home() {
         <div className="max-w-[720px] mx-auto px-6">
           <Label>The team</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
-            Proven Viral Creators, Turned Agency Operators
+            Proven Viral Creators
+            <br />
+            Turned Agency Operators
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -589,7 +585,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto px-6">
           <Label>How it works</Label>
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
-            From signed to viral in 9 days
+            From signed to posting in 10-14 days
           </h2>
           <p className="text-base text-text-secondary mb-10">
             A methodology refined across 50+ campaigns. Not a black box.
