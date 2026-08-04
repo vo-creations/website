@@ -37,6 +37,18 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Agency-only redesign (2026-08): /mentorship + /pre-call funnel dropped.
+      // See docs/DECISIONS.md (topic: agency-only-redesign).
+      {
+        source: "/mentorship",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/pre-call",
+        destination: "/",
+        permanent: true,
+      },
       // Old Squarespace pages → homepage (permanent redirects)
       {
         source: "/home",

@@ -3003,3 +3003,24 @@ Same-day follow-up (two small fixes to the above):
   dev server, dumped both cards' expanded stat-box text directly from
   the DOM (`["25M+Total views","3Creators","30Days"]` and
   `["10M+Views","4Creators","60Days"]`), zero console errors.
+
+## topic: mentorship-precall-redirects — _2026-08-04_
+
+Found during final pre-merge QA (full visual pass across every section
+before merging `redesign/agency-only` into `main`): `next.config.mjs`'s
+redirect list had entries for `/about`, `/creators`, `/roi`, `/blog`
+(the `single-page-site` consolidation) but nothing for `/mentorship`
+or `/pre-call`, even though both routes were deleted outright as part
+of `agency-only-redesign`. `/mentorship` was the site's primary funnel
+page before this redesign, so any existing backlink, ad, or bookmark
+pointing at it would have 404'd once this branch went live instead of
+landing on the homepage.
+
+- Added two permanent (308) redirects, `/mentorship` → `/` and
+  `/pre-call` → `/`, matching the existing pattern used for the other
+  dropped routes.
+- Verified locally against a production build (`next start`, not
+  `next dev`): `curl -w "%{http_code} -> %{redirect_url}"` against
+  `/mentorship` and `/pre-call` both returned `308` to `/`; `/about`
+  spot-checked alongside to confirm the existing redirects still work
+  unchanged.
