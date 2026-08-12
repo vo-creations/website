@@ -3053,3 +3053,38 @@ posting figure (see `hero-story-card-stats-update`). `<title>`'s
   `<meta name="description">`, `og:title`, `og:description`,
   `twitter:title`, `twitter:description` tags to confirm the live
   markup matches, not just the source file.
+
+## topic: case-studies-lock — _2026-08-11_
+
+Requested change: gate the RESULTS section's actual proof (logos, view
+counts, miniStats) behind a blur so the section still communicates "we
+have real, undeniable results" without giving away the specific
+numbers/clients for free — the "book a call to see results" pitch only
+works if the results aren't already fully visible on the page.
+
+- `ResultCard.tsx` gained a `locked` prop: when true, the logo/company
+  name and the views/viewsSub block get `blur-md` + `select-none`, and
+  the card's click-to-expand is disabled entirely (no `open` state,
+  no "Click for full case study" hint) — nothing legible to reveal
+  behind a blur, so the interaction affordance was removed rather than
+  left dangling.
+- New `components/CaseStudiesLockOverlay.tsx`: **one** overlay for the
+  whole locked stack, not one per card — absolutely positioned over a
+  `relative` wrapper around all 7 `ResultCard`s in `app/page.tsx`'s
+  `RESULTS` section. A per-card overlay would've repeated the same
+  "book a call" sentence 7 times in one scroll; a single overlay reads
+  as one section-level gate. Section header ("Case Studies" label +
+  "Undeniable impact." heading) sits above the wrapper, outside the
+  overlay, so it's never obscured.
+- Overlay `href` is the same booking link hardcoded in `Nav.tsx`,
+  `Footer.tsx`, and this page's other CTA
+  (`https://calendar.app.google/8x72A8nxr3gQpVfx7`) — copied verbatim
+  rather than newly invented, so this CTA lands on the identical
+  Google Calendar scheduling page as every other "Book a call"/"Let's
+  Talk" button on the site. Opens in a new tab (`target="_blank"`),
+  matching `CTABlock.tsx`'s existing pattern.
+- Verified: `tsc --noEmit` clean, `next build` succeeds, and a running
+  dev server confirmed visually — card shapes/spacing still read as 7
+  distinct cards through the blur, logos/numbers are unreadable, the
+  overlay CTA opens `calendar.google.com/.../AcZssZ0a7...` (the real
+  Vo Creations Agency Discovery booking page) in a new tab.
