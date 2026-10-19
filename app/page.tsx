@@ -69,7 +69,7 @@ function StatCounter({
   trigger: boolean;
   format: (n: number) => string;
 }) {
-  const value = useCountUp(target, trigger, STATS_COUNT_DURATION);
+  const value = useCountUp(target, trigger, STATS_COUNT_DURATION, { ssrFinal: true });
   return <>{format(value)}</>;
 }
 
@@ -108,6 +108,7 @@ const showcaseVideos: {
   type: "instagram" | "tiktok" | "facebook" | "youtube";
   url: string;
   label: string;
+  thumb?: string;
 }[] = [
   // DECISION: interleaved by platform (not grouped) so consecutive cards are
   // usually different platforms — Instagram is the majority (11 of 17) so a
@@ -117,7 +118,7 @@ const showcaseVideos: {
   // appended at the end. See docs/DECISIONS.md (topic: showcase-marquee).
   { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram" },
-  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok" },
+  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok", thumb: "/creators/tiktok-jacobw-thumb.jpg" },
   { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram" },
   { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube" },
@@ -126,10 +127,10 @@ const showcaseVideos: {
   { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook" },
   { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram" },
-  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok" },
+  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok", thumb: "/creators/tiktok-codewithsam4-thumb.jpg" },
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram" },
   { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram" },
-  { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok" },
+  { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok", thumb: "/creators/tiktok-abgetsfit-thumb.jpg" },
   { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram" },
   { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube" },
 ];
@@ -147,17 +148,16 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Makon AI", file: "makon.png" },
 ];
 
-// DECISION: replaced wholesale (2026-08) to match new business terms — flat
-// $30,000/mo package floor (was tiered $10k/3 creators, $20k/6 creators),
-// 10-14 day posting start (was "9 days to launch"), 90-day minimum
-// commitment, month-to-month billing with no refunds (no more "paid
-// upfront" framing). See docs/DECISIONS.md (topic: pricing-terms-2026-08).
+// DECISION: package floor is $50,000/mo as of 2026-10-19 (was $30,000/mo;
+// before that, tiered $10k/3 creators and $20k/6 creators). 10-14 day
+// posting start, 90-day minimum, month-to-month, no refunds, creator
+// bonuses billed separately. See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
   { q: "What is Tech UGC?", a: "Tech UGC swaps traditional ad production for real creators showing your product in action: demoing it, explaining it, reacting to it, the way an actual user would. No studio, no script that sounds like a script. It's also one of the cheapest organic marketing channels out there: creator-made content costs a fraction of traditional production while still driving real reach. We run these campaigns at scale across TikTok, Instagram, YouTube, and Facebook, producing 2,400+ videos a month per brand and building organic reach before a single dollar of paid spend gets involved." },
   { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project." },
   { q: "How involved is the process?", a: "Whatever level works for you. Most brands hop on a weekly call to see what's performing and share updates on their end. Everything else runs without needing you in the loop. Creators get managed, content gets reviewed, strategy gets adjusted daily, all on our side. If you want more say in creative direction, we'll bring you in further. If you'd rather set it and check in once a week, that works too. Either way, nothing stalls waiting on you." },
   { q: "What would next steps look like?", a: "Fast. After a quick consultation and onboarding call, we're already sourcing creators: first content goes live within 10-14 days of kickoff." },
-  { q: "What is the investment?", a: "Campaigns start at $30K/month. Creator bonuses are billed separately each month, on top of that base, so you always know exactly what's going toward strategy and management versus what's going directly to the creators making your content." },
+  { q: "What is the investment?", a: "Campaigns start at $50K/month. Creator bonuses are billed separately each month, on top of that base, so you always know exactly what's going toward strategy and management versus what's going directly to the creators making your content." },
   { q: "Do you offer refunds?", a: "No refunds, but also no long-term lock-in. We run month to month, so if something's genuinely not working, you're never stuck waiting out a contract to fix it or walk away. That's what you'd expect from a world-class in-house UGC team, backed by the same mentorship program that's already put $1M+ in students' pockets, without the overhead of actually building that team yourself. We're confident enough in the process to let it prove itself every single month, not just at signing." },
 ];
 
@@ -199,7 +199,6 @@ const team = [
 ];
 
 export default function Home() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
 
   return (
@@ -237,7 +236,10 @@ export default function Home() {
               </div>
 
               <h1 className="font-sans text-[clamp(40px,5.5vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-                make them remember.
+                <span className="block">make them remember.</span>
+                <span className="mt-4 block text-[clamp(18px,2.2vw,26px)] font-bold leading-snug tracking-tight text-text">
+                  UGC agency for AI startups and consumer apps.
+                </span>
               </h1>
 
               <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[560px] leading-relaxed mb-10 animate-fade-up-delay-2">
@@ -255,7 +257,7 @@ export default function Home() {
                   Let&apos;s Talk
                   <Image
                     src="/vocreations-mark-black.png"
-                    alt=""
+                    alt="Vo Creations"
                     width={18}
                     height={19}
                     className="w-[15px] h-auto"
@@ -378,6 +380,29 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="pb-[40px] px-6">
+        <div className="max-w-[720px] mx-auto">
+          <Label>The program</Label>
+          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
+            A UGC agency that runs the program in-house.
+          </h2>
+          <div className="space-y-4 text-[15px] text-text-secondary leading-[1.75]">
+            <p>
+              Vo Creations is a UGC agency for AI startups and consumer apps. We recruit UGC creators, train them in-house, and run the accounts as your program: organic UGC on TikTok, Instagram, YouTube, and Facebook, then UGC ads built from the videos that already earned the view.
+            </p>
+            <p>
+              The work is talking-head storytelling. A creator looks into the camera and tells a story the audience has lived. The product shows up inside that story. No studio, no text-on-screen template, no script that sounds like a script. Creators apply, interview, and finish a two-week paid trial before they touch a brand account. We keep the top 1%.
+            </p>
+            <p>
+              A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month, with no refunds and no long contract. Campaigns start at $50K a month. Creator bonuses are billed separately, so strategy and creator pay stay easy to tell apart.
+            </p>
+            <p>
+              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, trained 500+ creators, and run across 50+ campaigns.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* CONTENT THAT GOES VIRAL — auto-scrolling marquee, same animate-scroll mechanism
           as Trusted By (track duplicated, translateX(-50%) loop), just a slower duration
           (animate-scroll-slow) since these cards are much bigger. Paused on hover so the
@@ -401,7 +426,7 @@ export default function Home() {
             {[...showcaseVideos, ...showcaseVideos].map((v, i) => (
               <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
                 {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} />}
-                {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} />}
+                {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
                 {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
                 {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
               </div>
@@ -553,6 +578,7 @@ export default function Home() {
                     src={t.image}
                     alt={t.name}
                     fill
+                    sizes="(max-width: 768px) 90vw, 340px"
                     className="object-cover"
                     style={{ objectPosition: t.imagePosition }}
                   />
@@ -652,35 +678,26 @@ export default function Home() {
           </h2>
 
           <div className="max-w-[640px] flex flex-col gap-3">
-            {agencyFaqs.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-white/10 rounded-2xl px-6 py-5 bg-bg-card/50 backdrop-blur-sm"
+            {agencyFaqs.map((faq) => (
+              <details
+                key={faq.q}
+                className="group border border-white/10 rounded-2xl px-6 py-5 bg-bg-card/50 backdrop-blur-sm"
               >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex justify-between items-center text-left gap-4"
-                >
+                <summary className="flex justify-between items-center text-left gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                   <span className="text-base font-semibold tracking-tight">
                     {faq.q}
                   </span>
-                  <span
-                    className={`shrink-0 w-7 h-7 rounded-full border border-border flex items-center justify-center text-text-secondary transition-transform ${
-                      openFaq === i ? "rotate-45" : ""
-                    }`}
-                  >
+                  <span className="shrink-0 w-7 h-7 rounded-full border border-border flex items-center justify-center text-text-secondary transition-transform group-open:rotate-45">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-3.5 h-3.5">
                       <line x1="12" y1="5" x2="12" y2="19" />
                       <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                   </span>
-                </button>
-                {openFaq === i && (
-                  <div className="mt-3 text-[15px] text-text-secondary leading-[1.7] pr-10">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
+                </summary>
+                <div className="mt-3 text-[15px] text-text-secondary leading-[1.7] pr-10">
+                  {faq.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>

@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Cap the srcset so small avatars are not offered a 3840w candidate.
+    // See docs/DECISIONS.md (topic: seo-aeo-2026-10).
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: "https",
@@ -10,8 +14,9 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Single-page consolidation (2026-07): /about, /creators, /roi, /blog
-      // merged into homepage sections. See docs/DECISIONS.md (topic: single-page-site).
+      // Single-page consolidation (2026-07): /about, /creators, /roi merged
+      // into homepage sections. /blog was restored in 2026-10.
+      // See docs/DECISIONS.md (topic: single-page-site, seo-aeo-2026-10).
       {
         source: "/about",
         destination: "/#team",
@@ -27,23 +32,17 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // The indexed long slug never existed as a route. The post lives at
+      // /blog/text-on-screen-ugc. See docs/DECISIONS.md (topic: seo-aeo-2026-10).
       {
-        source: "/blog",
-        destination: "/",
+        source: "/blog/why-text-on-screen-ugc-is-killing-your-app-growth",
+        destination: "/blog/text-on-screen-ugc",
         permanent: true,
       },
-      {
-        source: "/blog/:path*",
-        destination: "/",
-        permanent: true,
-      },
-      // Agency-only redesign (2026-08): /mentorship + /pre-call funnel dropped.
-      // See docs/DECISIONS.md (topic: agency-only-redesign).
-      {
-        source: "/mentorship",
-        destination: "/",
-        permanent: true,
-      },
+      // /mentorship is a 410 from app/mentorship/route.ts (retired creator
+      // funnel). Do not redirect it here. /pre-call was only the booking
+      // step of that funnel and was not a content page.
+      // See docs/DECISIONS.md (topic: seo-aeo-2026-10).
       {
         source: "/pre-call",
         destination: "/",

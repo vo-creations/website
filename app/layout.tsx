@@ -16,13 +16,15 @@ const bricolageGrotesque = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const SITE_DESCRIPTION =
+  "UGC agency for AI startups and consumer apps. In-house creator programs, 1B+ views, and 500+ trained creators.";
+
 export const metadata: Metadata = {
   title: {
     default: "Vo Creations: UGC Agency for Startups & Consumer Apps",
     template: "%s | Vo Creations",
   },
-  description:
-    "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
+  description: SITE_DESCRIPTION,
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
     canonical: "/",
@@ -36,8 +38,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Vo Creations: Make Them Remember.",
-    description:
-      "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
+    description: SITE_DESCRIPTION,
+    url: "https://vocreations.com",
     siteName: "Vo Creations",
     type: "website",
     images: [
@@ -51,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@VoCreationsUGC",
     title: "Vo Creations: Make Them Remember.",
-    description:
-      "Vo Creations builds and runs your in-house UGC program — 1B+ views generated, 500+ trained creators, 2,400+ videos produced monthly across TikTok, Instagram, YouTube, and Facebook.",
+    description: SITE_DESCRIPTION,
     images: ["/og-image.png"],
   },
 };
@@ -66,16 +68,26 @@ const organizationJsonLd = {
   logo: "https://vocreations.com/vocreations-logo.webp",
   description:
     "UGC agency that trains its own creators in-house. Specializing in talking-head storytelling for AI startups and consumer apps.",
-  founder: {
-    "@type": "Person",
-    name: "Thienvu Vo",
-    url: "https://x.com/itsthienvuvo",
-  },
+  founder: [
+    {
+      "@type": "Person",
+      name: "Thienvu Vo",
+      jobTitle: "Co-Founder",
+      url: "https://x.com/itsthienvuvo",
+    },
+    {
+      "@type": "Person",
+      name: "Daniel Yun",
+      jobTitle: "Co-Founder",
+      url: "https://www.linkedin.com/in/danielyun27",
+    },
+  ],
+  // Brand profiles only. Personal IG/TikTok/YouTube were removed.
+  // Instagram @vocreationsugc could not be verified (Instagram answers
+  // 200 for unknown paths), so it is left out. See DECISIONS
+  // topic: seo-aeo-2026-10.
   sameAs: [
     "https://x.com/VoCreationsUGC",
-    "https://www.instagram.com/itsthienvuvo/",
-    "https://www.tiktok.com/@itsthienvuvo",
-    "https://www.youtube.com/@itsthienvuvo",
     "https://www.linkedin.com/company/vocreations",
   ],
   knowsAbout: [
@@ -93,6 +105,35 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "Vo Creations",
   url: "https://vocreations.com",
+};
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "In-house UGC program",
+  serviceType: ["UGC content", "UGC ads"],
+  provider: {
+    "@type": "Organization",
+    name: "Vo Creations",
+    url: "https://vocreations.com",
+  },
+  areaServed: "US",
+  description:
+    "Organic UGC and UGC ads for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, and Facebook.",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: "50000",
+      price: "50000",
+      priceCurrency: "USD",
+      unitText: "MONTH",
+    },
+    description:
+      "Campaigns start at $50K/month. Creator bonuses are billed separately.",
+    url: "https://vocreations.com/#faq",
+  },
 };
 
 export default function RootLayout({
@@ -119,6 +160,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceJsonLd),
           }}
         />
       </head>

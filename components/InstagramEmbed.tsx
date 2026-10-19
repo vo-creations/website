@@ -25,32 +25,29 @@ export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
     }
   }, [loaded]);
 
-  // Extract the reel/post shortcode for the embed preview
-  const embedUrl = url.replace(/\/$/, "") + "/embed";
-
+  // DECISION 2026-10: do not mount Instagram's embed iframe (or embed.js)
+  // until click. The old "preview" iframe still downloaded Instagram's
+  // player for every card in the marquee, about 1.5 MB before anyone
+  // pressed play. See docs/DECISIONS.md (topic: seo-aeo-2026-10).
   if (!loaded) {
     return (
-      <div
-        className="bg-bg-card rounded-2xl aspect-[9/16] relative border border-border overflow-hidden group"
+      <button
+        type="button"
+        onClick={() => setLoaded(true)}
+        className="bg-bg-card rounded-2xl aspect-[9/16] relative border border-border overflow-hidden group w-full text-left"
+        aria-label={label ? `Play ${label} video` : "Play Instagram video"}
       >
-        <iframe
-          src={embedUrl}
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          loading="lazy"
-          title={label || "Instagram preview"}
-          style={{ border: 0 }}
-        />
-        <div
-          onClick={() => setLoaded(true)}
-          className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors cursor-pointer flex items-end justify-center pb-4"
-        >
-          {label && (
-            <span className="text-xs text-white font-medium bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm">
-              {label}
-            </span>
-          )}
-        </div>
-      </div>
+        <span className="absolute inset-0 bg-black flex items-center justify-center">
+          <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+            <span className="w-0 h-0 border-l-[16px] border-l-[#0a0a0a] border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1" />
+          </span>
+        </span>
+        {label && (
+          <span className="absolute bottom-0 left-0 right-0 flex items-center px-3 py-2 bg-gradient-to-t from-black/60 to-transparent">
+            <span className="text-xs text-white font-medium">{label}</span>
+          </span>
+        )}
+      </button>
     );
   }
 

@@ -253,7 +253,7 @@ export default function MaxxdCampaignPage() {
               Let&apos;s Talk
               <Image
                 src="/vocreations-mark-white.png"
-                alt=""
+                alt="Vo Creations"
                 width={18}
                 height={19}
                 className="w-[15px] h-auto"

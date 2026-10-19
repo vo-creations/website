@@ -216,7 +216,7 @@ function StageSourcingCreators({ active }: { active: boolean }) {
               <div className="relative w-8 h-8 rounded-full overflow-hidden border border-border">
                 <Image
                   src={src}
-                  alt=""
+                  alt="Creator profile photo"
                   fill
                   sizes="32px"
                   className="object-cover"
@@ -313,8 +313,8 @@ const WARMUP_ITEMS = [
 // static at 0 to signal "day one of warm-up, nothing earned yet"; the
 // account/growth-story framing won out over the literal day-one snapshot.
 function StageAccountsWarming({ active }: { active: boolean }) {
-  const following = useCountUp(340, active, 1800);
-  const followers = useCountUp(70, active, 1800);
+  const following = useCountUp(340, active, 1800, { ssrFinal: true });
+  const followers = useCountUp(70, active, 1800, { ssrFinal: true });
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col items-center justify-center gap-4">
@@ -322,7 +322,7 @@ function StageAccountsWarming({ active }: { active: boolean }) {
           <div className="relative w-11 h-11 rounded-full overflow-hidden border border-border shrink-0">
             <Image
               src="/videos/team-thienvu-new.jpg"
-              alt=""
+              alt="Thienvu Vo"
               fill
               sizes="44px"
               className="object-cover"
@@ -387,7 +387,7 @@ function StagePostingContent({ active }: { active: boolean }) {
             >
               <Image
                 src={POST_THUMBS[thumbIndex]}
-                alt=""
+                alt="Creator video thumbnail"
                 fill
                 sizes="80px"
                 className="object-cover"
@@ -411,8 +411,8 @@ function StageViewsClimbing({ active }: { active: boolean }) {
   // counts 0→1000 displayed as raw "M+", swaps to "1B+" only on the last
   // frame, since there's no honest literal count for a billion. Matches
   // the hero's main stat exactly, not just coincidentally the same number.
-  const views = useCountUp(1000, active, 1800);
-  const engagement = useCountUp(124, active, 1800);
+  const views = useCountUp(1000, active, 1800, { ssrFinal: true });
+  const engagement = useCountUp(124, active, 1800, { ssrFinal: true });
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col justify-center gap-4">
@@ -461,9 +461,9 @@ function StatChip({ value, label }: { value: string; label: string }) {
 }
 
 function StageRevenueGrowing({ active }: { active: boolean }) {
-  const revenue = useCountUp(250, active, 1800);
-  const users = useCountUp(5, active, 1800);
-  const awareness = useCountUp(150, active, 1800);
+  const revenue = useCountUp(250, active, 1800, { ssrFinal: true });
+  const users = useCountUp(5, active, 1800, { ssrFinal: true });
+  const awareness = useCountUp(150, active, 1800, { ssrFinal: true });
   return (
     <StageWrap active={active}>
       <div className="flex-1 flex flex-col justify-center gap-4">
@@ -565,7 +565,7 @@ function StageLockscreen({
     >
       <Image
         src="/vocreations-mark-white.png"
-        alt=""
+        alt="Vo Creations"
         width={40}
         height={43}
         className="w-9 h-auto opacity-95"
@@ -675,7 +675,7 @@ export default function HeroStoryCard() {
           <div className="absolute top-[9px] left-1/2 -translate-x-1/2 w-[72px] h-[22px] bg-black rounded-full z-20 flex items-center justify-center">
             <Image
               src="/vocreations-mark-white.png"
-              alt=""
+              alt="Vo Creations"
               width={12}
               height={13}
               className="w-[9px] h-auto opacity-80"

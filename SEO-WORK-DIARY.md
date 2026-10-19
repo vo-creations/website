@@ -60,3 +60,21 @@ Note: GSC property is registered under `www.vocreations.com` — sitemap submiss
 ## 2026-06: Website checkout removed
 
 Removed the `/mentorship/enroll` page and the `/api/checkout` route. Mentorship is no longer sold through the website; sales go through direct Stripe payment links sent to buyers. `/mentorship/enroll` was also dropped from the sitemap. Google will drop the URL on its own once it recrawls (expect a "404/removed" status, which is intended).
+
+---
+
+## 2026-10-18: SEO/AEO audit fixes
+
+See `docs/DECISIONS.md` topic `seo-aeo-2026-10` for the reasoning. Short version: final stat values are in the server HTML, FAQ answers are visible, `/blog` and the text-on-screen post are back, `/mentorship` is 410, showcase embeds wait for a click, the H1 names the UGC agency, the meta description is 110 characters, and the sitemap lists the restored URLs. Case-study pages drafted the same day were removed on 2026-10-19 (see below).
+
+---
+
+## 2026-10-19: Case-study proof stays gated
+
+The owner reversed the public case-study pages. `/case-studies`, `/case-studies/fable`, and `/case-studies/cluely` are deleted and 404. Homepage cards, including Fable, stay blurred behind the book-a-call overlay. `/campaigns/maxxd` is not newly linked from the sitemap, `llms.txt`, or the homepage.
+
+---
+
+## 2026-10-19: Minimum deal is $50K/month
+
+The public price floor moved from $30K/month to $50K/month in the FAQ (and its JSON-LD), the program section, `/llms.txt`, and the Service offer. 90 days, separate creator bonuses, and no refunds are unchanged.
