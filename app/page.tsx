@@ -208,27 +208,31 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — banner lockup. One display line, two supporting lines, chrome VO.
-          The UGC agency phrase stays inside the H1. Phone mock is not in the hero.
-          See docs/DECISIONS.md (topic: brand-system-2026-10). */}
-      <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-32 pb-20">
+      {/* HERO — banner lockup. Headline is exactly two lines (make them /
+          remember.). Chrome VO sits on the right from lg up. The UGC agency
+          phrase stays inside the H1. See docs/DECISIONS.md
+          (topic: brand-system-2026-10). */}
+      <section className="relative flex min-h-[100svh] items-center pt-28 pb-16">
         <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(200px,0.85fr)] lg:gap-8">
-            <div className="max-w-[18em]">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
+            <div className="min-w-0">
               <h1>
-                <span className="mb-6 block font-sans text-[clamp(15px,1.7vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
+                <span className="mb-6 block max-w-[36rem] font-sans text-[clamp(15px,1.6vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
                   The in-house UGC agency backed by elite mentorship
                 </span>
-                <span className="block font-display text-[clamp(52px,7.4vw,104px)] font-extrabold leading-[0.9] tracking-[-0.045em] text-[#fbfbf9] [word-spacing:0.05em]">
-                  ma<span style={{ letterSpacing: "0.012em" }}>k</span>e the<span style={{ letterSpacing: "-0.044em" }}>m</span>
-                  <br />
-                  remembe<span style={{ letterSpacing: "-0.075em" }}>r</span>
-                  <span className="text-[#bdbdb8]">.</span>
+                <span className="block font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[0.9] tracking-[-0.045em] text-[#fbfbf9] [word-spacing:0.05em]">
+                  <span className="block whitespace-nowrap">
+                    ma<span style={{ letterSpacing: "0.012em" }}>k</span>e the<span style={{ letterSpacing: "-0.044em" }}>m</span>
+                  </span>
+                  <span className="block whitespace-nowrap">
+                    remembe<span style={{ letterSpacing: "-0.075em" }}>r</span>
+                    <span className="text-[#bdbdb8]">.</span>
+                  </span>
                 </span>
               </h1>
               <div className="mt-8 flex items-center gap-4">
                 <span className="h-px w-10 shrink-0 bg-[#8a8a86]" aria-hidden="true" />
-                <p className="font-sans text-[clamp(16px,1.7vw,22px)] font-medium leading-[1.3] text-[#efefed]">
+                <p className="whitespace-nowrap font-sans text-[clamp(16px,1.5vw,22px)] font-medium leading-[1.3] text-[#efefed]">
                   The team behind <b className="font-bold text-white">1B+</b> views
                 </p>
               </div>
@@ -250,14 +254,23 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/brand/vo-chrome.webp"
-                alt=""
-                width={840}
-                height={976}
-                sizes="(max-width: 1024px) 52vw, 380px"
-                className="h-auto w-[min(52vw,220px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.73)] lg:w-[min(34vw,380px)]"
-              />
+              {/* Static picture, not next/image: the optimizer's JPEG fallback
+                  mats the alpha to black. Lazy so the mark stays off the
+                  phone's high-priority path. See docs/DECISIONS.md
+                  (topic: brand-system-2026-10). */}
+              <picture>
+                <source media="(min-width: 1024px)" srcSet="/brand/vo-chrome.avif" type="image/avif" />
+                <source media="(min-width: 1024px)" srcSet="/brand/vo-chrome.webp" type="image/webp" />
+                <img
+                  src="/brand/vo-chrome-sm.webp"
+                  alt=""
+                  width={900}
+                  height={1090}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-[220px] drop-shadow-[0_24px_36px_rgba(0,0,0,0.73)] lg:w-[380px]"
+                />
+              </picture>
             </div>
           </div>
         </div>

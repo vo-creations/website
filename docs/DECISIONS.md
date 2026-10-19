@@ -3130,3 +3130,11 @@ The homepage and shared chrome were restyled to the designer's LinkedIn banner. 
 - The chrome VO is `public/brand/vo-chrome.webp` (about 46KB) and `public/brand/vo-chrome.avif` (about 26KB, with alpha), served with `next/image`. The attached `mono8_crop.png` was not in the workspace, so the mark was shaded from the supplied `logo-hq.svg` (`public/brand/vo-logo.svg`) into a transparent silver render at 840px wide. The nav and footer use that SVG.
 - DarkVeil remains the silk behind the page, desaturated to white instead of cream. `VeilBackground` paints a static CSS silk always, and starts the WebGL loop only above 767px, without reduced motion, and only after idle. A tiled grain PNG at 12% opacity sits over that field.
 - `public/og-image.png` was regenerated at 1200×630 in the same lockup. The root Open Graph and Twitter images already pointed at that path.
+
+## topic: brand-system-2026-10 — _2026-10-19_
+
+The real `mono8_crop.png` arrived after the first restyle. It already had a transparent background, so it replaced the shaded SVG mark.
+
+- Exported at 900×1090: `public/brand/vo-chrome.webp` (about 83KB) and `public/brand/vo-chrome.avif` (about 36KB), both with alpha. Phones load `vo-chrome-sm.webp` (384px, about 18KB). The hero uses a `<picture>`, not `next/image`: without an AVIF/WebP Accept header the optimizer returned a JPEG and the transparent mark disappeared into the black field, and `decoding="async"` held the mobile LCP. The phone file is WebP, not AVIF. The img stays `loading="lazy"`, same as the mark that scored 96, so it is not fetched at high priority ahead of the type. Nav and footer still use `vo-logo.svg`.
+- Desktop hero is two columns inside the nav container: lockup on the left, 380px chrome on the right. Each headline line is `whitespace-nowrap`, so it stays "make them" / "remember." The proof line is nowrap too. The old `max-w-[18em]` column was what forced a third line.
+- Open Graph image regenerated with this render.

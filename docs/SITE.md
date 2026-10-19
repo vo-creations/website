@@ -27,8 +27,9 @@ only:
   Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` is an existing page and is not
   linked from the sitemap, `llms.txt`, or the homepage.
 - Display type is Inter Tight and body type is Inter, both from `next/font`
-  in `app/layout.tsx`. The hero mark is `public/brand/vo-chrome.webp` (AVIF
-  sibling alongside it). `components/VeilBackground.tsx` keeps DarkVeil off
+  in `app/layout.tsx`. The hero mark is a `<picture>`:
+  `public/brand/vo-chrome.avif` from 1024px up, `vo-chrome-sm.webp` below that.
+  `components/VeilBackground.tsx` keeps DarkVeil off
   small screens and reduced motion. Open Graph image is `public/og-image.png`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).
 - `app/api/mercury-webhook` — Mercury bank events → Slack (#ka-ching), incoming only.
