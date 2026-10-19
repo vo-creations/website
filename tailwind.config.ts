@@ -18,10 +18,10 @@ const config: Config = {
         // maxxd, Nav) — now a neutral white-based scale so every consumer of
         // `accent` cascades to grayscale automatically.
         bg: {
-          DEFAULT: '#121212',
-          card: '#1C1C1C',
-          elevated: '#242424',
-          subtle: '#0F0F0F',
+          DEFAULT: '#060606',
+          card: '#0e0e0e',
+          elevated: '#161616',
+          subtle: '#0a0a0a',
         },
         accent: {
           DEFAULT: '#FFFFFF',
@@ -31,16 +31,18 @@ const config: Config = {
           glow: 'rgba(255,255,255,0.3)',
         },
         text: {
-          DEFAULT: '#FFFFFF',
-          secondary: '#A3A3A3',
-          dim: '#6B6B6B',
+          DEFAULT: '#f5f5f3',
+          secondary: '#efefed',
+          dim: '#8a8a86',
+          hero: '#fbfbf9',
         },
         border: {
           DEFAULT: 'rgba(255,255,255,0.06)',
           accent: 'rgba(255,255,255,0.2)',
         },
-        green: '#4ade80',
-        red: '#f87171',
+        // Semantic names kept so older call sites stay monochrome.
+        green: '#f5f5f3',
+        red: '#8a8a86',
 
         // Mentorship theme (green)
         m: {
@@ -63,7 +65,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
-        display: ['var(--font-bricolage)', 'Bricolage Grotesque', 'sans-serif'],
+        display: ['var(--font-inter-tight)', 'Inter Tight', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },

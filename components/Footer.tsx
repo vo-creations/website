@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const footerLinks = [
   { href: "/#results", label: "Case Studies" },
@@ -17,14 +16,8 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="/vocreations-logo.webp"
-                alt="Vo Creations"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain"
-              />
-              <span className="text-lg font-extrabold tracking-tight">
+              <img src="/brand/vo-logo.svg" alt="" className="h-8 w-auto" />
+              <span className="font-display text-lg font-semibold tracking-[-0.03em] text-[#fbfbf9]">
                 Vo Creations
               </span>
             </div>
@@ -60,7 +53,7 @@ export default function Footer() {
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-black font-bold text-sm px-8 py-3.5 rounded-full hover:shadow-[0_0_32px_rgba(255,255,255,0.3)] hover:-translate-y-px transition-all"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-transform hover:-translate-y-px"
             >
               make them remember.
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">

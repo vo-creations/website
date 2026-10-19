@@ -3119,3 +3119,22 @@ Daniel raised the minimum deal from $30K/month to $50K/month. The 90-day minimum
 - The program section says $50K a month. `/llms.txt` says $50K/month.
 - The Service offer `price` and `minPrice` are `50000` USD per month, and the offer description says $50K/month.
 - The meta description does not state a price, so it was left as the existing 110-character string.
+
+## topic: brand-system-2026-10 — _2026-10-19_
+
+The homepage and shared chrome were restyled to the designer's LinkedIn banner. Content, gated case-study cards, the SEO fixes, and the $50K floor stayed.
+
+- Tokens are `#060606` background, `#fbfbf9` display, `#f5f5f3` body, `#efefed` supporting lines, `#ffffff` strong, `#bdbdb8` for the hero period, and `#8a8a86` for dim rules and labels. Green, red, and the leftover amber chart stroke were pulled back to that scale. Client logos in the marquee were left as supplied.
+- `next/font` loads Inter and Inter Tight. Display headings use Inter Tight 800, line-height 0.9, tracking about -0.045em. Supporting lines use Inter 500, line-height 1.3, with `font-feature-settings: "ss01", "cv11"`. The faux text-stroke on extrabold type was removed.
+- The hero is the approved lockup: "The in-house UGC agency backed by elite mentorship" inside the H1, then "make them remember." with the period in `#bdbdb8`, a 40×1 hairline, and "The team behind **1B+** views". The phone mock is not in the hero. The four stat counters still render their final values in a row under the hero so the server HTML keeps `1B+`, `5M+`, `500+`, and `10-14`.
+- The chrome VO is `public/brand/vo-chrome.webp` (about 46KB) and `public/brand/vo-chrome.avif` (about 26KB, with alpha), served with `next/image`. The attached `mono8_crop.png` was not in the workspace, so the mark was shaded from the supplied `logo-hq.svg` (`public/brand/vo-logo.svg`) into a transparent silver render at 840px wide. The nav and footer use that SVG.
+- DarkVeil remains the silk behind the page, desaturated to white instead of cream. `VeilBackground` paints a static CSS silk always, and starts the WebGL loop only above 767px, without reduced motion, and only after idle. A tiled grain PNG at 12% opacity sits over that field.
+- `public/og-image.png` was regenerated at 1200×630 in the same lockup. The root Open Graph and Twitter images already pointed at that path.
+
+## topic: brand-system-2026-10 — _2026-10-19_
+
+The real `mono8_crop.png` arrived after the first restyle. It already had a transparent background, so it replaced the shaded SVG mark.
+
+- Exported at 900×1090: `public/brand/vo-chrome.webp` (about 83KB) and `public/brand/vo-chrome.avif` (about 36KB), both with alpha. Phones load `vo-chrome-sm.webp` (384px, about 18KB). The hero uses a `<picture>`, not `next/image`: without an AVIF/WebP Accept header the optimizer returned a JPEG and the transparent mark disappeared into the black field, and `decoding="async"` held the mobile LCP. The phone file is WebP, not AVIF. The img stays `loading="lazy"`, same as the mark that scored 96, so it is not fetched at high priority ahead of the type. Nav and footer still use `vo-logo.svg`.
+- Desktop hero is two columns inside the nav container: lockup on the left, 380px chrome on the right. Each headline line is `whitespace-nowrap`, so it stays "make them" / "remember." The proof line is nowrap too. The old `max-w-[18em]` column was what forced a third line.
+- Open Graph image regenerated with this render.

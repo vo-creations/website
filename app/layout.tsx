@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Bricolage_Grotesque } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import DarkVeil from "@/components/DarkVeil";
+import VeilBackground from "@/components/VeilBackground";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter-tight",
+  weight: ["500", "600", "700", "800"],
 });
 
 const SITE_DESCRIPTION =
@@ -169,33 +169,15 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${bricolageGrotesque.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${interTight.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         <div
           aria-hidden="true"
-          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none opacity-50"
+          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
         >
-          {/* DECISION 2026-08: reintroduced a subtle cream (#F7F0DD) tint,
-              not the old full sepia wash from before the black-and-white
-              conversion. tintAmount 0.8, not DarkVeil's default 1.0 (fully
-              tinted) or the first attempt's 0.4 (measured via actual pixel
-              sampling on a real screenshot, not eyeballed — 0.4 produced
-              only a ~2-4/255 R-vs-B channel spread even at the pattern's
-              brightest points, imperceptible in practice). Cream itself is
-              a low-saturation color, so even at 0.8 the spread stays
-              modest; this isn't the old dramatic cookies-and-cream palette
-              back, just enough to read as intentional warmth instead of a
-              fully neutral grayscale template. Sitewide (this component
-              renders once in layout), but it's most visible behind the
-              hero specifically, since every section below it sits on its
-              own opaque/near-opaque card background that mostly covers
-              this layer. See docs/DECISIONS.md (topic:
-              darkveil-cream-tint). */}
-          <DarkVeil
-            speed={0.35}
-            resolutionScale={0.75}
-            tint={[0.9686, 0.9412, 0.8667]}
-            tintAmount={0.8}
-          />
+          {/* Silver silk, not the old cream tint. WebGL is desktop-only and
+              idle-deferred. See docs/DECISIONS.md (topic: brand-system-2026-10). */}
+          <VeilBackground />
+          <div className="film-grain absolute inset-0" />
         </div>
         {children}
         <Analytics />

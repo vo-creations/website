@@ -237,7 +237,7 @@ export default function RefundPolicyPage() {
           </ul>
 
           <div className="bg-red/[0.04] border border-red/20 rounded-2xl p-6">
-            <div className="text-[11px] font-semibold tracking-[2.5px] uppercase text-red mb-3">
+            <div className="text-[11px] font-semibold tracking-[2.5px] uppercase text-text-dim mb-3">
               Unauthorized chargebacks
             </div>
             <p className="text-[15px] text-text-secondary leading-relaxed">

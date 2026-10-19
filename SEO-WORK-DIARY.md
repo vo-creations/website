@@ -78,3 +78,9 @@ The owner reversed the public case-study pages. `/case-studies`, `/case-studies/
 ## 2026-10-19: Minimum deal is $50K/month
 
 The public price floor moved from $30K/month to $50K/month in the FAQ (and its JSON-LD), the program section, `/llms.txt`, and the Service offer. 90 days, separate creator bonuses, and no refunds are unchanged.
+
+---
+
+## 2026-10-19: Banner brand system
+
+The marketing pages now use the banner type and monochrome palette. The H1 still contains "UGC agency". Stat counters, the visible FAQ, gated result cards, and the $50K floor are unchanged. Open Graph art was replaced with a 1200×630 frame of the same lockup.

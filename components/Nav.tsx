@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -26,20 +25,14 @@ export default function Nav() {
 
   return (
     <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] ${NAV_CONTAINER}`}>
-      <div className={`bg-bg/90 backdrop-blur-[20px] border border-white/20 rounded-full ${NAV_INNER_PADDING} py-3 flex justify-between items-center shadow-[0_8px_30px_rgba(0,0,0,0.35)]`}>
+      <div className={`bg-black/55 backdrop-blur-[20px] border border-white/10 rounded-full ${NAV_INNER_PADDING} py-3 flex justify-between items-center`}>
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="flex items-center gap-2 shrink-0"
+          className="flex items-center gap-2.5 shrink-0"
         >
-          <Image
-            src="/vocreations-logo.webp"
-            alt="Vo Creations"
-            width={32}
-            height={32}
-            className="w-7 h-7 md:w-8 md:h-8 object-contain"
-          />
-          <span className="text-base md:text-lg font-extrabold tracking-tight text-text">
+          <img src="/brand/vo-logo.svg" alt="" className="h-7 w-auto" />
+          <span className="font-display text-base font-semibold tracking-[-0.03em] text-[#fbfbf9] md:text-lg">
             Vo Creations
           </span>
         </Link>
@@ -65,7 +58,7 @@ export default function Nav() {
             href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-black font-bold text-[13px] px-5 md:px-6 py-2.5 rounded-full hover:shadow-[0_0_24px_rgba(255,255,255,0.3)] hover:-translate-y-px transition-all"
+            className="rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-black transition-transform hover:-translate-y-px md:px-6"
           >
             Book a call
           </a>
