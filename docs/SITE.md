@@ -18,6 +18,12 @@ only:
 
 - `/daniel`, `/danny`, `/thienvu` — conference/QR landings: `noindex`, standalone
   (no Nav/Footer).
+- `/mentorship` returns **410** (`app/mentorship/route.ts`). The old creator
+  funnel is not redirected at the homepage. `/blog` and `/blog/text-on-screen-ugc`
+  are real pages again. `/blog/why-text-on-screen-ugc-is-killing-your-app-growth`
+  redirects to the real post. `/case-studies`, `/case-studies/fable`, and
+  `/case-studies/cluely` are public studies. `/llms.txt` is a static file in
+  `public/`. Sitemap: `app/sitemap.ts`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).
 - `app/api/mercury-webhook` — Mercury bank events → Slack (#ka-ching), incoming only.
 

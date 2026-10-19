@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface TikTokEmbedProps {
   url: string;
   label?: string;
+  thumb?: string;
 }
 
 // DECISION 2026-08: click-to-load, matching the pattern InstagramEmbed and
@@ -24,7 +26,7 @@ interface TikTokEmbedProps {
 // cuts that failure surface to just the people who click, same as
 // Instagram/YouTube already do. See docs/DECISIONS.md (topic:
 // showcase-marquee, showcase-tiktok-reliability).
-export default function TikTokEmbed({ url, label }: TikTokEmbedProps) {
+export default function TikTokEmbed({ url, label, thumb }: TikTokEmbedProps) {
   const [loaded, setLoaded] = useState(false);
   const videoId = url.match(/\/video\/(\d+)/)?.[1];
 
@@ -50,7 +52,16 @@ export default function TikTokEmbed({ url, label }: TikTokEmbedProps) {
           onClick={() => setLoaded(true)}
           className="absolute inset-0 bg-black flex items-center justify-center cursor-pointer"
         >
-          <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+          {thumb && (
+            <Image
+              src={thumb}
+              alt={label ? `${label} video thumbnail` : "TikTok video thumbnail"}
+              fill
+              sizes="300px"
+              className="object-cover"
+            />
+          )}
+          <div className="relative z-10 w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
             <div className="w-0 h-0 border-l-[16px] border-l-[#0a0a0a] border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1" />
           </div>
         </div>

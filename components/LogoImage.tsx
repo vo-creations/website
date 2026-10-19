@@ -35,6 +35,10 @@ interface LogoImageProps {
 // deviceScaleFactor 2 before and after. A plain <img> has no srcset, so
 // natural-size auto-sizing + max-height is deterministic at every DPR. See
 // docs/DECISIONS.md (topic: trusted-by-logos sizing, 2026-08-03).
+// DECISION 2026-10: source PNGs taller than the marquee needs were
+// downscaled (display height is 30px; files now top out near 96px tall)
+// and the img is loading=lazy. The box sizing is unchanged. See
+// docs/DECISIONS.md (topic: seo-aeo-2026-10).
 export default function LogoImage({ src, alt, boxClassName }: LogoImageProps) {
   return (
     <div className={`flex items-center justify-center shrink-0 ${boxClassName}`}>
@@ -42,6 +46,8 @@ export default function LogoImage({ src, alt, boxClassName }: LogoImageProps) {
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="max-w-full max-h-full w-auto h-auto object-contain"
       />
     </div>

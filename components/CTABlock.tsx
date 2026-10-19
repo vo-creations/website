@@ -33,7 +33,7 @@ export default function CTABlock({
           {buttonText}
           <Image
             src="/vocreations-mark-white.png"
-            alt=""
+            alt="Vo Creations"
             width={18}
             height={19}
             className="w-[15px] h-auto"
