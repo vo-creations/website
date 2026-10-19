@@ -12,7 +12,6 @@ import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import HeroStoryCard from "@/components/HeroStoryCard";
 import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
 
@@ -209,101 +208,76 @@ export default function Home() {
       />
       <Nav />
 
-      {/* HERO — two columns from `xl` up (copy left, story card right), both living
-          inside the same NAV_CONTAINER-capped wrapper so their widths are a real
-          proportional split rather than the text column claiming the full 1100px
-          and the card floating in whatever margin happens to be left outside it —
-          that version clipped/crowded the card at common laptop widths (1280-1440px)
-          because the leftover outer margin was too thin. Left column now caps at
-          max-w-[620px] so the right column always has real dedicated space; verified
-          no overlap at 1280/1440/1600/1920 after the change (previously verified at
-          those same widths and still found it too tight). Collapses to a single
-          centered column below `xl` (card hidden, not stacked — see
-          docs/DECISIONS.md, topic: hero-floating-card, for why hidden was chosen).
-          Headline is Inter (not the Bricolage display font) at heavy weight, normal
-          case — small-caps at this size on a heavy display font read blocky/circus-
-          like; small-caps stays reserved for the small tagline usage in Nav/Footer. */}
-      <section className="min-h-screen flex flex-col justify-center pt-[160px] pb-20 relative overflow-hidden">
+      {/* HERO — banner lockup. One display line, two supporting lines, chrome VO.
+          The UGC agency phrase stays inside the H1. Phone mock is not in the hero.
+          See docs/DECISIONS.md (topic: brand-system-2026-10). */}
+      <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-32 pb-20">
         <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
-          <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-12 xl:gap-10">
-            <div className="flex flex-col items-start text-left xl:max-w-[620px]">
-              <div className="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 mb-8 animate-fade-up">
-                <span className="text-white text-[10px] leading-none">✦</span>
-                <span className="text-[12px] font-semibold text-text-secondary tracking-wide">
-                  The Team Behind 1B+ Views
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(200px,0.85fr)] lg:gap-8">
+            <div className="max-w-[18em]">
+              <h1>
+                <span className="mb-6 block font-sans text-[clamp(15px,1.7vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
+                  The in-house UGC agency backed by elite mentorship
                 </span>
-                <span className="text-white text-[10px] leading-none">✦</span>
-              </div>
-
-              <h1 className="font-sans text-[clamp(40px,5.5vw,68px)] font-extrabold leading-[1.05] tracking-tighter mb-6 animate-fade-up-delay-1 text-text">
-                <span className="block">make them remember.</span>
-                <span className="mt-4 block text-[clamp(18px,2.2vw,26px)] font-bold leading-snug tracking-tight text-text">
-                  UGC agency for AI startups and consumer apps.
+                <span className="block font-display text-[clamp(52px,7.4vw,104px)] font-extrabold leading-[0.9] tracking-[-0.045em] text-[#fbfbf9] [word-spacing:0.05em]">
+                  ma<span style={{ letterSpacing: "0.012em" }}>k</span>e the<span style={{ letterSpacing: "-0.044em" }}>m</span>
+                  <br />
+                  remembe<span style={{ letterSpacing: "-0.075em" }}>r</span>
+                  <span className="text-[#bdbdb8]">.</span>
                 </span>
               </h1>
-
-              <p className="text-[clamp(16px,2.2vw,20px)] text-text-secondary max-w-[560px] leading-relaxed mb-10 animate-fade-up-delay-2">
-                Scale your B2C product with your own world-class{" "}
-                <span className="whitespace-nowrap">in-house</span> UGC program.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-up-delay-3">
+              <div className="mt-8 flex items-center gap-4">
+                <span className="h-px w-10 shrink-0 bg-[#8a8a86]" aria-hidden="true" />
+                <p className="font-sans text-[clamp(16px,1.7vw,22px)] font-medium leading-[1.3] text-[#efefed]">
+                  The team behind <b className="font-bold text-white">1B+</b> views
+                </p>
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
                   href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-black font-bold text-base px-9 py-4 rounded-full hover:shadow-[0_0_24px_rgba(255,255,255,0.3)] hover:-translate-y-0.5 transition-all"
+                  className="inline-flex items-center rounded-full bg-white px-7 py-3 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px"
                 >
                   Let&apos;s Talk
-                  <Image
-                    src="/vocreations-mark-black.png"
-                    alt="Vo Creations"
-                    width={18}
-                    height={19}
-                    className="w-[15px] h-auto"
-                  />
                 </a>
                 <a
                   href="#results"
-                  className="inline-flex items-center gap-2 bg-transparent text-white font-medium text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 transition-all"
+                  className="text-[15px] font-medium text-[#efefed] underline decoration-white/30 underline-offset-4 hover:text-white"
                 >
-                  See results →
+                  See results
                 </a>
               </div>
-
-              <div
-                ref={statsRef}
-                className="grid grid-cols-2 sm:flex sm:flex-row sm:gap-14 mt-[64px] sm:mt-[72px] w-full max-w-[320px] sm:w-auto sm:max-w-none animate-fade-up-delay-4"
-              >
-                {heroStats.map((stat, i) => (
-                  <div
-                    key={stat.label}
-                    className={`text-left py-6 sm:py-0 ${
-                      i % 2 === 0 ? "border-r border-border sm:border-r-0" : ""
-                    } ${i < 2 ? "border-b border-border sm:border-b-0" : ""}`}
-                  >
-                    <div className="text-[28px] sm:text-[32px] font-extrabold tracking-tighter leading-none text-text tabular-nums">
-                      <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
-                    </div>
-                    <div className="text-[11px] font-medium text-text-dim tracking-wide uppercase mt-2">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
-
-            {/* Story card — decorative, aria-hidden, hidden below `xl` (same growth
-                clips/numbers already exist non-decoratively further down the page). */}
-            <div
-              aria-hidden="true"
-              className="hidden xl:block w-[264px] shrink-0 animate-phone-entrance"
-            >
-              <div className="animate-float">
-                <HeroStoryCard />
-              </div>
+            <div className="flex justify-center lg:justify-end">
+              <Image
+                src="/brand/vo-chrome.webp"
+                alt=""
+                width={840}
+                height={976}
+                sizes="(max-width: 1024px) 52vw, 380px"
+                className="h-auto w-[min(52vw,220px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.73)] lg:w-[min(34vw,380px)]"
+              />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-8">
+        <div
+          ref={statsRef}
+          className={`${NAV_CONTAINER} mx-auto grid grid-cols-2 gap-x-8 gap-y-8 md:grid-cols-4`}
+        >
+          {heroStats.map((stat) => (
+            <div key={stat.label}>
+              <div className="font-display text-[32px] font-bold leading-none tracking-[-0.04em] text-white tabular-nums">
+                <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
+              </div>
+              <div className="mt-2 text-[13px] font-medium leading-[1.3] text-text-dim">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -344,12 +318,9 @@ export default function Home() {
       <section className="pt-[80px] pb-[129px] px-6">
         <div className="max-w-[1100px] mx-auto rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm py-10">
           <div className="max-w-[900px] mx-auto text-center px-6">
-            <div className="inline-flex items-center gap-2 mb-6">
-              <span className="text-white text-[10px] leading-none">✦</span>
-              <span className="text-[11px] font-semibold text-text-dim uppercase tracking-[0.2em]">
-                Trusted by
-              </span>
-              <span className="text-white text-[10px] leading-none">✦</span>
+            <div className="mb-6 flex items-center justify-center gap-3 text-[13px] font-medium leading-[1.3] text-text-dim">
+              <span className="h-px w-10 bg-text-dim" aria-hidden="true" />
+              Trusted by
             </div>
           </div>
           <div className="overflow-hidden" style={edgeFadeStyle}>

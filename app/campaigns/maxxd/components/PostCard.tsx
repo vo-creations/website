@@ -8,7 +8,7 @@ export function PostCard({ post }: { post: TopPost }) {
       href={post.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-bg-card border border-border rounded-xl p-5 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(245,166,35,0.06)] transition-all duration-200 group"
+      className="block bg-bg-card border border-border rounded-xl p-5 hover:border-white/30 transition-all duration-200 group"
     >
       <div className="flex items-center gap-2 mb-3">
         <span className="font-mono text-[11px] font-bold text-accent/60">#{post.rank}</span>

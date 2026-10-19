@@ -20,7 +20,7 @@ export default function CTABlock({
     // gaps 180px. Re-derive if FAQ's py or Footer's pt-16 ever change.
     <section className="text-center pt-20 pb-[116px]">
       <div className="max-w-[560px] mx-auto px-10 py-14 rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm">
-        <h3 className="text-[28px] font-extrabold tracking-tight mb-3">
+        <h3 className="font-display mb-3 text-[28px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
           {heading}
         </h3>
         <p className="text-base text-text-secondary mb-6">{sub}</p>
@@ -28,7 +28,7 @@ export default function CTABlock({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-transparent text-white font-bold text-base px-9 py-4 rounded-full border border-white hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+          className="inline-flex items-center gap-2 rounded-full border border-white bg-transparent px-9 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10"
         >
           {buttonText}
           <Image

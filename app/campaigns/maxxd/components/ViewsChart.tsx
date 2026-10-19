@@ -69,7 +69,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
               <text
                 x={padding.left + 2}
                 y={g.y - 4}
-                fill="#6b6558"
+                fill="#8a8a86"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
               >
@@ -81,8 +81,8 @@ export function ViewsChart({ data }: ViewsChartProps) {
           {/* Area fill */}
           <defs>
             <linearGradient id="viewsGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#F5A623" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#F5A623" stopOpacity="0" />
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path d={areaPath} fill="url(#viewsGradient)" />
@@ -91,7 +91,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
           <path
             d={linePath}
             fill="none"
-            stroke="#F5A623"
+            stroke="#f5f5f3"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -99,12 +99,12 @@ export function ViewsChart({ data }: ViewsChartProps) {
 
           {/* Data points */}
           {points.map((p, i) => (
-            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#121110" stroke="#F5A623" strokeWidth="1.5" />
+            <circle key={i} cx={p.x} cy={p.y} r="2.5" fill="#060606" stroke="#f5f5f3" strokeWidth="1.5" />
           ))}
 
           {/* Peak marker */}
-          <circle cx={peakPoint.x} cy={peakPoint.y} r="5" fill="#F5A623" opacity="0.3" />
-          <circle cx={peakPoint.x} cy={peakPoint.y} r="3" fill="#F5A623" />
+          <circle cx={peakPoint.x} cy={peakPoint.y} r="5" fill="#ffffff" opacity="0.3" />
+          <circle cx={peakPoint.x} cy={peakPoint.y} r="3" fill="#ffffff" />
 
           {/* X-axis labels */}
           {xLabels.map((p) => {
@@ -115,7 +115,7 @@ export function ViewsChart({ data }: ViewsChartProps) {
                 key={p.date}
                 x={p.x}
                 y={height - 8}
-                fill="#6b6558"
+                fill="#8a8a86"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
                 textAnchor="middle"

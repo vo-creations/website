@@ -1,6 +1,7 @@
 export default function Label({ children }: { children: React.ReactNode }) {
   return (
-    <span className="block text-[11px] font-semibold tracking-[2.5px] uppercase text-text-secondary mb-4">
+    <span className="mb-5 flex items-center gap-3 text-[13px] font-medium leading-[1.3] text-text-dim">
+      <span className="h-px w-10 bg-text-dim" aria-hidden="true" />
       {children}
     </span>
   );

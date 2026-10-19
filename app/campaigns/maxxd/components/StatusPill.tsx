@@ -1,9 +1,9 @@
 import type { CreatorStatus } from "../data";
 
 const statusConfig: Record<CreatorStatus, { label: string; bg: string; text: string; dot: string }> = {
-  ON_TRACK: { label: "ON TRACK", bg: "bg-green/10", text: "text-green", dot: "bg-green" },
-  WATCH: { label: "WATCH", bg: "bg-yellow-400/10", text: "text-yellow-400", dot: "bg-yellow-400" },
-  SLOW: { label: "SLOW", bg: "bg-red/10", text: "text-red", dot: "bg-red" },
+  ON_TRACK: { label: "ON TRACK", bg: "bg-white/10", text: "text-white", dot: "bg-white" },
+  WATCH: { label: "WATCH", bg: "bg-white/5", text: "text-[#bdbdb8]", dot: "bg-[#bdbdb8]" },
+  SLOW: { label: "SLOW", bg: "bg-white/5", text: "text-text-dim", dot: "bg-text-dim" },
 };
 
 export function StatusPill({ status }: { status: CreatorStatus }) {
