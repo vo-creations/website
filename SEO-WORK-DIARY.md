@@ -72,3 +72,9 @@ See `docs/DECISIONS.md` topic `seo-aeo-2026-10` for the reasoning. Short version
 ## 2026-10-19: Case-study proof stays gated
 
 The owner reversed the public case-study pages. `/case-studies`, `/case-studies/fable`, and `/case-studies/cluely` are deleted and 404. Homepage cards, including Fable, stay blurred behind the book-a-call overlay. `/campaigns/maxxd` is not newly linked from the sitemap, `llms.txt`, or the homepage.
+
+---
+
+## 2026-10-19: Minimum deal is $50K/month
+
+The public price floor moved from $30K/month to $50K/month in the FAQ (and its JSON-LD), the program section, `/llms.txt`, and the Service offer. 90 days, separate creator bonuses, and no refunds are unchanged.

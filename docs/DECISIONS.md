@@ -3110,3 +3110,12 @@ The site owner reversed the case-study publication from the same day. Named proo
 - Homepage `ResultCard`s are all `locked` again, in the previous order (Liftoff, Higgsfield, Aonic, Fable, BlackBox AI, Makon AI, Codédex), inside one `CaseStudiesLockOverlay`. The Fable card has no `href`. The Cluely card that was added for the public page is gone. The section intro is "Click any card for the full story." again. `ResultCard` dropped the unused `href` prop.
 - `app/case-studies/` (index, Fable, Cluely) was deleted. Those URLs 404. No redirect was added.
 - `/llms.txt` no longer names Fable, Cluely, or Maxxd, and no longer links `/case-studies`. The program section never named a client, so that copy stayed. Footer "Case Studies" points at `/#results` again. The sitemap dropped `/case-studies`, `/case-studies/fable`, `/case-studies/cluely`, and `/campaigns/maxxd`. `/campaigns/maxxd` itself was left as it was before this PR, with no new links to it.
+
+## topic: pricing-2026-10 — _2026-10-19_
+
+Daniel raised the minimum deal from $30K/month to $50K/month. The 90-day minimum, month-to-month billing, separate creator bonuses, and no-refunds terms stayed.
+
+- The investment FAQ answer now says campaigns start at $50K/month. FAQPage JSON-LD is built from that same `agencyFaqs` array, so the visible answer and the schema match.
+- The program section says $50K a month. `/llms.txt` says $50K/month.
+- The Service offer `price` and `minPrice` are `50000` USD per month, and the offer description says $50K/month.
+- The meta description does not state a price, so it was left as the existing 110-character string.

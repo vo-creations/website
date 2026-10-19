@@ -125,13 +125,13 @@ const serviceJsonLd = {
     priceCurrency: "USD",
     priceSpecification: {
       "@type": "PriceSpecification",
-      minPrice: "30000",
-      price: "30000",
+      minPrice: "50000",
+      price: "50000",
       priceCurrency: "USD",
       unitText: "MONTH",
     },
     description:
-      "Campaigns start at $30K/month. Creator bonuses are billed separately.",
+      "Campaigns start at $50K/month. Creator bonuses are billed separately.",
     url: "https://vocreations.com/#faq",
   },
 };
