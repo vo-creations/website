@@ -17,11 +17,7 @@ Vo Creations trains its own creators, then runs them as a brand's content team a
 
 ## Pages
 
-- [Home](https://vocreations.com/): positioning, results, team, how it works, FAQ
-- [Case studies](https://vocreations.com/case-studies): published client studies
-- [Fable](https://vocreations.com/case-studies/fable): social reading app, 10M+ organic views in 3 weeks with 3 creators (published study). Homepage card lists 25M+.
-- [Cluely](https://vocreations.com/case-studies/cluely): 20M+ organic views, 20,000+ conversions, 600+ videos in 2 months
-- [Maxxd](https://vocreations.com/campaigns/maxxd): fitness app, 575K+ organic views in 26 days
+- [Home](https://vocreations.com/): positioning, team, how it works, FAQ. Named campaign results stay behind a booking gate.
 - [Blog](https://vocreations.com/blog): UGC insights
 - [Why text-on-screen UGC fails](https://vocreations.com/blog/text-on-screen-ugc): March 2026 essay by Thienvu Vo
 - [Refund policy](https://vocreations.com/refund-policy)

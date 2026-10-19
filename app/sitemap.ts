@@ -11,30 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${base}/case-studies`,
-      lastModified: new Date("2026-10-18"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/case-studies/fable`,
-      lastModified: new Date("2026-10-18"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/case-studies/cluely`,
-      lastModified: new Date("2026-10-18"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/campaigns/maxxd`,
-      lastModified: new Date("2026-08-01"),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
       url: `${base}/blog`,
       lastModified: new Date("2026-10-18"),
       changeFrequency: "monthly",

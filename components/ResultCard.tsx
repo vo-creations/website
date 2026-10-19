@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import LogoImage from "./LogoImage";
 
 type MiniStat = { value: string; label: string };
@@ -12,7 +11,6 @@ interface ResultCardProps {
   views: string;
   viewsSub: string;
   miniStats?: MiniStat[];
-  href?: string;
   // Gates the proof (logo, view count, stat grid) behind a blur — card
   // shape/layout stays intact, click-to-expand is disabled since there's
   // nothing legible to reveal. Paired with an overlay CTA rendered by the
@@ -27,15 +25,16 @@ export default function ResultCard({
   views,
   viewsSub,
   miniStats,
-  href,
   locked = false,
 }: ResultCardProps) {
   const [open, setOpen] = useState(false);
-  const isOpen = open && !locked && !href;
-  const shell = `bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked || href ? "" : "cursor-pointer"}`;
+  const isOpen = open && !locked;
 
-  const body = (
-    <>
+  return (
+    <div
+      className={`bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked ? "" : "cursor-pointer"}`}
+      onClick={locked ? undefined : () => setOpen(!open)}
+    >
       <div className="p-7 pb-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-5">
           {logo ? (
@@ -64,14 +63,9 @@ export default function ResultCard({
       </div>
 
       {/* Expand hint */}
-      {!isOpen && !locked && !href && (
+      {!isOpen && !locked && (
         <div className="text-xs text-text-dim px-7 pb-4 font-medium">
           Click for full case study &#8599;
-        </div>
-      )}
-      {href && !locked && (
-        <div className="text-xs text-text-dim px-7 pb-4 font-medium">
-          Read the case study &#8599;
         </div>
       )}
 
@@ -99,23 +93,6 @@ export default function ResultCard({
           )}
         </div>
       )}
-    </>
-  );
-
-  if (href && !locked) {
-    return (
-      <Link href={href} className={`${shell} block`}>
-        {body}
-      </Link>
-    );
-  }
-
-  return (
-    <div
-      className={shell}
-      onClick={locked ? undefined : () => setOpen(!open)}
-    >
-      {body}
     </div>
   );
 }

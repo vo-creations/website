@@ -65,4 +65,10 @@ Removed the `/mentorship/enroll` page and the `/api/checkout` route. Mentorship 
 
 ## 2026-10-18: SEO/AEO audit fixes
 
-See `docs/DECISIONS.md` topic `seo-aeo-2026-10` for the reasoning. Short version: final stat values are in the server HTML, FAQ answers are visible, `/blog` and the text-on-screen post are back, `/mentorship` is 410, `/case-studies/fable` and `/case-studies/cluely` are published from the public Notion studies, showcase embeds wait for a click, the H1 names the UGC agency, the meta description is 110 characters, and the sitemap lists the new URLs.
+See `docs/DECISIONS.md` topic `seo-aeo-2026-10` for the reasoning. Short version: final stat values are in the server HTML, FAQ answers are visible, `/blog` and the text-on-screen post are back, `/mentorship` is 410, showcase embeds wait for a click, the H1 names the UGC agency, the meta description is 110 characters, and the sitemap lists the restored URLs. Case-study pages drafted the same day were removed on 2026-10-19 (see below).
+
+---
+
+## 2026-10-19: Case-study proof stays gated
+
+The owner reversed the public case-study pages. `/case-studies`, `/case-studies/fable`, and `/case-studies/cluely` are deleted and 404. Homepage cards, including Fable, stay blurred behind the book-a-call overlay. `/campaigns/maxxd` is not newly linked from the sitemap, `llms.txt`, or the homepage.

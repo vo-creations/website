@@ -62,7 +62,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `showcase-video` — `#t=0.1` media fragment for iOS Safari thumbnails
 - `content-assets` — `content/` binaries gitignored, live in Google Drive
 - `docs-standard` — adopted website-build-rules v1 (this doc set + `docs:check`)
-- `seo-aeo-2026-10` — stat counters SSR their final values; FAQ answers are in the HTML via `<details>`; `/blog` restored and `/mentorship` returns 410; public Fable and Cluely case-study pages; showcase embeds load on click; descriptive H1 plus a short program section; Organization schema adds Daniel Yun and drops unverified personal socials; Service offer from $30K/month.
+- `seo-aeo-2026-10` — stat counters SSR their final values; FAQ answers are in the HTML via `<details>`; `/blog` restored and `/mentorship` returns 410; case-study proof stays gated (no public `/case-studies` routes; Fable stays locked with the other cards); showcase embeds load on click; descriptive H1 plus a short program section; Organization schema adds Daniel Yun and drops unverified personal socials; Service offer from $30K/month.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

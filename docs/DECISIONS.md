@@ -3102,3 +3102,11 @@ An SEO/AEO audit (October 17, 2026) found zeros in the server HTML, FAQ answers 
 - **On-page.** The H1 keeps "make them remember." and adds "UGC agency for AI startups and consumer apps." A program section uses only figures already on the page ($30K/month, 90 days, 2,400+ videos, 1B+, 500+, 50+ campaigns, 10-14 days). Meta description, Open Graph, and Twitter descriptions are the same string, 110 characters.
 - **Schema.** Daniel Yun is a second `founder` (Co-Founder, LinkedIn `danielyun27`, the URL the audit already observed). `sameAs` is only `x.com/VoCreationsUGC` and `linkedin.com/company/vocreations`. Personal Instagram, TikTok, and YouTube were removed. `@vocreationsugc` was not added: Instagram returns a page for unknown paths, and no fetch confirmed the account. A `Service` node offers UGC content and UGC ads from $30,000/month.
 - **Housekeeping.** `/llms.txt`, `/favicon.png` copied from `app/favicon.png` into `public/`, `og:url`, `twitter:site` `@VoCreationsUGC`, alt text on images that had none, sitemap lastmods for the new and restored URLs plus `/campaigns/maxxd` and `/refund-policy`, and `app/not-found.tsx`.
+
+## topic: seo-aeo-2026-10 — _2026-10-19_
+
+The site owner reversed the case-study publication from the same day. Named proof stays gated. This entry supersedes the case-study bullet above.
+
+- Homepage `ResultCard`s are all `locked` again, in the previous order (Liftoff, Higgsfield, Aonic, Fable, BlackBox AI, Makon AI, Codédex), inside one `CaseStudiesLockOverlay`. The Fable card has no `href`. The Cluely card that was added for the public page is gone. The section intro is "Click any card for the full story." again. `ResultCard` dropped the unused `href` prop.
+- `app/case-studies/` (index, Fable, Cluely) was deleted. Those URLs 404. No redirect was added.
+- `/llms.txt` no longer names Fable, Cluely, or Maxxd, and no longer links `/case-studies`. The program section never named a client, so that copy stayed. Footer "Case Studies" points at `/#results` again. The sitemap dropped `/case-studies`, `/case-studies/fable`, `/case-studies/cluely`, and `/campaigns/maxxd`. `/campaigns/maxxd` itself was left as it was before this PR, with no new links to it.

@@ -15,7 +15,6 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 import HeroStoryCard from "@/components/HeroStoryCard";
 import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
-import Link from "next/link";
 
 // DECISION: both auto-scroll marquees (Trusted By, Content that goes viral)
 // mask their edges so items fade into darkness instead of hard-cutting at the
@@ -447,44 +446,18 @@ export default function Home() {
             Undeniable impact.
           </h2>
           <p className="text-base text-text-secondary mb-10">
-            <Link href="/case-studies" className="underline underline-offset-4 hover:text-text">
-              Fable and Cluely
-            </Link>{" "}
-            are published. The rest open on a call.
+            Click any card for the full story.
           </p>
-
-          <div className="flex flex-col gap-4">
-            <ResultCard
-              company="Fable"
-              logo="/logos/fable.png"
-              views="25M+"
-              viewsSub="4 weeks / 3 creators"
-              href="/case-studies/fable"
-              miniStats={[
-                { value: "25M+", label: "Total views" },
-                { value: "3", label: "Creators" },
-                { value: "30", label: "Days" },
-              ]}
-            />
-            <ResultCard
-              company="Cluely"
-              views="20M+"
-              viewsSub="2 months / 5 creators"
-              href="/case-studies/cluely"
-              miniStats={[
-                { value: "20M+", label: "Organic views" },
-                { value: "20K+", label: "Conversions" },
-                { value: "600+", label: "Videos" },
-                { value: "5", label: "Creators" },
-              ]}
-            />
 
           <div className="relative">
             <div className="flex flex-col gap-4">
-              {/* Ordered by view count, highest to lowest, with the two
-                  published studies lifted out above so the lock overlay
-                  does not cover their links. Locked cards stay blurred.
-                  See docs/DECISIONS.md (topic: seo-aeo-2026-10). */}
+              {/* Ordered by view count, highest to lowest. Every card is uniform:
+                  logo, total views stat, timeframe/creators line, and an
+                  expandable factual miniStats grid — no challenge/approach/result
+                  prose on any card (removed 2026-08, see docs/DECISIONS.md,
+                  topic: result-card-uniform). All `locked` — proof is blurred
+                  behind CaseStudiesLockOverlay until a call is booked, see
+                  docs/DECISIONS.md, topic: case-studies-lock. */}
               <ResultCard
                 locked
                 company="Liftoff"
@@ -520,6 +493,19 @@ export default function Home() {
                 miniStats={[
                   { value: "31M+", label: "Views" },
                   { value: "6", label: "Creators" },
+                  { value: "30", label: "Days" },
+                ]}
+              />
+
+              <ResultCard
+                locked
+                company="Fable"
+                logo="/logos/fable.png"
+                views="25M+"
+                viewsSub="4 weeks / 3 creators"
+                miniStats={[
+                  { value: "25M+", label: "Total views" },
+                  { value: "3", label: "Creators" },
                   { value: "30", label: "Days" },
                 ]}
               />
@@ -566,7 +552,6 @@ export default function Home() {
             </div>
 
             <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />
-          </div>
           </div>
         </div>
       </section>
