@@ -82,13 +82,13 @@ const organizationJsonLd = {
       url: "https://www.linkedin.com/in/danielyun27",
     },
   ],
-  // Brand profiles only. Personal IG/TikTok/YouTube were removed.
-  // Instagram @vocreationsugc could not be verified (Instagram answers
-  // 200 for unknown paths), so it is left out. See DECISIONS
-  // topic: seo-aeo-2026-10.
+  // Brand profiles only. Personal IG/TikTok/YouTube stay out.
+  // Daniel confirmed the brand Instagram on 2026-10-26. See DECISIONS
+  // topic: brand-profiles-2026-10.
   sameAs: [
     "https://x.com/VoCreationsUGC",
     "https://www.linkedin.com/company/vocreations",
+    "https://www.instagram.com/vo.creations/",
   ],
   knowsAbout: [
     "User-Generated Content",

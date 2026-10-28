@@ -3138,3 +3138,11 @@ The real `mono8_crop.png` arrived after the first restyle. It already had a tran
 - Exported at 900×1090: `public/brand/vo-chrome.webp` (about 83KB) and `public/brand/vo-chrome.avif` (about 36KB), both with alpha. Phones load `vo-chrome-sm.webp` (384px, about 18KB). The hero uses a `<picture>`, not `next/image`: without an AVIF/WebP Accept header the optimizer returned a JPEG and the transparent mark disappeared into the black field, and `decoding="async"` held the mobile LCP. The phone file is WebP, not AVIF. The img stays `loading="lazy"`, same as the mark that scored 96, so it is not fetched at high priority ahead of the type. Nav and footer still use `vo-logo.svg`.
 - Desktop hero is two columns inside the nav container: lockup on the left, 380px chrome on the right. Each headline line is `whitespace-nowrap`, so it stays "make them" / "remember." The proof line is nowrap too. The old `max-w-[18em]` column was what forced a third line.
 - Open Graph image regenerated with this render.
+
+## topic: brand-profiles-2026-10 — _2026-10-26_
+
+Daniel confirmed the brand Instagram is `https://www.instagram.com/vo.creations/` and the brand X is `https://x.com/VoCreationsUGC`. This supersedes the 2026-10-19 note that left Instagram out of `sameAs` because `@vocreationsugc` could not be verified.
+
+- Organization `sameAs` in `app/layout.tsx` keeps `https://x.com/VoCreationsUGC` and `https://www.linkedin.com/company/vocreations`, and adds `https://www.instagram.com/vo.creations/`.
+- The Profiles section of `public/llms.txt` lists the same three URLs.
+- The nav and footer still have no social-link row. That row was removed on purpose (`topic: in-house-positioning`, `topic: footer-polish`), so the confirmed Instagram URL was not turned into a new icon.

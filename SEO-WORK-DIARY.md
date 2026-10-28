@@ -84,3 +84,9 @@ The public price floor moved from $30K/month to $50K/month in the FAQ (and its J
 ## 2026-10-19: Banner brand system
 
 The marketing pages now use the banner type and monochrome palette. The H1 still contains "UGC agency". Stat counters, the visible FAQ, gated result cards, and the $50K floor are unchanged. Open Graph art was replaced with a 1200×630 frame of the same lockup.
+
+---
+
+## 2026-10-26: Brand Instagram
+
+Daniel confirmed the brand Instagram is https://www.instagram.com/vo.creations/. Organization `sameAs` and the `llms.txt` Profiles section now list it next to X (`https://x.com/VoCreationsUGC`) and the company LinkedIn. The footer and nav still have no social-link row.
