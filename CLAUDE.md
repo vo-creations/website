@@ -66,6 +66,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `pricing-2026-10` — minimum deal is $50K/month (was $30K). 90-day minimum, separate creator bonuses, and no refunds stay. FAQ, program copy, llms.txt, and the Service offer all say $50K.
 - `brand-system-2026-10` — site type and color follow the LinkedIn banner: `#060606` field, Inter Tight display, Inter supporting lines, monochrome only. Hero is the banner lockup plus the chrome VO. DarkVeil stays, but the WebGL loop is desktop-only and starts after idle. Case-study cards stay blurred. Price stays $50K/month.
 - `brand-profiles-2026-10` — Organization `sameAs` and `llms.txt` Profiles include the brand Instagram `https://www.instagram.com/vo.creations/` plus the existing X and LinkedIn URLs. Nav and footer still have no social-link row.
+- `blog-aeo-2026-10` — blog posts share one template (direct answer, question H2s, TOC, visible FAQ + FAQPage JSON-LD, BlogPosting, breadcrumbs, byline, read next, booking CTA). Index has categories and read time. Sitemap and `llms.txt` list every post. No public case-study pages.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

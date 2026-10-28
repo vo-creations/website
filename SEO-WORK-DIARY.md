@@ -90,3 +90,9 @@ The marketing pages now use the banner type and monochrome palette. The H1 still
 ## 2026-10-26: Brand Instagram
 
 Daniel confirmed the brand Instagram is https://www.instagram.com/vo.creations/. Organization `sameAs` and the `llms.txt` Profiles section now list it next to X (`https://x.com/VoCreationsUGC`) and the company LinkedIn. The footer and nav still have no social-link row.
+
+---
+
+## 2026-10-28: Blog template and four essays
+
+The blog index and every post now share a template aimed at answer engines: a short definition under the H1, question headings, a table of contents, a visible FAQ that matches FAQPage JSON-LD, BlogPosting with a founder as author, and a breadcrumb. New essays cover the in-house vs marketplace vs freelancer choice, what a $50K month covers, talking-head UGC for AI startups, and 12 hiring questions. `llms.txt` lists them and adds who the agency serves, when to use it, and who is not a fit. Named results stay gated. No new client names or market rate cards.

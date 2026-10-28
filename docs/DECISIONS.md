@@ -3146,3 +3146,11 @@ Daniel confirmed the brand Instagram is `https://www.instagram.com/vo.creations/
 - Organization `sameAs` in `app/layout.tsx` keeps `https://x.com/VoCreationsUGC` and `https://www.linkedin.com/company/vocreations`, and adds `https://www.instagram.com/vo.creations/`.
 - The Profiles section of `public/llms.txt` lists the same three URLs.
 - The nav and footer still have no social-link row. That row was removed on purpose (`topic: in-house-positioning`, `topic: footer-polish`), so the confirmed Instagram URL was not turned into a new icon.
+
+## topic: blog-aeo-2026-10 — _2026-10-28_
+
+The blog was rebuilt around one article template so posts can be cited cleanly. Four new essays were added. Named case studies stayed gated. No client names, quotes, or third-party price cards were added.
+
+- `components/blog/Article.tsx` renders the direct answer, table of contents, author byline and bio, an always-visible "Questions people ask" block, three internal links, and a call-to-action that books a call or jumps to the blurred results. The same FAQ array feeds FAQPage JSON-LD. BlogPosting (author as Person, datePublished, dateModified) and BreadcrumbList sit in one `@graph`.
+- The index lists every post with a category and a read time. `app/sitemap.ts` emits each post with `lastmod` from `dateModified`. `public/llms.txt` lists the posts and adds Who we serve, When to use us, and Not a fit.
+- Marketplace and freelancer pricing is described qualitatively. The only dollar figure treated as fact is Vo Creations' own: campaigns start at $50K/month, creator bonuses separate, 90-day minimum, no refunds. The older text-on-screen essay kept its existing campaign figures and dropped an unsourced "$10B to $35B" market line rather than restating it.
