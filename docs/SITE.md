@@ -31,7 +31,7 @@ only:
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
-  `/terms` is a 404. There is no privacy page.
+  `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
 - Display type is Inter Tight and body type is Inter, both from `next/font`
   in `app/layout.tsx`. The hero mark is a `<picture>`:
   `public/brand/vo-chrome.avif` from 1024px up, `vo-chrome-sm.webp` below that.

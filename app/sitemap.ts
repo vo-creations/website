@@ -28,6 +28,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
     {
+      url: `${base}/privacy`,
+      lastModified: new Date("2026-10-29"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${base}/terms`,
+      lastModified: new Date("2026-10-29"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
       url: `${base}/refund-policy`,
       lastModified: new Date("2026-10-28"),
       changeFrequency: "yearly",

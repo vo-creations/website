@@ -93,7 +93,7 @@ const organizationJsonLd = {
   // topic: brand-profiles-2026-10.
   sameAs: [
     "https://x.com/VoCreationsUGC",
-    "https://www.linkedin.com/company/vocreations",
+    "https://www.linkedin.com/company/vocreations/",
     "https://www.instagram.com/vo.creations/",
   ],
   knowsAbout: [

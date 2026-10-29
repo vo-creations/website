@@ -3200,6 +3200,17 @@ Daniel approved a second fix pass and a live ship. The hero eyebrow stayed "The 
 - A LinkedIn company URL check from this environment returned HTTP 999, so the previously confirmed profile was left in schema and `llms.txt` and was not added to the footer. `daniel@vocreations.com` is not already public on the site, so it was not added.
 - No hero video was added. The mp4s in `public/videos` are story and creator films, not a labeled short sample for the hero.
 
+## topic: legal-pages-2026-10 — _2026-10-29_
+
+Daniel asked for testimonials, ownership, a weekly-report answer, and public privacy and terms pages. This supersedes the same-day note that `/terms` 404s and that `daniel@vocreations.com` was not on the site.
+
+- Homepage testimonials use three anonymized deck quotes. Person names were removed. No Review or quote schema was added. `llms.txt` says only that client testimonials are anonymized.
+- The client owns every video. That line is on the terms card, the FAQ, `llms.txt`, and `/terms`.
+- The weekly report FAQ lists views by platform and creator, CPM against the target, top videos and hooks, posted vs. planned, and what is doubled down on next week.
+- How it works uses the deck timeline: Day 0 scripts, about 48 hours to brief creators, 10-14 days to first videos, every week double down on the top videos. 2,400+ videos a month per campaign stays on the pricing card.
+- Footer, Organization `sameAs`, and `llms.txt` list LinkedIn `https://www.linkedin.com/company/vocreations/`, X, and Instagram. Daniel confirmed the LinkedIn page.
+- `/privacy` and `/terms` are indexable, in the sitemap, and linked beside the refund policy. `/terms` has a code comment that counsel still needs to review the page. No hero video was added: the files in `public/videos` are personal creator clips, not a client sizzle.
+
 ## topic: site-audit-2026-10 — _2026-10-29_
 
 Daniel asked for one audit pass on top of the merged pricing. The public mentorship offer is gone. Anonymized campaign results from the pitch deck are now public. Named case studies stay gated.

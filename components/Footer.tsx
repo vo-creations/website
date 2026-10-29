@@ -5,6 +5,8 @@ const footerLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/#team", label: "Our Team" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
   { href: "/refund-policy", label: "Refund policy" },
 ];
 
@@ -31,6 +33,9 @@ export default function Footer() {
               </a>
               <a href="https://www.instagram.com/vo.creations/" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
                 Instagram
+              </a>
+              <a href="https://www.linkedin.com/company/vocreations/" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+                LinkedIn
               </a>
             </div>
           </div>
