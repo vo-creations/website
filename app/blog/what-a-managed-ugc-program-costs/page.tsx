@@ -141,7 +141,7 @@ export default function ProgramCostPost() {
         <li>The bridge from organic to ads: when a video has already earned attention, it is tested creative you can put spend behind. The retainer is not itself your media budget.</li>
       </ul>
       <p>
-        The company is in New York, founded in 2025. The work is for AI startups and consumer apps. The public proof of scale we will put in a sentence is the one already on the site: 1B+ views generated, from a roster that has trained 500+ creators. Named campaign breakdowns stay behind a call. They are not a line item you can download.
+        The company is in New York, founded in 2025. The work is for AI startups and consumer apps. The public proof of scale we will put in a sentence is the one already on the site: 1B+ views generated, from a roster of 1000+ vetted in-house creators trained through mentorship. Named campaign breakdowns stay behind a call. They are not a line item you can download.
       </p>
 
       <H2 id="what-is-billed-separately">What is billed on top of the retainer?</H2>

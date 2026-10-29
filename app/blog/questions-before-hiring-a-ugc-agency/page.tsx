@@ -141,7 +141,7 @@ export default function HiringQuestionsPost() {
 
       <H2 id="what-to-ask-about-proof">What should you ask about proof?</H2>
       <p>
-        Ask what they will show you, and what they will not. We will talk about method in public: trained creators, organic talking-head, 1B+ views generated, 500+ creators trained, first posts in 10-14 days. Named campaign results stay behind a call. The cards on the site are blurred on purpose. A competitor&apos;s page of client logos is not automatically better evidence. It is a different disclosure choice, and you should still ask what was posted, on which accounts, and who ran it.
+        Ask what they will show you, and what they will not. We will talk about method in public: trained creators, organic talking-head, 1B+ views generated, 1000+ vetted in-house creators trained through mentorship, first posts in 10-14 days. Named campaign results stay behind a call. The cards on the site are blurred on purpose. A competitor&apos;s page of client logos is not automatically better evidence. It is a different disclosure choice, and you should still ask what was posted, on which accounts, and who ran it.
       </p>
       <p>
         Ask them to separate their proof from a borrowed screenshot. A view count with no account, no dates, and no description of the format is a mood. You can enjoy the mood and still not hire it. If they cannot walk through one campaign without hiding behind an NDA for every ordinary operating fact, assume the operating facts are thin.
