@@ -17,6 +17,7 @@ interface ResultCardProps {
   // parent section, not this component (one overlay per section, not per
   // card — see docs/DECISIONS.md, topic: case-studies-lock).
   locked?: boolean;
+  paper?: boolean;
 }
 
 export default function ResultCard({
@@ -26,19 +27,22 @@ export default function ResultCard({
   viewsSub,
   miniStats,
   locked = false,
+  paper = false,
 }: ResultCardProps) {
   const [open, setOpen] = useState(false);
   const isOpen = open && !locked;
 
   return (
     <div
-      className={`bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked ? "" : "cursor-pointer"}`}
+      className={paper
+        ? "overflow-hidden border-b border-[#161513]/15 bg-transparent"
+        : `bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked ? "" : "cursor-pointer"}`}
       onClick={locked ? undefined : () => setOpen(!open)}
     >
       <div className="p-7 pb-6">
         <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
           {locked ? (
-            <p className="text-[17px] font-semibold tracking-tight text-text">{company}</p>
+            <p className={`text-[17px] font-semibold tracking-tight ${paper ? "text-[#161513]" : "text-text"}`}>{company}</p>
           ) : logo ? (
             <LogoImage
               src={logo}
@@ -52,13 +56,13 @@ export default function ResultCard({
             className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}
             {...(locked ? { "data-nosnippet": true, "aria-hidden": true } : {})}
           >
-            <div className="mb-1 text-[15px] font-semibold uppercase tracking-wide text-text-dim">
+            <div className={`mb-1 text-[15px] font-semibold uppercase tracking-wide ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>
               Total views
             </div>
-            <div className="text-5xl font-black leading-none tracking-tighter text-text md:text-[48px]">
+            <div className={`leading-none tracking-tighter ${paper ? "font-serif text-5xl text-[#161513] md:text-[64px]" : "text-5xl font-black text-text md:text-[48px]"}`}>
               {views}
             </div>
-            <div className="mt-2 text-[15px] font-medium text-text-dim">{viewsSub}</div>
+            <div className={`mt-2 text-[15px] font-medium ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>{viewsSub}</div>
           </div>
         </div>
       </div>

@@ -10,31 +10,32 @@ const footerLinks = [
   { href: "/refund-policy", label: "Refund policy" },
 ];
 
-export default function Footer() {
+export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
+  const paper = tone === "paper";
   return (
-    <footer className="border-t border-border">
+    <footer className={paper ? "border-t border-[#161513]/15 bg-[#F2F0EB] text-[#161513]" : "border-t border-border"}>
       <div className="max-w-[1200px] mx-auto px-8 pt-16 pb-8">
         {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-12 mb-16">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/brand/vo-logo.svg" alt="Vo Creations" className="h-8 w-auto" />
-              <span className="font-display text-lg font-semibold tracking-[-0.03em] text-[#fbfbf9]">
+              <img src="/brand/vo-logo.svg" alt="Vo Creations" className={`h-8 w-auto ${paper ? "brightness-0" : ""}`} />
+              <span className={`text-lg font-semibold tracking-[-0.03em] ${paper ? "text-[#161513]" : "font-display text-[#fbfbf9]"}`}>
                 Vo Creations
               </span>
             </div>
-            <p className="mb-6 max-w-[320px] text-base leading-relaxed text-[#d4d4d0]">
+            <p className={`mb-6 max-w-[320px] text-base leading-relaxed ${paper ? "text-[#3c3a36]" : "text-[#d4d4d0]"}`}>
               The in-house UGC agency backed by elite mentorship.
             </p>
             <div className="flex items-center gap-4 text-[15px] font-semibold">
-              <a href="https://x.com/VoCreationsUGC" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/VoCreationsUGC" className={`inline-flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#161513] hover:text-black focus-visible:outline-[#161513]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
                 X
               </a>
-              <a href="https://www.instagram.com/vo.creations/" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/vo.creations/" className={`inline-flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#161513] hover:text-black focus-visible:outline-[#161513]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
                 Instagram
               </a>
-              <a href="https://www.linkedin.com/company/vocreations/" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/vocreations/" className={`inline-flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#161513] hover:text-black focus-visible:outline-[#161513]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
             </div>
@@ -42,7 +43,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <div className="mb-2 text-[15px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+            <div className={`mb-2 text-[15px] font-semibold uppercase tracking-[0.15em] ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>
               Links
             </div>
             <div className="flex flex-col">
@@ -50,7 +51,7 @@ export default function Footer() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="inline-flex min-h-11 items-center text-[15px] text-[#d4d4d0] transition-colors hover:text-text"
+                  className={`inline-flex min-h-11 items-center text-[15px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#3c3a36] hover:text-[#161513] focus-visible:outline-[#161513]" : "text-[#d4d4d0] hover:text-text focus-visible:outline-white"}`}
                 >
                   {l.label}
                 </Link>
@@ -60,14 +61,14 @@ export default function Footer() {
 
           {/* CTA */}
           <div>
-            <div className="mb-5 text-[15px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+            <div className={`mb-5 text-[15px] font-semibold uppercase tracking-[0.15em] ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>
               Ready to scale?
             </div>
             <a
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-8 py-3.5 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px"
+              className={`inline-flex min-h-11 items-center gap-2 rounded-full px-8 py-3.5 text-[15px] font-semibold transition-transform hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "bg-[#161513] text-[#F2F0EB] focus-visible:outline-[#161513]" : "bg-white text-black focus-visible:outline-white"}`}
             >
               Book a call
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -84,9 +85,9 @@ export default function Footer() {
             the codebase untouched (Vercel/Stripe compliance may still
             reference them) — this only removes the footer nav links to
             them. See docs/DECISIONS.md (topic: footer-polish). */}
-        <div className="border-t border-border pt-6 flex justify-between items-center gap-4">
-          <p className="text-[15px] text-text-dim">Vo Creations</p>
-          <p className="text-[15px] text-text-dim">&copy; 2026 Vo Creations</p>
+        <div className={`flex items-center justify-between gap-4 border-t pt-6 ${paper ? "border-[#161513]/15" : "border-border"}`}>
+          <p className={`text-[15px] ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>Vo Creations</p>
+          <p className={`text-[15px] ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>&copy; 2026 Vo Creations</p>
         </div>
       </div>
     </footer>

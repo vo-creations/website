@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Instrument_Serif, Inter, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import VeilBackground from "@/components/VeilBackground";
 import "./globals.css";
@@ -14,6 +14,13 @@ const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-inter-tight",
   weight: ["500", "600", "700", "800"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-instrument",
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const SITE_DESCRIPTION =
@@ -179,7 +186,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${interTight.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         <div
           aria-hidden="true"
           className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"

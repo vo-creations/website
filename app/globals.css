@@ -38,11 +38,15 @@ body {
   color: #FFFFFF;
 }
 
+.paper-page ::selection {
+  background: #161513;
+  color: #f2f0eb;
+}
+
 /* Display type matches the banner lockup: Inter Tight, tight tracking, no faux stroke. */
 .font-display {
   letter-spacing: -0.045em;
   line-height: 0.95;
-  color: #fbfbf9;
 }
 
 /* Static stand-in for DarkVeil. The WebGL canvas covers this on desktop after idle. */
