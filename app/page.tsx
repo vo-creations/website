@@ -71,6 +71,64 @@ function StatCounter({
   return <>{format(value)}</>;
 }
 
+// DECISION 2026-10: click-to-play reel under the logo strip. Poster is lazy.
+// The file has no audio. See docs/DECISIONS.md (topic: hero-reel-2026-10).
+function CreatorReel() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <section className="px-6 pb-2" aria-label="Creator reel">
+      <div className={`${NAV_CONTAINER} mx-auto`}>
+        <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-black">
+          <video
+            ref={videoRef}
+            className="aspect-video w-full"
+            playsInline
+            preload="none"
+            controls={playing}
+            muted
+          >
+            <source src="/videos/hero-reel.webm" type="video/webm" />
+            <source src="/videos/hero-reel.mp4" type="video/mp4" />
+          </video>
+          {!playing && (
+            <button
+              type="button"
+              onClick={() => {
+                const el = videoRef.current;
+                if (!el) return;
+                setPlaying(true);
+                el.play().catch(() => {});
+              }}
+              className="absolute inset-0"
+              aria-label="Play creator reel"
+            >
+              <picture>
+                <source srcSet="/videos/hero-reel.webp" type="image/webp" />
+                <img
+                  src="/videos/hero-reel.jpg"
+                  alt="Talking-head creator clips from Vo Creations."
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-video h-full w-full object-cover"
+                />
+              </picture>
+              <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg">
+                  <span className="ml-1 h-0 w-0 border-b-[12px] border-l-[18px] border-t-[12px] border-b-transparent border-l-black border-t-transparent" />
+                </span>
+              </span>
+            </button>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
   { target: 5, format: (n: number) => `${n}M+`, label: "Users converted" },
@@ -282,37 +340,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="proof" className="px-6 py-16">
-        <div className="mx-auto max-w-[1100px]">
-          <Label>Proof</Label>
-          <h2 className="mb-3 font-display text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight">
-            Numbers from recent campaigns
-          </h2>
-          <p className="mb-8 max-w-[640px] text-base leading-relaxed text-[#d4d4d0]">
-            Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
-          </p>
-          <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { figure: "130M+", detail: "An AI app, 3 months" },
-              { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
-              { figure: "174M+", detail: "A consumer app at a $0.82 CPM" },
-              { figure: "$968k ARR", detail: "Driven for one app" },
-              { figure: "453M\n123M\n105M", detail: "Three AI apps, 90 days each" },
-              { figure: "19.4M", detail: "An AI app, 2 weeks" },
-              { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
-              { figure: "Under $3 CPM", detail: "Typical for this distribution" },
-            ].map((item) => (
-              <div key={item.detail} className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
-                <div className="whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] font-bold leading-[1.05] tracking-[-0.04em] text-white">
-                  {item.figure}
-                </div>
-                <p className="mt-auto pt-4 text-base leading-snug text-[#d4d4d0]">{item.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="px-6 py-8" id="testimonials">
         <div className="mx-auto max-w-[1100px]">
           <Label>Testimonials</Label>
@@ -377,7 +404,7 @@ export default function Home() {
           can't be made exact at every window height without changing the
           hero's centering behavior — it drifts on taller/shorter viewports
           since the hero's slack does and this section's padding can't. */}
-      <section className="px-6 py-16">
+      <section className="px-6 pt-16 pb-8">
         <div className="mx-auto max-w-[1100px] rounded-3xl border border-white/10 bg-bg-card/50 py-10 backdrop-blur-sm">
           <h2 className="mb-8 px-6 text-center font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
             Brands we&apos;ve worked with
@@ -405,6 +432,58 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <CreatorReel />
+
+      <section id="proof" className="px-6 pb-16 pt-8">
+        <div className="mx-auto max-w-[1100px]">
+          <Label>Proof</Label>
+          <h2 className="mb-3 font-display text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight">
+            Numbers from recent campaigns
+          </h2>
+          <p className="mb-8 max-w-[640px] text-base leading-relaxed text-[#d4d4d0]">
+            Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
+          </p>
+          <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { figure: "130M+", detail: "An AI app, 3 months" },
+              { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
+              { figure: "174M+", detail: "A consumer app at a $0.82 CPM" },
+              { figure: "$968k ARR", detail: "Driven for one app" },
+              { figure: "453M\n123M\n105M", detail: "Three AI apps, 90 days each" },
+              { figure: "19.4M", detail: "An AI app, 2 weeks" },
+              { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
+              { figure: "Under $3 CPM", detail: "Typical for this distribution" },
+            ].map((item) => (
+              <div key={item.detail} className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
+                <div className="whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] font-bold leading-[1.05] tracking-[-0.04em] text-white">
+                  {item.figure}
+                </div>
+                <p className="mt-auto pt-4 text-base leading-snug text-[#d4d4d0]">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+          <figure className="mt-8">
+            <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#141414]">
+              <picture>
+                <source srcSet="/proof/slack-report.webp" type="image/webp" />
+                <img
+                  src="/proof/slack-report.png"
+                  alt="Example of the daily Slack campaign report, with numbers blurred."
+                  width={1800}
+                  height={856}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full"
+                />
+              </picture>
+            </div>
+            <figcaption className="mt-3 text-[15px] leading-relaxed text-[#d4d4d0]">
+              Every client gets this report in Slack, daily.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

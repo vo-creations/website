@@ -3247,3 +3247,11 @@ Daniel approved dropping the monthly video-count promise and shipping it the sam
 - `public/llms.txt` dropped the monthly volume bullet. The CPM guarantee and the rule that videos under 1,000 views do not count toward CPM stayed.
 - `components/HeroStoryCard.tsx` posting stage no longer states a volume. The label is "Posted on the accounts."
 - The CPM guarantee and "Videos under 1,000 views do not count toward your CPM" were left as they were.
+
+## topic: hero-reel-2026-10 — _2026-10-29_
+
+Daniel approved a hero reel from clips already in the repo, and a blurred Slack report image, in one live ship.
+
+- `public/videos/hero-reel.mp4` and `.webm` are 10 cuts, about 3.5 seconds each, 34.7 seconds, from `post-1`, `post-3`, `post-4`, `creator-example`, `creator-success`, and `my-story`. Each vertical clip is centered on a blurred frame so the picture is 16:9. Full color, no audio. MP4 plus WebM stay under 6MB together. Posters are `hero-reel.jpg` and `.webp`.
+- The reel is one framed player directly under the Trusted By strip and above "Numbers from recent campaigns." It does not autoplay. The poster is a lazy image. Click mounts the video with `playsInline`, `preload="none"`, and controls.
+- `public/proof/slack-report.png` and `.webp` are a generated Slack-style card. The figures are random characters run through a blur. No client names, creator names, or real numbers. The proof section captions it "Every client gets this report in Slack, daily."

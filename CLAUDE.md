@@ -75,6 +75,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `creator-count-2026-10` — the public creator count is 1000+. The full line is "1000+ vetted in-house creators trained through mentorship" where a sentence fits. The hero stat is the number `1000+` with the label "Trained creators".
 - `fourth-pass-2026-10` — footer tagline is "The in-house UGC agency backed by elite mentorship." Hero support is one line: "1000+ vetted in-house creators. We guarantee your target CPM." Deck figures stay in the proof strip. Founder photos are grayscale head-and-shoulders. Trusted By logos stay monochrome. Creator posters and video thumbnails stay in color. Proof, pricing, testimonial, fit, how-it-works, and team cards share a row height.
 - `no-video-count-2026-10` — the site does not promise a video count. The pricing card, the posting FAQ, `llms.txt`, and the story-card posting stage no longer state a monthly volume. The CPM guarantee and the under-1,000-views rule stay.
+- `hero-reel-2026-10` — a click-to-play 16:9 reel of existing creator clips sits under the Trusted By strip and above the proof numbers. No autoplay, no audio. The proof section also shows a blurred daily Slack report image with no real figures.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->
