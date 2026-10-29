@@ -3248,6 +3248,10 @@ Daniel approved dropping the monthly video-count promise and shipping it the sam
 - `components/HeroStoryCard.tsx` posting stage no longer states a volume. The label is "Posted on the accounts."
 - The CPM guarantee and "Videos under 1,000 views do not count toward your CPM" were left as they were.
 
+## topic: homepage-dark-editorial-2026-10 — _2026-10-29_
+
+Daniel said the off-white editorial body was off-brand. The same homepage layout, type, spacing, and copy moved onto a near-black field (`#0B0B0C`, with `#111113` and `#151517` sections). Hairlines are about 10% white. Primary text is `#F2F0EB` and secondary text is 60% white. The hero gradient ends in `#0B0B0C` instead of cream. Trusted By logos are white monochrome. Founder photos stay grayscale. The footer mark is white again. Locked case-study rows are dark cards. No copy changed.
+
 ## topic: homepage-editorial-2026-10 — _2026-10-29_
 
 The homepage hero became the existing creator reel, full bleed, with the poster as the first paint and the video starting after idle. Reduced motion keeps the poster. Below the hero, the page is an off-white editorial layout. Approved copy, the Slack report, locked case studies, and the footer tagline stayed. The separate framed reel under the logo strip was removed because the reel is now the hero. `.font-display` no longer forces a near-white color, so the paper footer wordmark can be dark. The footer mark on that tone is `brightness-0`. Founder photos are grayscale and load when the section is in view.

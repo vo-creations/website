@@ -77,6 +77,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `no-video-count-2026-10` — the site does not promise a video count. The pricing card, the posting FAQ, `llms.txt`, and the story-card posting stage no longer state a monthly volume. The CPM guarantee and the under-1,000-views rule stay.
 - `hero-reel-2026-10` — a click-to-play 16:9 reel of existing creator clips sits under the Trusted By strip and above the proof numbers. No autoplay, no audio. The proof section also shows a blurred daily Slack report image with no real figures.
 - `homepage-editorial-2026-10` — the homepage hero is that reel, full bleed, poster first. Everything under it is an off-white editorial layout. Copy, proof, locked cards, and the footer tagline stay. Other routes stay on the dark field.
+- `homepage-dark-editorial-2026-10` — the same editorial layout is near-black (`#0B0B0C`), not cream. Logos are white monochrome. Copy is unchanged.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

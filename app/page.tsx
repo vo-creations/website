@@ -70,14 +70,14 @@ function StatCounter({
   return <>{format(value)}</>;
 }
 
-const FOCUS = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#161513]";
+const FOCUS = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2F0EB]";
 const FOCUS_LIGHT = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 function PaperHeading({ kicker, children }: { kicker: string; children: React.ReactNode }) {
   return (
     <div className="mb-12 grid gap-4 md:mb-16 md:grid-cols-[160px_minmax(0,1fr)] md:items-end md:gap-10">
-      <p className="text-[13px] font-medium text-[#5c594f]">{kicker}</p>
-      <h2 className="font-serif text-[clamp(40px,6vw,84px)] leading-[0.95] tracking-[-0.03em] text-[#161513]">
+      <p className="text-[13px] font-medium text-white/60">{kicker}</p>
+      <h2 className="font-serif text-[clamp(40px,6vw,84px)] leading-[0.95] tracking-[-0.03em] text-[#F2F0EB]">
         {children}
       </h2>
     </div>
@@ -142,7 +142,7 @@ function HeroFilm() {
         </video>
       )}
       <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.28)_18%,rgba(0,0,0,0.2)_55%,rgba(6,6,6,0.72)_78%,#F2F0EB_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.22)_22%,rgba(0,0,0,0.08)_58%,rgba(11,11,12,0.35)_82%,#0B0B0C_100%)]"
         aria-hidden="true"
       />
       <div
@@ -328,7 +328,7 @@ export default function Home() {
       />
       <Nav />
       <HeroFilm />
-      <div className="paper-page bg-[#F2F0EB] text-[#161513]">
+      <div className="paper-page bg-[#0B0B0C] text-[#F2F0EB]">
 
       <section className="px-6 pb-8 pt-6 md:px-14 md:pt-10">
         <div
@@ -336,11 +336,11 @@ export default function Home() {
           className="mx-auto grid max-w-[1280px] grid-cols-2 gap-y-10 md:grid-cols-4"
         >
           {heroStats.map((stat, index) => (
-            <div key={stat.label} className={index ? "border-[#161513]/15 md:border-l md:pl-8" : ""}>
-              <div className="font-serif text-[clamp(40px,5vw,72px)] font-normal leading-none tracking-[-0.03em] text-[#161513] tabular-nums">
+            <div key={stat.label} className={index ? "border-white/10 md:border-l md:pl-8" : ""}>
+              <div className="font-serif text-[clamp(40px,5vw,72px)] font-normal leading-none tracking-[-0.03em] text-[#F2F0EB] tabular-nums">
                 <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
               </div>
-              <div className="mt-3 text-[15px] text-[#5c594f]">
+              <div className="mt-3 text-[15px] text-white/60">
                 {stat.label}
               </div>
             </div>
@@ -348,28 +348,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-14 md:py-32" id="testimonials">
+      <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32" id="testimonials">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Testimonials">What teams say</PaperHeading>
           <div className="grid items-stretch gap-10 md:grid-cols-3 md:gap-12">
-            <figure className="flex h-full flex-col border-t border-[#161513]/15 pt-6">
-              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#161513]">
+            <figure className="flex h-full flex-col border-t border-white/10 pt-6">
+              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 <p>&ldquo;&hellip;helped us go from 1&rarr;100 with UGC and is one of the best agency owners in the space.&rdquo;</p>
                 <p className="mt-4">&ldquo;&hellip;the UGC agency we trust most in the space.&rdquo;</p>
               </blockquote>
-              <figcaption className="mt-6 text-[15px] text-[#5c594f]">Team at an AI creative app</figcaption>
+              <figcaption className="mt-6 text-[15px] text-white/60">Team at an AI creative app</figcaption>
             </figure>
-            <figure className="flex h-full flex-col border-t border-[#161513]/15 pt-6">
-              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#161513]">
+            <figure className="flex h-full flex-col border-t border-white/10 pt-6">
+              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 &ldquo;Great engagement btw boys. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;
               </blockquote>
-              <figcaption className="mt-6 text-[15px] text-[#5c594f]">Team at a top-3 finance app</figcaption>
+              <figcaption className="mt-6 text-[15px] text-white/60">Team at a top-3 finance app</figcaption>
             </figure>
-            <figure className="flex h-full flex-col border-t border-[#161513]/15 pt-6">
-              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#161513]">
+            <figure className="flex h-full flex-col border-t border-white/10 pt-6">
+              <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 &ldquo;&hellip;has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.&rdquo;
               </blockquote>
-              <figcaption className="mt-6 text-[15px] text-[#5c594f]">Team at a consumer app</figcaption>
+              <figcaption className="mt-6 text-[15px] text-white/60">Team at a consumer app</figcaption>
             </figure>
           </div>
         </div>
@@ -409,14 +409,14 @@ export default function Home() {
           can't be made exact at every window height without changing the
           hero's centering behavior — it drifts on taller/shorter viewports
           since the hero's slack does and this section's padding can't. */}
-      <section className="border-y border-[#161513]/15 px-6 py-8 md:px-14">
+      <section className="border-y border-white/10 px-6 py-8 md:px-14">
         <div className="mx-auto grid max-w-[1280px] items-center gap-6 md:grid-cols-[220px_minmax(0,1fr)]">
-          <h2 className="text-[13px] font-medium text-[#5c594f]">
+          <h2 className="text-[13px] font-medium text-white/60">
             Brands we&apos;ve worked with
           </h2>
           <div className="overflow-hidden" style={edgeFadeStyle}>
-            {/* DECISION 2026-10: monochrome on the paper field is black, this track only. Creator posters stay in color. */}
-            <div className="flex w-max items-center gap-x-12 animate-scroll [&_img]:brightness-0">
+            {/* DECISION 2026-10: monochrome on the dark field is white, this track only. Creator posters stay in color. */}
+            <div className="flex w-max items-center gap-x-12 animate-scroll [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
               {trustedBrands.map((brand) => (
                 <LogoImage
                   key={brand.name}
@@ -440,13 +440,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="proof" className="px-6 py-24 md:px-14 md:py-32">
+      <section id="proof" className="bg-[#111113] px-6 py-24 md:px-14 md:py-32">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Proof">Numbers from recent campaigns</PaperHeading>
-          <p className="mb-12 max-w-[40rem] text-[17px] leading-relaxed text-[#3c3a36]">
+          <p className="mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
             Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
           </p>
-          <div className="border-t border-[#161513]/15">
+          <div className="border-t border-white/10">
             {[
               { figure: "130M+", detail: "An AI app, 3 months" },
               { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
@@ -457,19 +457,19 @@ export default function Home() {
               { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
               { figure: "Under $3 CPM", detail: "Typical for this distribution" },
             ].map((item) => (
-              <div key={item.detail} className="grid items-end gap-4 border-b border-[#161513]/15 py-8 md:grid-cols-2 md:gap-16 md:py-10">
-                <div className="whitespace-pre-line font-serif text-[clamp(52px,7vw,104px)] leading-[0.9] tracking-[-0.03em] text-[#161513]">
+              <div key={item.detail} className="grid items-end gap-4 border-b border-white/10 py-8 md:grid-cols-2 md:gap-16 md:py-10">
+                <div className="whitespace-pre-line font-serif text-[clamp(52px,7vw,104px)] leading-[0.9] tracking-[-0.03em] text-[#F2F0EB]">
                   {item.figure}
                 </div>
-                <p className="max-w-md pb-2 text-[17px] leading-snug text-[#3c3a36]">{item.detail}</p>
+                <p className="max-w-md pb-2 text-[17px] leading-snug text-white/60">{item.detail}</p>
               </div>
             ))}
           </div>
           <figure className="mt-20 grid items-end gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.1fr)] md:gap-16">
-            <figcaption className="text-[17px] leading-relaxed text-[#3c3a36]">
+            <figcaption className="text-[17px] leading-relaxed text-white/60">
               Every client gets this report in Slack, daily.
             </figcaption>
-            <div className="overflow-hidden rounded-md border border-[#161513]/10 shadow-[0_30px_80px_rgba(22,21,19,0.12)]">
+            <div className="overflow-hidden rounded-md border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.5)]">
               <picture>
                 <source srcSet="/proof/slack-report.webp" type="image/webp" />
                 <img
@@ -490,23 +490,23 @@ export default function Home() {
       <section className="px-6 py-24 md:px-14 md:py-32" id="pricing">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="The program">Organic UGC for AI startups and tech consumer apps.</PaperHeading>
-          <div className="grid items-stretch gap-12 border-t border-[#161513]/20 pt-10 md:grid-cols-3 md:gap-16">
+          <div className="grid items-stretch gap-12 border-t border-white/10 pt-10 md:grid-cols-3 md:gap-16">
             <div className="flex h-full flex-col">
-              <h3 className="mb-4 text-[15px] font-medium text-[#5c594f]">Creators</h3>
-              <p className="text-[16px] leading-relaxed text-[#3c3a36]">
+              <h3 className="mb-4 text-[15px] font-medium text-white/60">Creators</h3>
+              <p className="text-[16px] leading-relaxed text-white/60">
                 1000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1%. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.
               </p>
             </div>
             <div className="flex h-full flex-col">
-              <p className="mb-4 font-serif text-[64px] leading-none tracking-[-0.04em] text-[#161513]">$50K+/mo</p>
-              <h3 className="mb-4 text-[15px] font-medium text-[#5c594f]">What&apos;s included</h3>
-              <p className="text-[16px] leading-relaxed text-[#3c3a36]">
+              <p className="mb-4 font-serif text-[64px] leading-none tracking-[-0.04em] text-[#F2F0EB]">$50K+/mo</p>
+              <h3 className="mb-4 text-[15px] font-medium text-white/60">What&apos;s included</h3>
+              <p className="text-[16px] leading-relaxed text-white/60">
                 Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
               </p>
             </div>
             <div className="flex h-full flex-col">
-              <h3 className="mb-4 text-[15px] font-medium text-[#5c594f]">Terms</h3>
-              <p className="text-[16px] leading-relaxed text-[#3c3a36]">
+              <h3 className="mb-4 text-[15px] font-medium text-white/60">Terms</h3>
+              <p className="text-[16px] leading-relaxed text-white/60">
                 90-day minimum, then month to month. No refunds after launch. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
               </p>
             </div>
@@ -521,10 +521,10 @@ export default function Home() {
           sliding out from under the cursor mid-interaction. Platform embeds (Instagram/
           TikTok/Facebook) can't support that same hover interaction — see docs/DECISIONS.md
           (topic: showcase-marquee). */}
-      <section className="py-24 md:py-32">
+      <section className="bg-[#0B0B0C] py-24 md:py-32">
         <div className="mx-auto max-w-[1280px] px-6 md:px-14">
           <PaperHeading kicker="Our work">Content that converts and goes viral.</PaperHeading>
-          <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-[#3c3a36]">
+          <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
             Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
           </p>
         </div>
@@ -557,7 +557,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-14 md:py-32" id="results">
+      <section className="bg-[#151517] px-6 py-24 md:px-14 md:py-32" id="results">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Case Studies">Undeniable impact.</PaperHeading>
           <div>
@@ -599,7 +599,7 @@ export default function Home() {
                 key={t.name}
                 className={`flex h-full flex-col ${index === 1 ? "md:mt-24" : ""}`}
               >
-                <div className="relative aspect-[4/5] bg-[#e6e2da]">
+                <div className="relative aspect-[4/5] bg-[#151517]">
                   <Image
                     src={t.image}
                     alt={t.name}
@@ -609,17 +609,17 @@ export default function Home() {
                     style={{ objectPosition: t.imagePosition }}
                   />
                 </div>
-                <div className="flex flex-1 flex-col border-t border-[#161513]/15 pt-5">
+                <div className="flex flex-1 flex-col border-t border-white/10 pt-5">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-serif text-[32px] leading-none text-[#161513]">{t.name}</span>
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-[#5c594f]">
+                    <span className="font-serif text-[32px] leading-none text-[#F2F0EB]">{t.name}</span>
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-white/60">
                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <div className="mt-3 text-[15px] text-[#5c594f]">
+                  <div className="mt-3 text-[15px] text-white/60">
                     Co-Founder, {t.location}
                   </div>
-                  <div className="mt-4 text-[16px] leading-relaxed text-[#3c3a36]">
+                  <div className="mt-4 text-[16px] leading-relaxed text-white/60">
                     {t.detailLine}
                   </div>
                 </div>
@@ -629,21 +629,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-14 md:py-32">
+      <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="How it works">From signed to posting in 10-14 days</PaperHeading>
-          <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-[#3c3a36]">
+          <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
             Creators finish a two-week paid trial. We keep the top 1%. Then the week looks like this.
           </p>
 
-          <div className="grid grid-cols-1 items-stretch gap-10 border-t border-[#161513] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 items-stretch gap-10 border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <div key={s.num} className="flex h-full flex-col pt-6">
-                <div className="mb-4 text-[15px] text-[#5c594f]">
+                <div className="mb-4 text-[15px] text-white/60">
                   {s.num}
                 </div>
                 <h3 className="mb-3 font-serif text-[32px] leading-none tracking-[-0.02em]">{s.title}</h3>
-                <p className="mt-auto text-[16px] leading-relaxed text-[#3c3a36]">{s.desc}</p>
+                <p className="mt-auto text-[16px] leading-relaxed text-white/60">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -652,11 +652,11 @@ export default function Home() {
 
       <section className="px-6 py-16 md:px-14" id="fit">
         <div className="mx-auto grid max-w-[1280px] items-stretch gap-6 md:grid-cols-2 md:gap-10">
-          <div className="flex h-full flex-col border border-[#161513]/15 p-8">
+          <div className="flex h-full flex-col border border-white/10 p-8">
             <h2 className="mb-5 font-serif text-[clamp(32px,4vw,44px)] leading-none tracking-[-0.02em]">
               Good fit
             </h2>
-            <ul className="space-y-3 text-[16px] leading-relaxed text-[#3c3a36]">
+            <ul className="space-y-3 text-[16px] leading-relaxed text-white/60">
               {[
                 "AI startups and tech consumer apps.",
                 "Ready for $50K+ a month.",
@@ -671,11 +671,11 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="flex h-full flex-col border border-[#161513]/15 bg-[#e7e3db] p-8">
-            <h2 className="mb-5 font-serif text-[clamp(32px,4vw,44px)] leading-none tracking-[-0.02em] text-[#3c3a36]">
+          <div className="flex h-full flex-col border border-white/10 bg-[#151517] p-8">
+            <h2 className="mb-5 font-serif text-[clamp(32px,4vw,44px)] leading-none tracking-[-0.02em] text-[#F2F0EB]">
               Not a fit
             </h2>
-            <ul className="space-y-3 text-[16px] leading-relaxed text-[#5c594f]">
+            <ul className="space-y-3 text-[16px] leading-relaxed text-white/60">
               {["Budgets under $50K a month.", "One-off videos.", "Paid-ads-only management."].map((item) => (
                 <li key={item} className="flex gap-3">
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="mt-0.5 h-6 w-6 shrink-0 text-[#c47a7a]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
@@ -693,15 +693,15 @@ export default function Home() {
           border, internal padding) stacked with a gap, rather than a flat
           list with divider lines between items. See docs/DECISIONS.md
           (topic: faq-restyle). */}
-      <section className="px-6 py-24 md:px-14 md:py-32" id="faq">
+      <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32" id="faq">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="FAQ">Frequently Asked Questions</PaperHeading>
-          <div className="border-t border-[#161513] md:ml-[200px]">
+          <div className="border-t border-white/10 md:ml-[200px]">
             {agencyFaqs.map((faq) => {
               const panelId = `faq-${faq.q.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
               const open = openFaq === faq.q;
               return (
-                <div key={faq.q} className="border-b border-[#161513]/15 py-5">
+                <div key={faq.q} className="border-b border-white/10 py-5">
                   <button
                     type="button"
                     className={`flex min-h-11 w-full items-center justify-between gap-4 text-left ${FOCUS}`}
@@ -709,15 +709,15 @@ export default function Home() {
                     aria-controls={panelId}
                     onClick={() => setOpenFaq(open ? null : faq.q)}
                   >
-                    <span className="text-[18px] tracking-tight text-[#161513]">{faq.q}</span>
-                    <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#161513]/20 text-[#161513] transition-transform ${open ? "rotate-45" : ""}`}>
+                    <span className="text-[18px] tracking-tight text-[#F2F0EB]">{faq.q}</span>
+                    <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 text-[#F2F0EB] transition-transform ${open ? "rotate-45" : ""}`}>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden="true">
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                       </svg>
                     </span>
                   </button>
-                  <div id={panelId} role="region" hidden={!open} className="mt-3 pr-14 text-[16px] leading-[1.7] text-[#3c3a36]">
+                  <div id={panelId} role="region" hidden={!open} className="mt-3 pr-14 text-[16px] leading-[1.7] text-white/60">
                     {faq.a}
                   </div>
                 </div>
