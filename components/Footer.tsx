@@ -20,8 +20,8 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/brand/vo-logo.svg" alt="Vo Creations" className={`h-8 w-auto ${paper ? "invert" : ""}`} />
-              <span className={`font-display text-lg font-semibold tracking-[-0.03em] ${paper ? "text-[#161513]" : "text-[#fbfbf9]"}`}>
+              <img src="/brand/vo-logo.svg" alt="Vo Creations" className={`h-8 w-auto ${paper ? "brightness-0" : ""}`} />
+              <span className={`text-lg font-semibold tracking-[-0.03em] ${paper ? "text-[#161513]" : "font-display text-[#fbfbf9]"}`}>
                 Vo Creations
               </span>
             </div>

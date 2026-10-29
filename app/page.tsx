@@ -604,7 +604,7 @@ export default function Home() {
                     src={t.image}
                     alt={t.name}
                     fill
-                    sizes="(max-width: 768px) 90vw, 340px"
+                    sizes="(max-width: 768px) 90vw, 480px"
                     className="object-cover grayscale"
                     style={{ objectPosition: t.imagePosition }}
                   />

@@ -47,7 +47,6 @@ body {
 .font-display {
   letter-spacing: -0.045em;
   line-height: 0.95;
-  color: #fbfbf9;
 }
 
 /* Static stand-in for DarkVeil. The WebGL canvas covers this on desktop after idle. */
