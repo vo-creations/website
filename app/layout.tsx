@@ -80,12 +80,14 @@ const organizationJsonLd = {
       name: "Thienvu Vo",
       jobTitle: "Co-Founder",
       url: "https://x.com/itsthienvuvo",
+      address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY" },
     },
     {
       "@type": "Person",
       name: "Daniel Yun",
       jobTitle: "Co-Founder",
       url: "https://www.linkedin.com/in/danielyun27",
+      address: { "@type": "PostalAddress", addressLocality: "Los Angeles", addressRegion: "CA" },
     },
   ],
   // Brand profiles only. Personal IG/TikTok/YouTube stay out.
@@ -139,7 +141,7 @@ const serviceJsonLd = {
       },
     },
     description:
-      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
     url: "https://vocreations.com/#faq",
   },
 };

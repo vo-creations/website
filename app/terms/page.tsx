@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
+import { contactEmailsLabel } from "@/lib/site";
 
 // TODO: counsel review before treating this page as final legal text.
 
@@ -38,7 +39,7 @@ export default function TermsPage() {
               A campaign is governed by the signed agreement with that client. If this page and that agreement conflict, the signed agreement controls.
             </p>
             <p className="mt-3">
-              Campaigns start at $50K+ a month. The minimum is 90 days, then month to month. Paid media is billed separately, on top of the monthly fee. You own every video produced for your campaign. There are no refunds after launch. The refund terms are on the{" "}
+              Campaigns start at $50K+ a month and include daily Slack reporting. The minimum is 90 days, then month to month. Paid media is billed separately, on top of the monthly fee. You own every video produced for your campaign. There are no refunds after launch. The refund terms are on the{" "}
               <Link href="/refund-policy" className="text-text underline decoration-white/30 underline-offset-4">
                 refund policy
               </Link>
@@ -70,7 +71,7 @@ export default function TermsPage() {
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">Changes and contact</h2>
             <p>
-              If these terms change, the date at the top of this page changes with them. Questions: daniel@vocreations.com.
+              If these terms change, the date at the top of this page changes with them. Questions: {contactEmailsLabel()}.
             </p>
           </div>
         </div>

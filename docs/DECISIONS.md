@@ -3210,6 +3210,9 @@ Daniel asked for testimonials, ownership, a weekly-report answer, and public pri
 - How it works uses the deck timeline: Day 0 scripts, about 48 hours to brief creators, 10-14 days to first videos, every week double down on the top videos. 2,400+ videos a month per campaign stays on the pricing card.
 - Footer, Organization `sameAs`, and `llms.txt` list LinkedIn `https://www.linkedin.com/company/vocreations/`, X, and Instagram. Daniel confirmed the LinkedIn page.
 - `/privacy` and `/terms` are indexable, in the sitemap, and linked beside the refund policy. `/terms` has a code comment that counsel still needs to review the page. No hero video was added: the files in `public/videos` are personal creator clips, not a client sizzle.
+- Reporting is a daily automated Slack report plus a weekly roll-up. Public copy says "daily Slack reporting," not "weekly reporting."
+- Public contact email is the `CONTACT_EMAILS` list in `lib/site.ts`: daniel@vocreations.com and thienvu@vocreations.com. hello@vocreations.com is not used.
+- Daniel Yun is Co-Founder in Los Angeles, CA. Thienvu Vo stays Co-Founder in New York, NY. Company HQ stays New York.
 
 ## topic: site-audit-2026-10 — _2026-10-29_
 

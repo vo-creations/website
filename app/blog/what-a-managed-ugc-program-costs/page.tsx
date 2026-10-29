@@ -18,7 +18,7 @@ const faqs: FaqItem[] = [
   {
     question: "How much does a Vo Creations program cost?",
     answer:
-      "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch.",
   },
   {
     question: "Does 'under $3 CPM' mean every campaign lands there?",
@@ -33,7 +33,7 @@ const faqs: FaqItem[] = [
   {
     question: "Is paid media included?",
     answer:
-      "No. Paid media sits outside the monthly fee. The fee already includes trained creators, scripts, posting, creator bonuses, and weekly reporting. Putting money behind a video that already earned attention is a later decision.",
+      "No. Paid media sits outside the monthly fee. The fee already includes trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Putting money behind a video that already earned attention is a later decision.",
   },
   {
     question: "Why won't you print a freelancer rate card?",
@@ -87,7 +87,7 @@ export default function ProgramCostPost() {
 
       <H2 id="what-is-inside-the-fee">What is inside the fee, and what is not?</H2>
       <p>
-        The monthly fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media sits outside that fee. Putting money behind a video that already earned attention is a later decision.
+        The monthly fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media sits outside that fee. Putting money behind a video that already earned attention is a later decision.
       </p>
       <p>
         Videos under 1,000 views don&apos;t count toward your CPM. We guarantee your target CPM.
@@ -106,7 +106,7 @@ export default function ProgramCostPost() {
 
       <H2 id="how-to-read-the-invoice">How do you read the invoice?</H2>
       <p>
-        One number. It includes trained creators, scripts, posting, creator bonuses, and weekly reporting. If a renewal goes up, someone should be able to say which job got heavier.
+        One number. It includes trained creators, scripts, posting, creator bonuses, and daily Slack reporting. If a renewal goes up, someone should be able to say which job got heavier.
       </p>
       <p>
         Example invoice note, not a result: &quot;March program, all-inclusive. Two videos stayed under 1,000 views and did not count toward the CPM.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;

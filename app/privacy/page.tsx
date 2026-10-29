@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
+import { contactEmailsLabel } from "@/lib/site";
 
 export default function PrivacyPage() {
   return (
@@ -56,7 +57,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">Your requests</h2>
             <p>
-              Email daniel@vocreations.com to ask what we hold about you, to correct it, or to ask us to delete it. We will reply to that address.
+              Email {contactEmailsLabel()} to ask what we hold about you, to correct it, or to ask us to delete it. We will reply to those addresses.
             </p>
           </div>
           <div>
