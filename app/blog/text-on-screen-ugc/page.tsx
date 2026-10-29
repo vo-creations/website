@@ -64,17 +64,14 @@ export default function TextOnScreenPost() {
         A lot of text-on-screen videos do the same thing: text overlay, trending audio, product shot, call to action. The viewer gets the product name and swipes. The comment section stays empty.
       </p>
       <p>
-        Text-on-screen explains the product. It does not give the viewer a person to stay with. Talking-head UGC does.
-      </p>
-      <p>
-        Here&apos;s what text-on-screen actually does: it communicates information. It tells you what the product is, what it does, maybe shows a demo. That&apos;s it. There&apos;s no emotional hook, no relatability, no story. The viewer gets the gist in 2 seconds and swipes.
+        Text-on-screen explains the product. It does not give the viewer a person to stay with. Talking-head UGC does. The viewer gets the gist in a couple of seconds, and there is nothing to comment on.
       </p>
       <p className="font-semibold text-text">
-        People don&apos;t buy products they feel nothing about. They buy products that made them feel understood, seen, or excited, before they even opened the app store.
+        People buy a product that made them feel understood before they open the app store. A caption does not do that.
       </p>
       <H2 id="what-is-real-ugc">What is real UGC?</H2>
       <p>
-        A real person on camera telling a story. That&apos;s it. No fancy editing. No text overlays. No AI voiceover. Just a human face, a real voice, and a narrative that makes the viewer feel something.
+        A real person on camera telling a story. No fancy editing. No text overlays. No AI voiceover. A human face, a real voice, and a narrative the viewer can place themselves in.
       </p>
       <p>
         The best-performing UGC we&apos;ve ever made follows the same structure: a creator looks into the camera and tells a story that the target audience has lived. The product shows up naturally, not as a pitch, but as part of the story.
@@ -84,12 +81,12 @@ export default function TextOnScreenPost() {
       </p>
       <H2 id="why-does-storytelling-work">Why does talking-head storytelling work?</H2>
       <p>
-        If your instinct is &quot;I need to explain what my product does,&quot; you&apos;re thinking about this wrong. Nobody cares what your product does. They care about how it makes them feel.
+        If the brief is &quot;explain what the product does,&quot; the video will sound like a tour. The viewer stays for a problem they have lived.
       </p>
       <p>
         Talking-head storytelling works because the viewer sees someone who looks like them and hears a problem they have lived. It reads as a conversation, not a product tour.
       </p>
-      <p>That&apos;s the entire game. Get past the ad filter. Storytelling does that. Text on screen never will.</p>
+        <p>The job is to get past the ad filter. Storytelling does that. A caption does not.</p>
       <ClickToPlayYouTube videoId="xL3zWBso9mw" title="Thienvu Vo: the story behind Vo Creations" />
       <H2 id="what-can-a-story-do">What can a story do that a caption cannot?</H2>
       <div className="grid gap-4 md:grid-cols-2">
@@ -134,7 +131,7 @@ export default function TextOnScreenPost() {
         Text-on-screen videos almost never generate that kind of comment engagement. There&apos;s nothing to react to. Nothing to identify with. The comment section stays empty, and the algorithm reads that as a signal to stop pushing the video.
       </p>
       <p className="font-semibold text-text">
-        You can&apos;t buy compounding social proof. You can&apos;t fake it. You can only earn it with real storytelling.
+        Comments have to be earned. A caption gives people the product name and nothing to answer.
       </p>
       <H2 id="what-does-a-campaign-look-like">What does a talking-head campaign look like?</H2>
       <p>
@@ -143,7 +140,7 @@ export default function TextOnScreenPost() {
       <p>
         Paid ads don&apos;t come with the comment section those stories earn. People saying &quot;this changed everything&quot; is the part you cannot buy as a media line.
       </p>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {proof.map((item) => (
           <a
             key={item.href}
@@ -153,26 +150,26 @@ export default function TextOnScreenPost() {
             className="rounded-2xl border border-white/10 bg-bg-card/50 p-4 text-center hover:border-white/20"
           >
             <div className="text-lg font-extrabold text-text">{item.views}</div>
-            <div className="mt-1 text-[13px] uppercase tracking-wide text-text-dim">views on Instagram</div>
+            <div className="mt-1 text-[15px] uppercase tracking-wide text-text-dim">views on Instagram</div>
           </a>
         ))}
       </div>
       <H2 id="how-do-you-make-one">How do you make a talking-head video?</H2>
       <ol className="list-decimal space-y-4 pl-5">
         <li>
-          <strong className="text-text">Find the story.</strong> Don&apos;t start with features. Start with the most emotionally specific version of the problem your product solves. Not &quot;students struggle with the SAT.&quot; Try: &quot;A student studied 5 hours a day, took 6 practice tests, and still scored 800.&quot; That specificity is what makes someone feel seen.
+          <strong className="text-text">Find the story.</strong> Start with the most specific version of the problem, not the feature list. &quot;Students struggle with the SAT&quot; is a category. &quot;A student studied 5 hours a day, took 6 practice tests, and still scored 800&quot; is a person. That specificity is what makes someone feel seen.
         </li>
         <li>
           <strong className="text-text">Stop optimizing the wrong things.</strong> Video length, hashtags, posting time. None of it matters if the story doesn&apos;t land. The only thing that determines if a video converts is whether the viewer felt something.
         </li>
         <li>
-          <strong className="text-text">Cast the right person.</strong> The creator has to look, talk, and feel like the person watching. A study tool? College student. A dev tool? Developer. Authenticity isn&apos;t about acting. It&apos;s about casting someone who&apos;s actually felt the problem.
+          <strong className="text-text">Cast the right person.</strong> The creator has to look, talk, and feel like the person watching. A study tool needs a college student. A dev tool needs a developer. Cast someone who has felt the problem.
         </li>
         <li>
           <strong className="text-text">Show, don&apos;t pitch.</strong> Demo the product like you&apos;re showing a friend. One flow. One outcome. No feature list. Let the product appear naturally within the story.
         </li>
         <li>
-          <strong className="text-text">End with access, not an ad.</strong> Don&apos;t say &quot;download now.&quot; Frame the CTA as something exclusive: &quot;Comment X and I&apos;ll send you the method.&quot; It converts higher because it feels personal, not promotional.
+          <strong className="text-text">End with access.</strong> &quot;Download now&quot; sounds like a banner. &quot;Comment X and I&apos;ll send you the method&quot; sounds like a person, and it converts higher for that reason.
         </li>
       </ol>
       <p>

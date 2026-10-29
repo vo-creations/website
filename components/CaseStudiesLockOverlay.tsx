@@ -6,7 +6,7 @@ export default function CaseStudiesLockOverlay({ href }: { href: string }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex shrink-0 items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black"
+        className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-black"
       >
         Book a call
       </a>

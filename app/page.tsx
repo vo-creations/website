@@ -172,10 +172,9 @@ const team = [
     detailLine:
       "Grew his own Instagram past 70K followers. His students have earned $1M+ and generated 500M+ views. Brands at Vo Creations get that same system.",
     image: "/videos/team-thienvu-new.jpg",
-    // DECISION: default center crop left too much empty space (grass/pillar)
-    // above him; shifted down so he reads centered in the card. See
-    // docs/DECISIONS.md (topic: team-section-polish).
-    imagePosition: "center 75%",
+    // DECISION 2026-10: file is already a square head-and-shoulders crop.
+    // See docs/DECISIONS.md (topic: fourth-pass-2026-10).
+    imagePosition: "center",
   },
   {
     name: "Daniel Yun",
@@ -218,21 +217,23 @@ export default function Home() {
                   remember<span className="text-[#bdbdb8]">.</span>
                 </span>
               </h1>
-              <p className="mt-6 max-w-[34rem] font-sans text-[clamp(16px,1.5vw,20px)] font-medium leading-[1.45] text-[#efefed]">
-                <b className="font-bold text-white">1B+</b> views from <b className="font-bold text-white">1000+</b> vetted in-house creators trained through mentorship. We guarantee your target CPM. An AI app: 130M+ views in 3 months. A consumer app: 174M+ views at a $0.82 CPM. Results are anonymized.
+              {/* DECISION 2026-10: one support line. Deck figures stay in the proof strip. See docs/DECISIONS.md */}
+              <p className="mt-6 font-sans text-[17px] font-medium leading-[1.45] text-[#efefed] lg:text-[18px]">
+                1000+ vetted in-house creators.
+                <br className="sm:hidden" /> We guarantee your target CPM.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
                   href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-white px-7 py-3 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px"
+                  className="inline-flex min-h-11 items-center rounded-full bg-white px-7 py-3 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px"
                 >
                   Let&apos;s Talk
                 </a>
                 <a
                   href="#proof"
-                  className="text-[15px] font-medium text-[#efefed] underline decoration-white/30 underline-offset-4 hover:text-white"
+                  className="inline-flex min-h-11 items-center text-[15px] font-medium text-[#efefed] underline decoration-white/30 underline-offset-4 hover:text-white"
                 >
                   See results
                 </a>
@@ -289,7 +290,7 @@ export default function Home() {
           <p className="mb-8 max-w-[640px] text-base leading-relaxed text-[#d4d4d0]">
             Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
           </p>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { figure: "130M+", detail: "An AI app, 3 months" },
               { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
@@ -300,11 +301,11 @@ export default function Home() {
               { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
               { figure: "Under $3 CPM", detail: "Typical for this distribution" },
             ].map((item) => (
-              <div key={item.detail} className="rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <div key={item.detail} className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
                 <div className="whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] font-bold leading-[1.05] tracking-[-0.04em] text-white">
                   {item.figure}
                 </div>
-                <p className="mt-4 text-base leading-snug text-[#d4d4d0]">{item.detail}</p>
+                <p className="mt-auto pt-4 text-base leading-snug text-[#d4d4d0]">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -317,22 +318,22 @@ export default function Home() {
           <h2 className="mb-6 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
             What teams say
           </h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
-              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+          <div className="grid items-stretch gap-4 md:grid-cols-3">
+            <figure className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="flex-1 text-base leading-relaxed text-[#f5f5f3]">
                 <p>&ldquo;&hellip;helped us go from 1&rarr;100 with UGC and is one of the best agency owners in the space.&rdquo;</p>
                 <p className="mt-3">&ldquo;&hellip;the UGC agency we trust most in the space.&rdquo;</p>
               </blockquote>
               <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at an AI creative app</figcaption>
             </figure>
-            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
-              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+            <figure className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="flex-1 text-base leading-relaxed text-[#f5f5f3]">
                 &ldquo;Great engagement btw boys. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;
               </blockquote>
               <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at a top-3 finance app</figcaption>
             </figure>
-            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
-              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+            <figure className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="flex-1 text-base leading-relaxed text-[#f5f5f3]">
                 &ldquo;&hellip;has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.&rdquo;
               </blockquote>
               <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at a consumer app</figcaption>
@@ -381,6 +382,7 @@ export default function Home() {
             Brands we&apos;ve worked with
           </h2>
           <div className="overflow-hidden px-2" style={edgeFadeStyle}>
+            {/* DECISION 2026-10: monochrome lives on this logo track only. Creator posters stay in color. See docs/DECISIONS.md */}
             <div className="flex w-max items-center gap-x-12 animate-scroll [&_img]:brightness-0 [&_img]:invert">
               {trustedBrands.map((brand) => (
                 <LogoImage
@@ -411,21 +413,21 @@ export default function Home() {
           <h2 className="mb-6 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
             Organic UGC for AI startups and tech consumer apps.
           </h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+          <div className="grid items-stretch gap-4 md:grid-cols-3">
+            <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-bg-card/50 p-6">
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">Creators</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
                 1000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1%. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+            <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-bg-card/50 p-6">
               <p className="mb-3 font-display text-[32px] font-bold leading-none tracking-tight text-white">$50K+/mo</p>
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">What&apos;s included</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
                 Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. 2,400+ videos a month per campaign. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+            <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-bg-card/50 p-6">
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">Terms</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
                 90-day minimum, then month to month. No refunds after launch. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
@@ -528,11 +530,11 @@ export default function Home() {
             Proven viral creators turned agency operators
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2">
             {team.map((t) => (
               <div
                 key={t.name}
-                className="bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+                className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-card/50 backdrop-blur-sm"
               >
                 <div className="relative aspect-square bg-bg-elevated">
                   <Image
@@ -541,10 +543,10 @@ export default function Home() {
                     fill
                     sizes="(max-width: 768px) 90vw, 340px"
                     className="object-cover grayscale"
-                    style={{ objectPosition: "center" }}
+                    style={{ objectPosition: t.imagePosition }}
                   />
                 </div>
-                <div className="p-6">
+                <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-center gap-1.5">
                     <span className="text-[17px] font-bold">{t.name}</span>
                     <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-text-secondary shrink-0">
@@ -583,14 +585,14 @@ export default function Home() {
             Creators finish a two-week paid trial. We keep the top 1%. Then the week looks like this.
           </p>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
-              <div key={s.num} className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+              <div key={s.num} className="flex h-full flex-col rounded-2xl border border-white/10 bg-bg-card/50 p-6">
                 <div className="mb-4 text-[15px] font-semibold text-[#d4d4d0]">
                   {s.num}
                 </div>
                 <h3 className="mb-3 text-xl font-extrabold tracking-tight">{s.title}</h3>
-                <p className="text-base leading-relaxed text-[#d4d4d0]">{s.desc}</p>
+                <p className="mt-auto text-base leading-relaxed text-[#d4d4d0]">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -600,8 +602,8 @@ export default function Home() {
       <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
 
       <section className="px-6 py-16" id="fit">
-        <div className="mx-auto grid max-w-[1100px] gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/15 bg-[#141414] p-8">
+        <div className="mx-auto grid max-w-[1100px] items-stretch gap-4 md:grid-cols-2">
+          <div className="flex h-full flex-col rounded-2xl border border-white/15 bg-[#141414] p-8">
             <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
               Good fit
             </h2>
@@ -620,7 +622,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-8">
+          <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-[#0a0a0a] p-8">
             <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-[#d4d4d0]">
               Not a fit
             </h2>
@@ -657,7 +659,7 @@ export default function Home() {
                 <div key={faq.q} className="rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5 backdrop-blur-sm">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 text-left"
+                    className="flex min-h-11 w-full items-center justify-between gap-4 text-left"
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => setOpenFaq(open ? null : faq.q)}

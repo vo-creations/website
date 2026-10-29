@@ -58,7 +58,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "An in-house UGC agency trains creators and runs the posting as your program. A marketplace sells you access to people who will make a file. A freelancer is one person you manage yourself. The right buy is the one that matches whether you need a system or a single video.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "daniel",
     readingMinutes: 5,
     related: [
@@ -76,7 +76,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. 90 days, then month to month. No refunds after launch.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "daniel",
     readingMinutes: 6,
     related: [
@@ -94,7 +94,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "UGC for an AI startup is a trained creator telling a story the user has already lived, with the product inside that story. A product demo starts at the interface and asks a stranger to care about a screen. Talking-head video earns the pause first. The demo still belongs, as one moment inside the story, not as the whole video.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [
@@ -112,7 +112,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "Before you hire a UGC agency, ask who trains the creators, who posts, what the month includes, and what happens when a video misses. A managed program can answer those in operating terms. A vendor selling files will answer them with a rate card. The gap between those two answers is the whole decision.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [
@@ -130,7 +130,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "Text-on-screen UGC puts a caption, a sound, and a product shot in front of someone and calls it content. It explains the product and then gets swiped. Talking-head UGC is a real person telling a story the viewer has lived, with the product inside that story. That is the format that earns the comment, the follow, and the install.",
     datePublished: "2026-03-24",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [

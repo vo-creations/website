@@ -51,7 +51,11 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, Head of Strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the in-house model. We have 1000+ vetted in-house creators, and the 1B+ views on the site are from creators we trained. Chad, Head of Strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week. The fee, the CPM guarantee, and the term are on the{" "}
+        <Link href="/#pricing" className="text-text underline decoration-white/30 underline-offset-4">
+          program
+        </Link>
+        .
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>
@@ -96,7 +100,7 @@ export default function InHouseVsMarketplacePost() {
 
       <H2 id="what-does-the-week-look-like">What does the week look like?</H2>
       <p>
-        Illustrative example, not a campaign result. A brief we would actually run for a generic consumer app:
+        Example, not a campaign result. A brief we would actually run for a generic consumer app:
       </p>
       <ol className="list-decimal space-y-2 pl-5">
         <li>Problem: the user keeps meaning to start and does not.</li>
@@ -106,16 +110,16 @@ export default function InHouseVsMarketplacePost() {
         <li>Soft CTA: &quot;Comment start and I&apos;ll send the setup.&quot;</li>
       </ol>
       <p>
-        Illustrative hook, first line only: &quot;I downloaded it twice and still hadn&apos;t opened it.&quot;
+        First line only: &quot;I downloaded it twice and still hadn&apos;t opened it.&quot;
       </p>
       <p>
-        Illustrative comment follow-up: if people reply &quot;same, I quit on day two,&quot; the next video is that day-two quit, not a new feature.         The comment is the brief. A marketplace order does not have a person whose job is to read it on Thursday.
+        If people reply &quot;same, I quit on day two,&quot; the next video is that day-two quit, not a new feature. The comment is the brief. A marketplace order does not have a person whose job is to read it on Thursday.
       </p>
       <p>
         The same week, in operating terms: Monday the coaches mark which lines people finished. Strategy kills the openings that could belong to any app. Two creators reshoot the winner with their own mess, not a shared script. You get a note on what was stopped, not only a folder of what went live. That note is the product. A per-video invoice rarely includes it, because nobody is paid to throw work away.
       </p>
       <p>
-        Illustrative hook for a money app, not one of the results above: &quot;I checked the balance and then didn&apos;t look again for nine days.&quot; If the comments are all &quot;I do the same with savings,&quot; the next opening is the nine days, not a tour of the home screen.         The operator&apos;s job is to notice that by Thursday. Yours is not.
+        A first line for a money app, not one of the results above: &quot;I checked the balance and then didn&apos;t look again for nine days.&quot; If the comments are all &quot;I do the same with savings,&quot; the next opening is the nine days, not a tour of the home screen. The operator&apos;s job is to notice that by Thursday. The client&apos;s job is not.
       </p>
 
       <H2 id="what-still-lands-on-you">What still lands on your team?</H2>

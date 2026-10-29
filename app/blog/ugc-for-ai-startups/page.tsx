@@ -22,7 +22,7 @@ const faqs: FaqItem[] = [
   {
     question: "Are these hooks from live campaigns?",
     answer:
-      "No. The hooks and the outline are illustrative. The view counts later in the piece are separate: Vo Creations results for anonymized AI apps, not scripts you can match to a brand.",
+      "No. The hooks and the outline are examples. The view counts later in the piece are separate: Vo Creations results for anonymized AI apps, not scripts you can match to a brand.",
   },
   {
     question: "Who should say the line?",
@@ -62,14 +62,14 @@ export default function UgcForAiStartupsPost() {
       </p>
 
       <H2 id="three-hooks">What do hooks sound like for three kinds of AI apps?</H2>
-      <p>Illustrative examples, not campaign results. First lines only.</p>
+      <p>Examples, not campaign results. First lines only.</p>
       <ul className="list-disc space-y-2 pl-5">
         <li>Study tool: &quot;I did five hours of review and still froze on question one.&quot;</li>
         <li>Coding tool: &quot;I&apos;ve had the same bug open since lunch and I stopped reading the error.&quot;</li>
         <li>Writing tool: &quot;The doc has a title and nothing else, and the meeting is in an hour.&quot;</li>
       </ul>
       <p>
-        Illustrative comment follow-ups, if those lines actually ran:
+        Comment follow-ups, if those lines actually ran:
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>Study: replies like &quot;I do this the night before every exam&quot; become a video that starts at 11pm, not at the syllabus.</li>
@@ -78,7 +78,7 @@ export default function UgcForAiStartupsPost() {
       </ul>
 
       <H2 id="one-outline">What does one full outline look like?</H2>
-      <p>Illustrative script outline for the study tool. Same shape works for the other two if you swap the mess.</p>
+      <p>Script outline for the study tool. Same shape works for the other two if you swap the mess. This is an example, not a result.</p>
       <ol className="list-decimal space-y-2 pl-5">
         <li>Problem: they studied and still don&apos;t know what they know.</li>
         <li>Specific mess: six practice tests, same score, notes that are just the textbook again.</li>

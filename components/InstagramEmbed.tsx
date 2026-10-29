@@ -45,11 +45,11 @@ export default function InstagramEmbed({ url, label, poster, posterAlt }: Instag
           />
         ) : (
           <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_30%_20%,#3a2a22,transparent_45%),radial-gradient(circle_at_80%_80%,#1c2430,#111)] px-4 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-[13px] font-semibold text-white">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-[15px] font-semibold text-white">
               IG
             </span>
-            <span className="text-[13px] font-medium text-white">Instagram</span>
-            <span className="text-[13px] text-white/70">Play on Instagram</span>
+            <span className="text-[15px] font-medium text-white">Instagram</span>
+            <span className="text-[15px] text-white/70">Play on Instagram</span>
           </span>
         )}
         <span className="absolute inset-0 flex items-center justify-center bg-black/25">
@@ -59,7 +59,7 @@ export default function InstagramEmbed({ url, label, poster, posterAlt }: Instag
         </span>
         {label && (
           <span className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2">
-            <span className="text-[13px] font-medium text-white">{label}</span>
+            <span className="text-[15px] font-medium text-white">{label}</span>
           </span>
         )}
       </button>
@@ -84,12 +84,12 @@ export default function InstagramEmbed({ url, label, poster, posterAlt }: Instag
       />
       {label && (
         <div className="mt-2 flex items-center justify-between px-1">
-          <span className="text-[13px] font-medium text-text-secondary">{label}</span>
+          <span className="text-[15px] font-medium text-text-secondary">{label}</span>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] text-text-dim transition-colors hover:text-text-secondary"
+            className="text-[15px] text-text-dim transition-colors hover:text-text-secondary"
           >
             View on Instagram &rarr;
           </a>

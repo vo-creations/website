@@ -84,7 +84,7 @@ export function ArticleTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-2xl border border-white/10">
-      <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+      <table className="w-full min-w-[640px] border-collapse text-left text-[15px]">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="border-b border-white/15 bg-white/[0.03] text-text">
@@ -137,7 +137,7 @@ export default function Article({
       <Nav />
       <main className="px-6 pb-24 pt-36">
         <article className="mx-auto max-w-[720px]">
-          <nav aria-label="Breadcrumb" className="mb-6 text-[13px] text-text-dim">
+          <nav aria-label="Breadcrumb" className="mb-6 text-[15px] text-text-dim">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
                 <Link href="/" className="hover:text-text">
@@ -162,7 +162,7 @@ export default function Article({
             {post.title}
           </h1>
           <p className="mb-6 text-lg leading-[1.5] text-[#efefed]">{post.directAnswer}</p>
-          <p className="mb-8 text-sm text-text-dim">
+          <p className="mb-8 text-[15px] text-text-dim">
             <a href={author.url} className="font-semibold text-text-secondary hover:text-text">
               {author.name}
             </a>
@@ -189,16 +189,16 @@ export default function Article({
             <p className="mb-3 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
               On this page
             </p>
-            <ol className="space-y-2 text-sm">
+            <ol className="space-y-2 text-[15px]">
               {toc.map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} className="text-text-secondary hover:text-text">
+                  <a href={`#${item.id}`} className="inline-flex min-h-11 items-center text-text-secondary hover:text-text">
                     {item.label}
                   </a>
                 </li>
               ))}
               <li>
-                <a href="#questions-people-ask" className="text-text-secondary hover:text-text">
+                <a href="#questions-people-ask" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text">
                   Questions people ask
                 </a>
               </li>
@@ -214,7 +214,7 @@ export default function Article({
                 {author.name}
               </a>
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-text-secondary">{author.bio}</p>
+            <p className="mt-2 text-[15px] leading-relaxed text-text-secondary">{author.bio}</p>
           </aside>
 
           <section id="questions-people-ask" className="scroll-mt-28 pt-12" aria-labelledby="faq-heading">
@@ -255,7 +255,7 @@ export default function Article({
             <h2 className="font-display text-[26px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
               See the program, then the results.
             </h2>
-            <p className="mx-auto mt-3 max-w-[460px] text-sm leading-relaxed text-text-secondary">
+            <p className="mx-auto mt-3 max-w-[460px] text-[15px] leading-relaxed text-text-secondary">
               Campaigns start at $50K+ a month, all-inclusive. Named case studies stay behind a call. Book one and we will walk through them.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -263,13 +263,13 @@ export default function Article({
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-black"
+                className="inline-flex min-h-11 items-center rounded-full bg-white px-7 py-3 text-[15px] font-semibold text-black"
               >
                 Book a call
               </a>
               <Link
                 href="/#results"
-                className="inline-flex items-center rounded-full border border-white px-7 py-3 text-sm font-semibold text-white"
+                className="inline-flex min-h-11 items-center rounded-full border border-white px-7 py-3 text-[15px] font-semibold text-white"
               >
                 Request the case studies
               </Link>

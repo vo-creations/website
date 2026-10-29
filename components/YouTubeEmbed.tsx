@@ -62,13 +62,13 @@ export default function YouTubeEmbed({ url, label }: YouTubeEmbedProps) {
           </div>
           {label && (
             <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-3 py-2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
-              <span className="text-xs text-white font-medium">{label}</span>
+              <span className="text-[15px] text-white font-medium">{label}</span>
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-xs text-white/70 hover:text-white transition-colors pointer-events-auto"
+                className="inline-flex min-h-11 items-center text-[15px] text-white/70 hover:text-white transition-colors pointer-events-auto"
               >
                 YouTube &#8599;
               </a>

@@ -3225,3 +3225,15 @@ Daniel asked for one audit pass on top of the merged pricing. The public mentors
 - Locked cards show a readable category and window (`AI app · 3 months` and the five siblings) and a blurred placeholder (`000M+` or `00.0M`). The real deck figures are in the public proof strip and the hero support line, labeled as anonymized Vo Creations results.
 - Nine Instagram marquee posts use a saved poster. Two posts no longer return a media file, so those cards use a labeled Instagram fallback instead of a black box.
 - Founder titles dropped "CEO/COO of VoC Mentorship." Both bios say co-founder, New York, NY. The footer links X and Instagram. The 404 sets `canonical: null` and `noindex`. Blog `dateModified` is 2026-10-28, and each post has Open Graph and Twitter title, description, and image. Uncited 6.9× and mirror-neuron lines were removed from the text-on-screen essay. Campaign counts in our copy use 50+. The embedded X post that says 30+ was left as the author's words.
+
+## topic: fourth-pass-2026-10 — _2026-10-29_
+
+Daniel approved the footer line, the shorter hero support line, grayscale founders, monochrome client logos, and a live ship of the mobile, blog, photo, and card pass.
+
+- The footer tagline on every page is "The in-house UGC agency backed by elite mentorship."
+- The hero support paragraph is one line: "1000+ vetted in-house creators. We guarantee your target CPM." The stats bar is unchanged. Anonymized deck figures stay in the proof strip only. This supersedes the note that those figures also sat in the hero support line.
+- Thienvu's photo was cropped from `public/videos/team-thienvu-new.jpg` to a 450px square head-and-shoulders and saved as grayscale. Daniel's file was already a 600px studio headshot and was not recropped. Both render with the `grayscale` class. The backgrounds cannot match: Thienvu's only high-resolution source is an outdoor portrait with a stone column, and the face region is about 450px, so it is softer than Daniel's on a retina screen.
+- Trusted By logos stay monochrome (`brightness-0 invert` on that marquee only). Creator posters, thumbnails, and video embeds are not filtered.
+- Proof, pricing, testimonial, fit, how-it-works, and team cards use `h-full` so cards in a row share a height and the same padding. How it works stays two columns until the `lg` breakpoint.
+- Blog posts dropped repeated fee boilerplate in favor of one link to `/#pricing`, dropped "illustrative" labels, and trimmed a few hype lines in the text-on-screen essay. Headings, proof figures, and original publish dates stayed. `dateModified` is 2026-10-29.
+- Mobile controls that were under 44px (nav menu button, booking buttons, blog category chips, table of contents links) were raised. Article body text under 15px in the byline, breadcrumbs, table, and end CTA was raised to 15px. Comparison tables scroll inside the article instead of widening the page.

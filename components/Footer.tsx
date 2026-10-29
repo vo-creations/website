@@ -25,16 +25,16 @@ export default function Footer() {
               </span>
             </div>
             <p className="mb-6 max-w-[320px] text-base leading-relaxed text-[#d4d4d0]">
-              Your world-class in-house UGC program, without the overhead.
+              The in-house UGC agency backed by elite mentorship.
             </p>
             <div className="flex items-center gap-4 text-[15px] font-semibold">
-              <a href="https://x.com/VoCreationsUGC" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/VoCreationsUGC" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
                 X
               </a>
-              <a href="https://www.instagram.com/vo.creations/" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/vo.creations/" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
                 Instagram
               </a>
-              <a href="https://www.linkedin.com/company/vocreations/" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/vocreations/" className="inline-flex min-h-11 items-center text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
             </div>
@@ -42,15 +42,15 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+            <div className="mb-2 text-[15px] font-semibold uppercase tracking-[0.15em] text-text-dim">
               Links
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
               {footerLinks.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-base text-[#d4d4d0] transition-colors hover:text-text"
+                  className="inline-flex min-h-11 items-center text-[15px] text-[#d4d4d0] transition-colors hover:text-text"
                 >
                   {l.label}
                 </Link>
@@ -60,14 +60,14 @@ export default function Footer() {
 
           {/* CTA */}
           <div>
-            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.15em] text-text-dim">
+            <div className="mb-5 text-[15px] font-semibold uppercase tracking-[0.15em] text-text-dim">
               Ready to scale?
             </div>
             <a
               href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-transform hover:-translate-y-px"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-8 py-3.5 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px"
             >
               Book a call
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -85,8 +85,8 @@ export default function Footer() {
             reference them) — this only removes the footer nav links to
             them. See docs/DECISIONS.md (topic: footer-polish). */}
         <div className="border-t border-border pt-6 flex justify-between items-center gap-4">
-          <p className="text-[13px] text-text-dim">Vo Creations</p>
-          <p className="text-[13px] text-text-dim">&copy; 2026 Vo Creations</p>
+          <p className="text-[15px] text-text-dim">Vo Creations</p>
+          <p className="text-[15px] text-text-dim">&copy; 2026 Vo Creations</p>
         </div>
       </div>
     </footer>

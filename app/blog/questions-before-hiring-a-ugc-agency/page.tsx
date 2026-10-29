@@ -42,7 +42,7 @@ const faqs: FaqItem[] = [
   {
     question: "Can I use the hooks in this piece as the brief?",
     answer:
-      "They are illustrative, so they are a shape, not your script. Swap in the mess your user actually has. If the line still works with the product name deleted, keep it. If it collapses, it was a pitch.",
+      "They are examples, so they are a shape, not your script. Swap in the mess your user actually has. If the line still works with the product name deleted, keep it. If it collapses, it was a pitch.",
   },
 ];
 
@@ -91,14 +91,14 @@ export default function HiringQuestionsPost() {
         Nouns. A coach, a Thursday review, an account, a fee that already includes creator bonuses. &quot;Premium&quot; and &quot;full service&quot; are how a thin shop survives a first call.
       </p>
       <p>
-        Illustrative hooks, not results. Reject: &quot;This AI tool is insane.&quot; Keep: &quot;I&apos;ve rewritten the first sentence twelve times and the meeting is in an hour.&quot; The second one still works if you delete the product. That is the test. More of those lines, for a study tool, a coding tool, and a writing tool, are in{" "}
+        Example lines, not results. Reject: &quot;This AI tool is insane.&quot; Keep: &quot;I&apos;ve rewritten the first sentence twelve times and the meeting is in an hour.&quot; The second one still works if you delete the product. That is the test. More of those lines, for a study tool, a coding tool, and a writing tool, are in{" "}
         <Link href="/blog/ugc-for-ai-startups" className="text-text underline decoration-white/30 underline-offset-4">
           UGC for AI startups
         </Link>
         .
       </p>
       <p>
-        Illustrative comment follow-up: someone writes &quot;I do this every Sunday and still show up blank.&quot; A clear operator says the next video starts on Sunday night. A file shop sends another cut of the feature you already approved.
+        If someone writes &quot;I do this every Sunday and still show up blank,&quot; a clear operator says the next video starts on Sunday night. A file shop sends another cut of the feature you already approved.
       </p>
       <p>
         Three of the twelve, heard out loud. Training: vague is &quot;we have a network.&quot; Clear is &quot;they can fail a trial, and a coach reviews last week&apos;s lines with them.&quot; Posting: vague is &quot;we distribute.&quot; Clear is a list of accounts, not a verb. Proof: vague is a logo slide. Clear is a window, a plain category, and a sentence about what they will not publish.
@@ -107,10 +107,10 @@ export default function HiringQuestionsPost() {
         Score the call in the notes app while you&apos;re still on it. One mark if you could name the person who owns Thursday. One mark if the format survived being said in a single sentence. One mark if they can say the monthly fee includes creator bonuses, scripts, posting, and daily Slack reporting. Zero on any of those and you are still shopping for a folder. The rest of the twelve are how you confirm the first three weren&apos;t a performance.
       </p>
       <p>
-        Two answers I would not accept, both illustrative. &quot;Our creators are top tier&quot; does not say what they survived to get in, or who sits with them after the first post. &quot;We&apos;re fully organic and paid&quot; does not say which happens first. Organic first means you post, you see what people actually watch, and only then does money go behind a video. If they cannot put those steps in order, they will boost the tour.
+        Two answers I would not accept. &quot;Our creators are top tier&quot; does not say what they survived to get in, or who sits with them after the first post. &quot;We&apos;re fully organic and paid&quot; does not say which happens first. Organic first means you post, you see what people actually watch, and only then does money go behind a video. If they cannot put those steps in order, they will boost the tour.
       </p>
       <p>
-        Bring a line from your own product to the call. Not a slogan. A mess. Ask them to say a first sentence back to you before the call ends. If they pitch the feature, you learned enough. If they find the hour, the score, or the bug, you are talking to someone who can be coached, and who can coach a roster. That thirty seconds tells you more than the logo slide.
+        Bring a mess from your own product to the call, not a slogan. Ask them to say a first sentence back to you before the call ends. If they pitch the feature, you learned enough. If they find the hour, the score, or the bug, you are talking to someone who can be coached, and who can coach a roster. That thirty seconds tells you more than the logo slide.
       </p>
       <p>
         The last of the twelve is the one polite vendors dodge. Who is this not for? A useful answer names a job they will refuse: one-off videos, a team that wants to approve every line themselves, a format they don&apos;t shoot. A useless answer is &quot;we can flex.&quot; Flex is how you end up with a tour when you asked for a face. If they cannot stand next to a no, they will not kill a bad opening either.

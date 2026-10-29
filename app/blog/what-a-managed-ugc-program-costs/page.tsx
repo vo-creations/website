@@ -51,7 +51,11 @@ export default function ProgramCostPost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        The number up top is the whole offer. Everything under it is what that number is not: a per-video menu, a guessed freelancer rate, or a CPM you can photocopy onto the next app.
+        The price is the offer. Everything under it is what that number is not: a per-video menu, a guessed freelancer rate, or a CPM you can photocopy onto the next app. The live terms are also on the{" "}
+        <Link href="/#pricing" className="text-text underline decoration-white/30 underline-offset-4">
+          program
+        </Link>
+        .
       </p>
 
       <H2 id="what-are-you-paying-for">What are the three prices actually for?</H2>
@@ -106,7 +110,7 @@ export default function ProgramCostPost() {
 
       <H2 id="how-to-read-the-invoice">How do you read the invoice?</H2>
       <p>
-        One number. It includes trained creators, scripts, posting, creator bonuses, and daily Slack reporting. If a renewal goes up, someone should be able to say which job got heavier.
+        One number. If a renewal goes up, someone should be able to say which job got heavier. The jobs inside that number are listed above.
       </p>
       <p>
         Example invoice note, not a result: &quot;March program, all-inclusive. Two videos stayed under 1,000 views and did not count toward the CPM.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;

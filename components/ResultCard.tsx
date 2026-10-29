@@ -52,13 +52,13 @@ export default function ResultCard({
             className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}
             {...(locked ? { "data-nosnippet": true, "aria-hidden": true } : {})}
           >
-            <div className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-text-dim">
+            <div className="mb-1 text-[15px] font-semibold uppercase tracking-wide text-text-dim">
               Total views
             </div>
             <div className="text-5xl font-black leading-none tracking-tighter text-text md:text-[48px]">
               {views}
             </div>
-            <div className="mt-2 text-[13px] font-medium text-text-dim">{viewsSub}</div>
+            <div className="mt-2 text-[15px] font-medium text-text-dim">{viewsSub}</div>
           </div>
         </div>
       </div>
