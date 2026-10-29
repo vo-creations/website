@@ -27,7 +27,9 @@ only:
   `Client name`, `/logos/locked-case.svg`), not the real proof. `/llms.txt` is a static file in `public/`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. Nav and footer have no social-link row.
-  Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` is an existing page and is not
+  Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
+  FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
+  read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` is an existing page and is not
   linked from the sitemap, `llms.txt`, or the homepage.
 - Display type is Inter Tight and body type is Inter, both from `next/font`
   in `app/layout.tsx`. The hero mark is a `<picture>`:

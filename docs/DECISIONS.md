@@ -3130,6 +3130,14 @@ Daniel confirmed the brand Instagram is `https://www.instagram.com/vo.creations/
 - The Profiles section of `public/llms.txt` lists the same three URLs.
 - The nav and footer still have no social-link row. That row was removed on purpose (`topic: in-house-positioning`, `topic: footer-polish`), so the confirmed Instagram URL was not turned into a new icon.
 
+## topic: blog-aeo-2026-10 — _2026-10-28_
+
+The blog was rebuilt around one article template so posts can be cited cleanly. Four new essays were added. Named case studies stayed gated. No client names, quotes, or third-party price cards were added.
+
+- `components/blog/Article.tsx` renders the direct answer, table of contents, author byline and bio, an always-visible "Questions people ask" block, three internal links, and a call-to-action that books a call or jumps to the blurred results. The same FAQ array feeds FAQPage JSON-LD. BlogPosting (author as Person, datePublished, dateModified) and BreadcrumbList sit in one `@graph`.
+- The index lists every post with a category and a read time. `app/sitemap.ts` emits each post with `lastmod` from `dateModified`. `public/llms.txt` lists the posts and adds Who we serve, When to use us, and Not a fit.
+- Marketplace and freelancer pricing is described qualitatively. The only dollar figure treated as fact is Vo Creations' own: campaigns start at $50K/month, creator bonuses separate, 90-day minimum, no refunds. The older text-on-screen essay kept its existing campaign figures and dropped an unsourced "$10B to $35B" market line rather than restating it.
+
 ## topic: creator-count-2026-10 — _2026-10-29_
 
 Daniel raised the public creator count from 500+ to 1000+. The pitch line is "1000+ vetted in-house creators trained through mentorship".
@@ -3146,3 +3154,34 @@ One client was removed from the Trusted By marquee and from the locked case-stud
 ## topic: case-studies-lock — _2026-10-29_
 
 The locked homepage cards were still shipping real proof in the HTML. Blur is only CSS. The six cards now render the same placeholder: company "Client name", views "000M+", subline "00 days / 00 creators", and `public/logos/locked-case.svg` with alt "Locked case study". Real client names, logos, view totals, durations, and creator counts are not passed into those cards. The Trusted By marquee is unchanged and still uses the public logo files. The overlay copy and blur are unchanged.
+
+## topic: pricing-2026-10 — _2026-10-28_
+
+Daniel approved a pricing model that matches the new pitch deck. This supersedes the 2026-10-19 wording that kept creator bonuses on a separate line and stated a flat $50K/month.
+
+- Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Creator bonuses are no longer described as billed separately.
+- We guarantee the client's target CPM. CPM means cost per 1,000 organic views. The public example of a target is sub-$10, or whatever number the client sets. That example is not a new campaign result. The existing anonymized results (under $3 CPM, a consumer app at $0.82, a finance app under $4) stayed, labeled as results rather than the guarantee.
+- Videos under 1,000 views do not count toward the client's spend. The older "videos under 1,000 views are free" line was rephrased to that.
+- The term is a 90-day minimum, then month to month. No refunds after launch.
+- The Service offer in `app/layout.tsx` keeps `minPrice` and `price` at `50000` USD per month, because the floor number did not change. The offer description carries the new wording. Homepage FAQ JSON-LD is still built from `agencyFaqs`. Blog FAQPage JSON-LD is still built from each post's `faqs` array.
+- Paid media stays outside the monthly fee. The all-inclusive list Daniel approved does not include ad spend.
+- Older entries in this file, `SEO-WORK-DIARY.md`, and the mentorship refund policy were left as history. `content/mentorship-pricing-faq-backup.md` was not touched.
+
+## topic: blog-aeo-2026-10 — _2026-10-29_
+
+Daniel confirmed the text-on-screen essay's "$10K budget" and "~$200K ad spend" lines were old pricing. This supersedes the 2026-10-28 note that left that essay's campaign figures in place.
+
+- `/blog/text-on-screen-ugc` no longer says "20 million views in 30 days" with 3 creators on a $10K budget, and no longer estimates ~$200K of equivalent ad spend. The dashboard figure (`/blog/analytics-dashboard.jpg`, captioned 20.6M views) was removed from the page. The replacement is one anonymized Vo Creations result already approved for the other essays: two apps, 30 days each, 21.5M and 15.9M views. `dateModified` is 2026-10-29. The FAQ array was not changed, so FAQPage JSON-LD stays the same text.
+- The agency-comparison essay's opening no longer repeats the direct answer, and the second-half paragraphs that restated the same operating difference were condensed into the "What still lands on your team?" section. Read time on that post is 5 minutes.
+- A February 2026 X card on the blog index quoted $10K, $30K, and $40K months and named a client. It was removed. `public/voc-sideshift-deck.html` and `public/voc-sideshift-preview.html` offered a $10K/month package and named clients; they were not linked from the app and were deleted. The homepage package-floor comment no longer lists the retired $10k/$20k/$30k tiers.
+- Older decision entries, the pricing index line, and `SEO-WORK-DIARY.md` still record that the floor used to be $30K/month. That is the history of the price change, not a current offer. Daniel's "$200K+ earned" bio line is creator earnings, not a package price. The archived mentorship backup and the refund-policy trial are a different product.
+
+## topic: pricing-2026-10 — _2026-10-29_
+
+Daniel approved marking the Service offer as a starting price. This supersedes the 2026-10-28 note that left both `price` and `minPrice` at `50000`.
+
+- `app/layout.tsx` is the only Offer on the site. Its `priceSpecification` is a `UnitPriceSpecification` with `minPrice` `50000`, `priceCurrency` `USD`, `unitText` `MONTH`, and `referenceQuantity` of 1 `MON`. The flat `price` field is gone. The offer description text is unchanged. Paid-media wording was left as it was.
+
+## topic: drop-client-logo-2026-10 — _2026-10-29_
+
+The logo that this topic removed from the Trusted By strip was put back, first in the strip. The case-study card and its stat were not restored. `case-studies-lock` then replaced all six locked cards with placeholders, so the earlier note that the other cards stayed is no longer the live state.

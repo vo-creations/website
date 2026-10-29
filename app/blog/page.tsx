@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import BlogIndexList from "@/components/blog/BlogIndexList";
+import { posts } from "@/lib/blog/posts";
 
 export const metadata: Metadata = {
   title: "UGC Insights & Strategy Blog",
   description:
-    "Insights on UGC strategy, talking-head content, creator training, and organic-to-paid amplification from the Vo Creations team.",
+    "How an in-house UGC program actually works: talking-head video, pricing, hiring questions, and what to buy instead of a folder of clips.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "UGC Blog | Vo Creations",
     description:
-      "Insights on UGC strategy, talking-head content, and creator training.",
+      "Talking-head UGC, program pricing, and how to hire an in-house agency. Written by the Vo Creations founders.",
     url: "https://vocreations.com/blog",
     type: "website",
   },
@@ -50,57 +50,26 @@ const xPosts = [
     content:
       "most bootstrapped founders treat UGC like a paid ad. run it once, check the conversion, move on. that's the wrong mental model entirely. UGC is a compounding machine. you're not running one ad. you're running 300 experiments simultaneously until you find the format that converts, then you pour money behind it.",
   },
-  {
-    url: "https://x.com/itsthienvuvo/status/2014355079906664586",
-    author: "Thienvu Vo",
-    handle: "@itsthienvuvo",
-    date: "February 2026",
-    content:
-      "i scaled my UGC agency to 100K/month in 2 months. here's how, full transparency: week 1 notified mentorship students about the upcoming agency deal flow and reached out to existing agencies. week 2 landed 2 clients (40K/month) through IG personal brand inbounds and built the fulfilment system. week 3 landed 1 client (10K/month) through a referral and had creators double down on winning formats. week 4 built case studies: fable, 15M views in 21 days with 3 creators, and averaged over 10M views/month for clients. week 5 started posting on x, landed an equity deal with an app, and hired 2 creator managers. week 6 focused on team management. week 7 referred 3 more deals (30K/month). week 8 expanded the creator manager team to 5.",
-  },
 ];
+
+const ordered = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
 
 export default function BlogIndex() {
   return (
     <>
       <Nav />
-      <main className="pt-36 pb-24 px-6">
-        <div className="max-w-[720px] mx-auto">
-          <p className="text-[11px] font-semibold tracking-[2.5px] uppercase text-text-secondary mb-4">
-            Blog
-          </p>
-          <h1 className="font-display text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight mb-10">
+      <main className="px-6 pb-24 pt-36">
+        <div className="mx-auto max-w-[720px]">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[2.5px] text-text-secondary">Blog</p>
+          <h1 className="mb-4 font-display text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight">
             UGC insights
           </h1>
+          <p className="mb-10 text-lg leading-relaxed text-text-secondary">
+            Notes on running an in-house UGC program: the format, the price, and the questions to ask before you hire anyone to post.
+          </p>
+          <BlogIndexList posts={ordered} />
 
-          <Link
-            href="/blog/text-on-screen-ugc"
-            className="block rounded-2xl border border-white/10 bg-bg-card/50 overflow-hidden hover:border-white/20 transition-colors"
-          >
-            <Image
-              src="/blog/text-vs-talking.jpg"
-              alt="Text-on-screen vs talking-head UGC"
-              width={2048}
-              height={819}
-              sizes="(max-width: 768px) 100vw, 720px"
-              className="w-full h-auto"
-            />
-            <div className="px-6 py-6">
-              <p className="text-[11px] font-semibold tracking-[2px] uppercase text-text-dim mb-3">
-                March 2026 · 5 min read
-              </p>
-              <h2 className="text-2xl font-extrabold tracking-tight mb-2">
-                Why Text-On-Screen UGC Is Killing Your App Growth
-              </h2>
-              <p className="text-sm text-text-secondary">
-                Everyone is producing UGC. Almost nobody is getting results.
-              </p>
-            </div>
-          </Link>
-
-          <h2 className="font-display text-3xl font-extrabold tracking-tight mt-16 mb-6">
-            From X
-          </h2>
+          <h2 className="mb-6 mt-16 font-display text-3xl font-extrabold tracking-tight">From X</h2>
           <div className="flex flex-col gap-4">
             {xPosts.map((post) => (
               <a
@@ -108,13 +77,13 @@ export default function BlogIndex() {
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5 hover:border-white/20 transition-colors"
+                className="block rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5 hover:border-white/20"
               >
                 <div className="text-sm font-bold">{post.author}</div>
-                <div className="text-xs text-text-dim mb-3">
+                <div className="mb-3 text-xs text-text-dim">
                   {post.handle} · {post.date}
                 </div>
-                <p className="text-sm text-text-secondary leading-relaxed">{post.content}</p>
+                <p className="text-sm leading-relaxed text-text-secondary">{post.content}</p>
               </a>
             ))}
           </div>

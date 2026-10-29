@@ -147,17 +147,18 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Makon AI", file: "makon.png" },
 ];
 
-// DECISION: package floor is $50,000/mo as of 2026-10-19 (was $30,000/mo;
-// before that, tiered $10k/3 creators and $20k/6 creators). 10-14 day
-// posting start, 90-day minimum, month-to-month, no refunds, creator
-// bonuses billed separately. See docs/DECISIONS.md (topic: pricing-2026-10).
+// DECISION 2026-10: campaigns start at $50K+/month, all-inclusive (trained
+// creators, scripts, posting, creator bonuses, weekly reporting). Bonuses are
+// not a second invoice. We guarantee the client's target CPM. Videos under
+// 1,000 views do not count toward the spend. 90-day minimum, then month to
+// month. No refunds after launch. See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
   { q: "What is Tech UGC?", a: "Tech UGC swaps traditional ad production for real creators showing your product in action: demoing it, explaining it, reacting to it, the way an actual user would. No studio, no script that sounds like a script. It's also one of the cheapest organic marketing channels out there: creator-made content costs a fraction of traditional production while still driving real reach. We run these campaigns at scale across TikTok, Instagram, YouTube, and Facebook, producing 2,400+ videos a month per brand and building organic reach before a single dollar of paid spend gets involved." },
-  { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project." },
+  { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project. After that it is month to month." },
   { q: "How involved is the process?", a: "Whatever level works for you. Most brands hop on a weekly call to see what's performing and share updates on their end. Everything else runs without needing you in the loop. Creators get managed, content gets reviewed, strategy gets adjusted daily, all on our side. If you want more say in creative direction, we'll bring you in further. If you'd rather set it and check in once a week, that works too. Either way, nothing stalls waiting on you." },
   { q: "What would next steps look like?", a: "Fast. After a quick consultation and onboarding call, we're already sourcing creators: first content goes live within 10-14 days of kickoff." },
-  { q: "What is the investment?", a: "Campaigns start at $50K/month. Creator bonuses are billed separately each month, on top of that base, so you always know exactly what's going toward strategy and management versus what's going directly to the creators making your content." },
-  { q: "Do you offer refunds?", a: "No refunds, but also no long-term lock-in. We run month to month, so if something's genuinely not working, you're never stuck waiting out a contract to fix it or walk away. That's what you'd expect from a world-class in-house UGC team, backed by the same mentorship program that's already put $1M+ in students' pockets, without the overhead of actually building that team yourself. We're confident enough in the process to let it prove itself every single month, not just at signing." },
+  { q: "What is the investment?", a: "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee the client's target CPM, for example sub-$10 or whatever number they set. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch." },
+  { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month, so you are not locked into a long contract after that. That's what you'd expect from a world-class in-house UGC team, backed by the same mentorship program that's already put $1M+ in students' pockets, without the overhead of actually building that team yourself. We're confident enough in the process to let it prove itself every single month, not just at signing." },
 ];
 
 const faqJsonLd = {
@@ -378,7 +379,7 @@ export default function Home() {
               The work is talking-head storytelling. A creator looks into the camera and tells a story the audience has lived. The product shows up inside that story. No studio, no text-on-screen template, no script that sounds like a script. Creators apply, interview, and finish a two-week paid trial before they touch a brand account. We keep the top 1%.
             </p>
             <p>
-              A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month, with no refunds and no long contract. Campaigns start at $50K a month. Creator bonuses are billed separately, so strategy and creator pay stay easy to tell apart.
+              A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client's target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month. No refunds after launch.
             </p>
             <p>
               When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, with 1000+ vetted in-house creators trained through mentorship, and run across 50+ campaigns.

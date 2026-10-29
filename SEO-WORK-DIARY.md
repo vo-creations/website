@@ -93,6 +93,12 @@ Daniel confirmed the brand Instagram is https://www.instagram.com/vo.creations/.
 
 ---
 
+## 2026-10-28: Blog template and four essays
+
+The blog index and every post now share a template aimed at answer engines: a short definition under the H1, question headings, a table of contents, a visible FAQ that matches FAQPage JSON-LD, BlogPosting with a founder as author, and a breadcrumb. New essays cover the in-house vs marketplace vs freelancer choice, what a $50K month covers, talking-head UGC for AI startups, and 12 hiring questions. `llms.txt` lists them and adds who the agency serves, when to use it, and who is not a fit. Named results stay gated. No new client names or market rate cards.
+
+---
+
 ## 2026-10-29: Creator count is 1000+
 
-The public creator count moved from 500+ to 1000+. The meta description, Open Graph description, and Twitter description now say "1000+ creators". `llms.txt` and the homepage program line use "1000+ vetted in-house creators trained through mentorship". The hero stat counts to 1000+. One client was also removed from the Trusted By strip and the locked case-study stack. The other cards were not edited.
+The public creator count moved from 500+ to 1000+. The meta description, Open Graph description, and Twitter description now say "1000+ creators". `llms.txt` and the homepage program line use "1000+ vetted in-house creators trained through mentorship". The hero stat counts to 1000+. The case-study card for that client was removed. The logo stays first in the Trusted By strip, and the locked cards are placeholders.
