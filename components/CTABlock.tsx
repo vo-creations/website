@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 export default function CTABlock({
-  heading = "Ready to scale with UGC?",
-  sub = "10 new campaigns per month. Tell us about your brand.",
-  buttonText = "Let's Talk",
+  heading = "1B+ views. Your target CPM, guaranteed.",
+  sub = "Campaigns start at $50K+ a month. First posts go live in 10-14 days.",
+  buttonText = "Book a call",
   href = "https://calendar.app.google/8x72A8nxr3gQpVfx7",
 }: {
   heading?: string;
@@ -12,32 +10,19 @@ export default function CTABlock({
   href?: string;
 }) {
   return (
-    // FAQ's own bottom padding (py-[100px]) + this section's top padding
-    // (pt-20 = 80px) puts 180px between the last FAQ card and this card.
-    // Footer's inner wrapper only has pt-16 (64px) before its own content
-    // starts, so matching bottom padding here (pb-20) left the card 36px
-    // closer to the footer than to the FAQ above it. pb-[116px] makes both
-    // gaps 180px. Re-derive if FAQ's py or Footer's pt-16 ever change.
-    <section className="text-center pt-20 pb-[116px]">
-      <div className="max-w-[560px] mx-auto px-10 py-14 rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm">
-        <h3 className="font-display mb-3 text-[28px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
+    <section className="px-6 pb-16 pt-4 text-center">
+      <div className="mx-auto max-w-[560px] rounded-3xl border border-white/10 bg-bg-card/50 px-8 py-10 backdrop-blur-sm">
+        <h2 className="mb-3 font-display text-[28px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
           {heading}
-        </h3>
-        <p className="text-base text-text-secondary mb-6">{sub}</p>
+        </h2>
+        <p className="mb-6 text-base text-[#d4d4d0]">{sub}</p>
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-white bg-transparent px-9 py-4 text-base font-semibold text-white transition-colors hover:bg-white/10"
+          className="inline-flex items-center rounded-full bg-white px-9 py-4 text-base font-semibold text-black transition-transform hover:-translate-y-px"
         >
           {buttonText}
-          <Image
-            src="/vocreations-mark-white.png"
-            alt="Vo Creations"
-            width={18}
-            height={19}
-            className="w-[15px] h-auto"
-          />
         </a>
       </div>
     </section>

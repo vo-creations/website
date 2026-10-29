@@ -3186,6 +3186,20 @@ Daniel approved marking the Service offer as a starting price. This supersedes t
 
 The logo that this topic removed from the Trusted By strip was put back, first in the strip. The case-study card and its stat were not restored. `case-studies-lock` then replaced all six locked cards with placeholders, so the earlier note that the other cards stayed is no longer the live state.
 
+## topic: site-audit-pass-2 — _2026-10-29_
+
+Daniel approved a second fix pass and a live ship. The hero eyebrow stayed "The in-house UGC agency backed by elite mentorship".
+
+- `/campaigns/maxxd` returns 410 with noindex. The page, its components, and the `/og/maxxd.png` reference are gone. The file itself was not in the repo. Named case studies still stay behind a booking gate.
+- `/terms` no longer 308s to the homepage. It 404s. There is still no privacy page and no terms page.
+- The homepage H1 is visually "make them remember." The eyebrow sits in a paragraph. An sr-only prefix makes the heading text "Organic UGC for AI and tech apps. Make them remember." The homepage `<title>`, Open Graph title, and Twitter title are "Vo Creations: In-House UGC Agency for AI & Tech Apps".
+- Pricing terms are in a three-card program block and again in the FAQ. "Videos under 1,000 views do not count toward your CPM." The guarantee line is "We guarantee your target CPM."
+- The proof strip is public and anonymized. Locked cards stay placeholders, with `data-nosnippet` and `aria-hidden` on the fake figures.
+- Blog Open Graph cards are `public/og/blog/<slug>.png`. The homepage Open Graph image no longer says "The team behind 1B+ views."
+- Organization JSON-LD has `@id` `https://vocreations.com/#organization`, `addressLocality` New York, and `foundingDate` 2025. No street, zip, or phone.
+- A LinkedIn company URL check from this environment returned HTTP 999, so the previously confirmed profile was left in schema and `llms.txt` and was not added to the footer. `daniel@vocreations.com` is not already public on the site, so it was not added.
+- No hero video was added. The mp4s in `public/videos` are story and creator films, not a labeled short sample for the hero.
+
 ## topic: site-audit-2026-10 — _2026-10-29_
 
 Daniel asked for one audit pass on top of the merged pricing. The public mentorship offer is gone. Anonymized campaign results from the pitch deck are now public. Named case studies stay gated.

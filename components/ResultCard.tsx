@@ -48,7 +48,10 @@ export default function ResultCard({
           ) : (
             <div className="text-[22px] font-extrabold tracking-tight">{company}</div>
           )}
-          <div className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}>
+          <div
+            className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}
+            {...(locked ? { "data-nosnippet": true, "aria-hidden": true } : {})}
+          >
             <div className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-text-dim">
               Total views
             </div>

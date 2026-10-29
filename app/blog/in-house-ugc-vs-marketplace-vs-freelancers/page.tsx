@@ -9,7 +9,7 @@ export const metadata = blogPostMetadata(post.slug);
 const toc: TocItem[] = [
   { id: "what-are-you-buying", label: "What are you actually buying?" },
   { id: "how-do-they-compare", label: "How do the three models compare?" },
-  { id: "what-did-a-program-produce", label: "What did a run program produce?" },
+  { id: "what-did-a-program-produce", label: "What did a managed program produce?" },
   { id: "what-does-the-week-look-like", label: "What does the week look like?" },
   { id: "what-still-lands-on-you", label: "What still lands on your team?" },
 ];
@@ -28,7 +28,7 @@ const faqs: FaqItem[] = [
   {
     question: "Do you name the apps behind the view counts?",
     answer:
-      "No. The figures above are Vo Creations campaign results with the client left off. Named proof stays on a call. We do not publish logos or links for those apps.",
+      "No. The figures above are Vo Creations campaign results with the client left off. Named proof stays on a call. We do not attach names to specific results.",
   },
   {
     question: "What is the difference between a brief and coaching?",
@@ -51,7 +51,7 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM, the cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, head of strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, Head of Strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>
@@ -82,7 +82,7 @@ export default function InHouseVsMarketplacePost() {
         . This table is only the operating difference.
       </p>
 
-      <H2 id="what-did-a-program-produce">What did a run program produce?</H2>
+      <H2 id="what-did-a-program-produce">What did a managed program produce?</H2>
       <p>
         Vo Creations campaign results. The clients are anonymized. No names, no logos.
       </p>

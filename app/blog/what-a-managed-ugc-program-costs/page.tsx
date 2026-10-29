@@ -18,7 +18,7 @@ const faqs: FaqItem[] = [
   {
     question: "How much does a Vo Creations program cost?",
     answer:
-      "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee the client's target CPM, for example sub-$10 or whatever number they set. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch.",
   },
   {
     question: "Does 'under $3 CPM' mean every campaign lands there?",
@@ -26,7 +26,7 @@ const faqs: FaqItem[] = [
       "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. We guarantee your target CPM. That is not a credit or a refund. The two results above are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
   },
   {
-    question: "Do videos under 1,000 views count toward the spend?",
+    question: "Do videos under 1,000 views count toward your CPM?",
     answer:
       "No. Videos under 1,000 views do not count toward the client's spend. The monthly fee still covers the program that made them.",
   },
@@ -43,7 +43,7 @@ const faqs: FaqItem[] = [
   {
     question: "Where can I see who the apps were?",
     answer:
-      "On a call. The view counts and CPMs above are Vo Creations results with the client left off. We don't publish the name, the logo, or what they spent.",
+      "On a call. The view counts and CPMs above are Vo Creations results with the client left off. We do not attach names to specific results.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function ProgramCostPost() {
         rows={[
           ["The invoice tracks", "A month of operating the channel", "Each delivered file", "Views, per thousand"],
           ["Who decides the sequel", "The program", "Whoever hired the video", "Whoever is buying the views"],
-          ["A quiet video", "Videos under 1,000 views do not count toward the spend", "You may already have paid for the file", "The view line stays small"],
+          ["A quiet video", "Videos under 1,000 views do not count toward your CPM", "You may already have paid for the file", "The view line stays small"],
           ["Market rate", "Ours is stated above", "No single honest rate. It depends on the job and the license.", "A media price, not proof the creative system is cheap"],
         ]}
       />
@@ -90,10 +90,10 @@ export default function ProgramCostPost() {
         The monthly fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media sits outside that fee. Putting money behind a video that already earned attention is a later decision.
       </p>
       <p>
-        Videos under 1,000 views do not count toward the client&apos;s spend. We guarantee the client&apos;s target CPM, for example sub-$10 or whatever number they set.
+        Videos under 1,000 views don&apos;t count toward your CPM. We guarantee your target CPM.
       </p>
       <p>
-        Illustrative example, not a result. A creator films three openings in one sitting. Two barely travel. The third is the one people finish. The misses do not count toward the spend. The third is the one worth repeating, and only then worth spending behind.
+        Example, not a result. A creator films three openings in one sitting. Two barely travel. The third is the one people finish. The misses do not count toward your CPM. The third is the one worth repeating, and only then worth spending behind.
       </p>
 
       <H2 id="what-if-a-month-is-quiet">What if a month is quiet?</H2>
@@ -109,7 +109,7 @@ export default function ProgramCostPost() {
         One number. It includes trained creators, scripts, posting, creator bonuses, and weekly reporting. If a renewal goes up, someone should be able to say which job got heavier.
       </p>
       <p>
-        Illustrative invoice note, not a result: &quot;March program, all-inclusive. Two videos stayed under 1,000 views and did not count toward the spend.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;
+        Example invoice note, not a result: &quot;March program, all-inclusive. Two videos stayed under 1,000 views and did not count toward the CPM.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;
       </p>
       <p>
         One more qualitative trap on per-video work: revisions. A cheap file with unlimited notes is often your team doing the edit in writing. Ask how many rounds are in the price, and what a new hook costs after delivery. I am not going to invent the dollar figure. The shape of the answer tells you whether you bought a finished video or a starting point.

@@ -30,8 +30,8 @@ only:
   Instagram profiles. The footer links X and Instagram. The nav does not.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
-  read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` is an existing page and is not
-  linked from the sitemap, `llms.txt`, or the homepage.
+  read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
+  `/terms` is a 404. There is no privacy page.
 - Display type is Inter Tight and body type is Inter, both from `next/font`
   in `app/layout.tsx`. The hero mark is a `<picture>`:
   `public/brand/vo-chrome.avif` from 1024px up, `vo-chrome-sm.webp` below that.

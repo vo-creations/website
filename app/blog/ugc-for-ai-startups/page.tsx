@@ -109,7 +109,7 @@ export default function UgcForAiStartupsPost() {
         <li>An AI app: 130M+ views in 3 months.</li>
       </ul>
       <p>
-        Two weeks is a line that held. Three months is that line, recast and repeated, with the comments telling you the next one. Organic first, then money only behind what people already watched. The format does not care which model you shipped. It cares whether the first sentence was a life.
+        Two weeks is one opening that people finished. Three months is that opening, recast, with the comments telling you the next one. Post first, then put money only behind what people already watched. The format depends on whether the first sentence is a situation someone has lived.
       </p>
       <p>
         In the edit, cut until the freeze, the bug, or the clock arrives before you breathe. If the creator explains the category first, the line is already dead. Leave one product moment and get out. A second feature is how a confession turns back into a tour.

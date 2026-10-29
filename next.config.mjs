@@ -55,11 +55,8 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
-      {
-        source: "/terms",
-        destination: "/",
-        permanent: true,
-      },
+      // /terms used to 308 to the homepage. It is a real 404 now.
+      // See docs/DECISIONS.md (topic: site-audit-pass-2).
       {
         source: "/Full",
         destination: "/",

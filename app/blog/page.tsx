@@ -35,14 +35,6 @@ export const metadata: Metadata = {
 
 const xPosts = [
   {
-    url: "https://x.com/itsthienvuvo/status/2036103378099376588",
-    author: "Thienvu Vo",
-    handle: "@itsthienvuvo",
-    date: "March 23, 2026",
-    content:
-      "Why text-on-screen UGC is killing your app growth: I've managed 30+ creator campaigns generating 100M+ views. 99% of brands are doing UGC wrong. They hire creators to make text-on-screen videos that get 2K views and zero conversions.",
-  },
-  {
     url: "https://x.com/itsthienvuvo/status/2036105952827469983",
     author: "Thienvu Vo",
     handle: "@itsthienvuvo",

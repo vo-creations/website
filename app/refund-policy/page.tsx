@@ -39,14 +39,9 @@ export default function RefundPolicyPage() {
               There are no refunds after a campaign launches. The minimum engagement is 90 days. After that, the work is month to month. You can stop without a long contract. A month that has already launched is not refunded, including a quiet month while accounts warm up.
             </p>
           </div>
-          <div>
-            <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">
-              What this policy does not cover
-            </h2>
-            <p>
-              The public mentorship program is discontinued. This page does not offer a mentorship refund or a performance payment. Older mentorship agreements, if any still exist, are governed by the signed agreement for that program, not by this page.
-            </p>
-          </div>
+          <p>
+            The public mentorship program is discontinued, and this page does not offer a mentorship refund.
+          </p>
         </div>
       </section>
 

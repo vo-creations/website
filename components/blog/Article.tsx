@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import {
   authors,
   BOOKING_URL,
-  DEFAULT_OG_IMAGE,
   formatBlogDate,
   getPost,
   posts,
@@ -30,15 +29,16 @@ function articleJsonLd(post: BlogPostMeta, faqs: FaqItem[]) {
       author: { "@type": "Person", name: author.name, url: author.url },
       publisher: {
         "@type": "Organization",
-        name: "Vo Creations",
-        url: "https://vocreations.com",
+          "@id": "https://vocreations.com/#organization",
+          name: "Vo Creations",
+          url: "https://vocreations.com/",
         logo: {
           "@type": "ImageObject",
           url: "https://vocreations.com/vocreations-logo.webp",
         },
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
-      image: `https://vocreations.com${post.image?.src ?? DEFAULT_OG_IMAGE.src}`,
+      image: `https://vocreations.com/og/blog/${post.slug}.png`,
     },
     {
       "@type": "BreadcrumbList",
@@ -205,7 +205,7 @@ export default function Article({
             </ol>
           </nav>
 
-          <div className="space-y-4 text-[15px] leading-[1.75] text-text-secondary">{children}</div>
+          <div className="space-y-4 text-[18px] leading-[1.75] text-[#d4d4d0]">{children}</div>
 
           <aside className="mt-12 rounded-2xl border border-white/10 bg-bg-card/50 p-6">
             <p className="text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">Author</p>
