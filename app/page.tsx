@@ -300,9 +300,12 @@ const team = [
     statLine: "",
     detailLine:
       "Grew his own Instagram past 70K followers. His students have earned $1M+ and generated 500M+ views. Brands at Vo Creations get that same system.",
-    image: "/videos/team-thienvu-new.jpg",
-    // DECISION 2026-10: file is already a square head-and-shoulders crop.
-    // See docs/DECISIONS.md (topic: fourth-pass-2026-10).
+    image: "/videos/team-thienvu.jpg",
+    webp: "/videos/team-thienvu.webp",
+    // DECISION 2026-10: color 890×1087 head-and-shoulders. The card is 4:5
+    // and this file already fills it, so object-position stays center.
+    // Grayscale is the CSS filter, same as Daniel. See docs/DECISIONS.md
+    // (topic: thienvu-photo-2026-10).
     imagePosition: "center",
   },
   {
@@ -600,14 +603,28 @@ export default function Home() {
                 className={`flex h-full flex-col ${index === 1 ? "md:mt-24" : ""}`}
               >
                 <div className="relative aspect-[4/5] bg-[#151517]">
-                  <Image
-                    src={t.image}
-                    alt={t.name}
-                    fill
-                    sizes="(max-width: 768px) 90vw, 480px"
-                    className="object-cover grayscale"
-                    style={{ objectPosition: t.imagePosition }}
-                  />
+                  {"webp" in t && t.webp ? (
+                    <picture>
+                      <source srcSet={t.webp} type="image/webp" />
+                      <img
+                        src={t.image}
+                        alt={t.name}
+                        className="absolute inset-0 h-full w-full object-cover grayscale"
+                        style={{ objectPosition: t.imagePosition }}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  ) : (
+                    <Image
+                      src={t.image}
+                      alt={t.name}
+                      fill
+                      sizes="(max-width: 768px) 90vw, 480px"
+                      className="object-cover grayscale"
+                      style={{ objectPosition: t.imagePosition }}
+                    />
+                  )}
                 </div>
                 <div className="flex flex-1 flex-col border-t border-white/10 pt-5">
                   <div className="flex items-center gap-1.5">

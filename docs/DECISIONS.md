@@ -3252,6 +3252,14 @@ Daniel approved dropping the monthly video-count promise and shipping it the sam
 
 Daniel said the off-white editorial body was off-brand. The same homepage layout, type, spacing, and copy moved onto a near-black field (`#0B0B0C`, with `#111113` and `#151517` sections). Hairlines are about 10% white. Primary text is `#F2F0EB` and secondary text is 60% white. The hero gradient ends in `#0B0B0C` instead of cream. Trusted By logos are white monochrome. Founder photos stay grayscale. The footer mark is white again. Locked case-study rows are dark cards. No copy changed.
 
+## topic: thienvu-photo-2026-10 — _2026-10-29_
+
+Daniel approved a new portrait of Thienvu Vo and a live ship. The source was a color head-and-shoulders crop, 890×1087. It was saved as `public/videos/team-thienvu.jpg` (progressive JPEG, about 99KB) and `public/videos/team-thienvu.webp` (about 34KB). The homepage team card uses a `picture` element so WebP is preferred and the JPEG is the fallback. Grayscale stays the CSS `grayscale` class, the same treatment as Daniel's photo. The file was left in color.
+
+The team card is 4:5. This crop is already almost that ratio, so `object-position` stays `center` and the full height is visible. A tighter crop off the bottom made his face larger than Daniel's in the same card, so it was not used. Alt text stays his name, matching Daniel's card.
+
+`public/videos/team-thienvu-new.jpg` (the previous 450px grayscale square) was removed. The unused 160px file at `public/videos/team-thienvu.jpg` was replaced by this portrait. `components/HeroStoryCard.tsx` now points at the new JPEG.
+
 ## topic: homepage-editorial-2026-10 — _2026-10-29_
 
 The homepage hero became the existing creator reel, full bleed, with the poster as the first paint and the video starting after idle. Reduced motion keeps the poster. Below the hero, the page is an off-white editorial layout. Approved copy, the Slack report, locked case studies, and the footer tagline stayed. The separate framed reel under the logo strip was removed because the reel is now the hero. `.font-display` no longer forces a near-white color, so the paper footer wordmark can be dark. The footer mark on that tone is `brightness-0`. Founder photos are grayscale and load when the section is in view.
