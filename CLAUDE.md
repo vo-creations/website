@@ -68,7 +68,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `pricing-2026-10` — minimum deal is $50K/month (was $30K). 90-day minimum, separate creator bonuses, and no refunds stay. FAQ, program copy, llms.txt, and the Service offer all say $50K.
 - `brand-system-2026-10` — site type and color follow the LinkedIn banner: `#060606` field, Inter Tight display, Inter supporting lines, monochrome only. Hero is the banner lockup plus the chrome VO. DarkVeil stays, but the WebGL loop is desktop-only and starts after idle. Case-study cards stay blurred. Price stays $50K/month.
 - `brand-profiles-2026-10` — Organization `sameAs` and `llms.txt` Profiles include the brand Instagram `https://www.instagram.com/vo.creations/` plus the existing X and LinkedIn URLs. Nav and footer still have no social-link row.
-- `blog-aeo-2026-10` — blog posts share one template (direct answer, question H2s, TOC, visible FAQ + FAQPage JSON-LD, BlogPosting, breadcrumbs, byline, read next, booking CTA). Index has categories and read time. Sitemap and `llms.txt` list every post. No public case-study pages.
+- `blog-aeo-2026-10` — blog posts share one template (direct answer, question H2s, TOC, visible FAQ + FAQPage JSON-LD, BlogPosting, breadcrumbs, byline, read next, booking CTA). Index has categories and read time. Sitemap and `llms.txt` list every post. No public case-study pages. The text-on-screen essay does not cite a $10K budget, a 20-million-view claim, or a $200K ad-spend equivalent.
 - `creator-count-2026-10` — the public creator count is 1000+. The full line is "1000+ vetted in-house creators trained through mentorship" where a sentence fits. The hero stat is the number `1000+` with the label "Trained creators".
 
 ## Known-broken

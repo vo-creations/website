@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Article, { H2, type FaqItem, type TocItem } from "@/components/blog/Article";
 import ClickToPlayYouTube from "@/components/ClickToPlayYouTube";
@@ -179,22 +178,11 @@ export default function TextOnScreenPost() {
         You can&apos;t buy compounding social proof. You can&apos;t fake it. You can only earn it with real storytelling.
       </p>
       <H2 id="what-does-a-campaign-look-like">What does a talking-head campaign look like?</H2>
-      <figure>
-        <Image
-          src="/blog/analytics-dashboard.jpg"
-          alt="Campaign analytics: 20.6M views, 1.2M engagement, 1.2M likes, 28.5K comments, 16.7K shares"
-          width={764}
-          height={430}
-          sizes="(max-width: 768px) 100vw, 720px"
-          className="h-auto w-full rounded-2xl"
-        />
-        <figcaption className="mt-2 text-xs text-text-dim">Real campaign dashboard: 20.6M views in 30 days</figcaption>
-      </figure>
       <p>
-        No text on screen. No AI clone. Just real people telling stories that made viewers feel something. That&apos;s how we generated 20 million views in 30 days for a single campaign, with 3 creators and a $10K budget.
+        No text on screen. No AI clone. A person tells a story the viewer has lived, and the product shows up inside it. Vo Creations campaign results, clients anonymized: two apps, 30 days each, 21.5M and 15.9M views.
       </p>
       <p>
-        The equivalent ad spend to reach the same audience? Roughly $200K. And paid ads don&apos;t come with the compounding social proof of a comment section full of people saying &quot;this changed everything.&quot;
+        Paid ads don&apos;t come with the comment section those stories earn. People saying &quot;this changed everything&quot; is the part you cannot buy as a media line.
       </p>
       <div className="grid grid-cols-3 gap-3">
         {proof.map((item) => (

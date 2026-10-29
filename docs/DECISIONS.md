@@ -3154,3 +3154,12 @@ One client was removed from the Trusted By marquee and from the locked case-stud
 ## topic: case-studies-lock — _2026-10-29_
 
 The locked homepage cards were still shipping real proof in the HTML. Blur is only CSS. The six cards now render the same placeholder: company "Client name", views "000M+", subline "00 days / 00 creators", and `public/logos/locked-case.svg` with alt "Locked case study". Real client names, logos, view totals, durations, and creator counts are not passed into those cards. The Trusted By marquee is unchanged and still uses the public logo files. The overlay copy and blur are unchanged.
+
+## topic: blog-aeo-2026-10 — _2026-10-29_
+
+Daniel confirmed the text-on-screen essay's "$10K budget" and "~$200K ad spend" lines were old pricing. This supersedes the 2026-10-28 note that left that essay's campaign figures in place.
+
+- `/blog/text-on-screen-ugc` no longer says "20 million views in 30 days" with 3 creators on a $10K budget, and no longer estimates ~$200K of equivalent ad spend. The dashboard figure (`/blog/analytics-dashboard.jpg`, captioned 20.6M views) was removed from the page. The replacement is one anonymized Vo Creations result already approved for the other essays: two apps, 30 days each, 21.5M and 15.9M views. `dateModified` is 2026-10-29. The FAQ array was not changed, so FAQPage JSON-LD stays the same text.
+- The agency-comparison essay's opening no longer repeats the direct answer, and the second-half paragraphs that restated the same operating difference were condensed into the "What still lands on your team?" section. Read time on that post is 5 minutes.
+- A February 2026 X card on the blog index quoted $10K, $30K, and $40K months and named a client. It was removed. `public/voc-sideshift-deck.html` and `public/voc-sideshift-preview.html` offered a $10K/month package and named clients; they were not linked from the app and were deleted. The homepage package-floor comment no longer lists the retired $10k/$20k/$30k tiers.
+- Older decision entries, the pricing index line, and `SEO-WORK-DIARY.md` still record that the floor used to be $30K/month. That is the history of the price change, not a current offer. Daniel's "$200K+ earned" bio line is creator earnings, not a package price. The archived mentorship backup and the refund-policy trial are a different product.

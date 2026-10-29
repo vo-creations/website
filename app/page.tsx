@@ -147,10 +147,9 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
   { name: "Makon AI", file: "makon.png" },
 ];
 
-// DECISION: package floor is $50,000/mo as of 2026-10-19 (was $30,000/mo;
-// before that, tiered $10k/3 creators and $20k/6 creators). 10-14 day
-// posting start, 90-day minimum, month-to-month, no refunds, creator
-// bonuses billed separately. See docs/DECISIONS.md (topic: pricing-2026-10).
+// DECISION: package floor is $50,000/mo. 10-14 day posting start, 90-day
+// minimum, month-to-month, no refunds, creator bonuses billed separately.
+// See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
   { q: "What is Tech UGC?", a: "Tech UGC swaps traditional ad production for real creators showing your product in action: demoing it, explaining it, reacting to it, the way an actual user would. No studio, no script that sounds like a script. It's also one of the cheapest organic marketing channels out there: creator-made content costs a fraction of traditional production while still driving real reach. We run these campaigns at scale across TikTok, Instagram, YouTube, and Facebook, producing 2,400+ videos a month per brand and building organic reach before a single dollar of paid spend gets involved." },
   { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project." },

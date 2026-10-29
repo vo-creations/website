@@ -51,7 +51,7 @@ export const posts: BlogPostMeta[] = [
     datePublished: "2026-10-28",
     dateModified: "2026-10-29",
     authorId: "daniel",
-    readingMinutes: 6,
+    readingMinutes: 5,
     related: [
       "what-a-managed-ugc-program-costs",
       "questions-before-hiring-a-ugc-agency",
@@ -121,7 +121,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "Text-on-screen UGC puts a caption, a sound, and a product shot in front of someone and calls it content. It explains the product and then gets swiped. Talking-head UGC is a real person telling a story the viewer has lived, with the product inside that story. That is the format that earns the comment, the follow, and the install.",
     datePublished: "2026-03-24",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [

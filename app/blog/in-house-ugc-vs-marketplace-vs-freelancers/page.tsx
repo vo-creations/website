@@ -64,10 +64,7 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        These are three different jobs. An in-house agency runs the channel. A marketplace sells access to people who will make a file. A freelancer is one person you manage. Pick the job you actually need, then the price will make sense.
-      </p>
-      <p>
-        Vo Creations is the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program is $50K a month. Chad runs strategy. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program is $50K a month. Chad runs strategy. Adam Chen runs the creator bench. Coaches meet the roster every week.
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>
@@ -136,22 +133,13 @@ export default function InHouseVsMarketplacePost() {
 
       <H2 id="what-still-lands-on-you">What still lands on your team?</H2>
       <p>
-        Even a run program needs a person on your side who can say what the product is not allowed to claim, and who can show up to a weekly call if you want one. That is a check-in, not a production job. If the proposal needs you to write hooks, pick the creator, and decide the posting account, add those hours to your own week before you compare the invoices.
+        You still need someone who can veto a claim. That is a check-in. If the proposal also needs you to write the hooks, pick the creator, and post the file, those hours are yours.
       </p>
       <p>
-        Marketplace, typical week: you write the brief, you wait, you reject the cut that missed the product, you still have to post it. Freelancer, typical week: one thread, one face, fast notes, and a hole if they book someone else. In-house, typical week: you answer a question about the product, and the roster keeps moving when you don&apos;t. Count the hours. The cheaper invoice is often the one that hired you as the manager.
+        A marketplace week is brief, wait, reject, and post it yourself. A freelancer week is one face and a hole if they book someone else. A program week is a product question from you, then the roster keeps moving. The cheaper invoice is often the one that hired you as the manager.
       </p>
       <p>
-        A last filter, still about the work and not about another price. Ask them to describe yesterday. If they can say which line was killed and which comment became today&apos;s opening, you are talking to an operator. If they can only show you the menu of people, you are talking to a store.
-      </p>
-      <p>
-        What you own a month later is the other half of the table. A channel keeps the comments, the account, and a record of which mess worked. A file leaves with whoever posted it, unless the license says otherwise. A freelancer&apos;s thread lives in your inbox. When you stop paying, the channel is the only one of the three that still has an audience attached to a way of talking. That is why the view counts above are measured in weeks and months, not in a single delivery.
-      </p>
-      <p>
-        None of this makes the other two models a mistake. Buy the marketplace when your team will actually run it. Buy the freelancer when the job is one face and you have the hours. Buy the program when the hours are the thing you are trying to stop spending. If you cannot say which of those sentences is yours, you are not ready to compare prices.
-      </p>
-      <p>
-        Approval is the piece people skip in the comparison. On a program, someone other than the founder clears the line before it posts, so a bad claim does not learn your audience for you. On a marketplace cut, that person is often you, late, in a comment on a file. On a freelancer, it is a text thread at midnight. Same decision. Different hour of your week. Ask who holds it before you ask what the views were. The views come after that decision. They do not replace it on a call.
+        Buy the marketplace if your team will run it, the freelancer if the job is one face, and the program if the hours are what you want back. Ask who clears a line before it posts. A channel keeps the comments and a record of which mess worked. A file leaves unless the license says otherwise. The views come after that decision.
       </p>
     </Article>
   );

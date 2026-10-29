@@ -50,14 +50,6 @@ const xPosts = [
     content:
       "most bootstrapped founders treat UGC like a paid ad. run it once, check the conversion, move on. that's the wrong mental model entirely. UGC is a compounding machine. you're not running one ad. you're running 300 experiments simultaneously until you find the format that converts, then you pour money behind it.",
   },
-  {
-    url: "https://x.com/itsthienvuvo/status/2014355079906664586",
-    author: "Thienvu Vo",
-    handle: "@itsthienvuvo",
-    date: "February 2026",
-    content:
-      "i scaled my UGC agency to 100K/month in 2 months. here's how, full transparency: week 1 notified mentorship students about the upcoming agency deal flow and reached out to existing agencies. week 2 landed 2 clients (40K/month) through IG personal brand inbounds and built the fulfilment system. week 3 landed 1 client (10K/month) through a referral and had creators double down on winning formats. week 4 built case studies: fable, 15M views in 21 days with 3 creators, and averaged over 10M views/month for clients. week 5 started posting on x, landed an equity deal with an app, and hired 2 creator managers. week 6 focused on team management. week 7 referred 3 more deals (30K/month). week 8 expanded the creator manager team to 5.",
-  },
 ];
 
 const ordered = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
