@@ -1208,7 +1208,7 @@ Branch `redesign/agency-only` (still not merged).
 Branch `redesign/agency-only` (still not merged).
 
 - **Added four confirmed real clients** to the `trustedBrands` marquee in
-  `app/page.tsx`: Higgsfield, Hyperknow, Kortix, Tomo. Purely additive —
+  `app/page.tsx`: Hyperknow, Kortix, Tomo. Purely additive —
   all nine existing logos (Aonic, BlackBox AI, Causes, Codedex, Dubbing,
   Fable, Kicker, Liftoff, Makon AI) kept as-is.
 - **Sourcing**: user could only make out a partial name ("...rtix") on a
@@ -1220,12 +1220,12 @@ Branch `redesign/agency-only` (still not merged).
   for the two clients rendered as plain styled wordmarks (`aonic`,
   Hyperknow — no logo asset, just styled text on viewd.net, confirmed by
   reading the surrounding HTML, not by inference). That resolved the
-  full row: Higgsfield, aonic, BlackBox AI, Hyperknow, Causes, Tomo,
+  full row: aonic, BlackBox AI, Hyperknow, Causes, Tomo,
   Fable, Kortix — the cut-off name was **Kortix** (`kortix.com`, the
   open-source "AI command center" behind the Suna agent; confirmed
   `kortix.ai` 301s to `kortix.com`, so `.com` is canonical). Four of
   those eight were already in our list (Aonic, BlackBox AI, Causes,
-  Fable) — only Higgsfield, Hyperknow, Kortix, and Tomo were new.
+  Fable) — only Hyperknow, Kortix, and Tomo were new.
   "Tomo" had no logo asset on viewd.net to identify it by, and the name
   alone is ambiguous (surfboard shaper, mortgage lender, credit-card
   fintech all use it) — resolved to **TomoCredit** (`tomocredit.com`) on
@@ -1245,13 +1245,6 @@ Branch `redesign/agency-only` (still not merged).
     (`tomocredit.com/images/tomoLogoWhiteGreen.svg`, `alt="TomoCredit
     Logo"`) — already white wordmark + teal accent dot, no background
     rect, so no recoloring or chip needed.
-  - **Higgsfield** — their nav is icon-only (no combined wordmark
-    lockup on the live site, checked Wikipedia's infobox too, nothing
-    there either); pulled the real icon SVG path from `higgsfield.ai`'s
-    nav markup and paired it with a typeset "Higgsfield" wordmark, the
-    same icon-plus-typeset-text pattern already used for `causes.png`
-    in this same array (and the same pattern viewd.net itself uses for
-    this exact client, independently arrived at, not copied from them).
   - **Hyperknow** — no exposed SVG/asset URL (Framer site, icon is an
     inline data-URI background-image); took a real 3x-scale screenshot
     of their own nav lockup instead, then color-keyed white background
@@ -1305,8 +1298,8 @@ Branch `redesign/agency-only` (still not merged).
     harmless escape hatch — flagged in a comment rather than deleted,
     since a future source could need it again.
   - **Icon-only sources paired with typeset wordmark text** (matching
-    the existing Causes-style pattern from the prior Higgsfield/
-    Hyperknow round): Causes, Codedex ("Codédex"), Liftoff.
+    the existing Causes-style pattern from the prior Hyperknow
+    round): Causes, Codedex ("Codédex"), Liftoff.
   - **Selective recolor, not full monochrome**: Softr's SVG has the
     3-color icon (blue/pink/yellow blocks) plus a near-black `#030712`
     wordmark fill — recolored only that one fill to white, left the
@@ -1358,7 +1351,7 @@ Branch `redesign/agency-only` (still not merged).
   data URI directly in the page's `<img src>` rather than a fetchable
   URL — decoded it, recolored `fill="black"` to white).
 - **Full final roster, 18 clients**: Aonic, BlackBox AI, Causes,
-  Codedex, Cooksat, Dealism, Dubbing AI, Fable, Higgsfield, Hyperknow,
+  Codedex, Cooksat, Dealism, Dubbing AI, Fable, Hyperknow,
   Kicker, Kortix, Liftoff, Makon AI, Notta, Softr, Tomo, Yorby.
 - Verified via Playwright against the running dev server. One real
   finding during verification, not a logo bug: the marquee's infinite-
@@ -1975,7 +1968,7 @@ fixed.
 - **Real, separate bug found while adding logos to the 3 new cards**:
   the logo chip (`bg-white`) was making most logos *invisible*, not
   orange — checked actual pixel data on all 7 case-study logo files and
-  found `blackbox.png`, `aonic.png`, and `higgsfield.png` are 100% white
+  found `blackbox.png` and `aonic.png` are 100% white
   ink (monochrome, sourced for the dark Trusted By marquee), so on a
   white chip they rendered as blank space; `fable.png`/`codedex.png`/
   `liftoff.png` are partially white and only their colored portions
@@ -1987,7 +1980,7 @@ fixed.
   room against the darker background. All 7 logos (4 existing + 3 new)
   now genuinely visible, confirmed by screenshot, not just present in
   the DOM.
-- **3 new case-study cards** (Liftoff, Aonic, Higgsfield) use
+- **3 new case-study cards** (Liftoff, Aonic) use
   `ResultCard`'s existing lighter path — no `quote`/`challenge`/
   `approach`/`result` passed (made `quote`/`quoteSource` optional on the
   interface rather than passing empty-string workarounds), so
@@ -1999,11 +1992,8 @@ fixed.
   a single verified-not-guessed category each: Liftoff "Fitness app"
   and Aonic "Health & wellness" both confirmed by fetching their own
   sites' meta description just now (`aoniclife.com`: "Make healthy
-  living enjoyable."), Higgsfield "AI video generation" from the
-  research already on file from the trusted-by-logos round. No funding/
+  living enjoyable."). No funding/
   location/specific claims invented for any of the three.
-- `higgsfield.png` already existed in `public/logos/` from the earlier
-  trusted-by-logos round — no new logo sourcing needed for this batch.
 
 ## topic: showcase-marquee — _2026-08-01 (3 more videos folded in)_
 
@@ -2037,7 +2027,7 @@ are both still current, just the chip itself is gone now).
   the brief).
 - **Every card is expandable now** — `expandable` used to be computed
   from `!!(challenge || approach || result)`, so the three factless
-  cards (Liftoff/Higgsfield/Aonic) rendered with no click affordance at
+  cards (Liftoff/Aonic) rendered with no click affordance at
   all. Removed that gate; every card always shows "Click for full case
   study" and toggles open. The three factless cards' expanded state is
   the `miniStats` grid only (views/creators/timeframe, all real
@@ -2050,8 +2040,7 @@ are both still current, just the chip itself is gone now).
     "md:grid-cols-4"`) — the three new cards only have 3 real numbers
     (views/creators/timeframe), and a 4-column grid with one empty slot
     read visibly lopsided.
-- **Reordered all 7 cards by view count**: Liftoff (151M+) → Higgsfield
-  (65M+) → Aonic (31M+) → Fable (25.4M) → BlackBox AI (11.5M) → Makon AI
+- **Reordered cards by view count**: Liftoff (151M+) → Aonic (31M+) → Fable (25.4M) → BlackBox AI (11.5M) → Makon AI
   (10.2M) → Codedex (10M+).
 
 ## topic: logo-sizing-fix — _2026-08-01_
@@ -2073,7 +2062,7 @@ sizing tweaks rather than the systemic fix below.
   `object-contain` inside a fixed box, which fits the image's full
   *canvas* dimensions into the box — not its visible content. Files
   varied from 0% baked-in padding (`aonic.png`, `dealism.png`,
-  `dubbing.png`, `higgsfield.png`, `hyperknow.png`, `kortix.png`) up to
+  `dubbing.png`, `hyperknow.png`, `kortix.png`) up to
   62% vertical padding (`causes.png`, `cooksat.png`, `makon1.png`).
   A zero-padding file's real content fills its fitted box entirely; a
   62%-padding file's real content only fills a fraction of the same
@@ -2303,7 +2292,7 @@ roster in every earlier entry of this topic — the marquee is now a
 fixed 10, not 18.
 
 - **`trustedBrands` cut from 18 to exactly 10**, in this order:
-  Higgsfield, BlackBox AI, Liftoff, fomo.family, Krea AI, Fable, Notta,
+  BlackBox AI, Liftoff, fomo.family, Krea AI, Fable, Notta,
   Softr, Aonic, Makon AI. Removed: Causes, Codedex, Cooksat, Dealism,
   Dubbing, Hyperknow, Kicker, Kortix, Tomo, Yorby — their PNGs deleted
   from `public/logos/` (not just dropped from the array) so no orphaned
@@ -2367,10 +2356,10 @@ against its live site before deciding whether to touch it.
   pairing the existing white icon with a typed "Krea" wordmark (system
   sans-serif — their actual site font, "Suisse Intl", is a paid
   commercial font with no redistribution rights, so it wasn't embedded).
-- **fomo.family and BlackBox.AI and Higgsfield were already correct.**
+- **fomo.family and BlackBox.AI were already correct.**
   Checked each against its own site (fomo: header nav color +
   app-icon colors both confirm genuine white/near-white brand, no
-  hidden color; BlackBox.AI and Higgsfield: both confirmed monochrome
+  hidden color; BlackBox.AI: confirmed monochrome
   white icon+wordmark on their own dark nav). Not touched.
 - **Notta upgraded from wordmark-only to icon+wordmark.** Notta's own
   header uses a plain black "notta" wordmark (no icon, meant for their
@@ -2424,7 +2413,7 @@ other 6, which is what actually prompted this follow-up.
   layout (per the srcset spec — a "2x" resource is expected to have
   double the pixel density). Next's image optimizer never upscales past
   a source file's native resolution, so for the 4 smallest source PNGs
-  (`higgsfield.png` 313×58, `blackbox.png` 390×60, `fable.png` 148×59,
+  (`blackbox.png` 390×60, `fable.png` 148×59,
   `softr.png` 124×38 — all comfortably under the 640px width Next
   requests for the "2x" candidate), the browser ended up serving the
   *native* small file but still dividing it by 2 for layout, producing
@@ -2440,7 +2429,7 @@ other 6, which is what actually prompted this follow-up.
   files and a proper 640px-wide downscale for the other 6.
 - **This is why Notta/Aonic looked "bigger"**: they weren't oversized —
   they were two of the six rendering at the *correct* 36px while
-  Higgsfield/BlackBox/Fable/Softr were incorrectly shrunk to 19-30px.
+  BlackBox/Fable/Softr were incorrectly shrunk to 19-30px.
   Root-caused, not patched per-file: switched `LogoImage.tsx` from
   `next/image`'s `<Image>` to a plain `<img>` tag (no `srcset`, so no
   DPR-dependent candidate selection — natural-size auto-sizing +
@@ -2471,7 +2460,7 @@ other 6, which is what actually prompted this follow-up.
 Branch `redesign/agency-only` (still not merged). The retina/`next.js
 srcset` fix above made every logo's *container* height identical
 (35.98-36.00px, confirmed with `getBoundingClientRect()`) — but Notta
-and Aonic still visibly read bigger than Higgsfield/Liftoff/Krea/Softr
+and Aonic still visibly read bigger than Liftoff/Krea/Softr
 after that fix. The container was never the whole story.
 
 - **Root cause, the real one this time**: for every icon+wordmark
@@ -2479,7 +2468,7 @@ after that fix. The container was never the whole story.
   element was taller — the icon or the text — not by the text alone.
   Measured directly (isolating the icon and text into separate crops
   by finding the vertical gap between them, then reading each crop's
-  own tight bbox height): `higgsfield` icon:text = 1.10, `blackbox`
+  own tight bbox height): `blackbox`
   1.58, `fable` 2.19, `softr` 1.31, `liftoff` 2.22, `krea` 1.95, `notta`
   0.88, `makon` 0.98. When the *whole* bbox is scaled to fill a fixed
   container height, a logo whose icon is 2x taller than its own text
@@ -2505,7 +2494,7 @@ after that fix. The container was never the whole story.
   exceptions, prioritizing strip-wide consistency over any single
   brand's native internal balance.
 - **Re-sourced 4 files at proper resolution while fixing this**:
-  `higgsfield.png`, `blackbox.png`, `fable.png`, `softr.png` were still
+  `blackbox.png`, `fable.png`, `softr.png` were still
   the small original files from an earlier session (313×58, 390×60,
   148×59, 124×38). Raster-editing them directly (crop icon/text,
   resize, recomposite) would have produced a *new* under-resolution
@@ -2519,12 +2508,6 @@ after that fix. The container was never the whole story.
   threshold at 1x instead of 2x DPR this time. Fixed properly by
   re-fetching real, high-resolution vector source for all 4 instead of
   editing the old raster files:
-  - `higgsfield.png`: icon is `higgsfield.ai`'s own inline SVG
-    (`hf-logo__glyph`, viewBox 0 0 20 20, `fill="currentColor"`,
-    extracted live from the page — it's a client-rendered SPA, not in
-    the static HTML). Wordmark typed in "Space Grotesk" 700 (a free
-    Google Font — confirmed via `getComputedStyle` that this is their
-    actual real site font, not a guess).
   - `blackbox.png`: `blackbox.ai` ships its ENTIRE lockup (icon +
     "BLACKBOX.AI" wordmark) as one single official SVG
     (`viewBox="0 0 2026 312"`, `color:#F2F2F0`, found directly in the
@@ -2683,7 +2666,7 @@ unchanged; a passcode row was added beneath it.
 ## topic: result-card-uniform — _2026-08-04_
 
 Branch `redesign/agency-only` (still not merged). Every case study card
-now matches the plain style of the original 3 (Liftoff/Higgsfield/Aonic)
+now matches the plain style of the original cards (Liftoff/Aonic)
 — logo, total views stat, timeframe/creators line, and "Click for full
 case study" link. No card shows challenge/approach/result prose anymore.
 
@@ -2728,7 +2711,7 @@ as broken images.
   when it isn't). Same icon-height-to-text-cap-height 1:1 normalization
   applied as every other logo re-sourced this cycle (icon was 1.63:1
   before, corrected to 1.00).
-- **The other 5 cards' logos** (Liftoff, Higgsfield, Aonic, Fable,
+- **The other cards' logos** (Liftoff, Aonic, Fable,
   BlackBox AI) were already correct — same shared `public/logos/*.png`
   files already fixed for real brand colors and 1:1 icon/text ratio
   during the Trusted By logo work, since `ResultCard` and the Trusted
@@ -2973,7 +2956,7 @@ counts and a couple of expanded `miniStats` rows updated in
 needed (its `miniStats.length === 3 ? "md:grid-cols-3" :
 "md:grid-cols-4"` grid logic already handles either count).
 
-- Liftoff 151M+→170M+, Higgsfield 65M+→70M+, Fable 25.4M→25M+,
+- Liftoff 151M+→170M+, Fable 25.4M→25M+,
   BlackBox AI 11.5M→15M+, Makon AI 10.2M→11M+ (both the card's top
   `views` stat and the matching entry inside `miniStats` updated
   together, same as the existing pattern on every other card — Aonic
@@ -3107,7 +3090,7 @@ An SEO/AEO audit (October 17, 2026) found zeros in the server HTML, FAQ answers 
 
 The site owner reversed the case-study publication from the same day. Named proof stays gated. This entry supersedes the case-study bullet above.
 
-- Homepage `ResultCard`s are all `locked` again, in the previous order (Liftoff, Higgsfield, Aonic, Fable, BlackBox AI, Makon AI, Codédex), inside one `CaseStudiesLockOverlay`. The Fable card has no `href`. The Cluely card that was added for the public page is gone. The section intro is "Click any card for the full story." again. `ResultCard` dropped the unused `href` prop.
+- Homepage `ResultCard`s are all `locked` again, in the previous order (Liftoff, Aonic, Fable, BlackBox AI, Makon AI, Codédex), inside one `CaseStudiesLockOverlay`. The Fable card has no `href`. The Cluely card that was added for the public page is gone. The section intro is "Click any card for the full story." again. `ResultCard` dropped the unused `href` prop.
 - `app/case-studies/` (index, Fable, Cluely) was deleted. Those URLs 404. No redirect was added.
 - `/llms.txt` no longer names Fable, Cluely, or Maxxd, and no longer links `/case-studies`. The program section never named a client, so that copy stayed. Footer "Case Studies" points at `/#results` again. The sitemap dropped `/case-studies`, `/case-studies/fable`, `/case-studies/cluely`, and `/campaigns/maxxd`. `/campaigns/maxxd` itself was left as it was before this PR, with no new links to it.
 
@@ -3146,3 +3129,20 @@ Daniel confirmed the brand Instagram is `https://www.instagram.com/vo.creations/
 - Organization `sameAs` in `app/layout.tsx` keeps `https://x.com/VoCreationsUGC` and `https://www.linkedin.com/company/vocreations`, and adds `https://www.instagram.com/vo.creations/`.
 - The Profiles section of `public/llms.txt` lists the same three URLs.
 - The nav and footer still have no social-link row. That row was removed on purpose (`topic: in-house-positioning`, `topic: footer-polish`), so the confirmed Instagram URL was not turned into a new icon.
+
+## topic: creator-count-2026-10 — _2026-10-29_
+
+Daniel raised the public creator count from 500+ to 1000+. The pitch line is "1000+ vetted in-house creators trained through mentorship".
+
+- `public/llms.txt` uses that full line. The program paragraph on the homepage uses it too.
+- The root description, Open Graph description, and Twitter description share one string, so they all say "1000+ creators". The full sentence does not fit that short description.
+- The hero stat target changed from 500 to 1000. The label stays "Trained creators", so the chip reads "1000+".
+- Older decision entries that quote the previous "500+" copy were left as history. View totals such as 500M+ and the $500 mentorship trial were not part of this count.
+
+## topic: drop-client-logo-2026-10 — _2026-10-29_
+
+One client was removed from the Trusted By marquee and from the locked case-study stack, including that card's view stat. The logo file was deleted. The other case-study cards were left as they were, and the stack reflows in the same column.
+
+## topic: case-studies-lock — _2026-10-29_
+
+The locked homepage cards were still shipping real proof in the HTML. Blur is only CSS. The six cards now render the same placeholder: company "Client name", views "000M+", subline "00 days / 00 creators", and `public/logos/locked-case.svg` with alt "Locked case study". Real client names, logos, view totals, durations, and creator counts are not passed into those cards. The Trusted By marquee is unchanged and still uses the public logo files. The overlay copy and blur are unchanged.

@@ -17,7 +17,7 @@ const interTight = Inter_Tight({
 });
 
 const SITE_DESCRIPTION =
-  "UGC agency for AI startups and consumer apps. In-house creator programs, 1B+ views, and 500+ trained creators.";
+  "UGC agency for AI startups and consumer apps. In-house creator programs, 1B+ views, and 1000+ creators.";
 
 export const metadata: Metadata = {
   title: {

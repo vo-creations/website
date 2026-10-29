@@ -90,3 +90,9 @@ The marketing pages now use the banner type and monochrome palette. The H1 still
 ## 2026-10-26: Brand Instagram
 
 Daniel confirmed the brand Instagram is https://www.instagram.com/vo.creations/. Organization `sameAs` and the `llms.txt` Profiles section now list it next to X (`https://x.com/VoCreationsUGC`) and the company LinkedIn. The footer and nav still have no social-link row.
+
+---
+
+## 2026-10-29: Creator count is 1000+
+
+The public creator count moved from 500+ to 1000+. The meta description, Open Graph description, and Twitter description now say "1000+ creators". `llms.txt` and the homepage program line use "1000+ vetted in-house creators trained through mentorship". The hero stat counts to 1000+. One client was also removed from the Trusted By strip and the locked case-study stack. The other cards were not edited.

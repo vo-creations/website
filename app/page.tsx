@@ -75,7 +75,7 @@ function StatCounter({
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
   { target: 5, format: (n: number) => `${n}M+`, label: "Users converted" },
-  { target: 500, format: (n: number) => `${n}+`, label: "Trained creators" },
+  { target: 1000, format: (n: number) => `${n}+`, label: "Trained creators" },
   { target: 14, format: (n: number) => (n >= 14 ? "10-14" : `${n}`), label: "Days to post" },
 ];
 
@@ -306,7 +306,7 @@ export default function Home() {
           (ratio 1.00, applied uniformly to all 10, verified by script, not
           eyeballed) before the fixed-height container is applied. Skipping
           that step is what caused a real, previously-shipped bug where
-          Notta/Aonic read bigger than Higgsfield/Liftoff/Krea/Softr despite
+          Notta/Aonic read bigger than Liftoff/Krea/Softr despite
           every container already measuring the identical height — the
           logos with a much-taller-than-text icon had their actual
           READABLE TEXT scaled down disproportionately when the whole file
@@ -381,7 +381,7 @@ export default function Home() {
               A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month, with no refunds and no long contract. Campaigns start at $50K a month. Creator bonuses are billed separately, so strategy and creator pay stay easy to tell apart.
             </p>
             <p>
-              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, trained 500+ creators, and run across 50+ campaigns.
+              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, with 1000+ vetted in-house creators trained through mentorship, and run across 50+ campaigns.
             </p>
           </div>
         </div>
@@ -434,104 +434,19 @@ export default function Home() {
 
           <div className="relative">
             <div className="flex flex-col gap-4">
-              {/* Ordered by view count, highest to lowest. Every card is uniform:
-                  logo, total views stat, timeframe/creators line, and an
-                  expandable factual miniStats grid — no challenge/approach/result
-                  prose on any card (removed 2026-08, see docs/DECISIONS.md,
-                  topic: result-card-uniform). All `locked` — proof is blurred
-                  behind CaseStudiesLockOverlay until a call is booked, see
-                  docs/DECISIONS.md, topic: case-studies-lock. */}
-              <ResultCard
-                locked
-                company="Liftoff"
-                logo="/logos/liftoff.png"
-                views="170M+"
-                viewsSub="3 months / 50 creators"
-                miniStats={[
-                  { value: "170M+", label: "Views" },
-                  { value: "50", label: "Creators" },
-                  { value: "3", label: "Months" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Higgsfield"
-                logo="/logos/higgsfield.png"
-                views="70M+"
-                viewsSub="30 days / 45 creators"
-                miniStats={[
-                  { value: "70M+", label: "Views" },
-                  { value: "45", label: "Creators" },
-                  { value: "30", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Aonic"
-                logo="/logos/aonic.png"
-                views="31M+"
-                viewsSub="30 days / 6 creators"
-                miniStats={[
-                  { value: "31M+", label: "Views" },
-                  { value: "6", label: "Creators" },
-                  { value: "30", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Fable"
-                logo="/logos/fable.png"
-                views="25M+"
-                viewsSub="4 weeks / 3 creators"
-                miniStats={[
-                  { value: "25M+", label: "Total views" },
-                  { value: "3", label: "Creators" },
-                  { value: "30", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="BlackBox AI"
-                logo="/logos/blackbox.png"
-                views="15M+"
-                viewsSub="20 days / 40-60 paid-organic mix"
-                miniStats={[
-                  { value: "15M+", label: "Views" },
-                  { value: "420", label: "Paid ads" },
-                  { value: "20", label: "Days" },
-                  { value: "40/60", label: "Paid/organic" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Makon AI"
-                logo="/logos/makon.png"
-                views="11M+"
-                viewsSub="2 months / 8 creators"
-                miniStats={[
-                  { value: "11M+", label: "Views" },
-                  { value: "8", label: "Creators" },
-                  { value: "60", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Codédex"
-                logo="/logos/codedex.png"
-                views="10M+"
-                viewsSub="2 months"
-                miniStats={[
-                  { value: "10M+", label: "Views" },
-                  { value: "4", label: "Creators" },
-                  { value: "60", label: "Days" },
-                ]}
-              />
+              {/* Locked cards are placeholders. Real names, logos, and
+                  figures stay off the page so view-source cannot read them.
+                  See docs/DECISIONS.md (topic: case-studies-lock). */}
+              {Array.from({ length: 6 }, (_, index) => (
+                <ResultCard
+                  key={index}
+                  locked
+                  company="Client name"
+                  logo="/logos/locked-case.svg"
+                  views="000M+"
+                  viewsSub="00 days / 00 creators"
+                />
+              ))}
             </div>
 
             <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />
