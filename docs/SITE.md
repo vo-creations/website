@@ -22,8 +22,9 @@ only:
   funnel is not redirected at the homepage. `/blog` and `/blog/text-on-screen-ugc`
   are real pages again. `/blog/why-text-on-screen-ugc-is-killing-your-app-growth`
   redirects to the real post. `/case-studies`, `/case-studies/fable`, and
-  `/case-studies/cluely` are not routes (404). Homepage case-study proof stays
-  behind `CaseStudiesLockOverlay`. `/llms.txt` is a static file in `public/`.
+  `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
+  behind `CaseStudiesLockOverlay` and render placeholders (`000M+`,
+  `Client name`, `/logos/locked-case.svg`), not the real proof. `/llms.txt` is a static file in `public/`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. Nav and footer have no social-link row.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,

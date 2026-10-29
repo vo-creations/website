@@ -433,91 +433,19 @@ export default function Home() {
 
           <div className="relative">
             <div className="flex flex-col gap-4">
-              {/* Ordered by view count, highest to lowest. Every card is uniform:
-                  logo, total views stat, timeframe/creators line, and an
-                  expandable factual miniStats grid — no challenge/approach/result
-                  prose on any card (removed 2026-08, see docs/DECISIONS.md,
-                  topic: result-card-uniform). All `locked` — proof is blurred
-                  behind CaseStudiesLockOverlay until a call is booked, see
-                  docs/DECISIONS.md, topic: case-studies-lock. */}
-              <ResultCard
-                locked
-                company="Liftoff"
-                logo="/logos/liftoff.png"
-                views="170M+"
-                viewsSub="3 months / 50 creators"
-                miniStats={[
-                  { value: "170M+", label: "Views" },
-                  { value: "50", label: "Creators" },
-                  { value: "3", label: "Months" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Aonic"
-                logo="/logos/aonic.png"
-                views="31M+"
-                viewsSub="30 days / 6 creators"
-                miniStats={[
-                  { value: "31M+", label: "Views" },
-                  { value: "6", label: "Creators" },
-                  { value: "30", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Fable"
-                logo="/logos/fable.png"
-                views="25M+"
-                viewsSub="4 weeks / 3 creators"
-                miniStats={[
-                  { value: "25M+", label: "Total views" },
-                  { value: "3", label: "Creators" },
-                  { value: "30", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="BlackBox AI"
-                logo="/logos/blackbox.png"
-                views="15M+"
-                viewsSub="20 days / 40-60 paid-organic mix"
-                miniStats={[
-                  { value: "15M+", label: "Views" },
-                  { value: "420", label: "Paid ads" },
-                  { value: "20", label: "Days" },
-                  { value: "40/60", label: "Paid/organic" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Makon AI"
-                logo="/logos/makon.png"
-                views="11M+"
-                viewsSub="2 months / 8 creators"
-                miniStats={[
-                  { value: "11M+", label: "Views" },
-                  { value: "8", label: "Creators" },
-                  { value: "60", label: "Days" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Codédex"
-                logo="/logos/codedex.png"
-                views="10M+"
-                viewsSub="2 months"
-                miniStats={[
-                  { value: "10M+", label: "Views" },
-                  { value: "4", label: "Creators" },
-                  { value: "60", label: "Days" },
-                ]}
-              />
+              {/* Locked cards are placeholders. Real names, logos, and
+                  figures stay off the page so view-source cannot read them.
+                  See docs/DECISIONS.md (topic: case-studies-lock). */}
+              {Array.from({ length: 6 }, (_, index) => (
+                <ResultCard
+                  key={index}
+                  locked
+                  company="Client name"
+                  logo="/logos/locked-case.svg"
+                  views="000M+"
+                  viewsSub="00 days / 00 creators"
+                />
+              ))}
             </div>
 
             <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />

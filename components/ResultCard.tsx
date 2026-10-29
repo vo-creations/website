@@ -40,7 +40,7 @@ export default function ResultCard({
           {logo ? (
             <LogoImage
               src={logo}
-              alt={`${company} logo`}
+              alt={locked ? "Locked case study" : `${company} logo`}
               boxClassName={`h-7 w-auto ${locked ? "blur-md select-none" : ""}`}
             />
           ) : (

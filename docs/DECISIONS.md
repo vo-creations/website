@@ -3150,3 +3150,7 @@ Daniel raised the public creator count from 500+ to 1000+. The pitch line is "10
 ## topic: drop-client-logo-2026-10 — _2026-10-29_
 
 One client was removed from the Trusted By marquee and from the locked case-study stack, including that card's view stat. The logo file was deleted. The other case-study cards were left as they were, and the stack reflows in the same column.
+
+## topic: case-studies-lock — _2026-10-29_
+
+The locked homepage cards were still shipping real proof in the HTML. Blur is only CSS. The six cards now render the same placeholder: company "Client name", views "000M+", subline "00 days / 00 creators", and `public/logos/locked-case.svg` with alt "Locked case study". Real client names, logos, view totals, durations, and creator counts are not passed into those cards. The Trusted By marquee is unchanged and still uses the public logo files. The overlay copy and blur are unchanged.
