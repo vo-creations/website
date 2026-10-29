@@ -1,12 +1,14 @@
-export default function CaseStudiesLockOverlay({ href }: { href: string }) {
+export default function CaseStudiesLockOverlay({ href, paper = false }: { href: string; paper?: boolean }) {
   return (
-    <div className="mb-6 flex flex-col items-start gap-3 rounded-2xl border border-white/15 bg-[#141414] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-lg font-extrabold tracking-tight text-text">Full results shared on a call</p>
+    <div className={paper
+      ? "mb-8 flex flex-col items-start gap-3 border-y border-[#161513]/15 py-6 sm:flex-row sm:items-center sm:justify-between"
+      : "mb-6 flex flex-col items-start gap-3 rounded-2xl border border-white/15 bg-[#141414] px-6 py-5 sm:flex-row sm:items-center sm:justify-between"}>
+      <p className={`font-serif text-[clamp(28px,4vw,40px)] leading-none tracking-tight ${paper ? "text-[#161513]" : "text-lg font-extrabold text-text"}`}>Full results shared on a call</p>
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-black"
+        className={`inline-flex min-h-11 shrink-0 items-center rounded-full px-6 py-3 text-[15px] font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "bg-[#161513] text-[#F2F0EB] focus-visible:outline-[#161513]" : "bg-white text-black focus-visible:outline-white"}`}
       >
         Book a call
       </a>

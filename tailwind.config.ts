@@ -66,6 +66,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
         display: ['var(--font-inter-tight)', 'Inter Tight', 'sans-serif'],
+        serif: ['var(--font-instrument)', 'Georgia', 'serif'],
         outfit: ['Outfit', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },

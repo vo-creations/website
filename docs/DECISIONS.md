@@ -3248,6 +3248,10 @@ Daniel approved dropping the monthly video-count promise and shipping it the sam
 - `components/HeroStoryCard.tsx` posting stage no longer states a volume. The label is "Posted on the accounts."
 - The CPM guarantee and "Videos under 1,000 views do not count toward your CPM" were left as they were.
 
+## topic: homepage-editorial-2026-10 — _2026-10-29_
+
+The homepage hero became the existing creator reel, full bleed, with the poster as the first paint and the video starting after idle. Reduced motion keeps the poster. Below the hero, the page is an off-white editorial layout. Approved copy, the Slack report, locked case studies, and the footer tagline stayed. The separate framed reel under the logo strip was removed because the reel is now the hero.
+
 ## topic: hero-reel-2026-10 — _2026-10-29_
 
 Daniel approved a hero reel from clips already in the repo, and a blurred Slack report image, in one live ship.

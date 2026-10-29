@@ -38,6 +38,11 @@ body {
   color: #FFFFFF;
 }
 
+.paper-page ::selection {
+  background: #161513;
+  color: #f2f0eb;
+}
+
 /* Display type matches the banner lockup: Inter Tight, tight tracking, no faux stroke. */
 .font-display {
   letter-spacing: -0.045em;
