@@ -135,6 +135,7 @@ const showcaseVideos: {
 ];
 
 const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
+  { name: "Higgsfield", file: "higgsfield.png" },
   { name: "BlackBox AI", file: "blackbox.png" },
   { name: "Liftoff", file: "liftoff.png" },
   { name: "fomo.family", file: "fomo.png" },
