@@ -25,7 +25,7 @@ only:
   `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
   behind `CaseStudiesLockOverlay` and render a category label plus a blurred
   placeholder figure (`000M+` or `00.0M`), not a real view total. Anonymized
-  proof numbers sit in a separate public strip, with a blurred Slack report image at `public/proof/slack-report.png`. The homepage hero is the creator reel (`public/videos/hero-reel.mp4` and `.webm`); the poster is the first paint. `/llms.txt` is a static file in `public/`.
+  proof numbers sit in a separate public strip (four figures, then a blurred Slack report image at `public/proof/slack-report.png`). The homepage hero is four muted 9:16 clips (`public/videos/hero-clip-1.mp4` through `hero-clip-4.mp4`); `hero-clip-1.jpg` is the first paint. `/llms.txt` is a static file in `public/`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. The footer links X and Instagram. The nav does not.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,

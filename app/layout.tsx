@@ -161,6 +161,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("js-motion");}catch(e){}})();`,
+          }}
+        />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-1TESF8060F" />
         <script
           dangerouslySetInnerHTML={{

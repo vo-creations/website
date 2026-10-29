@@ -74,3 +74,108 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Homepage motion. Final state is the default so no-JS stays readable.
+   html.js-motion is added before paint only when motion is allowed.
+   See docs/DECISIONS.md (topic: homepage-motion-2026-10). */
+html.js-motion .reveal {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+}
+html.js-motion .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.mask-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.mask-word > span {
+  display: inline-block;
+}
+html.js-motion .mask-line:not(.is-in) .mask-word > span {
+  transform: translate3d(0, 110%, 0);
+}
+html.js-motion .mask-line.is-in .mask-word > span {
+  transform: none;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 42ms);
+}
+
+html.js-motion .photo-in:not(.is-in) img {
+  transform: scale(1.045);
+}
+html.js-motion .photo-in.is-in img {
+  transform: scale(1);
+  transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.budget-wipe {
+  position: absolute;
+  left: 8.89%;
+  top: 27.57%;
+  width: 19.78%;
+  height: 5.14%;
+  background: #1c1d21;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+html.js-motion .budget-wipe {
+  transform: scaleX(1);
+}
+html.js-motion .budget-wipe.is-in {
+  transform: scaleX(0);
+  transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js-motion .hero-enter {
+    animation: heroEnter 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js-motion .hero-drift {
+    animation: heroDrift 9s ease-in-out infinite;
+  }
+}
+
+@keyframes heroDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-scroll,
+  .animate-scroll-slow {
+    animation: none !important;
+  }
+}

@@ -17,6 +17,10 @@ export function useCountUp(
   const [value, setValue] = useState(ssrFinal ? target : 0);
   useEffect(() => {
     if (!trigger) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (ssrFinal) setValue(target);
+      return;
+    }
     let raf: number;
     let start: number | null = null;
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
