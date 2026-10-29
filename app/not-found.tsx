@@ -1,13 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: false },
+  alternates: { canonical: null },
+};
 
 export default function NotFound() {
   return (
     <>
       <Nav />
       <main className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-36 pb-24">
-        <p className="text-[11px] font-semibold tracking-[2.5px] uppercase text-text-secondary mb-4">
+        <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2.5px] text-text-secondary">
           404
         </p>
         <h1 className="font-display text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight mb-4">

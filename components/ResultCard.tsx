@@ -36,28 +36,26 @@ export default function ResultCard({
       onClick={locked ? undefined : () => setOpen(!open)}
     >
       <div className="p-7 pb-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-5">
-          {logo ? (
+        <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+          {locked ? (
+            <p className="text-[17px] font-semibold tracking-tight text-text">{company}</p>
+          ) : logo ? (
             <LogoImage
               src={logo}
-              alt={locked ? "Locked case study" : `${company} logo`}
-              boxClassName={`h-7 w-auto ${locked ? "blur-md select-none" : ""}`}
+              alt={`${company} logo`}
+              boxClassName="h-7 w-auto"
             />
           ) : (
-            <div className={`text-[22px] font-extrabold tracking-tight ${locked ? "blur-md select-none" : ""}`}>
-              {company}
-            </div>
+            <div className="text-[22px] font-extrabold tracking-tight">{company}</div>
           )}
-          <div className={`text-right shrink-0 ${locked ? "blur-md select-none" : ""}`}>
-            <div className="text-[10px] text-text-dim uppercase tracking-wide font-semibold mb-1">
+          <div className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}>
+            <div className="mb-1 text-[13px] font-semibold uppercase tracking-wide text-text-dim">
               Total views
             </div>
-            <div className="text-5xl md:text-[48px] font-black text-text tracking-tighter leading-none">
+            <div className="text-5xl font-black leading-none tracking-tighter text-text md:text-[48px]">
               {views}
             </div>
-            <div className="text-xs text-text-dim mt-2 font-medium">
-              {viewsSub}
-            </div>
+            <div className="mt-2 text-[13px] font-medium text-text-dim">{viewsSub}</div>
           </div>
         </div>
       </div>
@@ -84,7 +82,7 @@ export default function ResultCard({
                   <div className="text-xl font-extrabold text-text tracking-tight">
                     {s.value}
                   </div>
-                  <div className="text-[10px] text-text-dim uppercase tracking-wide mt-1 font-medium">
+                  <div className="mt-1 text-[13px] font-medium uppercase tracking-wide text-text-dim">
                     {s.label}
                   </div>
                 </div>

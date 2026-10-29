@@ -1,23 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Article, { ArticleTable, H2, type FaqItem, type TocItem } from "@/components/blog/Article";
-import { getPost, postUrl } from "@/lib/blog/posts";
+import { blogPostMetadata, getPost } from "@/lib/blog/posts";
 
 const post = getPost("questions-before-hiring-a-ugc-agency");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/blog/${post.slug}` },
-  openGraph: {
-    title: post.title,
-    description: post.description,
-    url: postUrl(post.slug),
-    type: "article",
-    publishedTime: `${post.datePublished}T00:00:00Z`,
-    modifiedTime: `${post.dateModified}T00:00:00Z`,
-  },
-};
+export const metadata = blogPostMetadata(post.slug);
 
 const toc: TocItem[] = [
   { id: "what-job", label: "What job are you hiring?" },

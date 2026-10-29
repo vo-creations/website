@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import {
   authors,
   BOOKING_URL,
+  DEFAULT_OG_IMAGE,
   formatBlogDate,
   getPost,
   posts,
@@ -37,9 +38,7 @@ function articleJsonLd(post: BlogPostMeta, faqs: FaqItem[]) {
         },
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
-      ...(post.image
-        ? { image: `https://vocreations.com${post.image.src}` }
-        : {}),
+      image: `https://vocreations.com${post.image?.src ?? DEFAULT_OG_IMAGE.src}`,
     },
     {
       "@type": "BreadcrumbList",
@@ -156,7 +155,7 @@ export default function Article({
             </ol>
           </nav>
 
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[2px] text-text-dim">
+          <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
             {post.category}
           </p>
           <h1 className="mb-5 font-display text-[clamp(32px,5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-[#fbfbf9]">
@@ -187,7 +186,7 @@ export default function Article({
           ) : null}
 
           <nav aria-label="On this page" className="mb-10 rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[2px] text-text-dim">
+            <p className="mb-3 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
               On this page
             </p>
             <ol className="space-y-2 text-sm">
@@ -209,7 +208,7 @@ export default function Article({
           <div className="space-y-4 text-[15px] leading-[1.75] text-text-secondary">{children}</div>
 
           <aside className="mt-12 rounded-2xl border border-white/10 bg-bg-card/50 p-6">
-            <p className="text-[11px] font-semibold uppercase tracking-[2px] text-text-dim">Author</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">Author</p>
             <p className="mt-2 text-base font-semibold text-text">
               <a href={author.url} className="hover:underline">
                 {author.name}
@@ -243,7 +242,7 @@ export default function Article({
                   href={`/blog/${item.slug}`}
                   className="rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5 hover:border-white/20"
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[2px] text-text-dim">
+                  <p className="text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
                     {item.category} · {item.readingMinutes} min read
                   </p>
                   <p className="mt-2 text-lg font-semibold tracking-tight text-text">{item.title}</p>

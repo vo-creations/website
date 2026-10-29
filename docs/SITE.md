@@ -23,10 +23,11 @@ only:
   are real pages again. `/blog/why-text-on-screen-ugc-is-killing-your-app-growth`
   redirects to the real post. `/case-studies`, `/case-studies/fable`, and
   `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
-  behind `CaseStudiesLockOverlay` and render placeholders (`000M+`,
-  `Client name`, `/logos/locked-case.svg`), not the real proof. `/llms.txt` is a static file in `public/`.
+  behind `CaseStudiesLockOverlay` and render a category label plus a blurred
+  placeholder figure (`000M+` or `00.0M`), not a real view total. Anonymized
+  proof numbers sit in a separate public strip. `/llms.txt` is a static file in `public/`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
-  Instagram profiles. Nav and footer have no social-link row.
+  Instagram profiles. The footer links X and Instagram. The nav does not.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` is an existing page and is not

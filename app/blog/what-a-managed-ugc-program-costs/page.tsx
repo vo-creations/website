@@ -1,23 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Article, { ArticleTable, H2, type FaqItem, type TocItem } from "@/components/blog/Article";
-import { getPost, postUrl } from "@/lib/blog/posts";
+import { blogPostMetadata, getPost } from "@/lib/blog/posts";
 
 const post = getPost("what-a-managed-ugc-program-costs");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/blog/${post.slug}` },
-  openGraph: {
-    title: post.title,
-    description: post.description,
-    url: postUrl(post.slug),
-    type: "article",
-    publishedTime: `${post.datePublished}T00:00:00Z`,
-    modifiedTime: `${post.dateModified}T00:00:00Z`,
-  },
-};
+export const metadata = blogPostMetadata(post.slug);
 
 const toc: TocItem[] = [
   { id: "what-are-you-paying-for", label: "What are the three prices actually for?" },
@@ -36,7 +23,7 @@ const faqs: FaqItem[] = [
   {
     question: "Does 'under $3 CPM' mean every campaign lands there?",
     answer:
-      "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. The guarantee is the client's own target, for example sub-$10 or whatever number they set. The two results below are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
+      "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. We guarantee your target CPM. That is not a credit or a refund. The two results above are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
   },
   {
     question: "Do videos under 1,000 views count toward the spend?",

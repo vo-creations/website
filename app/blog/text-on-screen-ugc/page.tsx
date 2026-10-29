@@ -1,32 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Article, { H2, type FaqItem, type TocItem } from "@/components/blog/Article";
 import ClickToPlayYouTube from "@/components/ClickToPlayYouTube";
-import { getPost, postUrl } from "@/lib/blog/posts";
+import { blogPostMetadata, getPost } from "@/lib/blog/posts";
 
 const post = getPost("text-on-screen-ugc");
 
-export const metadata: Metadata = {
-  title: "Why Text-On-Screen UGC Is Killing Your App Growth",
-  description: post.description,
-  alternates: { canonical: `/blog/${post.slug}` },
-  openGraph: {
-    title: "Why Text-On-Screen UGC Is Killing Your App Growth",
-    description: post.description,
-    url: postUrl(post.slug),
-    type: "article",
-    publishedTime: `${post.datePublished}T00:00:00Z`,
-    modifiedTime: `${post.dateModified}T00:00:00Z`,
-    images: [
-      {
-        url: post.image!.src,
-        width: post.image!.width,
-        height: post.image!.height,
-        alt: post.image!.alt,
-      },
-    ],
-  },
-};
+export const metadata = blogPostMetadata(post.slug);
 
 const toc: TocItem[] = [
   { id: "why-does-text-on-screen-stall", label: "Why does text-on-screen UGC stall?" },
@@ -104,27 +83,14 @@ export default function TextOnScreenPost() {
         The best-performing UGC we&apos;ve ever made follows the same structure: a creator looks into the camera and tells a story that the target audience has lived. The product shows up naturally, not as a pitch, but as part of the story.
       </p>
       <p>
-        This isn&apos;t theory. This is what we&apos;ve tested across dozens of campaigns, millions of views, and multiple verticals. The data is clear:
+        This is what we have tested across 50+ campaigns. The pattern is the same: a person, a specific mess, and the product inside the story.
       </p>
-      <ul className="grid list-none grid-cols-2 gap-3 p-0">
-        {[
-          ["6.9×", "UGC vs brand engagement"],
-          ["4× higher", "UGC ad click-through rate"],
-          ["50% lower", "Cost per click"],
-          ["100%+", "Conversion lift, interactive UGC"],
-        ].map(([value, label]) => (
-          <li key={label} className="rounded-2xl border border-white/10 bg-bg-card/50 p-4">
-            <div className="text-xl font-extrabold tracking-tight text-text">{value}</div>
-            <div className="mt-1 text-xs text-text-dim">{label}</div>
-          </li>
-        ))}
-      </ul>
       <H2 id="why-does-storytelling-work">Why does talking-head storytelling work?</H2>
       <p>
         If your instinct is &quot;I need to explain what my product does,&quot; you&apos;re thinking about this wrong. Nobody cares what your product does. They care about how it makes them feel.
       </p>
       <p>
-        The reason talking-head storytelling outperforms everything else is simple: it triggers mirror neurons. When a viewer sees someone who looks like them, talks like them, and describes a problem they&apos;ve actually experienced, the brain doesn&apos;t process it as an ad. It processes it as a conversation.
+        Talking-head storytelling works because the viewer sees someone who looks like them and hears a problem they have lived. It reads as a conversation, not a product tour.
       </p>
       <p>That&apos;s the entire game. Get past the ad filter. Storytelling does that. Text on screen never will.</p>
       <ClickToPlayYouTube videoId="xL3zWBso9mw" title="Thienvu Vo: the story behind Vo Creations" />
@@ -194,7 +160,7 @@ export default function TextOnScreenPost() {
             className="rounded-2xl border border-white/10 bg-bg-card/50 p-4 text-center hover:border-white/20"
           >
             <div className="text-lg font-extrabold text-text">{item.views}</div>
-            <div className="mt-1 text-[10px] uppercase tracking-wide text-text-dim">views on Instagram</div>
+            <div className="mt-1 text-[13px] uppercase tracking-wide text-text-dim">views on Instagram</div>
           </a>
         ))}
       </div>

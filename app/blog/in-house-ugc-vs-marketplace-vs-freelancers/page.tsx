@@ -1,23 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Article, { ArticleTable, H2, type FaqItem, type TocItem } from "@/components/blog/Article";
-import { getPost, postUrl } from "@/lib/blog/posts";
+import { blogPostMetadata, getPost } from "@/lib/blog/posts";
 
 const post = getPost("in-house-ugc-vs-marketplace-vs-freelancers");
 
-export const metadata: Metadata = {
-  title: post.title,
-  description: post.description,
-  alternates: { canonical: `/blog/${post.slug}` },
-  openGraph: {
-    title: post.title,
-    description: post.description,
-    url: postUrl(post.slug),
-    type: "article",
-    publishedTime: `${post.datePublished}T00:00:00Z`,
-    modifiedTime: `${post.dateModified}T00:00:00Z`,
-  },
-};
+export const metadata = blogPostMetadata(post.slug);
 
 const toc: TocItem[] = [
   { id: "what-are-you-buying", label: "What are you actually buying?" },
@@ -64,7 +51,7 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client&apos;s target CPM, the cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch. Chad runs strategy. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM, the cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, head of strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>

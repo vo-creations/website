@@ -5,15 +5,15 @@ import { useEffect, useRef, useState } from "react";
 interface InstagramEmbedProps {
   url: string;
   label?: string;
+  poster?: string;
 }
 
-export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
+export default function InstagramEmbed({ url, label, poster }: InstagramEmbedProps) {
   const [loaded, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!loaded) return;
-    // Load IG embed script if not already present
     if (!(window as any).instgrm) {
       const script = document.createElement("script");
       script.src = "https://www.instagram.com/embed.js";
@@ -25,26 +25,40 @@ export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
     }
   }, [loaded]);
 
-  // DECISION 2026-10: do not mount Instagram's embed iframe (or embed.js)
-  // until click. The old "preview" iframe still downloaded Instagram's
-  // player for every card in the marquee, about 1.5 MB before anyone
-  // pressed play. See docs/DECISIONS.md (topic: seo-aeo-2026-10).
+  // DECISION 2026-10: do not mount Instagram's embed iframe until click.
+  // Posters are saved locally. Posts without a poster use a labeled card,
+  // not a black box. See docs/DECISIONS.md (topic: site-audit-2026-10).
   if (!loaded) {
     return (
       <button
         type="button"
         onClick={() => setLoaded(true)}
-        className="bg-bg-card rounded-2xl aspect-[9/16] relative border border-border overflow-hidden group w-full text-left"
+        className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-border bg-[#1a1a1a] text-left"
         aria-label={label ? `Play ${label} video` : "Play Instagram video"}
       >
-        <span className="absolute inset-0 bg-black flex items-center justify-center">
-          <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-            <span className="w-0 h-0 border-l-[16px] border-l-[#0a0a0a] border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1" />
+        {poster ? (
+          <img
+            src={poster}
+            alt={label ? `${label} video poster` : "Instagram video poster"}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_30%_20%,#3a2a22,transparent_45%),radial-gradient(circle_at_80%_80%,#1c2430,#111)] px-4 text-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-[13px] font-semibold text-white">
+              IG
+            </span>
+            <span className="text-[13px] font-medium text-white">Instagram</span>
+            <span className="text-[13px] text-white/70">Play on Instagram</span>
+          </span>
+        )}
+        <span className="absolute inset-0 flex items-center justify-center bg-black/25">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-110">
+            <span className="ml-1 h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-[#0a0a0a] border-t-transparent" />
           </span>
         </span>
         {label && (
-          <span className="absolute bottom-0 left-0 right-0 flex items-center px-3 py-2 bg-gradient-to-t from-black/60 to-transparent">
-            <span className="text-xs text-white font-medium">{label}</span>
+          <span className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2">
+            <span className="text-[13px] font-medium text-white">{label}</span>
           </span>
         )}
       </button>
@@ -52,7 +66,7 @@ export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
   }
 
   return (
-    <div ref={containerRef} className="rounded-2xl overflow-hidden">
+    <div ref={containerRef} className="overflow-hidden rounded-2xl">
       <blockquote
         className="instagram-media"
         data-instgrm-captioned
@@ -69,12 +83,12 @@ export default function InstagramEmbed({ url, label }: InstagramEmbedProps) {
       />
       {label && (
         <div className="mt-2 flex items-center justify-between px-1">
-          <span className="text-xs text-text-secondary font-medium">{label}</span>
+          <span className="text-[13px] font-medium text-text-secondary">{label}</span>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-text-dim hover:text-text-secondary transition-colors"
+            className="text-[13px] text-text-dim transition-colors hover:text-text-secondary"
           >
             View on Instagram &rarr;
           </a>

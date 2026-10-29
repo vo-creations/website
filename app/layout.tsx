@@ -119,7 +119,7 @@ const serviceJsonLd = {
   },
   areaServed: "US",
   description:
-    "Organic UGC and UGC ads for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, and Facebook.",
+    "Organic UGC and UGC ads for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat.",
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
@@ -136,7 +136,7 @@ const serviceJsonLd = {
       },
     },
     description:
-      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client's target CPM (cost per 1,000 organic views). Videos under 1,000 views do not count toward the spend. 90-day minimum, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM (cost per 1,000 organic views). Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
     url: "https://vocreations.com/#faq",
   },
 };

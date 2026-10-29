@@ -4,7 +4,7 @@ const footerLinks = [
   { href: "/#results", label: "Case Studies" },
   { href: "/blog", label: "Blog" },
   { href: "/#team", label: "Our Team" },
-  { href: "/#faq", label: "FAQ's" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Footer() {
@@ -16,19 +16,27 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/brand/vo-logo.svg" alt="" className="h-8 w-auto" />
+              <img src="/brand/vo-logo.svg" alt="Vo Creations" className="h-8 w-auto" />
               <span className="font-display text-lg font-semibold tracking-[-0.03em] text-[#fbfbf9]">
                 Vo Creations
               </span>
             </div>
-            <p className="text-sm text-text-secondary leading-relaxed max-w-[320px] mb-6">
+            <p className="mb-6 max-w-[320px] text-sm leading-relaxed text-text-secondary">
               Your world-class in-house UGC program, without the overhead.
             </p>
+            <div className="flex items-center gap-4 text-[13px] font-semibold">
+              <a href="https://x.com/VoCreationsUGC" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+                X
+              </a>
+              <a href="https://www.instagram.com/vo.creations/" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
+            </div>
           </div>
 
           {/* Links */}
           <div>
-            <div className="text-[11px] text-text-dim uppercase tracking-[0.15em] font-semibold mb-5">
+            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.15em] text-text-dim">
               Links
             </div>
             <div className="flex flex-col gap-3">
@@ -46,7 +54,7 @@ export default function Footer() {
 
           {/* CTA */}
           <div>
-            <div className="text-[11px] text-text-dim uppercase tracking-[0.15em] font-semibold mb-5">
+            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.15em] text-text-dim">
               Ready to scale?
             </div>
             <a

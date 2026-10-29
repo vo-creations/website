@@ -3185,3 +3185,15 @@ Daniel approved marking the Service offer as a starting price. This supersedes t
 ## topic: drop-client-logo-2026-10 — _2026-10-29_
 
 The logo that this topic removed from the Trusted By strip was put back, first in the strip. The case-study card and its stat were not restored. `case-studies-lock` then replaced all six locked cards with placeholders, so the earlier note that the other cards stayed is no longer the live state.
+
+## topic: site-audit-2026-10 — _2026-10-29_
+
+Daniel asked for one audit pass on top of the merged pricing. The public mentorship offer is gone. Anonymized campaign results from the pitch deck are now public. Named case studies stay gated.
+
+- `/refund-policy` is the agency policy: no refunds after launch, 90-day minimum, then month to month. It no longer promises a mentorship refund or a $1,000 payment. The mentorship route still returns 410.
+- Snapchat is listed with TikTok, Instagram, YouTube, and Facebook wherever the site says where videos post.
+- Paid media, the ad spend, is outside the fee and billed on top. That sentence is in the homepage FAQ, the program section, the Service offer description, and `llms.txt`.
+- The CPM line is "we guarantee your target CPM." It is not a credit or a refund.
+- Locked cards show a readable category and window (`AI app · 3 months` and the five siblings) and a blurred placeholder (`000M+` or `00.0M`). The real deck figures are in the public proof strip and the hero support line, labeled as anonymized Vo Creations results.
+- Nine Instagram marquee posts use a saved poster. Two posts no longer return a media file, so those cards use a labeled Instagram fallback instead of a black box.
+- Founder titles dropped "CEO/COO of VoC Mentorship." Both bios say co-founder, New York, NY. The footer links X and Instagram. The 404 sets `canonical: null` and `noindex`. Blog `dateModified` is 2026-10-28, and each post has Open Graph and Twitter title, description, and image. Uncited 6.9× and mirror-neuron lines were removed from the text-on-screen essay. Campaign counts in our copy use 50+. The embedded X post that says 30+ was left as the author's words.

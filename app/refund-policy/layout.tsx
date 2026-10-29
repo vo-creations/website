@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/refund-policy" },
   title: "Refund Policy",
   description:
-    "Refund policy for the Vo Creations Mentorship Program and digital products. Read our terms before purchasing or enrolling.",
+    "Vo Creations agency campaigns: no refunds after launch. 90-day minimum, then month to month.",
   openGraph: {
     title: "Refund Policy | Vo Creations",
     description:
-      "Refund policy for the Vo Creations Mentorship Program and digital products. Read our terms before purchasing or enrolling.",
+      "No refunds after a Vo Creations campaign launches. 90-day minimum, then month to month.",
     url: "https://vocreations.com/refund-policy",
     siteName: "Vo Creations",
     type: "website",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Refund Policy | Vo Creations",
     description:
-      "Refund policy for the Vo Creations Mentorship Program and digital products.",
+      "No refunds after a Vo Creations campaign launches. 90-day minimum, then month to month.",
     images: ["/og-image.png"],
   },
   robots: {

@@ -88,12 +88,12 @@ const steps = [
   {
     num: "02",
     title: "Strategy & Creator Selection",
-    desc: "Every creator applies, interviews, and completes a two week-long paid trial campaign before they ever touch your account. We accept the top 1%. From there, your dedicated campaign manager builds a strategy around your product specifically: audience, account warming, hooks, messaging, even how creators respond to comments. Nothing recycled from another client.",
+    desc: "Every creator applies, interviews, and completes a two-week paid trial before they touch a brand account. We keep the top 1%. From there, your campaign manager builds the strategy around your product: audience, account warming, hooks, messaging, and how creators answer comments.",
   },
   {
     num: "03",
     title: "Launch & Scale",
-    desc: "Every script and video is manually approved before it goes live, across TikTok, Instagram, YouTube, and Facebook. Real-time tracking in our internal tool shows exactly what's converting, so weekly testing and monthly reviews are built on data, not guesswork.",
+    desc: "Every script and video is approved before it posts, across TikTok, Instagram, YouTube, Facebook, and Snapchat. Weekly testing follows what people actually watch. We guarantee your target CPM.",
   },
 ];
 
@@ -108,6 +108,7 @@ const showcaseVideos: {
   url: string;
   label: string;
   thumb?: string;
+  poster?: string;
 }[] = [
   // DECISION: interleaved by platform (not grouped) so consecutive cards are
   // usually different platforms — Instagram is the majority (11 of 17) so a
@@ -115,22 +116,22 @@ const showcaseVideos: {
   // together in a long run. Zero self-hosted mp4s — every entry is a real
   // platform embed. New additions get folded into the existing order, not
   // appended at the end. See docs/DECISIONS.md (topic: showcase-marquee).
-  { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram", poster: "/creators/ig/DXSp7ttDH9D.jpg" },
   { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram" },
   { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok", thumb: "/creators/tiktok-jacobw-thumb.jpg" },
-  { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram" },
-  { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram", poster: "/creators/ig/DXE2rDtE2lI.jpg" },
   { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube" },
   { type: "instagram", url: "https://www.instagram.com/p/DZ6qfKHRJG6/", label: "Instagram" },
-  { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram", poster: "/creators/ig/DWtNDXqjl3I.jpg" },
   { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook" },
-  { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram" },
-  { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram", poster: "/creators/ig/DaJ2O4ON_uK.jpg" },
+  { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram", poster: "/creators/ig/DTRCvh2E1Lu.jpg" },
   { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok", thumb: "/creators/tiktok-codewithsam4-thumb.jpg" },
-  { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram" },
-  { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg" },
+  { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram", poster: "/creators/ig/DY5IDHqknw4.jpg" },
   { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok", thumb: "/creators/tiktok-abgetsfit-thumb.jpg" },
-  { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg" },
   { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube" },
 ];
 
@@ -153,12 +154,12 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
 // 1,000 views do not count toward the spend. 90-day minimum, then month to
 // month. No refunds after launch. See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
-  { q: "What is Tech UGC?", a: "Tech UGC swaps traditional ad production for real creators showing your product in action: demoing it, explaining it, reacting to it, the way an actual user would. No studio, no script that sounds like a script. It's also one of the cheapest organic marketing channels out there: creator-made content costs a fraction of traditional production while still driving real reach. We run these campaigns at scale across TikTok, Instagram, YouTube, and Facebook, producing 2,400+ videos a month per brand and building organic reach before a single dollar of paid spend gets involved." },
-  { q: "How long do results take?", a: "We ask for a 90-day minimum. Creator accounts need time to warm up, content needs a few testing cycles to find what performs, and none of that happens in week one: 90 days is what it takes to build a proper campaign and start scaling it as your in-house UGC program, not a one-off project. After that it is month to month." },
-  { q: "How involved is the process?", a: "Whatever level works for you. Most brands hop on a weekly call to see what's performing and share updates on their end. Everything else runs without needing you in the loop. Creators get managed, content gets reviewed, strategy gets adjusted daily, all on our side. If you want more say in creative direction, we'll bring you in further. If you'd rather set it and check in once a week, that works too. Either way, nothing stalls waiting on you." },
-  { q: "What would next steps look like?", a: "Fast. After a quick consultation and onboarding call, we're already sourcing creators: first content goes live within 10-14 days of kickoff." },
-  { q: "What is the investment?", a: "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee the client's target CPM, for example sub-$10 or whatever number they set. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch." },
-  { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month, so you are not locked into a long contract after that. That's what you'd expect from a world-class in-house UGC team, backed by the same mentorship program that's already put $1M+ in students' pockets, without the overhead of actually building that team yourself. We're confident enough in the process to let it prove itself every single month, not just at signing." },
+  { q: "What is the investment?", a: "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee your target CPM. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch." },
+  { q: "Is paid media included?", a: "No. Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
+  { q: "Who is a good fit?", a: "AI and tech consumer apps that are ready for $50K+ a month and want organic short-form at scale, with a CPM target. Budgets under $50K a month, one-off videos, and paid-ads-only management are not a fit." },
+  { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month. We guarantee your target CPM. That guarantee is not a refund, a credit, or a make-good." },
+  { q: "How long do results take?", a: "First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
+  { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. A campaign produces 2,400+ videos a month. The format is organic talking-head UGC." },
 ];
 
 const faqJsonLd = {
@@ -177,8 +178,8 @@ const faqJsonLd = {
 const team = [
   {
     name: "Thienvu Vo",
-    location: "Richmond, VA",
-    statLine: "CEO of VoC Mentorship",
+    location: "New York, NY",
+    statLine: "",
     detailLine:
       "Grew his own IG past 70K followers, then proved it wasn't a fluke by teaching other creators exactly how he did it. His students have earned $1M+ and generated 500M+ views. Not from one lucky post. From content that performs the same way every time. That's not a growth story. That's a system. And it's the same one every brand at Vo Creations gets.",
     image: "/videos/team-thienvu-new.jpg",
@@ -189,8 +190,8 @@ const team = [
   },
   {
     name: "Daniel Yun",
-    location: "Los Angeles, CA",
-    statLine: "COO of VoC Mentorship",
+    location: "New York, NY",
+    statLine: "",
     detailLine:
       "Before Daniel ran a single campaign for anyone else, he was the one on camera, racking up 150M+ views and $200K+ earned from his own content, from scratch. That's the seat most agency operators never sit in. Since then, his campaigns for consumer apps have pulled in 500M+ views and converted into 5M+ users, because he already knows what makes someone stop scrolling.",
     image: "/videos/team-daniel.jpg",
@@ -213,28 +214,31 @@ export default function Home() {
           remember.). Chrome VO sits on the right from lg up. The UGC agency
           phrase stays inside the H1. See docs/DECISIONS.md
           (topic: brand-system-2026-10). */}
-      <section className="relative flex min-h-[100svh] items-center pt-28 pb-16">
+      <section className="relative flex items-center pb-12 pt-28 lg:min-h-[100svh] lg:pb-16">
         <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
             <div className="min-w-0">
               <h1>
                 <span className="mb-6 block max-w-[36rem] font-sans text-[clamp(15px,1.6vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
-                  The in-house UGC agency backed by elite mentorship
+                  Organic UGC for AI and tech apps.
+                  <span className="sr-only"> </span>
                 </span>
-                <span className="block font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[0.9] tracking-[-0.045em] text-[#fbfbf9] [word-spacing:0.05em]">
-                  <span className="block whitespace-nowrap">
-                    ma<span style={{ letterSpacing: "0.012em" }}>k</span>e the<span style={{ letterSpacing: "-0.044em" }}>m</span>
+                <span className="block font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#fbfbf9]">
+                  <span className="block">
+                    make them
+                    <span className="sr-only"> </span>
                   </span>
-                  <span className="block whitespace-nowrap">
-                    remembe<span style={{ letterSpacing: "-0.075em" }}>r</span>
-                    <span className="text-[#bdbdb8]">.</span>
+                  <span className="mt-1 block">
+                    remember<span className="text-[#bdbdb8]">.</span>
                   </span>
                 </span>
               </h1>
-              <div className="mt-8 flex items-center gap-4">
-                <span className="h-px w-10 shrink-0 bg-[#8a8a86]" aria-hidden="true" />
-                <p className="whitespace-nowrap font-sans text-[clamp(16px,1.5vw,22px)] font-medium leading-[1.3] text-[#efefed]">
-                  The team behind <b className="font-bold text-white">1B+</b> views
+              <div className="mt-8 max-w-[34rem] space-y-3">
+                <p className="font-sans text-[clamp(16px,1.5vw,22px)] font-medium leading-[1.35] text-[#efefed]">
+                  <b className="font-bold text-white">1B+</b> views. <b className="font-bold text-white">1000+</b> vetted in-house creators trained through mentorship. We guarantee your target CPM.
+                </p>
+                <p className="text-[15px] leading-[1.5] text-text-secondary">
+                  An AI app: 130M+ views in 3 months. A consumer app: 174M+ views at a $0.82 CPM. Clients stay unnamed.
                 </p>
               </div>
               <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -247,7 +251,7 @@ export default function Home() {
                   Let&apos;s Talk
                 </a>
                 <a
-                  href="#results"
+                  href="#proof"
                   className="text-[15px] font-medium text-[#efefed] underline decoration-white/30 underline-offset-4 hover:text-white"
                 >
                   See results
@@ -264,10 +268,11 @@ export default function Home() {
                 <source media="(min-width: 1024px)" srcSet="/brand/vo-chrome.webp" type="image/webp" />
                 <img
                   src="/brand/vo-chrome-sm.webp"
-                  alt=""
+                  alt="Vo Creations mark"
                   width={900}
                   height={1090}
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
                   decoding="async"
                   className="h-auto w-[220px] drop-shadow-[0_24px_36px_rgba(0,0,0,0.73)] lg:w-[380px]"
                 />
@@ -292,6 +297,37 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="proof" className="px-6 py-16">
+        <div className="mx-auto max-w-[1100px]">
+          <Label>Proof</Label>
+          <h2 className="mb-3 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
+            Results with the name left off.
+          </h2>
+          <p className="mb-8 max-w-[640px] text-[15px] leading-relaxed text-text-secondary">
+            Vo Creations campaign results. Clients stay anonymized. A typical outcome prices under $3 CPM.
+          </p>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["130M+", "An AI app, 3 months"],
+              ["#3 in Finance", "A finance app, 3M+ users, sub-$4 CPM"],
+              ["174M+", "A consumer app at a $0.82 CPM"],
+              ["$968k ARR", "Driven for one app"],
+              ["453M, 123M, 105M", "Three AI apps, 90 days each"],
+              ["19.4M", "An AI app, 2 weeks"],
+              ["21.5M and 15.9M", "Two apps, 30 days each"],
+              ["Under $3 CPM", "Typical for this distribution"],
+            ].map(([figure, detail]) => (
+              <div key={detail} className="rounded-2xl border border-white/10 bg-bg-card/50 p-5">
+                <div className="font-display text-[26px] font-bold leading-none tracking-[-0.04em] text-white">
+                  {figure}
+                </div>
+                <p className="mt-3 text-[13px] leading-[1.4] text-text-secondary">{detail}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -373,16 +409,16 @@ export default function Home() {
           </h2>
           <div className="space-y-4 text-[15px] text-text-secondary leading-[1.75]">
             <p>
-              Vo Creations is a UGC agency for AI startups and consumer apps. We recruit UGC creators, train them in-house, and run the accounts as your program: organic UGC on TikTok, Instagram, YouTube, and Facebook, then UGC ads built from the videos that already earned the view.
+              Vo Creations runs organic UGC for AI startups and consumer apps. Trained creators post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat. When a video already earns the view, it can become an ad.
             </p>
             <p>
-              The work is talking-head storytelling. A creator looks into the camera and tells a story the audience has lived. The product shows up inside that story. No studio, no text-on-screen template, no script that sounds like a script. Creators apply, interview, and finish a two-week paid trial before they touch a brand account. We keep the top 1%.
+              Creators apply, interview, and finish a two-week paid trial before they touch a brand account. We keep the top 1%.
             </p>
             <p>
-              A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client's target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month. No refunds after launch.
+              Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. First posts go live in 10-14 days. The minimum is 90 days, then month to month. No refunds after launch.
             </p>
             <p>
-              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, with 1000+ vetted in-house creators trained through mentorship, and run across 50+ campaigns.
+              1B+ views. 1000+ vetted in-house creators trained through mentorship. 50+ campaigns. A typical result prices under $3 CPM.
             </p>
           </div>
         </div>
@@ -410,7 +446,7 @@ export default function Home() {
           <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
             {[...showcaseVideos, ...showcaseVideos].map((v, i) => (
               <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
-                {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} />}
+                {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} poster={v.poster} />}
                 {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
                 {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
                 {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
@@ -429,23 +465,37 @@ export default function Home() {
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Undeniable impact.
           </h2>
-          <p className="text-base text-text-secondary mb-10">
-            Click any card for the full story.
+          <p className="mb-4 text-base text-text-secondary">
+            Full results shared on a call.
           </p>
+          <a
+            href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-10 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black"
+          >
+            Book a call
+          </a>
 
           <div className="relative">
             <div className="flex flex-col gap-4">
-              {/* Locked cards are placeholders. Real names, logos, and
-                  figures stay off the page so view-source cannot read them.
-                  See docs/DECISIONS.md (topic: case-studies-lock). */}
-              {Array.from({ length: 6 }, (_, index) => (
+              {/* Locked cards show a category label only. The view figure is a
+                  blurred placeholder, never a real total. See docs/DECISIONS.md
+                  (topic: case-studies-lock). */}
+              {[
+                { label: "AI app · 3 months", views: "000M+", viewsSub: "00 days" },
+                { label: "Finance app · 90 days", views: "000M+", viewsSub: "00 days" },
+                { label: "Consumer app · 90 days", views: "000M+", viewsSub: "00 creators" },
+                { label: "AI app · 90 days", views: "00.0M", viewsSub: "00 days" },
+                { label: "AI app · 2 weeks", views: "00.0M", viewsSub: "00 days" },
+                { label: "Consumer app · 30 days", views: "000M+", viewsSub: "00 days" },
+              ].map((card) => (
                 <ResultCard
-                  key={index}
+                  key={card.label}
                   locked
-                  company="Client name"
-                  logo="/logos/locked-case.svg"
-                  views="000M+"
-                  viewsSub="00 days / 00 creators"
+                  company={card.label}
+                  views={card.views}
+                  viewsSub={card.viewsSub}
                 />
               ))}
             </div>
@@ -490,7 +540,7 @@ export default function Home() {
                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <div className="text-xs text-text-dim font-semibold uppercase tracking-wide mt-1.5">
+                  <div className="mt-1.5 text-[13px] font-semibold uppercase tracking-wide text-text-dim">
                     Co-Founder
                   </div>
                   <div className="flex items-center gap-1 text-sm text-text-secondary mt-1.5 mb-4">
@@ -499,10 +549,10 @@ export default function Home() {
                     </svg>
                     {t.location}
                   </div>
-                  <div className="text-[15px] font-bold italic text-text">
-                    {t.statLine}
-                  </div>
-                  <div className="text-sm text-text-secondary mt-1">
+                  {t.statLine ? (
+                    <div className="text-[15px] font-bold italic text-text">{t.statLine}</div>
+                  ) : null}
+                  <div className="mt-1 text-sm text-text-secondary">
                     {t.detailLine}
                   </div>
                 </div>
@@ -565,6 +615,31 @@ export default function Home() {
       </section>
 
       <div className="max-w-[1000px] mx-auto h-px bg-white/15" />
+
+      <section className="px-6 py-16" id="fit">
+        <div className="mx-auto grid max-w-[1100px] gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-8">
+            <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
+              Good fit
+            </h2>
+            <ul className="space-y-3 text-[15px] leading-relaxed text-text-secondary">
+              <li>AI and tech consumer apps.</li>
+              <li>Ready for $50K+ a month.</li>
+              <li>Want organic short-form at scale, with a CPM target.</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-8">
+            <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
+              Not a fit
+            </h2>
+            <ul className="space-y-3 text-[15px] leading-relaxed text-text-secondary">
+              <li>Budgets under $50K a month.</li>
+              <li>One-off videos.</li>
+              <li>Paid-ads-only management.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ — each question is its own bordered card (rounded-2xl, subtle
           border, internal padding) stacked with a gap, rather than a flat

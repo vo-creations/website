@@ -216,7 +216,7 @@ export default function MaxxdCampaignPage() {
               {
                 num: "03",
                 title: "Distribute everywhere, optimize per platform.",
-                body: "One idea → adapted for TikTok, Instagram Reels, YouTube Shorts, and Facebook. Talking-head only. Never text-on-screen.",
+                body: "One idea, adapted for TikTok, Instagram Reels, YouTube Shorts, Facebook, and Snapchat. Talking-head only. Never text-on-screen.",
               },
             ].map((step) => (
               <div key={step.num} className="flex gap-5">

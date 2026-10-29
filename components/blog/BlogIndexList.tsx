@@ -51,7 +51,7 @@ export default function BlogIndexList({ posts }: { posts: BlogPostMeta[] }) {
               />
             ) : null}
             <div className="px-6 py-6">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[2px] text-text-dim">
+              <p className="mb-3 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
                 {post.category} · {formatBlogDate(post.dateModified)} · {post.readingMinutes} min read
               </p>
               <h2 className="mb-2 text-2xl font-extrabold tracking-tight text-text">{post.title}</h2>

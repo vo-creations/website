@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/#results", label: "Case Studies" },
   { href: "/#team", label: "Our Team" },
-  { href: "/#faq", label: "FAQ's" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 // Shared with the hero (app/page.tsx) so its content's left edge always lines up
@@ -31,7 +31,7 @@ export default function Nav() {
           onClick={() => setOpen(false)}
           className="flex items-center gap-2.5 shrink-0"
         >
-          <img src="/brand/vo-logo.svg" alt="" className="h-7 w-auto" />
+          <img src="/brand/vo-logo.svg" alt="Vo Creations" className="h-7 w-auto" />
           <span className="font-display text-base font-semibold tracking-[-0.03em] text-[#fbfbf9] md:text-lg">
             Vo Creations
           </span>

@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${base}/refund-policy`,
-      lastModified: new Date("2026-07-31"),
+      lastModified: new Date("2026-10-28"),
       changeFrequency: "yearly",
       priority: 0.3,
     },

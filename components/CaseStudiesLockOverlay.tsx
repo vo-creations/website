@@ -31,8 +31,7 @@ export default function CaseStudiesLockOverlay({ href }: { href: string }) {
         Full results revealed on a call
       </div>
       <p className="text-sm text-text-secondary max-w-[320px]">
-        Logos, view counts and conversion numbers are live — book a call to
-        unlock the real case studies.
+        Full results shared on a call. Book one and we will walk through them.
       </p>
       <span className="inline-flex items-center gap-2 bg-white text-bg font-bold text-sm px-6 py-3 rounded-full mt-1">
         Book a call
