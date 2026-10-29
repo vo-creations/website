@@ -13,6 +13,7 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { useCountUp } from "@/components/useCountUp";
 import { CountText, MaskText, Reveal, useOnceVisible } from "@/components/motion";
 import Image from "next/image";
+import HeroCarousel from "@/components/HeroCarousel";
 
 // DECISION: both auto-scroll marquees (Trusted By, Content that goes viral)
 // mask their edges so items fade into darkness instead of hard-cutting at the
@@ -87,62 +88,36 @@ function PaperHeading({ kicker, children }: { kicker: string; children: React.Re
   );
 }
 
-// DECISION 2026-10: four native 9:16 clips, not one upscaled reel.
-// The first poster is the LCP image. The other three mount after idle.
-// See docs/DECISIONS.md (topic: homepage-hero-clips-2026-10).
+// DECISION 2026-10: four native 9:16 clips in a CSS coverflow.
+// The first poster is the LCP image. Only the front clip mounts a video.
+// See docs/DECISIONS.md (topic: hero-carousel-2026-10).
 // Sources, in order: post-1, post-2, post-4, post-3.
 // See docs/DECISIONS.md (topic: hero-fourth-clip-2026-10).
 const heroClips = [
-  { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", offset: 0, delay: "0s" },
-  { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg", offset: 28, delay: "-2.2s" },
-  { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", offset: 10, delay: "-4.4s" },
-  { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg", offset: 40, delay: "-1.1s" },
+  { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
+  { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg" },
+  { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
+  { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg" },
 ];
 
 function HeroFilm() {
-  const clipsRef = useRef<HTMLDivElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
-  const [motionOK, setMotionOK] = useState(false);
-  const [restReady, setRestReady] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
-    let timer = 0;
-    let idle = 0;
-    const start = () => {
-      setMotionOK(true);
-      setRestReady(true);
-    };
-    if (typeof window.requestIdleCallback === "function") {
-      idle = window.requestIdleCallback(start, { timeout: 1600 });
-    } else {
-      timer = window.setTimeout(start, 800);
-    }
-    return () => {
-      if (idle) window.cancelIdleCallback(idle);
-      if (timer) window.clearTimeout(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    const clips = clipsRef.current;
     const copy = copyRef.current;
-    if (!clips || !copy) return;
+    if (!copy) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     const update = () => {
       raf = 0;
       const y = window.scrollY;
       if (y < 8) {
-        clips.style.transform = "";
         copy.style.opacity = "";
         copy.style.transform = "";
         return;
       }
       const view = window.innerHeight || 1;
       const p = Math.min(1, y / (view * 0.9));
-      clips.style.transform = `translate3d(0, ${p * -28}px, 0)`;
       copy.style.opacity = String(1 - p * 0.92);
       copy.style.transform = `translate3d(0, ${p * -16}px, 0)`;
     };
@@ -158,7 +133,7 @@ function HeroFilm() {
 
   return (
     <section className="bg-[#0B0B0C] px-6 pb-16 pt-28 text-white md:px-14 md:pb-24 md:pt-32">
-      <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-6">
         <div ref={copyRef} className="hero-enter min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[13px] font-medium tracking-[0.04em] text-[#e7e7e4] md:text-[15px]">
             <span className="h-px w-7 bg-[#c8c8c4]" aria-hidden="true" />
@@ -194,46 +169,7 @@ function HeroFilm() {
             </a>
           </div>
         </div>
-        <div ref={clipsRef} className="grid grid-cols-3 items-start gap-3 lg:grid-cols-4" aria-hidden="true">
-          {heroClips.map((clip, index) => {
-            const showVideo = motionOK && (index === 0 || restReady);
-            return (
-              <div
-                key={clip.src}
-                className={index === 3 ? "hidden lg:block" : undefined}
-                style={{ marginTop: clip.offset }}
-              >
-                <div className="hero-drift overflow-hidden rounded-2xl bg-[#151517]" style={{ animationDelay: clip.delay }}>
-                  <div className="relative aspect-[9/16]">
-                    <img
-                      src={clip.poster}
-                      alt=""
-                      width={540}
-                      height={960}
-                      fetchPriority={index === 0 ? "high" : undefined}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                    {showVideo && (
-                      <video
-                        className="absolute inset-0 h-full w-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload={index === 0 ? "metadata" : "none"}
-                        poster={clip.poster}
-                      >
-                        <source src={clip.src} type="video/mp4" />
-                      </video>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <HeroCarousel clips={heroClips} />
       </div>
     </section>
   );

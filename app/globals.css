@@ -143,20 +143,158 @@ html.js-motion .budget-wipe.is-in {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html.js-motion .hero-drift {
-    animation: heroDrift 9s ease-in-out infinite;
+/* Coverflow for the hero clips. Card width drives the ring so the same
+   pose fits a phone and a desktop column. See docs/DECISIONS.md
+   (topic: hero-carousel-2026-10). */
+.hero-carousel {
+  --card: 136px;
+  position: relative;
+  height: calc(var(--card) * 2.08 + 52px);
+  margin-inline: auto;
+  width: 100%;
+  max-width: 460px;
+  outline: none;
+  touch-action: pan-y;
+}
+.hero-carousel:focus-visible {
+  outline: 2px solid #f2f0eb;
+  outline-offset: 6px;
+}
+@media (min-width: 768px) {
+  .hero-carousel {
+    --card: 168px;
+    max-width: 560px;
   }
 }
-
-@keyframes heroDrift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
+@media (min-width: 1024px) {
+  .hero-carousel {
+    --card: 148px;
+    max-width: none;
   }
-  50% {
-    transform: translate3d(0, -10px, 0);
+}
+@media (min-width: 1280px) {
+  .hero-carousel {
+    --card: 188px;
   }
+}
+.hero-stage {
+  position: absolute;
+  inset: 0 0 48px 0;
+  perspective: 1100px;
+  perspective-origin: 50% 40%;
+}
+.hero-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg);
+}
+.hero-floor {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  width: calc(var(--card) * 0.9);
+  height: 28px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.72), transparent 70%);
+  pointer-events: none;
+}
+.hero-slide {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: var(--card);
+  height: calc(var(--card) * 16 / 9);
+  margin-left: calc(var(--card) / -2);
+  margin-top: calc(var(--card) * 16 / 9 / -2);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.js-motion .hero-slide {
+    transition:
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.9s ease,
+      filter 0.9s ease;
+  }
+}
+.hero-slide[data-pos="0"] {
+  transform: translate3d(0, 0, 64px) rotateY(0deg) scale(1);
+  z-index: 3;
+  opacity: 1;
+  filter: none;
+  cursor: default;
+}
+.hero-slide[data-pos="1"] {
+  transform: translate3d(calc(var(--card) * 0.58), 10px, -28px) rotateY(-52deg) scale(0.78);
+  z-index: 2;
+  opacity: 1;
+  filter: brightness(0.58);
+}
+.hero-slide[data-pos="-1"] {
+  transform: translate3d(calc(var(--card) * -0.58), 10px, -28px) rotateY(52deg) scale(0.78);
+  z-index: 2;
+  opacity: 1;
+  filter: brightness(0.58);
+}
+.hero-slide[data-pos="2"] {
+  transform: translate3d(0, 12px, -210px) scale(0.55);
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.hero-slide-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #151517;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+  backface-visibility: hidden;
+}
+.hero-slide[data-pos="0"] .hero-slide-face {
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
+}
+.hero-reflect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 16%;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+  opacity: 0.22;
+  transform: scaleY(-1);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 72%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 72%);
+  pointer-events: none;
+}
+.hero-reflect img {
+  width: 100%;
+  height: 160%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+.hero-pause {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 44px;
+  padding: 0 12px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.hero-pause:hover {
+  color: #f2f0eb;
+}
+.hero-pause:focus-visible {
+  outline: 2px solid #f2f0eb;
+  outline-offset: 3px;
+  border-radius: 999px;
 }
 
 @keyframes heroEnter {

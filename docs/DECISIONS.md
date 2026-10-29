@@ -3293,3 +3293,7 @@ Daniel asked for the four hero clips to read about 20% larger from 1280px up. Th
 ## topic: hero-fourth-clip-2026-10 — _2026-10-29_
 
 Daniel kept the first three hero clips and asked for the fourth to be the remaining unused creator file. Order is `post-1.mp4` (hero-clip-1), `post-2.mp4` (hero-clip-2), `post-4.mp4` (hero-clip-3), then `post-3.mp4` (hero-clip-4). `creator-success.mp4` had been the fourth clip and was replaced. `creator-example.mp4` is 360px wide and was left unused. `my-story.mp4` was not used. The new trim is 5.5 seconds from about 0.45s, scaled to 540×960, muted, same bitrate as the other three. The poster is the opening face frame.
+
+## topic: hero-carousel-2026-10 — _2026-10-29_
+
+Daniel asked for the hero clips to be a small 3D carousel instead of a flat row. `components/HeroCarousel.tsx` places the same four files in a CSS coverflow (`perspective`, `rotateY`, `translateZ`). The front card is full size and plays. The side cards are angled, dimmer, and poster-only. The back card is hidden. It steps every 3.6 seconds, pauses on hover, focus, and a Pause control, and moves with a swipe or the arrow keys. The region is `aria-roledescription="carousel"`. The first poster stays in the server HTML with `fetchpriority="high"`. Reduced motion skips the auto-step and the slide transition and leaves the fanned pose. The phone layout is still headline, then the carousel. This replaces the wider `xl` clip column from `hero-clip-scale-2026-10`.
