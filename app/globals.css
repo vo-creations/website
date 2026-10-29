@@ -39,8 +39,8 @@ body {
 }
 
 .paper-page ::selection {
-  background: #161513;
-  color: #f2f0eb;
+  background: #f2f0eb;
+  color: #0b0b0c;
 }
 
 /* Display type matches the banner lockup: Inter Tight, tight tracking, no faux stroke. */

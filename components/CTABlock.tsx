@@ -13,7 +13,7 @@ export default function CTABlock({
 }) {
   if (paper) {
     return (
-      <section className="relative overflow-hidden px-6 py-28 text-[#161513] md:py-36">
+      <section className="relative overflow-hidden bg-[#0B0B0C] px-6 py-28 text-[#F2F0EB] md:py-36">
         <img
           src="/brand/vo-chrome-sm.webp"
           alt=""
@@ -27,12 +27,12 @@ export default function CTABlock({
           <h2 className="max-w-[16ch] font-serif text-[clamp(48px,7vw,96px)] leading-[0.92] tracking-[-0.03em]">
             {heading}
           </h2>
-          <p className="mt-6 max-w-[36rem] text-[18px] leading-relaxed text-[#3c3a36]">{sub}</p>
+          <p className="mt-6 max-w-[36rem] text-[18px] leading-relaxed text-white/60">{sub}</p>
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex min-h-11 items-center rounded-full bg-[#161513] px-8 text-[15px] font-semibold text-[#F2F0EB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#161513]"
+            className="mt-8 inline-flex min-h-11 items-center rounded-full bg-[#F2F0EB] px-8 text-[15px] font-semibold text-[#0B0B0C] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2F0EB]"
           >
             {buttonText}
           </a>

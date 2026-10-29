@@ -35,14 +35,14 @@ export default function ResultCard({
   return (
     <div
       className={paper
-        ? "overflow-hidden border-b border-[#161513]/15 bg-transparent"
+        ? "overflow-hidden rounded-2xl border border-white/10 bg-[#111113]"
         : `bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked ? "" : "cursor-pointer"}`}
       onClick={locked ? undefined : () => setOpen(!open)}
     >
       <div className="p-7 pb-6">
         <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
           {locked ? (
-            <p className={`text-[17px] font-semibold tracking-tight ${paper ? "text-[#161513]" : "text-text"}`}>{company}</p>
+            <p className={`text-[17px] font-semibold tracking-tight ${paper ? "text-[#F2F0EB]" : "text-text"}`}>{company}</p>
           ) : logo ? (
             <LogoImage
               src={logo}
@@ -53,16 +53,16 @@ export default function ResultCard({
             <div className="text-[22px] font-extrabold tracking-tight">{company}</div>
           )}
           <div
-            className={`shrink-0 text-left sm:text-right ${locked ? "blur-md select-none" : ""}`}
+            className={`shrink-0 text-left sm:text-right ${locked ? (paper ? "blur-sm select-none" : "blur-md select-none") : ""}`}
             {...(locked ? { "data-nosnippet": true, "aria-hidden": true } : {})}
           >
-            <div className={`mb-1 text-[15px] font-semibold uppercase tracking-wide ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>
+            <div className={`mb-1 text-[15px] font-semibold uppercase tracking-wide ${paper ? "text-white/60" : "text-text-dim"}`}>
               Total views
             </div>
-            <div className={`leading-none tracking-tighter ${paper ? "font-serif text-5xl text-[#161513] md:text-[64px]" : "text-5xl font-black text-text md:text-[48px]"}`}>
+            <div className={`leading-none tracking-tighter ${paper ? "font-serif text-5xl text-[#F2F0EB] md:text-[64px]" : "text-5xl font-black text-text md:text-[48px]"}`}>
               {views}
             </div>
-            <div className={`mt-2 text-[15px] font-medium ${paper ? "text-[#5c594f]" : "text-text-dim"}`}>{viewsSub}</div>
+            <div className={`mt-2 text-[15px] font-medium ${paper ? "text-white/60" : "text-text-dim"}`}>{viewsSub}</div>
           </div>
         </div>
       </div>
