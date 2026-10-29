@@ -135,7 +135,6 @@ const showcaseVideos: {
 ];
 
 const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
-  { name: "Higgsfield", file: "higgsfield.png" },
   { name: "BlackBox AI", file: "blackbox.png" },
   { name: "Liftoff", file: "liftoff.png" },
   { name: "fomo.family", file: "fomo.png" },
@@ -306,7 +305,7 @@ export default function Home() {
           (ratio 1.00, applied uniformly to all 10, verified by script, not
           eyeballed) before the fixed-height container is applied. Skipping
           that step is what caused a real, previously-shipped bug where
-          Notta/Aonic read bigger than Higgsfield/Liftoff/Krea/Softr despite
+          Notta/Aonic read bigger than Liftoff/Krea/Softr despite
           every container already measuring the identical height — the
           logos with a much-taller-than-text icon had their actual
           READABLE TEXT scaled down disproportionately when the whole file
@@ -451,19 +450,6 @@ export default function Home() {
                   { value: "170M+", label: "Views" },
                   { value: "50", label: "Creators" },
                   { value: "3", label: "Months" },
-                ]}
-              />
-
-              <ResultCard
-                locked
-                company="Higgsfield"
-                logo="/logos/higgsfield.png"
-                views="70M+"
-                viewsSub="30 days / 45 creators"
-                miniStats={[
-                  { value: "70M+", label: "Views" },
-                  { value: "45", label: "Creators" },
-                  { value: "30", label: "Days" },
                 ]}
               />
 
