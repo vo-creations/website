@@ -156,7 +156,7 @@ function HeroFilm() {
 
   return (
     <section className="bg-[#0B0B0C] px-6 pb-16 pt-28 text-white md:px-14 md:pb-24 md:pt-32">
-      <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
         <div ref={copyRef} className="hero-enter min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[13px] font-medium tracking-[0.04em] text-[#e7e7e4] md:text-[15px]">
             <span className="h-px w-7 bg-[#c8c8c4]" aria-hidden="true" />

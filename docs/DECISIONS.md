@@ -3285,3 +3285,7 @@ Daniel rejected the full-bleed hero reel. A single vertical clip sat inside a bl
 The clips are short muted trims of files already in the repo: `post-1.mp4`, `post-2.mp4`, `post-4.mp4`, and `creator-success.mp4`, scaled down (540px, or 360px for the smaller source). `hero-reel.mp4`, `hero-reel.webm`, `hero-reel.jpg`, and `hero-reel.webp` were removed.
 
 "Numbers from recent campaigns" is four cells: 130M+, #3 in Finance, 174M+, and $968k ARR, in a 2×2 grid from the `md` breakpoint and stacked below that. The intro line and the Slack report stay. The other homepage rows (453M / 123M / 105M, 19.4M, 21.5M and 15.9M, Under $3 CPM) left this section only. Blog posts, `llms.txt`, and JSON-LD still carry those figures where they were already written. No schema was generated from the homepage row list.
+
+## topic: hero-clip-scale-2026-10 — _2026-10-29_
+
+Daniel asked for the four hero clips to read about 20% larger from 1280px up. The `xl` grid gives the clip column `1.14fr` and the headline `0.86fr`, which widens each clip about 21% without moving the row past the container. Below 1280 the earlier `1.05fr` / `0.95fr` split stays. Stagger, drift, and the phone row are unchanged.
