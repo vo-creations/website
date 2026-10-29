@@ -396,7 +396,7 @@ function StagePostingContent({ active }: { active: boolean }) {
           ))}
         </div>
         <div className="text-center text-sm font-extrabold text-text">
-          2,400+ videos posted a month
+          Posted on the accounts
         </div>
       </div>
       <StageLabel text="Posting content" />

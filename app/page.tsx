@@ -140,13 +140,14 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
 // creators, scripts, posting, creator bonuses, daily Slack reporting). Bonuses are
 // not a second invoice. We guarantee the client's target CPM. Videos under
 // 1,000 views do not count toward the spend. 90-day minimum, then month to
-// month. No refunds after launch. See docs/DECISIONS.md (topic: pricing-2026-10).
+// month. No refunds after launch. No monthly video count.
+// See docs/DECISIONS.md (topic: pricing-2026-10, topic: no-video-count-2026-10).
 const agencyFaqs = [
   { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
   { q: "Is paid media included?", a: "Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
   { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
   { q: "How long do results take?", a: "First posts go live in 10-14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
-  { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. A campaign produces 2,400+ videos a month. The format is organic talking-head UGC." },
+  { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. The format is organic talking-head UGC." },
   { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos." },
   { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign." },
 ];
@@ -424,7 +425,7 @@ export default function Home() {
               <p className="mb-3 font-display text-[32px] font-bold leading-none tracking-tight text-white">$50K+/mo</p>
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">What&apos;s included</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
-                Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. 2,400+ videos a month per campaign. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
+                Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
               </p>
             </div>
             <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-bg-card/50 p-6">

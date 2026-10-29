@@ -2920,9 +2920,7 @@ page (hero stats, FAQ) rather than left stale/inconsistent.
   just checked once) — 6/20 visible at ~730ms, 15/20 at ~1546ms,
   consistent with the new formula, correctly reset to 0 when the stage
   cycles away.
-- **Posting content**: "600-1,200 videos posted a month" → "2,400+
-  videos posted a month", matching the FAQ's "What is Tech UGC?"
-  answer (updated same day) which already cites 2,400+.
+- **Posting content**: the stage's monthly volume line was raised to match that day's FAQ. That volume claim was removed later. See topic: no-video-count-2026-10.
 - **Revenue & growth**: revenue $42K→$250K, users 28K→5M+ (format
   changed from `${n}K` to `${n}M+` to match the hero's own "5M+ users
   converted" stat, not just the number), awareness +64%→+150%.
@@ -3014,15 +3012,17 @@ landing on the homepage.
 `twitter` descriptions) still cited "180 talking-head videos across 4
 platforms" and "10-14 days" — stale figures left over from before this
 session's redesign work, out of sync with the current hero stats
-(1B+ views, 500+ trained creators) and the phone mockup's "2,400+"
-posting figure (see `hero-story-card-stats-update`). `<title>`'s
+(1B+ views, 500+ trained creators) and the phone mockup's posting
+stage (see `hero-story-card-stats-update`). The monthly volume line on
+that stage was removed later. See topic: no-video-count-2026-10. `<title>`'s
 `default` was already correct ("Vo Creations: UGC Agency for Startups
 & Consumer Apps") and untouched.
 
 - New description everywhere it appears: "Vo Creations builds and
   runs your in-house UGC program — 1B+ views generated, 500+ trained
-  creators, 2,400+ videos produced monthly across TikTok, Instagram,
-  YouTube, and Facebook."
+  creators, across TikTok, Instagram, YouTube, and Facebook." The
+  monthly volume clause that used to sit in this sentence was removed
+  later. See topic: no-video-count-2026-10.
 - Used the *exact same string* for `metadata.description`,
   `openGraph.description`, and `twitter.description` rather than
   three independently-worded variants — guarantees Google's search
@@ -3082,7 +3082,7 @@ An SEO/AEO audit (October 17, 2026) found zeros in the server HTML, FAQ answers 
 - **`/mentorship`.** The deleted page (`541b3de`, July 30, 2026) was a creator-enrollment funnel ("Get paid to create content for real brands"), light theme, Calendly, not the agency offer. Restoring it would republish a retired product. It now returns **410** from `app/mentorship/route.ts` instead of redirecting to the homepage. `/pre-call` stayed a homepage redirect: it was only the funnel's booking step.
 - **Case studies.** Public Notion pages were fetched and republished at `/case-studies/fable` (10M+ organic views, 3 weeks, 3 creators; published January 8, 2026) and `/case-studies/cluely` (20M+ views, 20,000+ conversions, 600+ videos, 2 months; published November 18, 2025). The Fable page also states the homepage card's later 25M+ / ~30 day figure without merging the two. Cluely's Notion summary says 5 creators and its approach section says 6. Both are on the page. Those two cards are unlocked and linked. The other cards stay blurred behind the existing overlay. `/campaigns/maxxd` was already a real page and is linked from the index.
 - **Embeds and images.** Instagram no longer mounts an iframe until click. Facebook matches that. TikTok was already click-to-load and now uses the local thumbnail. `next/image` device sizes stop at 1920. `team-thienvu-new.jpg` was 6000×4000 (~8.6 MB) and is now 1600×2400. `tiktok-jacobw-thumb.jpg` was 2160×3840 and is now 1080×1920. Team photos set an explicit `sizes`. Logo PNGs taller than the 30px marquee were downscaled only when the file got smaller (Notta 2090×392 to 512×96, and the same treatment for the other oversized wordmarks). `LogoImage` stayed a plain `<img>` and gained `loading="lazy"`.
-- **On-page.** The H1 keeps "make them remember." and adds "UGC agency for AI startups and consumer apps." A program section uses only figures already on the page ($30K/month, 90 days, 2,400+ videos, 1B+, 500+, 50+ campaigns, 10-14 days). Meta description, Open Graph, and Twitter descriptions are the same string, 110 characters.
+- **On-page.** The H1 keeps "make them remember." and adds "UGC agency for AI startups and consumer apps." A program section uses only figures already on the page ($30K/month, 90 days, 1B+, 500+, 50+ campaigns, 10-14 days). A monthly video count that was on the page then was removed later. See topic: no-video-count-2026-10. Meta description, Open Graph, and Twitter descriptions are the same string, 110 characters.
 - **Schema.** Daniel Yun is a second `founder` (Co-Founder, LinkedIn `danielyun27`, the URL the audit already observed). `sameAs` is only `x.com/VoCreationsUGC` and `linkedin.com/company/vocreations`. Personal Instagram, TikTok, and YouTube were removed. `@vocreationsugc` was not added: Instagram returns a page for unknown paths, and no fetch confirmed the account. A `Service` node offers UGC content and UGC ads from $30,000/month.
 - **Housekeeping.** `/llms.txt`, `/favicon.png` copied from `app/favicon.png` into `public/`, `og:url`, `twitter:site` `@VoCreationsUGC`, alt text on images that had none, sitemap lastmods for the new and restored URLs plus `/campaigns/maxxd` and `/refund-policy`, and `app/not-found.tsx`.
 
@@ -3207,7 +3207,7 @@ Daniel asked for testimonials, ownership, a weekly-report answer, and public pri
 - Homepage testimonials use three anonymized deck quotes. Person names were removed. No Review or quote schema was added. `llms.txt` says only that client testimonials are anonymized.
 - The client owns every video. That line is on the terms card, the FAQ, `llms.txt`, and `/terms`.
 - The weekly report FAQ lists views by platform and creator, CPM against the target, top videos and hooks, posted vs. planned, and what is doubled down on next week.
-- How it works uses the deck timeline: Day 0 scripts, about 48 hours to brief creators, 10-14 days to first videos, every week double down on the top videos. 2,400+ videos a month per campaign stays on the pricing card.
+- How it works uses the deck timeline: Day 0 scripts, about 48 hours to brief creators, 10-14 days to first videos, every week double down on the top videos. A monthly video count was still on the pricing card. That claim was removed later. See topic: no-video-count-2026-10.
 - Footer, Organization `sameAs`, and `llms.txt` list LinkedIn `https://www.linkedin.com/company/vocreations/`, X, and Instagram. Daniel confirmed the LinkedIn page.
 - `/privacy` and `/terms` are indexable, in the sitemap, and linked beside the refund policy. `/terms` has a code comment that counsel still needs to review the page. No hero video was added: the files in `public/videos` are personal creator clips, not a client sizzle.
 - Reporting is a daily automated Slack report plus a weekly roll-up. Public copy says "daily Slack reporting," not "weekly reporting."
@@ -3237,3 +3237,13 @@ Daniel approved the footer line, the shorter hero support line, grayscale founde
 - Proof, pricing, testimonial, fit, how-it-works, and team cards use `h-full` so cards in a row share a height and the same padding. How it works stays two columns until the `lg` breakpoint.
 - Blog posts dropped repeated fee boilerplate in favor of one link to `/#pricing`, dropped "illustrative" labels, and trimmed a few hype lines in the text-on-screen essay. Headings, proof figures, and original publish dates stayed. `dateModified` is 2026-10-29.
 - Mobile controls that were under 44px (nav menu button, booking buttons, blog category chips, table of contents links) were raised. Article body text under 15px in the byline, breadcrumbs, table, and end CTA was raised to 15px. Comparison tables scroll inside the article instead of widening the page.
+
+## topic: no-video-count-2026-10 — _2026-10-29_
+
+Daniel approved dropping the monthly video-count promise and shipping it the same day. No replacement number was added.
+
+- The pricing card no longer says a campaign produces a set number of videos. It still lists trained creators, scripts, posting, creator bonuses, daily Slack reporting, paid media outside the fee, and first posts in 10-14 days.
+- The "Where do the videos post?" FAQ, and the FAQPage JSON-LD built from that array, names the platforms and the talking-head format only.
+- `public/llms.txt` dropped the monthly volume bullet. The CPM guarantee and the rule that videos under 1,000 views do not count toward CPM stayed.
+- `components/HeroStoryCard.tsx` posting stage no longer states a volume. The label is "Posted on the accounts."
+- The CPM guarantee and "Videos under 1,000 views do not count toward your CPM" were left as they were.
