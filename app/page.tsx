@@ -220,7 +220,7 @@ export default function Home() {
             <div className="min-w-0">
               <h1>
                 <span className="mb-6 block max-w-[36rem] font-sans text-[clamp(15px,1.6vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
-                  Organic UGC for AI and tech apps.
+                  The in-house UGC agency backed by elite mentorship
                   <span className="sr-only"> </span>
                 </span>
                 <span className="block font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#fbfbf9]">
