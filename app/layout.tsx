@@ -123,12 +123,17 @@ const serviceJsonLd = {
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
+    // DECISION 2026-10: starting-at price uses UnitPriceSpecification minPrice only, no flat price — see docs/DECISIONS.md
     priceSpecification: {
-      "@type": "PriceSpecification",
+      "@type": "UnitPriceSpecification",
       minPrice: "50000",
-      price: "50000",
       priceCurrency: "USD",
       unitText: "MONTH",
+      referenceQuantity: {
+        "@type": "QuantitativeValue",
+        value: 1,
+        unitCode: "MON",
+      },
     },
     description:
       "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client's target CPM (cost per 1,000 organic views). Videos under 1,000 views do not count toward the spend. 90-day minimum, then month to month. No refunds after launch.",

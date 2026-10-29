@@ -3175,3 +3175,9 @@ Daniel confirmed the text-on-screen essay's "$10K budget" and "~$200K ad spend" 
 - The agency-comparison essay's opening no longer repeats the direct answer, and the second-half paragraphs that restated the same operating difference were condensed into the "What still lands on your team?" section. Read time on that post is 5 minutes.
 - A February 2026 X card on the blog index quoted $10K, $30K, and $40K months and named a client. It was removed. `public/voc-sideshift-deck.html` and `public/voc-sideshift-preview.html` offered a $10K/month package and named clients; they were not linked from the app and were deleted. The homepage package-floor comment no longer lists the retired $10k/$20k/$30k tiers.
 - Older decision entries, the pricing index line, and `SEO-WORK-DIARY.md` still record that the floor used to be $30K/month. That is the history of the price change, not a current offer. Daniel's "$200K+ earned" bio line is creator earnings, not a package price. The archived mentorship backup and the refund-policy trial are a different product.
+
+## topic: pricing-2026-10 — _2026-10-29_
+
+Daniel approved marking the Service offer as a starting price. This supersedes the 2026-10-28 note that left both `price` and `minPrice` at `50000`.
+
+- `app/layout.tsx` is the only Offer on the site. Its `priceSpecification` is a `UnitPriceSpecification` with `minPrice` `50000`, `priceCurrency` `USD`, `unitText` `MONTH`, and `referenceQuantity` of 1 `MON`. The flat `price` field is gone. The offer description text is unchanged. Paid-media wording was left as it was.
