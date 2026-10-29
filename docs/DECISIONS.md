@@ -3271,3 +3271,29 @@ Daniel approved a hero reel from clips already in the repo, and a blurred Slack 
 - `public/videos/hero-reel.mp4` and `.webm` are 10 cuts, about 3.5 seconds each, 34.7 seconds, from `post-1`, `post-3`, `post-4`, `creator-example`, `creator-success`, and `my-story`. Each vertical clip is centered on a blurred frame so the picture is 16:9. Full color, no audio. MP4 plus WebM stay under 6MB together. Posters are `hero-reel.jpg` and `.webp`.
 - The reel is one framed player directly under the Trusted By strip and above "Numbers from recent campaigns." It does not autoplay. The poster is a lazy image. Click mounts the video with `playsInline`, `preload="none"`, and controls.
 - `public/proof/slack-report.png` and `.webp` are a generated Slack-style card. The figures are random characters run through a blur. No client names, creator names, or real numbers. The proof section captions it "Every client gets this report in Slack, daily."
+
+## topic: homepage-motion-2026-10 — _2026-10-29_
+
+The closer monogram was absolutely positioned off the right edge of a section with `overflow-hidden`, so the chrome VO was clipped and the headline sat in an empty frame. It now sits in the same `max-w-[1280px]` container as the rest of the page: text and a fully visible mark in two columns from the `lg` breakpoint, stacked and centered under that. The section no longer uses `overflow-hidden`. Scroll rotates the mark about 14 degrees across the section. Copy, type scale, and the mark file are unchanged.
+
+Homepage motion is CSS plus one shared IntersectionObserver in `components/motion.tsx`. An inline script adds `html.js-motion` before paint only when `prefers-reduced-motion` is not set. Without that class, reveals, masks, the photo scale, and the Slack budget wipe stay at their final state, so the page is readable with no JavaScript. Reduced motion also skips count-ups (`useCountUp` and `CountText` leave the SSR string), hero parallax, the monogram rotate, and both marquees. Stats and campaign figures still server-render their final text. Marquee tracks are two equal halves, each with the same trailing gap, so `translateX(-50%)` loops cleanly. The creator row still pauses on hover.
+
+## topic: homepage-hero-clips-2026-10 — _2026-10-29_
+
+Daniel rejected the full-bleed hero reel. A single vertical clip sat inside a blurred 16:9 frame and read as grainy. The hero is now a clean `#0B0B0C` field. The headline stays on the left from the `lg` breakpoint. Four muted 9:16 clips sit to the right, rounded, gapped, and staggered. They drift a few pixels and shift slightly with scroll. On smaller screens the headline comes first, then three of the clips in a row. The fourth clip is desktop-only so the phone row stays readable. Text is not laid over the video. The first poster (`hero-clip-1.jpg`) is the LCP image. The other three videos mount after idle. Reduced motion keeps the posters and does not autoplay. The "Video controls" button is gone. Hero copy and the two links are unchanged.
+
+The clips are short muted trims of files already in the repo: `post-1.mp4`, `post-2.mp4`, `post-4.mp4`, and `creator-success.mp4`, scaled down (540px, or 360px for the smaller source). `hero-reel.mp4`, `hero-reel.webm`, `hero-reel.jpg`, and `hero-reel.webp` were removed.
+
+"Numbers from recent campaigns" is four cells: 130M+, #3 in Finance, 174M+, and $968k ARR, in a 2×2 grid from the `md` breakpoint and stacked below that. The intro line and the Slack report stay. The other homepage rows (453M / 123M / 105M, 19.4M, 21.5M and 15.9M, Under $3 CPM) left this section only. Blog posts, `llms.txt`, and JSON-LD still carry those figures where they were already written. No schema was generated from the homepage row list.
+
+## topic: hero-clip-scale-2026-10 — _2026-10-29_
+
+Daniel asked for the four hero clips to read about 20% larger from 1280px up. The `xl` grid gives the clip column `1.14fr` and the headline `0.86fr`, which widens each clip about 21% without moving the row past the container. Below 1280 the earlier `1.05fr` / `0.95fr` split stays. Stagger, drift, and the phone row are unchanged.
+
+## topic: hero-fourth-clip-2026-10 — _2026-10-29_
+
+Daniel kept the first three hero clips and asked for the fourth to be the remaining unused creator file. Order is `post-1.mp4` (hero-clip-1), `post-2.mp4` (hero-clip-2), `post-4.mp4` (hero-clip-3), then `post-3.mp4` (hero-clip-4). `creator-success.mp4` had been the fourth clip and was replaced. `creator-example.mp4` is 360px wide and was left unused. `my-story.mp4` was not used. The new trim is 5.5 seconds from about 0.45s, scaled to 540×960, muted, same bitrate as the other three. The poster is the opening face frame.
+
+## topic: hero-carousel-2026-10 — _2026-10-29_
+
+Daniel asked for the hero clips to be a small 3D carousel instead of a flat row. `components/HeroCarousel.tsx` places the same four files in a CSS coverflow (`perspective`, `rotateY`, `translateZ`). The front card is full size and plays. The side cards are angled, dimmer, and poster-only. The back card is hidden. It steps every 3.6 seconds, pauses on hover, focus, and a Pause control, and moves with a swipe or the arrow keys. The region is `aria-roledescription="carousel"`. The first poster stays in the server HTML with `fetchpriority="high"`. Reduced motion skips the auto-step and the slide transition and leaves the fanned pose. The phone layout is still headline, then the carousel. This replaces the wider `xl` clip column from `hero-clip-scale-2026-10`.

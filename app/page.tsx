@@ -11,7 +11,9 @@ import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { useCountUp } from "@/components/useCountUp";
+import { CountText, MaskText, Reveal, useOnceVisible } from "@/components/motion";
 import Image from "next/image";
+import HeroCarousel from "@/components/HeroCarousel";
 
 // DECISION: both auto-scroll marquees (Trusted By, Content that goes viral)
 // mask their edges so items fade into darkness instead of hard-cutting at the
@@ -76,92 +78,74 @@ const FOCUS_LIGHT = "focus-visible:outline focus-visible:outline-2 focus-visible
 function PaperHeading({ kicker, children }: { kicker: string; children: React.ReactNode }) {
   return (
     <div className="mb-12 grid gap-4 md:mb-16 md:grid-cols-[160px_minmax(0,1fr)] md:items-end md:gap-10">
-      <p className="text-[13px] font-medium text-white/60">{kicker}</p>
+      <Reveal>
+        <p className="text-[13px] font-medium text-white/60">{kicker}</p>
+      </Reveal>
       <h2 className="font-serif text-[clamp(40px,6vw,84px)] leading-[0.95] tracking-[-0.03em] text-[#F2F0EB]">
-        {children}
+        {typeof children === "string" ? <MaskText text={children} /> : children}
       </h2>
     </div>
   );
 }
 
-// DECISION 2026-10: the reel is the hero. Poster is the LCP image. The file
-// starts after idle, and stays off when the visitor prefers reduced motion.
-// See docs/DECISIONS.md (topic: homepage-editorial-2026-10).
+// DECISION 2026-10: four native 9:16 clips in a CSS coverflow.
+// The first poster is the LCP image. Only the front clip mounts a video.
+// See docs/DECISIONS.md (topic: hero-carousel-2026-10).
+// Sources, in order: post-1, post-2, post-4, post-3.
+// See docs/DECISIONS.md (topic: hero-fourth-clip-2026-10).
+const heroClips = [
+  { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
+  { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg" },
+  { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
+  { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg" },
+];
+
 function HeroFilm() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [motionOK, setMotionOK] = useState(false);
-  const [controls, setControls] = useState(false);
+  const copyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
-    let timer = 0;
-    let idle = 0;
-    const start = () => setMotionOK(true);
-    if (typeof window.requestIdleCallback === "function") {
-      idle = window.requestIdleCallback(start, { timeout: 1200 });
-    } else {
-      timer = window.setTimeout(start, 700);
-    }
+    const copy = copyRef.current;
+    if (!copy) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      if (y < 8) {
+        copy.style.opacity = "";
+        copy.style.transform = "";
+        return;
+      }
+      const view = window.innerHeight || 1;
+      const p = Math.min(1, y / (view * 0.9));
+      copy.style.opacity = String(1 - p * 0.92);
+      copy.style.transform = `translate3d(0, ${p * -16}px, 0)`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      if (idle) window.cancelIdleCallback(idle);
-      if (timer) window.clearTimeout(timer);
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
-  useEffect(() => {
-    if (!motionOK) return;
-    videoRef.current?.play().catch(() => {});
-  }, [motionOK]);
-
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-[#060606] text-white">
-      <img
-        src="/videos/hero-reel.jpg"
-        alt=""
-        width={1280}
-        height={720}
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      {motionOK && (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          controls={controls}
-          aria-hidden={controls ? undefined : true}
-        >
-          <source src="/videos/hero-reel.webm" type="video/webm" />
-          <source src="/videos/hero-reel.mp4" type="video/mp4" />
-        </video>
-      )}
-      <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.22)_22%,rgba(0,0,0,0.08)_58%,rgba(11,11,12,0.35)_82%,#0B0B0C_100%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_34%,rgba(0,0,0,0.12)_58%,rgba(0,0,0,0.28)_100%)] md:block"
-        aria-hidden="true"
-      />
-      <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-6 pb-16 pt-32 md:px-14 md:pb-24">
-        <div className="max-w-[1280px]">
+    <section className="bg-[#0B0B0C] px-6 pb-16 pt-28 text-white md:px-14 md:pb-24 md:pt-32">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-6">
+        <div ref={copyRef} className="hero-enter min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[13px] font-medium tracking-[0.04em] text-[#e7e7e4] md:text-[15px]">
             <span className="h-px w-7 bg-[#c8c8c4]" aria-hidden="true" />
             The in-house UGC agency backed by elite mentorship
           </p>
           <h1 className="max-w-[12ch] text-white">
             <span className="sr-only">Organic UGC for AI and tech apps. </span>
-            <span className="block font-display text-[clamp(64px,11vw,156px)] font-medium leading-[0.86] tracking-[-0.055em]">
+            <span className="block font-display text-[clamp(56px,6.4vw,104px)] font-medium leading-[0.86] tracking-[-0.055em]">
               make them
             </span>
-            <span className="mt-1 block font-serif text-[clamp(68px,11vw,156px)] italic leading-[0.84] tracking-[-0.03em] text-[#f4f1ea] [text-shadow:0_10px_40px_rgba(0,0,0,0.45)]">
-              remember.
+            <span className="mt-1 block font-serif text-[clamp(60px,6.6vw,108px)] italic leading-[0.84] tracking-[-0.03em] text-[#f4f1ea]">
+              <MaskText text="remember." />
             </span>
           </h1>
           <p className="mt-7 max-w-[22rem] text-[17px] font-medium leading-[1.45] text-[#f3f3f0] sm:max-w-none md:text-[19px]">
@@ -183,17 +167,9 @@ function HeroFilm() {
             >
               See results
             </a>
-            {motionOK && (
-              <button
-                type="button"
-                onClick={() => setControls((on) => !on)}
-                className={`inline-flex min-h-11 items-center rounded-full border border-white/35 bg-black/40 px-4 text-[15px] text-white backdrop-blur ${FOCUS_LIGHT}`}
-              >
-                {controls ? "Hide controls" : "Video controls"}
-              </button>
-            )}
           </div>
         </div>
+        <HeroCarousel clips={heroClips} />
       </div>
     </section>
   );
@@ -319,6 +295,55 @@ const team = [
   },
 ];
 
+function FounderPhoto({ children }: { children: React.ReactNode }) {
+  const { ref, on } = useOnceVisible<HTMLDivElement>();
+  return (
+    <div ref={ref} className={`photo-in relative aspect-[4/5] overflow-hidden bg-[#151517] ${on ? "is-in" : ""}`}>
+      {children}
+    </div>
+  );
+}
+
+function ProofRow({ figure, detail, index }: { figure: string; detail: string; index: number }) {
+  const { ref, on } = useOnceVisible<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      className={`reveal border-t border-white/10 pt-6 ${on ? "is-in" : ""}`}
+      style={{ "--reveal-delay": `${index * 70}ms` } as CSSProperties}
+    >
+      <div className="font-serif text-[clamp(48px,5vw,80px)] leading-[0.92] tracking-[-0.03em] text-[#F2F0EB] tabular-nums">
+        <CountText text={figure} trigger={on} />
+      </div>
+      <p className="mt-4 max-w-[28rem] text-[17px] leading-snug text-white/60">{detail}</p>
+    </div>
+  );
+}
+
+function SlackReport() {
+  const { ref, on } = useOnceVisible<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      className={`reveal relative overflow-hidden rounded-md border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.5)] ${on ? "is-in" : ""}`}
+    >
+      <picture>
+        <source srcSet="/proof/slack-report.webp" type="image/webp" />
+        <img
+          src="/proof/slack-report.png"
+          alt="Example of the daily Slack campaign report, with numbers blurred."
+          width={1800}
+          height={856}
+          loading="lazy"
+          decoding="async"
+          className="h-auto w-full"
+        />
+      </picture>
+      <span aria-hidden="true" className={`budget-wipe ${on ? "is-in" : ""}`} />
+    </div>
+  );
+}
+
 export default function Home() {
   const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
   const [openFaq, setOpenFaq] = useState<string | null>(agencyFaqs[0].q);
@@ -339,14 +364,14 @@ export default function Home() {
           className="mx-auto grid max-w-[1280px] grid-cols-2 gap-y-10 md:grid-cols-4"
         >
           {heroStats.map((stat, index) => (
-            <div key={stat.label} className={index ? "border-white/10 md:border-l md:pl-8" : ""}>
+            <Reveal key={stat.label} delay={index * 70} className={index ? "border-white/10 md:border-l md:pl-8" : ""}>
               <div className="font-serif text-[clamp(40px,5vw,72px)] font-normal leading-none tracking-[-0.03em] text-[#F2F0EB] tabular-nums">
                 <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
               </div>
               <div className="mt-3 text-[15px] text-white/60">
                 {stat.label}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -355,6 +380,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Testimonials">What teams say</PaperHeading>
           <div className="grid items-stretch gap-10 md:grid-cols-3 md:gap-12">
+            <Reveal delay={0} className="h-full">
             <figure className="flex h-full flex-col border-t border-white/10 pt-6">
               <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 <p>&ldquo;&hellip;helped us go from 1&rarr;100 with UGC and is one of the best agency owners in the space.&rdquo;</p>
@@ -362,18 +388,23 @@ export default function Home() {
               </blockquote>
               <figcaption className="mt-6 text-[15px] text-white/60">Team at an AI creative app</figcaption>
             </figure>
+            </Reveal>
+            <Reveal delay={80} className="h-full">
             <figure className="flex h-full flex-col border-t border-white/10 pt-6">
               <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 &ldquo;Great engagement btw boys. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;
               </blockquote>
               <figcaption className="mt-6 text-[15px] text-white/60">Team at a top-3 finance app</figcaption>
             </figure>
+            </Reveal>
+            <Reveal delay={160} className="h-full">
             <figure className="flex h-full flex-col border-t border-white/10 pt-6">
               <blockquote className="flex-1 font-serif text-[clamp(22px,2vw,28px)] leading-[1.25] text-[#F2F0EB]">
                 &ldquo;&hellip;has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.&rdquo;
               </blockquote>
               <figcaption className="mt-6 text-[15px] text-white/60">Team at a consumer app</figcaption>
             </figure>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -418,8 +449,10 @@ export default function Home() {
             Brands we&apos;ve worked with
           </h2>
           <div className="overflow-hidden" style={edgeFadeStyle}>
-            {/* DECISION 2026-10: monochrome on the dark field is white, this track only. Creator posters stay in color. */}
-            <div className="flex w-max items-center gap-x-12 animate-scroll [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
+            {/* DECISION 2026-10: monochrome on the dark field is white, this track only. Creator posters stay in color.
+                Each half includes the same trailing gap so translateX(-50%) loops without a jump. */}
+            <div className="flex w-max items-center animate-scroll motion-reduce:animate-none [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
+              <div className="flex items-center gap-x-12 pr-12">
               {trustedBrands.map((brand) => (
                 <LogoImage
                   key={brand.name}
@@ -428,7 +461,8 @@ export default function Home() {
                   boxClassName="h-[32px] w-auto"
                 />
               ))}
-              <div className="flex items-center gap-x-12" aria-hidden="true">
+              </div>
+              <div className="flex items-center gap-x-12 pr-12" aria-hidden="true">
                 {trustedBrands.map((brand) => (
                   <LogoImage
                     key={`${brand.name}-loop`}
@@ -446,46 +480,28 @@ export default function Home() {
       <section id="proof" className="bg-[#111113] px-6 py-24 md:px-14 md:py-32">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Proof">Numbers from recent campaigns</PaperHeading>
-          <p className="mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
-            Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
-          </p>
-          <div className="border-t border-white/10">
+          <Reveal>
+            <p className="mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
+              Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
             {[
               { figure: "130M+", detail: "An AI app, 3 months" },
               { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
               { figure: "174M+", detail: "A consumer app at a $0.82 CPM" },
               { figure: "$968k ARR", detail: "Driven for one app" },
-              { figure: "453M\n123M\n105M", detail: "Three AI apps, 90 days each" },
-              { figure: "19.4M", detail: "An AI app, 2 weeks" },
-              { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
-              { figure: "Under $3 CPM", detail: "Typical for this distribution" },
-            ].map((item) => (
-              <div key={item.detail} className="grid items-end gap-4 border-b border-white/10 py-8 md:grid-cols-2 md:gap-16 md:py-10">
-                <div className="whitespace-pre-line font-serif text-[clamp(52px,7vw,104px)] leading-[0.9] tracking-[-0.03em] text-[#F2F0EB]">
-                  {item.figure}
-                </div>
-                <p className="max-w-md pb-2 text-[17px] leading-snug text-white/60">{item.detail}</p>
-              </div>
+            ].map((item, index) => (
+              <ProofRow key={item.detail} figure={item.figure} detail={item.detail} index={index} />
             ))}
           </div>
           <figure className="mt-20 grid items-end gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.1fr)] md:gap-16">
-            <figcaption className="text-[17px] leading-relaxed text-white/60">
-              Every client gets this report in Slack, daily.
-            </figcaption>
-            <div className="overflow-hidden rounded-md border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.5)]">
-              <picture>
-                <source srcSet="/proof/slack-report.webp" type="image/webp" />
-                <img
-                  src="/proof/slack-report.png"
-                  alt="Example of the daily Slack campaign report, with numbers blurred."
-                  width={1800}
-                  height={856}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-auto w-full"
-                />
-              </picture>
-            </div>
+            <Reveal>
+              <figcaption className="text-[17px] leading-relaxed text-white/60">
+                Every client gets this report in Slack, daily.
+              </figcaption>
+            </Reveal>
+            <SlackReport />
           </figure>
         </div>
       </section>
@@ -494,12 +510,15 @@ export default function Home() {
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="The program">Organic UGC for AI startups and tech consumer apps.</PaperHeading>
           <div className="grid items-stretch gap-12 border-t border-white/10 pt-10 md:grid-cols-3 md:gap-16">
+            <Reveal delay={0} className="h-full">
             <div className="flex h-full flex-col">
               <h3 className="mb-4 text-[15px] font-medium text-white/60">Creators</h3>
               <p className="text-[16px] leading-relaxed text-white/60">
                 1000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1%. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.
               </p>
             </div>
+            </Reveal>
+            <Reveal delay={80} className="h-full">
             <div className="flex h-full flex-col">
               <p className="mb-4 font-serif text-[64px] leading-none tracking-[-0.04em] text-[#F2F0EB]">$50K+/mo</p>
               <h3 className="mb-4 text-[15px] font-medium text-white/60">What&apos;s included</h3>
@@ -507,12 +526,15 @@ export default function Home() {
                 Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
               </p>
             </div>
+            </Reveal>
+            <Reveal delay={160} className="h-full">
             <div className="flex h-full flex-col">
               <h3 className="mb-4 text-[15px] font-medium text-white/60">Terms</h3>
               <p className="text-[16px] leading-relaxed text-white/60">
                 90-day minimum, then month to month. No refunds after launch. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
               </p>
             </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -527,13 +549,16 @@ export default function Home() {
       <section className="bg-[#0B0B0C] py-24 md:py-32">
         <div className="mx-auto max-w-[1280px] px-6 md:px-14">
           <PaperHeading kicker="Our work">Content that converts and goes viral.</PaperHeading>
+          <Reveal>
           <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
             Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
           </p>
+          </Reveal>
         </div>
 
         <div className="overflow-hidden" style={edgeFadeStyle}>
-          <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
+          <div className="flex w-max items-center animate-scroll-slow hover:[animation-play-state:paused] motion-reduce:animate-none">
+            <div className="flex items-center gap-4 pr-4">
             {showcaseVideos
               .filter((v) => v.type !== "facebook" && !(v.type === "instagram" && !v.poster))
               .map((v) => (
@@ -545,7 +570,8 @@ export default function Home() {
                   {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
                 </div>
               ))}
-            <div className="flex items-center gap-4" aria-hidden="true">
+            </div>
+            <div className="flex items-center gap-4 pr-4" aria-hidden="true">
               {showcaseVideos
                 .filter((v) => v.type !== "facebook" && !(v.type === "instagram" && !v.poster))
                 .map((v) => (
@@ -576,15 +602,16 @@ export default function Home() {
                 { label: "AI app · 90 days", views: "00.0M", viewsSub: "00 days" },
                 { label: "AI app · 2 weeks", views: "00.0M", viewsSub: "00 days" },
                 { label: "Consumer app · 30 days", views: "000M+", viewsSub: "00 days" },
-              ].map((card) => (
+              ].map((card, index) => (
+                <Reveal key={card.label} delay={Math.min(index, 4) * 60}>
                 <ResultCard
-                  key={card.label}
                   locked
                   paper
                   company={card.label}
                   views={card.views}
                   viewsSub={card.viewsSub}
                 />
+                </Reveal>
               ))}
             </div>
 
@@ -602,7 +629,7 @@ export default function Home() {
                 key={t.name}
                 className={`flex h-full flex-col ${index === 1 ? "md:mt-24" : ""}`}
               >
-                <div className="relative aspect-[4/5] bg-[#151517]">
+                <FounderPhoto>
                   {"webp" in t && t.webp ? (
                     <picture>
                       <source srcSet={t.webp} type="image/webp" />
@@ -625,7 +652,7 @@ export default function Home() {
                       style={{ objectPosition: t.imagePosition }}
                     />
                   )}
-                </div>
+                </FounderPhoto>
                 <div className="flex flex-1 flex-col border-t border-white/10 pt-5">
                   <div className="flex items-center gap-1.5">
                     <span className="font-serif text-[32px] leading-none text-[#F2F0EB]">{t.name}</span>
@@ -649,19 +676,25 @@ export default function Home() {
       <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32">
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="How it works">From signed to posting in 10-14 days</PaperHeading>
+          <Reveal>
           <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
             Creators finish a two-week paid trial. We keep the top 1%. Then the week looks like this.
           </p>
+          </Reveal>
 
           <div className="grid grid-cols-1 items-stretch gap-10 border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.num} className="flex h-full flex-col pt-6">
+            {steps.map((s, index) => (
+              <Reveal key={s.num} delay={index * 70} className="h-full">
+              <div className="flex h-full flex-col pt-6">
                 <div className="mb-4 text-[15px] text-white/60">
                   {s.num}
                 </div>
-                <h3 className="mb-3 font-serif text-[32px] leading-none tracking-[-0.02em]">{s.title}</h3>
+                <h3 className="mb-3 font-serif text-[32px] leading-none tracking-[-0.02em]">
+                  <MaskText text={s.title} />
+                </h3>
                 <p className="mt-auto text-[16px] leading-relaxed text-white/60">{s.desc}</p>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -669,9 +702,10 @@ export default function Home() {
 
       <section className="px-6 py-16 md:px-14" id="fit">
         <div className="mx-auto grid max-w-[1280px] items-stretch gap-6 md:grid-cols-2 md:gap-10">
+          <Reveal className="h-full">
           <div className="flex h-full flex-col border border-white/10 p-8">
             <h2 className="mb-5 font-serif text-[clamp(32px,4vw,44px)] leading-none tracking-[-0.02em]">
-              Good fit
+              <MaskText text="Good fit" />
             </h2>
             <ul className="space-y-3 text-[16px] leading-relaxed text-white/60">
               {[
@@ -688,9 +722,11 @@ export default function Home() {
               ))}
             </ul>
           </div>
+          </Reveal>
+          <Reveal delay={90} className="h-full">
           <div className="flex h-full flex-col border border-white/10 bg-[#151517] p-8">
             <h2 className="mb-5 font-serif text-[clamp(32px,4vw,44px)] leading-none tracking-[-0.02em] text-[#F2F0EB]">
-              Not a fit
+              <MaskText text="Not a fit" />
             </h2>
             <ul className="space-y-3 text-[16px] leading-relaxed text-white/60">
               {["Budgets under $50K a month.", "One-off videos.", "Paid-ads-only management."].map((item) => (
@@ -703,6 +739,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -714,11 +751,12 @@ export default function Home() {
         <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="FAQ">Frequently Asked Questions</PaperHeading>
           <div className="border-t border-white/10 md:ml-[200px]">
-            {agencyFaqs.map((faq) => {
+            {agencyFaqs.map((faq, index) => {
               const panelId = `faq-${faq.q.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
               const open = openFaq === faq.q;
               return (
-                <div key={faq.q} className="border-b border-white/10 py-5">
+                <Reveal key={faq.q} delay={Math.min(index, 5) * 40}>
+                <div className="border-b border-white/10 py-5">
                   <button
                     type="button"
                     className={`flex min-h-11 w-full items-center justify-between gap-4 text-left ${FOCUS}`}
@@ -738,6 +776,7 @@ export default function Home() {
                     {faq.a}
                   </div>
                 </div>
+                </Reveal>
               );
             })}
           </div>
