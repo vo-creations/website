@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Page not found",
   robots: { index: false, follow: false },
   alternates: { canonical: null },
+  openGraph: {
+    title: "Page not found",
+    url: "https://vocreations.com/404",
+  },
 };
 
 export default function NotFound() {

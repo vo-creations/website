@@ -40,22 +40,20 @@ export default function BlogIndexList({ posts }: { posts: BlogPostMeta[] }) {
             href={`/blog/${post.slug}`}
             className="block overflow-hidden rounded-2xl border border-white/10 bg-bg-card/50 hover:border-white/20"
           >
-            {post.image ? (
-              <Image
-                src={post.image.src}
-                alt={post.image.alt}
-                width={post.image.width}
-                height={post.image.height}
-                sizes="(max-width: 768px) 100vw, 720px"
-                className="h-auto w-full"
-              />
-            ) : null}
+            <Image
+              src={`/og/blog/${post.slug}.png`}
+              alt={post.title}
+              width={1200}
+              height={630}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
             <div className="px-6 py-6">
-              <p className="mb-3 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
-                {post.category} · {formatBlogDate(post.dateModified)} · {post.readingMinutes} min read
+              <p className="mb-3 text-[15px] font-semibold text-[#d4d4d0]">
+                {post.category} · {formatBlogDate(post.datePublished)} · {post.readingMinutes} min read
               </p>
               <h2 className="mb-2 text-2xl font-extrabold tracking-tight text-text">{post.title}</h2>
-              <p className="text-sm leading-relaxed text-text-secondary">{post.directAnswer}</p>
+              <p className="text-base leading-relaxed text-[#d4d4d0]">{post.directAnswer}</p>
             </div>
           </Link>
         ))}

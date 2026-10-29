@@ -33,7 +33,7 @@ const config: Config = {
         text: {
           DEFAULT: '#f5f5f3',
           secondary: '#efefed',
-          dim: '#8a8a86',
+          dim: '#c4c4c0',
           hero: '#fbfbf9',
         },
         border: {

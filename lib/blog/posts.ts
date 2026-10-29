@@ -74,7 +74,7 @@ export const posts: BlogPostMeta[] = [
       "Retainer, per-video, and CPM are different purchases. A Vo Creations program starts at $50K+ a month, all-inclusive, and guarantees the client's target CPM.",
     category: "Pricing",
     directAnswer:
-      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee the client's target CPM. Videos under 1,000 views do not count toward the spend. 90 days, then month to month. No refunds after launch.",
+      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. 90 days, then month to month. No refunds after launch.",
     datePublished: "2026-10-28",
     dateModified: "2026-10-28",
     authorId: "daniel",
@@ -159,7 +159,12 @@ export function postUrl(slug: string): string {
 
 export function blogPostMetadata(slug: string): Metadata {
   const post = getPost(slug);
-  const image = post.image ?? DEFAULT_OG_IMAGE;
+  const image = {
+    src: `/og/blog/${post.slug}.png`,
+    width: 1200,
+    height: 630,
+    alt: post.title,
+  };
   return {
     title: post.title,
     description: post.description,
@@ -171,14 +176,7 @@ export function blogPostMetadata(slug: string): Metadata {
       type: "article",
       publishedTime: `${post.datePublished}T00:00:00Z`,
       modifiedTime: `${post.dateModified}T00:00:00Z`,
-      images: [
-        {
-          url: image.src,
-          width: image.width,
-          height: image.height,
-          alt: image.alt,
-        },
-      ],
+      images: [{ url: image.src, width: image.width, height: image.height, alt: image.alt }],
     },
     twitter: {
       card: "summary_large_image",

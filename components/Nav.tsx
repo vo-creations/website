@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/#results", label: "Case Studies" },
   { href: "/#team", label: "Our Team" },
+  { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
 ];
 
@@ -25,7 +26,7 @@ export default function Nav() {
 
   return (
     <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] ${NAV_CONTAINER}`}>
-      <div className={`bg-black/55 backdrop-blur-[20px] border border-white/10 rounded-full ${NAV_INNER_PADDING} py-3 flex justify-between items-center`}>
+      <div className={`flex items-center justify-between rounded-full border border-white/15 bg-black/85 py-3 backdrop-blur-[20px] ${NAV_INNER_PADDING}`}>
         <Link
           href="/"
           onClick={() => setOpen(false)}
@@ -42,7 +43,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-colors ${
+              className={`rounded-full px-3.5 py-1.5 text-[15px] font-medium transition-colors ${
                 pathname === link.href
                   ? "text-text bg-accent/10"
                   : "text-text-secondary hover:text-text hover:bg-bg-elevated"

@@ -5,6 +5,7 @@ const footerLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/#team", label: "Our Team" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/refund-policy", label: "Refund policy" },
 ];
 
 export default function Footer() {
@@ -21,10 +22,10 @@ export default function Footer() {
                 Vo Creations
               </span>
             </div>
-            <p className="mb-6 max-w-[320px] text-sm leading-relaxed text-text-secondary">
+            <p className="mb-6 max-w-[320px] text-base leading-relaxed text-[#d4d4d0]">
               Your world-class in-house UGC program, without the overhead.
             </p>
-            <div className="flex items-center gap-4 text-[13px] font-semibold">
+            <div className="flex items-center gap-4 text-[15px] font-semibold">
               <a href="https://x.com/VoCreationsUGC" className="text-text-secondary hover:text-text" target="_blank" rel="noopener noreferrer">
                 X
               </a>
@@ -44,7 +45,7 @@ export default function Footer() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-sm text-text-secondary hover:text-text transition-colors"
+                  className="text-base text-[#d4d4d0] transition-colors hover:text-text"
                 >
                   {l.label}
                 </Link>
@@ -63,7 +64,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-transform hover:-translate-y-px"
             >
-              make them remember.
+              Book a call
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />

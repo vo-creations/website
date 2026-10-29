@@ -21,13 +21,13 @@ const SITE_DESCRIPTION =
 
 export const metadata: Metadata = {
   title: {
-    default: "Vo Creations: UGC Agency for Startups & Consumer Apps",
+    default: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
     template: "%s | Vo Creations",
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL("https://vocreations.com"),
   alternates: {
-    canonical: "/",
+    canonical: "https://vocreations.com/",
   },
   icons: {
     icon: [
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Vo Creations: Make Them Remember.",
+    title: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
     description: SITE_DESCRIPTION,
-    url: "https://vocreations.com",
+    url: "https://vocreations.com/",
     siteName: "Vo Creations",
     type: "website",
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@VoCreationsUGC",
-    title: "Vo Creations: Make Them Remember.",
+    title: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
     description: SITE_DESCRIPTION,
     images: ["/og-image.png"],
   },
@@ -63,8 +63,14 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://vocreations.com/#organization",
   name: "Vo Creations",
-  url: "https://vocreations.com",
+  url: "https://vocreations.com/",
+  foundingDate: "2025",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York",
+  },
   logo: "https://vocreations.com/vocreations-logo.webp",
   description:
     "UGC agency that trains its own creators in-house. Specializing in talking-head storytelling for AI startups and consumer apps.",
@@ -104,7 +110,8 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Vo Creations",
-  url: "https://vocreations.com",
+  url: "https://vocreations.com/",
+  publisher: { "@id": "https://vocreations.com/#organization" },
 };
 
 const serviceJsonLd = {
@@ -112,11 +119,7 @@ const serviceJsonLd = {
   "@type": "Service",
   name: "In-house UGC program",
   serviceType: ["UGC content", "UGC ads"],
-  provider: {
-    "@type": "Organization",
-    name: "Vo Creations",
-    url: "https://vocreations.com",
-  },
+  provider: { "@id": "https://vocreations.com/#organization" },
   areaServed: "US",
   description:
     "Organic UGC and UGC ads for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat.",
@@ -136,7 +139,7 @@ const serviceJsonLd = {
       },
     },
     description:
-      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM (cost per 1,000 organic views). Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
     url: "https://vocreations.com/#faq",
   },
 };

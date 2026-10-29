@@ -59,15 +59,12 @@ const proof = [
 export default function TextOnScreenPost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
-      <p>
-        You&apos;re not alone. Most founders still don&apos;t understand what UGC actually is. You just haven&apos;t seen what it actually looks like yet.
-      </p>
       <H2 id="why-does-text-on-screen-stall">Why does text-on-screen UGC stall?</H2>
       <p>
-        99% of text-on-screen videos do the same thing: text overlay, trending audio, product shot, call to action. They get a few thousand views, drive zero conversions, and the founder wonders why &quot;UGC doesn&apos;t work.&quot;
+        A lot of text-on-screen videos do the same thing: text overlay, trending audio, product shot, call to action. The viewer gets the product name and swipes. The comment section stays empty.
       </p>
       <p>
-        It&apos;s not that UGC doesn&apos;t work. It&apos;s that text-on-screen isn&apos;t UGC. It&apos;s a format that looked like UGC for about six months in 2023, and the algorithm moved on. Most brands didn&apos;t.
+        Text-on-screen explains the product. It does not give the viewer a person to stay with. Talking-head UGC does.
       </p>
       <p>
         Here&apos;s what text-on-screen actually does: it communicates information. It tells you what the product is, what it does, maybe shows a demo. That&apos;s it. There&apos;s no emotional hook, no relatability, no story. The viewer gets the gist in 2 seconds and swipes.
@@ -128,10 +125,6 @@ export default function TextOnScreenPost() {
       <p>
         <strong className="text-text">3. Becomes a paid ad.</strong> The best organic content is also the best ad creative. When a talking-head video goes viral organically, you already know the story, hook, and emotional arc work. You just put budget behind it. With text-on-screen, you&apos;re always guessing, because there&apos;s no story to validate.
       </p>
-      <blockquote className="border-l-2 border-white/30 pl-4 text-text">
-        <p>Running winning organic content as ads crushes. But posting ads as organic doesn&apos;t work. The content has to earn attention first.</p>
-        <footer className="mt-2 text-sm text-text-dim">Alex Hormozi</footer>
-      </blockquote>
       <H2 id="why-do-comments-close-the-sale">Why do comments close the sale?</H2>
       <p>The video gets the view. The comment section closes the sale. This is the part most brands completely ignore.</p>
       <p>

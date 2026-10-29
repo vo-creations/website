@@ -37,7 +37,7 @@ const faqs: FaqItem[] = [
   {
     question: "Where are price, term, and refunds answered?",
     answer:
-      "In the pricing essay, not here. This list is for spotting whether the operating answers are real. If the money is fuzzy, the pricing piece is the page that should be fuzzy or clear.",
+      "In the pricing essay. This list is for spotting whether the operating answers are real. Price, term, and refunds are answered there.",
   },
   {
     question: "Can I use the hooks in this piece as the brief?",

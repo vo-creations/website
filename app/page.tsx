@@ -10,7 +10,6 @@ import CaseStudiesLockOverlay from "@/components/CaseStudiesLockOverlay";
 import LogoImage from "@/components/LogoImage";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
-import FacebookEmbed from "@/components/FacebookEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { useCountUp } from "@/components/useCountUp";
 import Image from "next/image";
@@ -93,7 +92,7 @@ const steps = [
   {
     num: "03",
     title: "Launch & Scale",
-    desc: "Every script and video is approved before it posts, across TikTok, Instagram, YouTube, Facebook, and Snapchat. Weekly testing follows what people actually watch. We guarantee your target CPM.",
+    desc: "Every script and video is approved before it posts, across TikTok, Instagram, YouTube, Facebook, and Snapchat. Weekly testing follows what people actually watch.",
   },
 ];
 
@@ -154,12 +153,12 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
 // 1,000 views do not count toward the spend. 90-day minimum, then month to
 // month. No refunds after launch. See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
-  { q: "What is the investment?", a: "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee your target CPM. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch." },
-  { q: "Is paid media included?", a: "No. Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
-  { q: "Who is a good fit?", a: "AI and tech consumer apps that are ready for $50K+ a month and want organic short-form at scale, with a CPM target. Budgets under $50K a month, one-off videos, and paid-ads-only management are not a fit." },
-  { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month. We guarantee your target CPM. That guarantee is not a refund, a credit, or a make-good." },
-  { q: "How long do results take?", a: "First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
+  { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
+  { q: "Is paid media included?", a: "Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
+  { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
+  { q: "How long do results take?", a: "First posts go live in 10-14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. A campaign produces 2,400+ videos a month. The format is organic talking-head UGC." },
+  { q: "What does the weekly report cover?", a: "Weekly reporting is included in the monthly fee, with the creators, scripts, and posting. It is not a separate invoice." },
 ];
 
 const faqJsonLd = {
@@ -181,7 +180,7 @@ const team = [
     location: "New York, NY",
     statLine: "",
     detailLine:
-      "Grew his own IG past 70K followers, then proved it wasn't a fluke by teaching other creators exactly how he did it. His students have earned $1M+ and generated 500M+ views. Not from one lucky post. From content that performs the same way every time. That's not a growth story. That's a system. And it's the same one every brand at Vo Creations gets.",
+      "Grew his own Instagram past 70K followers. His students have earned $1M+ and generated 500M+ views. Brands at Vo Creations get that same system.",
     image: "/videos/team-thienvu-new.jpg",
     // DECISION: default center crop left too much empty space (grass/pillar)
     // above him; shifted down so he reads centered in the card. See
@@ -193,7 +192,7 @@ const team = [
     location: "New York, NY",
     statLine: "",
     detailLine:
-      "Before Daniel ran a single campaign for anyone else, he was the one on camera, racking up 150M+ views and $200K+ earned from his own content, from scratch. That's the seat most agency operators never sit in. Since then, his campaigns for consumer apps have pulled in 500M+ views and converted into 5M+ users, because he already knows what makes someone stop scrolling.",
+      "He started on camera: 150M+ views and $200K+ earned from his own content. His campaigns for consumer apps have reached 500M+ views and 5M+ users.",
     image: "/videos/team-daniel.jpg",
     imagePosition: "center",
   },
@@ -201,6 +200,7 @@ const team = [
 
 export default function Home() {
   const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
+  const [openFaq, setOpenFaq] = useState<string | null>(agencyFaqs[0].q);
 
   return (
     <>
@@ -214,34 +214,24 @@ export default function Home() {
           remember.). Chrome VO sits on the right from lg up. The UGC agency
           phrase stays inside the H1. See docs/DECISIONS.md
           (topic: brand-system-2026-10). */}
-      <section className="relative flex items-center pb-12 pt-28 lg:min-h-[100svh] lg:pb-16">
+      <section className="relative flex items-center pb-6 pt-28 lg:pb-10">
         <div className={`relative z-10 ${NAV_CONTAINER} mx-auto ${NAV_INNER_PADDING}`}>
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
             <div className="min-w-0">
-              <h1>
-                <span className="mb-6 block max-w-[36rem] font-sans text-[clamp(15px,1.6vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
-                  The in-house UGC agency backed by elite mentorship
-                  <span className="sr-only"> </span>
-                </span>
-                <span className="block font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#fbfbf9]">
-                  <span className="block">
-                    make them
-                    <span className="sr-only"> </span>
-                  </span>
-                  <span className="mt-1 block">
-                    remember<span className="text-[#bdbdb8]">.</span>
-                  </span>
+              <p className="mb-6 block max-w-[36rem] font-sans text-[clamp(15px,1.6vw,22px)] font-medium leading-[1.3] tracking-[-0.006em] text-[#efefed]">
+                The in-house UGC agency backed by elite mentorship
+              </p>
+              <h1 className="font-display text-[clamp(44px,5.6vw,88px)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#fbfbf9]">
+                <span className="sr-only">Organic UGC for AI and tech apps. </span>
+                <span className="block">make them</span>
+                <span className="mt-1 block">
+                  remember<span className="text-[#bdbdb8]">.</span>
                 </span>
               </h1>
-              <div className="mt-8 max-w-[34rem] space-y-3">
-                <p className="font-sans text-[clamp(16px,1.5vw,22px)] font-medium leading-[1.35] text-[#efefed]">
-                  <b className="font-bold text-white">1B+</b> views. <b className="font-bold text-white">1000+</b> vetted in-house creators trained through mentorship. We guarantee your target CPM.
-                </p>
-                <p className="text-[15px] leading-[1.5] text-text-secondary">
-                  An AI app: 130M+ views in 3 months. A consumer app: 174M+ views at a $0.82 CPM. Clients stay unnamed.
-                </p>
-              </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <p className="mt-6 max-w-[34rem] font-sans text-[clamp(16px,1.5vw,20px)] font-medium leading-[1.45] text-[#efefed]">
+                <b className="font-bold text-white">1B+</b> views from <b className="font-bold text-white">1000+</b> vetted in-house creators trained through mentorship. We guarantee your target CPM. An AI app: 130M+ views in 3 months. A consumer app: 174M+ views at a $0.82 CPM. Results are anonymized.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
                   href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
                   target="_blank"
@@ -282,17 +272,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 pb-8">
+      <section className="px-6 pb-4">
         <div
           ref={statsRef}
-          className={`${NAV_CONTAINER} mx-auto grid grid-cols-2 gap-x-8 gap-y-8 md:grid-cols-4`}
+          className={`${NAV_CONTAINER} mx-auto grid grid-cols-2 gap-x-6 gap-y-6 rounded-3xl border border-white/10 bg-bg-card/40 px-6 py-8 md:grid-cols-4 md:px-10`}
         >
           {heroStats.map((stat) => (
             <div key={stat.label}>
               <div className="font-display text-[32px] font-bold leading-none tracking-[-0.04em] text-white tabular-nums">
                 <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
               </div>
-              <div className="mt-2 text-[13px] font-medium leading-[1.3] text-text-dim">
+              <div className="mt-2 text-[15px] font-medium leading-[1.3] text-text-dim">
                 {stat.label}
               </div>
             </div>
@@ -303,28 +293,28 @@ export default function Home() {
       <section id="proof" className="px-6 py-16">
         <div className="mx-auto max-w-[1100px]">
           <Label>Proof</Label>
-          <h2 className="mb-3 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
-            Results with the name left off.
+          <h2 className="mb-3 font-display text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight">
+            Numbers from recent campaigns
           </h2>
-          <p className="mb-8 max-w-[640px] text-[15px] leading-relaxed text-text-secondary">
-            Vo Creations campaign results. Clients stay anonymized. A typical outcome prices under $3 CPM.
+          <p className="mb-8 max-w-[640px] text-base leading-relaxed text-[#d4d4d0]">
+            Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
           </p>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["130M+", "An AI app, 3 months"],
-              ["#3 in Finance", "A finance app, 3M+ users, sub-$4 CPM"],
-              ["174M+", "A consumer app at a $0.82 CPM"],
-              ["$968k ARR", "Driven for one app"],
-              ["453M, 123M, 105M", "Three AI apps, 90 days each"],
-              ["19.4M", "An AI app, 2 weeks"],
-              ["21.5M and 15.9M", "Two apps, 30 days each"],
-              ["Under $3 CPM", "Typical for this distribution"],
-            ].map(([figure, detail]) => (
-              <div key={detail} className="rounded-2xl border border-white/10 bg-bg-card/50 p-5">
-                <div className="font-display text-[26px] font-bold leading-none tracking-[-0.04em] text-white">
-                  {figure}
+              { figure: "130M+", detail: "An AI app, 3 months" },
+              { figure: "#3 in Finance", detail: "A finance app. 3M+ users. Sub-$4 CPM." },
+              { figure: "174M+", detail: "A consumer app at a $0.82 CPM" },
+              { figure: "$968k ARR", detail: "Driven for one app" },
+              { figure: "453M\n123M\n105M", detail: "Three AI apps, 90 days each" },
+              { figure: "19.4M", detail: "An AI app, 2 weeks" },
+              { figure: "21.5M and 15.9M", detail: "Two apps, 30 days each" },
+              { figure: "Under $3 CPM", detail: "Typical for this distribution" },
+            ].map((item) => (
+              <div key={item.detail} className="rounded-2xl border border-white/15 bg-[#141414] p-6">
+                <div className="whitespace-pre-line font-display text-[clamp(28px,3vw,40px)] font-bold leading-[1.05] tracking-[-0.04em] text-white">
+                  {item.figure}
                 </div>
-                <p className="mt-3 text-[13px] leading-[1.4] text-text-secondary">{detail}</p>
+                <p className="mt-4 text-base leading-snug text-[#d4d4d0]">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -365,61 +355,62 @@ export default function Home() {
           can't be made exact at every window height without changing the
           hero's centering behavior — it drifts on taller/shorter viewports
           since the hero's slack does and this section's padding can't. */}
-      <section className="pt-[80px] pb-[129px] px-6">
-        <div className="max-w-[1100px] mx-auto rounded-3xl border border-white/10 bg-bg-card/50 backdrop-blur-sm py-10">
-          <div className="max-w-[900px] mx-auto text-center px-6">
-            <div className="mb-6 flex items-center justify-center gap-3 text-[13px] font-medium leading-[1.3] text-text-dim">
-              <span className="h-px w-10 bg-text-dim" aria-hidden="true" />
-              Trusted by
-            </div>
-          </div>
-          <div className="overflow-hidden" style={edgeFadeStyle}>
-            <div className="flex w-max items-center gap-x-10 animate-scroll">
-              {[...trustedBrands, ...trustedBrands].map((brand, i) =>
-                brand.needsChip ? (
-                  <div
-                    key={`${brand.name}-${i}`}
-                    className="shrink-0 w-[130px] h-14 bg-bg-elevated rounded-lg overflow-hidden"
-                  >
-                    <LogoImage
-                      src={`/logos/${brand.file}`}
-                      alt={brand.name}
-                      boxClassName="w-full h-full px-3 py-2"
-                    />
-                  </div>
-                ) : (
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-[1100px] rounded-3xl border border-white/10 bg-bg-card/50 py-10 backdrop-blur-sm">
+          <h2 className="mb-8 px-6 text-center font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
+            Brands we&apos;ve worked with
+          </h2>
+          <div className="overflow-hidden px-2" style={edgeFadeStyle}>
+            <div className="flex w-max items-center gap-x-12 animate-scroll [&_img]:brightness-0 [&_img]:invert">
+              {trustedBrands.map((brand) => (
+                <LogoImage
+                  key={brand.name}
+                  src={`/logos/${brand.file}`}
+                  alt={`${brand.name} logo`}
+                  boxClassName="h-[32px] w-auto"
+                />
+              ))}
+              <div className="flex items-center gap-x-12" aria-hidden="true">
+                {trustedBrands.map((brand) => (
                   <LogoImage
-                    key={`${brand.name}-${i}`}
+                    key={`${brand.name}-loop`}
                     src={`/logos/${brand.file}`}
-                    alt={brand.name}
-                    boxClassName="h-[30px] w-auto"
+                    alt=""
+                    boxClassName="h-[32px] w-auto"
                   />
-                )
-              )}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="pb-[40px] px-6">
-        <div className="max-w-[720px] mx-auto">
+      <section className="px-6 py-8" id="pricing">
+        <div className="mx-auto max-w-[1100px]">
           <Label>The program</Label>
-          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-6">
-            A UGC agency that runs the program in-house.
+          <h2 className="mb-6 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
+            Organic UGC for AI startups and tech consumer apps.
           </h2>
-          <div className="space-y-4 text-[15px] text-text-secondary leading-[1.75]">
-            <p>
-              Vo Creations runs organic UGC for AI startups and consumer apps. Trained creators post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat. When a video already earns the view, it can become an ad.
-            </p>
-            <p>
-              Creators apply, interview, and finish a two-week paid trial before they touch a brand account. We keep the top 1%.
-            </p>
-            <p>
-              Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. Paid media, the ad spend, is outside the fee and billed on top. First posts go live in 10-14 days. The minimum is 90 days, then month to month. No refunds after launch.
-            </p>
-            <p>
-              1B+ views. 1000+ vetted in-house creators trained through mentorship. 50+ campaigns. A typical result prices under $3 CPM.
-            </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+              <h3 className="mb-3 text-lg font-extrabold tracking-tight">Creators</h3>
+              <p className="text-base leading-relaxed text-[#d4d4d0]">
+                1000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1%. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+              <p className="mb-3 font-display text-[32px] font-bold leading-none tracking-tight text-white">$50K+/mo</p>
+              <h3 className="mb-3 text-lg font-extrabold tracking-tight">What&apos;s included</h3>
+              <p className="text-base leading-relaxed text-[#d4d4d0]">
+                Trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media, the ad spend, is outside the fee and billed on top. 2,400+ videos a month. First posts in 10-14 days.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+              <h3 className="mb-3 text-lg font-extrabold tracking-tight">Terms</h3>
+              <p className="text-base leading-relaxed text-[#d4d4d0]">
+                90-day minimum, then month to month. No refunds after launch. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -437,21 +428,35 @@ export default function Home() {
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Content that converts and goes viral.
           </h2>
-          <p className="text-base text-text-secondary mb-8">
-            Real UGC from our trained creator network across IG, TT, FB &amp; YT.
+          <p className="mb-8 text-base text-[#d4d4d0]">
+            Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
           </p>
         </div>
 
         <div className="overflow-hidden" style={edgeFadeStyle}>
           <div className="flex w-max items-center gap-4 animate-scroll-slow hover:[animation-play-state:paused]">
-            {[...showcaseVideos, ...showcaseVideos].map((v, i) => (
-              <div key={`${v.url}-${i}`} className="shrink-0 w-[260px] sm:w-[300px]">
-                {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} poster={v.poster} />}
-                {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
-                {v.type === "facebook" && <FacebookEmbed url={v.url} label={v.label} />}
-                {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
-              </div>
-            ))}
+            {showcaseVideos
+              .filter((v) => v.type !== "facebook" && !(v.type === "instagram" && !v.poster))
+              .map((v) => (
+                <div key={v.url} className="aspect-[9/16] w-[260px] shrink-0 overflow-hidden sm:w-[280px]">
+                  {v.type === "instagram" && (
+                    <InstagramEmbed url={v.url} label={v.label} poster={v.poster} posterAlt={`Talking-head UGC still from ${v.url.split("/p/")[1]?.replace("/", "") ?? "Instagram"}`} />
+                  )}
+                  {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
+                  {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
+                </div>
+              ))}
+            <div className="flex items-center gap-4" aria-hidden="true">
+              {showcaseVideos
+                .filter((v) => v.type !== "facebook" && !(v.type === "instagram" && !v.poster))
+                .map((v) => (
+                  <div key={`${v.url}-loop`} className="aspect-[9/16] w-[260px] shrink-0 overflow-hidden sm:w-[280px]">
+                    {v.type === "instagram" && <InstagramEmbed url={v.url} label={v.label} poster={v.poster} posterAlt="" />}
+                    {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
+                    {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </section>
@@ -465,19 +470,12 @@ export default function Home() {
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Undeniable impact.
           </h2>
-          <p className="mb-4 text-base text-text-secondary">
-            Full results shared on a call.
+          <p className="mb-8 text-base text-[#d4d4d0]">
+            These cards are placeholders. Full results shared on a call.
           </p>
-          <a
-            href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-10 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black"
-          >
-            Book a call
-          </a>
 
-          <div className="relative">
+          <div>
+            <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />
             <div className="flex flex-col gap-4">
               {/* Locked cards show a category label only. The view figure is a
                   blurred placeholder, never a real total. See docs/DECISIONS.md
@@ -500,7 +498,6 @@ export default function Home() {
               ))}
             </div>
 
-            <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />
           </div>
         </div>
       </section>
@@ -511,10 +508,8 @@ export default function Home() {
       <section className="py-[100px]" id="team">
         <div className="max-w-[720px] mx-auto px-6">
           <Label>The team</Label>
-          <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-10">
-            Proven Viral Creators
-            <br />
-            Turned Agency Operators
+          <h2 className="mb-10 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
+            Proven viral creators turned agency operators
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -529,8 +524,8 @@ export default function Home() {
                     alt={t.name}
                     fill
                     sizes="(max-width: 768px) 90vw, 340px"
-                    className="object-cover"
-                    style={{ objectPosition: t.imagePosition }}
+                    className="object-cover grayscale"
+                    style={{ objectPosition: "center" }}
                   />
                 </div>
                 <div className="p-6">
@@ -540,19 +535,10 @@ export default function Home() {
                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <div className="mt-1.5 text-[13px] font-semibold uppercase tracking-wide text-text-dim">
-                    Co-Founder
+                  <div className="mt-1.5 text-[15px] font-semibold text-[#d4d4d0]">
+                    Co-Founder, {t.location}
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-text-secondary mt-1.5 mb-4">
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 shrink-0">
-                      <path fillRule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clipRule="evenodd" />
-                    </svg>
-                    {t.location}
-                  </div>
-                  {t.statLine ? (
-                    <div className="text-[15px] font-bold italic text-text">{t.statLine}</div>
-                  ) : null}
-                  <div className="mt-1 text-sm text-text-secondary">
+                  <div className="mt-3 text-base leading-relaxed text-[#d4d4d0]">
                     {t.detailLine}
                   </div>
                 </div>
@@ -581,33 +567,15 @@ export default function Home() {
             A methodology refined across 50+ campaigns. Not a black box.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="md:row-span-2 bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 p-8 md:p-10 flex flex-col justify-center">
-              <div className="text-6xl font-black text-text tracking-tight mb-6">
-                {steps[0].num}
-              </div>
-              <h3 className="text-2xl font-extrabold tracking-tight mb-3">
-                {steps[0].title}
-              </h3>
-              <p className="text-[15px] text-text-secondary leading-relaxed">
-                {steps[0].desc}
-              </p>
-            </div>
-
-            {steps.slice(1).map((s) => (
-              <div
-                key={s.num}
-                className="bg-bg-card/50 backdrop-blur-sm rounded-2xl border border-white/10 p-8"
-              >
-                <div className="text-4xl font-black text-text tracking-tight mb-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {steps.map((s) => (
+              <div key={s.num} className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+                <div className="mb-4 text-[15px] font-semibold text-[#d4d4d0]">
                   {s.num}
+                  {s.num === "03" ? " · 10-14 days" : ""}
                 </div>
-                <h3 className="text-xl font-extrabold tracking-tight mb-3">
-                  {s.title}
-                </h3>
-                <p className="text-[15px] text-text-secondary leading-relaxed">
-                  {s.desc}
-                </p>
+                <h3 className="mb-3 text-xl font-extrabold tracking-tight">{s.title}</h3>
+                <p className="text-base leading-relaxed text-[#d4d4d0]">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -618,24 +586,34 @@ export default function Home() {
 
       <section className="px-6 py-16" id="fit">
         <div className="mx-auto grid max-w-[1100px] gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-8">
+          <div className="rounded-2xl border border-white/15 bg-[#141414] p-8">
             <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
               Good fit
             </h2>
-            <ul className="space-y-3 text-[15px] leading-relaxed text-text-secondary">
-              <li>AI and tech consumer apps.</li>
-              <li>Ready for $50K+ a month.</li>
-              <li>Want organic short-form at scale, with a CPM target.</li>
+            <ul className="space-y-3 text-base leading-relaxed text-[#d4d4d0]">
+              {[
+                "AI startups and tech consumer apps.",
+                "Ready for $50K+ a month.",
+                "Want organic short-form at scale, with a CPM target.",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-1 text-white">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-8">
-            <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight">
+          <div className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-8">
+            <h2 className="mb-4 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-[#d4d4d0]">
               Not a fit
             </h2>
-            <ul className="space-y-3 text-[15px] leading-relaxed text-text-secondary">
-              <li>Budgets under $50K a month.</li>
-              <li>One-off videos.</li>
-              <li>Paid-ads-only management.</li>
+            <ul className="space-y-3 text-base leading-relaxed text-[#bdbdb8]">
+              {["Budgets under $50K a month.", "One-off videos.", "Paid-ads-only management."].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-1">✕</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -652,28 +630,33 @@ export default function Home() {
             Frequently Asked Questions
           </h2>
 
-          <div className="max-w-[640px] flex flex-col gap-3">
-            {agencyFaqs.map((faq) => (
-              <details
-                key={faq.q}
-                className="group border border-white/10 rounded-2xl px-6 py-5 bg-bg-card/50 backdrop-blur-sm"
-              >
-                <summary className="flex justify-between items-center text-left gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                  <span className="text-base font-semibold tracking-tight">
-                    {faq.q}
-                  </span>
-                  <span className="shrink-0 w-7 h-7 rounded-full border border-border flex items-center justify-center text-text-secondary transition-transform group-open:rotate-45">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-3.5 h-3.5">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="mt-3 text-[15px] text-text-secondary leading-[1.7] pr-10">
-                  {faq.a}
+          <div className="flex max-w-[640px] flex-col gap-3">
+            {agencyFaqs.map((faq) => {
+              const panelId = `faq-${faq.q.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+              const open = openFaq === faq.q;
+              return (
+                <div key={faq.q} className="rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5 backdrop-blur-sm">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-4 text-left"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenFaq(open ? null : faq.q)}
+                  >
+                    <span className="text-base font-semibold tracking-tight">{faq.q}</span>
+                    <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-text-secondary transition-transform ${open ? "rotate-45" : ""}`}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-3.5 w-3.5" aria-hidden="true">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div id={panelId} role="region" hidden={!open} className="mt-3 pr-10 text-base leading-[1.7] text-[#d4d4d0]">
+                    {faq.a}
+                  </div>
                 </div>
-              </details>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

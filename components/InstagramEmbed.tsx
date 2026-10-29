@@ -6,9 +6,10 @@ interface InstagramEmbedProps {
   url: string;
   label?: string;
   poster?: string;
+  posterAlt?: string;
 }
 
-export default function InstagramEmbed({ url, label, poster }: InstagramEmbedProps) {
+export default function InstagramEmbed({ url, label, poster, posterAlt }: InstagramEmbedProps) {
   const [loaded, setLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +40,7 @@ export default function InstagramEmbed({ url, label, poster }: InstagramEmbedPro
         {poster ? (
           <img
             src={poster}
-            alt={label ? `${label} video poster` : "Instagram video poster"}
+            alt={posterAlt ?? (label ? `${label} still` : "Talking-head UGC still")}
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
