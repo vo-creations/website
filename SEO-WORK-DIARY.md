@@ -101,4 +101,4 @@ The blog index and every post now share a template aimed at answer engines: a sh
 
 ## 2026-10-29: Creator count is 1000+
 
-The public creator count moved from 500+ to 1000+. The meta description, Open Graph description, and Twitter description now say "1000+ creators". `llms.txt` and the homepage program line use "1000+ vetted in-house creators trained through mentorship". The hero stat counts to 1000+.
+The public creator count moved from 500+ to 1000+. The meta description, Open Graph description, and Twitter description now say "1000+ creators". `llms.txt` and the homepage program line use "1000+ vetted in-house creators trained through mentorship". The hero stat counts to 1000+. The case-study card for that client was removed. The logo stays first in the Trusted By strip, and the locked cards are placeholders.

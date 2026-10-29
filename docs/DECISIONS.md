@@ -3181,3 +3181,7 @@ Daniel confirmed the text-on-screen essay's "$10K budget" and "~$200K ad spend" 
 Daniel approved marking the Service offer as a starting price. This supersedes the 2026-10-28 note that left both `price` and `minPrice` at `50000`.
 
 - `app/layout.tsx` is the only Offer on the site. Its `priceSpecification` is a `UnitPriceSpecification` with `minPrice` `50000`, `priceCurrency` `USD`, `unitText` `MONTH`, and `referenceQuantity` of 1 `MON`. The flat `price` field is gone. The offer description text is unchanged. Paid-media wording was left as it was.
+
+## topic: drop-client-logo-2026-10 — _2026-10-29_
+
+The logo that this topic removed from the Trusted By strip was put back, first in the strip. The case-study card and its stat were not restored. `case-studies-lock` then replaced all six locked cards with placeholders, so the earlier note that the other cards stayed is no longer the live state.
