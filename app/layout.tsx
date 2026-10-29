@@ -131,7 +131,7 @@ const serviceJsonLd = {
       unitText: "MONTH",
     },
     description:
-      "Campaigns start at $50K/month. Creator bonuses are billed separately.",
+      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client's target CPM (cost per 1,000 organic views). Videos under 1,000 views do not count toward the spend. 90-day minimum, then month to month. No refunds after launch.",
     url: "https://vocreations.com/#faq",
   },
 };

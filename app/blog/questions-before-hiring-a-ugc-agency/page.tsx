@@ -92,7 +92,7 @@ export default function HiringQuestionsPost() {
           ["What if the creator is wrong?", "A way to stop using them without restarting the contract."],
           ["What is the minimum, and how do we leave?", "A floor, then a door. Said in one breath."],
           ["What is inside the fee?", "Jobs named, and jobs excluded."],
-          ["Are creator bonuses separate?", "Two lines you can point at."],
+          ["Are creator bonuses inside the fee?", "Yes. One monthly fee covers them, with scripts, posting, and weekly reporting."],
           ["What happens to a video almost nobody watched?", "A plain rule, not a vibe."],
           ["What proof will you walk through?", "A window, a category, and what you will not publish."],
           ["Who is this not for?", "A budget, a format, or a job they will not pretend to do."],
@@ -101,7 +101,7 @@ export default function HiringQuestionsPost() {
 
       <H2 id="how-an-answer-sounds">How should an answer sound?</H2>
       <p>
-        Nouns. A coach, a Thursday review, an account, a separate bonus line. &quot;Premium&quot; and &quot;full service&quot; are how a thin shop survives a first call.
+        Nouns. A coach, a Thursday review, an account, a fee that already includes creator bonuses. &quot;Premium&quot; and &quot;full service&quot; are how a thin shop survives a first call.
       </p>
       <p>
         Illustrative hooks, not results. Reject: &quot;This AI tool is insane.&quot; Keep: &quot;I&apos;ve rewritten the first sentence twelve times and the meeting is in an hour.&quot; The second one still works if you delete the product. That is the test. More of those lines, for a study tool, a coding tool, and a writing tool, are in{" "}
@@ -117,7 +117,7 @@ export default function HiringQuestionsPost() {
         Three of the twelve, heard out loud. Training: vague is &quot;we have a network.&quot; Clear is &quot;they can fail a trial, and a coach reviews last week&apos;s lines with them.&quot; Posting: vague is &quot;we distribute.&quot; Clear is a list of accounts, not a verb. Proof: vague is a logo slide. Clear is a window, a plain category, and a sentence about what they will not publish.
       </p>
       <p>
-        Score the call in the notes app while you&apos;re still on it. One mark if you could name the person who owns Thursday. One mark if the format survived being said in a single sentence. One mark if the fee and the creator&apos;s pay are different lines. Zero on any of those and you are still shopping for a folder. The rest of the twelve are how you confirm the first three weren&apos;t a performance.
+        Score the call in the notes app while you&apos;re still on it. One mark if you could name the person who owns Thursday. One mark if the format survived being said in a single sentence. One mark if they can say the monthly fee includes creator bonuses, scripts, posting, and weekly reporting. Zero on any of those and you are still shopping for a folder. The rest of the twelve are how you confirm the first three weren&apos;t a performance.
       </p>
       <p>
         Two answers I would not accept, both illustrative. &quot;Our creators are top tier&quot; does not say what they survived to get in, or who sits with them after the first post. &quot;We&apos;re fully organic and paid&quot; does not say which happens first. Organic first means you post, you see what people actually watch, and only then does money go behind a video. If they cannot put those steps in order, they will boost the tour.

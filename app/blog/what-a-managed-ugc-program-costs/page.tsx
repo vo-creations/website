@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const toc: TocItem[] = [
   { id: "what-are-you-paying-for", label: "What are the three prices actually for?" },
   { id: "what-did-distribution-cost", label: "What did distribution cost on our campaigns?" },
-  { id: "what-is-outside-the-fee", label: "What sits outside the monthly fee?" },
+  { id: "what-is-inside-the-fee", label: "What is inside the fee, and what is not?" },
   { id: "what-if-a-month-is-quiet", label: "What if a month is quiet?" },
   { id: "how-to-read-the-invoice", label: "How do you read the invoice?" },
 ];
@@ -31,22 +31,22 @@ const faqs: FaqItem[] = [
   {
     question: "How much does a Vo Creations program cost?",
     answer:
-      "Campaigns start at $50K a month for a 90-day engagement. Creator bonuses are billed separately. A month that has already been run is not refunded. After the opening term the work is month to month, so you can stop without waiting out a long contract.",
+      "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views, and we guarantee the client's target CPM, for example sub-$10 or whatever number they set. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch.",
   },
   {
     question: "Does 'under $3 CPM' mean every campaign lands there?",
     answer:
-      "No. It is the general claim for how this distribution can price. The two results below are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
+      "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. The guarantee is the client's own target, for example sub-$10 or whatever number they set. The two results below are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
   },
   {
-    question: "What does 'videos under 1,000 views are free' mean?",
+    question: "Do videos under 1,000 views count toward the spend?",
     answer:
-      "A video that never clears 1,000 views is not something you pay a view bonus on. You still paid for the program that made it. The free part is the miss, not the month.",
+      "No. Videos under 1,000 views do not count toward the client's spend. The monthly fee still covers the program that made them.",
   },
   {
     question: "Is paid media included?",
     answer:
-      "No. The fee is the program and the organic posting. Putting money behind a video that already earned attention is a later decision, and it is not hidden inside the monthly number.",
+      "No. Paid media sits outside the monthly fee. The fee already includes trained creators, scripts, posting, creator bonuses, and weekly reporting. Putting money behind a video that already earned attention is a later decision.",
   },
   {
     question: "Why won't you print a freelancer rate card?",
@@ -74,7 +74,7 @@ export default function ProgramCostPost() {
         rows={[
           ["The invoice tracks", "A month of operating the channel", "Each delivered file", "Views, per thousand"],
           ["Who decides the sequel", "The program", "Whoever hired the video", "Whoever is buying the views"],
-          ["A quiet video", "The team keeps posting", "You may already have paid for the file", "The view line stays small"],
+          ["A quiet video", "Videos under 1,000 views do not count toward the spend", "You may already have paid for the file", "The view line stays small"],
           ["Market rate", "Ours is stated above", "No single honest rate. It depends on the job and the license.", "A media price, not proof the creative system is cheap"],
         ]}
       />
@@ -88,7 +88,7 @@ export default function ProgramCostPost() {
 
       <H2 id="what-did-distribution-cost">What did distribution cost on our campaigns?</H2>
       <p>
-        As a general claim, this kind of distribution can price under $3 CPM. These two are Vo Creations campaign results. The clients are anonymized.
+        As a general claim, this kind of distribution can price under $3 CPM. These two are Vo Creations campaign results. The clients are anonymized. They are results, not the guarantee. The guarantee is the client&apos;s own target CPM.
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>A consumer app: 174M+ total views at a $0.82 average CPM.</li>
@@ -98,17 +98,20 @@ export default function ProgramCostPost() {
         Read them as outcomes of organic first: post a lot, see what people actually watch, and only put ad money behind what is already working. They are not a rate card for the next category, and they are not the app&apos;s media budget. We don&apos;t publish what a client spent.
       </p>
 
-      <H2 id="what-is-outside-the-fee">What sits outside the monthly fee?</H2>
+      <H2 id="what-is-inside-the-fee">What is inside the fee, and what is not?</H2>
       <p>
-        Creator bonuses, on their own line, so management and the person on camera don&apos;t blur together. Paid media, if you later run a video that already held attention. And the miss: videos under 1,000 views are free. You are not paying a view bonus on a clip that never traveled. You are paying for the month that kept testing.
+        The monthly fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media sits outside that fee. Putting money behind a video that already earned attention is a later decision.
       </p>
       <p>
-        Illustrative example, not a result. A creator films three openings in one sitting. Two barely travel. The third is the one people finish. The misses don&apos;t generate a view bill. The third is the one worth repeating, and only then worth spending behind. You can see the rule without turning every quiet clip into a debate about the monthly fee.
+        Videos under 1,000 views do not count toward the client&apos;s spend. We guarantee the client&apos;s target CPM, for example sub-$10 or whatever number they set.
+      </p>
+      <p>
+        Illustrative example, not a result. A creator films three openings in one sitting. Two barely travel. The third is the one people finish. The misses do not count toward the spend. The third is the one worth repeating, and only then worth spending behind.
       </p>
 
       <H2 id="what-if-a-month-is-quiet">What if a month is quiet?</H2>
       <p>
-        Warmup is part of the work, and it can look quiet on purpose. We don&apos;t refund a month that has already been run. That is the fee for the posting, the coaching, and the tests, including the ones that didn&apos;t travel. After the opening term you are month to month. If it is not working, you stop. You are not stuck in a long contract, and you are not paying backward for a month the team already spent.
+        Warmup is part of the work, and it can look quiet on purpose. There are no refunds after launch. The minimum is 90 days, then month to month. If it is not working after that, you stop. You are not stuck in a long contract, and you are not paying backward for a month the team already spent.
       </p>
       <p>
         If you need the fee returned whenever week two feels slow, this is the wrong product. A smaller test wants a freelancer or a per-video order, not this engagement.
@@ -116,22 +119,13 @@ export default function ProgramCostPost() {
 
       <H2 id="how-to-read-the-invoice">How do you read the invoice?</H2>
       <p>
-        Two lines, every month. One is the program. One is the creator bonuses. If a renewal goes up, you should be able to see which line moved. A blended number makes that argument impossible: you cannot tell whether the operation got heavier or the people on camera earned more.
+        One number. It includes trained creators, scripts, posting, creator bonuses, and weekly reporting. If a renewal goes up, someone should be able to say which job got heavier.
       </p>
       <p>
-        Bonuses are not a surprise fee for existing. They are the variable pay for the work that traveled, kept off the base so the base stays readable. Ask what triggers one before you sign, in words a finance lead can repeat: a view threshold, a usage window, a creator lending their own account. If the answer is &quot;we&apos;ll see,&quot; you will relitigate it in month two.
-      </p>
-      <p>
-        Illustrative invoice note, not a result: &quot;March program. Creator bonuses: two videos cleared the view rule and one usage extension.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;
-      </p>
-      <p>
-        A renewal conversation should start from those lines, not from a feeling that the month was &quot;a lot.&quot; If the bonus line moved because more videos traveled, that is the system working. If the program line moved, someone should be able to say which job got heavier. Write that question down before the first invoice, while everyone is still polite.
+        Illustrative invoice note, not a result: &quot;March program, all-inclusive. Two videos stayed under 1,000 views and did not count toward the spend.&quot; You can audit that sentence. You cannot audit &quot;content package, as discussed.&quot;
       </p>
       <p>
         One more qualitative trap on per-video work: revisions. A cheap file with unlimited notes is often your team doing the edit in writing. Ask how many rounds are in the price, and what a new hook costs after delivery. I am not going to invent the dollar figure. The shape of the answer tells you whether you bought a finished video or a starting point.
-      </p>
-      <p>
-        Don&apos;t use the bonus line to relitigate a quiet test. The miss was already handled by the view rule. The bonus is for what traveled, or for a usage window you asked to extend. If those triggers were written down, the invoice is boring. Boring is the point.
       </p>
       <p>
         How to read the two results without turning them into a menu: the consumer app tells you views and the average CPM together. The finance app tells you a store rank, users, and a CPM band. Neither line includes what the client spent on media, and neither is a quote for a different category. If someone sells you &quot;the same CPM,&quot; ask which of those sentences they are copying. A copied CPM with no window and no category is not a result.

@@ -62,10 +62,10 @@ export const posts: BlogPostMeta[] = [
     slug: "what-a-managed-ugc-program-costs",
     title: "What a managed UGC program costs",
     description:
-      "Retainer, per-video, and CPM are different purchases. Here is what a $50K a month in-house UGC program covers, and what is billed separately.",
+      "Retainer, per-video, and CPM are different purchases. A Vo Creations program starts at $50K+ a month, all-inclusive, and guarantees the client's target CPM.",
     category: "Pricing",
     directAnswer:
-      "A managed UGC program at Vo Creations starts at $50K a month for 90 days. That buys the operating system, not a stack of files. Creator bonuses sit on a separate line. Per-video and CPM deals buy a file or views, and there is no honest single market rate for those.",
+      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee the client's target CPM. Videos under 1,000 views do not count toward the spend. 90 days, then month to month. No refunds after launch.",
     datePublished: "2026-10-28",
     dateModified: "2026-10-29",
     authorId: "daniel",
@@ -98,7 +98,7 @@ export const posts: BlogPostMeta[] = [
     slug: "questions-before-hiring-a-ugc-agency",
     title: "12 questions to ask before hiring a UGC agency",
     description:
-      "Twelve questions that separate a managed UGC program from a folder of videos: training, posting, volume, term, bonuses, refunds, and proof.",
+      "Twelve questions that separate a managed UGC program from a folder of videos: training, posting, volume, term, the fee, refunds, and proof.",
     category: "Hiring",
     directAnswer:
       "Before you hire a UGC agency, ask who trains the creators, who posts, what the month includes, and what happens when a video misses. A managed program can answer those in operating terms. A vendor selling files will answer them with a rate card. The gap between those two answers is the whole decision.",

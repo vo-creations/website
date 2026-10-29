@@ -3155,6 +3155,18 @@ One client was removed from the Trusted By marquee and from the locked case-stud
 
 The locked homepage cards were still shipping real proof in the HTML. Blur is only CSS. The six cards now render the same placeholder: company "Client name", views "000M+", subline "00 days / 00 creators", and `public/logos/locked-case.svg` with alt "Locked case study". Real client names, logos, view totals, durations, and creator counts are not passed into those cards. The Trusted By marquee is unchanged and still uses the public logo files. The overlay copy and blur are unchanged.
 
+## topic: pricing-2026-10 — _2026-10-28_
+
+Daniel approved a pricing model that matches the new pitch deck. This supersedes the 2026-10-19 wording that kept creator bonuses on a separate line and stated a flat $50K/month.
+
+- Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Creator bonuses are no longer described as billed separately.
+- We guarantee the client's target CPM. CPM means cost per 1,000 organic views. The public example of a target is sub-$10, or whatever number the client sets. That example is not a new campaign result. The existing anonymized results (under $3 CPM, a consumer app at $0.82, a finance app under $4) stayed, labeled as results rather than the guarantee.
+- Videos under 1,000 views do not count toward the client's spend. The older "videos under 1,000 views are free" line was rephrased to that.
+- The term is a 90-day minimum, then month to month. No refunds after launch.
+- The Service offer in `app/layout.tsx` keeps `minPrice` and `price` at `50000` USD per month, because the floor number did not change. The offer description carries the new wording. Homepage FAQ JSON-LD is still built from `agencyFaqs`. Blog FAQPage JSON-LD is still built from each post's `faqs` array.
+- Paid media stays outside the monthly fee. The all-inclusive list Daniel approved does not include ad spend.
+- Older entries in this file, `SEO-WORK-DIARY.md`, and the mentorship refund policy were left as history. `content/mentorship-pricing-faq-backup.md` was not touched.
+
 ## topic: blog-aeo-2026-10 — _2026-10-29_
 
 Daniel confirmed the text-on-screen essay's "$10K budget" and "~$200K ad spend" lines were old pricing. This supersedes the 2026-10-28 note that left that essay's campaign figures in place.

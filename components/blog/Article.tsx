@@ -257,7 +257,7 @@ export default function Article({
               See the program, then the results.
             </h2>
             <p className="mx-auto mt-3 max-w-[460px] text-sm leading-relaxed text-text-secondary">
-              Campaigns start at $50K a month. Named case studies stay behind a call. Book one and we will walk through them.
+              Campaigns start at $50K+ a month, all-inclusive. Named case studies stay behind a call. Book one and we will walk through them.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <a

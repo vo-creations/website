@@ -64,7 +64,7 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program is $50K a month. Chad runs strategy. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are all from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee the client&apos;s target CPM, the cost per 1,000 organic views. Videos under 1,000 views do not count toward the spend. The minimum is 90 days, then month to month. No refunds after launch. Chad runs strategy. Adam Chen runs the creator bench. Coaches meet the roster every week.
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>
@@ -84,7 +84,7 @@ export default function InHouseVsMarketplacePost() {
           ["Who runs next week", "A campaign manager and coaches", "Usually your team", "You"],
           ["Training", "Weekly coaching before and after they post", "The brief is often the whole training", "Your notes"],
           ["If they are out", "Another trained creator is already on the bench", "You open a new order", "The work stops"],
-          ["Pricing shape", "A monthly program fee, bonuses separate", "Usually a price per video. No single market rate.", "A personal rate, scoped per job"],
+          ["Pricing shape", "Starts at $50K+ a month, all-inclusive", "Usually a price per video. No single market rate.", "A personal rate, scoped per job"],
         ]}
       />
       <p>
