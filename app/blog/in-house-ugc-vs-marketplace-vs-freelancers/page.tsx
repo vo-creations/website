@@ -51,7 +51,7 @@ export default function InHouseVsMarketplacePost() {
   return (
     <Article slug={post.slug} toc={toc} faqs={faqs}>
       <p>
-        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, Head of Strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
+        Vo Creations runs the first of those. We have 1000+ vetted in-house creators, and the 1B+ views on the site are from creators we trained. The program starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch. Chad, Head of Strategy, runs the week. Adam Chen runs the creator bench. Coaches meet the roster every week.
       </p>
 
       <H2 id="what-are-you-buying">What are you actually buying?</H2>

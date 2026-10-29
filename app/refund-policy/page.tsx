@@ -28,7 +28,7 @@ export default function RefundPolicyPage() {
               Agency campaigns
             </h2>
             <p>
-              Vo Creations LLC runs in-house UGC programs for AI startups and consumer apps. Campaigns start at $50K+ a month. The fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media, the ad spend, is outside the fee and billed on top.
+              Vo Creations LLC runs in-house UGC programs for AI startups and consumer apps. Campaigns start at $50K+ a month. The fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top.
             </p>
           </div>
           <div>

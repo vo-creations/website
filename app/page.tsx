@@ -79,21 +79,10 @@ const heroStats = [
 ];
 
 const steps = [
-  {
-    num: "01",
-    title: "Apply & Qualify",
-    desc: "We review your product, audience, and goals before saying yes. Not every brand is a fit, and we'd rather tell you that upfront than waste your budget finding out later.",
-  },
-  {
-    num: "02",
-    title: "Strategy & Creator Selection",
-    desc: "Every creator applies, interviews, and completes a two-week paid trial before they touch a brand account. We keep the top 1%. From there, your campaign manager builds the strategy around your product: audience, account warming, hooks, messaging, and how creators answer comments.",
-  },
-  {
-    num: "03",
-    title: "Launch & Scale",
-    desc: "Every script and video is approved before it posts, across TikTok, Instagram, YouTube, Facebook, and Snapchat. Weekly testing follows what people actually watch.",
-  },
+  { num: "Day 0", title: "Scripts", desc: "We write the scripts." },
+  { num: "~48h", title: "Brief", desc: "Creators briefed." },
+  { num: "10–14 days", title: "Live", desc: "Accounts warmed up, first videos live." },
+  { num: "Every week", title: "Double down", desc: "Double down on the top videos." },
 ];
 
 // DECISION: showcase <video> uses the #t=0.1 thumbnail trick (and onMouseLeave resets
@@ -148,17 +137,18 @@ const trustedBrands: { name: string; file: string; needsChip?: boolean }[] = [
 ];
 
 // DECISION 2026-10: campaigns start at $50K+/month, all-inclusive (trained
-// creators, scripts, posting, creator bonuses, weekly reporting). Bonuses are
+// creators, scripts, posting, creator bonuses, daily Slack reporting). Bonuses are
 // not a second invoice. We guarantee the client's target CPM. Videos under
 // 1,000 views do not count toward the spend. 90-day minimum, then month to
 // month. No refunds after launch. See docs/DECISIONS.md (topic: pricing-2026-10).
 const agencyFaqs = [
-  { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
+  { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
   { q: "Is paid media included?", a: "Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
   { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
   { q: "How long do results take?", a: "First posts go live in 10-14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. A campaign produces 2,400+ videos a month. The format is organic talking-head UGC." },
-  { q: "What does the weekly report cover?", a: "Weekly reporting is included in the monthly fee, with the creators, scripts, and posting. It is not a separate invoice." },
+  { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos." },
+  { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign." },
 ];
 
 const faqJsonLd = {
@@ -189,7 +179,7 @@ const team = [
   },
   {
     name: "Daniel Yun",
-    location: "New York, NY",
+    location: "Los Angeles, CA",
     statLine: "",
     detailLine:
       "He started on camera: 150M+ views and $200K+ earned from his own content. His campaigns for consumer apps have reached 500M+ views and 5M+ users.",
@@ -321,6 +311,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-6 py-8" id="testimonials">
+        <div className="mx-auto max-w-[1100px]">
+          <Label>Testimonials</Label>
+          <h2 className="mb-6 font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight">
+            What teams say
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+                <p>&ldquo;&hellip;helped us go from 1&rarr;100 with UGC and is one of the best agency owners in the space.&rdquo;</p>
+                <p className="mt-3">&ldquo;&hellip;the UGC agency we trust most in the space.&rdquo;</p>
+              </blockquote>
+              <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at an AI creative app</figcaption>
+            </figure>
+            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+                &ldquo;Great engagement btw boys. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at a top-3 finance app</figcaption>
+            </figure>
+            <figure className="rounded-2xl border border-white/15 bg-[#141414] p-6">
+              <blockquote className="text-base leading-relaxed text-[#f5f5f3]">
+                &ldquo;&hellip;has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-[15px] text-[#d4d4d0]">Team at a consumer app</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* TRUSTED BY — marquee with real client logos, transparent-background
           PNGs trimmed to tight bbox. Monochrome white where the brand's own
           site only ships a black/white mark (inverted for our dark bg where
@@ -402,13 +422,13 @@ export default function Home() {
               <p className="mb-3 font-display text-[32px] font-bold leading-none tracking-tight text-white">$50K+/mo</p>
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">What&apos;s included</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
-                Trained creators, scripts, posting, creator bonuses, and weekly reporting. Paid media, the ad spend, is outside the fee and billed on top. 2,400+ videos a month. First posts in 10-14 days.
+                Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. 2,400+ videos a month per campaign. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
               <h3 className="mb-3 text-lg font-extrabold tracking-tight">Terms</h3>
               <p className="text-base leading-relaxed text-[#d4d4d0]">
-                90-day minimum, then month to month. No refunds after launch. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
+                90-day minimum, then month to month. No refunds after launch. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.
               </p>
             </div>
           </div>
@@ -470,10 +490,6 @@ export default function Home() {
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             Undeniable impact.
           </h2>
-          <p className="mb-8 text-base text-[#d4d4d0]">
-            These cards are placeholders. Full results shared on a call.
-          </p>
-
           <div>
             <CaseStudiesLockOverlay href="https://calendar.app.google/8x72A8nxr3gQpVfx7" />
             <div className="flex flex-col gap-4">
@@ -563,16 +579,15 @@ export default function Home() {
           <h2 className="font-display text-[clamp(24px,3.5vw,36px)] font-extrabold tracking-tight mb-2">
             From signed to posting in 10-14 days
           </h2>
-          <p className="text-base text-text-secondary mb-10">
-            A methodology refined across 50+ campaigns. Not a black box.
+          <p className="mb-10 max-w-[640px] text-base text-[#d4d4d0]">
+            Creators finish a two-week paid trial. We keep the top 1%. Then the week looks like this.
           </p>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             {steps.map((s) => (
               <div key={s.num} className="rounded-2xl border border-white/10 bg-bg-card/50 p-6">
                 <div className="mb-4 text-[15px] font-semibold text-[#d4d4d0]">
                   {s.num}
-                  {s.num === "03" ? " · 10-14 days" : ""}
                 </div>
                 <h3 className="mb-3 text-xl font-extrabold tracking-tight">{s.title}</h3>
                 <p className="text-base leading-relaxed text-[#d4d4d0]">{s.desc}</p>
@@ -597,7 +612,9 @@ export default function Home() {
                 "Want organic short-form at scale, with a CPM target.",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-1 text-white">✓</span>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="mt-0.5 h-6 w-6 shrink-0 text-[#7dcea0]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12.5 9.5 17 19 7" />
+                  </svg>
                   <span>{item}</span>
                 </li>
               ))}
@@ -610,7 +627,9 @@ export default function Home() {
             <ul className="space-y-3 text-base leading-relaxed text-[#bdbdb8]">
               {["Budgets under $50K a month.", "One-off videos.", "Paid-ads-only management."].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-1">✕</span>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="mt-0.5 h-6 w-6 shrink-0 text-[#c47a7a]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+                    <path d="M7 7l10 10M17 7 7 17" />
+                  </svg>
                   <span>{item}</span>
                 </li>
               ))}

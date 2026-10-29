@@ -44,7 +44,7 @@ export const authors: Record<AuthorId, BlogAuthor> = {
     id: "daniel",
     name: "Daniel Yun",
     url: "https://www.linkedin.com/in/danielyun27",
-    bio: "Daniel Yun is a co-founder of Vo Creations in New York, NY.",
+    bio: "Daniel Yun is a co-founder of Vo Creations in Los Angeles, CA.",
   },
 };
 
@@ -74,7 +74,7 @@ export const posts: BlogPostMeta[] = [
       "Retainer, per-video, and CPM are different purchases. A Vo Creations program starts at $50K+ a month, all-inclusive, and guarantees the client's target CPM.",
     category: "Pricing",
     directAnswer:
-      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and weekly reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. 90 days, then month to month. No refunds after launch.",
+      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. 90 days, then month to month. No refunds after launch.",
     datePublished: "2026-10-28",
     dateModified: "2026-10-28",
     authorId: "daniel",
