@@ -90,6 +90,8 @@ function PaperHeading({ kicker, children }: { kicker: string; children: React.Re
 // DECISION 2026-10: four native 9:16 clips, not one upscaled reel.
 // The first poster is the LCP image. The other three mount after idle.
 // See docs/DECISIONS.md (topic: homepage-hero-clips-2026-10).
+// Sources, in order: post-1, post-2, post-4, post-3.
+// See docs/DECISIONS.md (topic: hero-fourth-clip-2026-10).
 const heroClips = [
   { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", offset: 0, delay: "0s" },
   { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg", offset: 28, delay: "-2.2s" },

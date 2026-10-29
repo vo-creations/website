@@ -82,6 +82,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `homepage-motion-2026-10` — the closer chrome VO sits inside the `max-w-[1280px]` container (two columns from `lg`, stacked below). Homepage motion is CSS plus one IntersectionObserver, off when `prefers-reduced-motion` is set or JavaScript is absent. Final stat and campaign strings stay in the server HTML.
 - `homepage-hero-clips-2026-10` — the hero is four muted 9:16 clips beside the headline on a flat dark field. `hero-clip-1.jpg` is the LCP poster. The old blurred 16:9 reel is gone. The proof strip is four figures in a 2×2 (130M+, #3 in Finance, 174M+, $968k ARR). The other campaign rows stay in blog posts and `llms.txt`.
 - `hero-clip-scale-2026-10` — from 1280px up the clip column is `1.14fr` and the headline is `0.86fr`, about 20% wider clips. Below that the previous split stays.
+- `hero-fourth-clip-2026-10` — hero clips in order are trims of `post-1.mp4`, `post-2.mp4`, `post-4.mp4`, and `post-3.mp4`. `my-story.mp4` is not in the hero.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

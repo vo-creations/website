@@ -3289,3 +3289,7 @@ The clips are short muted trims of files already in the repo: `post-1.mp4`, `pos
 ## topic: hero-clip-scale-2026-10 — _2026-10-29_
 
 Daniel asked for the four hero clips to read about 20% larger from 1280px up. The `xl` grid gives the clip column `1.14fr` and the headline `0.86fr`, which widens each clip about 21% without moving the row past the container. Below 1280 the earlier `1.05fr` / `0.95fr` split stays. Stagger, drift, and the phone row are unchanged.
+
+## topic: hero-fourth-clip-2026-10 — _2026-10-29_
+
+Daniel kept the first three hero clips and asked for the fourth to be the remaining unused creator file. Order is `post-1.mp4` (hero-clip-1), `post-2.mp4` (hero-clip-2), `post-4.mp4` (hero-clip-3), then `post-3.mp4` (hero-clip-4). `creator-success.mp4` had been the fourth clip and was replaced. `creator-example.mp4` is 360px wide and was left unused. `my-story.mp4` was not used. The new trim is 5.5 seconds from about 0.45s, scaled to 540×960, muted, same bitrate as the other three. The poster is the opening face frame.
