@@ -49,9 +49,9 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "An in-house UGC agency trains creators and runs the posting as your program. A marketplace sells you access to people who will make a file. A freelancer is one person you manage yourself. The right buy is the one that matches whether you need a system or a single video.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "daniel",
-    readingMinutes: 9,
+    readingMinutes: 6,
     related: [
       "what-a-managed-ugc-program-costs",
       "questions-before-hiring-a-ugc-agency",
@@ -65,11 +65,11 @@ export const posts: BlogPostMeta[] = [
       "Retainer, per-video, and CPM are different purchases. Here is what a $50K a month in-house UGC program covers, and what is billed separately.",
     category: "Pricing",
     directAnswer:
-      "A managed UGC program is priced as a month of work, not as a pile of files. At Vo Creations that month starts at $50K, with a 90-day minimum. Creator bonuses are billed separately. There are no refunds. Per-video and CPM pricing buy something else: a file, or views, without the operating system around them.",
+      "A managed UGC program at Vo Creations starts at $50K a month for 90 days. That buys the operating system, not a stack of files. Creator bonuses sit on a separate line. Per-video and CPM deals buy a file or views, and there is no honest single market rate for those.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "daniel",
-    readingMinutes: 8,
+    readingMinutes: 6,
     related: [
       "in-house-ugc-vs-marketplace-vs-freelancers",
       "questions-before-hiring-a-ugc-agency",
@@ -85,9 +85,9 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "UGC for an AI startup is a trained creator telling a story the user has already lived, with the product inside that story. A product demo starts at the interface and asks a stranger to care about a screen. Talking-head video earns the pause first. The demo still belongs, as one moment inside the story, not as the whole video.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
-    readingMinutes: 8,
+    readingMinutes: 6,
     related: [
       "text-on-screen-ugc",
       "in-house-ugc-vs-marketplace-vs-freelancers",
@@ -103,9 +103,9 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "Before you hire a UGC agency, ask who trains the creators, who posts, what the month includes, and what happens when a video misses. A managed program can answer those in operating terms. A vendor selling files will answer them with a rate card. The gap between those two answers is the whole decision.",
     datePublished: "2026-10-28",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-29",
     authorId: "thienvu",
-    readingMinutes: 8,
+    readingMinutes: 6,
     related: [
       "in-house-ugc-vs-marketplace-vs-freelancers",
       "what-a-managed-ugc-program-costs",
