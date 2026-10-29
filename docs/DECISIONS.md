@@ -3146,3 +3146,12 @@ Daniel confirmed the brand Instagram is `https://www.instagram.com/vo.creations/
 - Organization `sameAs` in `app/layout.tsx` keeps `https://x.com/VoCreationsUGC` and `https://www.linkedin.com/company/vocreations`, and adds `https://www.instagram.com/vo.creations/`.
 - The Profiles section of `public/llms.txt` lists the same three URLs.
 - The nav and footer still have no social-link row. That row was removed on purpose (`topic: in-house-positioning`, `topic: footer-polish`), so the confirmed Instagram URL was not turned into a new icon.
+
+## topic: creator-count-2026-10 — _2026-10-29_
+
+Daniel raised the public creator count from 500+ to 1000+. The pitch line is "1000+ vetted in-house creators trained through mentorship".
+
+- `public/llms.txt` uses that full line. The program paragraph on the homepage uses it too.
+- The root description, Open Graph description, and Twitter description share one string, so they all say "1000+ creators". The full sentence does not fit that short description.
+- The hero stat target changed from 500 to 1000. The label stays "Trained creators", so the chip reads "1000+".
+- Older decision entries that quote the previous "500+" copy were left as history. View totals such as 500M+, the $500 mentorship trial, and Higgsfield cards were not part of this count.

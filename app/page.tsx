@@ -75,7 +75,7 @@ function StatCounter({
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
   { target: 5, format: (n: number) => `${n}M+`, label: "Users converted" },
-  { target: 500, format: (n: number) => `${n}+`, label: "Trained creators" },
+  { target: 1000, format: (n: number) => `${n}+`, label: "Trained creators" },
   { target: 14, format: (n: number) => (n >= 14 ? "10-14" : `${n}`), label: "Days to post" },
 ];
 
@@ -381,7 +381,7 @@ export default function Home() {
               A campaign produces 2,400+ videos a month. First posts go live in 10-14 days. We ask for 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month, with no refunds and no long contract. Campaigns start at $50K a month. Creator bonuses are billed separately, so strategy and creator pay stay easy to tell apart.
             </p>
             <p>
-              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, trained 500+ creators, and run across 50+ campaigns.
+              When a video gets the views and the comments, it is already tested creative. That is the bridge from organic UGC to UGC ads, and it is how app installs keep coming after a single post would have died. The same system has generated 1B+ views, with 1000+ vetted in-house creators trained through mentorship, and run across 50+ campaigns.
             </p>
           </div>
         </div>
