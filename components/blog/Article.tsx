@@ -135,7 +135,7 @@ export default function Article({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post, faqs)) }}
       />
       <Nav />
-      <main className="px-6 pb-24 pt-36">
+      <main id="main" className="px-6 pb-24 pt-36">
         <article className="mx-auto max-w-[720px]">
           <nav aria-label="Breadcrumb" className="mb-6 text-[15px] text-text-dim">
             <ol className="flex flex-wrap items-center gap-2">

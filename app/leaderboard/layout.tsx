@@ -14,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function LeaderboardLayout({ children }: { children: React.ReactNode }) {
-  return <div className={`lb-root ${anton.variable} ${outfit.variable}`}>{children}</div>;
+  return <main id="main" className={`lb-root ${anton.variable} ${outfit.variable}`}>{children}</main>;
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAILS } from "@/lib/site";
 
 const footerLinks = [
   { href: "/#results", label: "Case Studies" },
@@ -13,8 +14,8 @@ const footerLinks = [
 export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
   const paper = tone === "paper";
   return (
-    <footer className={paper ? "border-t border-white/10 bg-[#0B0B0C] text-[#F2F0EB]" : "border-t border-border"}>
-      <div className="max-w-[1200px] mx-auto px-8 pt-16 pb-8">
+    <footer className={paper ? "border-t border-white/10 bg-[#0B0B0C] px-6 text-[#F2F0EB] md:px-14" : "border-t border-border px-6 md:px-14"}>
+      <div className="mx-auto max-w-[1280px] pb-8 pt-16">
         {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-12 mb-16">
           {/* Brand */}
@@ -25,11 +26,22 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
                 Vo Creations
               </span>
             </div>
-            <p className={`mb-6 max-w-[320px] text-base leading-relaxed ${paper ? "text-white/60" : "text-[#d4d4d0]"}`}>
+            <p className={`mb-4 max-w-[320px] text-base leading-relaxed ${paper ? "text-white/60" : "text-[#d4d4d0]"}`}>
               The in-house UGC agency backed by elite mentorship.
             </p>
-            <div className="flex items-center gap-4 text-[15px] font-semibold">
-              <a href="https://x.com/VoCreationsUGC" className={`inline-flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#F2F0EB] hover:text-white focus-visible:outline-[#F2F0EB]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
+            <p className="mb-6 flex flex-col gap-1 text-[15px]">
+              {CONTACT_EMAILS.map((email) => (
+                <a
+                  key={email}
+                  href={`mailto:${email}`}
+                  className={`inline-flex min-h-11 items-center underline decoration-white/30 underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-white/60 hover:text-[#F2F0EB] focus-visible:outline-[#F2F0EB]" : "text-[#d4d4d0] hover:text-text focus-visible:outline-white"}`}
+                >
+                  {email}
+                </a>
+              ))}
+            </p>
+            <div className="flex items-center gap-2 text-[15px] font-semibold">
+              <a href="https://x.com/VoCreationsUGC" className={`inline-flex h-11 w-11 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#F2F0EB] hover:text-white focus-visible:outline-[#F2F0EB]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
                 X
               </a>
               <a href="https://www.instagram.com/vo.creations/" className={`inline-flex min-h-11 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "text-[#F2F0EB] hover:text-white focus-visible:outline-[#F2F0EB]" : "text-text-secondary hover:text-text focus-visible:outline-white"}`} target="_blank" rel="noopener noreferrer">
@@ -85,8 +97,7 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
             the codebase untouched (Vercel/Stripe compliance may still
             reference them) — this only removes the footer nav links to
             them. See docs/DECISIONS.md (topic: footer-polish). */}
-        <div className={`flex items-center justify-between gap-4 border-t pt-6 ${paper ? "border-white/10" : "border-border"}`}>
-          <p className={`text-[15px] ${paper ? "text-white/60" : "text-text-dim"}`}>Vo Creations</p>
+        <div className={`flex items-center justify-end gap-4 border-t pt-6 ${paper ? "border-white/10" : "border-border"}`}>
           <p className={`text-[15px] ${paper ? "text-white/60" : "text-text-dim"}`}>&copy; 2026 Vo Creations</p>
         </div>
       </div>

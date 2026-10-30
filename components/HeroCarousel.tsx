@@ -27,7 +27,16 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
   const [reduced, setReduced] = useState(false);
   const [paused, setPaused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
+  const [narrow, setNarrow] = useState(false);
   const count = clips.length;
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setNarrow(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -147,7 +156,10 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      // DECISION 2026-10: phones fetch only the clip in front.
+                      // Side cards stay posters. See docs/DECISIONS.md
+                      // (topic: closer-balance-2026-10).
+                      preload={narrow ? "none" : "metadata"}
                       poster={clip.poster}
                     >
                       <source src={clip.src} type="video/mp4" />
@@ -156,7 +168,7 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                 </div>
                 {front && (
                   <div className="hero-reflect" aria-hidden="true">
-                    <img src={clip.poster} alt="" />
+                    <img src={clip.poster} alt="" loading="lazy" decoding="async" />
                   </div>
                 )}
               </div>

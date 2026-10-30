@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Page not found",
     url: "https://vocreations.com/404",
+    siteName: "Vo Creations",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@VoCreationsUGC",
   },
 };
 
@@ -17,7 +22,7 @@ export default function NotFound() {
   return (
     <>
       <Nav />
-      <main className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-36 pb-24">
+      <main id="main" className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-36 pb-24">
         <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2.5px] text-text-secondary">
           404
         </p>

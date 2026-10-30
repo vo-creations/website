@@ -25,9 +25,13 @@ only:
   `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
   behind `CaseStudiesLockOverlay` and render a category label plus a blurred
   placeholder figure (`000M+` or `00.0M`), not a real view total. Anonymized
-  proof numbers sit in a separate public strip (four figures, then a blurred Slack report image at `public/proof/slack-report.png`). The homepage hero is four muted 9:16 clips (`public/videos/hero-clip-1.mp4` through `hero-clip-4.mp4`); `hero-clip-1.jpg` is the first paint. `/llms.txt` is a static file in `public/`.
+  proof numbers sit in a separate public strip (four figures, then a blurred Slack report image at `public/proof/slack-report.png`). The homepage hero is four muted 9:16 clips (`public/videos/hero-clip-1.mp4` through `hero-clip-4.mp4`). Only the front clip mounts a video, and viewports under 768px use `preload="none"` on that file. `hero-clip-1.jpg` is the only image with `fetchpriority="high"`. Instagram stills in Our work are `next/image` (`sizes="280px"`, lazy). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
-  Instagram profiles. The footer links X and Instagram. The nav does not.
+  Instagram profiles. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
+  (mailto only, no phone). The footer and the homepage closer link those
+  addresses. The footer links X and Instagram. The nav does not. Homepage
+  sections, including Our work, Team, and the footer, share `max-w-[1280px]`
+  inside `px-6 md:px-14`.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.

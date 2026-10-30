@@ -10,10 +10,11 @@ export const metadata: Metadata = {
     "How an in-house UGC program actually works: talking-head video, pricing, hiring questions, and what to buy instead of a folder of clips.",
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "UGC insights",
+    title: "UGC insights | Vo Creations",
     description:
       "Talking-head UGC, program pricing, and how to hire an in-house agency. Written by the Vo Creations founders.",
     url: "https://vocreations.com/blog",
+    siteName: "Vo Creations",
     type: "website",
     images: [
       {
@@ -26,7 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "UGC insights",
+    site: "@VoCreationsUGC",
+    title: "UGC insights | Vo Creations",
     description:
       "Talking-head UGC, program pricing, and how to hire an in-house agency. Written by the Vo Creations founders.",
     images: ["/og-image.png"],
@@ -65,7 +67,7 @@ export default function BlogIndex() {
   return (
     <>
       <Nav />
-      <main className="px-6 pb-24 pt-36">
+      <main id="main" className="px-6 pb-24 pt-36">
         <div className="mx-auto max-w-[720px]">
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2.5px] text-text-secondary">Blog</p>
           <h1 className="mb-4 font-display text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight">

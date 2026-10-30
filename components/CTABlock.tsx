@@ -2,10 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { MaskText, Reveal } from "@/components/motion";
+import { CONTACT_EMAILS } from "@/lib/site";
 
 export default function CTABlock({
   heading = "1B+ views. Your target CPM, guaranteed.",
-  sub = "Campaigns start at $50K+ a month. First posts go live in 10-14 days.",
+  sub = "Campaigns start at $50K+ a month. First posts go live in 10–14 days.",
   buttonText = "Book a call",
   href = "https://calendar.app.google/8x72A8nxr3gQpVfx7",
   paper = false,
@@ -50,12 +51,12 @@ export default function CTABlock({
 
   if (paper) {
     return (
-      <section ref={sectionRef} className="bg-[#0B0B0C] px-6 py-24 text-[#F2F0EB] md:px-14 md:py-32">
-        {/* DECISION 2026-10: the chrome mark lives in the container, not
-            pinned to the viewport edge. See docs/DECISIONS.md
-            (topic: homepage-motion-2026-10). */}
-        <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_clamp(168px,22vw,250px)] lg:gap-20">
-          <div className="min-w-0">
+      <section ref={sectionRef} className="bg-[#0B0B0C] px-6 py-14 text-[#F2F0EB] md:px-14 md:py-16">
+        {/* DECISION 2026-10: the chrome mark sits beside the text block,
+            vertically centered and about 20% smaller than the far-right
+            column. See docs/DECISIONS.md (topic: closer-balance-2026-10). */}
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-start lg:gap-16">
+          <div className="min-w-0 w-full lg:w-auto">
             <h2 className="max-w-[16ch] font-serif text-[clamp(48px,7vw,96px)] leading-[0.92] tracking-[-0.03em]">
               <MaskText text={heading} />
             </h2>
@@ -71,20 +72,29 @@ export default function CTABlock({
               >
                 {buttonText}
               </a>
+              <p className="mt-5 flex flex-col gap-1 text-[15px] sm:flex-row sm:flex-wrap sm:gap-x-4">
+                {CONTACT_EMAILS.map((email) => (
+                  <a
+                    key={email}
+                    href={`mailto:${email}`}
+                    className="inline-flex min-h-11 items-center text-white/60 underline decoration-white/30 underline-offset-4 hover:text-[#F2F0EB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2F0EB]"
+                  >
+                    {email}
+                  </a>
+                ))}
+              </p>
             </Reveal>
           </div>
-          <div className="flex justify-center lg:justify-end">
-            <img
-              ref={markRef}
-              src="/brand/vo-chrome-sm.webp"
-              alt=""
-              width={384}
-              height={465}
-              loading="lazy"
-              decoding="async"
-              className="h-auto w-[min(46vw,210px)] lg:w-full"
-            />
-          </div>
+          <img
+            ref={markRef}
+            src="/brand/vo-chrome-sm.webp"
+            alt=""
+            width={384}
+            height={465}
+            loading="lazy"
+            decoding="async"
+            className="h-auto w-[144px] shrink-0 lg:w-[228px]"
+          />
         </div>
       </section>
     );

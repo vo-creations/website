@@ -123,14 +123,14 @@ export const posts: BlogPostMeta[] = [
   },
   {
     slug: "text-on-screen-ugc",
-    title: "Why Text-On-Screen UGC Is Killing Your App Growth",
+    title: "Why text-on-screen UGC is killing your app growth",
     description:
       "Text-on-screen explains a product and gets swiped. Talking-head UGC is a person telling a story the viewer has lived. Here is the difference.",
     category: "Format",
     directAnswer:
       "Text-on-screen UGC puts a caption, a sound, and a product shot in front of someone and calls it content. It explains the product and then gets swiped. Talking-head UGC is a real person telling a story the viewer has lived, with the product inside that story. That is the format that earns the comment, the follow, and the install.",
     datePublished: "2026-03-24",
-    dateModified: "2026-10-29",
+    dateModified: "2026-10-30",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [
@@ -173,6 +173,7 @@ export function blogPostMetadata(slug: string): Metadata {
       title: post.title,
       description: post.description,
       url: postUrl(post.slug),
+      siteName: "Vo Creations",
       type: "article",
       publishedTime: `${post.datePublished}T00:00:00Z`,
       modifiedTime: `${post.dateModified}T00:00:00Z`,
@@ -180,6 +181,7 @@ export function blogPostMetadata(slug: string): Metadata {
     },
     twitter: {
       card: "summary_large_image",
+      site: "@VoCreationsUGC",
       title: post.title,
       description: post.description,
       images: [image.src],

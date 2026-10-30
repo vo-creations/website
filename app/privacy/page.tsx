@@ -7,7 +7,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Nav />
-
+      <main id="main">
       <section className="px-6 pb-16 pt-[160px]">
         <div className="mx-auto max-w-[720px] text-center">
           <Label>Legal and policies</Label>
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-
+      </main>
       <Footer />
     </>
   );
