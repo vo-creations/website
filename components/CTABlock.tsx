@@ -52,10 +52,11 @@ export default function CTABlock({
   if (paper) {
     return (
       <section ref={sectionRef} className="bg-[#0B0B0C] px-6 py-14 text-[#F2F0EB] md:px-14 md:py-16">
-        {/* DECISION 2026-10: the chrome mark sits beside the text block,
-            vertically centered and about 20% smaller than the far-right
-            column. See docs/DECISIONS.md (topic: closer-balance-2026-10). */}
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-start lg:gap-16">
+        {/* DECISION 2026-10: the text and chrome mark are one centered group.
+            The mark stays vertically centered beside the copy. On a phone the
+            stack stays full width with the mark centered under the copy.
+            See docs/DECISIONS.md (topic: closer-center-2026-10). */}
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-center lg:gap-16">
           <div className="min-w-0 w-full lg:w-auto">
             <h2 className="max-w-[16ch] font-serif text-[clamp(48px,7vw,96px)] leading-[0.92] tracking-[-0.03em]">
               <MaskText text={heading} />
