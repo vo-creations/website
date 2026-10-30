@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@VoCreationsUGC",
     title: "Privacy Policy",
     description:
       "How Vo Creations LLC collects and uses information when you book a call, email, or browse vocreations.com.",

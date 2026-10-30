@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@VoCreationsUGC",
     title: "Refund Policy | Vo Creations",
     description:
       "No refunds after a Vo Creations campaign launches. 90-day minimum, then month to month.",

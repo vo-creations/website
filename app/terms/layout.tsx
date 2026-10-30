@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@VoCreationsUGC",
     title: "Terms",
     description:
       "Website and services terms for Vo Creations LLC. Campaigns follow each client agreement.",

@@ -12,6 +12,31 @@ html {
   scroll-behavior: smooth;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 200;
+  transform: translateY(-160%);
+  border-radius: 999px;
+  background: #f2f0eb;
+  color: #0b0b0c;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  transform: none;
+  outline: 2px solid #f2f0eb;
+  outline-offset: 3px;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -259,11 +284,10 @@ html.js-motion .budget-wipe.is-in {
   position: absolute;
   left: 0;
   right: 0;
-  top: 100%;
-  height: 16%;
-  margin-top: 8px;
+  top: calc(100% + 8px);
+  height: 13%;
   overflow: hidden;
-  border-radius: 0 0 18px 18px;
+  border-radius: 22px;
   opacity: 0.22;
   transform: scaleY(-1);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 72%);
@@ -281,8 +305,11 @@ html.js-motion .budget-wipe.is-in {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  min-height: 44px;
-  padding: 0 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 44px;
+  padding: 10px 12px 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.62);
   font-size: 13px;

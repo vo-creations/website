@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface InstagramEmbedProps {
   url: string;
@@ -38,10 +39,13 @@ export default function InstagramEmbed({ url, label, poster, posterAlt }: Instag
         aria-label={label ? `Play ${label} video` : "Play Instagram video"}
       >
         {poster ? (
-          <img
+          <Image
             src={poster}
-            alt={posterAlt ?? (label ? `${label} still` : "Talking-head UGC still")}
-            className="absolute inset-0 h-full w-full object-cover"
+            alt={posterAlt ?? "A creator speaking to the camera in a vertical Instagram video."}
+            fill
+            sizes="280px"
+            loading="lazy"
+            className="object-cover"
           />
         ) : (
           <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_30%_20%,#3a2a22,transparent_45%),radial-gradient(circle_at_80%_80%,#1c2430,#111)] px-4 text-center">

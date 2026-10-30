@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Instrument_Serif, Inter, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import VeilBackground from "@/components/VeilBackground";
+import { CONTACT_EMAILS } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,6 +38,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vocreations.com/",
   },
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
@@ -105,6 +108,12 @@ const organizationJsonLd = {
     "https://www.linkedin.com/company/vocreations/",
     "https://www.instagram.com/vo.creations/",
   ],
+  contactPoint: CONTACT_EMAILS.map((email) => ({
+    "@type": "ContactPoint",
+    email,
+    contactType: "customer support",
+    url: `mailto:${email}`,
+  })),
   knowsAbout: [
     "User-Generated Content",
     "UGC Agency",
@@ -127,11 +136,11 @@ const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "In-house UGC program",
-  serviceType: ["UGC content", "UGC ads"],
+  serviceType: "UGC content",
   provider: { "@id": "https://vocreations.com/#organization" },
   areaServed: "US",
   description:
-    "Organic UGC and UGC ads for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat.",
+    "Organic UGC for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat.",
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
@@ -166,12 +175,6 @@ export default function RootLayout({
             __html: `(function(){try{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("js-motion");}catch(e){}})();`,
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1TESF8060F" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1TESF8060F');`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -192,6 +195,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-1TESF8060F" strategy="lazyOnload" />
+        <Script id="ga-gtag" strategy="lazyOnload">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1TESF8060F');`}
+        </Script>
         <div
           aria-hidden="true"
           className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"

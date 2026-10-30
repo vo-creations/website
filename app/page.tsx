@@ -140,11 +140,11 @@ function HeroFilm() {
             The in-house UGC agency backed by elite mentorship
           </p>
           <h1 className="max-w-[12ch] text-white">
-            <span className="sr-only">Organic UGC for AI and tech apps. </span>
-            <span className="block font-display text-[clamp(56px,6.4vw,104px)] font-medium leading-[0.86] tracking-[-0.055em]">
+            <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
+            <span aria-hidden="true" className="block font-display text-[clamp(56px,6.4vw,104px)] font-medium leading-[0.86] tracking-[-0.055em]">
               make them
             </span>
-            <span className="mt-1 block font-serif text-[clamp(60px,6.6vw,108px)] italic leading-[0.84] tracking-[-0.03em] text-[#f4f1ea]">
+            <span aria-hidden="true" className="mt-1 block font-serif text-[clamp(60px,6.6vw,108px)] italic leading-[0.84] tracking-[-0.03em] text-[#f4f1ea]">
               <MaskText text="remember." />
             </span>
           </h1>
@@ -159,7 +159,7 @@ function HeroFilm() {
               rel="noopener noreferrer"
               className={`inline-flex min-h-11 items-center rounded-full bg-[#f2f2f0] px-7 text-[15px] font-medium text-black ${FOCUS_LIGHT}`}
             >
-              Let&apos;s Talk
+              Book a call
             </a>
             <a
               href="#proof"
@@ -179,7 +179,7 @@ const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "Views generated" },
   { target: 5, format: (n: number) => `${n}M+`, label: "Users converted" },
   { target: 1000, format: (n: number) => `${n}+`, label: "Trained creators" },
-  { target: 14, format: (n: number) => (n >= 14 ? "10-14" : `${n}`), label: "Days to post" },
+  { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "Days to post" },
 ];
 
 const steps = [
@@ -250,7 +250,7 @@ const agencyFaqs = [
   { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
   { q: "Is paid media included?", a: "Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
   { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
-  { q: "How long do results take?", a: "First posts go live in 10-14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
+  { q: "How long do results take?", a: "First posts go live in 10–14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. The format is organic talking-head UGC." },
   { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos." },
   { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign." },
@@ -355,6 +355,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Nav />
+      <main id="main">
       <HeroFilm />
       <div className="paper-page bg-[#0B0B0C] text-[#F2F0EB]">
 
@@ -482,7 +483,7 @@ export default function Home() {
           <PaperHeading kicker="Proof">Numbers from recent campaigns</PaperHeading>
           <Reveal>
             <p className="mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
-              Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. A typical outcome prices under $3 CPM.
+              Vo Creations campaign results. Results are anonymized. Logos are brands we&apos;ve worked with. Typical campaigns land under $3 CPM.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
@@ -508,7 +509,7 @@ export default function Home() {
 
       <section className="px-6 py-24 md:px-14 md:py-32" id="pricing">
         <div className="mx-auto max-w-[1280px]">
-          <PaperHeading kicker="The program">Organic UGC for AI startups and tech consumer apps.</PaperHeading>
+          <PaperHeading kicker="Pricing">The program: $50K+/mo, all-inclusive.</PaperHeading>
           <div className="grid items-stretch gap-12 border-t border-white/10 pt-10 md:grid-cols-3 md:gap-16">
             <Reveal delay={0} className="h-full">
             <div className="flex h-full flex-col">
@@ -523,7 +524,7 @@ export default function Home() {
               <p className="mb-4 font-serif text-[64px] leading-none tracking-[-0.04em] text-[#F2F0EB]">$50K+/mo</p>
               <h3 className="mb-4 text-[15px] font-medium text-white/60">What&apos;s included</h3>
               <p className="text-[16px] leading-relaxed text-white/60">
-                Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10-14 days.
+                Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10–14 days.
               </p>
             </div>
             </Reveal>
@@ -546,8 +547,8 @@ export default function Home() {
           sliding out from under the cursor mid-interaction. Platform embeds (Instagram/
           TikTok/Facebook) can't support that same hover interaction — see docs/DECISIONS.md
           (topic: showcase-marquee). */}
-      <section className="bg-[#0B0B0C] py-24 md:py-32">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-14">
+      <section className="bg-[#0B0B0C] px-6 py-24 md:px-14 md:py-32">
+        <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="Our work">Content that converts and goes viral.</PaperHeading>
           <Reveal>
           <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
@@ -564,7 +565,7 @@ export default function Home() {
               .map((v) => (
                 <div key={v.url} className="aspect-[9/16] w-[260px] shrink-0 overflow-hidden sm:w-[280px]">
                   {v.type === "instagram" && (
-                    <InstagramEmbed url={v.url} label={v.label} poster={v.poster} posterAlt={`Talking-head UGC still from ${v.url.split("/p/")[1]?.replace("/", "") ?? "Instagram"}`} />
+                    <InstagramEmbed url={v.url} label={v.label} poster={v.poster} posterAlt="A creator speaking to the camera in a vertical Instagram video." />
                   )}
                   {v.type === "tiktok" && <TikTokEmbed url={v.url} label={v.label} thumb={v.thumb} />}
                   {v.type === "youtube" && <YouTubeEmbed url={v.url} label={v.label} />}
@@ -620,7 +621,7 @@ export default function Home() {
       </section>
 
       <section className="px-6 py-24 md:px-14 md:py-32" id="team">
-        <div className="mx-auto max-w-[1100px]">
+        <div className="mx-auto max-w-[1280px]">
           <PaperHeading kicker="The team">Proven viral creators turned agency operators</PaperHeading>
 
           <div className="grid grid-cols-1 items-stretch gap-16 md:grid-cols-2 md:gap-20">
@@ -675,10 +676,10 @@ export default function Home() {
 
       <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32">
         <div className="mx-auto max-w-[1280px]">
-          <PaperHeading kicker="How it works">From signed to posting in 10-14 days</PaperHeading>
+          <PaperHeading kicker="How it works">From signed to posting in 10–14 days</PaperHeading>
           <Reveal>
           <p className="-mt-6 mb-12 max-w-[40rem] text-[17px] leading-relaxed text-white/60">
-            Creators finish a two-week paid trial. We keep the top 1%. Then the week looks like this.
+            Creators finish a two-week paid trial. We keep the top 1%. Then it runs like this.
           </p>
           </Reveal>
 
@@ -749,7 +750,7 @@ export default function Home() {
           (topic: faq-restyle). */}
       <section className="bg-[#111113] px-6 py-24 md:px-14 md:py-32" id="faq">
         <div className="mx-auto max-w-[1280px]">
-          <PaperHeading kicker="FAQ">Frequently Asked Questions</PaperHeading>
+          <PaperHeading kicker="FAQ">Frequently asked questions</PaperHeading>
           <div className="border-t border-white/10 md:ml-[200px]">
             {agencyFaqs.map((faq, index) => {
               const panelId = `faq-${faq.q.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
@@ -784,9 +785,9 @@ export default function Home() {
       </section>
 
       <CTABlock paper />
-
-      <Footer tone="paper" />
       </div>
+      </main>
+      <Footer tone="paper" />
     </>
   );
 }
