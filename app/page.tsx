@@ -88,15 +88,19 @@ function PaperHeading({ kicker, children }: { kicker: string; children: React.Re
   );
 }
 
-// DECISION 2026-10: four native 9:16 clips in a CSS coverflow.
+// DECISION 2026-10: seven native 9:16 clips in a CSS coverflow.
 // The first poster is the LCP image. Only the front clip mounts a video.
-// See docs/DECISIONS.md (topic: hero-carousel-2026-10).
-// Sources, in order: post-1, post-2, post-4, post-3.
-// See docs/DECISIONS.md (topic: hero-fourth-clip-2026-10).
+// See docs/DECISIONS.md (topic: hero-coverflow-2026-10).
+// Order interleaves the original four with three creator trims:
+// post-1, creator-success, post-2, creator-example (desk), post-4,
+// creator-example (screen), post-3.
 const heroClips = [
   { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
+  { src: "/videos/hero-clip-5.mp4", poster: "/videos/hero-clip-5.jpg" },
   { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg" },
+  { src: "/videos/hero-clip-6.mp4", poster: "/videos/hero-clip-6.jpg" },
   { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
+  { src: "/videos/hero-clip-7.mp4", poster: "/videos/hero-clip-7.jpg" },
   { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg" },
 ];
 
@@ -133,7 +137,7 @@ function HeroFilm() {
 
   return (
     <section className="bg-[#0B0B0C] px-6 pb-16 pt-28 text-white md:px-14 md:pb-24 md:pt-32">
-      <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-6">
+      <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:gap-8 xl:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] xl:gap-6">
         <div ref={copyRef} className="hero-enter min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[13px] font-medium tracking-[0.04em] text-[#e7e7e4] md:text-[15px]">
             <span className="h-px w-7 bg-[#c8c8c4]" aria-hidden="true" />

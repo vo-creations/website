@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, type FocusEvent, type KeyboardEvent, type PointerEvent } from "react";
 
 // DECISION 2026-10: CSS coverflow, no 3D library. Only the front clip mounts
-// a video. See docs/DECISIONS.md (topic: hero-carousel-2026-10).
+// a video. Other slides are posters. Phones preload none on that one file.
+// See docs/DECISIONS.md (topic: hero-coverflow-2026-10).
 
 const STEP_MS = 3600;
 
