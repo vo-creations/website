@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <>
-      <Nav />
-      <main id="main" className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 pt-36 pb-24">
+    <div className="editorial">
+      <Nav variant="editorial" />
+      <main id="main" className="flex min-h-[70vh] flex-col items-center justify-center px-6 pb-24 pt-16 text-center">
         <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2.5px] text-text-secondary">
           404
         </p>
@@ -39,7 +39,7 @@ export default function NotFound() {
           Back to Vo Creations
         </Link>
       </main>
-      <Footer />
-    </>
+      <Footer tone="editorial" />
+    </div>
   );
 }

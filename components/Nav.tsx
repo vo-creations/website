@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandLockup from "@/components/BrandLockup";
 
 const navLinks = [
   { href: "/#results", label: "Case Studies" },
@@ -25,9 +26,8 @@ function EditorialNav() {
   return (
     <header className="site-header">
       <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-[22px] md:px-10 xl:h-[76px] xl:px-16">
-        <a href="/" className="flex min-h-11 items-center gap-3">
-          <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto" />
-          <span className="font-display text-[15px] font-semibold tracking-[-0.03em] text-[#f6f6f4]">Vo Creations</span>
+        <a href="/" className="brand-link" aria-label="Vo Creations">
+          <BrandLockup />
         </a>
         <div className="hidden items-center gap-9 text-[14px] text-[#d6d6d2] xl:flex">
           {navLinks.map((link) => (
@@ -92,12 +92,10 @@ function BarNav() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="flex min-h-11 items-center gap-2.5 shrink-0"
+          className="brand-link shrink-0"
+          aria-label="Vo Creations"
         >
-          <img src="/brand/vo-logo.svg" alt="Vo Creations" className="h-7 w-auto" />
-          <span className="font-display text-base font-semibold tracking-[-0.03em] text-[#fbfbf9] md:text-lg">
-            Vo Creations
-          </span>
+          <BrandLockup height={32} />
         </Link>
 
         <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">

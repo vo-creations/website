@@ -38,18 +38,20 @@ export default function VeilBackground() {
   }, []);
 
   return (
-    <>
-      <div className="veil-still absolute inset-0" />
+    <div className={`silk-field${live ? " is-live" : ""}`}>
+      {/* Static satin. The sheet drifts on its own until desktop WebGL
+          takes over, and it stays still for reduced motion. */}
+      <div className="silk-sheet" />
       {live && (
         <DarkVeil
-          speed={0.28}
+          speed={0.18}
           resolutionScale={0.55}
           desaturate={1}
           tint={[1, 1, 1]}
-          tintAmount={0.45}
-          gamma={0.45}
+          tintAmount={0.82}
+          gamma={0.4}
         />
       )}
-    </>
+    </div>
   );
 }

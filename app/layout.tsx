@@ -87,7 +87,7 @@ const organizationJsonLd = {
     "@type": "PostalAddress",
     addressLocality: "New York",
   },
-  logo: "https://vocreations.com/vocreations-logo.webp",
+  logo: "https://vocreations.com/brand/vo-mark.png",
   description:
     "UGC agency that trains its own creators in-house. Specializing in talking-head storytelling for AI startups and consumer apps.",
   founder: [

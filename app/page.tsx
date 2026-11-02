@@ -12,10 +12,10 @@ import { CountText, Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { CONTACT_EMAILS } from "@/lib/site";
 
-// DECISION 2026-11: homepage is the dark field again. The silk is the
-// fixed DarkVeil behind a transparent page. Cobalt is the Let's Talk fill,
-// Book a call underline, stat dots, work progress, and the open FAQ mark.
-// See docs/DECISIONS.md (topic: dark-premium-2026-11).
+// DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
+// are white on black. The serif VO monogram is the mark, including a large
+// one beside the hero lockup from 1024px. See docs/DECISIONS.md
+// (topic: silk-monogram-2026-11).
 
 const BOOKING = "https://calendar.app.google/8x72A8nxr3gQpVfx7";
 
@@ -232,7 +232,7 @@ function CloserMark() {
   }, []);
   return (
     <div ref={ref} className="closer-mark">
-      <Image src="/brand/chrome-mono.webp" alt="" width={936} height={1117} sizes="250px" />
+      <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
     </div>
   );
 }
@@ -311,6 +311,7 @@ function HeroStats() {
 
 export default function Home() {
   const heroCopyRef = useHeroDrift<HTMLDivElement>(-28);
+  const heroMarkRef = useHeroDrift<HTMLDivElement>(18);
   const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
   return (
     <div className="editorial">
@@ -333,6 +334,11 @@ export default function Home() {
                   <span>remember.</span>
                 </span>
               </h1>
+              {/* DECISION 2026-11: serif VO sits in the open space beside the
+                  lockup, above the CTA row. Hidden under 1024px. */}
+              <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
+                <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
+              </div>
               <div className="hb">
                 <p className="hsub">
                   1000+ vetted in-house creators.
