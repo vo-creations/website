@@ -3343,3 +3343,11 @@ The hero lockup, eyebrow, subline, title, and CTAs stayed. From 1280px the locku
 `/blog` and `components/blog/Article.tsx` render `Nav variant="editorial"` and `Footer tone="editorial"` on the off-white field. Post copy was not rewritten. Cobalt on those pages is the existing Book a call underline.
 
 The homepage `#fit` section restores the earlier bullets and nothing else. Good fit: AI and tech consumer apps, ready for $50K+ a month, organic short-form at scale with a CPM target. Not a fit: budgets under $50K a month, one-off videos, paid-ads-only management. Higgsfield and Krea stayed in the logo row. Founder photos and logos stayed grayscale. No video-count claim was added.
+
+## topic: dark-premium-2026-11 — _2026-11-02_
+
+The off-white editorial page read as a generic magazine template. The homepage and blog went back to the near-black field (`#060606`) with white type, so the existing DarkVeil (desktop, after idle, off for reduced motion) and film grain show through a transparent page shell. Scroll motion is the headline rise, section fades, count-ups, the logo loop, a small hero parallax (copy and the fan, skipped when reduced motion is on), and the closer monogram rotating within 8 degrees.
+
+The structure stayed: 7-clip coverflow, proof, our work, process, gated case studies, Slack reporting, quotes, pricing, Good fit / Not a fit, team, FAQ, journal, closer. From 1280px the fan is a full-width row under the lockup so the outer cards are not cropped by a side column. The desktop card is 268px from 1280px and 300px from 1440px. The faded reflection under the front card was removed. Only the front slide still mounts an MP4.
+
+Section numbers `(01)`–`(11)`, figure indexes, and the “Now playing” labels came off. “remember.” and the other display lines are Inter Tight, not italic Instrument Serif. Cobalt `#5A6CFF` is the Let’s Talk / Book a call fill, the Book a call underline, stat dots, the work progress line, and the open FAQ mark. Locked lines stayed: the eyebrow, the 1000+ subline, the title, the footer tagline, and the closer “1B+ views. Your target CPM, guaranteed.” Higgsfield and Krea stayed. Founder photos and logos stayed grayscale. Videos stayed in color. No video-count promise was added. `/blog` uses that same dark header and footer.

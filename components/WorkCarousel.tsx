@@ -136,11 +136,10 @@ export default function WorkCarousel() {
       <div className="ed-wrap">
         <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <p className="lab">(02) Our work</p>
-            <h2 className="display mt-5">
+            <h2 className="display">
               Content that converts
               <br />
-              and <em>goes viral.</em>
+              and goes viral.
             </h2>
             <p className="lede mt-6">
               Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
@@ -150,9 +149,8 @@ export default function WorkCarousel() {
             <span className="idx" aria-live="polite">
               {current} / {total}
             </span>
-            <span className="lab">Now playing</span>
             <span className="sr-only" aria-live="polite">
-              {playingLabel ? `Now playing, ${playingLabel}` : ""}
+              {playingLabel ? `Playing ${playingLabel}` : ""}
             </span>
             <button type="button" aria-label="Previous videos" onClick={() => step(-1)}>
               ←
@@ -185,7 +183,7 @@ export default function WorkCarousel() {
             <figure key={clip.url} className={`wk ${SIZES[i % SIZES.length]}`} data-clip>
               <div className="wi">
                 {open ? (
-                  <div className="absolute inset-0" aria-label={`Now playing, ${clip.label}`}>
+                  <div className="absolute inset-0" aria-label={`Playing ${clip.label} video`}>
                     <Player clip={clip} />
                   </div>
                 ) : (
@@ -209,8 +207,7 @@ export default function WorkCarousel() {
                 )}
               </div>
               <figcaption>
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                <span>{open ? "Now playing" : clip.label}</span>
+                <span>{clip.label}</span>
               </figcaption>
             </figure>
           );

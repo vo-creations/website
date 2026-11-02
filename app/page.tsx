@@ -12,11 +12,10 @@ import { CountText, Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { CONTACT_EMAILS } from "@/lib/site";
 
-// DECISION 2026-11: homepage is the approved off-white editorial page.
-// The hero visual is the 7-clip coverflow (paper-toned). Cobalt is limited
-// to Let's Talk, Book a call underlines, hero stat dots, the work progress
-// line, and the open FAQ mark. See docs/DECISIONS.md
-// (topic: c-hero-blog-fit-2026-11).
+// DECISION 2026-11: homepage is the dark field again. The silk is the
+// fixed DarkVeil behind a transparent page. Cobalt is the Let's Talk fill,
+// Book a call underline, stat dots, work progress, and the open FAQ mark.
+// See docs/DECISIONS.md (topic: dark-premium-2026-11).
 
 const BOOKING = "https://calendar.app.google/8x72A8nxr3gQpVfx7";
 
@@ -174,6 +173,34 @@ function shortDate(iso: string) {
   }).format(new Date(`${iso}T00:00:00Z`));
 }
 
+function useHeroDrift<T extends HTMLElement>(distance: number) {
+  const ref = useRef<T>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const p = Math.min(1, Math.max(0, y / 720));
+      el.style.transform = `translate3d(0, ${(p * distance).toFixed(2)}px, 0)`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [distance]);
+  return ref;
+}
+
 function CloserMark() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -211,13 +238,11 @@ function CloserMark() {
 }
 
 function ProofRow({
-  n,
   row,
   figure,
   kicker,
   detail,
 }: {
-  n: string;
   row: string;
   figure: string;
   kicker: string;
@@ -226,7 +251,6 @@ function ProofRow({
   const { ref, on } = useOnceVisible<HTMLDivElement>();
   return (
     <div ref={ref} className={`proof-row reveal ${row} ${on ? "is-in" : ""}`}>
-      <span className="pi">{n}</span>
       <div className="pv">
         <CountText text={figure} trigger={on} />
       </div>
@@ -286,6 +310,8 @@ function HeroStats() {
 }
 
 export default function Home() {
+  const heroCopyRef = useHeroDrift<HTMLDivElement>(-28);
+  const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
   return (
     <div className="editorial">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
@@ -297,7 +323,7 @@ export default function Home() {
               <span className="lab">The in-house UGC agency backed by elite mentorship</span>
               <span className="lab">UGC for AI startups &amp; tech consumer apps</span>
             </div>
-            <div className="hero-copy">
+            <div className="hero-copy" ref={heroCopyRef}>
               <h1 className="hero-lockup">
                 <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
                 <span aria-hidden="true" className="hero-rise l1">
@@ -307,34 +333,34 @@ export default function Home() {
                   <span>remember.</span>
                 </span>
               </h1>
+              <div className="hb">
+                <p className="hsub">
+                  1000+ vetted in-house creators.
+                  <br />
+                  We guarantee your target CPM.
+                </p>
+                <div className="hcta">
+                  <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                    Let&apos;s Talk
+                  </a>
+                  <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                    Book a call ↗
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="hero-visual">
+            <div className="hero-visual" ref={heroStageRef}>
               <HeroCarousel clips={heroClips} />
             </div>
-            <div className="hb">
-              <p className="hsub">
-                1000+ vetted in-house creators.
-                <br />
-                We guarantee your target CPM.
-              </p>
-              <div className="hcta">
-                <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Let&apos;s Talk
-                </a>
-                <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Book a call ↗
-                </a>
-              </div>
-              <HeroStats />
-            </div>
+            <HeroStats />
           </div>
         </section>
 
-        <section className="border-b border-[rgba(17,17,16,.14)]" aria-label="Trusted by teams at">
+        <section className="border-b border-white/10" aria-label="Trusted by teams at">
           <div className="mx-auto grid max-w-[1440px] items-center gap-[18px] px-[22px] py-[26px] md:px-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:px-[72px] xl:py-[34px]">
             <h2 className="lab">Trusted by teams at</h2>
             <div className="overflow-hidden" style={edgeFadeStyle}>
-              <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none [&_img]:brightness-0 [&_img]:opacity-[.62]">
+              <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]">
                   {trustedBrands.map((brand) => (
                     <LogoImage key={brand.name} src={`/logos/${brand.file}`} alt={`${brand.name} logo`} boxClassName="h-[18px] w-auto xl:h-[21px]" />
@@ -353,16 +379,11 @@ export default function Home() {
         <section className="band" id="proof">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(01) Proof</p>
-              <h2 className="display">
-                Numbers from recent
-                <br />
-                <em>campaigns.</em>
-              </h2>
+              <h2 className="display">Numbers from recent campaigns.</h2>
             </div>
             <div className="prl">
               {proof.map((item) => (
-                <ProofRow key={item.n} {...item} />
+                <ProofRow key={item.n} row={item.row} figure={item.figure} kicker={item.kicker} detail={item.detail} />
               ))}
             </div>
             <p className="pfoot">
@@ -376,12 +397,7 @@ export default function Home() {
         <section className="band mid-top" id="process">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(03) Process</p>
-              <h2 className="display">
-                From signed to posting
-                <br />
-                in <em>10–14 days.</em>
-              </h2>
+              <h2 className="display">From signed to posting in 10–14 days.</h2>
             </div>
             <div className="sps">
               {steps.map((step, index) => (
@@ -398,10 +414,7 @@ export default function Home() {
         <section className="band tight-top" id="results">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(04) Case studies</p>
-              <h2 className="display">
-                <em>Undeniable</em> impact.
-              </h2>
+              <h2 className="display">Undeniable impact.</h2>
             </div>
             <div className="gt">
               <div className="cs-head">
@@ -440,11 +453,10 @@ export default function Home() {
           <div className="ed-wrap">
             <div className="grid items-center gap-12 xl:grid-cols-12 xl:gap-x-6">
               <div className="xl:col-span-4">
-                <p className="lab">(05) Reporting</p>
-                <h2 className="display mt-[22px]">
+                <h2 className="display">
                   Daily reports
                   <br />
-                  in your <em>Slack.</em>
+                  in your Slack.
                 </h2>
                 <p className="lede mt-7">
                   Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos.
@@ -455,9 +467,9 @@ export default function Home() {
                     ["Views · posts · CPM · engagement", "Daily"],
                     ["Top creators, last 7 days", "Daily"],
                   ].map(([label, when]) => (
-                    <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[14px] text-[#c9c6be]">
+                    <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[15px] text-[#e7e7e4]">
                       <span>{label}</span>
-                      <span className="font-mono text-[11px] text-[#77746c]">{when}</span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/45">{when}</span>
                     </div>
                   ))}
                 </div>
@@ -471,7 +483,7 @@ export default function Home() {
 
         <section className="band" id="testimonials">
           <div className="ed-wrap">
-            <h2 className="lab">(06) In their words</h2>
+            <h2 className="display">In their words</h2>
             <p className="qbig">&ldquo;&hellip;the UGC agency we trust most in the space.&rdquo;</p>
             <div className="qby">
               <i />
@@ -494,13 +506,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="band border-t border-[rgba(17,17,16,.14)]" id="pricing">
+        <section className="band border-t border-white/10" id="pricing">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(07) Investment</p>
-              <h2 className="display">
-                Organic UGC for AI startups and <em>tech consumer apps.</em>
-              </h2>
+              <h2 className="display">Organic UGC for AI startups and tech consumer apps.</h2>
             </div>
             <div className="pc">
               <p className="ed-price">
@@ -531,10 +540,7 @@ export default function Home() {
         <section className="band tight-top" id="fit">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(08) Fit</p>
-              <h2 className="display">
-                Good fit, <em>and not a fit.</em>
-              </h2>
+              <h2 className="display">Good fit, and not a fit.</h2>
             </div>
             {/* DECISION 2026-11: bullets restored from the pre-C homepage.
                 See docs/DECISIONS.md (topic: c-hero-blog-fit-2026-11). */}
@@ -562,12 +568,7 @@ export default function Home() {
         <section className="band tight-top" id="team">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(09) The team</p>
-              <h2 className="display">
-                Proven viral creators
-                <br />
-                turned <em>agency operators.</em>
-              </h2>
+              <h2 className="display">Proven viral creators, turned agency operators.</h2>
             </div>
             <div className="tms">
               {team.map((member) => (
@@ -597,18 +598,12 @@ export default function Home() {
           <div className="ed-wrap">
             <div className="faq-grid">
               <div className="fl">
-                <p className="lab">(10) FAQ</p>
-                <h2 className="display">
-                  Frequently
-                  <br />
-                  asked <em>questions.</em>
-                </h2>
+                <h2 className="display">Frequently asked questions.</h2>
               </div>
               <div className="fqs">
                 {agencyFaqs.map((faq, index) => (
                   <details key={faq.q} className="fq" {...(index === 0 ? { open: true } : {})}>
                     <summary className="fh">
-                      <span className="fi">{String(index + 1).padStart(2, "0")}</span>
                       <span>{faq.q}</span>
                       <b aria-hidden="true" />
                     </summary>
@@ -623,10 +618,7 @@ export default function Home() {
         <section className="band tight-top" id="journal">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(11) Journal</p>
-              <h2 className="display">
-                UGC <em>insights.</em>
-              </h2>
+              <h2 className="display">UGC insights.</h2>
             </div>
             <div className="feat">
               <a className="feat-media" href={`/blog/${featured.slug}`}>
@@ -671,7 +663,7 @@ export default function Home() {
             <h2>
               1B+ views.
               <br />
-              <em>Your target CPM, guaranteed.</em>
+              Your target CPM, guaranteed.
             </h2>
             <div className="clb">
               <div>
