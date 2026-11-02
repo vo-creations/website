@@ -361,9 +361,14 @@ html.js-motion .budget-wipe.is-in {
     transform: translate3d(calc(var(--card) * var(--spread-2) * -1), 20px, -72px) rotateY(56deg) scale(0.68);
   }
 }
+/* Parked slides. Six clips still show the five-card fan. See
+   docs/DECISIONS.md (topic: creator-clips-2026-11). */
 .hero-slide[data-pos="3"],
 .hero-slide[data-pos="-3"],
-.hero-slide[data-pos="4"] {
+.hero-slide[data-pos="4"],
+.hero-slide[data-pos="-4"],
+.hero-slide[data-pos="5"],
+.hero-slide[data-pos="-5"] {
   transform: translate3d(0, 16px, -280px) scale(0.48);
   z-index: 0;
   opacity: 0;

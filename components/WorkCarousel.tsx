@@ -7,12 +7,11 @@ import TikTokEmbed from "@/components/TikTokEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
 
-// DECISION 2026-11: the approved page is a drag carousel, not the old
-// auto-scrolling marquee. Playback stays the official click-to-load embed
-// (no self-hosted mp4, no iframe until a clip is opened). See docs/DECISIONS.md
-// (topic: homepage-c-final-2026-11).
+// DECISION 2026-11: six hosted clips lead this row (three women, three men)
+// and play only while the card is in view. Platform embeds stay click-to-load.
+// See docs/DECISIONS.md (topic: creator-clips-2026-11).
 
-type Clip = {
+type EmbedClip = {
   type: "instagram" | "tiktok" | "youtube" | "facebook";
   url: string;
   label: string;
@@ -20,12 +19,28 @@ type Clip = {
   alt: string;
 };
 
+type FileClip = {
+  type: "file";
+  src: string;
+  poster: string;
+  label: string;
+  alt: string;
+};
+
+type Clip = EmbedClip | FileClip;
+
 const SIZES = ["w1", "w2", "w3", "w2", "w1", "w3", "w2"] as const;
 
-// Lead with the stills from the approved board, then the rest of the live
-// showcase so nothing is dropped. Order of the tail follows the previous
-// interleaved list.
+const fileAlt = "A creator in a vertical video.";
+
+// Same six as the hero, alternating woman and man, then the live embeds.
 const clips: Clip[] = [
+  { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt },
+  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt },
+  { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt },
+  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Creator", alt: fileAlt },
+  { type: "file", src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg", label: "Instagram", alt: fileAlt },
+  { type: "file", src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg", label: "TikTok", alt: fileAlt },
   { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube", poster: "/creators/yt-ur.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },
@@ -45,11 +60,63 @@ const clips: Clip[] = [
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
 ];
 
-function Player({ clip }: { clip: Clip }) {
+function Player({ clip }: { clip: EmbedClip }) {
   if (clip.type === "instagram") return <InstagramEmbed url={clip.url} startLoaded />;
   if (clip.type === "tiktok") return <TikTokEmbed url={clip.url} thumb={clip.poster} startLoaded />;
   if (clip.type === "youtube") return <YouTubeEmbed url={clip.url} label={clip.label} startLoaded />;
   return <FacebookEmbed url={clip.url} label={clip.label} startLoaded />;
+}
+
+function FileCard({ clip, size }: { clip: FileClip; size: (typeof SIZES)[number] }) {
+  const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setOn(entry.isIntersecting),
+      { rootMargin: "0px 120px", threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node) return;
+    node.muted = true;
+    const pending = node.play();
+    if (pending) pending.catch(() => {});
+  }, [on]);
+
+  return (
+    <figure ref={ref} className={`wk ${size}`} data-clip>
+      <div className="wi">
+        <img src={clip.poster} alt={clip.alt} width={540} height={960} loading="lazy" decoding="async" />
+        {on && (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster={clip.poster}
+            aria-hidden="true"
+            ref={videoRef}
+          >
+            <source src={clip.src} type="video/mp4" />
+          </video>
+        )}
+      </div>
+      <figcaption>
+        <span>{clip.label}</span>
+      </figcaption>
+    </figure>
+  );
 }
 
 export default function WorkCarousel() {
@@ -129,7 +196,7 @@ export default function WorkCarousel() {
 
   const total = String(clips.length).padStart(2, "0");
   const current = String(index + 1).padStart(2, "0");
-  const playingLabel = clips.find((clip) => clip.url === playing)?.label;
+  const playingLabel = clips.find((clip) => clip.type !== "file" && clip.url === playing)?.label;
 
   return (
     <section className="band tight-top" id="work" aria-roledescription="carousel" aria-label="Our work" onKeyDown={onKeyDown}>
@@ -178,6 +245,9 @@ export default function WorkCarousel() {
         }}
       >
         {clips.map((clip, i) => {
+          if (clip.type === "file") {
+            return <FileCard key={clip.src} clip={clip} size={SIZES[i % SIZES.length]} />;
+          }
           const open = playing === clip.url;
           return (
             <figure key={clip.url} className={`wk ${SIZES[i % SIZES.length]}`} data-clip>
