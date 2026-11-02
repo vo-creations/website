@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrandLockup from "@/components/BrandLockup";
 import { CONTACT_EMAILS } from "@/lib/site";
 
 const footerLinks = [
@@ -17,10 +18,9 @@ function EditorialFooter() {
       <div className="ed-wrap pt-16">
         <div className="fg">
           <div className="c1">
-            <div className="flex items-center gap-3">
-              <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto" />
-              <span className="font-display text-[15px] font-semibold tracking-[-0.03em]">Vo Creations</span>
-            </div>
+            <a href="/" className="brand-link" aria-label="Vo Creations">
+              <BrandLockup />
+            </a>
             <p className="mt-[18px] max-w-[300px] text-[14px] text-white/65">
               The in-house UGC agency backed by elite mentorship.
             </p>
@@ -74,12 +74,9 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" | "e
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-12 mb-16">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src="/brand/vo-logo.svg" alt="Vo Creations" className="h-8 w-auto" />
-              <span className={`text-lg font-semibold tracking-[-0.03em] ${paper ? "text-[#F2F0EB]" : "font-display text-[#fbfbf9]"}`}>
-                Vo Creations
-              </span>
-            </div>
+            <a href="/" className="brand-link mb-4" aria-label="Vo Creations">
+              <BrandLockup height={34} />
+            </a>
             <p className={`mb-4 max-w-[320px] text-base leading-relaxed ${paper ? "text-white/60" : "text-[#d4d4d0]"}`}>
               The in-house UGC agency backed by elite mentorship.
             </p>

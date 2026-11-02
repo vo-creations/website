@@ -4,10 +4,10 @@ import Label from "@/components/Label";
 
 export default function RefundPolicyPage() {
   return (
-    <>
-      <Nav />
-      <main id="main">
-      <section className="px-6 pb-16 pt-[160px]">
+    <div className="editorial">
+      <Nav variant="editorial" />
+      <main id="main" className="legal-main">
+      <section className="pb-12 pt-4 text-center">
         <div className="mx-auto max-w-[720px] text-center">
           <Label>Legal and policies</Label>
           <h1 className="mb-6 text-[clamp(32px,5vw,52px)] font-black leading-[1.05] tracking-tighter">
@@ -21,7 +21,7 @@ export default function RefundPolicyPage() {
 
       <div className="mx-auto h-px max-w-[1000px] bg-border" />
 
-      <section className="px-6 py-16">
+      <section className="py-10">
         <div className="mx-auto max-w-[720px] space-y-10 text-[15px] leading-relaxed text-text-secondary">
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">
@@ -45,7 +45,7 @@ export default function RefundPolicyPage() {
         </div>
       </section>
       </main>
-      <Footer />
-    </>
+      <Footer tone="editorial" />
+    </div>
   );
 }

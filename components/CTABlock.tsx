@@ -88,7 +88,7 @@ export default function CTABlock({
           </div>
           <img
             ref={markRef}
-            src="/brand/vo-chrome-sm.webp"
+            src="/brand/vo-logo.svg"
             alt=""
             width={384}
             height={465}

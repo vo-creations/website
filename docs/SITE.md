@@ -31,8 +31,7 @@ only:
   above `components/HeroCarousel.tsx`: seven
   muted clips, and only the front slide mounts an MP4. Side slides are posters
   with `loading="lazy"`. From 1440px the card is 300px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/hero-clip-1.jpg` is the only image with
-  `fetchpriority="high"`. The chrome monogram stays on the closer
-  (`public/brand/chrome-mono.webp`). The fit section (`#fit`) is Good fit / Not
+  `fetchpriority="high"`. The serif VO monogram (`public/brand/vo-logo.svg`, raster `public/brand/vo-mark.png`) is the nav, footer, hero, and closer mark. From 1024px a large copy sits to the right of the hero lockup, above the CTA row, and it is hidden below that. The fit section (`#fit`) is Good fit / Not
   a fit. Our work is a horizontal carousel of the existing platform embeds. A
   clip mounts its iframe only after a click. `/blog` and each post use the
   same dark nav and footer (`Nav` `variant="editorial"`, `Footer`
@@ -46,9 +45,9 @@ only:
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
   `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
-- Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. The accent is cobalt `#5A6CFF` on filled buttons and underlines. The homepage mark is `public/brand/chrome-mono.webp`. Dark routes that still show a chrome mark use `public/brand/vo-chrome.avif` from 1024px up and `vo-chrome-sm.webp` below that.
-  `components/VeilBackground.tsx` keeps DarkVeil off
-  small screens and reduced motion. Open Graph image is `public/og-image.png`.
+- Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. Filled buttons (Let's Talk, Book a call) are white on black. Stat dots, the work progress line, Book a call underlines, and the open FAQ mark are white. The primary mark is `public/brand/vo-logo.svg`. Favicon, apple touch icon, and `app/icon.png` are the same monogram on black. Organization `logo` points at `public/brand/vo-mark.png`.
+  `components/VeilBackground.tsx` paints a CSS satin sheet on every route (a slow transform, off for reduced motion, and paused once the canvas starts). DarkVeil stays off
+  small screens and reduced motion. Film grain is `public/brand/grain.png` over that field. `/privacy`, `/terms`, and `/refund-policy` use the editorial header and footer on the same field. Open Graph image is `public/og-image.png`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).
 - `app/api/mercury-webhook` — Mercury bank events → Slack (#ka-ching), incoming only.
 

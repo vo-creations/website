@@ -34,7 +34,7 @@ function articleJsonLd(post: BlogPostMeta, faqs: FaqItem[]) {
           url: "https://vocreations.com/",
         logo: {
           "@type": "ImageObject",
-          url: "https://vocreations.com/vocreations-logo.webp",
+          url: "https://vocreations.com/brand/vo-mark.png",
         },
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
