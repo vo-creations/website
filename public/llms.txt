@@ -32,7 +32,7 @@ Not for budgets under $50K/month, one-off videos, or paid-ads-only management. C
 
 ## Pages
 
-- [Home](https://vocreations.com/): positioning, anonymized proof, team, how it works, FAQ. Named case studies stay behind a booking gate.
+- [Home](https://vocreations.com/): positioning, anonymized proof, fit, team, how it works, FAQ. Named case studies stay behind a booking gate.
 - [Blog](https://vocreations.com/blog): UGC insights, with categories and read times
 - [In-house UGC agency vs marketplace vs freelancers](https://vocreations.com/blog/in-house-ugc-vs-marketplace-vs-freelancers): Daniel Yun on who trains, who posts, and what you still have to manage
 - [What a managed UGC program costs](https://vocreations.com/blog/what-a-managed-ugc-program-costs): Daniel Yun on retainer vs per-video vs CPM, and what a program starting at $50K+/month covers
