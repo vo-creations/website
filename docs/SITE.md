@@ -27,15 +27,15 @@ only:
   figure (`000M+` or `00.0M`), not a real view total. Anonymized
   proof numbers sit in the proof section (four figures). The Slack image is
   still `public/proof/slack-report.png` (numbers are not readable). The homepage
-  is the off-white editorial layout in `app/page.tsx`. The hero lockup sits
-  beside `components/HeroCarousel.tsx` from 1280px (stacked below that): seven
+  is the dark homepage in `app/page.tsx` (near-black field, white type, the fixed DarkVeil behind it). The hero lockup sits
+  above `components/HeroCarousel.tsx`: seven
   muted clips, and only the front slide mounts an MP4. Side slides are posters
-  with `loading="lazy"`. `public/videos/hero-clip-1.jpg` is the only image with
+  with `loading="lazy"`. From 1440px the card is 300px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/hero-clip-1.jpg` is the only image with
   `fetchpriority="high"`. The chrome monogram stays on the closer
   (`public/brand/chrome-mono.webp`). The fit section (`#fit`) is Good fit / Not
   a fit. Our work is a horizontal carousel of the existing platform embeds. A
   clip mounts its iframe only after a click. `/blog` and each post use the
-  editorial nav and footer (`Nav` `variant="editorial"`, `Footer`
+  same dark nav and footer (`Nav` `variant="editorial"`, `Footer`
   `tone="editorial"`). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
@@ -46,7 +46,7 @@ only:
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
   `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
-- Display type on the homepage is Instrument Serif, with Inter (including weight 200) for the hairline “make them” line. Editorial labels use JetBrains Mono. Other routes still use Inter Tight for display and Inter for body, all from `next/font` in `app/layout.tsx`. The homepage mark is `public/brand/chrome-mono.webp`. Dark routes that still show a chrome mark use `public/brand/vo-chrome.avif` from 1024px up and `vo-chrome-sm.webp` below that.
+- Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. The accent is cobalt `#5A6CFF` on filled buttons and underlines. The homepage mark is `public/brand/chrome-mono.webp`. Dark routes that still show a chrome mark use `public/brand/vo-chrome.avif` from 1024px up and `vo-chrome-sm.webp` below that.
   `components/VeilBackground.tsx` keeps DarkVeil off
   small screens and reduced motion. Open Graph image is `public/og-image.png`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).

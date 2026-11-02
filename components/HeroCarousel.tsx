@@ -167,11 +167,6 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                     </video>
                   )}
                 </div>
-                {front && (
-                  <div className="hero-reflect" aria-hidden="true">
-                    <img src={clip.poster} alt="" loading="lazy" decoding="async" />
-                  </div>
-                )}
               </div>
             );
           })}

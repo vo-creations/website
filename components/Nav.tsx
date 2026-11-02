@@ -23,13 +23,13 @@ export const NAV_INNER_PADDING = "px-5 md:px-6";
 function EditorialNav() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="relative z-30">
-      <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-[22px] md:px-10 xl:h-[86px] xl:px-[72px]">
+    <header className="site-header">
+      <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-[22px] md:px-10 xl:h-[76px] xl:px-16">
         <a href="/" className="flex min-h-11 items-center gap-3">
-          <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto invert" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#111110]">Vo Creations</span>
+          <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto" />
+          <span className="font-display text-[15px] font-semibold tracking-[-0.03em] text-[#f6f6f4]">Vo Creations</span>
         </a>
-        <div className="hidden items-center gap-11 text-[14px] text-[#2b2a28] xl:flex">
+        <div className="hidden items-center gap-9 text-[14px] text-[#d6d6d2] xl:flex">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} className="inline-flex min-h-11 items-center">
               {link.label}
@@ -37,8 +37,8 @@ function EditorialNav() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <a href="https://calendar.app.google/8x72A8nxr3gQpVfx7" target="_blank" rel="noopener noreferrer" className="btn-book whitespace-nowrap">
-            Book a call ↗
+          <a href="https://calendar.app.google/8x72A8nxr3gQpVfx7" target="_blank" rel="noopener noreferrer" className="btn-talk whitespace-nowrap">
+            Book a call
           </a>
           <button
             type="button"
@@ -47,7 +47,7 @@ function EditorialNav() {
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="h-5 w-5 text-[#f6f6f4]" aria-hidden="true">
               {open ? (
                 <>
                   <line x1="6" y1="6" x2="18" y2="18" />
@@ -65,9 +65,9 @@ function EditorialNav() {
         </div>
       </div>
       {open && (
-        <div className="absolute left-0 right-0 top-full border-b border-[rgba(17,17,16,.14)] bg-[#F2F0EB] px-[22px] py-2 md:px-10 xl:hidden">
+        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-[#060606] px-[22px] py-2 md:px-10 xl:hidden">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-[15px] text-[#2b2a28]">
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-[15px] text-[#f6f6f4]">
               {link.label}
             </a>
           ))}

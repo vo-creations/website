@@ -18,10 +18,10 @@ function EditorialFooter() {
         <div className="fg">
           <div className="c1">
             <div className="flex items-center gap-3">
-              <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto invert" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em]">Vo Creations</span>
+              <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto" />
+              <span className="font-display text-[15px] font-semibold tracking-[-0.03em]">Vo Creations</span>
             </div>
-            <p className="mt-[18px] max-w-[300px] text-[14px] text-[#5f5d58]">
+            <p className="mt-[18px] max-w-[300px] text-[14px] text-white/65">
               The in-house UGC agency backed by elite mentorship.
             </p>
             <div className="mail-row">
