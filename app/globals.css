@@ -284,7 +284,7 @@ html.js-motion .budget-wipe.is-in {
   pointer-events: none;
   transform: translate3d(0, 16px, -240px) scale(0.5);
 }
-@media (min-width: 768px) and (max-width: 1023.98px),
+@media (min-width: 768px) and (max-width: 1279.98px),
   (min-width: 1440px) {
   .hero-slide[data-pos="2"],
   .hero-slide[data-pos="-2"] {
@@ -349,17 +349,47 @@ html.js-motion .budget-wipe.is-in {
   height: 44px;
   padding: 10px 12px 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 13px;
-  letter-spacing: 0.01em;
+  color: #5f5d58;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .hero-pause:hover {
-  color: #f2f0eb;
+  color: #111110;
 }
 .hero-pause:focus-visible {
-  outline: 2px solid #f2f0eb;
+  outline: 2px solid #111110;
   outline-offset: 3px;
   border-radius: 999px;
+}
+.editorial .hero-carousel:focus-visible {
+  outline-color: #111110;
+}
+.editorial .hero-floor {
+  background: radial-gradient(ellipse at center, rgba(17, 17, 16, 0.2), transparent 70%);
+}
+.editorial .hero-slide-face {
+  box-shadow: 0 18px 44px rgba(17, 17, 16, 0.16);
+}
+.editorial .hero-slide[data-pos="0"] .hero-slide-face {
+  box-shadow: 0 24px 54px rgba(17, 17, 16, 0.22);
+}
+.editorial .hero-reflect {
+  opacity: 0.16;
+}
+.editorial .hero-pause {
+  background: transparent;
+  color: #5f5d58;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.editorial .hero-pause:hover {
+  color: #111110;
 }
 
 @keyframes heroEnter {
@@ -573,10 +603,23 @@ html.js-motion .budget-wipe.is-in {
     padding-right: 40px;
   }
 }
+.editorial .hero-visual {
+  margin-top: 28px;
+  min-width: 0;
+}
 @media (min-width: 1280px) {
   .editorial .hero-frame {
-    height: 874px;
-    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(640px, 1.1fr);
+    grid-template-areas:
+      "meta meta"
+      "copy stage"
+      "bar bar";
+    column-gap: 32px;
+    row-gap: 8px;
+    align-items: center;
+    height: auto;
+    padding: 28px 72px 48px;
   }
 }
 .editorial .hmeta {
@@ -616,35 +659,6 @@ html.js-motion .budget-wipe.is-in {
   .editorial h1 .l2 {
     margin-left: 36px;
     font-size: 124px;
-  }
-}
-.editorial .mono-fig {
-  width: 210px;
-  margin: 44px 0 0 auto;
-}
-.editorial .mono-fig img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 40px 50px rgba(0, 0, 0, 0.18)) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
-}
-.editorial .mono-fig figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 22px;
-  border-top: 1px solid var(--hair);
-  padding-top: 10px;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-@media (min-width: 1280px) {
-  .editorial .mono-fig figcaption {
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
   }
 }
 .editorial .hb {
@@ -706,46 +720,40 @@ html.js-motion .hero-rise.delay > span {
 }
 @media (min-width: 1280px) {
   .editorial .hmeta {
-    position: absolute;
-    left: 72px;
-    right: 72px;
-    top: 32px;
+    grid-area: meta;
+    position: static;
     margin-top: 0;
     flex-direction: row;
     justify-content: space-between;
     gap: 24px;
   }
-  .editorial h1 .l1 {
-    position: absolute;
-    left: 62px;
-    top: 164px;
+  .editorial .hero-copy {
+    grid-area: copy;
+    min-width: 0;
+    container-type: inline-size;
+  }
+  .editorial .hero-lockup .l1 {
+    position: static;
     margin-top: 0;
-    font-size: 184px;
+    font-size: clamp(84px, 17cqi, 128px);
   }
-  .editorial h1 .l2 {
-    position: absolute;
-    left: 212px;
-    top: 318px;
-    margin: 0;
-    font-size: 232px;
+  .editorial .hero-lockup .l2 {
+    position: static;
+    margin: 0.02em 0 0 0.08em;
+    font-size: clamp(96px, 21cqi, 152px);
   }
-  .editorial .mono-fig {
-    position: absolute;
-    right: 72px;
-    top: 114px;
-    width: 300px;
-    margin: 0;
+  .editorial .hero-visual {
+    grid-area: stage;
+    margin-top: 0;
   }
   .editorial .hb {
-    position: absolute;
-    left: 72px;
-    right: 72px;
-    bottom: 56px;
+    grid-area: bar;
+    position: static;
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 24px;
     align-items: end;
-    margin-top: 0;
+    margin-top: 8px;
   }
   .editorial .hsub {
     grid-column: 1 / 5;
@@ -1156,6 +1164,41 @@ html.js-motion .hero-rise.delay > span {
   }
   .editorial .pcols div {
     border-bottom: 0;
+  }
+}
+
+/* Fit */
+.editorial .fit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 36px;
+  border-top: 1px solid var(--ink);
+}
+.editorial .fit-grid article {
+  padding: 28px 0 8px;
+}
+.editorial .fit-grid h3 {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 8vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.editorial .fit-grid ul {
+  margin-top: 18px;
+}
+.editorial .fit-grid li {
+  border-top: 1px solid var(--hair);
+  padding: 14px 0;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #3a3936;
+}
+@media (min-width: 768px) {
+  .editorial .fit-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 72px;
+    margin-top: 56px;
   }
 }
 
@@ -1676,4 +1719,117 @@ html.js-motion .hero-rise.delay > span {
   border-style: solid;
   border-width: 8px 0 8px 13px;
   border-color: transparent transparent transparent #111110;
+}
+
+/* Blog on the off-white C field. The article markup still carries the old
+   dark utilities; these rules win on specificity so posts stay readable.
+   See docs/DECISIONS.md (topic: c-hero-blog-fit-2026-11). */
+.editorial.blog-page {
+  min-height: 100vh;
+}
+.editorial .blog-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 22px 96px;
+  color: #111110;
+}
+@media (min-width: 768px) {
+  .editorial .blog-main {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+.editorial .blog-main h1,
+.editorial .blog-main h2,
+.editorial .blog-main h3,
+.editorial .blog-main strong,
+.editorial .blog-main a,
+.editorial .blog-main .text-text {
+  color: #111110;
+}
+.editorial .blog-main p,
+.editorial .blog-main li,
+.editorial .blog-main td,
+.editorial .blog-main th,
+.editorial .blog-main .text-text-secondary,
+.editorial .blog-main .text-text-dim,
+.editorial .blog-main [class*="text-[#"] {
+  color: #3a3936;
+}
+.editorial.blog-page .blog-main h1,
+.editorial.blog-page .blog-main h2,
+.editorial.blog-page .blog-main h3 {
+  color: #111110;
+}
+.editorial .blog-main h1 {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(46px, 8vw, 68px);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+.editorial .blog-main h2,
+.editorial .blog-main h3 {
+  font-family: var(--font-instrument), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.editorial .blog-main h2 {
+  scroll-margin-top: 24px;
+}
+.editorial .blog-main a:hover {
+  color: #111110;
+}
+.editorial .blog-main [class*="border-white"] {
+  border-color: rgba(17, 17, 16, 0.14);
+}
+.editorial .blog-main [class*="bg-bg-card"],
+.editorial .blog-main [class*="bg-white/"] {
+  background-color: transparent;
+}
+.editorial .blog-kicker {
+  margin-bottom: 16px;
+}
+.editorial .blog-lead {
+  margin-top: 22px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #3a3936;
+}
+.editorial .blog-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(17, 17, 16, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: #111110;
+  font-size: 14px;
+  font-weight: 500;
+}
+.editorial .blog-chip.is-on {
+  border-color: #111110;
+  background: #111110;
+  color: #f2f0eb;
+}
+.editorial .blog-cta {
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+  padding-top: 28px;
+}
+.editorial .blog-cta h2 {
+  font-size: clamp(36px, 6vw, 52px);
+  line-height: 0.96;
+}
+.editorial .blog-cta p {
+  max-width: 460px;
+  margin-top: 14px;
+}
+.editorial .blog-cta .ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px 28px;
+  margin-top: 22px;
 }

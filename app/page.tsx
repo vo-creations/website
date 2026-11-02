@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import HeroCarousel from "@/components/HeroCarousel";
 import LogoImage from "@/components/LogoImage";
 import WorkCarousel from "@/components/WorkCarousel";
 import { useCountUp } from "@/components/useCountUp";
@@ -12,9 +13,10 @@ import { posts } from "@/lib/blog/posts";
 import { CONTACT_EMAILS } from "@/lib/site";
 
 // DECISION 2026-11: homepage is the approved off-white editorial page.
-// Cobalt is limited to Let's Talk, Book a call underlines, hero stat dots,
-// the work progress line, and the open FAQ mark. See docs/DECISIONS.md
-// (topic: homepage-c-final-2026-11).
+// The hero visual is the 7-clip coverflow (paper-toned). Cobalt is limited
+// to Let's Talk, Book a call underlines, hero stat dots, the work progress
+// line, and the open FAQ mark. See docs/DECISIONS.md
+// (topic: c-hero-blog-fit-2026-11).
 
 const BOOKING = "https://calendar.app.google/8x72A8nxr3gQpVfx7";
 
@@ -58,6 +60,19 @@ function StatCounter({
   const value = useCountUp(target, trigger, 2200, { ssrFinal: true });
   return <>{format(value)}</>;
 }
+
+// DECISION 2026-11: same seven files and order as the PR #48 coverflow.
+// Only the front slide mounts a video. See docs/DECISIONS.md
+// (topic: c-hero-blog-fit-2026-11).
+const heroClips = [
+  { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
+  { src: "/videos/hero-clip-5.mp4", poster: "/videos/hero-clip-5.jpg" },
+  { src: "/videos/hero-clip-2.mp4", poster: "/videos/hero-clip-2.jpg" },
+  { src: "/videos/hero-clip-6.mp4", poster: "/videos/hero-clip-6.jpg" },
+  { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
+  { src: "/videos/hero-clip-7.mp4", poster: "/videos/hero-clip-7.jpg" },
+  { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg" },
+];
 
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "views generated" },
@@ -157,43 +172,6 @@ function shortDate(iso: string) {
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(`${iso}T00:00:00Z`));
-}
-
-function HeroMark() {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const range = (window.innerHeight || 800) * 0.9;
-      const p = Math.min(1, Math.max(0, window.scrollY / range));
-      el.style.transform = `rotate(${(p * 8).toFixed(2)}deg)`;
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-  return (
-    <div ref={ref}>
-      <Image
-        src="/brand/chrome-mono.webp"
-        alt=""
-        width={936}
-        height={1117}
-        priority
-        sizes="(min-width: 1280px) 300px, 210px"
-      />
-    </div>
-  );
 }
 
 function CloserMark() {
@@ -319,22 +297,20 @@ export default function Home() {
               <span className="lab">The in-house UGC agency backed by elite mentorship</span>
               <span className="lab">UGC for AI startups &amp; tech consumer apps</span>
             </div>
-            <h1>
-              <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
-              <span aria-hidden="true" className="hero-rise l1">
-                <span>make them</span>
-              </span>
-              <span aria-hidden="true" className="hero-rise l2 delay">
-                <span>remember.</span>
-              </span>
-            </h1>
-            <figure className="mono-fig">
-              <HeroMark />
-              <figcaption>
-                <span>Fig. 01</span>
-                <span>The Vo monogram, chrome</span>
-              </figcaption>
-            </figure>
+            <div className="hero-copy">
+              <h1 className="hero-lockup">
+                <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
+                <span aria-hidden="true" className="hero-rise l1">
+                  <span>make them</span>
+                </span>
+                <span aria-hidden="true" className="hero-rise l2 delay">
+                  <span>remember.</span>
+                </span>
+              </h1>
+            </div>
+            <div className="hero-visual">
+              <HeroCarousel clips={heroClips} />
+            </div>
             <div className="hb">
               <p className="hsub">
                 1000+ vetted in-house creators.
@@ -552,10 +528,41 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="band tight-top" id="fit">
+          <div className="ed-wrap">
+            <div className="sh">
+              <p className="lab">(08) Fit</p>
+              <h2 className="display">
+                Good fit, <em>and not a fit.</em>
+              </h2>
+            </div>
+            {/* DECISION 2026-11: bullets restored from the pre-C homepage.
+                See docs/DECISIONS.md (topic: c-hero-blog-fit-2026-11). */}
+            <div className="fit-grid">
+              <article>
+                <h3>Good fit</h3>
+                <ul>
+                  <li>AI and tech consumer apps.</li>
+                  <li>Ready for $50K+ a month.</li>
+                  <li>Want organic short-form at scale, with a CPM target.</li>
+                </ul>
+              </article>
+              <article>
+                <h3>Not a fit</h3>
+                <ul>
+                  <li>Budgets under $50K a month.</li>
+                  <li>One-off videos.</li>
+                  <li>Paid-ads-only management.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className="band tight-top" id="team">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(08) The team</p>
+              <p className="lab">(09) The team</p>
               <h2 className="display">
                 Proven viral creators
                 <br />
@@ -590,7 +597,7 @@ export default function Home() {
           <div className="ed-wrap">
             <div className="faq-grid">
               <div className="fl">
-                <p className="lab">(09) FAQ</p>
+                <p className="lab">(10) FAQ</p>
                 <h2 className="display">
                   Frequently
                   <br />
@@ -616,7 +623,7 @@ export default function Home() {
         <section className="band tight-top" id="journal">
           <div className="ed-wrap">
             <div className="sh">
-              <p className="lab">(10) Journal</p>
+              <p className="lab">(11) Journal</p>
               <h2 className="display">
                 UGC <em>insights.</em>
               </h2>

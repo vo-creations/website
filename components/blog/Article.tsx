@@ -129,14 +129,14 @@ export default function Article({
   const updated = formatBlogDate(post.dateModified);
 
   return (
-    <>
+    <div className="editorial blog-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post, faqs)) }}
       />
-      <Nav />
-      <main id="main" className="px-6 pb-24 pt-36">
-        <article className="mx-auto max-w-[720px]">
+      <Nav variant="editorial" />
+      <main id="main" className="blog-main">
+        <article>
           <nav aria-label="Breadcrumb" className="mb-6 text-[15px] text-text-dim">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
@@ -251,33 +251,23 @@ export default function Article({
             </div>
           </section>
 
-          <section className="mt-12 rounded-3xl border border-white/10 bg-bg-card/50 px-8 py-10 text-center">
-            <h2 className="font-display text-[26px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
-              See the program, then the results.
-            </h2>
-            <p className="mx-auto mt-3 max-w-[460px] text-[15px] leading-relaxed text-text-secondary">
+          <section className="blog-cta">
+            <h2>See the program, then the results.</h2>
+            <p>
               Campaigns start at $50K+ a month, all-inclusive. Named case studies stay behind a call. Book one and we will walk through them.
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center rounded-full bg-white px-7 py-3 text-[15px] font-semibold text-black"
-              >
-                Book a call
+            <div className="ctas">
+              <a className="btn-book" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                Book a call ↗
               </a>
-              <Link
-                href="/#results"
-                className="inline-flex min-h-11 items-center rounded-full border border-white px-7 py-3 text-[15px] font-semibold text-white"
-              >
+              <Link href="/#results" className="btn-line">
                 Request the case studies
               </Link>
             </div>
           </section>
         </article>
       </main>
-      <Footer />
-    </>
+      <Footer tone="editorial" />
+    </div>
   );
 }

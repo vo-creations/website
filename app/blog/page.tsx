@@ -65,14 +65,12 @@ const ordered = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1
 
 export default function BlogIndex() {
   return (
-    <>
-      <Nav />
-      <main id="main" className="px-6 pb-24 pt-36">
-        <div className="mx-auto max-w-[720px]">
-          <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2.5px] text-text-secondary">Blog</p>
-          <h1 className="mb-4 font-display text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight">
-            UGC insights
-          </h1>
+    <div className="editorial blog-page">
+      <Nav variant="editorial" />
+      <main id="main" className="blog-main">
+        <div>
+          <p className="lab blog-kicker">Blog</p>
+          <h1>UGC insights</h1>
           <p className="mb-10 text-lg leading-relaxed text-text-secondary">
             Notes on running an in-house UGC program: the format, the price, and the questions to ask before you hire anyone to post.
           </p>
@@ -98,7 +96,7 @@ export default function BlogIndex() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
+      <Footer tone="editorial" />
+    </div>
   );
 }

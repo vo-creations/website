@@ -27,11 +27,16 @@ only:
   figure (`000M+` or `00.0M`), not a real view total. Anonymized
   proof numbers sit in the proof section (four figures). The Slack image is
   still `public/proof/slack-report.png` (numbers are not readable). The homepage
-  is the off-white editorial layout in `app/page.tsx`: hero lockup plus the chrome
-  monogram at `public/brand/chrome-mono.webp`, which is the only image with
-  `fetchpriority="high"`. Our work is a horizontal carousel of the existing
-  platform embeds. A clip mounts its iframe only after a click. There is no
-  homepage MP4. Posters are `next/image`, lazy, `sizes="300px"`. `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
+  is the off-white editorial layout in `app/page.tsx`. The hero lockup sits
+  beside `components/HeroCarousel.tsx` from 1280px (stacked below that): seven
+  muted clips, and only the front slide mounts an MP4. Side slides are posters
+  with `loading="lazy"`. `public/videos/hero-clip-1.jpg` is the only image with
+  `fetchpriority="high"`. The chrome monogram stays on the closer
+  (`public/brand/chrome-mono.webp`). The fit section (`#fit`) is Good fit / Not
+  a fit. Our work is a horizontal carousel of the existing platform embeds. A
+  clip mounts its iframe only after a click. `/blog` and each post use the
+  editorial nav and footer (`Nav` `variant="editorial"`, `Footer`
+  `tone="editorial"`). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
   (mailto only, no phone). The footer and the homepage closer link those
