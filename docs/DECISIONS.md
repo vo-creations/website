@@ -3361,3 +3361,12 @@ The owner pointed at the journal card (the white serif VO on the black “UGC in
 - The background is one fixed silk for the whole marketing site. `VeilBackground` draws a CSS satin sheet (slow transform, compositor-only) plus the existing film grain. DarkVeil still starts only on desktop after idle, fully desaturated, and the CSS drift stops once that canvas is up so two animations are not running. Phones and reduced motion keep the static sheet. `/privacy`, `/terms`, and `/refund-policy` moved onto the editorial header and footer so they sit on that field instead of the floating pill.
 - Cobalt came off. Let’s Talk and Book a call are white pills with black type. Stat dots, the work progress line, Book a call underlines, and the open FAQ mark are white. White on the silk read cleaner than cobalt against a monochrome field.
 - Locked lines were not changed: the eyebrow, the 1000+ subline, the title, the footer tagline, and the closer “1B+ views. Your target CPM, guaranteed.” The 7-clip coverflow, Good fit / Not a fit, FAQ, grayscale team photos, and the grayscale Trusted By row (including Higgsfield and Krea) stayed. Videos stayed in color. No new stat was added.
+
+## topic: blog-cover-2026-11 — _2026-11-02_
+
+Blog index cards and the post Open Graph images were the flat black frame: a small serif VO, the title, and the tagline. They were redrawn to the owner's Discord banner.
+
+- The mark is the existing chrome monogram `public/brand/chrome-mono.webp` (the C-mockup "Fig. 01" render), not a new trace of `vo-logo.svg`. A flipped copy of that file sits under it as the floor reflection, masked so it fades out. The field is a black-to-grey silk, the site grain (`public/brand/grain.png`), and a vignette.
+- The post title is the bold Inter Tight line. "make them remember." sits under it, and the period is `#8d8d88`. A small "Vo Creations" kicker stays so a shared card still names the brand. Every post uses that frame. The title is not a second headline for assistive tech: the cover is `aria-hidden` and the index card keeps its `h2`.
+- The index renders `components/blog/BlogCover.tsx` as HTML, sized with container-query units, so the type stays sharp when the card scales. Open Graph files stay `public/og/blog/<slug>.png` at 1200×630. `scripts/render-blog-og.ts` (`npm run og:blog`) screenshots those same CSS rules. The homepage journal still reads that PNG, so it picks up the new frame without a layout change.
+- The serif logo, white-on-black buttons, and the rest of the site were left alone.

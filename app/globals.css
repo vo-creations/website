@@ -1910,3 +1910,118 @@ html.js-motion .hero-mark img {
   gap: 22px 28px;
   margin-top: 22px;
 }
+
+/* blog-cover:start
+   Chrome VO on grainy silk. The index renders this live so type stays sharp.
+   scripts/render-blog-og.ts screenshots the same rules for public/og/blog.
+   See docs/DECISIONS.md (topic: blog-cover-2026-11). */
+.blog-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  container-type: inline-size;
+  overflow: hidden;
+  background: #050505;
+  isolation: isolate;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+}
+.blog-cover-silk {
+  position: absolute;
+  inset: -14%;
+  background:
+    radial-gradient(ellipse 70% 90% at 74% 46%, rgba(255, 255, 255, 0.28), transparent 60%),
+    radial-gradient(ellipse 42% 55% at 96% 18%, rgba(255, 255, 255, 0.12), transparent 62%),
+    radial-gradient(ellipse 30% 40% at 12% 92%, rgba(255, 255, 255, 0.05), transparent 70%),
+    linear-gradient(108deg, #050505 0%, #0a0a0a 22%, #161616 42%, #2a2a2a 60%, #4a4a4a 76%, #1c1c1c 90%, #080808 100%);
+}
+.blog-cover-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/brand/grain.png");
+  background-size: 11.5cqw 11.5cqw;
+  opacity: 0.38;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.blog-cover-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 82% 78% at 48% 50%, transparent 40%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent 16%, transparent 80%, rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+.blog-cover-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 5.2cqw 0 1.6cqw;
+  gap: 1.6cqw;
+}
+.blog-cover-markcol {
+  flex: 0 0 33cqw;
+  width: 33cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blog-cover-mark {
+  width: 33cqw;
+  height: 39.4cqw;
+}
+.blog-cover-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1.2cqw 1.6cqw rgba(0, 0, 0, 0.4));
+}
+.blog-cover-reflect {
+  width: 31cqw;
+  height: 8.2cqw;
+  margin-top: -0.35cqw;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.28) 38%, transparent 78%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.28) 38%, transparent 78%);
+}
+.blog-cover-reflect img {
+  display: block;
+  width: 31cqw;
+  height: 37cqw;
+  object-fit: contain;
+  transform: scaleY(-1);
+  filter: blur(0.4px);
+}
+.blog-cover-copy {
+  flex: 1;
+  min-width: 0;
+  padding-right: 0.4cqw;
+}
+.blog-cover-kicker {
+  font-weight: 600;
+  font-size: max(11px, 1.25cqw);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: max(6px, 1.5cqw);
+}
+.blog-cover-title {
+  font-weight: 800;
+  font-size: max(16px, 4.7cqw);
+  line-height: 0.96;
+  letter-spacing: -0.046em;
+  color: #f7f7f5;
+  text-wrap: balance;
+}
+.blog-cover-tag {
+  margin-top: max(8px, 1.7cqw);
+  font-weight: 600;
+  font-size: max(13px, 1.85cqw);
+  letter-spacing: -0.03em;
+  color: #f4f4f2;
+}
+.blog-cover-tag span {
+  color: #8d8d88;
+}
+/* blog-cover:end */

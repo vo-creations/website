@@ -43,7 +43,10 @@ only:
   Homepage sections sit in a `max-w-[1440px]` rail.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
-  read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
+  read `lib/blog/posts.ts`. Index cards are `components/blog/BlogCover.tsx`:
+  the chrome monogram (`public/brand/chrome-mono.webp`) on a grainy silk,
+  the post title, and the tagline. `scripts/render-blog-og.ts` writes that
+  same frame to `public/og/blog/<slug>.png`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
   `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
 - Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. Filled buttons (Let's Talk, Book a call) are white on black. Stat dots, the work progress line, Book a call underlines, and the open FAQ mark are white. The primary mark is `public/brand/vo-logo.svg`. Favicon, apple touch icon, and `app/icon.png` are the same monogram on black. Organization `logo` points at `public/brand/vo-mark.png`.
   `components/VeilBackground.tsx` paints a CSS satin sheet on every route (a slow transform, off for reduced motion, and paused once the canvas starts). DarkVeil stays off
