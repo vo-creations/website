@@ -60,19 +60,16 @@ function StatCounter({
   return <>{format(value)}</>;
 }
 
-// DECISION 2026-11: nine clips. Opens on creator-01, then creator-02.
-// Only the front slide mounts a video. See docs/DECISIONS.md
-// (topic: creator-clips-2026-11).
+// DECISION 2026-11: six clips, three women and three men, alternating.
+// Opens on creator-01. hero-clip-5 is Thienvu and stays out.
+// See docs/DECISIONS.md (topic: creator-clips-2026-11).
 const heroClips = [
   { src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg" },
-  { src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg" },
   { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
-  { src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg" },
-  { src: "/videos/hero-clip-4.mp4", poster: "/videos/hero-clip-4.jpg" },
-  { src: "/videos/creator-07.mp4", poster: "/videos/creator-07.jpg" },
+  { src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg" },
   { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
-  { src: "/videos/creator-06.mp4", poster: "/videos/creator-06.jpg" },
-  { src: "/videos/creator-04.mp4", poster: "/videos/creator-04.jpg" },
+  { src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg" },
+  { src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg" },
 ];
 
 const heroStats = [

@@ -7,8 +7,8 @@ import TikTokEmbed from "@/components/TikTokEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
 
-// DECISION 2026-11: eight self-hosted clips lead this row and play only
-// while the card is in view. Platform embeds stay click-to-load.
+// DECISION 2026-11: six hosted clips lead this row (three women, three men)
+// and play only while the card is in view. Platform embeds stay click-to-load.
 // See docs/DECISIONS.md (topic: creator-clips-2026-11).
 
 type EmbedClip = {
@@ -31,18 +31,16 @@ type Clip = EmbedClip | FileClip;
 
 const SIZES = ["w1", "w2", "w3", "w2", "w1", "w3", "w2"] as const;
 
-const fileAlt = "A creator speaking to the camera in a vertical video.";
+const fileAlt = "A creator in a vertical video.";
 
-// Eight hosted clips first, then the live embeds so nothing is dropped.
+// Same six as the hero, alternating woman and man, then the live embeds.
 const clips: Clip[] = [
   { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt },
+  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt },
   { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt },
+  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Creator", alt: fileAlt },
   { type: "file", src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg", label: "Instagram", alt: fileAlt },
-  { type: "file", src: "/videos/creator-04.mp4", poster: "/videos/creator-04.jpg", label: "Instagram", alt: fileAlt },
   { type: "file", src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg", label: "TikTok", alt: fileAlt },
-  { type: "file", src: "/videos/creator-06.mp4", poster: "/videos/creator-06.jpg", label: "Instagram", alt: fileAlt },
-  { type: "file", src: "/videos/creator-07.mp4", poster: "/videos/creator-07.jpg", label: "Instagram", alt: fileAlt },
-  { type: "file", src: "/videos/creator-08.mp4", poster: "/videos/creator-08.jpg", label: "Instagram", alt: fileAlt },
   { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube", poster: "/creators/yt-ur.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },

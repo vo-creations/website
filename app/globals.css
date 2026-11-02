@@ -361,7 +361,7 @@ html.js-motion .budget-wipe.is-in {
     transform: translate3d(calc(var(--card) * var(--spread-2) * -1), 20px, -72px) rotateY(56deg) scale(0.68);
   }
 }
-/* Parked slides. Nine clips still show the five-card fan. See
+/* Parked slides. Six clips still show the five-card fan. See
    docs/DECISIONS.md (topic: creator-clips-2026-11). */
 .hero-slide[data-pos="3"],
 .hero-slide[data-pos="-3"],
