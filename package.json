@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "docs:check": "node scripts/docs-check.mjs",
+    "og:blog": "node --import tsx scripts/render-blog-og.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",

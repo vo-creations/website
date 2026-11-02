@@ -91,6 +91,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `c-hero-blog-fit-2026-11` — superseded for color, type, and hero size by `dark-premium-2026-11`. The 7-clip coverflow, Good fit / Not a fit, and shared blog chrome stayed.
 - `dark-premium-2026-11` — superseded for the mark and the accent by `silk-monogram-2026-11`. Homepage and blog stay near-black with white type. Display type is Inter Tight. The coverflow is a full-width row from 1280px (268px card, 300px from 1440px) with no reflection. Locked copy is unchanged. Higgsfield and Krea stay. Founder photos and logos stay grayscale. Videos stay in color.
 - `silk-monogram-2026-11` — the white serif VO monogram (`public/brand/vo-logo.svg`) is the primary logo in the nav, footer, hero (large, right of the lockup, from 1024px), closer, favicon, and Open Graph image. The field is grainy black-and-white silk on every marketing route, including privacy and terms. Filled CTAs are white on black. Cobalt is gone.
+- `blog-cover-2026-11` — blog index cards and post Open Graph images use the chrome VO (`public/brand/chrome-mono.webp`) on grainy silk, with the post title as the bold line and "make them remember." under it. The serif logo and white buttons stay.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

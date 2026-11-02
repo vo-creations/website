@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import BlogCover from "@/components/blog/BlogCover";
 import { formatBlogDate, type BlogPostMeta } from "@/lib/blog/posts";
 
 export default function BlogIndexList({ posts }: { posts: BlogPostMeta[] }) {
@@ -30,20 +30,13 @@ export default function BlogIndexList({ posts }: { posts: BlogPostMeta[] }) {
         })}
       </div>
       <div className="flex flex-col gap-4">
-        {visible.map((post) => (
+        {visible.map((post, index) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
             className="block overflow-hidden rounded-2xl border border-white/10 bg-bg-card/50 hover:border-white/20"
           >
-            <Image
-              src={`/og/blog/${post.slug}.png`}
-              alt={post.title}
-              width={1200}
-              height={630}
-              sizes="(max-width: 768px) 100vw, 720px"
-              className="h-auto w-full"
-            />
+            <BlogCover title={post.title} priority={index === 0} />
             <div className="px-6 py-6">
               <p className="mb-3 text-[15px] font-semibold text-[#d4d4d0]">
                 {post.category} · {formatBlogDate(post.datePublished)} · {post.readingMinutes} min read
