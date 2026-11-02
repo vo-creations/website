@@ -68,7 +68,7 @@ const config: Config = {
         display: ['var(--font-inter-tight)', 'Inter Tight', 'sans-serif'],
         serif: ['var(--font-instrument)', 'Georgia', 'serif'],
         outfit: ['Outfit', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       keyframes: {
         fadeUp: {
@@ -143,6 +143,8 @@ const config: Config = {
         // Same keyframe as `scroll`, slower — the video showcase row has much
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
+        // Editorial trusted-by row. The approved page loops this strip in 40s.
+        'scroll-logos': 'scroll 40s linear infinite',
         float: 'float 5s ease-in-out infinite',
         'phone-entrance': 'phoneEntrance 0.6s cubic-bezier(0.16,1,0.3,1) both',
         'screen-poweron': 'screenPowerOn 650ms ease-out 500ms both',

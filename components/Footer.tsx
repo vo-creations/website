@@ -11,7 +11,61 @@ const footerLinks = [
   { href: "/refund-policy", label: "Refund policy" },
 ];
 
-export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" }) {
+function EditorialFooter() {
+  return (
+    <footer>
+      <div className="ed-wrap pt-16">
+        <div className="fg">
+          <div className="c1">
+            <div className="flex items-center gap-3">
+              <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto invert" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em]">Vo Creations</span>
+            </div>
+            <p className="mt-[18px] max-w-[300px] text-[14px] text-[#5f5d58]">
+              The in-house UGC agency backed by elite mentorship.
+            </p>
+            <div className="mail-row">
+              {CONTACT_EMAILS.map((email) => (
+                <a key={email} href={`mailto:${email}`}>
+                  {email}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="c2">
+            <div className="lab">Site</div>
+            <a className="flnk" href="/#results">Case Studies</a>
+            <a className="flnk" href="/blog">Blog</a>
+            <a className="flnk" href="/#team">Our Team</a>
+            <a className="flnk" href="/#faq">FAQ</a>
+          </div>
+          <div className="c3">
+            <div className="lab">Legal</div>
+            <a className="flnk" href="/privacy">Privacy</a>
+            <a className="flnk" href="/terms">Terms</a>
+            <a className="flnk" href="/refund-policy">Refund policy</a>
+          </div>
+          <div className="c4">
+            <div className="lab">Follow</div>
+            <a className="flnk" href="https://x.com/VoCreationsUGC" target="_blank" rel="noopener noreferrer">X</a>
+            <a className="flnk" href="https://www.instagram.com/vo.creations/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a className="flnk" href="https://www.linkedin.com/company/vocreations/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+        <p className="ed-word" aria-hidden="true">
+          <span>make them</span> remember.
+        </p>
+        <div className="fbt">
+          <span>© 2026 Vo Creations</span>
+          <span>Los Angeles · New York</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" | "editorial" }) {
+  if (tone === "editorial") return <EditorialFooter />;
   const paper = tone === "paper";
   return (
     <footer className={paper ? "border-t border-white/10 bg-[#0B0B0C] px-6 text-[#F2F0EB] md:px-14" : "border-t border-border px-6 md:px-14"}>

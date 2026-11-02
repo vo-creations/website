@@ -7,6 +7,8 @@ interface TikTokEmbedProps {
   url: string;
   label?: string;
   thumb?: string;
+  /** Mount the official embed immediately. The homepage carousel shows its own poster first. */
+  startLoaded?: boolean;
 }
 
 // DECISION 2026-08: click-to-load, matching the pattern InstagramEmbed and
@@ -26,8 +28,8 @@ interface TikTokEmbedProps {
 // cuts that failure surface to just the people who click, same as
 // Instagram/YouTube already do. See docs/DECISIONS.md (topic:
 // showcase-marquee, showcase-tiktok-reliability).
-export default function TikTokEmbed({ url, label, thumb }: TikTokEmbedProps) {
-  const [loaded, setLoaded] = useState(false);
+export default function TikTokEmbed({ url, label, thumb, startLoaded = false }: TikTokEmbedProps) {
+  const [loaded, setLoaded] = useState(startLoaded);
   const videoId = url.match(/\/video\/(\d+)/)?.[1];
 
   useEffect(() => {

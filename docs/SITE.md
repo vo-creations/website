@@ -23,22 +23,25 @@ only:
   are real pages again. `/blog/why-text-on-screen-ugc-is-killing-your-app-growth`
   redirects to the real post. `/case-studies`, `/case-studies/fable`, and
   `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
-  behind `CaseStudiesLockOverlay` and render a category label plus a blurred
-  placeholder figure (`000M+` or `00.0M`), not a real view total. Anonymized
-  proof numbers sit in a separate public strip (four figures, then a blurred Slack report image at `public/proof/slack-report.png`). The homepage hero is seven muted 9:16 clips (`public/videos/hero-clip-1.mp4` through `hero-clip-7.mp4`) in a CSS coverflow. Only the front clip mounts a video. Viewports under 768px use `preload="none"` on that file. Side slides are posters. `hero-clip-1.jpg` is the only image with `fetchpriority="high"`. The closer text and chrome mark are one centered row from the `lg` breakpoint. Instagram stills in Our work are `next/image` (`sizes="280px"`, lazy). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
+  gated in the case-study table: a category label plus a blurred placeholder
+  figure (`000M+` or `00.0M`), not a real view total. Anonymized
+  proof numbers sit in the proof section (four figures). The Slack image is
+  still `public/proof/slack-report.png` (numbers are not readable). The homepage
+  is the off-white editorial layout in `app/page.tsx`: hero lockup plus the chrome
+  monogram at `public/brand/chrome-mono.webp`, which is the only image with
+  `fetchpriority="high"`. Our work is a horizontal carousel of the existing
+  platform embeds. A clip mounts its iframe only after a click. There is no
+  homepage MP4. Posters are `next/image`, lazy, `sizes="300px"`. `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
   Instagram profiles. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
   (mailto only, no phone). The footer and the homepage closer link those
-  addresses. The footer links X and Instagram. The nav does not. Homepage
-  sections, including Our work, Team, and the footer, share `max-w-[1280px]`
-  inside `px-6 md:px-14`.
+  addresses. The footer links X, Instagram, and LinkedIn. The nav does not.
+  Homepage sections sit in a `max-w-[1440px]` rail.
   Blog posts share `components/blog/Article.tsx` (answer under the H1, TOC,
   FAQPage + BlogPosting + BreadcrumbList JSON-LD). The index and sitemap
   read `lib/blog/posts.ts`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
   `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
-- Display type is Inter Tight and body type is Inter, both from `next/font`
-  in `app/layout.tsx`. The hero mark is a `<picture>`:
-  `public/brand/vo-chrome.avif` from 1024px up, `vo-chrome-sm.webp` below that.
+- Display type on the homepage is Instrument Serif, with Inter (including weight 200) for the hairline “make them” line. Editorial labels use JetBrains Mono. Other routes still use Inter Tight for display and Inter for body, all from `next/font` in `app/layout.tsx`. The homepage mark is `public/brand/chrome-mono.webp`. Dark routes that still show a chrome mark use `public/brand/vo-chrome.avif` from 1024px up and `vo-chrome-sm.webp` below that.
   `components/VeilBackground.tsx` keeps DarkVeil off
   small screens and reduced motion. Open Graph image is `public/og-image.png`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).

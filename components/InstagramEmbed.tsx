@@ -8,10 +8,12 @@ interface InstagramEmbedProps {
   label?: string;
   poster?: string;
   posterAlt?: string;
+  /** Mount the official embed immediately. The homepage carousel shows its own poster first. */
+  startLoaded?: boolean;
 }
 
-export default function InstagramEmbed({ url, label, poster, posterAlt }: InstagramEmbedProps) {
-  const [loaded, setLoaded] = useState(false);
+export default function InstagramEmbed({ url, label, poster, posterAlt, startLoaded = false }: InstagramEmbedProps) {
+  const [loaded, setLoaded] = useState(startLoaded);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

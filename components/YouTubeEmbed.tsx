@@ -5,6 +5,8 @@ import { useState } from "react";
 interface YouTubeEmbedProps {
   url: string;
   label?: string;
+  /** Mount the official embed immediately. The homepage carousel shows its own poster first. */
+  startLoaded?: boolean;
 }
 
 // DECISION: matches the {url, label} prop shape and aspect-[9/16] card treatment
@@ -19,8 +21,8 @@ interface YouTubeEmbedProps {
 const THUMBNAIL_FALLBACK_CHAIN = ["maxresdefault", "sddefault", "hqdefault"];
 const PLACEHOLDER_WIDTH = 120;
 
-export default function YouTubeEmbed({ url, label }: YouTubeEmbedProps) {
-  const [loaded, setLoaded] = useState(false);
+export default function YouTubeEmbed({ url, label, startLoaded = false }: YouTubeEmbedProps) {
+  const [loaded, setLoaded] = useState(startLoaded);
   const [thumbTier, setThumbTier] = useState(0);
   const videoId = url.match(/(?:shorts\/|v=|youtu\.be\/)([\w-]+)/)?.[1] ?? "";
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${THUMBNAIL_FALLBACK_CHAIN[thumbTier]}.jpg`;

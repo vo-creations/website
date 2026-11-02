@@ -5,6 +5,8 @@ import { useState } from "react";
 interface FacebookEmbedProps {
   url: string;
   label?: string;
+  /** Mount the official embed immediately. The homepage carousel shows its own poster first. */
+  startLoaded?: boolean;
 }
 
 // DECISION: uses Facebook's iframe Video Plugin (plugins/video.php), not the JS-SDK
@@ -13,8 +15,8 @@ interface FacebookEmbedProps {
 // now hits a login wall. See docs/DECISIONS.md (topic: showcase-marquee).
 // DECISION 2026-10: the iframe stays unmounted until click, same as Instagram
 // and TikTok. See docs/DECISIONS.md (topic: seo-aeo-2026-10).
-export default function FacebookEmbed({ url, label }: FacebookEmbedProps) {
-  const [loaded, setLoaded] = useState(false);
+export default function FacebookEmbed({ url, label, startLoaded = false }: FacebookEmbedProps) {
+  const [loaded, setLoaded] = useState(startLoaded);
   const embedSrc = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false`;
 
   return (

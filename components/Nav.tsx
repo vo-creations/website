@@ -20,7 +20,69 @@ const navLinks = [
 export const NAV_CONTAINER = "w-[calc(100%-24px)] max-w-[1100px]";
 export const NAV_INNER_PADDING = "px-5 md:px-6";
 
-export default function Nav() {
+function EditorialNav() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="relative z-30">
+      <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-[22px] md:px-10 xl:h-[86px] xl:px-[72px]">
+        <a href="/" className="flex min-h-11 items-center gap-3">
+          <img src="/brand/vo-logo.svg" alt="" className="h-[26px] w-auto invert" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#111110]">Vo Creations</span>
+        </a>
+        <div className="hidden items-center gap-11 text-[14px] text-[#2b2a28] xl:flex">
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} className="inline-flex min-h-11 items-center">
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <a href="https://calendar.app.google/8x72A8nxr3gQpVfx7" target="_blank" rel="noopener noreferrer" className="btn-book whitespace-nowrap">
+            Book a call ↗
+          </a>
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center xl:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
+              {open ? (
+                <>
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="6" y1="18" x2="18" y2="6" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="absolute left-0 right-0 top-full border-b border-[rgba(17,17,16,.14)] bg-[#F2F0EB] px-[22px] py-2 md:px-10 xl:hidden">
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-[15px] text-[#2b2a28]">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+  );
+}
+
+export default function Nav({ variant = "bar" }: { variant?: "bar" | "editorial" }) {
+  if (variant === "editorial") return <EditorialNav />;
+  return <BarNav />;
+}
+
+function BarNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 

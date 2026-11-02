@@ -87,6 +87,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `closer-center-2026-10` — the closer copy and chrome VO are one horizontally centered row from `lg`, mark vertically centered, gap unchanged. The phone stack stays full width with the mark centered.
 - `closer-balance-2026-10` — the closer chrome VO is vertically centered beside the headline, about 20% smaller, inside the same 1280px rail as the rest of the page. Our work, Team, and the footer use that rail. The hero CTA says "Book a call". Public email is the mailto pair in the footer and closer, plus Organization `contactPoint`.
 - `hero-fourth-clip-2026-10` — hero clips in order are trims of `post-1.mp4`, `post-2.mp4`, `post-4.mp4`, and `post-3.mp4`. `my-story.mp4` is not in the hero.
+- `homepage-c-final-2026-11` — the homepage is the approved off-white editorial layout. Cobalt `#2B3FE8` is only on Let's Talk, Book a call underlines (`#5A6CFF` on black), hero stat dots, the work progress line, and the open FAQ mark. The hero is the lockup plus the chrome monogram. Our work is a click-to-play carousel of the existing platform embeds. No homepage MP4. The Slack image stays the existing blurred placeholder.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Instrument_Serif, Inter, Inter_Tight } from "next/font/google";
+import { Instrument_Serif, Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import VeilBackground from "@/components/VeilBackground";
 import { CONTACT_EMAILS } from "@/lib/site";
@@ -9,7 +9,13 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "500"],
 });
 
 const interTight = Inter_Tight({
@@ -194,7 +200,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} ${jetbrains.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         <a href="#main" className="skip-link">
           Skip to content
         </a>

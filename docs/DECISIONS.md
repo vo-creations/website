@@ -3323,3 +3323,13 @@ Only the front slide mounts a `<video>`. The others are `<img>` posters with `lo
 ## topic: closer-center-2026-10 — _2026-10-30_
 
 The closer row was `justify-start` inside the 1280 rail, so the text block and the chrome VO sat on the left and the empty space was entirely on the right. Measured from the section edges to that group, the gap was 80px on the left and 353px on the right. `lg:justify-center` centers the same group. A remeasure at 1440 put both gaps at 221px. The mark stays `items-center` with the text (midlines within 1px) and the gap stays 64px. Below `lg` the stack is unchanged: the copy is full width of the padded column (24px both sides at 390) and the mark is centered (center at 195px in a 390px viewport). Copy was not changed.
+
+## topic: homepage-c-final-2026-11 — _2026-11-02_
+
+Shipped the approved off-white editorial homepage. The static board was ported into `app/page.tsx`, `components/Nav.tsx` (editorial variant), `components/Footer.tsx`, and `components/WorkCarousel.tsx`. Other routes stay on the dark field and the floating nav.
+
+Locked lines stayed: the eyebrow, the “1000+ vetted in-house creators” subline, the page title, and the footer tagline. Client names stay off the page. Higgsfield and Krea stay in the logo row. No Higgsfield stat or quote. No video-count promise. Founder photos and logos are grayscale. Creator stills stay in color.
+
+The hero coverflow is gone. The only `fetchpriority="high"` image is the chrome monogram (`public/brand/chrome-mono.webp`, a lossless encode of the approved mark). Our work plays the existing Instagram, TikTok, YouTube, and Facebook embeds, and only after a click, so no homepage MP4 is mounted and phones are not preloading one. The supplied `slack-report-blurred.png` is a recreated layout (the board even captions it as a placeholder), so the live image stayed `public/proof/slack-report.png`. Case-study figures stay the blurred placeholders.
+
+Cobalt `#2B3FE8` is only on the filled Let's Talk buttons, the Book a call underlines (`#5A6CFF` on the black closer), the hero stat dots, the carousel progress line, and the open FAQ minus. Scroll motion stayed: headline lines rise and unmask, the monogram rotates within 8 degrees, stats and proof figures count up, the logo row loops in 40 seconds, and sections fade in. Reduced motion and no-JS leave the final text in place. FAQ answers stay in `<details>`. The Good fit / Not a fit cards are not on this layout. Those facts remain in `public/llms.txt`.
