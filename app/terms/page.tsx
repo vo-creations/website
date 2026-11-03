@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
+import { legalDateLabel, termsUpdated } from "@/lib/content-dates";
 import { contactEmailsLabel } from "@/lib/site";
 
 // TODO: counsel review before treating this page as final legal text.
@@ -18,7 +19,7 @@ export default function TermsPage() {
             Terms
           </h1>
           <p className="mx-auto max-w-[560px] text-[clamp(15px,1.6vw,17px)] leading-relaxed text-text-secondary">
-            Last updated October 29, 2026. These terms cover vocreations.com and services from Vo Creations LLC.
+            Last updated {legalDateLabel(termsUpdated)}. These terms cover vocreations.com and services from Vo Creations LLC.
           </p>
         </div>
       </section>

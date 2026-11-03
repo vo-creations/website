@@ -103,6 +103,7 @@ const organizationJsonLd = {
       name: "Daniel Yun",
       jobTitle: "Co-Founder",
       url: "https://www.linkedin.com/in/danielyun27",
+      sameAs: ["https://www.linkedin.com/in/danielyun27"],
       address: { "@type": "PostalAddress", addressLocality: "Los Angeles", addressRegion: "CA" },
     },
   ],
@@ -204,6 +205,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        {/* DECISION 2026-11: lazyOnload keeps gtag off the LCP path. Tracking still runs after load. */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-1TESF8060F" strategy="lazyOnload" />
         <Script id="ga-gtag" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1TESF8060F');`}

@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
+import { legalDateLabel, refundUpdated } from "@/lib/content-dates";
 
 export default function RefundPolicyPage() {
   return (
@@ -14,7 +15,7 @@ export default function RefundPolicyPage() {
             Refund Policy
           </h1>
           <p className="mx-auto max-w-[560px] text-[clamp(15px,1.6vw,17px)] leading-relaxed text-text-secondary">
-            Last updated: October 28, 2026. This policy covers Vo Creations agency campaigns.
+            Last updated: {legalDateLabel(refundUpdated)}. This policy covers Vo Creations agency campaigns.
           </p>
         </div>
       </section>
