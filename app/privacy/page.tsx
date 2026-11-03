@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Label from "@/components/Label";
+import { legalDateLabel, privacyUpdated } from "@/lib/content-dates";
 import { contactEmailsLabel } from "@/lib/site";
 
 export default function PrivacyPage() {
@@ -15,7 +16,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mx-auto max-w-[560px] text-[clamp(15px,1.6vw,17px)] leading-relaxed text-text-secondary">
-            Last updated October 29, 2026. This policy covers vocreations.com, run by Vo Creations LLC.
+            Last updated {legalDateLabel(privacyUpdated)}. This policy covers vocreations.com, run by Vo Creations LLC.
           </p>
         </div>
       </section>

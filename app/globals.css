@@ -466,7 +466,8 @@ html.js-motion .budget-wipe.is-in {
   --bg: transparent;
   --ink: #f6f6f4;
   --mid: rgba(246, 246, 244, 0.66);
-  --dim: rgba(246, 246, 244, 0.42);
+  /* DECISION 2026-11: 0.42 was 3.8:1 on #060606. 0.56 clears WCAG AA 4.5:1. See docs/DECISIONS.md */
+  --dim: rgba(246, 246, 244, 0.56);
   --hair: rgba(255, 255, 255, 0.12);
   --dk: transparent;
   background: transparent;
@@ -978,8 +979,21 @@ html.js-motion .hero-mark img {
 @media (min-width: 768px) {
   .editorial .pfoot {
     flex-direction: row;
+    align-items: baseline;
     justify-content: space-between;
+    gap: 24px;
   }
+}
+.editorial .pfoot a.request-studies {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+.editorial .pfoot a.request-studies:hover {
+  color: var(--ink);
 }
 
 /* Process */

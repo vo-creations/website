@@ -29,14 +29,14 @@ only:
   still `public/proof/slack-report.png` (numbers are not readable). The homepage
   is the dark homepage in `app/page.tsx` (near-black field, white type, the fixed DarkVeil behind it). The hero lockup sits
   above `components/HeroCarousel.tsx`: six
-  muted clips (`heroClips` in `app/page.tsx`), and only the front slide mounts an MP4. Side slides are posters
-  with `loading="lazy"`. From 1440px the card is 268px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/creator-01.jpg` is the only image with
-  `fetchpriority="high"`. The serif VO monogram (`public/brand/vo-logo.svg`, raster `public/brand/vo-mark.png`) is the nav, footer, hero, and closer mark. From 1024px a large copy sits to the right of the hero lockup, above the CTA row, and it is hidden below that. The fit section (`#fit`) is Good fit / Not
-  a fit. Our work (`components/WorkCarousel.tsx`, `#work`) is a horizontal carousel. It leads with the same six hosted clips as the hero, each with a poster jpg. A clip mounts its MP4 only while the card is in view (autoplay, muted, loop, playsInline). The platform embeds follow those six and still mount an iframe only after a click. `/blog` and each post use the
+  muted clips (`heroClips` in `app/page.tsx`). Only the front slide mounts an MP4, and only after `creator-01.jpg` has loaded and the carousel intersects the viewport (`preload="none"`). Side slides are posters
+  with `loading="lazy"`. From 1440px the card is 268px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/creator-01.jpg` is preloaded and is the only image with
+  `fetchpriority="high"` (lowercase attribute; React's `fetchPriority` prop is not recognized by browsers). The proof row (`#proof`) has a "Request case studies" link to the same booking URL as the other CTAs. Named case studies stay gated. The serif VO monogram (`public/brand/vo-logo.svg`, raster `public/brand/vo-mark.png`) is the nav, footer, hero, and closer mark. From 1024px a large copy sits to the right of the hero lockup, above the CTA row, and it is hidden below that. The fit section (`#fit`) is Good fit / Not
+  a fit. Our work (`components/WorkCarousel.tsx`, `#work`) is a horizontal carousel. It leads with the same six hosted clips as the hero, each with a poster jpg. A clip mounts its MP4 only while the card is in view (autoplay, muted, loop, playsInline, preload none). The platform embeds follow those six and still mount an iframe only after a click. `/blog` and each post use the
   same dark nav and footer (`Nav` `variant="editorial"`, `Footer`
   `tone="editorial"`). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.
   Organization `sameAs` in `app/layout.tsx` is the brand X, LinkedIn, and
-  Instagram profiles. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
+  Instagram profiles (the footer links, also listed under Profiles in `public/llms.txt`). Daniel Yun's founder Person adds `sameAs` for `https://www.linkedin.com/in/danielyun27` only. PostalAddress is unchanged. Blog dates live in `lib/blog/posts.ts`. `app/sitemap.ts` builds `lastmod` from those dates and from `lib/content-dates.ts` (the legal pages' "Last updated" lines). There is no RSS feed. `contactPoint` lists `CONTACT_EMAILS` from `lib/site.ts`
   (mailto only, no phone). The footer and the homepage closer link those
   addresses. The footer links X, Instagram, and LinkedIn. The nav does not.
   Homepage sections sit in a `max-w-[1440px]` rail.

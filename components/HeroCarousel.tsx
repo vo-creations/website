@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState, type FocusEvent, type KeyboardEvent, type PointerEvent } from "react";
 
-// DECISION 2026-10: CSS coverflow, no 3D library. Only the front clip mounts
-// a video. Other slides are posters. Phones preload none on that one file.
-// See docs/DECISIONS.md (topic: hero-coverflow-2026-10).
+// DECISION 2026-11: CSS coverflow, no 3D library. Only the front clip mounts
+// a video, and only after its poster has loaded and the carousel is in view.
+// Every video is preload="none". See docs/DECISIONS.md (topic: perf-a11y-2026-11).
 
 const STEP_MS = 3600;
 
@@ -28,42 +28,53 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
   const [reduced, setReduced] = useState(false);
   const [paused, setPaused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
-  const [narrow, setNarrow] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [posterReady, setPosterReady] = useState(false);
   const count = clips.length;
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const sync = () => setNarrow(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setReduced(reduce);
-    if (reduce) return;
-    let timer = 0;
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  // The poster is the LCP image. The mp4 stays unloaded until that image
+  // has painted, the carousel is on screen, and the browser is idle.
+  useEffect(() => {
+    if (reduced || !posterReady || !inView) {
+      setMotionOK(false);
+      return;
+    }
     let idle = 0;
+    let timer = 0;
     const start = () => setMotionOK(true);
     if (typeof window.requestIdleCallback === "function") {
-      idle = window.requestIdleCallback(start, { timeout: 1600 });
+      idle = window.requestIdleCallback(start, { timeout: 1200 });
     } else {
-      timer = window.setTimeout(start, 800);
+      timer = window.setTimeout(start, 600);
     }
     return () => {
       if (idle) window.cancelIdleCallback(idle);
       if (timer) window.clearTimeout(timer);
     };
-  }, []);
+  }, [reduced, posterReady, inView]);
 
   useEffect(() => {
-    if (reduced || paused || userPaused) return;
+    if (reduced || paused || userPaused || !inView) return;
     const id = window.setTimeout(() => {
       setActive((current) => (current + 1) % count);
     }, STEP_MS);
     return () => window.clearTimeout(id);
-  }, [active, reduced, paused, userPaused, count]);
+  }, [active, reduced, paused, userPaused, inView, count]);
 
   function step(direction: number) {
     setActive((current) => (current + direction + count) % count);
@@ -145,10 +156,20 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                     alt=""
                     width={540}
                     height={960}
-                    fetchPriority={index === 0 ? "high" : undefined}
+                    // Lowercase on purpose. React 18 emits fetchPriority as
+                    // camelCase, which browsers ignore. See docs/DECISIONS.md.
+                    {...{ fetchpriority: index === 0 ? "high" : "low" }}
                     loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
                     className="absolute inset-0 h-full w-full object-cover"
+                    onLoad={index === 0 ? () => setPosterReady(true) : undefined}
+                    ref={
+                      index === 0
+                        ? (node) => {
+                            if (node?.complete && node.naturalWidth > 0) setPosterReady(true);
+                          }
+                        : undefined
+                    }
                   />
                   {front && motionOK && (
                     <video
@@ -157,10 +178,7 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                       muted
                       loop
                       playsInline
-                      // DECISION 2026-10: phones fetch only the clip in front.
-                      // Side cards stay posters. See docs/DECISIONS.md
-                      // (topic: closer-balance-2026-10).
-                      preload={narrow ? "none" : "metadata"}
+                      preload="none"
                       poster={clip.poster}
                     >
                       <source src={clip.src} type="video/mp4" />

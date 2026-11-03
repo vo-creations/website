@@ -154,14 +154,9 @@ const team = [
 ];
 
 const featured = posts.find((post) => post.slug === "questions-before-hiring-a-ugc-agency") ?? posts[0];
-const journalList = [
-  "ugc-for-ai-startups",
-  "what-a-managed-ugc-program-costs",
-  "in-house-ugc-vs-marketplace-vs-freelancers",
-  "text-on-screen-ugc",
-]
-  .map((slug) => posts.find((post) => post.slug === slug))
-  .filter((post): post is (typeof posts)[number] => Boolean(post));
+const journalList = posts
+  .filter((post) => post.slug !== featured.slug)
+  .sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
 
 function shortDate(iso: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -314,6 +309,12 @@ export default function Home() {
   const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
   return (
     <div className="editorial">
+      <link
+        rel="preload"
+        as="image"
+        href={heroClips[0].poster}
+        {...{ fetchpriority: "high" }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Nav variant="editorial" />
       <main id="main">
@@ -393,6 +394,9 @@ export default function Home() {
             </div>
             <p className="pfoot">
               <span>Results are anonymized. Logos are brands we&apos;ve worked with. Typical campaigns land under $3 CPM.</span>
+              <a className="request-studies" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Request case studies
+              </a>
             </p>
           </div>
         </section>
@@ -474,7 +478,7 @@ export default function Home() {
                   ].map(([label, when]) => (
                     <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[15px] text-[#e7e7e4]">
                       <span>{label}</span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/45">{when}</span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">{when}</span>
                     </div>
                   ))}
                 </div>

@@ -38,7 +38,7 @@ Not for budgets under $50K/month, one-off videos, or paid-ads-only management. C
 - [What a managed UGC program costs](https://vocreations.com/blog/what-a-managed-ugc-program-costs): Daniel Yun on retainer vs per-video vs CPM, and what a program starting at $50K+/month covers
 - [UGC for AI startups](https://vocreations.com/blog/ugc-for-ai-startups): Thienvu Vo on why talking-head video beats a product demo
 - [12 questions to ask before hiring a UGC agency](https://vocreations.com/blog/questions-before-hiring-a-ugc-agency): Thienvu Vo on training, term, the fee, refunds, and proof
-- [Why text-on-screen UGC is killing your app growth](https://vocreations.com/blog/text-on-screen-ugc): March 2026 essay by Thienvu Vo, updated October 2026
+- [Why text-on-screen UGC is killing your app growth](https://vocreations.com/blog/text-on-screen-ugc): January 2026 essay by Thienvu Vo, updated October 2026
 - [Privacy](https://vocreations.com/privacy): what Vo Creations collects and how it is used.
 - [Terms](https://vocreations.com/terms): website and services terms. The client owns every video produced for its campaign.
 - [Refund policy](https://vocreations.com/refund-policy): no refunds after campaign launch. 90-day minimum, then month to month.
@@ -49,6 +49,8 @@ Book a call: https://calendar.app.google/8x72A8nxr3gQpVfx7
 Email: daniel@vocreations.com and thienvu@vocreations.com
 
 ## Profiles
+
+Organization sameAs, the profiles linked in the footer:
 
 - X: https://x.com/VoCreationsUGC
 - LinkedIn: https://www.linkedin.com/company/vocreations/

@@ -95,7 +95,15 @@ function FileCard({ clip, size }: { clip: FileClip; size: (typeof SIZES)[number]
   return (
     <figure ref={ref} className={`wk ${size}`} data-clip>
       <div className="wi">
-        <img src={clip.poster} alt={clip.alt} width={540} height={960} loading="lazy" decoding="async" />
+        <img
+          src={clip.poster}
+          alt={clip.alt}
+          width={540}
+          height={960}
+          loading="lazy"
+          decoding="async"
+          {...{ fetchpriority: "low" }}
+        />
         {on && (
           <video
             className="absolute inset-0 h-full w-full object-cover"
