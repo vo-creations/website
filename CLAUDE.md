@@ -100,6 +100,8 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `cooksat-logo-2026-11` — the CookSAT Results card uses `public/logos/cooksat.svg`, the official panda icon from cooksat.com plus the word in their nav face (Montserrat Bold). The card applies the same grayscale class as the other result logos.
 - `merge-named-proof-2026-11` — merging `main` kept the named proof strip, five Results cards, deck quotes, CookSAT logo, and 2026 founding date together with the one-headline lockup, secondary subhead, blue-black field, single fit-call button, and clip view-count overlays.
 - `hero-subhead-headings-2026-11` — the hero subhead is “Organic UGC for AI and tech apps. That’s why we have the biggest numbers: 1B+ organic views.” `#results` is “Named results.” `#work` is “Creator work.” Under 768px the second hero label is hidden. Testimonial bylines are “Name, Title, Company” with no photos. The eyebrow and the fit-call button in the first 390×844 viewport stay.
+- `results-quotes-work-2026-11` — two quotes name Vo Creations instead of Daniel. The five result cards share one width and height from 1280px. The CookSAT lockup is rescaled so its word sits on the same baseline and height as the other logos. `#work` loops slowly and pauses on hover, focus, and touch. Two deleted Instagram posts and one unavailable Facebook reel were removed.
+- `clip-proof-launchpoint-2026-11` — verified view labels: creator-01 4.6M, creator-02 4M, creator-03 3M, creator-05 2.4M, hero-clip-1 3.8M, hero-clip-3 1.5M. Every `#work` platform embed stays unlabeled.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

@@ -155,7 +155,7 @@ const results = [
 
 const quotes = [
   {
-    quote: "Daniel who helped Krea go from 1→100 with UGC and is one of the best agency owners in the space.",
+    quote: "Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.",
     by: "Miguel Lara, Growth Marketing, Krea",
   },
   {
@@ -172,7 +172,7 @@ const quotes = [
     by: "Shotan Jakupov, Head of Growth, Higgsfield",
   },
   {
-    quote: "Daniel has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.",
+    quote: "Vo Creations helped scale our UGC efforts from 0 to 100. One of the best teams in this space.",
     by: "Wassim Bouchelouh, CMO, Liftoff",
   },
 ];
