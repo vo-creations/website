@@ -24,3 +24,10 @@ export const creatorClips: CreatorClip[] = [
 export function proofFor(src: string) {
   return creatorClips.find((clip) => clip.src === src)?.proof;
 }
+
+// #work only. The hero stays the six-clip mix of three women and three men.
+export const kellyWorkClip = {
+  src: "/videos/creator-kelly.mp4",
+  poster: "/videos/creator-kelly.jpg",
+  proof: "2.2M views",
+};
