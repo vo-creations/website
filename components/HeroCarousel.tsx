@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, type FocusEvent, type KeyboardEvent, type PointerEvent } from "react";
+import type { CreatorClip } from "@/lib/creator-clips";
 
 // DECISION 2026-11: CSS coverflow, no 3D library. Only the front clip mounts
 // a video, and only after its poster has loaded and the carousel is in view.
 // Every video is preload="none". See docs/DECISIONS.md (topic: perf-a11y-2026-11).
 
 const STEP_MS = 3600;
-
-type Clip = { src: string; poster: string };
 
 function slot(index: number, active: number, count: number) {
   let delta = index - active;
@@ -19,7 +18,7 @@ function slot(index: number, active: number, count: number) {
   return delta;
 }
 
-export default function HeroCarousel({ clips }: { clips: Clip[] }) {
+export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ x: number; y: number; id: number } | null>(null);
   const swipedRef = useRef(false);
@@ -184,6 +183,7 @@ export default function HeroCarousel({ clips }: { clips: Clip[] }) {
                       <source src={clip.src} type="video/mp4" />
                     </video>
                   )}
+                  {clip.proof && <span className="clip-proof">{clip.proof}</span>}
                 </div>
               </div>
             );

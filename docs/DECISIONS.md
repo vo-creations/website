@@ -3399,3 +3399,19 @@ Mobile Lighthouse on production was 88, with LCP at 3.0s on `creator-01.jpg` (1.
 - Organization `sameAs` was already the three footer profiles (X, company LinkedIn, Instagram). Those are the Profiles list in `llms.txt`. Daniel Yun's founder Person gained `sameAs: ["https://www.linkedin.com/in/danielyun27"]`, the URL already on that Person. PostalAddress was not edited.
 - The anonymized proof row gained a text link, "Request case studies", to the existing booking URL `https://calendar.app.google/8x72A8nxr3gQpVfx7`. Locked case-study copy was not changed.
 - The five posts' publish dates were spread across weekdays from 6 Jan 2026 through 2 Nov 2026: text-on-screen 6 Jan (modified 30 Oct, the revision already on the essay), UGC for AI startups 18 Mar, in-house vs marketplace 3 Jun, program cost 18 Aug, hiring questions 2 Nov. `dateModified` matches `datePublished` except on the revised essay. BlogPosting, the visible dates, the index sort, and the homepage journal all read `lib/blog/posts.ts`. There is no RSS feed. Sitemap `lastmod` now comes from those dates and from `lib/content-dates.ts`, which is also what `/privacy`, `/terms`, and `/refund-policy` print as "Last updated".
+
+## topic: hero-declutter-2026-11 — _2026-11-03_
+
+The hero was competing headlines: two display lines (“make them” / “remember.”) at different sizes, plus the accessible “Organic UGC…” string. It is now one Inter Tight headline, both lines the same weight and size, then one secondary off-white subhead: “Organic UGC for AI and tech apps. That’s why we have the biggest.” The eyebrow, the top-right label, the “1000+ vetted in-house creators. We guarantee your target CPM.” subline, the VO monogram, and the stat strip stayed. The H1’s accessible name is “make them remember.” The visible lines stay `aria-hidden` so the two-line split is not read as one jammed word.
+
+The hero’s side-by-side “Let’s Talk” and “Book a call” pair became one white pill, “Book a 30-min fit call”, still pointing at `https://calendar.app.google/8x72A8nxr3gQpVfx7`. The closer’s filled button uses that same label. Its underlined “Book a call” and the nav pill were left as “Book a call”. No video-count promise was added.
+
+The journal feature image was a link whose only child had `alt=""`, so Lighthouse reported “Links do not have a discernible name”. That link now has `aria-label` set to the post title.
+
+Clip overlays use only counts already stored for the source file. There is no Launchpoint export in the repo, and no brand name was stored for any of the six clips.
+
+- `hero-clip-1` is the `post-1.mp4` trim. The original showcase row and `app/blog/text-on-screen-ugc/page.tsx` both record 3.8M for `https://www.instagram.com/p/DTFU5uGjgqV/`. The overlay is “3.8M views”.
+- `hero-clip-3` is the `post-4.mp4` trim. The original showcase row recorded 1.5M for `https://www.instagram.com/p/DUMI_NwD0Xa/`. The overlay is “1.5M views”.
+- `creator-01`, `creator-02`, `creator-03`, and `creator-05` have no brand and no view count in git history (the creator-clips pass said so explicitly). They render no overlay.
+
+The same `proof` field in `lib/creator-clips.ts` feeds the hero coverflow and the hosted cards in `#work`. This supersedes the “no per-clip stat” line in `creator-clips-2026-11` only for the two files that already had a count.

@@ -10,6 +10,7 @@ import WorkCarousel from "@/components/WorkCarousel";
 import { useCountUp } from "@/components/useCountUp";
 import { CountText, Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
+import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
 
 // DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
@@ -62,15 +63,9 @@ function StatCounter({
 
 // DECISION 2026-11: six clips, three women and three men, alternating.
 // Opens on creator-01. hero-clip-5 is Thienvu and stays out.
-// See docs/DECISIONS.md (topic: creator-clips-2026-11).
-const heroClips = [
-  { src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg" },
-  { src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg" },
-  { src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg" },
-  { src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg" },
-  { src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg" },
-  { src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg" },
-];
+// Proof labels live on lib/creator-clips.ts. See docs/DECISIONS.md
+// (topic: creator-clips-2026-11, topic: hero-declutter-2026-11).
+const heroClips = creatorClips;
 
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "views generated" },
@@ -325,15 +320,24 @@ export default function Home() {
               <span className="lab">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
-              <h1 className="hero-lockup">
-                <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
-                <span aria-hidden="true" className="hero-rise l1">
-                  <span>make them</span>
-                </span>
-                <span aria-hidden="true" className="hero-rise l2 delay">
-                  <span>remember.</span>
-                </span>
-              </h1>
+              {/* DECISION 2026-11: one headline. The subhead is secondary.
+                  See docs/DECISIONS.md (topic: hero-declutter-2026-11). */}
+              <div className="hero-lockup">
+                <h1>
+                  <span className="sr-only">make them remember.</span>
+                  <span aria-hidden="true" className="hero-rise l1">
+                    <span>make them</span>
+                  </span>
+                  <span aria-hidden="true" className="hero-rise l2 delay">
+                    <span>remember.</span>
+                  </span>
+                </h1>
+                <p className="hlead">
+                  Organic UGC for AI and tech apps.
+                  <br />
+                  That&apos;s why we have the biggest.
+                </p>
+              </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
                   lockup, above the CTA row. Hidden under 1024px. */}
               <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
@@ -347,10 +351,7 @@ export default function Home() {
                 </p>
                 <div className="hcta">
                   <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                    Let&apos;s Talk
-                  </a>
-                  <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                    Book a call ↗
+                    Book a 30-min fit call
                   </a>
                 </div>
               </div>
@@ -630,7 +631,7 @@ export default function Home() {
               <h2 className="display">UGC insights.</h2>
             </div>
             <div className="feat">
-              <a className="feat-media" href={`/blog/${featured.slug}`}>
+              <a className="feat-media" href={`/blog/${featured.slug}`} aria-label={featured.title}>
                 <Image
                   src={`/og/blog/${featured.slug}.png`}
                   alt=""
@@ -687,7 +688,7 @@ export default function Home() {
               </div>
               <div className="ctas">
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Let&apos;s Talk
+                  Book a 30-min fit call
                 </a>
                 <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
                   Book a call ↗

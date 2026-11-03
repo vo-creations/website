@@ -386,6 +386,23 @@ html.js-motion .budget-wipe.is-in {
 .hero-slide[data-pos="0"] .hero-slide-face {
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
 }
+.clip-proof {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  max-width: calc(100% - 20px);
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(6, 6, 6, 0.82);
+  color: #f4f4f2;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  pointer-events: none;
+}
 .hero-reflect {
   position: absolute;
   left: 0;
@@ -693,36 +710,42 @@ html.js-motion .budget-wipe.is-in {
 .editorial h1 .l1,
 .editorial h1 .l2 {
   display: block;
-}
-.editorial h1 .l1 {
-  margin-top: 28px;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-style: normal;
   font-weight: 700;
-  font-size: 56px;
+  font-size: 52px;
   line-height: 0.9;
   letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+.editorial h1 .l1 {
+  margin-top: 18px;
 }
 .editorial h1 .l2 {
   margin-top: 0;
   margin-left: 0;
-  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 60px;
-  line-height: 0.9;
-  letter-spacing: -0.055em;
+}
+.editorial .hlead {
+  margin-top: 16px;
+  max-width: 22em;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #f4f4f2;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
-  .editorial h1 .l1 {
-    font-size: 84px;
-  }
+  .editorial h1 .l1,
   .editorial h1 .l2 {
-    margin-left: 0;
-    font-size: 92px;
+    font-size: 76px;
+  }
+  .editorial .hlead {
+    font-size: 28px;
   }
 }
 .editorial .hb {
-  margin-top: 22px;
+  margin-top: 18px;
 }
 .editorial .hsub {
   font-size: 17px;
@@ -734,7 +757,7 @@ html.js-motion .budget-wipe.is-in {
   flex-wrap: wrap;
   align-items: center;
   gap: 22px 30px;
-  margin-top: 26px;
+  margin-top: 18px;
 }
 .editorial .hst {
   display: grid;
@@ -793,15 +816,20 @@ html.js-motion .hero-rise.delay > span {
     min-width: 0;
     container-type: inline-size;
   }
-  .editorial .hero-lockup .l1 {
-    position: static;
-    margin-top: 8px;
-    font-size: clamp(72px, 7vw, 104px);
-  }
+  .editorial .hero-lockup .l1,
   .editorial .hero-lockup .l2 {
     position: static;
+    font-size: clamp(68px, 6.2vw, 96px);
+  }
+  .editorial .hero-lockup .l1 {
+    margin-top: 8px;
+  }
+  .editorial .hero-lockup .l2 {
     margin: 0;
-    font-size: clamp(80px, 7.6vw, 116px);
+  }
+  .editorial .hlead {
+    max-width: 22em;
+    font-size: 30px;
   }
   .editorial .hero-visual {
     grid-area: stage;
@@ -848,7 +876,7 @@ html.js-motion .hero-rise.delay > span {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 32px;
-    align-items: center;
+    align-items: start;
   }
   .editorial .hero-lockup {
     grid-column: 1;
