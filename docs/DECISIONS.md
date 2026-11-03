@@ -3409,3 +3409,7 @@ The owner approved naming clients. The source was the pitch deck extract. Number
 - Testimonials are the five deck quotes, with name and company and no title. The leading ellipsis was dropped. Miguel Lara's second quote is capitalized at "The" so it does not open mid-word. "btw boys" was removed from Will Timberlake's quote. No Review schema was added.
 - Organization `foundingDate` is 2026. `llms.txt` says Founded 2026 and lists the named results. Organization and Service descriptions list those results. The closer, the booking URL, the serif mark, and the grayscale founder photos were not changed. No video-count promise was added.
 - The terms disclaimer dropped the word "anonymized" and `termsUpdated` moved to 2026-11-03. The "not a promise" sentence stayed. Blog essays were left as written: several of their figures are not named in the deck extract, so they were not assigned to a client.
+
+## topic: cooksat-logo-2026-11 — _2026-11-03_
+
+The CookSAT Results card had used the name because `public/logos/` had no file. The mark was taken from CookSAT's own site: `https://cooksat.com/assets/graphics/branding/CookSAT_vector_logo.svg`, the icon in their nav and the apple-touch icon. Their nav sets the word "CookSAT" beside it in Montserrat Bold (`font-logo`), so the card file is that icon plus those outlines, not a redraw of the panda. `public/logos/cooksat.svg` is that lockup. The card uses the same `grayscale` class as the other result logos, which turns the blue badge gray and leaves the white word white.

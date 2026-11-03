@@ -142,7 +142,10 @@ const results = [
   },
   {
     name: "CookSAT",
-    logo: "",
+    // Official mark from cooksat.com/assets/graphics/branding/CookSAT_vector_logo.svg
+    // plus the word in their nav face (Montserrat Bold). The card's grayscale
+    // class matches the other logos. See docs/DECISIONS.md (topic: cooksat-logo-2026-11).
+    logo: "/logos/cooksat.svg",
     figure: "$968K",
     lines: [
       "ARR from organic UGC",
