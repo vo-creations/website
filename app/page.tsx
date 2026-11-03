@@ -156,24 +156,24 @@ const results = [
 const quotes = [
   {
     quote: "Daniel who helped Krea go from 1→100 with UGC and is one of the best agency owners in the space.",
-    by: "Miguel Lara, Krea",
+    by: "Miguel Lara, Growth Marketing, Krea",
   },
   {
     quote: "The UGC agency we trust most in the space.",
-    by: "Miguel Lara, Krea",
+    by: "Miguel Lara, Growth Marketing, Krea",
     lead: true,
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
-    by: "Will Timberlake, FOMO",
+    by: "Will Timberlake, UGC Manager, FOMO",
   },
   {
     quote: "Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.",
-    by: "Shotan Jakupov, Higgsfield",
+    by: "Shotan Jakupov, Head of Growth, Higgsfield",
   },
   {
     quote: "Daniel has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.",
-    by: "Wassim Bouchelouh, Liftoff",
+    by: "Wassim Bouchelouh, CMO, Liftoff",
   },
 ];
 
@@ -359,7 +359,7 @@ export default function Home() {
           <div className="hero-frame">
             <div className="hmeta">
               <span className="lab">The in-house UGC agency backed by elite mentorship</span>
-              <span className="lab">UGC for AI startups &amp; tech consumer apps</span>
+              <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
               {/* DECISION 2026-11: one headline. The offer and “biggest” line are the
@@ -378,7 +378,7 @@ export default function Home() {
                 <p className="hlead">
                   Organic UGC for AI and tech apps.
                   <br />
-                  That&apos;s why we have the biggest.
+                  That&apos;s why we have the biggest numbers: 1B+ organic views.
                 </p>
               </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
@@ -456,7 +456,7 @@ export default function Home() {
         <section className="band tight-top" id="results">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">Undeniable impact.</h2>
+              <h2 className="display">Named results.</h2>
             </div>
             <div className="result-grid">
               {results.map((item) => (

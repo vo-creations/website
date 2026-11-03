@@ -942,6 +942,9 @@ html.js-motion .hero-rise.delay-2 > span {
    extra rows would push that button past 844px, so the stack tightens
    only below 768px. Desktop spacing stays. */
 @media (max-width: 767px) {
+  .editorial .hmeta-aside {
+    display: none;
+  }
   .editorial .hero-frame {
     padding-top: 18px;
   }
