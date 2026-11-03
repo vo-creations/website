@@ -3461,3 +3461,7 @@ Launchpoint totals were added as `.clip-proof` labels on the hosted clips that h
 ## topic: results-card-rows-2026-11 — _2026-11-03_
 
 The five result cards stayed one equal-width, equal-height row from 1280px. Krea gained “Jul 28 – Oct 18, 2026”, “4.7M engagements, 4.7% rate”, and “1.8M likes”. Higgsfield gained “Jun 29 – Aug 3, 2026”, “502K likes”, “336K shares”, and “228K comments”. Liftoff gained “May 1 – Jul 31, 2026”, “8.5K posts”, “11.4M engagements”, “Zero paid ads”, and “4.8★ App Store, 101K ratings”. FOMO’s rank line became “in US App Store Top Free Finance”, and “Sub-$4 our CPM” was corrected to “Sub-$4 CPM”. CookSAT gained only “63% of views from one creator”. The hero proof line and the matching FOMO phrase in `llms.txt` and Organization/Service copy use “Top Free Finance” too, so the page does not state two different ranks.
+
+## topic: kelly-work-clip-2026-11 — _2026-11-03_
+
+Kelly Zhao’s Higgsfield clip was added to `#work` only, as the first card. The hero stayed the existing six, three women and three men. The source file was the Launchpoint CDN mp4 (`instagram-imported/17882111553655211-…`). It was 14.2s, so the hosted file is the first 6 seconds: H.264 High, yuv420p, 720×1280, 30fps, no audio, `+faststart`, 711KB. The poster is `public/videos/creator-kelly.jpg`, 540×960, from 0.4s. The overlay is “2.2M views”. Simran Batra was not added. No other EJ Mae Palafox clip was added.
