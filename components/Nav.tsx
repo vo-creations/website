@@ -47,7 +47,7 @@ function EditorialNav() {
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="h-5 w-5 text-[#f6f6f4]" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="h-5 w-5 text-[#eef0f4]" aria-hidden="true">
               {open ? (
                 <>
                   <line x1="6" y1="6" x2="18" y2="18" />
@@ -65,9 +65,9 @@ function EditorialNav() {
         </div>
       </div>
       {open && (
-        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-[#060606] px-[22px] py-2 md:px-10 xl:hidden">
+        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-[#0B0D12] px-[22px] py-2 md:px-10 xl:hidden">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-[15px] text-[#f6f6f4]">
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-[15px] text-[#eef0f4]">
               {link.label}
             </a>
           ))}
@@ -88,7 +88,7 @@ function BarNav() {
 
   return (
     <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] ${NAV_CONTAINER}`}>
-      <div className={`flex items-center justify-between rounded-full border border-white/15 bg-black/85 py-3 backdrop-blur-[20px] ${NAV_INNER_PADDING}`}>
+      <div className={`flex items-center justify-between rounded-full border border-white/15 bg-[#0B0D12]/85 py-3 backdrop-blur-[20px] ${NAV_INNER_PADDING}`}>
         <Link
           href="/"
           onClick={() => setOpen(false)}

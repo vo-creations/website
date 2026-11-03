@@ -34,7 +34,7 @@ export default function FacebookEmbed({ url, label, startLoaded = false }: Faceb
         <button
           type="button"
           onClick={() => setLoaded(true)}
-          className="absolute inset-0 bg-black flex items-center justify-center cursor-pointer"
+          className="absolute inset-0 flex items-center justify-center cursor-pointer bg-[#0B0D12]"
           aria-label={label ? `Play ${label} video` : "Play Facebook video"}
         >
           <span className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">

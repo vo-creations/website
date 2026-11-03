@@ -49,7 +49,7 @@ function cardHtml(title: string, mark: string, fontDir: string): string {
 @font-face { font-family: "Inter Tight"; font-weight: 600; src: url("${join(fontDir, "InterTight-600.ttf")}") format("truetype"); }
 :root { --font-inter-tight: "Inter Tight"; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden; background: #050505; }
+html, body { width: ${WIDTH}px; height: ${HEIGHT}px; overflow: hidden; background: #0B0D12; }
 ${coverCss()}
 .blog-cover { width: ${WIDTH}px; height: ${HEIGHT}px; aspect-ratio: auto; }
 </style>

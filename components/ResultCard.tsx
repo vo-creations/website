@@ -35,7 +35,7 @@ export default function ResultCard({
   return (
     <div
       className={paper
-        ? "overflow-hidden rounded-2xl border border-white/10 bg-[#111113]"
+        ? "overflow-hidden rounded-2xl border border-white/10 bg-[#141820]"
         : `bg-bg-card/50 backdrop-blur-sm rounded-[20px] border border-white/10 overflow-hidden transition-colors hover:border-white/20 ${locked ? "" : "cursor-pointer"}`}
       onClick={locked ? undefined : () => setOpen(!open)}
     >

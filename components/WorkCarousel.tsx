@@ -6,6 +6,7 @@ import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
+import { proofFor } from "@/lib/creator-clips";
 
 // DECISION 2026-11: six hosted clips lead this row (three women, three men)
 // and play only while the card is in view. Platform embeds stay click-to-load.
@@ -25,6 +26,7 @@ type FileClip = {
   poster: string;
   label: string;
   alt: string;
+  proof?: string;
 };
 
 type Clip = EmbedClip | FileClip;
@@ -35,12 +37,12 @@ const fileAlt = "A creator in a vertical video.";
 
 // Same six as the hero, alternating woman and man, then the live embeds.
 const clips: Clip[] = [
-  { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt },
-  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt },
-  { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt },
-  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Creator", alt: fileAlt },
-  { type: "file", src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg", label: "Instagram", alt: fileAlt },
-  { type: "file", src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg", label: "TikTok", alt: fileAlt },
+  { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-01.mp4") },
+  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt, proof: proofFor("/videos/hero-clip-1.mp4") },
+  { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-02.mp4") },
+  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Creator", alt: fileAlt, proof: proofFor("/videos/hero-clip-3.mp4") },
+  { type: "file", src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg", label: "Instagram", alt: fileAlt, proof: proofFor("/videos/creator-03.mp4") },
+  { type: "file", src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-05.mp4") },
   { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube", poster: "/creators/yt-ur.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },
@@ -119,6 +121,7 @@ function FileCard({ clip, size }: { clip: FileClip; size: (typeof SIZES)[number]
             <source src={clip.src} type="video/mp4" />
           </video>
         )}
+        {clip.proof && <span className="clip-proof">{clip.proof}</span>}
       </div>
       <figcaption>
         <span>{clip.label}</span>
@@ -274,7 +277,7 @@ export default function WorkCarousel() {
                     {clip.poster ? (
                       <Image src={clip.poster} alt={clip.alt} fill sizes="300px" className="object-cover" />
                     ) : (
-                      <span className="absolute inset-0 flex items-center justify-center bg-[#1c1c1b] text-[15px] text-white">
+                      <span className="absolute inset-0 flex items-center justify-center bg-[#141820] text-[15px] text-[#EEF0F4]">
                         {clip.label}
                       </span>
                     )}

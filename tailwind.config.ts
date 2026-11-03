@@ -18,10 +18,10 @@ const config: Config = {
         // maxxd, Nav) — now a neutral white-based scale so every consumer of
         // `accent` cascades to grayscale automatically.
         bg: {
-          DEFAULT: '#060606',
-          card: '#0e0e0e',
-          elevated: '#161616',
-          subtle: '#0a0a0a',
+          DEFAULT: '#0B0D12',
+          card: '#141820',
+          elevated: '#1C2230',
+          subtle: '#10141C',
         },
         accent: {
           DEFAULT: '#FFFFFF',
@@ -31,10 +31,10 @@ const config: Config = {
           glow: 'rgba(255,255,255,0.3)',
         },
         text: {
-          DEFAULT: '#f5f5f3',
-          secondary: '#efefed',
-          dim: '#c4c4c0',
-          hero: '#fbfbf9',
+          DEFAULT: '#EEF0F4',
+          secondary: '#E4E7EE',
+          dim: '#C5C8D0',
+          hero: '#EEF0F4',
         },
         border: {
           DEFAULT: 'rgba(255,255,255,0.06)',
@@ -46,10 +46,10 @@ const config: Config = {
 
         // Mentorship theme (green)
         m: {
-          bg: '#0a0a0a',
-          card: '#111111',
-          elevated: '#1a1a1a',
-          subtle: '#0e0e0e',
+          bg: '#0B0D12',
+          card: '#141820',
+          elevated: '#1C2230',
+          subtle: '#10141C',
           accent: '#5cff7e',
           'accent-dim': 'rgba(92,255,126,0.08)',
           'accent-mid': 'rgba(92,255,126,0.15)',

@@ -51,7 +51,7 @@ export default function CTABlock({
 
   if (paper) {
     return (
-      <section ref={sectionRef} className="bg-[#0B0B0C] px-6 py-14 text-[#F2F0EB] md:px-14 md:py-16">
+      <section ref={sectionRef} className="bg-[#0B0D12] px-6 py-14 text-[#EEF0F4] md:px-14 md:py-16">
         {/* DECISION 2026-10: the text and chrome mark are one centered group.
             The mark stays vertically centered beside the copy. On a phone the
             stack stays full width with the mark centered under the copy.
@@ -103,7 +103,7 @@ export default function CTABlock({
   return (
     <section className="px-6 pb-16 pt-4 text-center">
       <div className="mx-auto max-w-[560px] rounded-3xl border border-white/10 bg-bg-card/50 px-8 py-10 backdrop-blur-sm">
-        <h2 className="mb-3 font-display text-[28px] font-extrabold tracking-[-0.04em] text-[#fbfbf9]">
+        <h2 className="mb-3 font-display text-[28px] font-extrabold tracking-[-0.04em] text-[#EEF0F4]">
           {heading}
         </h2>
         <p className="mb-6 text-base text-[#d4d4d0]">{sub}</p>

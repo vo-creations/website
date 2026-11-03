@@ -91,6 +91,9 @@ void main(){
     lum=pow(clamp(lum,0.0,1.0),uGamma);
     vec3 desaturated=mix(col.rgb,vec3(lum),uDesaturate);
     vec3 tinted=mix(desaturated,uTint*lum,uTintAmount);
+    // Floor the black end on #0B0D12 so the silk is blue-black, not pure black.
+    vec3 floorCol=vec3(0.043137,0.050980,0.070588);
+    tinted=floorCol+(vec3(1.0)-floorCol)*tinted;
     gl_FragColor=vec4(clamp(tinted,0.0,1.0),1.0);
 }
 `;
