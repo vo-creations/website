@@ -93,7 +93,7 @@ const heroProof = [
   { name: "Krea", line: "130M+ views in 3 months, under $3 CPM" },
   { name: "Liftoff", line: "174M+ views in 90 days, $0.82 avg CPM" },
   { name: "Higgsfield", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "FOMO", line: "#3 US App Store Finance" },
+  { name: "FOMO", line: "#3 US App Store Top Free Finance" },
 ];
 
 const steps = [
@@ -108,32 +108,32 @@ const results = [
     name: "Krea",
     logo: "/logos/krea.png",
     figure: "130M+",
-    lines: ["views in 3 months", "Under $3 CPM"],
+    lines: ["views in 3 months", "Under $3 CPM", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
     name: "FOMO",
     logo: "/logos/fomo.png",
     figure: "#3",
     lines: [
-      "in US App Store Finance",
+      "in US App Store Top Free Finance",
       "Ahead of Cash App and Kalshi",
       "Aug 21, 2026",
       "3M+ users, up from 625K in June",
       "~50% of users came from creators",
-      "Sub-$4 our CPM",
+      "Sub-$4 CPM",
     ],
   },
   {
     name: "Higgsfield",
     logo: "/logos/higgsfield.png",
     figure: "72M+",
-    lines: ["views in 35 days", "45 creators", "~$0.96 CPM"],
+    lines: ["views in 35 days", "45 creators", "~$0.96 CPM", "Jun 29 – Aug 3, 2026", "502K likes", "336K shares", "228K comments"],
   },
   {
     name: "Liftoff",
     logo: "/logos/liftoff.png",
     figure: "174M+",
-    lines: ["views in 90 days", "50 creators", "$0.82 average CPM"],
+    lines: ["views in 90 days", "50 creators", "$0.82 average CPM", "May 1 – Jul 31, 2026", "8.5K posts", "11.4M engagements", "Zero paid ads", "4.8★ App Store, 101K ratings"],
   },
   {
     name: "CookSAT",
@@ -149,6 +149,7 @@ const results = [
       "55M views",
       "32 creators tracked",
       "Feb–Sep 2026",
+      "63% of views from one creator",
     ],
   },
 ];

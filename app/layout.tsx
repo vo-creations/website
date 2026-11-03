@@ -89,7 +89,7 @@ const organizationJsonLd = {
   },
   logo: "https://vocreations.com/brand/vo-mark.png",
   description:
-    "UGC agency that trains its own creators in-house. Talking-head storytelling for AI startups and consumer apps. Named results: Krea, 130M+ views in 3 months, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 average CPM, 50 creators. Higgsfield, 72M+ views in 35 days, ~$0.96 CPM, 45 creators. FOMO, #3 in US App Store Finance, ahead of Cash App and Kalshi, 3M+ users up from 625K in June, sub-$4 CPM. CookSAT, $968K ARR from organic UGC, 55M views, 32 creators tracked, Feb–Sep 2026.",
+    "UGC agency that trains its own creators in-house. Talking-head storytelling for AI startups and consumer apps. Named results: Krea, 130M+ views in 3 months, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 average CPM, 50 creators. Higgsfield, 72M+ views in 35 days, ~$0.96 CPM, 45 creators. FOMO, #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi, 3M+ users up from 625K in June, sub-$4 CPM. CookSAT, $968K ARR from organic UGC, 55M views, 32 creators tracked, Feb–Sep 2026.",
   founder: [
     {
       "@type": "Person",
@@ -147,7 +147,7 @@ const serviceJsonLd = {
   provider: { "@id": "https://vocreations.com/#organization" },
   areaServed: "US",
   description:
-    "Organic UGC for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat. Named results: Krea, 130M+ views in 3 months, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 average CPM. Higgsfield, 72M+ views in 35 days, ~$0.96 CPM. FOMO, #3 in US App Store Finance. CookSAT, $968K ARR from organic UGC and 55M views.",
+    "Organic UGC for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat. Named results: Krea, 130M+ views in 3 months, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 average CPM. Higgsfield, 72M+ views in 35 days, ~$0.96 CPM. FOMO, #3 in US App Store Top Free Finance. CookSAT, $968K ARR from organic UGC and 55M views.",
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
