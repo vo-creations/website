@@ -210,15 +210,11 @@ export default function WorkCarousel() {
   const playingLabel = clips.find((clip) => clip.type !== "file" && clip.url === playing)?.label;
 
   return (
-    <section className="band tight-top" id="work" aria-roledescription="carousel" aria-label="Our work" onKeyDown={onKeyDown}>
+    <section className="band tight-top" id="work" aria-roledescription="carousel" aria-label="Creator work" onKeyDown={onKeyDown}>
       <div className="ed-wrap">
         <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <h2 className="display">
-              Content that converts
-              <br />
-              and goes viral.
-            </h2>
+            <h2 className="display">Creator work.</h2>
             <p className="lede mt-6">
               Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
             </p>
