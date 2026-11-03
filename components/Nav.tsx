@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import BrandLockup from "@/components/BrandLockup";
 
 const navLinks = [
-  { href: "/#results", label: "Case Studies" },
+  { href: "/#results", label: "Results" },
   { href: "/#team", label: "Our Team" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },

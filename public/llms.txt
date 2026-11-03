@@ -13,10 +13,10 @@ Vo Creations trains its own creators, then runs them as a brand's content team a
 - 90-day minimum, then month to month. No refunds after launch.
 - Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. The client owns every video produced for the campaign. Vo Creations guarantees the client's target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward the CPM. Paid media, the ad spend, is outside the fee and billed on top.
 - Process: Day 0, scripts are written. About 48 hours later, creators are briefed. In 10–14 days, accounts are warmed up and the first videos are live. Every week, the team doubles down on the top videos.
-- Client testimonials are anonymized.
-- Anonymized results: an AI app, 130M+ views in 3 months. A finance app, #3 in Finance, 3M+ users, sub-$4 CPM. A consumer app, 174M+ views at a $0.82 CPM. $968k ARR for one app. Typical campaigns land under $3 CPM. Client names are not published.
+- Named results, from our own creators: Krea, 130M+ views in 3 months, under $3 CPM. FOMO, #3 in US App Store Finance, ahead of Cash App and Kalshi, Aug 21, 2026, 3M+ users, up from 625K in June, ~50% of users came from creators, sub-$4 CPM. Higgsfield, 72M+ views in 35 days, 45 creators, ~$0.96 CPM. Liftoff, 174M+ views in 90 days, 50 creators, $0.82 average CPM. CookSAT, Feb–Sep 2026, $968K ARR from organic UGC, zero ad spend, 100K+ users from paid creators posting organic UGC, 55M views, 32 creators tracked.
+- Named testimonials: Miguel Lara, Krea. Will Timberlake, FOMO. Shotan Jakupov, Higgsfield. Wassim Bouchelouh, Liftoff.
 - Founders: Thienvu Vo, co-founder, New York, NY. Daniel Yun, co-founder, Los Angeles, CA. Company HQ: New York.
-- New York. Founded 2025.
+- New York. Founded 2026.
 
 ## Who we serve
 
@@ -32,7 +32,7 @@ Not for budgets under $50K/month, one-off videos, or paid-ads-only management. C
 
 ## Pages
 
-- [Home](https://vocreations.com/): positioning, anonymized proof, fit, team, how it works, FAQ. Named case studies stay behind a booking gate.
+- [Home](https://vocreations.com/): positioning, named results for Krea, FOMO, Higgsfield, Liftoff, and CookSAT, fit, team, how it works, FAQ. Full case studies, spend, and playbooks are shared on a call.
 - [Blog](https://vocreations.com/blog): UGC insights, with categories and read times
 - [In-house UGC agency vs marketplace vs freelancers](https://vocreations.com/blog/in-house-ugc-vs-marketplace-vs-freelancers): Daniel Yun on who trains, who posts, and what you still have to manage
 - [What a managed UGC program costs](https://vocreations.com/blog/what-a-managed-ugc-program-costs): Daniel Yun on retainer vs per-video vs CPM, and what a program starting at $50K+/month covers

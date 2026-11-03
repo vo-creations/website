@@ -56,7 +56,7 @@ export default function TermsPage() {
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">Disclaimers</h2>
             <p>
-              The site is provided as available. Campaign examples are anonymized past results. They are not a promise that the next campaign matches those numbers.
+              The site is provided as available. Campaign examples are past results. They are not a promise that the next campaign matches those numbers.
             </p>
           </div>
           <div>

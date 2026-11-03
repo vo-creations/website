@@ -8,7 +8,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import LogoImage from "@/components/LogoImage";
 import WorkCarousel from "@/components/WorkCarousel";
 import { useCountUp } from "@/components/useCountUp";
-import { CountText, Reveal, useOnceVisible } from "@/components/motion";
+import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { CONTACT_EMAILS } from "@/lib/site";
 
@@ -92,11 +92,13 @@ const trustedBrands = [
   { name: "Aonic", file: "aonic.png" },
 ];
 
-const proof = [
-  { n: "01", row: "r0", figure: "130M+", kicker: "AI app", detail: "views in 3 months" },
-  { n: "02", row: "r1", figure: "#3", kicker: "Finance app", detail: "3M+ users · sub-$4 CPM" },
-  { n: "03", row: "r2", figure: "174M+", kicker: "Consumer app", detail: "views at $0.82 CPM" },
-  { n: "04", row: "r3", figure: "$968k", kicker: "ARR", detail: "driven for one app" },
+// DECISION 2026-11: named proof is public. Hero lines are the deck headline
+// set, in the owner's wording. See docs/DECISIONS.md (topic: named-proof-2026-11).
+const heroProof = [
+  { name: "Krea", line: "130M+ views in 3 months, under $3 CPM" },
+  { name: "Liftoff", line: "174M+ views in 90 days, $0.82 avg CPM" },
+  { name: "Higgsfield", line: "72M+ views in 35 days, ~$0.96 CPM" },
+  { name: "FOMO", line: "#3 US App Store Finance" },
 ];
 
 const steps = [
@@ -106,13 +108,75 @@ const steps = [
   { num: "Every week", title: "Double down", desc: "Double down on the top videos." },
 ];
 
-const lockedStudies = [
-  { n: "01", category: "AI app", duration: "3 months", views: "000M+", timeline: "00 days" },
-  { n: "02", category: "Finance app", duration: "90 days", views: "000M+", timeline: "00 days" },
-  { n: "03", category: "Consumer app", duration: "90 days", views: "000M+", timeline: "00 creators" },
-  { n: "04", category: "AI app", duration: "90 days", views: "00.0M", timeline: "00 days" },
-  { n: "05", category: "AI app", duration: "2 weeks", views: "00.0M", timeline: "00 days" },
-  { n: "06", category: "Consumer app", duration: "30 days", views: "000M+", timeline: "00 days" },
+const results = [
+  {
+    name: "Krea",
+    logo: "/logos/krea.png",
+    figure: "130M+",
+    lines: ["views in 3 months", "Under $3 CPM"],
+  },
+  {
+    name: "FOMO",
+    logo: "/logos/fomo.png",
+    figure: "#3",
+    lines: [
+      "in US App Store Finance",
+      "Ahead of Cash App and Kalshi",
+      "Aug 21, 2026",
+      "3M+ users, up from 625K in June",
+      "~50% of users came from creators",
+      "Sub-$4 our CPM",
+    ],
+  },
+  {
+    name: "Higgsfield",
+    logo: "/logos/higgsfield.png",
+    figure: "72M+",
+    lines: ["views in 35 days", "45 creators", "~$0.96 CPM"],
+  },
+  {
+    name: "Liftoff",
+    logo: "/logos/liftoff.png",
+    figure: "174M+",
+    lines: ["views in 90 days", "50 creators", "$0.82 average CPM"],
+  },
+  {
+    name: "CookSAT",
+    logo: "",
+    figure: "$968K",
+    lines: [
+      "ARR from organic UGC",
+      "Zero ad spend",
+      "100K+ users from paid creators posting organic UGC",
+      "55M views",
+      "32 creators tracked",
+      "Feb–Sep 2026",
+    ],
+  },
+];
+
+const quotes = [
+  {
+    quote: "Daniel who helped Krea go from 1→100 with UGC and is one of the best agency owners in the space.",
+    by: "Miguel Lara, Krea",
+  },
+  {
+    quote: "The UGC agency we trust most in the space.",
+    by: "Miguel Lara, Krea",
+    lead: true,
+  },
+  {
+    quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
+    by: "Will Timberlake, FOMO",
+  },
+  {
+    quote: "Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.",
+    by: "Shotan Jakupov, Higgsfield",
+  },
+  {
+    quote: "Daniel has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.",
+    by: "Wassim Bouchelouh, Liftoff",
+  },
 ];
 
 const agencyFaqs = [
@@ -231,31 +295,6 @@ function CloserMark() {
   );
 }
 
-function ProofRow({
-  row,
-  figure,
-  kicker,
-  detail,
-}: {
-  row: string;
-  figure: string;
-  kicker: string;
-  detail: string;
-}) {
-  const { ref, on } = useOnceVisible<HTMLDivElement>();
-  return (
-    <div ref={ref} className={`proof-row reveal ${row} ${on ? "is-in" : ""}`}>
-      <div className="pv">
-        <CountText text={figure} trigger={on} />
-      </div>
-      <div className="pd">
-        <div className="pl">{kicker}</div>
-        <div className="pdd">{detail}</div>
-      </div>
-    </div>
-  );
-}
-
 function SlackReport() {
   const { ref, on } = useOnceVisible<HTMLDivElement>();
   return (
@@ -326,12 +365,15 @@ export default function Home() {
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
               <h1 className="hero-lockup">
-                <span className="sr-only">Organic UGC for AI and tech apps. Make them remember.</span>
-                <span aria-hidden="true" className="hero-rise l1">
-                  <span>make them</span>
+                <span className="hero-offer">Organic UGC for AI and tech apps. </span>
+                <span className="hero-rise l1">
+                  <span>make them </span>
                 </span>
-                <span aria-hidden="true" className="hero-rise l2 delay">
-                  <span>remember.</span>
+                <span className="hero-rise l2 delay">
+                  <span>remember. </span>
+                </span>
+                <span className="hero-rise l2 l3 delay-2">
+                  <span>that&apos;s why we have the biggest.</span>
                 </span>
               </h1>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
@@ -345,6 +387,14 @@ export default function Home() {
                   <br />
                   We guarantee your target CPM.
                 </p>
+                <ul className="hero-proof">
+                  {heroProof.map((item) => (
+                    <li key={item.name}>
+                      <span className="hp-name">{item.name}</span>
+                      <span className="hp-line">{item.line}</span>
+                    </li>
+                  ))}
+                </ul>
                 <div className="hcta">
                   <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
                     Let&apos;s Talk
@@ -382,25 +432,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="band" id="proof">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">Numbers from recent campaigns.</h2>
-            </div>
-            <div className="prl">
-              {proof.map((item) => (
-                <ProofRow key={item.n} row={item.row} figure={item.figure} kicker={item.kicker} detail={item.detail} />
-              ))}
-            </div>
-            <p className="pfoot">
-              <span>Results are anonymized. Logos are brands we&apos;ve worked with. Typical campaigns land under $3 CPM.</span>
-              <a className="request-studies" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Request case studies
-              </a>
-            </p>
-          </div>
-        </section>
-
         <WorkCarousel />
 
         <section className="band mid-top" id="process">
@@ -425,35 +456,30 @@ export default function Home() {
             <div className="sh">
               <h2 className="display">Undeniable impact.</h2>
             </div>
-            <div className="gt">
-              <div className="cs-head">
-                <span className="lab">No.</span>
-                <span className="lab">Category</span>
-                <span className="lab">Duration</span>
-                <span className="lab">Total views</span>
-                <span className="lab">Timeline</span>
-              </div>
-              {lockedStudies.map((row) => (
-                <div className="cs-row" key={row.n}>
-                  <span className="g0">{row.n}</span>
-                  <span className="g-cat">{row.category}</span>
-                  <span className="g-dur">{row.duration}</span>
-                  <span className="g-views">
-                    <span className="ed-blur">{row.views}</span>
-                  </span>
-                  <span className="g-time">
-                    <span className="ed-blur">{row.timeline}</span>
-                  </span>
-                </div>
+            <div className="result-grid">
+              {results.map((item) => (
+                <article className="result-card" key={item.name}>
+                  <h3 className="result-mark">
+                    {item.logo ? (
+                      <LogoImage src={item.logo} alt={item.name} boxClassName="h-6 w-auto grayscale" />
+                    ) : (
+                      item.name
+                    )}
+                  </h3>
+                  <p className="result-figure">{item.figure}</p>
+                  <ul>
+                    {item.lines.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </article>
               ))}
-              <div className="gate">
-                <div className="gate-card">
-                  <p>Full results shared on a call</p>
-                  <a className="btn-book mt-[18px]" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                    Book a call ↗
-                  </a>
-                </div>
-              </div>
+            </div>
+            <div className="results-cta">
+              <p>Full case studies, spend and playbooks on the call.</p>
+              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Book a call ↗
+              </a>
             </div>
           </div>
         </section>
@@ -493,24 +519,18 @@ export default function Home() {
         <section className="band" id="testimonials">
           <div className="ed-wrap">
             <h2 className="display">In their words</h2>
-            <p className="qbig">&ldquo;&hellip;the UGC agency we trust most in the space.&rdquo;</p>
+            <p className="qbig">&ldquo;{quotes.find((item) => item.lead)?.quote}&rdquo;</p>
             <div className="qby">
               <i />
-              <span className="lab">Team at an AI creative app</span>
+              <span className="lab">{quotes.find((item) => item.lead)?.by}</span>
             </div>
             <div className="tqs">
-              <div className="tq">
-                <p>&ldquo;&hellip;helped us go from 1&rarr;100 with UGC and is one of the best agency owners in the space.&rdquo;</p>
-                <span>Team at an AI creative app</span>
-              </div>
-              <div className="tq">
-                <p>&ldquo;Great engagement btw boys. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;</p>
-                <span>Team at a top-3 finance app</span>
-              </div>
-              <div className="tq">
-                <p>&ldquo;&hellip;has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.&rdquo;</p>
-                <span>Team at a consumer app</span>
-              </div>
+              {quotes.filter((item) => !item.lead).map((item) => (
+                <div className="tq" key={item.by + item.quote.slice(0, 12)}>
+                  <p>&ldquo;{item.quote}&rdquo;</p>
+                  <span>{item.by}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
