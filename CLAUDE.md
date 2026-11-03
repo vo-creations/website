@@ -102,6 +102,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `hero-subhead-headings-2026-11` — the hero subhead is “Organic UGC for AI and tech apps. That’s why we have the biggest numbers: 1B+ organic views.” `#results` is “Named results.” `#work` is “Creator work.” Under 768px the second hero label is hidden. Testimonial bylines are “Name, Title, Company” with no photos. The eyebrow and the fit-call button in the first 390×844 viewport stay.
 - `results-quotes-work-2026-11` — two quotes name Vo Creations instead of Daniel. The five result cards share one width and height from 1280px. The CookSAT lockup is rescaled so its word sits on the same baseline and height as the other logos. `#work` loops slowly and pauses on hover, focus, and touch. Two deleted Instagram posts and one unavailable Facebook reel were removed.
 - `clip-proof-launchpoint-2026-11` — verified view labels: creator-01 4.6M, creator-02 4M, creator-03 3M, creator-05 2.4M, hero-clip-1 3.8M, hero-clip-3 1.5M. Every `#work` platform embed stays unlabeled.
+- `results-card-rows-2026-11` — Krea, Higgsfield, and Liftoff cards gained the deck’s dates and engagement rows. FOMO says “Top Free Finance” and “Sub-$4 CPM”. CookSAT adds “63% of views from one creator”. The five cards stay one equal-height row from 1280px.
 - `kelly-work-clip-2026-11` — `#work` leads with Kelly Zhao’s Higgsfield clip (`creator-kelly`, 6s, under 1MB, poster `creator-kelly.jpg`) labeled 2.2M views. She is not in the hero. Simran Batra was not added.
 
 ## Known-broken
