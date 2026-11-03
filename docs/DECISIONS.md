@@ -3457,3 +3457,7 @@ Two quotes had named Daniel. They now name Vo Creations, and the attributions we
 ## topic: clip-proof-launchpoint-2026-11 — _2026-11-03_
 
 Launchpoint totals were added as `.clip-proof` labels on the hosted clips that had a verified count. The same `proof` field feeds the hero coverflow and `#work`. creator-01 is “4.6M views”, creator-02 is “4M views”, and creator-05 is “2.4M views”. hero-clip-1 stayed “3.8M views” and hero-clip-3 stayed “1.5M views”. creator-03 (“Sidehustle for beginners”) is “3M views”, also from Launchpoint. None of the platform embeds in `#work` had a verified view count, including “the same 5 pounds” (`DXzgEEwRXm2`) and “where do you think” (`DVzqq6eEVMt`), so those cards stay unlabeled.
+
+## topic: kelly-work-clip-2026-11 — _2026-11-03_
+
+Kelly Zhao’s Higgsfield clip was added to `#work` only, as the first card. The hero stayed the existing six, three women and three men. The source file was the Launchpoint CDN mp4 (`instagram-imported/17882111553655211-…`). It was 14.2s, so the hosted file is the first 6 seconds: H.264 High, yuv420p, 720×1280, 30fps, no audio, `+faststart`, 711KB. The poster is `public/videos/creator-kelly.jpg`, 540×960, from 0.4s. The overlay is “2.2M views”. Simran Batra was not added. No other EJ Mae Palafox clip was added.

@@ -6,7 +6,7 @@ import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import FacebookEmbed from "@/components/FacebookEmbed";
-import { proofFor } from "@/lib/creator-clips";
+import { kellyWorkClip, proofFor } from "@/lib/creator-clips";
 
 // DECISION 2026-11: six hosted clips lead this row (three women, three men)
 // and play only while the card is in view. Platform embeds stay click-to-load.
@@ -35,8 +35,9 @@ const SIZES = ["w1", "w2", "w3", "w2", "w1", "w3", "w2"] as const;
 
 const fileAlt = "A creator in a vertical video.";
 
-// Same six as the hero, alternating woman and man, then the live embeds.
+// Kelly leads. The hero's six follow, then the live embeds. Kelly is not in the hero.
 const clips: Clip[] = [
+  { type: "file", src: kellyWorkClip.src, poster: kellyWorkClip.poster, label: "TikTok", alt: fileAlt, proof: kellyWorkClip.proof },
   { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-01.mp4") },
   { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt, proof: proofFor("/videos/hero-clip-1.mp4") },
   { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-02.mp4") },
