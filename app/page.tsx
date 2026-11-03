@@ -173,7 +173,7 @@ const quotes = [
   },
   {
     quote: "Daniel has helped scale our UGC efforts from 0 to 100 and is one of the best talents in this space.",
-    by: "Wassim Bouchelouh, Co-Founder, Liftoff",
+    by: "Wassim Bouchelouh, CMO, Liftoff",
   },
 ];
 
