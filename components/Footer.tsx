@@ -3,7 +3,7 @@ import BrandLockup from "@/components/BrandLockup";
 import { CONTACT_EMAILS } from "@/lib/site";
 
 const footerLinks = [
-  { href: "/#results", label: "Case Studies" },
+  { href: "/#results", label: "Results" },
   { href: "/blog", label: "Blog" },
   { href: "/#team", label: "Our Team" },
   { href: "/#faq", label: "FAQ" },
@@ -34,7 +34,7 @@ function EditorialFooter() {
           </div>
           <div className="c2">
             <div className="lab">Site</div>
-            <a className="flnk" href="/#results">Case Studies</a>
+            <a className="flnk" href="/#results">Results</a>
             <a className="flnk" href="/blog">Blog</a>
             <a className="flnk" href="/#team">Our Team</a>
             <a className="flnk" href="/#faq">FAQ</a>

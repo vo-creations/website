@@ -22,16 +22,15 @@ only:
   funnel is not redirected at the homepage. `/blog` and `/blog/text-on-screen-ugc`
   are real pages again. `/blog/why-text-on-screen-ugc-is-killing-your-app-growth`
   redirects to the real post. `/case-studies`, `/case-studies/fable`, and
-  `/case-studies/cluely` are not routes (404).   Homepage case-study cards stay
-  gated in the case-study table: a category label plus a blurred placeholder
-  figure (`000M+` or `00.0M`), not a real view total. Anonymized
-  proof numbers sit in the proof section (four figures). The Slack image is
+  `/case-studies/cluely` are not routes (404). Homepage `#results` renders five named
+  case cards from `app/page.tsx` (Krea, FOMO, Higgsfield, Liftoff, CookSAT). The
+  hero proof strip sits under the subline. There is no placeholder table. The Slack image is
   still `public/proof/slack-report.png` (numbers are not readable). The homepage
   is the dark homepage in `app/page.tsx` (blue-black `#0B0D12` field, `#EEF0F4` type, the fixed DarkVeil behind it). The hero eyebrow and the top-right label sit above one Inter Tight headline, “make them remember.”, then a secondary subhead and the existing 1000+ subline. The hero has one filled booking button. The lockup sits
   above `components/HeroCarousel.tsx`: six
   muted clips (`creatorClips` in `lib/creator-clips.ts`, passed as `heroClips`). A clip with a `proof` string renders a `.clip-proof` overlay on the hero card and on the matching `#work` card. Clips with no `proof` have no overlay. Only the front slide mounts an MP4, and only after `creator-01.jpg` has loaded and the carousel intersects the viewport (`preload="none"`). Side slides are posters
   with `loading="lazy"`. From 1440px the card is 268px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/creator-01.jpg` is preloaded and is the only image with
-  `fetchpriority="high"` (lowercase attribute; React's `fetchPriority` prop is not recognized by browsers). The proof row (`#proof`) has a "Request case studies" link to the same booking URL as the other CTAs. Named case studies stay gated. The serif VO monogram (`public/brand/vo-logo.svg`, raster `public/brand/vo-mark.png`) is the nav, footer, hero, and closer mark. From 1024px a large copy sits to the right of the hero lockup, above the CTA row, and it is hidden below that. The fit section (`#fit`) is Good fit / Not
+  `fetchpriority="high"` (lowercase attribute; React's `fetchPriority` prop is not recognized by browsers). `#results` ends with the same booking URL as the other CTAs. Full case studies, spend, and playbooks stay on that call. The serif VO monogram (`public/brand/vo-logo.svg`, raster `public/brand/vo-mark.png`) is the nav, footer, hero, and closer mark. From 1024px a large copy sits to the right of the hero lockup, above the CTA row, and it is hidden below that. The fit section (`#fit`) is Good fit / Not
   a fit. Our work (`components/WorkCarousel.tsx`, `#work`) is a horizontal carousel. It leads with the same six hosted clips as the hero, each with a poster jpg. A clip mounts its MP4 only while the card is in view (autoplay, muted, loop, playsInline, preload none). The platform embeds follow those six and still mount an iframe only after a click. `/blog` and each post use the
   same dark nav and footer (`Nav` `variant="editorial"`, `Footer`
   `tone="editorial"`). `/llms.txt` is a static file in `public/`. `public/manifest.webmanifest` is linked from the root metadata. GA `G-1TESF8060F` loads with `next/script` `strategy="lazyOnload"`.

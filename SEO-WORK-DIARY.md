@@ -105,6 +105,10 @@ The public creator count moved from 500+ to 1000+. The meta description, Open Gr
 
 ---
 
+## 2026-11-03: Named proof
+
+The owner approved publishing client names. The homepage H1 now includes the visible offer "Organic UGC for AI and tech apps." plus "make them remember." and "that's why we have the biggest." The hero proof strip and the Results cards name Krea, FOMO, Higgsfield, Liftoff, and CookSAT with the deck figures. Placeholder strings left the homepage. Organization `foundingDate` is 2026. `llms.txt` and the Organization and Service descriptions carry the named results. No video-count promise was added.
+
 ## 2026-11-03: Performance, contrast, dates
 
 Creator and hero mp4s were re-encoded under 1MB. The hero poster is preloaded with a real `fetchpriority="high"`, and the mp4 waits until that image has loaded. Grey labels that failed WCAG AA were darkened within the monochrome palette. Blog publish dates are spread from January through November 2026, and sitemap `lastmod` follows those dates plus the legal pages' updated lines. Daniel Yun's Person schema `sameAs` is his existing LinkedIn URL. Organization `sameAs` stays the footer profiles. The anonymized proof row links "Request case studies" to the current booking URL.
