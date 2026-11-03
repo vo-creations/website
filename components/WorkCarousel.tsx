@@ -51,12 +51,9 @@ const clips: Clip[] = [
   { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok", poster: "/creators/tiktok-codewithsam4-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video." },
   { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube", poster: "/creators/yt-k1.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },
   { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram", poster: "/creators/ig/DXSp7ttDH9D.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DYaCAFXvnPw/", label: "Instagram", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok", poster: "/creators/tiktok-jacobw-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video." },
   { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram", poster: "/creators/ig/DXE2rDtE2lI.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DZ6qfKHRJG6/", label: "Instagram", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram", poster: "/creators/ig/DWtNDXqjl3I.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "facebook", url: "https://www.facebook.com/reel/1604299521120091", label: "Facebook", alt: "A creator speaking to the camera in a vertical Facebook video." },
   { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram", poster: "/creators/ig/DaJ2O4ON_uK.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram", poster: "/creators/ig/DTRCvh2E1Lu.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
@@ -132,17 +129,36 @@ function FileCard({ clip, size }: { clip: FileClip; size: (typeof SIZES)[number]
 
 export default function WorkCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const setRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ x: number; left: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
+  const pauseRef = useRef({ hover: false, focus: false, pointer: false, nudge: false });
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(18);
   const [playing, setPlaying] = useState<string | null>(null);
 
+  function loopWidth() {
+    const el = scrollerRef.current;
+    const set = setRef.current;
+    if (!el || !set) return 0;
+    const gap = Number.parseFloat(getComputedStyle(el).columnGap) || 0;
+    return set.offsetWidth + gap;
+  }
+
+  function wrapScroll() {
+    const el = scrollerRef.current;
+    const loop = loopWidth();
+    if (!el || loop <= 1) return;
+    if (el.scrollLeft >= loop) el.scrollLeft -= loop;
+    else if (el.scrollLeft < 0) el.scrollLeft += loop;
+  }
+
   function measure() {
     const el = scrollerRef.current;
     if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const seen = max <= 1 ? 1 : (el.scrollLeft + el.clientWidth) / el.scrollWidth;
+    wrapScroll();
+    const loop = loopWidth() || el.scrollWidth;
+    const seen = loop <= 1 ? 1 : ((el.scrollLeft % loop) + el.clientWidth) / loop;
     setProgress(Math.max(8, Math.min(100, seen * 100)));
     const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-clip]"));
     let current = 0;
@@ -150,8 +166,32 @@ export default function WorkCarousel() {
     cards.forEach((card, i) => {
       if (card.offsetLeft - el.offsetLeft <= edge) current = i;
     });
-    setIndex(current);
+    setIndex(current % clips.length);
   }
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!el || reduce) return;
+    el.style.scrollSnapType = "none";
+    let raf = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      raf = requestAnimationFrame(tick);
+      const node = scrollerRef.current;
+      const loop = loopWidth();
+      if (!node || loop <= 1) return;
+      const dt = Math.min(48, now - last);
+      last = now;
+      const held = pauseRef.current;
+      if (!held.hover && !held.focus && !held.pointer && !held.nudge) {
+        node.scrollLeft += (32 * dt) / 1000;
+      }
+      if (node.scrollLeft >= loop) node.scrollLeft -= loop;
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   useEffect(() => {
     measure();
@@ -166,6 +206,10 @@ export default function WorkCarousel() {
     const el = scrollerRef.current;
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    pauseRef.current.nudge = true;
+    window.setTimeout(() => {
+      pauseRef.current.nudge = false;
+    }, reduce ? 0 : 700);
     el.scrollBy({
       left: direction * Math.min(340, el.clientWidth * 0.72),
       behavior: reduce ? "auto" : "smooth",
@@ -183,6 +227,7 @@ export default function WorkCarousel() {
   }
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
+    pauseRef.current.pointer = true;
     if (event.pointerType !== "mouse") return;
     if ((event.target as HTMLElement).closest("button, a, iframe")) return;
     const el = scrollerRef.current;
@@ -203,6 +248,7 @@ export default function WorkCarousel() {
   function onPointerUp() {
     if (dragRef.current?.moved) suppressClick.current = true;
     dragRef.current = null;
+    pauseRef.current.pointer = false;
   }
 
   const total = String(clips.length).padStart(2, "0");
@@ -210,7 +256,25 @@ export default function WorkCarousel() {
   const playingLabel = clips.find((clip) => clip.type !== "file" && clip.url === playing)?.label;
 
   return (
-    <section className="band tight-top" id="work" aria-roledescription="carousel" aria-label="Creator work" onKeyDown={onKeyDown}>
+    <section
+      className="band tight-top"
+      id="work"
+      aria-roledescription="carousel"
+      aria-label="Creator work"
+      onKeyDown={onKeyDown}
+      onMouseEnter={() => {
+        pauseRef.current.hover = true;
+      }}
+      onMouseLeave={() => {
+        pauseRef.current.hover = false;
+      }}
+      onFocusCapture={() => {
+        pauseRef.current.focus = true;
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) pauseRef.current.focus = false;
+      }}
+    >
       <div className="ed-wrap">
         <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between">
           <div>
@@ -251,44 +315,55 @@ export default function WorkCarousel() {
           event.stopPropagation();
         }}
       >
-        {clips.map((clip, i) => {
-          if (clip.type === "file") {
-            return <FileCard key={clip.src} clip={clip} size={SIZES[i % SIZES.length]} />;
-          }
-          const open = playing === clip.url;
-          return (
-            <figure key={clip.url} className={`wk ${SIZES[i % SIZES.length]}`} data-clip>
-              <div className="wi">
-                {open ? (
-                  <div className="absolute inset-0" aria-label={`Playing ${clip.label} video`}>
-                    <Player clip={clip} />
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    className="absolute inset-0"
-                    aria-label={`Play ${clip.label} video`}
-                    onClick={() => setPlaying(clip.url)}
-                  >
-                    {clip.poster ? (
-                      <Image src={clip.poster} alt={clip.alt} fill sizes="300px" className="object-cover" />
+        {[0, 1].map((copy) => (
+          <div
+            key={copy}
+            className="wks-set"
+            ref={copy === 0 ? setRef : undefined}
+            aria-hidden={copy === 1 ? true : undefined}
+            inert={copy === 1 ? true : undefined}
+          >
+            {clips.map((clip, i) => {
+              const size = SIZES[i % SIZES.length];
+              if (clip.type === "file") {
+                return <FileCard key={`${copy}-${clip.src}`} clip={clip} size={size} />;
+              }
+              const open = playing === clip.url;
+              return (
+                <figure key={`${copy}-${clip.url}`} className={`wk ${size}`} data-clip>
+                  <div className="wi">
+                    {open ? (
+                      <div className="absolute inset-0" aria-label={`Playing ${clip.label} video`}>
+                        <Player clip={clip} />
+                      </div>
                     ) : (
-                      <span className="absolute inset-0 flex items-center justify-center bg-[#141820] text-[15px] text-[#EEF0F4]">
-                        {clip.label}
-                      </span>
+                      <button
+                        type="button"
+                        className="absolute inset-0"
+                        aria-label={`Play ${clip.label} video`}
+                        onClick={() => setPlaying(clip.url)}
+                      >
+                        {clip.poster ? (
+                          <Image src={clip.poster} alt={clip.alt} fill sizes="300px" className="object-cover" />
+                        ) : (
+                          <span className="absolute inset-0 flex items-center justify-center bg-[#141820] text-[15px] text-[#EEF0F4]">
+                            {clip.label}
+                          </span>
+                        )}
+                        <span className="play-dot" aria-hidden="true">
+                          <i />
+                        </span>
+                      </button>
                     )}
-                    <span className="play-dot" aria-hidden="true">
-                      <i />
-                    </span>
-                  </button>
-                )}
-              </div>
-              <figcaption>
-                <span>{clip.label}</span>
-              </figcaption>
-            </figure>
-          );
-        })}
+                  </div>
+                  <figcaption>
+                    <span>{clip.label}</span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        ))}
       </div>
       <div className="prog" aria-hidden="true">
         <span style={{ width: `${progress}%` }} />
