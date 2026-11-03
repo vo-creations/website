@@ -27,7 +27,7 @@ only:
   figure (`000M+` or `00.0M`), not a real view total. Anonymized
   proof numbers sit in the proof section (four figures). The Slack image is
   still `public/proof/slack-report.png` (numbers are not readable). The homepage
-  is the dark homepage in `app/page.tsx` (near-black field, white type, the fixed DarkVeil behind it). The hero eyebrow and the top-right label sit above one Inter Tight headline, “make them remember.”, then a secondary subhead and the existing 1000+ subline. The hero has one filled booking button. The lockup sits
+  is the dark homepage in `app/page.tsx` (blue-black `#0B0D12` field, `#EEF0F4` type, the fixed DarkVeil behind it). The hero eyebrow and the top-right label sit above one Inter Tight headline, “make them remember.”, then a secondary subhead and the existing 1000+ subline. The hero has one filled booking button. The lockup sits
   above `components/HeroCarousel.tsx`: six
   muted clips (`creatorClips` in `lib/creator-clips.ts`, passed as `heroClips`). A clip with a `proof` string renders a `.clip-proof` overlay on the hero card and on the matching `#work` card. Clips with no `proof` have no overlay. Only the front slide mounts an MP4, and only after `creator-01.jpg` has loaded and the carousel intersects the viewport (`preload="none"`). Side slides are posters
   with `loading="lazy"`. From 1440px the card is 268px and the outer pair stays inside the rail. There is no reflection under the cards. `public/videos/creator-01.jpg` is preloaded and is the only image with
@@ -47,7 +47,7 @@ only:
   the post title, and the tagline. `scripts/render-blog-og.ts` writes that
   same frame to `public/og/blog/<slug>.png`. Sitemap: `app/sitemap.ts`. `/campaigns/maxxd` returns 410.
   `/privacy` and `/terms` are real pages. `/refund-policy` is the agency refund policy.
-- Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. Filled buttons are white on black. The homepage hero and closer filled buttons say “Book a 30-min fit call”. The nav pill stays “Book a call”. Stat dots, the work progress line, Book a call underlines, and the open FAQ mark are white. The primary mark is `public/brand/vo-logo.svg`. Favicon, apple touch icon, and `app/icon.png` are the same monogram on black. Organization `logo` points at `public/brand/vo-mark.png`.
+- Display type on the homepage and blog is Inter Tight. Body is Inter. Both come from `next/font` in `app/layout.tsx`. The field is `#0B0D12` and body and heading type is `#EEF0F4`. Filled buttons stay white pills with dark text. The homepage hero and closer filled buttons say “Book a 30-min fit call”. The nav pill stays “Book a call”. Stat dots, the work progress line, Book a call underlines, and the open FAQ mark are white. The primary mark is `public/brand/vo-logo.svg`. Favicon, apple touch icon, and `app/icon.png` are the same monogram on black. Organization `logo` points at `public/brand/vo-mark.png`.
   `components/VeilBackground.tsx` paints a CSS satin sheet on every route (a slow transform, off for reduced motion, and paused once the canvas starts). DarkVeil stays off
   small screens and reduced motion. Film grain is `public/brand/grain.png` over that field. `/privacy`, `/terms`, and `/refund-policy` use the editorial header and footer on the same field. Open Graph image is `public/og-image.png`.
 - `app/api/stripe-webhook` — Stripe payment events → Slack (#ka-ching).

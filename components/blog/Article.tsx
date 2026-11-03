@@ -158,7 +158,7 @@ export default function Article({
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
             {post.category}
           </p>
-          <h1 className="mb-5 font-display text-[clamp(32px,5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-[#fbfbf9]">
+          <h1 className="mb-5 font-display text-[clamp(32px,5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-[#EEF0F4]">
             {post.title}
           </h1>
           <p className="mb-6 text-lg leading-[1.5] text-[#efefed]">{post.directAnswer}</p>

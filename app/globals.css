@@ -40,8 +40,10 @@ h3 {
 body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  background-color: #060606;
-  color: #f5f5f3;
+  /* DECISION 2026-11: field is blue-black, type is cool off-white.
+     Buttons stay white pills. See docs/DECISIONS.md (topic: field-blue-black-2026-11). */
+  background-color: #0b0d12;
+  color: #eef0f4;
   font-feature-settings: "ss01", "cv11";
 }
 
@@ -50,7 +52,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #060606;
+  background: #0b0d12;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.1);
@@ -59,8 +61,8 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(255,255,255,0.25);
-  color: #FFFFFF;
+  background: rgba(238, 240, 244, 0.25);
+  color: #eef0f4;
 }
 
 .paper-page ::selection {
@@ -81,7 +83,7 @@ body {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #060606;
+  background: #0b0d12;
 }
 .silk-sheet {
   position: absolute;
@@ -89,12 +91,12 @@ body {
   top: -18%;
   width: 136%;
   height: 140%;
-  background-color: #070707;
+  background-color: #0b0d12;
   background-image:
-    radial-gradient(ellipse 58% 40% at 74% 26%, rgba(255, 255, 255, 0.32), transparent 58%),
-    radial-gradient(ellipse 46% 62% at 16% 82%, rgba(255, 255, 255, 0.14), transparent 62%),
-    radial-gradient(ellipse 34% 26% at 48% 44%, rgba(255, 255, 255, 0.1), transparent 68%),
-    linear-gradient(122deg, #050505 0%, #1a1a1a 22%, #080808 41%, #2e2e2e 58%, #0a0a0a 74%, #161616 100%);
+    radial-gradient(ellipse 58% 40% at 74% 26%, rgba(238, 240, 244, 0.32), transparent 58%),
+    radial-gradient(ellipse 46% 62% at 16% 82%, rgba(238, 240, 244, 0.14), transparent 62%),
+    radial-gradient(ellipse 34% 26% at 48% 44%, rgba(238, 240, 244, 0.1), transparent 68%),
+    linear-gradient(122deg, #0b0d12 0%, #25272c 22%, #0b0d12 41%, #393b40 58%, #12151c 74%, #212328 100%);
   background-repeat: no-repeat;
   will-change: transform;
 }
@@ -143,7 +145,7 @@ html.js-motion .silk-sheet {
   font-weight: 600;
   letter-spacing: 0.18em;
   line-height: 1;
-  color: #f6f6f4;
+  color: #eef0f4;
 }
 @media (max-width: 480px) {
   .site-header .brand-word,
@@ -379,7 +381,7 @@ html.js-motion .budget-wipe.is-in {
   inset: 0;
   overflow: hidden;
   border-radius: 22px;
-  background: #151517;
+  background: #141820;
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
   backface-visibility: hidden;
 }
@@ -394,8 +396,8 @@ html.js-motion .budget-wipe.is-in {
   max-width: calc(100% - 20px);
   padding: 5px 8px;
   border-radius: 999px;
-  background: rgba(6, 6, 6, 0.82);
-  color: #f4f4f2;
+  background: rgba(11, 13, 18, 0.82);
+  color: #eef0f4;
   font-family: var(--font-inter), Inter, sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -442,7 +444,7 @@ html.js-motion .budget-wipe.is-in {
   text-transform: none;
 }
 .hero-pause:hover {
-  color: #fff;
+  color: #eef0f4;
 }
 .hero-pause:focus-visible {
   outline: 2px solid #f4f4f2;
@@ -481,10 +483,10 @@ html.js-motion .budget-wipe.is-in {
    transparent shell. See docs/DECISIONS.md (topic: dark-premium-2026-11). */
 .editorial {
   --bg: transparent;
-  --ink: #f6f6f4;
-  --mid: rgba(246, 246, 244, 0.66);
-  /* DECISION 2026-11: 0.42 was 3.8:1 on #060606. 0.56 clears WCAG AA 4.5:1. See docs/DECISIONS.md */
-  --dim: rgba(246, 246, 244, 0.56);
+  --ink: #eef0f4;
+  --mid: rgba(238, 240, 244, 0.66);
+  /* DECISION 2026-11: 0.56 of #EEF0F4 on #0B0D12 still clears WCAG AA. See docs/DECISIONS.md */
+  --dim: rgba(238, 240, 244, 0.56);
   --hair: rgba(255, 255, 255, 0.12);
   --dk: transparent;
   background: transparent;
@@ -509,7 +511,7 @@ html.js-motion .budget-wipe.is-in {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(6, 6, 6, 0.72);
+  background: rgba(11, 13, 18, 0.72);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -517,8 +519,8 @@ html.js-motion .budget-wipe.is-in {
   scroll-margin-top: 88px;
 }
 .editorial ::selection {
-  background: rgba(255, 255, 255, 0.28);
-  color: #fff;
+  background: rgba(238, 240, 244, 0.28);
+  color: #eef0f4;
 }
 .editorial a:focus-visible,
 .editorial button:focus-visible,
@@ -665,7 +667,7 @@ html.js-motion .budget-wipe.is-in {
   position: relative;
   margin: 0 auto;
   max-width: 1440px;
-  padding: 8px 22px 40px;
+  padding: 28px 22px 48px;
 }
 @media (min-width: 768px) {
   .editorial .hero-frame {
@@ -687,10 +689,10 @@ html.js-motion .budget-wipe.is-in {
       "stage stage"
       "stats stats";
     column-gap: 28px;
-    row-gap: 4px;
+    row-gap: 20px;
     align-items: end;
     height: auto;
-    padding: 12px 56px 28px;
+    padding: 32px 56px 56px;
   }
 }
 @media (min-width: 1440px) {
@@ -702,10 +704,10 @@ html.js-motion .budget-wipe.is-in {
 .editorial .hmeta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 20px;
   border-top: 1px solid var(--hair);
-  padding-top: 16px;
+  padding-top: 28px;
 }
 .editorial h1 .l1,
 .editorial h1 .l2 {
@@ -715,25 +717,25 @@ html.js-motion .budget-wipe.is-in {
   font-weight: 700;
   font-size: 52px;
   line-height: 0.9;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 .editorial h1 .l1 {
-  margin-top: 18px;
+  margin-top: 36px;
 }
 .editorial h1 .l2 {
   margin-top: 0;
   margin-left: 0;
 }
 .editorial .hlead {
-  margin-top: 16px;
+  margin-top: 28px;
   max-width: 22em;
   font-family: var(--font-inter), Inter, sans-serif;
   font-weight: 500;
   font-size: 21px;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: #f4f4f2;
+  color: #eef0f4;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
   .editorial h1 .l1,
@@ -745,7 +747,7 @@ html.js-motion .budget-wipe.is-in {
   }
 }
 .editorial .hb {
-  margin-top: 18px;
+  margin-top: 32px;
 }
 .editorial .hsub {
   font-size: 17px;
@@ -757,7 +759,7 @@ html.js-motion .budget-wipe.is-in {
   flex-wrap: wrap;
   align-items: center;
   gap: 22px 30px;
-  margin-top: 18px;
+  margin-top: 28px;
 }
 .editorial .hst {
   display: grid;
@@ -822,25 +824,26 @@ html.js-motion .hero-rise.delay > span {
     font-size: clamp(68px, 6.2vw, 96px);
   }
   .editorial .hero-lockup .l1 {
-    margin-top: 8px;
+    margin-top: 28px;
   }
   .editorial .hero-lockup .l2 {
     margin: 0;
   }
   .editorial .hlead {
     max-width: 22em;
+    margin-top: 36px;
     font-size: 30px;
   }
   .editorial .hero-visual {
     grid-area: stage;
-    margin-top: 8px;
+    margin-top: 40px;
   }
   .editorial .hb {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     gap: 32px;
-    margin-top: 22px;
+    margin-top: 40px;
   }
   .editorial .hsub {
     font-size: 18px;
@@ -853,7 +856,7 @@ html.js-motion .hero-rise.delay > span {
   .editorial .hst {
     grid-area: stats;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 8px;
+    margin-top: 32px;
     border-top: 0;
     padding-top: 0;
     gap: 16px;
@@ -1118,7 +1121,7 @@ html.js-motion .hero-mark img {
   font-weight: 700;
   font-style: normal;
   font-size: 24px;
-  color: #f6f6f4;
+  color: #eef0f4;
   filter: blur(9px);
   opacity: 0.85;
   user-select: none;
@@ -1163,10 +1166,10 @@ html.js-motion .hero-mark img {
 }
 .editorial .gate-card {
   pointer-events: auto;
-  background: #060606;
+  background: #0b0d12;
   padding: 20px 24px;
   text-align: center;
-  box-shadow: 0 0 70px 56px #060606;
+  box-shadow: 0 0 70px 56px #0b0d12;
 }
 .editorial .gate-card p {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
@@ -1899,7 +1902,7 @@ html.js-motion .hero-mark img {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: #f6f6f4;
+  color: #eef0f4;
 }
 .editorial .blog-main h1 {
   font-size: clamp(40px, 6vw, 56px);
@@ -1909,7 +1912,7 @@ html.js-motion .hero-mark img {
   scroll-margin-top: 96px;
 }
 .editorial .blog-main a:hover {
-  color: #fff;
+  color: #eef0f4;
 }
 .editorial .blog-kicker {
   margin-bottom: 16px;
@@ -1928,7 +1931,7 @@ html.js-motion .hero-mark img {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   background: transparent;
-  color: #f6f6f4;
+  color: #eef0f4;
   font-size: 14px;
   font-weight: 500;
 }
@@ -1968,7 +1971,7 @@ html.js-motion .hero-mark img {
   aspect-ratio: 1200 / 630;
   container-type: inline-size;
   overflow: hidden;
-  background: #050505;
+  background: #0b0d12;
   isolation: isolate;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
 }
@@ -1979,7 +1982,7 @@ html.js-motion .hero-mark img {
     radial-gradient(ellipse 70% 90% at 74% 46%, rgba(255, 255, 255, 0.28), transparent 60%),
     radial-gradient(ellipse 42% 55% at 96% 18%, rgba(255, 255, 255, 0.12), transparent 62%),
     radial-gradient(ellipse 30% 40% at 12% 92%, rgba(255, 255, 255, 0.05), transparent 70%),
-    linear-gradient(108deg, #050505 0%, #0a0a0a 22%, #161616 42%, #2a2a2a 60%, #4a4a4a 76%, #1c1c1c 90%, #080808 100%);
+    linear-gradient(108deg, #0b0d12 0%, #12151c 22%, #212328 42%, #353944 60%, #555a64 76%, #272b34 90%, #0b0d12 100%);
 }
 .blog-cover-grain {
   position: absolute;
@@ -2058,7 +2061,7 @@ html.js-motion .hero-mark img {
   font-size: max(16px, 4.7cqw);
   line-height: 0.96;
   letter-spacing: -0.046em;
-  color: #f7f7f5;
+  color: #eef0f4;
   text-wrap: balance;
 }
 .blog-cover-tag {
@@ -2066,7 +2069,7 @@ html.js-motion .hero-mark img {
   font-weight: 600;
   font-size: max(13px, 1.85cqw);
   letter-spacing: -0.03em;
-  color: #f4f4f2;
+  color: #eef0f4;
 }
 .blog-cover-tag span {
   color: #8d8d88;

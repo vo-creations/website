@@ -10,9 +10,9 @@ const html = `<!doctype html>
   <meta name="robots" content="noindex" />
   <title>Page removed | Vo Creations</title>
   <style>
-    body { margin: 0; background: #060606; color: #f5f5f3; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    body { margin: 0; background: #0B0D12; color: #EEF0F4; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
     main { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 24px; }
-    a { color: #060606; background: #fff; text-decoration: none; font-weight: 700; border-radius: 999px; padding: 14px 28px; }
+    a { color: #0B0D12; background: #fff; text-decoration: none; font-weight: 700; border-radius: 999px; padding: 14px 28px; }
     p { color: #c4c4c0; max-width: 440px; line-height: 1.6; font-size: 16px; }
     h1 { font-size: 32px; letter-spacing: -0.03em; margin-bottom: 12px; }
   </style>

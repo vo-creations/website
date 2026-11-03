@@ -277,7 +277,7 @@ export default function WorkCarousel() {
                     {clip.poster ? (
                       <Image src={clip.poster} alt={clip.alt} fill sizes="300px" className="object-cover" />
                     ) : (
-                      <span className="absolute inset-0 flex items-center justify-center bg-[#1c1c1b] text-[15px] text-white">
+                      <span className="absolute inset-0 flex items-center justify-center bg-[#141820] text-[15px] text-[#EEF0F4]">
                         {clip.label}
                       </span>
                     )}

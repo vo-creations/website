@@ -52,7 +52,7 @@ export default function TikTokEmbed({ url, label, thumb, startLoaded = false }: 
       <div className="bg-bg-card rounded-2xl aspect-[9/16] relative border border-border overflow-hidden group">
         <div
           onClick={() => setLoaded(true)}
-          className="absolute inset-0 bg-black flex items-center justify-center cursor-pointer"
+          className="absolute inset-0 flex items-center justify-center cursor-pointer bg-[#0B0D12]"
         >
           {thumb && (
             <Image

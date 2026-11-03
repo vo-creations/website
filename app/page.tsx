@@ -479,7 +479,7 @@ export default function Home() {
                   ].map(([label, when]) => (
                     <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[15px] text-[#e7e7e4]">
                       <span>{label}</span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">{when}</span>
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#EEF0F4]/60">{when}</span>
                     </div>
                   ))}
                 </div>

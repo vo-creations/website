@@ -3415,3 +3415,11 @@ Clip overlays use only counts already stored for the source file. There is no La
 - `creator-01`, `creator-02`, `creator-03`, and `creator-05` have no brand and no view count in git history (the creator-clips pass said so explicitly). They render no overlay.
 
 The same `proof` field in `lib/creator-clips.ts` feeds the hero coverflow and the hosted cards in `#work`. This supersedes the “no per-clip stat” line in `creator-clips-2026-11` only for the two files that already had a count.
+
+## topic: field-blue-black-2026-11 — _2026-11-03_
+
+The marketing field moved off neutral black. `body`, the silk sheet, the header scrim, the case-study gate, nav menus, and the Tailwind `bg` tokens that were `#000` through `#060606` are now `#0B0D12`. The silk gradient’s darker stops use that same blue-black, and the lighter folds are the old grays lifted by the same cool bias so the satin still reads. DarkVeil’s black end is floored on `#0B0D12` (`floorCol` in `components/DarkVeil.tsx`) so the desktop canvas does not paint pure black over the sheet. The leaderboard keeps its own purple field.
+
+Body and heading color moved from `#f5f5f3` / `#f6f6f4` / `#fff` to `#EEF0F4`. `--mid` and `--dim` use that same cool white. Filled buttons stayed white pills (`#f4f4f2` or `#fff`) with dark text (`#111110` or `text-black`). Stat dots stayed light.
+
+The hero headline’s letter-spacing went from `-0.05em` to `-0.03em`. Gaps in the hero stack grew: more padding above the eyebrow, and more space between the headline, subhead, subline, button, carousel, and stat row. On a 390×844 viewport the “Book a 30-min fit call” button still finishes inside the first screen.

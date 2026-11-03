@@ -12,7 +12,7 @@ export default function ClickToPlayYouTube({
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-black">
+    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-[#0B0D12]">
       {loaded ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}

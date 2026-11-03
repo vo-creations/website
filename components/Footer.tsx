@@ -21,7 +21,7 @@ function EditorialFooter() {
             <a href="/" className="brand-link" aria-label="Vo Creations">
               <BrandLockup />
             </a>
-            <p className="mt-[18px] max-w-[300px] text-[14px] text-white/65">
+            <p className="mt-[18px] max-w-[300px] text-[14px] text-[#EEF0F4]/65">
               The in-house UGC agency backed by elite mentorship.
             </p>
             <div className="mail-row">
@@ -68,7 +68,7 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" | "e
   if (tone === "editorial") return <EditorialFooter />;
   const paper = tone === "paper";
   return (
-    <footer className={paper ? "border-t border-white/10 bg-[#0B0B0C] px-6 text-[#F2F0EB] md:px-14" : "border-t border-border px-6 md:px-14"}>
+    <footer className={paper ? "border-t border-white/10 bg-[#0B0D12] px-6 text-[#EEF0F4] md:px-14" : "border-t border-border px-6 md:px-14"}>
       <div className="mx-auto max-w-[1280px] pb-8 pt-16">
         {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr_1fr] gap-12 mb-16">
