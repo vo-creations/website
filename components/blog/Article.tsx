@@ -129,7 +129,7 @@ export default function Article({
   const updated = formatBlogDate(post.dateModified);
 
   return (
-    <div className="editorial blog-page">
+    <div className="editorial blog-page blog-post">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post, faqs)) }}
@@ -158,7 +158,7 @@ export default function Article({
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">
             {post.category}
           </p>
-          <h1 className="mb-5 font-display text-[clamp(32px,5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-[#EEF0F4]">
+          <h1 className="mb-5 font-display font-extrabold tracking-tight text-[#EEF0F4]">
             {post.title}
           </h1>
           <p className="mb-6 text-lg leading-[1.5] text-[#efefed]">{post.directAnswer}</p>
@@ -207,7 +207,7 @@ export default function Article({
 
           <div className="space-y-4 text-[18px] leading-[1.75] text-[#d4d4d0]">{children}</div>
 
-          <aside className="mt-12 rounded-2xl border border-white/10 bg-bg-card/50 p-6">
+          <aside className="mt-12 border-t border-[#23272F] pt-6">
             <p className="text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">Author</p>
             <p className="mt-2 text-base font-semibold text-text">
               <a href={author.url} className="hover:underline">
@@ -221,9 +221,9 @@ export default function Article({
             <h2 id="faq-heading" className="mb-6 font-display text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-text">
               Questions people ask
             </h2>
-            <div className="flex flex-col gap-3">
+            <div>
               {faqs.map((faq) => (
-                <div key={faq.question} className="rounded-2xl border border-white/10 bg-bg-card/50 px-6 py-5">
+                <div key={faq.question} className="border-t border-[#23272F] py-5">
                   <h3 className="text-base font-semibold tracking-tight text-text">{faq.question}</h3>
                   <p className="mt-3 text-[15px] leading-[1.7] text-text-secondary">{faq.answer}</p>
                 </div>

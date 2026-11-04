@@ -108,7 +108,7 @@ const results = [
   {
     label: "AI creative platform",
     figure: "130M+",
-    lines: ["views in 3 months", "Under $3 CPM", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
+    lines: ["views in 3 months", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
     label: "Consumer finance app",
@@ -151,18 +151,22 @@ const quotes = [
   {
     quote: "Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.",
     by: "Miguel Lara, Growth Marketing, Krea",
+    study: "/case-studies/krea",
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
     by: "Will Timberlake, UGC Manager, FOMO",
+    study: "/case-studies/fomo",
   },
   {
     quote: "Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.",
     by: "Shotan Jakupov, Head of Growth, Higgsfield",
+    study: "/case-studies/higgsfield",
   },
   {
     quote: "Vo Creations helped scale our UGC efforts from 0 to 100. One of the best teams in this space.",
     by: "Wassim Bouchelouh, CMO, Liftoff",
+    study: "/case-studies/liftoff",
   },
 ];
 
@@ -173,7 +177,9 @@ const agencyFaqs = [
   { q: "How long do results take?", a: "First posts go live in 10–14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. The format is organic talking-head UGC." },
   { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos." },
-  { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign." },
+  { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign. Creators own their accounts." },
+  { q: "Who approves videos?", a: "Our core team of four approves every script and video before it posts." },
+  { q: "What do I need to provide?", a: "An onboarding survey, free product, promo codes or app access, custom tracking URLs, and ManyChat reimbursements. We handle scripts, briefing, coaching, posting, editing, creator bonuses, and the daily report." },
 ];
 
 const faqJsonLd = {
@@ -186,21 +192,42 @@ const faqJsonLd = {
   })),
 };
 
-const team = [
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image?: string;
+  webp?: string;
+  slot: string;
+};
+
+const team: TeamMember[] = [
   {
     name: "Daniel Yun",
     role: "Co-Founder · Los Angeles, CA",
-    bio: "He started on camera: 150M+ views and $200K+ earned from his own content. His campaigns for consumer apps have reached 500M+ views and 5M+ installs and signups.",
+    bio: "He started on camera: 150M+ views and $200K+ earned from his own content. His app campaigns: 500M+ views, 5M+ users.",
     image: "/videos/team-daniel.jpg",
     slot: "t0",
   },
   {
     name: "Thienvu Vo",
     role: "Co-Founder · New York, NY",
-    bio: "Grew his own Instagram past 70K followers. His students have earned $1M+ and generated 500M+ views. Brands at Vo Creations get that same system.",
+    bio: "Grew his own Instagram past 70K followers. Creators he's trained have driven 500M+ views. Brands at Vo Creations get that same system.",
     image: "/videos/team-thienvu.jpg",
     webp: "/videos/team-thienvu.webp",
     slot: "t1",
+  },
+  {
+    name: "Chad Parian",
+    role: "Head of Strategy",
+    bio: "Built UGC creator programs driving 300M+ views, and leads coaching and community for every creator we train.",
+    slot: "t2",
+  },
+  {
+    name: "Adam Chen",
+    role: "Head of Creators",
+    bio: "100M+ views across his campaigns, with brands like Based Body Works and Santa Cruz Paleo.",
+    slot: "t3",
   },
 ];
 
@@ -307,15 +334,6 @@ function SlackReport() {
         />
       </picture>
       <span aria-hidden="true" className={`budget-wipe ${on ? "is-in" : ""}`} />
-    </div>
-  );
-}
-
-function FounderPhoto({ children }: { children: React.ReactNode }) {
-  const { ref, on } = useOnceVisible<HTMLDivElement>();
-  return (
-    <div ref={ref} className={`tph photo-in ${on ? "is-in" : ""}`}>
-      {children}
     </div>
   );
 }
@@ -442,6 +460,31 @@ export default function Home() {
 
         <WorkCarousel />
 
+        <section className="band mid-top" id="stuck">
+          <div className="ed-wrap">
+            <div className="sh">
+              <h2 className="display">Where app growth gets stuck.</h2>
+            </div>
+            <div className="pcols">
+              <div>
+                <span className="lab">Paid</span>
+                <p>Paid keeps getting pricier. Paid CAC on Meta and TikTok goes up every quarter.</p>
+              </div>
+              <div>
+                <span className="lab">In-house</span>
+                <p>In-house creator programs stall. Nobody has time to recruit and coach, so programs stall at 5–10 creators.</p>
+              </div>
+              <div>
+                <span className="lab">Agencies</span>
+                <p>Agency ads look like ads. Agencies hand over 20 polished ads that look like ads, and they flop.</p>
+              </div>
+            </div>
+            <p className="lede mt-8">
+              <a href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
+            </p>
+          </div>
+        </section>
+
         <section className="band mid-top" id="process">
           <div className="ed-wrap">
             <div className="sh">
@@ -455,6 +498,16 @@ export default function Home() {
                   <span className="spd">{step.desc}</span>
                 </Reveal>
               ))}
+            </div>
+            <div className="pcols mt-12">
+              <div>
+                <span className="lab">You give us</span>
+                <p>An onboarding survey, free product, promo codes or app access, custom tracking URLs, and ManyChat reimbursements.</p>
+              </div>
+              <div>
+                <span className="lab">We handle</span>
+                <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -478,7 +531,17 @@ export default function Home() {
               ))}
             </div>
             <div className="results-cta">
-              <p>Full case studies, spend and playbooks on the call.</p>
+              <p>
+                Every result from our own creators. Named case studies:{" "}
+                <a href="/case-studies/fomo">FOMO</a>
+                {" · "}
+                <a href="/case-studies/liftoff">Liftoff</a>
+                {" · "}
+                <a href="/case-studies/higgsfield">Higgsfield</a>
+                {" · "}
+                <a href="/case-studies/krea">Krea</a>
+                .
+              </p>
               <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
                 Book a call ↗
               </a>
@@ -518,6 +581,28 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="band" id="quality">
+          <div className="ed-wrap">
+            <div className="sh">
+              <h2 className="display">Approvals, quality, and ownership.</h2>
+            </div>
+            <div className="pcols">
+              <div>
+                <span className="lab">Approvals</span>
+                <p>Our core team of four approves every script and video before it posts.</p>
+              </div>
+              <div>
+                <span className="lab">Creator quality</span>
+                <p>Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week.</p>
+              </div>
+              <div>
+                <span className="lab">If a video misses</span>
+                <p>We handle all takedowns and re-edits. You own every video. Creators own their accounts.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="band" id="testimonials">
           <div className="ed-wrap">
             <h2 className="display">In their words</h2>
@@ -526,6 +611,7 @@ export default function Home() {
                 <div className="tq" key={item.by + item.quote.slice(0, 12)}>
                   <p>&ldquo;{item.quote}&rdquo;</p>
                   <span>{item.by}</span>
+                  <a href={item.study}>Read the case study</a>
                 </div>
               ))}
             </div>
@@ -549,15 +635,18 @@ export default function Home() {
             <div className="pcols">
               <div>
                 <span className="lab">Creators</span>
-                <p>1000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1%. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.</p>
+                <p>1,000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1% of applicants. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.</p>
               </div>
               <div>
                 <span className="lab">What&apos;s included</span>
-                <p>Trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top. First posts in 10–14 days.</p>
+                <p>
+                  $50K+ a month. At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Everything included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
+                  <a href="/blog/ugc-agency-pricing">How the math works</a>
+                </p>
               </div>
               <div>
                 <span className="lab">Terms</span>
-                <p>90-day minimum, then month to month. No refunds after launch. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
+                <p>90-day minimum, then month to month. No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
               </div>
             </div>
           </div>
@@ -594,21 +683,11 @@ export default function Home() {
         <section className="band tight-top" id="team">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">Proven viral creators, turned agency operators.</h2>
+              <h2 className="display">The team behind 1B+ views.</h2>
             </div>
             <div className="tms">
               {team.map((member) => (
                 <figure key={member.name} className={`tm ${member.slot}`}>
-                  <FounderPhoto>
-                    {"webp" in member && member.webp ? (
-                      <picture>
-                        <source srcSet={member.webp} type="image/webp" />
-                        <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover grayscale" style={{ objectPosition: "center" }} loading="lazy" decoding="async" />
-                      </picture>
-                    ) : (
-                      <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover grayscale" style={{ objectPosition: "center" }} loading="lazy" decoding="async" />
-                    )}
-                  </FounderPhoto>
                   <figcaption>
                     <div className="tn">{member.name}</div>
                     <div className="tr">{member.role}</div>
@@ -616,6 +695,7 @@ export default function Home() {
                   </figcaption>
                 </figure>
               ))}
+              <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
             </div>
           </div>
         </section>

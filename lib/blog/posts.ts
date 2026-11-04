@@ -50,39 +50,39 @@ export const authors: Record<AuthorId, BlogAuthor> = {
 
 export const posts: BlogPostMeta[] = [
   {
-    slug: "in-house-ugc-vs-marketplace-vs-freelancers",
-    title: "In-house UGC agency vs marketplace vs freelancers",
+    slug: "ugc-agency-vs-in-house",
+    title: "UGC agency vs in-house: which one actually scales",
     description:
-      "How an in-house UGC agency, a marketplace, and a freelancer differ on who trains the creator, who posts, and what you still have to manage.",
+      "An in-house UGC agency, a marketplace, and freelancers differ on who trains the creators, who posts, and who watches the numbers every day.",
     category: "Models",
     directAnswer:
-      "An in-house UGC agency trains creators and runs the posting as your program. A marketplace sells you access to people who will make a file. A freelancer is one person you manage yourself. The right buy is the one that matches whether you need a system or a single video.",
-    datePublished: "2026-06-03",
-    dateModified: "2026-06-03",
+      "An in-house UGC agency trains the creators, writes the scripts, and posts the videos. A marketplace sells you a video. Freelancers are people you hire and manage. The agency costs more per month because the bench, the coaching, and the daily reporting are the product. You are buying a system, not a folder of files.",
+    datePublished: "2026-11-03",
+    dateModified: "2026-11-03",
     authorId: "daniel",
-    readingMinutes: 5,
+    readingMinutes: 7,
     related: [
-      "what-a-managed-ugc-program-costs",
-      "questions-before-hiring-a-ugc-agency",
-      "ugc-for-ai-startups",
+      "in-house-creator-programs-stall",
+      "ugc-agency-pricing",
+      "ugc-vs-paid-ads-app-growth",
     ],
   },
   {
-    slug: "what-a-managed-ugc-program-costs",
-    title: "What a managed UGC program costs",
+    slug: "ugc-agency-pricing",
+    title: "UGC agency pricing: what $50K/month buys",
     description:
-      "Retainer, per-video, and CPM are different purchases. A Vo Creations program starts at $50K+ a month, all-inclusive, and guarantees the client's target CPM.",
+      "A managed UGC program starts at $50K+ a month and guarantees your target CPM. At $1 that is about 50 million organic views. At $4 it is about 12.5 million.",
     category: "Pricing",
     directAnswer:
-      "A managed UGC program at Vo Creations starts at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. 90 days, then month to month. No refunds after launch.",
-    datePublished: "2026-08-18",
-    dateModified: "2026-08-18",
+      "A managed UGC program starts at $50K+ a month and guarantees your target CPM. At a $1 CPM that is about 50 million organic views. At $4 it is about 12.5 million. Trained creators, scripts, editing, posting, and daily reporting are included. Paid ad spend is billed separately. The minimum is 90 days, then month to month.",
+    datePublished: "2026-11-03",
+    dateModified: "2026-11-03",
     authorId: "daniel",
-    readingMinutes: 6,
+    readingMinutes: 7,
     related: [
-      "in-house-ugc-vs-marketplace-vs-freelancers",
+      "ugc-vs-paid-ads-app-growth",
+      "ugc-agency-vs-in-house",
       "questions-before-hiring-a-ugc-agency",
-      "text-on-screen-ugc",
     ],
   },
   {
@@ -99,26 +99,62 @@ export const posts: BlogPostMeta[] = [
     readingMinutes: 6,
     related: [
       "text-on-screen-ugc",
-      "in-house-ugc-vs-marketplace-vs-freelancers",
-      "questions-before-hiring-a-ugc-agency",
+      "ugc-agency-vs-in-house",
+      "ugc-vs-paid-ads-app-growth",
     ],
   },
   {
     slug: "questions-before-hiring-a-ugc-agency",
     title: "12 questions to ask before hiring a UGC agency",
     description:
-      "Twelve questions that separate a managed UGC program from a folder of videos: training, posting, volume, term, the fee, refunds, and proof.",
+      "Twelve questions that separate a managed UGC program from a folder of videos: who trains, who posts, who owns the accounts, and what the month includes.",
     category: "Hiring",
     directAnswer:
-      "Before you hire a UGC agency, ask who trains the creators, who posts, what the month includes, and what happens when a video misses. A managed program can answer those in operating terms. A vendor selling files will answer them with a rate card. The gap between those two answers is the whole decision.",
+      "Before you hire a UGC agency, ask who trains the creators, who posts, who owns the accounts, and what the month includes. A managed program can answer those in operating terms. A vendor selling files will answer them with a rate card. The gap between those two answers is the whole decision.",
     datePublished: "2026-11-02",
-    dateModified: "2026-11-02",
+    dateModified: "2026-11-03",
+    authorId: "thienvu",
+    readingMinutes: 8,
+    related: [
+      "ugc-agency-pricing",
+      "ugc-agency-vs-in-house",
+      "ugc-vs-paid-ads-app-growth",
+    ],
+  },
+  {
+    slug: "ugc-vs-paid-ads-app-growth",
+    title: "UGC vs paid ads for app growth",
+    description:
+      "Paid ads rent attention. Organic UGC is a person the viewer trusts, and the comment section keeps selling after the view.",
+    category: "Growth",
+    directAnswer:
+      "Paid ads rent attention and stop when the budget stops. Organic UGC is a person the viewer trusts, and the comment section keeps selling after the view. At a $1 CPM, $50K buys about 50 million organic views. At $4 it buys about 12.5 million. The comparison is views per dollar, then what those views do.",
+    datePublished: "2026-11-03",
+    dateModified: "2026-11-03",
+    authorId: "daniel",
+    readingMinutes: 6,
+    related: [
+      "ugc-agency-pricing",
+      "in-house-creator-programs-stall",
+      "text-on-screen-ugc",
+    ],
+  },
+  {
+    slug: "in-house-creator-programs-stall",
+    title: "Why in-house creator programs stall at 5 to 10 creators",
+    description:
+      "A bench of five to ten creators is too small for a power law, and a brief is not coaching. The program stalls when nobody owns the daily numbers.",
+    category: "Operations",
+    directAnswer:
+      "In-house creator programs stall because the bench is too small for a power law, nobody owns the daily numbers, and the creators are briefed instead of coached. Five to ten creators cannot find the breakout or replace them when they leave. A bench that works is large, coached every week, and moved toward whatever is getting views.",
+    datePublished: "2026-11-03",
+    dateModified: "2026-11-03",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [
-      "in-house-ugc-vs-marketplace-vs-freelancers",
-      "what-a-managed-ugc-program-costs",
-      "ugc-for-ai-startups",
+      "ugc-agency-vs-in-house",
+      "ugc-vs-paid-ads-app-growth",
+      "ugc-agency-pricing",
     ],
   },
   {
@@ -135,8 +171,8 @@ export const posts: BlogPostMeta[] = [
     readingMinutes: 6,
     related: [
       "ugc-for-ai-startups",
-      "in-house-ugc-vs-marketplace-vs-freelancers",
-      "questions-before-hiring-a-ugc-agency",
+      "ugc-agency-vs-in-house",
+      "ugc-vs-paid-ads-app-growth",
     ],
     image: {
       src: "/blog/text-vs-talking.jpg",

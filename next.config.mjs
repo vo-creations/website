@@ -40,6 +40,18 @@ const nextConfig = {
         destination: "/blog/text-on-screen-ugc",
         permanent: true,
       },
+      // DECISION 2026-11: pricing and comparison posts moved slugs.
+      // See docs/DECISIONS.md (topic: build-pack-2026-11).
+      {
+        source: "/blog/what-a-managed-ugc-program-costs",
+        destination: "/blog/ugc-agency-pricing",
+        statusCode: 301,
+      },
+      {
+        source: "/blog/in-house-ugc-vs-marketplace-vs-freelancers",
+        destination: "/blog/ugc-agency-vs-in-house",
+        statusCode: 301,
+      },
       // /mentorship is a 410 from app/mentorship/route.ts (retired creator
       // funnel). Do not redirect it here. /pre-call was only the booking
       // step of that funnel and was not a content page.

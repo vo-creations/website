@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog/posts";
+import { caseStudies } from "@/lib/case-studies";
 import { privacyUpdated, refundUpdated, termsUpdated } from "@/lib/content-dates";
 
 const base = "https://vocreations.com";
@@ -36,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: fromIso(post.dateModified),
       changeFrequency: "yearly" as const,
       priority: 0.7,
+    })),
+    ...caseStudies.map((study) => ({
+      url: `${base}/case-studies/${study.slug}`,
+      lastModified: fromIso(study.date),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
     })),
     {
       url: `${base}/privacy`,
