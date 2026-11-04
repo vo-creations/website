@@ -360,8 +360,8 @@ export default function Home() {
               <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
-              {/* DECISION 2026-11: the offer line matches this headline's size and weight.
-                  The “biggest” sentence stays quieter. See docs/DECISIONS.md
+              {/* DECISION 2026-11: one 89px headline. The offer is a step down
+                  (about 54px at 1440, 32px on a phone). See docs/DECISIONS.md
                   (topic: hero-offer-mark-2026-11). */}
               <div className="hero-lockup">
                 <h1>

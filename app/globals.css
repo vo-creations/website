@@ -729,29 +729,28 @@ html.js-motion .budget-wipe.is-in {
   margin-left: 0;
 }
 .editorial .hlead {
-  margin-top: 28px;
-  color: #eef0f4;
+  margin-top: 32px;
 }
 .editorial .hlead-offer {
   display: block;
-  max-width: 12em;
+  max-width: 16em;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 700;
-  font-size: 52px;
-  line-height: 0.95;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.05;
   letter-spacing: -0.03em;
-  color: #eef0f4;
+  color: #e6e8ec;
 }
 .editorial .hlead-rest {
   display: block;
-  margin-top: 22px;
-  max-width: 22em;
+  margin-top: 16px;
+  max-width: 28em;
   font-family: var(--font-inter), Inter, sans-serif;
   font-weight: 500;
-  font-size: 21px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: #eef0f4;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #c9cdd4;
 }
 .editorial h1 .l3 {
   margin-top: 8px;
@@ -762,10 +761,7 @@ html.js-motion .budget-wipe.is-in {
     font-size: 76px;
   }
   .editorial .hlead-offer {
-    font-size: 76px;
-  }
-  .editorial .hlead-rest {
-    font-size: 28px;
+    font-size: 46px;
   }
 }
 .editorial .hb {
@@ -858,13 +854,11 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 36px;
   }
   .editorial .hlead-offer {
-    max-width: 12em;
-    font-size: clamp(68px, 6.2vw, 96px);
+    max-width: 18em;
+    font-size: clamp(48px, 3.75vw, 58px);
   }
   .editorial .hlead-rest {
-    max-width: 22em;
-    margin-top: 28px;
-    font-size: 30px;
+    margin-top: 18px;
   }
   .editorial .hero-lockup .l3 {
     margin-top: 10px;
@@ -999,7 +993,7 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 14px;
   }
   .editorial .hlead {
-    margin-top: 28px;
+    margin-top: 40px;
   }
   .editorial .hlead-rest {
     margin-top: 10px;
