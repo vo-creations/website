@@ -3472,6 +3472,14 @@ Every `#work` card that had no view overlay gained one, in the same `.clip-proof
 
 The twelve “1M+ views” placeholders were then replaced with supplied counts, still in the same pill: `DXzgEEwRXm2` 2.1M, `DVzqq6eEVMt` 1.1M, YouTube `urpg-ygRKto` 591K, TikTok `@abgetsfit_` 386K, `DY5IDHqknw4` 16.8M, TikTok `@codewithsam4` 1.2M, YouTube `k1NNFSkVAgs` 549K, `DXSp7ttDH9D` 1.1M, TikTok `@jacobw.health` 6.3M, `DXE2rDtE2lI` 845K, `DWtNDXqjl3I` 730K, `DaJ2O4ON_uK` 357K. `DTRCvh2E1Lu` stayed 3.7M and `DUMI_NwD0Xa` stayed 1.5M. The hosted labels were not edited.
 
+## topic: hero-offer-mark-2026-11 — _2026-11-04_
+
+“Organic UGC for AI and tech apps.” was raised to the same Inter Tight weight, tracking, and size as “make them remember.” The words were not changed. “That’s why we have the biggest numbers: 1B+ organic views.” stayed the quieter line under it. The field stayed `#0B0D12` and the type stayed `#EEF0F4`.
+
+The desktop hero monogram was scaled to about 60% of its previous widths: 79px from 1024px, 108px from 1280px, and 118px from 1440px. It is painted `#B8BCC4` through a mask of `vo-logo.svg`, so it reads as matte silver instead of a solid white block. Nav, footer, and the closer mark were left white.
+
+“5M+ users converted” became “5M+ installs and signups” on the hero stat, in Daniel Yun’s bio, and in `llms.txt`. `#pricing` had repeated the hero’s offer. It is now “What $50K+/month buys”, which matches the `$50K+` price already in that section.
+
 ## topic: testimonials-four-2026-11 — _2026-11-04_
 
 Miguel Lara had two quotes. The shorter one, “The UGC agency we trust most in the space.”, was the featured line. It was removed. His longer quote stayed: “Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.” Will Timberlake, Shotan Jakupov, and Wassim Bouchelouh were left as they were. The featured line and its byline went with that quote, so the section is four equal cards, two columns from 768px.

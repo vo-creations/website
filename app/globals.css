@@ -474,6 +474,7 @@ html.js-motion .budget-wipe.is-in {
   .animate-scroll-slow,
   .animate-scroll-logos,
   .silk-sheet,
+  .hero-mark::after,
   .hero-mark img {
     animation: none !important;
   }
@@ -729,6 +730,21 @@ html.js-motion .budget-wipe.is-in {
 }
 .editorial .hlead {
   margin-top: 28px;
+  color: #eef0f4;
+}
+.editorial .hlead-offer {
+  display: block;
+  max-width: 12em;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #eef0f4;
+}
+.editorial .hlead-rest {
+  display: block;
+  margin-top: 22px;
   max-width: 22em;
   font-family: var(--font-inter), Inter, sans-serif;
   font-weight: 500;
@@ -745,7 +761,10 @@ html.js-motion .budget-wipe.is-in {
   .editorial h1 .l2 {
     font-size: 76px;
   }
-  .editorial .hlead {
+  .editorial .hlead-offer {
+    font-size: 76px;
+  }
+  .editorial .hlead-rest {
     font-size: 28px;
   }
 }
@@ -836,8 +855,15 @@ html.js-motion .hero-rise.delay-2 > span {
     margin: 0;
   }
   .editorial .hlead {
-    max-width: 22em;
     margin-top: 36px;
+  }
+  .editorial .hlead-offer {
+    max-width: 12em;
+    font-size: clamp(68px, 6.2vw, 96px);
+  }
+  .editorial .hlead-rest {
+    max-width: 22em;
+    margin-top: 28px;
     font-size: 30px;
   }
   .editorial .hero-lockup .l3 {
@@ -890,6 +916,7 @@ html.js-motion .hero-rise.delay-2 > span {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 0;
 }
 @media (min-width: 1024px) {
   .editorial .hero-copy {
@@ -903,14 +930,30 @@ html.js-motion .hero-rise.delay-2 > span {
     grid-row: 1;
     min-width: 0;
   }
+  /* DECISION 2026-11: ~40% smaller than 132px, matte silver. See docs/DECISIONS.md */
   .editorial .hero-mark {
     display: block;
+    position: relative;
     grid-column: 2;
     grid-row: 1;
-    width: 132px;
+    width: 79px;
     justify-self: end;
     align-self: start;
     margin-top: 10px;
+  }
+  .editorial .hero-mark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #b8bcc4;
+    -webkit-mask-image: url("/brand/vo-logo.svg");
+    mask-image: url("/brand/vo-logo.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
   }
   .editorial .hero-copy .hb {
     grid-column: 1 / -1;
@@ -919,12 +962,12 @@ html.js-motion .hero-rise.delay-2 > span {
 }
 @media (min-width: 1280px) {
   .editorial .hero-mark {
-    width: 180px;
+    width: 108px;
   }
 }
 @media (min-width: 1440px) {
   .editorial .hero-mark {
-    width: 196px;
+    width: 118px;
     margin-top: 6px;
   }
 }
@@ -953,21 +996,24 @@ html.js-motion .hero-rise.delay-2 > span {
     padding-top: 18px;
   }
   .editorial h1 .l1 {
-    margin-top: 22px;
+    margin-top: 14px;
   }
   .editorial .hlead {
-    margin-top: 16px;
+    margin-top: 28px;
+  }
+  .editorial .hlead-rest {
+    margin-top: 10px;
   }
   .editorial .hb {
-    margin-top: 18px;
+    margin-top: 12px;
   }
   .editorial .hcta {
-    margin-top: 14px;
+    margin-top: 10px;
   }
   .hero-proof {
-    gap: 12px 28px;
-    margin-top: 14px;
-    padding-top: 12px;
+    gap: 8px 28px;
+    margin-top: 10px;
+    padding-top: 8px;
   }
 }
 .hero-proof .hp-name {
@@ -997,7 +1043,7 @@ html.js-motion .hero-rise.delay-2 > span {
   }
 }
 
-html.js-motion .hero-mark img {
+html.js-motion .hero-mark::after {
   animation: heroMarkFloat 8.5s ease-in-out infinite;
 }
 @keyframes heroMarkFloat {
