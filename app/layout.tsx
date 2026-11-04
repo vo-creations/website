@@ -214,8 +214,8 @@ export default function RootLayout({
           aria-hidden="true"
           className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
         >
-          {/* Silver silk, not the old cream tint. WebGL is desktop-only and
-              idle-deferred. See docs/DECISIONS.md (topic: brand-system-2026-10). */}
+          {/* Silver silk. The sheet drifts in CSS. Grain stays still.
+              See docs/DECISIONS.md (topic: silk-drift-2026-11). */}
           <VeilBackground />
           <div className="film-grain absolute inset-0" />
         </div>
