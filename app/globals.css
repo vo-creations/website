@@ -1339,12 +1339,12 @@ html.js-motion .hero-mark::after {
 .result-mark {
   display: flex;
   align-items: flex-end;
-  height: 24px;
+  min-height: 2.5em;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 .result-figure {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;

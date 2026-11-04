@@ -87,13 +87,13 @@ const trustedBrands = [
   { name: "Aonic", file: "aonic.png" },
 ];
 
-// DECISION 2026-11: named proof is public. Hero lines are the deck headline
-// set, in the owner's wording. See docs/DECISIONS.md (topic: named-proof-2026-11).
+// DECISION 2026-11: result names are categories. Numbers stay the deck figures.
+// See docs/DECISIONS.md (topic: anonymized-results-2026-11).
 const heroProof = [
-  { name: "Krea", line: "130M+ views in 3 months, under $3 CPM" },
-  { name: "Liftoff", line: "174M+ views in 90 days, $0.82 avg CPM" },
-  { name: "Higgsfield", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "FOMO", line: "#3 US App Store Top Free Finance" },
+  { name: "AI image and video platform", line: "130M+ views in 3 months, under $3 CPM" },
+  { name: "Gym ranking app", line: "174M+ views in 90 days, $0.82 avg CPM" },
+  { name: "AI video platform", line: "72M+ views in 35 days, ~$0.96 CPM" },
+  { name: "Consumer finance app", line: "#3 US App Store Top Free Finance" },
 ];
 
 const steps = [
@@ -105,14 +105,12 @@ const steps = [
 
 const results = [
   {
-    name: "Krea",
-    logo: "/logos/krea.png",
+    label: "AI image and video platform",
     figure: "130M+",
     lines: ["views in 3 months", "Under $3 CPM", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
-    name: "FOMO",
-    logo: "/logos/fomo.png",
+    label: "Consumer finance app",
     figure: "#3",
     lines: [
       "in US App Store Top Free Finance",
@@ -124,23 +122,17 @@ const results = [
     ],
   },
   {
-    name: "Higgsfield",
-    logo: "/logos/higgsfield.png",
+    label: "AI video platform",
     figure: "72M+",
     lines: ["views in 35 days", "45 creators", "~$0.96 CPM", "Jun 29 – Aug 3, 2026", "502K likes", "336K shares", "228K comments"],
   },
   {
-    name: "Liftoff",
-    logo: "/logos/liftoff.png",
+    label: "Gym ranking app",
     figure: "174M+",
     lines: ["views in 90 days", "50 creators", "$0.82 average CPM", "May 1 – Jul 31, 2026", "8.5K posts", "11.4M engagements", "Zero paid ads", "4.8★ App Store, 101K ratings"],
   },
   {
-    name: "CookSAT",
-    // Official mark from cooksat.com/assets/graphics/branding/CookSAT_vector_logo.svg
-    // plus the word in their nav face (Montserrat Bold). The card's grayscale
-    // class matches the other logos. See docs/DECISIONS.md (topic: cooksat-logo-2026-11).
-    logo: "/logos/cooksat.svg",
+    label: "SAT prep app",
     figure: "$968K",
     lines: [
       "ARR from organic UGC",
@@ -453,18 +445,12 @@ export default function Home() {
         <section className="band tight-top" id="results">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">Named results.</h2>
+              <h2 className="display">Results.</h2>
             </div>
             <div className="result-grid">
               {results.map((item) => (
-                <article className="result-card" key={item.name}>
-                  <h3 className="result-mark">
-                    {item.logo ? (
-                      <LogoImage src={item.logo} alt={item.name} boxClassName="h-6 w-auto grayscale" />
-                    ) : (
-                      item.name
-                    )}
-                  </h3>
+                <article className="result-card" key={item.label}>
+                  <h3 className="result-mark">{item.label}</h3>
                   <p className="result-figure">{item.figure}</p>
                   <ul>
                     {item.lines.map((line) => (
