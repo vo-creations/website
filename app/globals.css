@@ -86,10 +86,11 @@ body {
 }
 .silk-sheet {
   position: absolute;
-  left: -16%;
-  top: -18%;
-  width: 136%;
-  height: 140%;
+  /* Bleed covers translate3d(-5vw, -3vw) plus scale(1.03) on desktop and phones. */
+  left: -22%;
+  top: -24%;
+  width: 154%;
+  height: 160%;
   background-color: #0b0d12;
   background-image:
     radial-gradient(ellipse 58% 40% at 74% 26%, rgba(238, 240, 244, 0.32), transparent 58%),
@@ -101,17 +102,15 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .silk-sheet {
-    animation: silkDrift 36s ease-in-out infinite alternate;
+    animation: silkDrift 24s ease-in-out infinite alternate;
   }
 }
 @keyframes silkDrift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
   }
-  /* About 2vw, under 3% of the hero width. Alternate eases out and back
-     with no jump. Scale stays tiny so the oversized sheet never shows an edge. */
   to {
-    transform: translate3d(-2vw, -1.2vw, 0) scale(1.008);
+    transform: translate3d(-5vw, -3vw, 0) scale(1.03);
   }
 }
 
