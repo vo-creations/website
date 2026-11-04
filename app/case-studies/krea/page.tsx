@@ -61,19 +61,16 @@ export default function KreaCaseStudy() {
       <p>
         The engagement rate. 4.7% across 130M+ views means people weren&apos;t just scrolling past. That&apos;s the comment-section effect that polished ads don&apos;t get.
       </p>
-      <h2>Quote</h2>
       <blockquote className="case-quote">
         <p>&ldquo;Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.&rdquo;</p>
         <p>Miguel Lara, Growth Marketing, Krea</p>
       </blockquote>
-      <h2>CTA</h2>
       <p>
-        <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
-        </a>
-        {" · "}
         <Link className={link} href="/blog/ugc-vs-paid-ads-app-growth">UGC vs paid ads for app growth</Link>
       </p>
+      <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+        Book a 30-min fit call
+      </a>
       <p>
         More results:{" "}
         <Link className={link} href="/case-studies/higgsfield">Higgsfield: 72M+ in 35 days</Link>

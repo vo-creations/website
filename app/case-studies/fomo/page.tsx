@@ -67,18 +67,14 @@ export default function FomoCaseStudy() {
       <p>
         Finance apps are a crowded, low-trust category, and polished ads look like ads. A creator on their own account, talking about money the way their followers already do, earns a different kind of attention.
       </p>
-      <h2>Quote</h2>
       <blockquote className="case-quote">
         <p>&ldquo;Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;</p>
         <p>Will Timberlake, UGC Manager, FOMO</p>
       </blockquote>
-      <h2>CTA</h2>
-      <p>
-        Bring your target CPM. We&apos;ll show you the view and user math for your category.{" "}
-        <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
-        </a>
-      </p>
+      <p>Bring your target CPM. We&apos;ll show you the view and user math for your category.</p>
+      <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+        Book a 30-min fit call
+      </a>
       <p>
         More results:{" "}
         <Link className={link} href="/case-studies/liftoff">Liftoff: 174M+ views, $0.82 CPM</Link>

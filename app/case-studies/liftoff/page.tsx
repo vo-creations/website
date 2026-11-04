@@ -61,21 +61,17 @@ export default function LiftoffCaseStudy() {
       <p>
         Our creators are coached, not just briefed. Fifty creators posting at once gives the power law room to work: a few creators break out, and we put more volume behind them. That&apos;s how 174M+ views came in at $0.82 per thousand with no ad spend.
       </p>
-      <h2>Quote</h2>
       <blockquote className="case-quote">
         <p>&ldquo;Vo Creations helped scale our UGC efforts from 0 to 100. One of the best teams in this space.&rdquo;</p>
         <p>Wassim Bouchelouh, CMO, Liftoff</p>
       </blockquote>
-      <h2>CTA</h2>
       <p>
         At Liftoff&apos;s CPM, $50K a month buys about 61M organic views.{" "}
-        <Link className={link} href="/blog/ugc-agency-pricing">See pricing</Link>
-        {" or "}
-        <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          book a 30-min fit call
-        </a>
-        .
+        <Link className={link} href="/blog/ugc-agency-pricing">See pricing</Link>.
       </p>
+      <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+        Book a 30-min fit call
+      </a>
       <p>
         More results:{" "}
         <Link className={link} href="/case-studies/higgsfield">Higgsfield: 72M+ views in 35 days</Link>

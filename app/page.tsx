@@ -338,15 +338,6 @@ function SlackReport() {
   );
 }
 
-function FounderPhoto({ children }: { children: React.ReactNode }) {
-  const { ref, on } = useOnceVisible<HTMLDivElement>();
-  return (
-    <div ref={ref} className={`tph photo-in ${on ? "is-in" : ""}`}>
-      {children}
-    </div>
-  );
-}
-
 function HeroStats() {
   const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
   return (
@@ -697,18 +688,6 @@ export default function Home() {
             <div className="tms">
               {team.map((member) => (
                 <figure key={member.name} className={`tm ${member.slot}`}>
-                  {member.image ? (
-                    <FounderPhoto>
-                      {"webp" in member && member.webp ? (
-                        <picture>
-                          <source srcSet={member.webp} type="image/webp" />
-                          <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover grayscale" style={{ objectPosition: "center" }} loading="lazy" decoding="async" />
-                        </picture>
-                      ) : (
-                        <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover grayscale" style={{ objectPosition: "center" }} loading="lazy" decoding="async" />
-                      )}
-                    </FounderPhoto>
-                  ) : null}
                   <figcaption>
                     <div className="tn">{member.name}</div>
                     <div className="tr">{member.role}</div>
@@ -716,8 +695,8 @@ export default function Home() {
                   </figcaption>
                 </figure>
               ))}
+              <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
             </div>
-            <p className="lede mt-10">Plus a team of in-house coaches working with every creator.</p>
           </div>
         </section>
 

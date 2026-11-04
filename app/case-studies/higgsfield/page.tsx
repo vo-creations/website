@@ -61,19 +61,16 @@ export default function HiggsfieldCaseStudy() {
       <p>
         Speed and efficiency. The campaign reached 72M+ views in five weeks at under $1 per thousand. It also drove 336K+ shares, which is people sending the videos on, not just watching them.
       </p>
-      <h2>Quote</h2>
       <blockquote className="case-quote">
         <p>&ldquo;Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.&rdquo;</p>
         <p>Shotan Jakupov, Head of Growth, Higgsfield</p>
       </blockquote>
-      <h2>CTA</h2>
       <p>
-        <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
-        </a>
-        {" · "}
         <Link className={link} href="/blog/ugc-for-ai-startups">UGC for AI startups</Link>
       </p>
+      <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+        Book a 30-min fit call
+      </a>
       <p>
         More results:{" "}
         <Link className={link} href="/case-studies/krea">Krea: 130M+ views and still growing</Link>
