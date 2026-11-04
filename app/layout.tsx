@@ -32,11 +32,11 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_DESCRIPTION =
-  "UGC agency for AI startups and consumer apps. In-house creator programs, 1B+ views, and 1000+ creators.";
+  "Organic UGC for AI and consumer apps: 1B+ views since Jan 2026, 1,000+ trained creators, your target CPM guaranteed. Liftoff 174M+ views at $0.82 CPM.";
 
 export const metadata: Metadata = {
   title: {
-    default: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
+    default: "Vo Creations: In-House UGC Team for AI & Consumer Apps",
     template: "%s | Vo Creations",
   },
   description: SITE_DESCRIPTION,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
+    title: "Vo Creations: In-House UGC Team for AI & Consumer Apps",
     description: SITE_DESCRIPTION,
     url: "https://vocreations.com/",
     siteName: "Vo Creations",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@VoCreationsUGC",
-    title: "Vo Creations: In-House UGC Agency for AI & Tech Apps",
+    title: "Vo Creations: In-House UGC Team for AI & Consumer Apps",
     description: SITE_DESCRIPTION,
     images: ["/og-image.png"],
   },

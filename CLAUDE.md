@@ -110,6 +110,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `anonymized-results-2026-11` — `#results` and the hero proof strip use categories: AI creative platform, AI video generation app, Consumer finance app, Test prep app, Fitness social app. The finance store rank is off the card and the strip. Trusted By already had Krea, Higgsfield, Liftoff, and FOMO; CookSAT’s existing logo joined that strip. Named testimonials stay. No live-source links.
 - `silk-drift-2026-11` — the silk is two transform layers. The sheet is `inset: -15%` and runs `silkA` for 14s. A screen sheen above it runs `sheen` for 9s. The grain stays still on top. Reduced motion leaves both still. The WebGL canvas no longer covers the sheet.
 - `closer-chrome-2026-11` — the closer VO is the blog chrome mark (`closer-chrome.avif` / `.webp`, from `chrome-mono.webp`), with a short faded reflection. The hero monogram stays the matte silver serif. The closer’s only button is “Book a 30-min fit call”. The nav stays “Book a call”.
+- `build-pack-2026-11` — pricing and comparison posts moved to `/blog/ugc-agency-pricing` and `/blog/ugc-agency-vs-in-house` (old slugs 301). Two new posts and four named case studies are live. Homepage result cards stay anonymized. No CPM-miss remedy. The fit call stays 30 minutes.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

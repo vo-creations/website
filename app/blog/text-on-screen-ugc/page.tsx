@@ -77,7 +77,7 @@ export default function TextOnScreenPost() {
         The best-performing UGC we&apos;ve ever made follows the same structure: a creator looks into the camera and tells a story that the target audience has lived. The product shows up naturally, not as a pitch, but as part of the story.
       </p>
       <p>
-        This is what we have tested across 50+ campaigns. The pattern is the same: a person, a specific mess, and the product inside the story.
+        The pattern is the same: a person, a specific mess, and the product inside the story.
       </p>
       <H2 id="why-does-storytelling-work">Why does talking-head storytelling work?</H2>
       <p>
@@ -135,7 +135,7 @@ export default function TextOnScreenPost() {
       </p>
       <H2 id="what-does-a-campaign-look-like">What does a talking-head campaign look like?</H2>
       <p>
-        No text on screen. No AI clone. A person tells a story the viewer has lived, and the product shows up inside it. Vo Creations campaign results, clients anonymized: two apps, 30 days each, 21.5M and 15.9M views.
+        No text on screen. No AI clone. A person tells a story the viewer has lived, and the product shows up inside it. Vo Creations campaign results: 174M+ views in 90 days at $0.82 CPM; 72M+ in 35 days at about $0.96.
       </p>
       <p>
         Paid ads don&apos;t come with the comment section those stories earn. People saying &quot;this changed everything&quot; is the part you cannot buy as a media line.

@@ -761,6 +761,10 @@ html.js-motion .budget-wipe.is-in {
 .editorial h1 .l1 {
   margin-top: 36px;
 }
+.editorial h1 .l1.wrap {
+  white-space: normal;
+  max-width: 11em;
+}
 .editorial h1 .l2 {
   margin-top: 0;
   margin-left: 0;
@@ -1413,10 +1417,15 @@ html.js-motion .hero-mark::after {
   margin-top: 28px;
 }
 .results-cta p {
-  max-width: 28em;
+  max-width: 42em;
   color: var(--mid);
   font-size: 17px;
   line-height: 1.45;
+}
+.results-cta a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 @media (min-width: 1280px) {
   .result-grid {
@@ -1497,6 +1506,14 @@ html.js-motion .hero-mark::after {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
+}
+.editorial .tq a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--mid);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Pricing */
@@ -1612,8 +1629,12 @@ html.js-motion .hero-mark::after {
 .editorial .tm {
   width: 78%;
 }
-.editorial .tm.t1 {
+.editorial .tm.t1,
+.editorial .tm.t3 {
   margin: 48px 0 0 auto;
+}
+.editorial .tm.t2 {
+  margin-top: 48px;
 }
 .editorial .tph {
   position: relative;
@@ -1661,6 +1682,8 @@ html.js-motion .hero-mark::after {
   }
   .editorial .tm.t0 { grid-column: 1 / 6; }
   .editorial .tm.t1 { grid-column: 7 / 12; margin-top: 0; }
+  .editorial .tm.t2 { grid-column: 1 / 6; margin-top: 64px; }
+  .editorial .tm.t3 { grid-column: 7 / 12; margin-top: 64px; }
   .editorial .tn { font-size: 32px; }
 }
 
