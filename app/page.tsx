@@ -154,15 +154,12 @@ const results = [
   },
 ];
 
+// DECISION 2026-11: four quotes, one per person. Miguel's shorter line was removed.
+// See docs/DECISIONS.md (topic: testimonials-four-2026-11).
 const quotes = [
   {
     quote: "Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.",
     by: "Miguel Lara, Growth Marketing, Krea",
-  },
-  {
-    quote: "The UGC agency we trust most in the space.",
-    by: "Miguel Lara, Growth Marketing, Krea",
-    lead: true,
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
@@ -522,13 +519,8 @@ export default function Home() {
         <section className="band" id="testimonials">
           <div className="ed-wrap">
             <h2 className="display">In their words</h2>
-            <p className="qbig">&ldquo;{quotes.find((item) => item.lead)?.quote}&rdquo;</p>
-            <div className="qby">
-              <i />
-              <span className="lab">{quotes.find((item) => item.lead)?.by}</span>
-            </div>
             <div className="tqs">
-              {quotes.filter((item) => !item.lead).map((item) => (
+              {quotes.map((item) => (
                 <div className="tq" key={item.by + item.quote.slice(0, 12)}>
                   <p>&ldquo;{item.quote}&rdquo;</p>
                   <span>{item.by}</span>
