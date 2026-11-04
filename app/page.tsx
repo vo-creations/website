@@ -69,7 +69,7 @@ const heroClips = creatorClips;
 
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "views generated" },
-  { target: 5, format: (n: number) => `${n}M+`, label: "users converted" },
+  { target: 5, format: (n: number) => `${n}M+`, label: "installs and signups" },
   { target: 1000, format: (n: number) => `${n}+`, label: "trained creators" },
   { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "days to post" },
 ];
@@ -199,7 +199,7 @@ const team = [
   {
     name: "Daniel Yun",
     role: "Co-Founder · Los Angeles, CA",
-    bio: "He started on camera: 150M+ views and $200K+ earned from his own content. His campaigns for consumer apps have reached 500M+ views and 5M+ users.",
+    bio: "He started on camera: 150M+ views and $200K+ earned from his own content. His campaigns for consumer apps have reached 500M+ views and 5M+ installs and signups.",
     image: "/videos/team-daniel.jpg",
     slot: "t0",
   },
@@ -360,9 +360,9 @@ export default function Home() {
               <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
-              {/* DECISION 2026-11: one headline. The offer and “biggest” line are the
-                  secondary subhead. Named proof sits under the subline.
-                  See docs/DECISIONS.md (topic: hero-declutter-2026-11, topic: named-proof-2026-11). */}
+              {/* DECISION 2026-11: one 89px headline. The offer is a step down
+                  (about 54px at 1440, 32px on a phone). See docs/DECISIONS.md
+                  (topic: hero-offer-mark-2026-11). */}
               <div className="hero-lockup">
                 <h1>
                   <span className="sr-only">make them remember.</span>
@@ -374,9 +374,8 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="hlead">
-                  Organic UGC for AI and tech apps.
-                  <br />
-                  That&apos;s why we have the biggest numbers: 1B+ organic views.
+                  <span className="hlead-offer">Organic UGC for AI and tech apps.</span>
+                  <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic views.</span>
                 </p>
               </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
@@ -533,7 +532,7 @@ export default function Home() {
         <section className="band border-t border-white/10" id="pricing">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">Organic UGC for AI startups and tech consumer apps.</h2>
+              <h2 className="display">What $50K+/month buys</h2>
             </div>
             <div className="pc">
               <p className="ed-price">

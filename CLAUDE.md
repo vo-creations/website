@@ -106,6 +106,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `kelly-work-clip-2026-11` — `#work` leads with Kelly Zhao’s Higgsfield clip (`creator-kelly`, 6s, under 1MB, poster `creator-kelly.jpg`) labeled 2.2M views. She is not in the hero. Simran Batra was not added.
 - `work-view-labels-2026-11` — every `#work` card has a view label. `DTRCvh2E1Lu` is 3.7M and `DUMI_NwD0Xa` is 1.5M. The other twelve embeds use the supplied counts (2.1M, 1.1M, 591K, 386K, 16.8M, 1.2M, 549K, 1.1M, 6.3M, 845K, 730K, 357K). `hero-clip-1` and `hero-clip-3` are captioned Instagram. Existing hosted labels stay.
 - `testimonials-four-2026-11` — Miguel Lara’s shorter quote was removed. Four quotes remain, one per person, in a two-column grid from 768px.
+- `hero-offer-mark-2026-11` — “make them remember.” stays the one large headline. “Organic UGC for AI and tech apps.” is a step down (about 54px at 1440, 32px on a phone, `#E6E8EC`, weight 500). The “biggest numbers” line is 20px in `#C9CDD4`. The hero VO is about 40% smaller and `#B8BCC4`. The public stat is “5M+ installs and signups”. `#pricing` is “What $50K+/month buys”.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->
