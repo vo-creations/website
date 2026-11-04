@@ -3486,6 +3486,10 @@ The desktop hero monogram was scaled to about 60% of its previous widths: 79px f
 
 Miguel Lara had two quotes. The shorter one, “The UGC agency we trust most in the space.”, was the featured line. It was removed. His longer quote stayed: “Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.” Will Timberlake, Shotan Jakupov, and Wassim Bouchelouh were left as they were. The featured line and its byline went with that quote, so the section is four equal cards, two columns from 768px.
 
+## topic: design-review-2026-11 — _2026-11-04_
+
+The homepage team grid dropped the staggered column offsets. There was no `.team-photo` class and no `nth-child` offset. Founder photos stayed in the two-column cards. Case-study tables were made four rows each: Higgsfield’s likes, comments, and shares were merged into the engagements row, and Krea’s likes were merged into the engagements row. No new number was added. Liftoff stayed at four rows because the older engagement totals were deliberately left off that page. Section headings on the four case studies are Summary, What we did, Why it worked, Quote, and CTA. The silk field was already a `position: fixed` layer. No `background-attachment: fixed` was in the CSS, and the nav does not change style on scroll. On desktop the hero monogram’s top margin was increased so the silver mark’s top edge meets the headline cap. The headline, the mark’s size, and its `#B8BCC4` color were left alone. Below 1024px the mark stays hidden.
+
 ## topic: build-pack-2026-11 — _2026-11-04_
 
 The November 3 build pack replaced the pricing and comparison essays and kept the 12-questions slug. `/blog/what-a-managed-ugc-program-costs` 301s to `/blog/ugc-agency-pricing`. `/blog/in-house-ugc-vs-marketplace-vs-freelancers` 301s to `/blog/ugc-agency-vs-in-house`. New posts `/blog/ugc-vs-paid-ads-app-growth` and `/blog/in-house-creator-programs-stall` are dated 2026-11-03 and use the existing chrome-VO cover. Named pages `/case-studies/fomo`, `/liftoff`, `/higgsfield`, and `/krea` are Article pages with Daniel Yun as author and that same date. There is no CookSAT case study.

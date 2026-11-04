@@ -638,6 +638,21 @@ html.js-motion .budget-wipe.is-in {
 .editorial .band.mid-top {
   padding-top: 60px;
 }
+/* Steps, fit, pricing, and FAQ share one block rhythm. */
+.editorial #process,
+.editorial #fit,
+.editorial #pricing,
+.editorial #faq {
+  padding-block: 96px;
+}
+@media (min-width: 1280px) {
+  .editorial #process,
+  .editorial #fit,
+  .editorial #pricing,
+  .editorial #faq {
+    padding-block: 160px;
+  }
+}
 .editorial .sh {
   display: block;
 }
@@ -974,7 +989,10 @@ html.js-motion .hero-rise.delay-2 > span {
     width: 79px;
     justify-self: end;
     align-self: start;
-    margin-top: 10px;
+    /* Cap of the headline, not the eyebrow. The mark box includes a little
+       empty space above the silver, so this margin is larger than the
+       headline's own margin-top. */
+    margin-top: 40px;
   }
   .editorial .hero-mark::after {
     content: "";
@@ -998,12 +1016,13 @@ html.js-motion .hero-rise.delay-2 > span {
 @media (min-width: 1280px) {
   .editorial .hero-mark {
     width: 108px;
+    margin-top: 30px;
   }
 }
 @media (min-width: 1440px) {
   .editorial .hero-mark {
     width: 118px;
-    margin-top: 6px;
+    margin-top: 33px;
   }
 }
 .hero-proof {
@@ -1240,8 +1259,9 @@ html.js-motion .hero-mark::after {
   }
 }
 .editorial .spd {
-  color: var(--mid);
-  font-size: 15px;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.55;
 }
 
 /* Case studies */
@@ -1369,13 +1389,16 @@ html.js-motion .hero-mark::after {
 .result-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   height: 100%;
   min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.03);
-  padding: 22px 22px 8px;
+  padding: 10px 0;
+}
+.result-card li:nth-child(n + 4) {
+  display: none;
 }
 .result-mark {
   display: block;
@@ -1391,7 +1414,7 @@ html.js-motion .hero-mark::after {
 .result-figure {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 700;
-  font-size: clamp(44px, 5vw, 60px);
+  font-size: 44px;
   line-height: 0.9;
   letter-spacing: -0.05em;
 }
@@ -1400,9 +1423,9 @@ html.js-motion .hero-mark::after {
   border-top: 1px solid var(--hair);
 }
 .result-card li {
-  padding: 11px 0;
+  padding: 8px 0;
   border-bottom: 1px solid var(--hair);
-  color: var(--mid);
+  color: #c9cdd4;
   font-size: 15px;
   line-height: 1.4;
 }
@@ -1429,8 +1452,25 @@ html.js-motion .hero-mark::after {
 }
 @media (min-width: 1280px) {
   .result-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 24px;
     margin-top: 64px;
+  }
+  .result-card {
+    gap: 16px;
+    padding: 22px 22px 8px;
+  }
+  .result-card:nth-child(-n + 3) {
+    grid-column: span 2;
+  }
+  .result-card:nth-child(n + 4) {
+    grid-column: span 3;
+  }
+  .result-card li:nth-child(n + 4) {
+    display: list-item;
+  }
+  .result-figure {
+    font-size: 60px;
   }
 }
 
@@ -1576,6 +1616,12 @@ html.js-motion .hero-mark::after {
   font-size: 15.5px;
   line-height: 1.55;
 }
+.editorial #pricing .pcols p,
+.editorial #process .pcols p {
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.55;
+}
 @media (min-width: 1280px) {
   .editorial .pcols {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1612,7 +1658,7 @@ html.js-motion .hero-mark::after {
   padding: 14px 0;
   font-size: 17px;
   line-height: 1.45;
-  color: var(--mid);
+  color: #c9cdd4;
 }
 @media (min-width: 768px) {
   .editorial .fit-grid {
@@ -1622,19 +1668,18 @@ html.js-motion .hero-mark::after {
   }
 }
 
-/* Team */
+/* Team. Two equal columns. No staggered offsets. */
 .editorial .tms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
   margin-top: 48px;
 }
 .editorial .tm {
-  width: 78%;
-}
-.editorial .tm.t1,
-.editorial .tm.t3 {
-  margin: 48px 0 0 auto;
-}
-.editorial .tm.t2 {
-  margin-top: 48px;
+  width: auto;
+  margin: 0;
+  border-top: 1px solid #23272f;
+  padding-top: 24px;
 }
 .editorial .tph {
   position: relative;
@@ -1644,8 +1689,6 @@ html.js-motion .hero-mark::after {
 }
 .editorial .tm figcaption {
   margin-top: 18px;
-  border-top: 1px solid var(--hair);
-  padding-top: 14px;
 }
 .editorial .tn {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
@@ -1670,20 +1713,10 @@ html.js-motion .hero-mark::after {
 }
 @media (min-width: 1280px) {
   .editorial .tms {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 64px;
     margin-top: 90px;
   }
-  .editorial .tm,
-  .editorial .tm.t1 {
-    width: auto;
-    margin: 0;
-  }
-  .editorial .tm.t0 { grid-column: 1 / 6; }
-  .editorial .tm.t1 { grid-column: 7 / 12; margin-top: 0; }
-  .editorial .tm.t2 { grid-column: 1 / 6; margin-top: 64px; }
-  .editorial .tm.t3 { grid-column: 7 / 12; margin-top: 64px; }
   .editorial .tn { font-size: 32px; }
 }
 
@@ -1758,8 +1791,8 @@ html.js-motion .hero-mark::after {
 .editorial .faq-a {
   max-width: 640px;
   margin: 12px 0 4px;
-  color: var(--mid);
-  font-size: 15.5px;
+  color: #c9cdd4;
+  font-size: 17px;
   line-height: 1.6;
 }
 
@@ -1963,12 +1996,14 @@ html.js-motion .hero-mark::after {
 /* Footer wordmark */
 .editorial .ed-word {
   margin: 56px 0 0;
+  padding-bottom: 0.12em;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-style: normal;
   font-weight: 800;
   font-size: clamp(44px, 11vw, 72px);
-  line-height: 0.9;
+  line-height: 1.05;
   letter-spacing: -0.055em;
+  overflow: visible;
 }
 .editorial .ed-word span {
   display: inline;
@@ -1983,7 +2018,7 @@ html.js-motion .hero-mark::after {
   .editorial .ed-word {
     margin-top: 72px;
     font-size: clamp(72px, 8vw, 112px);
-    line-height: 0.9;
+    line-height: 1.05;
   }
 }
 .editorial .fbt {
@@ -2192,6 +2227,13 @@ html.js-motion .hero-mark::after {
   padding: 36px 22px 96px;
   color: #d4d4d0;
 }
+.editorial.blog-post .blog-main {
+  max-width: 66ch;
+}
+.editorial.case-study .blog-main {
+  max-width: 720px;
+  margin: 0 auto;
+}
 @media (min-width: 768px) {
   .editorial .blog-main {
     padding-left: 40px;
@@ -2209,6 +2251,87 @@ html.js-motion .hero-mark::after {
 .editorial .blog-main h1 {
   font-size: clamp(40px, 6vw, 56px);
   line-height: 1.02;
+}
+.editorial.blog-post .blog-main h1 {
+  font-size: clamp(34px, 9vw, 44px);
+  line-height: 1.05;
+}
+@media (min-width: 768px) {
+  .editorial.blog-post .blog-main h1 {
+    font-size: clamp(40px, 5vw, 56px);
+  }
+}
+.editorial.case-study .blog-main h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+.editorial.case-study .blog-main h2 {
+  margin: 64px 0 16px;
+}
+.editorial.case-study .case-body {
+  max-width: 68ch;
+  font-size: 19px;
+  line-height: 1.7;
+  color: #c9cdd4;
+}
+.editorial.case-study .case-body strong {
+  font-weight: 600;
+  color: #eef0f4;
+}
+.editorial.case-study .case-body > * + * {
+  margin-top: 20px;
+}
+.case-quote p + p {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #8a9099;
+}
+.case-table-wrap {
+  border: 1px solid #23272f;
+  border-radius: 16px;
+  overflow: hidden;
+  background: transparent;
+}
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  text-align: left;
+}
+.case-table th,
+.case-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid #23272f;
+  background: transparent;
+  vertical-align: baseline;
+}
+.case-table tr:last-child th,
+.case-table tr:last-child td {
+  border-bottom: 0;
+}
+.case-table th {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a9099;
+}
+.case-table td {
+  font-size: 18px;
+  color: #e6e8ec;
+}
+.case-quote {
+  margin: 0;
+  border-left: 1px solid #a7adb6;
+  padding-left: 24px;
+}
+.case-quote p {
+  font-size: 22px;
+  line-height: 1.45;
+  color: #e6e8ec;
 }
 .editorial .blog-main h2 {
   scroll-margin-top: 96px;

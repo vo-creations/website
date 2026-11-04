@@ -55,7 +55,7 @@ export default function CaseStudy({
   };
 
   return (
-    <div className="editorial blog-page">
+    <div className="editorial blog-page case-study">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav variant="editorial" />
       <main id="main" className="blog-main">
@@ -78,7 +78,7 @@ export default function CaseStudy({
             </ol>
           </nav>
           <p className="mb-4 text-[13px] font-semibold uppercase tracking-[2px] text-text-dim">Case study</p>
-          <h1 className="mb-5 font-display text-[clamp(32px,5vw,48px)] font-extrabold leading-[1.1] tracking-tight text-[#EEF0F4]">
+          <h1 className="font-display font-extrabold text-[#EEF0F4]">
             {title}
           </h1>
           <p className="mb-8 text-[15px] text-text-dim">
@@ -87,7 +87,7 @@ export default function CaseStudy({
             </a>
             <span> · {date}</span>
           </p>
-          <div className="space-y-4 text-[17px] leading-[1.65] text-text-secondary [&_strong]:font-semibold [&_strong]:text-text">
+          <div className="case-body">
             {children}
           </div>
         </article>

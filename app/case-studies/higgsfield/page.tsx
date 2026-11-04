@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 export default function HiggsfieldCaseStudy() {
   return (
     <CaseStudy slug={study.slug} title={study.title} description={study.description}>
+      <h2>Summary</h2>
       <p>
         <strong>Client:</strong> Higgsfield, an AI video app
         <br />
@@ -29,46 +30,43 @@ export default function HiggsfieldCaseStudy() {
         <br />
         <strong>What we did:</strong> ran an organic creator campaign
       </p>
-      <div className="overflow-x-auto rounded-2xl border border-white/10">
-        <table className="w-full border-collapse text-left text-[15px]">
+      <div className="case-table-wrap">
+        <table className="case-table">
           <caption className="sr-only">Higgsfield results</caption>
           <tbody>
-            <tr className="border-b border-white/10">
-              <th scope="row" className="px-4 py-3 font-semibold text-text">Organic views</th>
-              <td className="px-4 py-3">72M+ (dashboard: 72.5M)</td>
-            </tr>
-            <tr className="border-b border-white/10">
-              <th scope="row" className="px-4 py-3 font-semibold text-text">CPM</th>
-              <td className="px-4 py-3">~$0.96</td>
-            </tr>
-            <tr className="border-b border-white/10">
-              <th scope="row" className="px-4 py-3 font-semibold text-text">Creators</th>
-              <td className="px-4 py-3">45</td>
-            </tr>
-            <tr className="border-b border-white/10">
-              <th scope="row" className="px-4 py-3 font-semibold text-text">Engagements</th>
-              <td className="px-4 py-3">1.1M (1.5% rate)</td>
+            <tr>
+              <th scope="row">Organic views</th>
+              <td>72M+ (dashboard: 72.5M)</td>
             </tr>
             <tr>
-              <th scope="row" className="px-4 py-3 font-semibold text-text">Likes / comments / shares</th>
-              <td className="px-4 py-3">502.2K / 228.3K / 336.3K</td>
+              <th scope="row">CPM</th>
+              <td>~$0.96</td>
+            </tr>
+            <tr>
+              <th scope="row">Creators</th>
+              <td>45</td>
+            </tr>
+            <tr>
+              <th scope="row">Engagements</th>
+              <td>1.1M (1.5% rate). Likes / comments / shares: 502.2K / 228.3K / 336.3K</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <h2 className="font-display pt-8 text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-text">What we did</h2>
+      <h2>What we did</h2>
       <p>
         Forty-five creators posted organically across short-form platforms. We wrote the scripts, coached the creators, edited in-house, and every week put more behind the videos that were pulling views.
       </p>
-      <h2 className="font-display pt-8 text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-text">What stands out</h2>
+      <h2>Why it worked</h2>
       <p>
         Speed and efficiency. The campaign reached 72M+ views in five weeks at under $1 per thousand. It also drove 336K+ shares, which is people sending the videos on, not just watching them.
       </p>
-      <blockquote className="border-l border-white/20 pl-4">
+      <h2>Quote</h2>
+      <blockquote className="case-quote">
         <p>&ldquo;Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.&rdquo;</p>
         <p>Shotan Jakupov, Head of Growth, Higgsfield</p>
       </blockquote>
-      <h2 className="font-display pt-8 text-[clamp(22px,3vw,28px)] font-extrabold tracking-tight text-text">Want this for your AI app?</h2>
+      <h2>CTA</h2>
       <p>
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
           Book a 30-min fit call
