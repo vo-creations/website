@@ -1826,7 +1826,7 @@ html.js-motion .hero-mark::after {
   font-weight: 800;
   font-size: clamp(44px, 6vw, 84px);
   line-height: 0.96;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
 }
 .editorial .closer h2 em {
   color: inherit;
@@ -1867,7 +1867,7 @@ html.js-motion .hero-mark::after {
   position: absolute;
   right: 22px;
   top: -28px;
-  width: 96px;
+  width: 84px;
   z-index: 1;
 }
 .editorial .closer-mark picture,
@@ -1875,6 +1875,9 @@ html.js-motion .hero-mark::after {
   display: block;
   width: 100%;
   height: auto;
+}
+.editorial .closer-mark picture img {
+  filter: brightness(0.88) contrast(0.95);
 }
 .editorial .closer-reflect {
   width: 92%;
@@ -1890,16 +1893,16 @@ html.js-motion .hero-mark::after {
   width: 100%;
   height: auto;
   transform: scaleY(-1);
-  filter: blur(0.6px);
+  filter: brightness(0.88) contrast(0.95) blur(0.6px);
 }
 @media (min-width: 1280px) {
   .editorial .closer-mark {
     right: 72px;
-    top: 40px;
-    width: 250px;
+    top: 38px;
+    width: 220px;
   }
   .editorial .closer-reflect {
-    height: 42px;
+    height: 36px;
   }
 }
 .editorial .mail-row {
