@@ -116,6 +116,28 @@ html.js-motion .silk-sheet {
 }
 
 /* Fine film grain over the silk so the folds do not band. Sits under page content. */
+/* CookSAT's lockup is a colored panda plus a word. The strip's invert
+   filter turns that panda into a solid white disc. Paint the file as one
+   #B4B8BF mask instead, at the same opacity as the other marks.
+   See docs/DECISIONS.md (topic: anonymized-results-2026-11). */
+.trusted-cooksat {
+  background-color: #b4b8bf;
+  opacity: 0.8;
+  -webkit-mask-image: url("/logos/cooksat.svg");
+  mask-image: url("/logos/cooksat.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  mask-mode: alpha;
+}
+.trusted-cooksat img {
+  opacity: 0 !important;
+  filter: none !important;
+}
+
 .film-grain {
   background-image: url("/brand/grain.png");
   background-size: 180px 180px;
@@ -1337,14 +1359,15 @@ html.js-motion .hero-mark::after {
   padding: 22px 22px 8px;
 }
 .result-mark {
-  display: flex;
-  align-items: flex-end;
-  min-height: 2.5em;
-  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  display: block;
+  margin: 0;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7c828c;
 }
 .result-figure {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;

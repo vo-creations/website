@@ -409,12 +409,22 @@ export default function Home() {
               <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]">
                   {trustedBrands.map((brand) => (
-                    <LogoImage key={brand.name} src={`/logos/${brand.file}`} alt={`${brand.name} logo`} boxClassName="h-[18px] w-auto xl:h-[21px]" />
+                    <LogoImage
+                      key={brand.name}
+                      src={`/logos/${brand.file}`}
+                      alt={`${brand.name} logo`}
+                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                    />
                   ))}
                 </div>
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]" aria-hidden="true">
                   {trustedBrands.map((brand) => (
-                    <LogoImage key={`${brand.name}-2`} src={`/logos/${brand.file}`} alt="" boxClassName="h-[18px] w-auto xl:h-[21px]" />
+                    <LogoImage
+                      key={`${brand.name}-2`}
+                      src={`/logos/${brand.file}`}
+                      alt=""
+                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                    />
                   ))}
                 </div>
               </div>
