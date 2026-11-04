@@ -277,7 +277,15 @@ function CloserMark() {
   }, []);
   return (
     <div ref={ref} className="closer-mark">
-      <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
+      {/* DECISION 2026-11: closer uses the blog chrome VO. Hero stays the silver serif.
+          See docs/DECISIONS.md (topic: closer-chrome-2026-11). */}
+      <picture>
+        <source srcSet="/brand/closer-chrome.avif" type="image/avif" />
+        <img src="/brand/closer-chrome.webp" alt="Vo Creations" width={640} height={764} decoding="async" loading="lazy" />
+      </picture>
+      <div className="closer-reflect" aria-hidden="true">
+        <img src="/brand/closer-chrome.webp" alt="" width={640} height={764} decoding="async" />
+      </div>
     </div>
   );
 }
@@ -697,9 +705,6 @@ export default function Home() {
               <div className="ctas">
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
                   Book a 30-min fit call
-                </a>
-                <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Book a call ↗
                 </a>
               </div>
             </div>

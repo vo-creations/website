@@ -109,6 +109,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `hero-offer-mark-2026-11` — “make them remember.” stays the one large headline. “Organic UGC for AI and tech apps.” is a step down (about 54px at 1440, 32px on a phone, `#E6E8EC`, weight 500). The “biggest numbers” line is 20px in `#C9CDD4`. The hero VO is about 40% smaller and `#B8BCC4`. The public stat is “5M+ installs and signups”. `#pricing` is “What $50K+/month buys”.
 - `anonymized-results-2026-11` — `#results` and the hero proof strip use categories: AI creative platform, AI video generation app, Consumer finance app, Test prep app, Fitness social app. The finance store rank is off the card and the strip. Trusted By already had Krea, Higgsfield, Liftoff, and FOMO; CookSAT’s existing logo joined that strip. Named testimonials stay. No live-source links.
 - `silk-drift-2026-11` — the silk gradient drifts on a 36s ease-in-out alternate transform, about 2vw, under 3% of the hero width, with no seam. The grain stays still. Reduced motion leaves the sheet static. The WebGL canvas no longer covers the sheet.
+- `closer-chrome-2026-11` — the closer VO is the blog chrome mark (`closer-chrome.avif` / `.webp`, from `chrome-mono.webp`), with a short faded reflection. The hero monogram stays the matte silver serif. The closer’s only button is “Book a 30-min fit call”. The nav stays “Book a call”.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->
