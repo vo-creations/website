@@ -3476,7 +3476,7 @@ The twelve “1M+ views” placeholders were then replaced with supplied counts,
 
 “Organic UGC for AI and tech apps.” was raised to the same Inter Tight weight, tracking, and size as “make them remember.” The words were not changed. “That’s why we have the biggest numbers: 1B+ organic views.” stayed the quieter line under it. The field stayed `#0B0D12` and the type stayed `#EEF0F4`.
 
-The design lead then stepped the offer back down. “make them remember.” stayed the only large headline, about 89px at 1440. The offer is Inter Tight weight 500, `#E6E8EC`, about 54px at 1440 (`clamp(48px, 3.75vw, 58px)` from 1280px) and 32px below 768px, with 32px of space above it on a phone and 36px from 1280px. “That’s why we have the biggest numbers: 1B+ organic views.” is 20px in `#C9CDD4`. The words were not moved.
+The design lead then stepped the offer back down. “make them remember.” stayed the only large headline, about 89px at 1440. The offer is Inter Tight weight 500, `#E6E8EC`, about 54px at 1440 (`clamp(48px, 3.75vw, 58px)` from 1280px) and 32px below 768px, with 32–40px of space above it (about 33px on a phone, 36px from 1280px). “That’s why we have the biggest numbers: 1B+ organic views.” is 20px in `#C9CDD4`. The words were not moved.
 
 The desktop hero monogram was scaled to about 60% of its previous widths: 79px from 1024px, 108px from 1280px, and 118px from 1440px. It is painted `#B8BCC4` through a mask of `vo-logo.svg`, so it reads as matte silver instead of a solid white block. Nav, footer, and the closer mark were left white.
 
