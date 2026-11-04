@@ -76,9 +76,8 @@ body {
   line-height: 0.95;
 }
 
-/* Satin stand-in for DarkVeil. WebGL covers this on desktop after idle.
-   The sheet is larger than the viewport and only translates, so the drift
-   stays on the compositor. It pauses once the canvas is up. */
+/* DECISION 2026-11: the silk gradient drifts on the compositor. Grain stays
+   still. See docs/DECISIONS.md (topic: silk-drift-2026-11). */
 .silk-field {
   position: absolute;
   inset: 0;
@@ -100,11 +99,10 @@ body {
   background-repeat: no-repeat;
   will-change: transform;
 }
-html.js-motion .silk-sheet {
-  animation: silkDrift 46s ease-in-out infinite alternate;
-}
-.silk-field.is-live .silk-sheet {
-  animation: none;
+@media (prefers-reduced-motion: no-preference) {
+  .silk-sheet {
+    animation: silkDrift 24s ease-in-out infinite alternate;
+  }
 }
 @keyframes silkDrift {
   from {

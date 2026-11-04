@@ -3485,3 +3485,7 @@ The desktop hero monogram was scaled to about 60% of its previous widths: 79px f
 ## topic: testimonials-four-2026-11 — _2026-11-04_
 
 Miguel Lara had two quotes. The shorter one, “The UGC agency we trust most in the space.”, was the featured line. It was removed. His longer quote stayed: “Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.” Will Timberlake, Shotan Jakupov, and Wassim Bouchelouh were left as they were. The featured line and its byline went with that quote, so the section is four equal cards, two columns from 768px.
+
+## topic: silk-drift-2026-11 — _2026-11-04_
+
+The grainy silk gradient now keeps drifting. `.silk-sheet` runs `silkDrift` for 24s, ease-in-out, infinite, alternate: a `translate3d(-4%, -3%, 0)` and `scale(1.045)` only, so the move stays on the compositor. The gradient colors were not changed. `public/brand/grain.png` stays a still overlay. `prefers-reduced-motion: reduce` sets the sheet’s animation to none. The desktop WebGL canvas used to cover the sheet after idle and stop this drift, so `VeilBackground` no longer mounts it.
