@@ -18,6 +18,7 @@ type EmbedClip = {
   label: string;
   poster?: string;
   alt: string;
+  proof?: string;
 };
 
 type FileClip = {
@@ -39,25 +40,27 @@ const fileAlt = "A creator in a vertical video.";
 const clips: Clip[] = [
   { type: "file", src: kellyWorkClip.src, poster: kellyWorkClip.poster, label: "TikTok", alt: fileAlt, proof: kellyWorkClip.proof },
   { type: "file", src: "/videos/creator-01.mp4", poster: "/videos/creator-01.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-01.mp4") },
-  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Creator", alt: fileAlt, proof: proofFor("/videos/hero-clip-1.mp4") },
+  { type: "file", src: "/videos/hero-clip-1.mp4", poster: "/videos/hero-clip-1.jpg", label: "Instagram", alt: fileAlt, proof: proofFor("/videos/hero-clip-1.mp4") },
   { type: "file", src: "/videos/creator-02.mp4", poster: "/videos/creator-02.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-02.mp4") },
-  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Creator", alt: fileAlt, proof: proofFor("/videos/hero-clip-3.mp4") },
+  { type: "file", src: "/videos/hero-clip-3.mp4", poster: "/videos/hero-clip-3.jpg", label: "Instagram", alt: fileAlt, proof: proofFor("/videos/hero-clip-3.mp4") },
   { type: "file", src: "/videos/creator-03.mp4", poster: "/videos/creator-03.jpg", label: "Instagram", alt: fileAlt, proof: proofFor("/videos/creator-03.mp4") },
   { type: "file", src: "/videos/creator-05.mp4", poster: "/videos/creator-05.jpg", label: "TikTok", alt: fileAlt, proof: proofFor("/videos/creator-05.mp4") },
-  { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube", poster: "/creators/yt-ur.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },
-  { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok", poster: "/creators/tiktok-abgetsfit-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram", poster: "/creators/ig/DY5IDHqknw4.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok", poster: "/creators/tiktok-codewithsam4-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video." },
-  { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube", poster: "/creators/yt-k1.jpg", alt: "A creator speaking to the camera in a vertical YouTube video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram", poster: "/creators/ig/DXSp7ttDH9D.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok", poster: "/creators/tiktok-jacobw-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram", poster: "/creators/ig/DXE2rDtE2lI.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram", poster: "/creators/ig/DWtNDXqjl3I.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram", poster: "/creators/ig/DaJ2O4ON_uK.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram", poster: "/creators/ig/DTRCvh2E1Lu.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
-  { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg", alt: "A creator speaking to the camera in a vertical Instagram video." },
+  // DECISION 2026-11: these twelve counts replace the 1M+ placeholders.
+  // See docs/DECISIONS.md (topic: work-view-labels-2026-11).
+  { type: "instagram", url: "https://www.instagram.com/p/DXzgEEwRXm2/", label: "Instagram", poster: "/creators/ig/DXzgEEwRXm2.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "2.1M views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DVzqq6eEVMt/", label: "Instagram", poster: "/creators/ig/DVzqq6eEVMt.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "1.1M views" },
+  { type: "youtube", url: "https://www.youtube.com/shorts/urpg-ygRKto", label: "YouTube", poster: "/creators/yt-ur.jpg", alt: "A creator speaking to the camera in a vertical YouTube video.", proof: "591K views" },
+  { type: "tiktok", url: "https://www.tiktok.com/@abgetsfit_/video/7631809332836830477", label: "TikTok", poster: "/creators/tiktok-abgetsfit-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video.", proof: "386K views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DY5IDHqknw4/", label: "Instagram", poster: "/creators/ig/DY5IDHqknw4.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "16.8M views" },
+  { type: "tiktok", url: "https://www.tiktok.com/@codewithsam4/video/7636811053304728853", label: "TikTok", poster: "/creators/tiktok-codewithsam4-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video.", proof: "1.2M views" },
+  { type: "youtube", url: "https://www.youtube.com/shorts/k1NNFSkVAgs", label: "YouTube", poster: "/creators/yt-k1.jpg", alt: "A creator speaking to the camera in a vertical YouTube video.", proof: "549K views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXSp7ttDH9D/", label: "Instagram", poster: "/creators/ig/DXSp7ttDH9D.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "1.1M views" },
+  { type: "tiktok", url: "https://www.tiktok.com/@jacobw.health/video/7644976113755622686", label: "TikTok", poster: "/creators/tiktok-jacobw-thumb.jpg", alt: "A creator speaking to the camera in a vertical TikTok video.", proof: "6.3M views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DXE2rDtE2lI/", label: "Instagram", poster: "/creators/ig/DXE2rDtE2lI.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "845K views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DWtNDXqjl3I/", label: "Instagram", poster: "/creators/ig/DWtNDXqjl3I.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "730K views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DaJ2O4ON_uK/", label: "Instagram", poster: "/creators/ig/DaJ2O4ON_uK.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "357K views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram", poster: "/creators/ig/DTRCvh2E1Lu.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "3.7M views" },
+  { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "1.5M views" },
 ];
 
 function Player({ clip }: { clip: EmbedClip }) {
@@ -356,6 +359,7 @@ export default function WorkCarousel() {
                         </span>
                       </button>
                     )}
+                    {clip.proof && <span className="clip-proof">{clip.proof}</span>}
                   </div>
                   <figcaption>
                     <span>{clip.label}</span>

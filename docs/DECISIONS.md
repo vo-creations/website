@@ -3465,3 +3465,13 @@ The five result cards stayed one equal-width, equal-height row from 1280px. Krea
 ## topic: kelly-work-clip-2026-11 — _2026-11-03_
 
 Kelly Zhao’s Higgsfield clip was added to `#work` only, as the first card. The hero stayed the existing six, three women and three men. The source file was the Launchpoint CDN mp4 (`instagram-imported/17882111553655211-…`). It was 14.2s, so the hosted file is the first 6 seconds: H.264 High, yuv420p, 720×1280, 30fps, no audio, `+faststart`, 711KB. The poster is `public/videos/creator-kelly.jpg`, 540×960, from 0.4s. The overlay is “2.2M views”. Simran Batra was not added. No other EJ Mae Palafox clip was added.
+
+## topic: work-view-labels-2026-11 — _2026-11-04_
+
+Every `#work` card that had no view overlay gained one, in the same `.clip-proof` pill as the hosted clips. Two embeds already had an exact count in the repo: `DTRCvh2E1Lu` is the old `post-2.mp4` row and the text-on-screen essay, both “3.7M”, so the label is “3.7M views”. `DUMI_NwD0Xa` is the old `post-4.mp4` row, “1.5M”, the same count already on `hero-clip-3`, so the label is “1.5M views”. The other twelve embeds had no recorded count. The owner confirmed each is over 1M views, so those labels are “1M+ views”. The earlier hosted labels (2.2M, 4.6M, 3.8M, 4M, 1.5M, 3M, 2.4M) were left as they were. `hero-clip-1` and `hero-clip-3` had been captioned “Creator”. Their source posts are Instagram (`DTFU5uGjgqV` and `DUMI_NwD0Xa`), so those two captions now say Instagram. The hero coverflow was not changed.
+
+The twelve “1M+ views” placeholders were then replaced with supplied counts, still in the same pill: `DXzgEEwRXm2` 2.1M, `DVzqq6eEVMt` 1.1M, YouTube `urpg-ygRKto` 591K, TikTok `@abgetsfit_` 386K, `DY5IDHqknw4` 16.8M, TikTok `@codewithsam4` 1.2M, YouTube `k1NNFSkVAgs` 549K, `DXSp7ttDH9D` 1.1M, TikTok `@jacobw.health` 6.3M, `DXE2rDtE2lI` 845K, `DWtNDXqjl3I` 730K, `DaJ2O4ON_uK` 357K. `DTRCvh2E1Lu` stayed 3.7M and `DUMI_NwD0Xa` stayed 1.5M. The hosted labels were not edited.
+
+## topic: testimonials-four-2026-11 — _2026-11-04_
+
+Miguel Lara had two quotes. The shorter one, “The UGC agency we trust most in the space.”, was the featured line. It was removed. His longer quote stayed: “Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.” Will Timberlake, Shotan Jakupov, and Wassim Bouchelouh were left as they were. The featured line and its byline went with that quote, so the section is four equal cards, two columns from 768px.
