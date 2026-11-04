@@ -776,10 +776,6 @@ html.js-motion .budget-wipe.is-in {
 .editorial h1 .l1 {
   margin-top: 36px;
 }
-.editorial h1 .l1.wrap {
-  white-space: normal;
-  max-width: 11em;
-}
 .editorial h1 .l2 {
   margin-top: 0;
   margin-left: 0;
@@ -989,10 +985,8 @@ html.js-motion .hero-rise.delay-2 > span {
     width: 79px;
     justify-self: end;
     align-self: start;
-    /* Cap of the headline, not the eyebrow. The mark box includes a little
-       empty space above the silver, so this margin is larger than the
-       headline's own margin-top. */
-    margin-top: 40px;
+    /* Top of the silver meets the cap of "make them". See docs/DECISIONS.md */
+    margin-top: 43px;
   }
   .editorial .hero-mark::after {
     content: "";
@@ -1016,13 +1010,13 @@ html.js-motion .hero-rise.delay-2 > span {
 @media (min-width: 1280px) {
   .editorial .hero-mark {
     width: 108px;
-    margin-top: 30px;
+    margin-top: 34px;
   }
 }
 @media (min-width: 1440px) {
   .editorial .hero-mark {
     width: 118px;
-    margin-top: 33px;
+    margin-top: 36px;
   }
 }
 .hero-proof {

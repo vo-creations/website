@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import HeroCarousel from "@/components/HeroCarousel";
 import LogoImage from "@/components/LogoImage";
 import WorkCarousel from "@/components/WorkCarousel";
+import { useCountUp } from "@/components/useCountUp";
 import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { creatorClips } from "@/lib/creator-clips";
@@ -26,6 +27,40 @@ const edgeFadeStyle: CSSProperties = {
   maskImage: EDGE_FADE,
 };
 
+function useInView<T extends HTMLElement>(threshold = 0.3) {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+function StatCounter({
+  target,
+  trigger,
+  format,
+}: {
+  target: number;
+  trigger: boolean;
+  format: (n: number) => string;
+}) {
+  const value = useCountUp(target, trigger, 2200, { ssrFinal: true });
+  return <>{format(value)}</>;
+}
+
 // DECISION 2026-11: six clips, three women and three men, alternating.
 // Opens on creator-01. hero-clip-5 is Thienvu and stays out.
 // Proof labels live on lib/creator-clips.ts. See docs/DECISIONS.md
@@ -33,10 +68,10 @@ const edgeFadeStyle: CSSProperties = {
 const heroClips = creatorClips;
 
 const heroStats = [
-  { figure: "1B+", label: "organic views since Jan 2026" },
-  { figure: "1,000+", label: "trained creators" },
-  { figure: "10–14", label: "days to first videos" },
-  { figure: "$0.82", label: "CPMs from" },
+  { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "views generated" },
+  { target: 5, format: (n: number) => `${n}M+`, label: "installs and signups" },
+  { target: 1000, format: (n: number) => `${n}+`, label: "trained creators" },
+  { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "days to post" },
 ];
 
 const trustedBrands = [
@@ -313,12 +348,13 @@ function FounderPhoto({ children }: { children: React.ReactNode }) {
 }
 
 function HeroStats() {
+  const { ref: statsRef, inView: statsInView } = useInView<HTMLDivElement>();
   return (
-    <div className="hst">
+    <div className="hst" ref={statsRef}>
       {heroStats.map((stat) => (
         <div key={stat.label} className="st">
           <div className="sn">
-            {stat.figure}
+            <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
             <span className="ed-dot" aria-hidden="true" />
           </div>
           <div className="sl">{stat.label}</div>
@@ -346,22 +382,26 @@ export default function Home() {
         <section className="hero-shell" aria-label="Introduction">
           <div className="hero-frame">
             <div className="hmeta">
-              <span className="lab">UGC for AI and consumer apps</span>
+              <span className="lab">The in-house UGC agency backed by elite mentorship</span>
               <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
-              {/* DECISION 2026-11: buyer headline wraps in the existing lockup.
-                  See docs/DECISIONS.md (topic: build-pack-2026-11). */}
+              {/* DECISION 2026-11: one 89px headline. The offer is a step down
+                  (about 54px at 1440, 32px on a phone). See docs/DECISIONS.md
+                  (topic: hero-offer-mark-2026-11). */}
               <div className="hero-lockup">
                 <h1>
-                  <span className="hero-rise l1 wrap">
-                    <span>Your in-house UGC team, without hiring one.</span>
+                  <span className="sr-only">make them remember.</span>
+                  <span aria-hidden="true" className="hero-rise l1">
+                    <span>make them</span>
+                  </span>
+                  <span aria-hidden="true" className="hero-rise l2 delay">
+                    <span>remember.</span>
                   </span>
                 </h1>
                 <p className="hlead">
-                  <span className="hlead-rest">
-                    1B+ organic views since Jan 2026. 1,000+ vetted creators, coached by founders who went viral themselves. Your target CPM, guaranteed.
-                  </span>
+                  <span className="hlead-offer">Organic UGC for AI and tech apps.</span>
+                  <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic views.</span>
                 </p>
               </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
@@ -370,6 +410,11 @@ export default function Home() {
                 <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
               </div>
               <div className="hb">
+                <p className="hsub">
+                  1000+ vetted in-house creators.
+                  <br />
+                  We guarantee your target CPM.
+                </p>
                 <ul className="hero-proof">
                   {heroProof.map((item) => (
                     <li key={item.name}>
