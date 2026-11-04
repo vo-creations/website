@@ -23,7 +23,7 @@ const faqs: FaqItem[] = [
   {
     question: "Does 'under $3 CPM' mean every campaign lands there?",
     answer:
-      "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. We guarantee your target CPM. That is not a credit or a refund. The two results above are specific and anonymized: a consumer app at a $0.82 average CPM, and a finance app under $4. They are not a promise that the next app matches either figure.",
+      "No. Under $3 CPM is a general claim about results, and CPM means cost per 1,000 organic views. We guarantee your target CPM. That is not a credit or a refund. The two results above are specific and anonymized: a fitness social app at a $0.82 average CPM, and a consumer finance app under $4. They are not a promise that the next app matches either figure.",
   },
   {
     question: "Do videos under 1,000 views count toward your CPM?",
@@ -82,8 +82,8 @@ export default function ProgramCostPost() {
         As a general claim, this kind of distribution can price under $3 CPM. These two are Vo Creations campaign results. The clients are anonymized. They are results, not the guarantee. The guarantee is the client&apos;s own target CPM.
       </p>
       <ul className="list-disc space-y-2 pl-5">
-        <li>A consumer app: 174M+ total views at a $0.82 average CPM.</li>
-        <li>A finance app: reached #3 in the US App Store Finance category, 3M+ users, at a sub-$4 CPM.</li>
+        <li>A fitness social app: 174M+ total views at a $0.82 average CPM.</li>
+        <li>A consumer finance app: 3M+ users, at a sub-$4 CPM.</li>
       </ul>
       <p>
         Read them as outcomes of organic first: post a lot, see what people actually watch, and only put ad money behind what is already working. They are not a rate card for the next category, and they are not the app&apos;s media budget. We don&apos;t publish what a client spent.
@@ -119,7 +119,7 @@ export default function ProgramCostPost() {
         One more qualitative trap on per-video work: revisions. A cheap file with unlimited notes is often your team doing the edit in writing. Ask how many rounds are in the price, and what a new hook costs after delivery. I am not going to invent the dollar figure. The shape of the answer tells you whether you bought a finished video or a starting point.
       </p>
       <p>
-        How to read the two results without turning them into a menu: the consumer app tells you views and the average CPM together. The finance app tells you a store rank, users, and a CPM band. Neither line includes what the client spent on media, and neither is a quote for a different category. If someone sells you &quot;the same CPM,&quot; ask which of those sentences they are copying. A copied CPM with no window and no category is not a result.
+        How to read the two results without turning them into a menu: the fitness social app tells you views and the average CPM together. The consumer finance app tells you users and a CPM band. Neither line includes what the client spent on media, and neither is a quote for a different category. If someone sells you &quot;the same CPM,&quot; ask which of those sentences they are copying. A copied CPM with no window and no category is not a result.
       </p>
       <p>
         On a per-video buy, the number that matters is the license, and I won&apos;t invent a dollar range for it. Ask, in one sentence, what they may do with the file and for how long: post it on their account, run it as an ad, or both, and whether that permission ends. A price with no window is a price for keeping the video. That question is the whole negotiation. The filming is the smaller part.

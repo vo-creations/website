@@ -83,17 +83,18 @@ const trustedBrands = [
   { name: "Softr", file: "softr.png" },
   { name: "Liftoff", file: "liftoff.png" },
   { name: "fomo.family", file: "fomo.png" },
+  { name: "CookSAT", file: "cooksat.svg" },
   { name: "Makon AI", file: "makon.png" },
   { name: "Aonic", file: "aonic.png" },
 ];
 
-// DECISION 2026-11: named proof is public. Hero lines are the deck headline
-// set, in the owner's wording. See docs/DECISIONS.md (topic: named-proof-2026-11).
+// DECISION 2026-11: result names are categories. Numbers stay the deck figures.
+// See docs/DECISIONS.md (topic: anonymized-results-2026-11).
 const heroProof = [
-  { name: "Krea", line: "130M+ views in 3 months, under $3 CPM" },
-  { name: "Liftoff", line: "174M+ views in 90 days, $0.82 avg CPM" },
-  { name: "Higgsfield", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "FOMO", line: "#3 US App Store Top Free Finance" },
+  { name: "AI creative platform", line: "130M+ views in 3 months, under $3 CPM" },
+  { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
+  { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
+  { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
 const steps = [
@@ -105,42 +106,32 @@ const steps = [
 
 const results = [
   {
-    name: "Krea",
-    logo: "/logos/krea.png",
+    label: "AI creative platform",
     figure: "130M+",
     lines: ["views in 3 months", "Under $3 CPM", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
-    name: "FOMO",
-    logo: "/logos/fomo.png",
-    figure: "#3",
+    label: "Consumer finance app",
+    figure: "3M+",
     lines: [
-      "in US App Store Top Free Finance",
-      "Ahead of Cash App and Kalshi",
+      "users, up from 625K in June",
       "Aug 21, 2026",
-      "3M+ users, up from 625K in June",
       "~50% of users came from creators",
       "Sub-$4 CPM",
     ],
   },
   {
-    name: "Higgsfield",
-    logo: "/logos/higgsfield.png",
+    label: "AI video generation app",
     figure: "72M+",
     lines: ["views in 35 days", "45 creators", "~$0.96 CPM", "Jun 29 – Aug 3, 2026", "502K likes", "336K shares", "228K comments"],
   },
   {
-    name: "Liftoff",
-    logo: "/logos/liftoff.png",
+    label: "Fitness social app",
     figure: "174M+",
     lines: ["views in 90 days", "50 creators", "$0.82 average CPM", "May 1 – Jul 31, 2026", "8.5K posts", "11.4M engagements", "Zero paid ads", "4.8★ App Store, 101K ratings"],
   },
   {
-    name: "CookSAT",
-    // Official mark from cooksat.com/assets/graphics/branding/CookSAT_vector_logo.svg
-    // plus the word in their nav face (Montserrat Bold). The card's grayscale
-    // class matches the other logos. See docs/DECISIONS.md (topic: cooksat-logo-2026-11).
-    logo: "/logos/cooksat.svg",
+    label: "Test prep app",
     figure: "$968K",
     lines: [
       "ARR from organic UGC",
@@ -418,12 +409,22 @@ export default function Home() {
               <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]">
                   {trustedBrands.map((brand) => (
-                    <LogoImage key={brand.name} src={`/logos/${brand.file}`} alt={`${brand.name} logo`} boxClassName="h-[18px] w-auto xl:h-[21px]" />
+                    <LogoImage
+                      key={brand.name}
+                      src={`/logos/${brand.file}`}
+                      alt={`${brand.name} logo`}
+                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                    />
                   ))}
                 </div>
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]" aria-hidden="true">
                   {trustedBrands.map((brand) => (
-                    <LogoImage key={`${brand.name}-2`} src={`/logos/${brand.file}`} alt="" boxClassName="h-[18px] w-auto xl:h-[21px]" />
+                    <LogoImage
+                      key={`${brand.name}-2`}
+                      src={`/logos/${brand.file}`}
+                      alt=""
+                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                    />
                   ))}
                 </div>
               </div>
@@ -453,18 +454,12 @@ export default function Home() {
         <section className="band tight-top" id="results">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">Named results.</h2>
+              <h2 className="display">Results.</h2>
             </div>
             <div className="result-grid">
               {results.map((item) => (
-                <article className="result-card" key={item.name}>
-                  <h3 className="result-mark">
-                    {item.logo ? (
-                      <LogoImage src={item.logo} alt={item.name} boxClassName="h-6 w-auto grayscale" />
-                    ) : (
-                      item.name
-                    )}
-                  </h3>
+                <article className="result-card" key={item.label}>
+                  <h3 className="result-mark">{item.label}</h3>
                   <p className="result-figure">{item.figure}</p>
                   <ul>
                     {item.lines.map((line) => (
