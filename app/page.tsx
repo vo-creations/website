@@ -83,6 +83,7 @@ const trustedBrands = [
   { name: "Softr", file: "softr.png" },
   { name: "Liftoff", file: "liftoff.png" },
   { name: "fomo.family", file: "fomo.png" },
+  { name: "CookSAT", file: "cooksat.svg" },
   { name: "Makon AI", file: "makon.png" },
   { name: "Aonic", file: "aonic.png" },
 ];
