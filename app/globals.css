@@ -101,15 +101,17 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .silk-sheet {
-    animation: silkDrift 24s ease-in-out infinite alternate;
+    animation: silkDrift 36s ease-in-out infinite alternate;
   }
 }
 @keyframes silkDrift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
   }
+  /* About 2vw, under 3% of the hero width. Alternate eases out and back
+     with no jump. Scale stays tiny so the oversized sheet never shows an edge. */
   to {
-    transform: translate3d(-4%, -3%, 0) scale(1.045);
+    transform: translate3d(-2vw, -1.2vw, 0) scale(1.008);
   }
 }
 
