@@ -3493,3 +3493,7 @@ Client names and logos came off the `#results` cards and the hero proof strip. T
 ## topic: silk-drift-2026-11 — _2026-11-04_
 
 The grainy silk gradient now keeps drifting. `.silk-sheet` runs `silkDrift` for 36s, ease-in-out, infinite, alternate. The travel is `translate3d(-2vw, -1.2vw, 0)` and `scale(1.008)`, about 2% of the hero width and under 3%. The turnaround is the alternate reverse, so there is no seam. Only `transform` is animated, with `will-change: transform`. The gradient colors were not changed. `public/brand/grain.png` stays a still overlay. `prefers-reduced-motion: reduce` sets the sheet’s animation to none. The desktop WebGL canvas used to cover the sheet after idle and stop this drift, so `VeilBackground` no longer mounts it.
+
+## topic: closer-chrome-2026-11 — _2026-11-04_
+
+The large white serif VO in the closer (“Ready to scale?”) was replaced with the blog-cover chrome mark. The source is the existing `public/brand/chrome-mono.webp`. The closer files are a 640×764 encode with alpha: `public/brand/closer-chrome.webp` (46KB) and `public/brand/closer-chrome.avif` (22KB). The hero monogram stayed the matte silver mask of `vo-logo.svg`. The closer box stayed 96px wide, and 250px from 1280px, in the same corner. A short flipped copy of the mark sits under it, masked so it fades out. The image alt is “Vo Creations”. The reflection is `aria-hidden`.
