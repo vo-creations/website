@@ -104,7 +104,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `clip-proof-launchpoint-2026-11` — verified view labels: creator-01 4.6M, creator-02 4M, creator-03 3M, creator-05 2.4M, hero-clip-1 3.8M, hero-clip-3 1.5M. Every `#work` platform embed stays unlabeled.
 - `results-card-rows-2026-11` — Krea, Higgsfield, and Liftoff cards gained the deck’s dates and engagement rows. FOMO says “Top Free Finance” and “Sub-$4 CPM”. CookSAT adds “63% of views from one creator”. The five cards stay one equal-height row from 1280px.
 - `kelly-work-clip-2026-11` — `#work` leads with Kelly Zhao’s Higgsfield clip (`creator-kelly`, 6s, under 1MB, poster `creator-kelly.jpg`) labeled 2.2M views. She is not in the hero. Simran Batra was not added.
-- `work-view-labels-2026-11` — every `#work` card has a view label. Embeds with a recorded count use it (`DTRCvh2E1Lu` 3.7M, `DUMI_NwD0Xa` 1.5M). The rest say “1M+ views”. `hero-clip-1` and `hero-clip-3` are captioned Instagram. Existing labels stay.
+- `work-view-labels-2026-11` — every `#work` card has a view label. `DTRCvh2E1Lu` is 3.7M and `DUMI_NwD0Xa` is 1.5M. The other twelve embeds use the supplied counts (2.1M, 1.1M, 591K, 386K, 16.8M, 1.2M, 549K, 1.1M, 6.3M, 845K, 730K, 357K). `hero-clip-1` and `hero-clip-3` are captioned Instagram. Existing hosted labels stay.
 - `testimonials-four-2026-11` — Miguel Lara’s shorter quote was removed. Four quotes remain, one per person, in a two-column grid from 768px.
 
 ## Known-broken
