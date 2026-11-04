@@ -86,11 +86,7 @@ body {
 }
 .silk-sheet {
   position: absolute;
-  /* Bleed covers translate3d(-5vw, -3vw) plus scale(1.03) on desktop and phones. */
-  left: -22%;
-  top: -24%;
-  width: 154%;
-  height: 160%;
+  inset: -15%;
   background-color: #0b0d12;
   background-image:
     radial-gradient(ellipse 58% 40% at 74% 26%, rgba(238, 240, 244, 0.32), transparent 58%),
@@ -100,17 +96,36 @@ body {
   background-repeat: no-repeat;
   will-change: transform;
 }
+.silk-sheen {
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 45% 35% at 50% 50%, rgba(200, 206, 216, 0.16), transparent 70%);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
 @media (prefers-reduced-motion: no-preference) {
   .silk-sheet {
-    animation: silkDrift 24s ease-in-out infinite alternate;
+    animation: silkA 14s ease-in-out infinite alternate;
+  }
+  .silk-sheen {
+    animation: sheen 9s ease-in-out infinite alternate;
   }
 }
-@keyframes silkDrift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
+@keyframes silkA {
+  0% {
+    transform: translate3d(-6vw, -4vw, 0) scale(1.08) rotate(-2deg);
   }
-  to {
-    transform: translate3d(-5vw, -3vw, 0) scale(1.03);
+  100% {
+    transform: translate3d(6vw, 3vw, 0) scale(1.14) rotate(2deg);
+  }
+}
+@keyframes sheen {
+  0% {
+    transform: translate3d(-18vw, 8vw, 0);
+  }
+  100% {
+    transform: translate3d(18vw, -6vw, 0);
   }
 }
 
@@ -495,6 +510,7 @@ html.js-motion .budget-wipe.is-in {
   .animate-scroll-slow,
   .animate-scroll-logos,
   .silk-sheet,
+  .silk-sheen,
   .hero-mark::after,
   .hero-mark img {
     animation: none !important;

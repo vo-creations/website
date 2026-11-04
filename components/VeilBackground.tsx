@@ -5,6 +5,7 @@ export default function VeilBackground() {
   return (
     <div className="silk-field">
       <div className="silk-sheet" />
+      <div className="silk-sheen" aria-hidden="true" />
     </div>
   );
 }
