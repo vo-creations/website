@@ -984,12 +984,14 @@ html.js-motion .hero-rise.delay-2 > span {
     position: relative;
     grid-column: 2;
     grid-row: 1;
-    width: 82.53px;
-    height: 96px;
+    /* Spans the cap of "make them" through the baseline of "remember."
+       1.638em is the box; the silver itself fills that as 1.614em. */
+    font-size: 76px;
+    width: calc(1.638em * 2835 / 3297.751756);
+    height: 1.638em;
     justify-self: end;
     align-self: start;
-    /* 96px tall, flush right, top level with the cap of "make them". */
-    margin-top: 43px;
+    margin-top: calc(36px + 0.092em);
   }
   .editorial .hero-mark::after {
     content: "";
@@ -1012,12 +1014,8 @@ html.js-motion .hero-rise.delay-2 > span {
 }
 @media (min-width: 1280px) {
   .editorial .hero-mark {
-    margin-top: 34px;
-  }
-}
-@media (min-width: 1440px) {
-  .editorial .hero-mark {
-    margin-top: 36px;
+    font-size: clamp(68px, 6.2vw, 96px);
+    margin-top: calc(28px + 0.092em);
   }
 }
 .hero-proof {
