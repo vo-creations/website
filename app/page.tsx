@@ -706,9 +706,6 @@ export default function Home() {
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
                   Book a 30-min fit call
                 </a>
-                <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Book a call ↗
-                </a>
               </div>
             </div>
           </div>
