@@ -90,10 +90,10 @@ const trustedBrands = [
 // DECISION 2026-11: result names are categories. Numbers stay the deck figures.
 // See docs/DECISIONS.md (topic: anonymized-results-2026-11).
 const heroProof = [
-  { name: "AI image and video platform", line: "130M+ views in 3 months, under $3 CPM" },
-  { name: "Gym ranking app", line: "174M+ views in 90 days, $0.82 avg CPM" },
-  { name: "AI video platform", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "Consumer finance app", line: "#3 US App Store Top Free Finance" },
+  { name: "AI creative platform", line: "130M+ views in 3 months, under $3 CPM" },
+  { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
+  { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
+  { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
 const steps = [
@@ -105,34 +105,32 @@ const steps = [
 
 const results = [
   {
-    label: "AI image and video platform",
+    label: "AI creative platform",
     figure: "130M+",
     lines: ["views in 3 months", "Under $3 CPM", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
     label: "Consumer finance app",
-    figure: "#3",
+    figure: "3M+",
     lines: [
-      "in US App Store Top Free Finance",
-      "Ahead of Cash App and Kalshi",
+      "users, up from 625K in June",
       "Aug 21, 2026",
-      "3M+ users, up from 625K in June",
       "~50% of users came from creators",
       "Sub-$4 CPM",
     ],
   },
   {
-    label: "AI video platform",
+    label: "AI video generation app",
     figure: "72M+",
     lines: ["views in 35 days", "45 creators", "~$0.96 CPM", "Jun 29 – Aug 3, 2026", "502K likes", "336K shares", "228K comments"],
   },
   {
-    label: "Gym ranking app",
+    label: "Fitness social app",
     figure: "174M+",
     lines: ["views in 90 days", "50 creators", "$0.82 average CPM", "May 1 – Jul 31, 2026", "8.5K posts", "11.4M engagements", "Zero paid ads", "4.8★ App Store, 101K ratings"],
   },
   {
-    label: "SAT prep app",
+    label: "Test prep app",
     figure: "$968K",
     lines: [
       "ARR from organic UGC",

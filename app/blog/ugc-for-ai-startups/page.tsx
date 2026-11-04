@@ -106,7 +106,7 @@ export default function UgcForAiStartupsPost() {
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>An AI app: 19.4M views in 2 weeks.</li>
-        <li>An AI app: 130M+ views in 3 months.</li>
+        <li>An AI creative platform: 130M+ views in 3 months.</li>
       </ul>
       <p>
         Two weeks is one opening that people finished. Three months is that opening, recast, with the comments telling you the next one. Post first, then put money only behind what people already watched. The format depends on whether the first sentence is a situation someone has lived.
