@@ -128,7 +128,7 @@ export default function Footer({ tone = "dark" }: { tone?: "dark" | "paper" | "e
               Ready to scale?
             </div>
             <a
-              href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+              href="https://calendly.com/vocreations/vo-creations-agency-discovery-call"
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex min-h-11 items-center gap-2 rounded-full px-8 py-3.5 text-[15px] font-semibold transition-transform hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${paper ? "bg-[#F2F0EB] text-[#0B0B0C] focus-visible:outline-[#F2F0EB]" : "bg-white text-black focus-visible:outline-white"}`}

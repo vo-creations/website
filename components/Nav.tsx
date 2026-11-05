@@ -37,7 +37,7 @@ function EditorialNav() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <a href="https://calendar.app.google/8x72A8nxr3gQpVfx7" target="_blank" rel="noopener noreferrer" className="btn-talk whitespace-nowrap">
+          <a href="https://calendly.com/vocreations/vo-creations-agency-discovery-call" target="_blank" rel="noopener noreferrer" className="btn-talk whitespace-nowrap">
             Book a call
           </a>
           <button
@@ -116,7 +116,7 @@ function BarNav() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://calendar.app.google/8x72A8nxr3gQpVfx7"
+            href="https://calendly.com/vocreations/vo-creations-agency-discovery-call"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-[15px] font-semibold text-black transition-transform hover:-translate-y-px md:px-6"
