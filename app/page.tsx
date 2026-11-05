@@ -18,7 +18,7 @@ import { CONTACT_EMAILS } from "@/lib/site";
 // one beside the hero lockup from 1024px. See docs/DECISIONS.md
 // (topic: silk-monogram-2026-11).
 
-const BOOKING = "https://calendar.app.google/8x72A8nxr3gQpVfx7";
+const BOOKING = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
 
 const EDGE_FADE =
   "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)";

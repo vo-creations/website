@@ -31,5 +31,5 @@
 - https://www.instagram.com/codingwithvincent/
 
 ## Links
-- **Calendar (Blog CTA):** https://calendar.app.google/8x72A8nxr3gQpVfx7
-- **Calendar (Main site):** https://calendar.app.google/8x72A8nxr3gQpVfx7
+- **Calendar (Blog CTA):** https://calendly.com/vocreations/vo-creations-agency-discovery-call
+- **Calendar (Main site):** https://calendly.com/vocreations/vo-creations-agency-discovery-call

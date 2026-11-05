@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const BOOKING_URL = "https://calendar.app.google/8x72A8nxr3gQpVfx7";
+export const BOOKING_URL = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
 
 export const DEFAULT_OG_IMAGE = {
   src: "/og-image.png",

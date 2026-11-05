@@ -8,7 +8,7 @@ export default function CTABlock({
   heading = "1B+ views. Your target CPM, guaranteed.",
   sub = "Campaigns start at $50K+ a month. First posts go live in 10–14 days.",
   buttonText = "Book a call",
-  href = "https://calendar.app.google/8x72A8nxr3gQpVfx7",
+  href = "https://calendly.com/vocreations/vo-creations-agency-discovery-call",
   paper = false,
 }: {
   heading?: string;
