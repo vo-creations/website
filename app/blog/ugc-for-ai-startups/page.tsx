@@ -106,10 +106,10 @@ export default function UgcForAiStartupsPost() {
       </p>
       <ul className="list-disc space-y-2 pl-5">
         <li>An AI video app: 72M+ views in 35 days, about a $0.96 CPM.</li>
-        <li>An AI creative platform: 130M+ views in 3 months.</li>
+        <li>An AI creative platform: 130M+ views in 12 weeks.</li>
       </ul>
       <p>
-        Five weeks is one opening that people finished. Three months is that opening, recast, with the comments telling you the next one. Post first, then put money only behind what people already watched. The format depends on whether the first sentence is a situation someone has lived.
+        Five weeks is one opening that people finished. Twelve weeks is that opening, recast, with the comments telling you the next one. Post first, then put money only behind what people already watched. The format depends on whether the first sentence is a situation someone has lived.
       </p>
       <p>
         In the edit, cut until the freeze, the bug, or the clock arrives before you breathe. If the creator explains the category first, the line is already dead. Leave one product moment and get out. A second feature is how a confession turns back into a tour.

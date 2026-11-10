@@ -253,15 +253,13 @@ export default function Article({
 
           <section className="blog-cta">
             <h2>See the program, then the results.</h2>
-            <p>
-              Campaigns start at $50K+ a month, all-inclusive. Named case studies stay behind a call. Book one and we will walk through them.
-            </p>
+            <p>Campaigns start at $50K+ a month, all-inclusive.</p>
             <div className="ctas">
               <a className="btn-book" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 Book a call ↗
               </a>
-              <Link href="/#results" className="btn-line">
-                Request the case studies
+              <Link href="/case-studies" className="btn-line">
+                Our work
               </Link>
             </div>
           </section>

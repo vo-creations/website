@@ -38,6 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly" as const,
       priority: 0.7,
     })),
+    {
+      url: `${base}/case-studies`,
+      lastModified: fromIso(latest(caseStudies.map((study) => study.date))),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     ...caseStudies.map((study) => ({
       url: `${base}/case-studies/${study.slug}`,
       lastModified: fromIso(study.date),

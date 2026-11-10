@@ -62,7 +62,7 @@ export default function UgcAgencyPricingPage() {
           <Link className={link} href="/case-studies/higgsfield">Higgsfield</Link>: 72M+ views in 35 days at about a $0.96 CPM, with 45 creators.
         </li>
         <li>
-          <Link className={link} href="/case-studies/krea">Krea</Link>: 130M+ views in 3 months at under a $3 CPM, and still growing.
+          <Link className={link} href="/case-studies/krea">Krea</Link>: 130M+ views in 12 weeks at under a $3 CPM, and still growing.
         </li>
         <li>
           <Link className={link} href="/case-studies/fomo">FOMO</Link>: went from 625K to 3M+ users between June and August 2026 at under a $4 CPM, and reached #3 in US App Store Top Free Finance.

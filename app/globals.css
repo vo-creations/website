@@ -77,12 +77,14 @@ body {
 }
 
 /* DECISION 2026-11: the silk gradient drifts on the compositor. Grain stays
-   still. See docs/DECISIONS.md (topic: silk-drift-2026-11). */
+   still. The field is absolute and as tall as the page, so a tall section
+   does not fall off onto flat #0B0D12. See docs/DECISIONS.md
+   (topic: silk-drift-2026-11, case-study-wall-2026-11). */
 .silk-field {
-  position: fixed;
+  position: absolute;
   inset: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   background: #0b0d12;
 }
@@ -2281,11 +2283,240 @@ html.js-motion .hero-mark::after {
   display: inline-flex;
   margin-top: 16px;
 }
+.case-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0 0 8px;
+}
+.case-stats div {
+  border-top: 1px solid #23272f;
+  padding: 16px 0 18px;
+}
+.case-stats dt {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a9099;
+}
+.case-stats dd {
+  margin: 8px 0 0;
+  font-size: 18px;
+  line-height: 1.35;
+  color: #e6e8ec;
+}
+.case-stat-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #8a8f98;
+}
+@media (min-width: 1024px) {
+  .case-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 28px;
+  }
+}
+.editorial.case-study .case-clip-grid {
+  display: flex;
+  justify-content: center;
+}
+.editorial.case-study .case-clip-grid .wk {
+  width: min(280px, 100%);
+}
+.editorial.case-study .case-clip-grid figcaption {
+  justify-content: center;
+  border-top: 0;
+  padding-top: 8px;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #8a8f98;
+}
+.work-index {
+  padding: 48px 0 192px;
+}
+.work-index h1.display {
+  margin-top: 18px;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.work-dek {
+  margin-top: 18px;
+  max-width: 36em;
+}
+.work-wall {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 48px;
+}
+.work-wall::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  /* DECISION 2026-11: #23272f matched the dark silk, so the line vanished
+     on the left. Use the light hair. See docs/DECISIONS.md. */
+  background: var(--hair);
+  pointer-events: none;
+}
+.work-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 36px 0 32px;
+  border-top: 1px solid var(--hair);
+  color: inherit;
+  text-decoration: none;
+}
+.work-logo {
+  width: auto;
+}
+.work-logo.is-fomo { height: 25px; }
+.work-logo.is-liftoff { height: 19px; }
+.work-logo.is-higgsfield { height: 24px; }
+.work-logo.is-krea { height: 26px; }
+.work-logo img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.8;
+}
+.work-more {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #8a8f98;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+.work-arrow {
+  display: inline-block;
+  margin-left: 6px;
+  transition: transform 160ms ease;
+}
+.work-card:hover .work-arrow {
+  transform: translateX(3px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-arrow { transition: none; }
+}
+.work-figure {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #eef0f4;
+}
+.work-outcome {
+  max-width: 22em;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.45;
+}
+@media (min-width: 768px) {
+  .work-wall {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+  }
+  .work-card {
+    border-top: 0;
+  }
+  .work-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + 64px);
+    height: 1px;
+    background: var(--hair);
+  }
+  .work-card:nth-child(even)::before {
+    left: -64px;
+  }
+}
+.how-list {
+  margin-top: 36px;
+  border-top: 1px solid #23272f;
+}
+.how-step {
+  --how-title: clamp(26px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 28px 0;
+  border-bottom: 1px solid #23272f;
+}
+.how-step span {
+  font-size: 12px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0;
+  color: #8a8f98;
+}
+.how-step h3 {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-size: var(--how-title);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.how-step p {
+  max-width: none;
+  margin-top: 8px;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.55;
+}
+@media (min-width: 768px) {
+  .how-step {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 28px;
+    row-gap: 0;
+    align-items: start;
+  }
+  .how-step span {
+    margin-top: -2px;
+  }
+  .how-step p {
+    max-width: 62ch;
+  }
+}
+.how-pack {
+  margin-top: 28px;
+  max-width: 36em;
+  color: #e6e8ec;
+  font-size: 18px;
+  line-height: 1.45;
+}
 .editorial.case-study .case-body {
-  max-width: 68ch;
+  max-width: none;
   font-size: 19px;
   line-height: 1.7;
   color: #c9cdd4;
+}
+.editorial.case-study .case-body > *:not(.case-stats):not(.case-clip-grid) {
+  max-width: 68ch;
 }
 .editorial.case-study .case-body strong {
   font-weight: 600;

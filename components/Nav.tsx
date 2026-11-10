@@ -7,6 +7,7 @@ import BrandLockup from "@/components/BrandLockup";
 
 const navLinks = [
   { href: "/#results", label: "Results" },
+  { href: "/case-studies", label: "Our work" },
   { href: "/#team", label: "Our Team" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
