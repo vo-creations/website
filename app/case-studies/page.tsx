@@ -28,7 +28,7 @@ export default function CaseStudyIndex() {
           <p className="lab">Case studies</p>
           <h1 className="display">Our work.</h1>
           <p className="lede work-dek">
-            One number and one outcome from each named campaign. Homepage results stay by category.
+            One number and one outcome from each named campaign.
           </p>
           <div className="work-wall">
             {caseStudies.map((study) => (
