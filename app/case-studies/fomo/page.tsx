@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudy from "@/components/blog/CaseStudy";
 import { BOOKING_URL } from "@/lib/blog/posts";
-import { caseStudyBySlug } from "@/lib/case-studies";
+import { caseStudyBySlug, caseStudyOgImage } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("fomo");
 const link = "text-text underline decoration-white/30 underline-offset-4";
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: study.description,
     url: `https://vocreations.com/case-studies/${study.slug}`,
     type: "article",
+    images: [caseStudyOgImage],
   },
 };
 
@@ -57,6 +58,7 @@ export default function FomoCaseStudy() {
         On August 21, 2026, FOMO ranked #3 in the US App Store&apos;s Top Free Finance chart. That put it behind Capital One and PayPal, and ahead of Cash App (#4), Venmo (#5) and Kalshi (#6).
       </p>
       <h2>What we did</h2>
+      {/* [NEED: Daniel to confirm FOMO creator wording] "inside FOMO's program" vs "all of them ours" */}
       <p>
         FOMO already had a creator program. We trained and coached the creators inside it: scripts, briefing, weekly coaching, and doubling down on the videos that worked.
       </p>

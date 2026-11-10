@@ -2281,6 +2281,136 @@ html.js-motion .hero-mark::after {
   display: inline-flex;
   margin-top: 16px;
 }
+.case-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 28px;
+  margin: 0 0 8px;
+}
+.case-stats div {
+  border-top: 1px solid #23272f;
+  padding: 16px 0 18px;
+}
+.case-stats dt {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a9099;
+}
+.case-stats dd {
+  margin: 8px 0 0;
+  font-size: 18px;
+  line-height: 1.35;
+  color: #e6e8ec;
+}
+@media (min-width: 768px) {
+  .case-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.case-clip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
+  gap: 18px;
+}
+.case-clip-grid .wk {
+  width: 100%;
+}
+.work-index {
+  padding: 48px 0 96px;
+}
+.work-index h1.display {
+  margin-top: 18px;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.work-dek {
+  margin-top: 18px;
+  max-width: 36em;
+}
+.work-wall {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 48px;
+}
+.work-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 36px 0 32px;
+  border-top: 1px solid #23272f;
+  color: inherit;
+  text-decoration: none;
+}
+.work-logo img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.8;
+}
+.work-figure {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #eef0f4;
+}
+.work-outcome {
+  max-width: 22em;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.45;
+}
+@media (min-width: 768px) {
+  .work-wall {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+  }
+}
+.how-list {
+  margin-top: 36px;
+  border-top: 1px solid #23272f;
+}
+.how-step {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px 20px;
+  padding: 28px 0;
+  border-bottom: 1px solid #23272f;
+}
+.how-step span {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a9099;
+}
+.how-step h3 {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.how-step p {
+  grid-column: 2;
+  max-width: 62ch;
+  margin-top: 8px;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.how-pack {
+  margin-top: 28px;
+  max-width: 36em;
+  color: #e6e8ec;
+  font-size: 18px;
+  line-height: 1.45;
+}
 .editorial.case-study .case-body {
   max-width: 68ch;
   font-size: 19px;

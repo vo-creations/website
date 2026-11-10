@@ -91,24 +91,25 @@ const trustedBrands = [
 // DECISION 2026-11: result names are categories. Numbers stay the deck figures.
 // See docs/DECISIONS.md (topic: anonymized-results-2026-11).
 const heroProof = [
-  { name: "AI creative platform", line: "130M+ views in 3 months, under $3 CPM" },
+  { name: "AI creative platform", line: "130M+ views in 12 weeks, under $3 CPM" },
   { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
   { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
   { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
+// [NEED: confirm "dedicated accounts" wording. The site says creators own their accounts.]
 const steps = [
-  { num: "Day 0", title: "Scripts", desc: "We write the scripts." },
-  { num: "~48h", title: "Brief", desc: "Creators briefed." },
-  { num: "10–14 days", title: "Live", desc: "Accounts warmed up, first videos live." },
-  { num: "Every week", title: "Double down", desc: "Double down on the top videos." },
+  { num: "01", title: "Brief", desc: "We write the scripts on day 0. Creators are briefed within about 48 hours." },
+  { num: "02", title: "Training", desc: "Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week." },
+  { num: "03", title: "Posting", desc: "Creators post organically on TikTok, Instagram, YouTube, Facebook, and Snapchat. Creators own their accounts." },
+  { num: "04", title: "Reporting", desc: "Every client gets a daily report in a shared Slack channel. Each week we double down on the top videos." },
 ];
 
 const results = [
   {
     label: "AI creative platform",
     figure: "130M+",
-    lines: ["views in 3 months", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
+    lines: ["views in 12 weeks", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
   },
   {
     label: "Consumer finance app",
@@ -382,11 +383,10 @@ export default function Home() {
                   (topic: hero-offer-mark-2026-11). */}
               <div className="hero-lockup">
                 <h1>
-                  <span className="sr-only">make them remember.</span>
-                  <span aria-hidden="true" className="hero-rise l1">
+                  <span className="hero-rise l1">
                     <span>make them</span>
                   </span>
-                  <span aria-hidden="true" className="hero-rise l2 delay">
+                  <span className="hero-rise l2 delay">
                     <span>remember.</span>
                   </span>
                 </h1>
@@ -485,33 +485,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="band mid-top" id="process">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">From signed to posting in 10–14 days.</h2>
-            </div>
-            <div className="sps">
-              {steps.map((step, index) => (
-                <Reveal key={step.num} className="sp" delay={index * 70}>
-                  <span className="spw">{step.num}</span>
-                  <span className="spn">{step.title}</span>
-                  <span className="spd">{step.desc}</span>
-                </Reveal>
-              ))}
-            </div>
-            <div className="pcols mt-12">
-              <div>
-                <span className="lab">You give us</span>
-                <p>An onboarding survey, free product, promo codes or app access, custom tracking URLs, and ManyChat reimbursements.</p>
-              </div>
-              <div>
-                <span className="lab">We handle</span>
-                <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="band tight-top" id="results">
           <div className="ed-wrap">
             <div className="sh">
@@ -545,6 +518,36 @@ export default function Home() {
               <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
                 Book a call ↗
               </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="band" id="process">
+          <div className="ed-wrap">
+            <div className="sh">
+              <h2 className="display">How it works.</h2>
+            </div>
+            <div className="how-list">
+              {steps.map((step) => (
+                <article key={step.num} className="how-step">
+                  <span>{step.num}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p className="how-pack">Campaigns start at $50K+ a month. First posts go live in 10–14 days.</p>
+            <div className="pcols mt-12">
+              <div>
+                <span className="lab">You give us</span>
+                <p>An onboarding survey, free product, promo codes or app access, custom tracking URLs, and ManyChat reimbursements.</p>
+              </div>
+              <div>
+                <span className="lab">We handle</span>
+                <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
+              </div>
             </div>
           </div>
         </section>

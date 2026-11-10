@@ -2,6 +2,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { authors, formatBlogDate } from "@/lib/blog/posts";
+import { caseStudyBySlug } from "@/lib/case-studies";
 
 const PUBLISHED = "2026-11-03";
 
@@ -88,7 +89,42 @@ export default function CaseStudy({
             <span> · {date}</span>
           </p>
           <div className="case-body">
+            <dl className="case-stats">
+              {caseStudyBySlug(slug).stats.map((stat) => (
+                <div key={stat.label}>
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
             {children}
+            {caseStudyBySlug(slug).clips.length > 0 ? (
+              <>
+                <h2>Creator work</h2>
+                <div className="case-clip-grid">
+                  {caseStudyBySlug(slug).clips.map((clip) => (
+                    <figure key={clip.src} className="wk">
+                      <div className="wi">
+                        <img src={clip.poster} alt="" width={540} height={960} />
+                        <video
+                          className="absolute inset-0 h-full w-full object-cover"
+                          controls
+                          playsInline
+                          preload="none"
+                          poster={clip.poster}
+                        >
+                          <source src={clip.src} type="video/mp4" />
+                        </video>
+                        <span className="clip-proof">{clip.proof}</span>
+                      </div>
+                      <figcaption>
+                        <span>{clip.label}</span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </>
+            ) : null}
           </div>
         </article>
       </main>

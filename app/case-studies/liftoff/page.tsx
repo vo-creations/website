@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudy from "@/components/blog/CaseStudy";
 import { BOOKING_URL } from "@/lib/blog/posts";
-import { caseStudyBySlug } from "@/lib/case-studies";
+import { caseStudyBySlug, caseStudyOgImage } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("liftoff");
 const link = "text-text underline decoration-white/30 underline-offset-4";
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: study.description,
     url: `https://vocreations.com/case-studies/${study.slug}`,
     type: "article",
+    images: [caseStudyOgImage],
   },
 };
 

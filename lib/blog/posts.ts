@@ -94,7 +94,7 @@ export const posts: BlogPostMeta[] = [
     directAnswer:
       "UGC for an AI startup is a trained creator telling a story the user has already lived, with the product inside that story. A product demo starts at the interface and asks a stranger to care about a screen. Talking-head video earns the pause first. The demo still belongs, as one moment inside the story, not as the whole video.",
     datePublished: "2026-03-18",
-    dateModified: "2026-03-18",
+    dateModified: "2026-11-03",
     authorId: "thienvu",
     readingMinutes: 6,
     related: [

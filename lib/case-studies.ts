@@ -1,31 +1,103 @@
+export type CaseStat = { label: string; value: string };
+export type CaseClip = {
+  src: string;
+  poster: string;
+  label: string;
+  proof: string;
+};
+
 export const caseStudies = [
   {
     slug: "fomo",
+    name: "FOMO",
     title: "FOMO: #3 in US App Store Top Free Finance",
     description:
       "Trained creators helped FOMO grow from 625K to 3M+ users and reach #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi, at under $4 CPM.",
     date: "2026-11-03",
+    logo: "/logos/fomo.png",
+    figure: "3M+",
+    outcome: "users, up from 625K, under $4 CPM",
+    // [NEED: client clips + handles]
+    clips: [] as CaseClip[],
+    stats: [
+      { label: "Client", value: "FOMO" },
+      { label: "Category", value: "Consumer finance app" },
+      { label: "Duration", value: "June–August 2026" },
+      { label: "Business outcome", value: "625K to 3M+ users" },
+      { label: "CPM", value: "Under $4" },
+    ] as CaseStat[],
   },
   {
     slug: "liftoff",
+    name: "Liftoff",
     title: "Liftoff: 174M+ views in 90 days at a $0.82 CPM",
     description:
       "50 Vo Creations creators drove 174M+ organic views for Liftoff in 90 days (May 1–Jul 31, 2026) at a $0.82 CPM, with zero paid ads.",
     date: "2026-11-03",
+    logo: "/logos/liftoff.png",
+    figure: "174M+",
+    outcome: "$0.82 CPM in 90 days, zero paid ads",
+    // [NEED: client clips + handles]
+    clips: [] as CaseClip[],
+    stats: [
+      { label: "Client", value: "Liftoff" },
+      { label: "Category", value: "Fitness app" },
+      { label: "Duration", value: "May 1 – July 31, 2026" },
+      { label: "Creators", value: "50" },
+      { label: "Total views", value: "174M+" },
+      { label: "Business outcome", value: "Zero paid ads" },
+      { label: "CPM", value: "$0.82" },
+    ] as CaseStat[],
   },
   {
     slug: "higgsfield",
+    name: "Higgsfield",
     title: "Higgsfield: 72M+ views in 35 days",
     description:
       "45 Vo Creations creators drove 72M+ organic views for Higgsfield's AI video app in 35 days (Jun 29–Aug 3, 2026) at about $0.96 CPM.",
     date: "2026-11-03",
+    logo: "/logos/higgsfield.png",
+    figure: "72M+",
+    outcome: "~$0.96 CPM in 35 days",
+    // Kelly Zhao’s Higgsfield clip from Creator work. No handle is on file.
+    clips: [
+      {
+        src: "/videos/creator-kelly.mp4",
+        poster: "/videos/creator-kelly.jpg",
+        label: "TikTok",
+        proof: "2.2M views",
+      },
+    ] as CaseClip[],
+    stats: [
+      { label: "Client", value: "Higgsfield" },
+      { label: "Category", value: "AI video app" },
+      { label: "Duration", value: "June 29 – August 3, 2026" },
+      { label: "Creators", value: "45" },
+      { label: "Total views", value: "72M+" },
+      { label: "Business outcome", value: "1.1M engagements, 336K+ shares" },
+      { label: "CPM", value: "~$0.96" },
+    ] as CaseStat[],
   },
   {
     slug: "krea",
-    title: "Krea: 130M+ views in 3 months, and still growing",
+    name: "Krea",
+    title: "Krea: 130M+ views in 12 weeks, and still growing",
     description:
-      "Vo Creations creators drove 130M+ organic views for Krea's AI creative platform in 3 months at under $3 CPM, with 4.7M engagements, and it's still growing.",
+      "Vo Creations creators drove 130M+ organic views for Krea's AI creative platform in 12 weeks at under $3 CPM, with 4.7M engagements, and it's still growing.",
     date: "2026-11-03",
+    logo: "/logos/krea.png",
+    figure: "130M+",
+    outcome: "under $3 CPM in 12 weeks, still growing",
+    // [NEED: client clips + handles]
+    clips: [] as CaseClip[],
+    stats: [
+      { label: "Client", value: "Krea" },
+      { label: "Category", value: "AI creative platform" },
+      { label: "Duration", value: "Jul 28 – Oct 18, 2026" },
+      { label: "Total views", value: "130M+" },
+      { label: "Business outcome", value: "4.7M engagements, still growing" },
+      { label: "CPM", value: "Under $3" },
+    ] as CaseStat[],
   },
 ] as const;
 
@@ -34,3 +106,10 @@ export function caseStudyBySlug(slug: string) {
   if (!study) throw new Error(`Unknown case study: ${slug}`);
   return study;
 }
+
+export const caseStudyOgImage = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: "Vo Creations",
+};

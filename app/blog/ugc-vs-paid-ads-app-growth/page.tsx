@@ -47,7 +47,7 @@ export default function UgcVsPaidAdsPage() {
           <Link className={link} href="/case-studies/higgsfield">Higgsfield</Link>: 72M+ views in 35 days at about a $0.96 CPM.
         </li>
         <li>
-          <Link className={link} href="/case-studies/krea">Krea</Link>: past 130M+ views in 3 months at under $3, and still growing.
+          <Link className={link} href="/case-studies/krea">Krea</Link>: past 130M+ views in 12 weeks at under $3, and still growing.
         </li>
       </ul>
       <p>Run the same arithmetic on your budget. At a $1 CPM, $50K buys 50M organic views. At $4, it buys 12.5M.</p>

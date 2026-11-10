@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudy from "@/components/blog/CaseStudy";
 import { BOOKING_URL } from "@/lib/blog/posts";
-import { caseStudyBySlug } from "@/lib/case-studies";
+import { caseStudyBySlug, caseStudyOgImage } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("krea");
 const link = "text-text underline decoration-white/30 underline-offset-4";
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: study.description,
     url: `https://vocreations.com/case-studies/${study.slug}`,
     type: "article",
+    images: [caseStudyOgImage],
   },
 };
 
@@ -26,7 +27,7 @@ export default function KreaCaseStudy() {
       <p>
         <strong>Client:</strong> Krea, an AI creative platform
         <br />
-        <strong>Window:</strong> about 3 months; the dashboard shows Jul 28 – Oct 18
+        <strong>Window:</strong> 12 weeks; the dashboard shows Jul 28 – Oct 18
         <br />
         <strong>What we did:</strong> ran an organic creator campaign that&apos;s still running
       </p>
@@ -55,7 +56,7 @@ export default function KreaCaseStudy() {
       </div>
       <h2>What we did</h2>
       <p>
-        We wrote the scripts, coached the creators, and every week put more behind the videos and creators that were working. Three months in, daily views were still climbing.
+        We wrote the scripts, coached the creators, and every week put more behind the videos and creators that were working. Twelve weeks in, daily views were still climbing.
       </p>
       <h2>Why it worked</h2>
       <p>

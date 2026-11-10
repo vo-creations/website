@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">What we collect</h2>
             <p>
-              If you book a call, we receive the details you submit in the Google Calendar booking form, including your name, email, and anything you write about your company. If you email us, we receive that message and your email address.
+              If you book a call, we receive the details you submit through Calendly, including your name, email, and anything you write about your company. If you email us, we receive that message and your email address.
             </p>
             <p className="mt-3">
               The public site loads Google Analytics (measurement ID G-1TESF8060F). Google Analytics uses cookies and collects usage data such as pages viewed, roughly where a visit comes from, and the device or browser type. The site also loads Vercel Analytics for page measurement, and Vercel hosts the site, so hosting logs can include an IP address and the page requested.
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">Who else handles it</h2>
             <p>
-              Vercel hosts the site and provides Vercel Analytics. Google provides Google Analytics and the calendar used to book a call. Those providers process data for us so the site and the booking form work.
+              Vercel hosts the site and provides Vercel Analytics. Google provides Google Analytics. Calendly provides the page used to book a call. Those providers process data for us so the site and booking work.
             </p>
           </div>
           <div>
