@@ -77,12 +77,14 @@ body {
 }
 
 /* DECISION 2026-11: the silk gradient drifts on the compositor. Grain stays
-   still. See docs/DECISIONS.md (topic: silk-drift-2026-11). */
+   still. The field is absolute and as tall as the page, so a tall section
+   does not fall off onto flat #0B0D12. See docs/DECISIONS.md
+   (topic: silk-drift-2026-11, case-study-wall-2026-11). */
 .silk-field {
-  position: fixed;
+  position: absolute;
   inset: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   background: #0b0d12;
 }

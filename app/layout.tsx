@@ -201,7 +201,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} ${jetbrains.variable} font-sans bg-bg text-text antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} ${jetbrains.variable} relative font-sans bg-bg text-text antialiased overflow-x-hidden`}>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
@@ -212,7 +212,7 @@ export default function RootLayout({
         </Script>
         <div
           aria-hidden="true"
-          className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
         >
           {/* Silver silk. The sheet drifts in CSS. Grain stays still.
               See docs/DECISIONS.md (topic: silk-drift-2026-11). */}
