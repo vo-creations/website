@@ -2749,8 +2749,8 @@ html.js-motion .hero-mark::after {
 /* blog-cover:end */
 
 /* DECISION 2026-11: homepage intro. Hidden unless the head script set
-   data-intro="play" before paint. 500ms mark fade, then 250ms overlay
-   fade (750ms total). The traced monogram is a fill, so it fades.
+   data-intro="play" before paint. The mark is gone by 600ms. The overlay
+   stays solid until 550ms and fades out by 800ms.
    See docs/DECISIONS.md (topic: homepage-intro-2026-11). */
 .intro-overlay {
   display: none;
@@ -2764,7 +2764,7 @@ html[data-intro="play"] .intro-overlay {
   justify-content: center;
   background: #0b0d12;
   pointer-events: none;
-  animation: intro-overlay-out 750ms linear forwards;
+  animation: intro-overlay-out 800ms linear forwards;
   animation-delay: var(--intro-seek, 0ms);
 }
 html[data-intro="done"] .intro-overlay {
@@ -2784,7 +2784,7 @@ html[data-intro="done"] .intro-overlay {
   mask-position: center;
   -webkit-mask-size: contain;
   mask-size: contain;
-  animation: intro-mark-in 500ms ease-out both;
+  animation: intro-mark-in 600ms linear both;
   animation-delay: var(--intro-seek, 0ms);
 }
 @media (min-width: 768px) {
@@ -2793,17 +2793,36 @@ html[data-intro="done"] .intro-overlay {
   }
 }
 @keyframes intro-mark-in {
-  from {
+  0% {
     opacity: 0;
+    transform: scale(0.98);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  to {
+  /* 350ms of 600ms */
+  58.333333% {
     opacity: 1;
+    transform: scale(1);
+    animation-timing-function: linear;
+  }
+  /* 450ms of 600ms */
+  75% {
+    opacity: 1;
+    transform: scale(1);
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
   }
 }
 @keyframes intro-overlay-out {
-  0%,
-  66.666% {
+  0% {
     opacity: 1;
+  }
+  /* 550ms of 800ms. ease-in-out applies to the fade after this keyframe. */
+  68.75% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
   }
   100% {
     opacity: 0;
