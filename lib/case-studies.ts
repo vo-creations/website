@@ -1,4 +1,4 @@
-export type CaseStat = { label: string; value: string };
+export type CaseStat = { label: string; value: string; note?: string };
 export type CaseClip = {
   src: string;
   poster: string;
@@ -75,7 +75,7 @@ export const caseStudies = [
       { label: "Category", value: "AI video app" },
       { label: "Duration", value: "June 29 – August 3, 2026" },
       { label: "Creators", value: "45" },
-      { label: "Total views", value: "72M+ (dashboard: 72.5M)" },
+      { label: "Total views", value: "72M+", note: "Dashboard: 72.5M" },
       { label: "Engagements", value: "1.1M (1.5% rate)" },
       { label: "CPM", value: "~$0.96" },
     ] as CaseStat[],

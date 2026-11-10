@@ -93,7 +93,10 @@ export default function CaseStudy({
               {caseStudyBySlug(slug).stats.map((stat) => (
                 <div key={stat.label}>
                   <dt>{stat.label}</dt>
-                  <dd>{stat.value}</dd>
+                  <dd>
+                    {stat.value}
+                    {stat.note ? <span className="case-stat-note">{stat.note}</span> : null}
+                  </dd>
                 </div>
               ))}
             </dl>
