@@ -36,10 +36,16 @@ export default function CaseStudyIndex() {
                 <LogoImage
                   src={study.logo}
                   alt={`${study.name} logo`}
-                  boxClassName="h-[22px] w-auto work-logo"
+                  boxClassName={`work-logo is-${study.slug}`}
                 />
                 <p className="work-figure">{study.figure}</p>
                 <p className="work-outcome">{study.outcome}</p>
+                <span className="work-more">
+                  Read case study
+                  <span className="work-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </span>
               </Link>
             ))}
           </div>

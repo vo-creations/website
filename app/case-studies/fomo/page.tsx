@@ -23,37 +23,6 @@ export const metadata: Metadata = {
 export default function FomoCaseStudy() {
   return (
     <CaseStudy slug={study.slug} title={study.title} description={study.description}>
-      <h2>Summary</h2>
-      <p>
-        <strong>Client:</strong> FOMO, a consumer finance app
-        <br />
-        <strong>Window:</strong> June–August 2026
-        <br />
-        <strong>What we did:</strong> trained and coached creators inside FOMO&apos;s creator program
-      </p>
-      <div className="case-table-wrap">
-        <table className="case-table">
-          <caption className="sr-only">FOMO results</caption>
-          <tbody>
-            <tr>
-              <th scope="row">Users</th>
-              <td>625K to 3M+ (June to August 2026)</td>
-            </tr>
-            <tr>
-              <th scope="row">Share of users from creators</th>
-              <td>~50%, all of them Vo creators</td>
-            </tr>
-            <tr>
-              <th scope="row">CPM</th>
-              <td>Under $4</td>
-            </tr>
-            <tr>
-              <th scope="row">Chart position</th>
-              <td>#3 in US App Store Top Free Finance, Aug 21, 2026</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
       <p>
         On August 21, 2026, FOMO ranked #3 in the US App Store&apos;s Top Free Finance chart. That put it behind Capital One and PayPal, and ahead of Cash App (#4), Venmo (#5) and Kalshi (#6).
       </p>

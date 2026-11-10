@@ -23,37 +23,6 @@ export const metadata: Metadata = {
 export default function LiftoffCaseStudy() {
   return (
     <CaseStudy slug={study.slug} title={study.title} description={study.description}>
-      <h2>Summary</h2>
-      <p>
-        <strong>Client:</strong> Liftoff, a fitness app
-        <br />
-        <strong>Window:</strong> May 1 – July 31, 2026 (90 days)
-        <br />
-        <strong>What we did:</strong> ran an organic creator campaign end to end, with no paid ads
-      </p>
-      <div className="case-table-wrap">
-        <table className="case-table">
-          <caption className="sr-only">Liftoff results</caption>
-          <tbody>
-            <tr>
-              <th scope="row">Organic views</th>
-              <td>174M+ (dashboard: 174.2M)</td>
-            </tr>
-            <tr>
-              <th scope="row">Average CPM</th>
-              <td>$0.82, our lowest</td>
-            </tr>
-            <tr>
-              <th scope="row">Creators</th>
-              <td>50</td>
-            </tr>
-            <tr>
-              <th scope="row">Paid ads</th>
-              <td>Zero</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
       <h2>What we did</h2>
       <p>
         We wrote the scripts, briefed and coached 50 creators, warmed up their accounts, and got the first videos live in the first two weeks. Every week after that, we put more behind the top videos and creators and cut what wasn&apos;t working. Editing was done in-house, and every script and video went through our core team of four before posting.

@@ -112,7 +112,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `closer-chrome-2026-11` — the closer VO is the blog chrome mark (`closer-chrome.avif` / `.webp`, from `chrome-mono.webp`), with a short faded reflection. The hero monogram stays the matte silver serif. The closer’s only button is “Book a 30-min fit call”. The nav stays “Book a call”.
 - `build-pack-2026-11` — pricing and comparison posts moved to `/blog/ugc-agency-pricing` and `/blog/ugc-agency-vs-in-house` (old slugs 301). Two new posts and four named case studies are live. Homepage result cards stay anonymized. No CPM-miss remedy. The fit call stays 30 minutes.
 - `design-review-2026-11` — team cards are a two-column grid. Results cards are 3+2 from 1280px and show three lines on a phone. Case-study tables are four rows, with Higgsfield and Krea engagement lines merged so no new fact was added.
-- `case-study-wall-2026-11` — `/case-studies` is a public index of the four named studies. Higgsfield shows the Kelly clip already in Creator work. FOMO, Liftoff, and Krea have no client-tagged clips. Krea’s window is 12 weeks. Homepage Results stay anonymized. The silk field is absolute and as tall as the page.
+- `case-study-wall-2026-11` — `/case-studies` is a public index of the four named studies. Higgsfield shows the Kelly clip already in Creator work. FOMO, Liftoff, and Krea have no client-tagged clips. Krea’s window is 12 weeks. Homepage Results stay anonymized. The silk field is absolute and as tall as the page. Case studies open with a four-column stat strip and no summary table.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->
