@@ -50,6 +50,24 @@ export const authors: Record<AuthorId, BlogAuthor> = {
 
 export const posts: BlogPostMeta[] = [
   {
+    slug: "acting-first-ugc",
+    title: "Why we train acting before anything else",
+    description:
+      "Vo Creations treats acting as the number one creator skill. Scripts and formats are handed to every creator. Delivery is what separates a 1K-view video from a million. Six student case studies with the numbers.",
+    category: "Training",
+    directAnswer:
+      "Every creator on a campaign gets the same script and the same format, so the only thing left to train is how they say it. We train acting first, and our best students prove why.",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    authorId: "thienvu",
+    readingMinutes: 7,
+    related: [
+      "text-on-screen-ugc",
+      "ugc-for-ai-startups",
+      "questions-before-hiring-a-ugc-agency",
+    ],
+  },
+  {
     slug: "ugc-agency-vs-in-house",
     title: "UGC agency vs in-house: which one actually scales",
     description:
