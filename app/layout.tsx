@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Instrument_Serif, Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import VeilBackground from "@/components/VeilBackground";
+import IntroOverlay from "@/components/IntroOverlay";
 import { CONTACT_EMAILS } from "@/lib/site";
 import "./globals.css";
 
@@ -175,11 +176,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("js-motion");}catch(e){}})();`,
+          }}
+        />
+        {/* DECISION 2026-11: homepage intro is gated before paint.
+            See docs/DECISIONS.md (topic: homepage-intro-2026-11). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var path=location.pathname||"/";if(path.length>1&&path.charAt(path.length-1)==="/")path=path.slice(0,-1);if(path!=="/")return;if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;var key="vo-intro";if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,"1");var root=document.documentElement;var started=performance.now();window.__voIntro="play";root.setAttribute("data-intro","play");var dismiss=function(){if(window.__voIntro==="done")return;window.__voIntro="done";root.setAttribute("data-intro","done");};window.addEventListener("pointerdown",dismiss,true);window.addEventListener("keydown",dismiss,true);window.addEventListener("wheel",dismiss,{capture:true,passive:true});window.addEventListener("touchmove",dismiss,{capture:true,passive:true});window.addEventListener("scroll",function(){if(window.scrollY>0)dismiss();},{capture:true,passive:true});document.addEventListener("animationend",function(event){var t=event.target;if(t&&t.id==="intro-overlay")dismiss();},true);window.setTimeout(dismiss,900);var restoring=false;var obs=new MutationObserver(function(){if(restoring||window.__voIntro!=="play")return;if(root.getAttribute("data-intro")==="play")return;restoring=true;var elapsed=performance.now()-started;if(elapsed>=800){dismiss();}else{root.style.setProperty("--intro-seek","-"+Math.round(elapsed)+"ms");root.setAttribute("data-intro","play");}restoring=false;});obs.observe(root,{attributes:true,attributeFilter:["data-intro"]});}catch(e){}})();`,
+          }}
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `.intro-overlay{display:none}html[data-intro="play"] .intro-overlay{display:flex;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;background:#0B0D12;pointer-events:none}html[data-intro="done"] .intro-overlay{display:none!important;animation:none!important}@media (prefers-reduced-motion: reduce){.intro-overlay{display:none!important;animation:none!important}}`,
           }}
         />
         <script
@@ -205,6 +218,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <IntroOverlay />
         {/* DECISION 2026-11: lazyOnload keeps gtag off the LCP path. Tracking still runs after load. */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-1TESF8060F" strategy="lazyOnload" />
         <Script id="ga-gtag" strategy="lazyOnload">
