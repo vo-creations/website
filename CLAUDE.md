@@ -114,6 +114,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `design-review-2026-11` — team cards are a two-column grid. Results cards are 3+2 from 1280px and show three lines on a phone. Case-study tables are four rows, with Higgsfield and Krea engagement lines merged so no new fact was added.
 - `case-study-wall-2026-11` — `/case-studies` is a public index of the four named studies. Higgsfield shows the Kelly clip already in Creator work. FOMO, Liftoff, and Krea have no client-tagged clips. Krea’s window is 12 weeks. Homepage Results stay anonymized. The silk field is absolute and as tall as the page. Case studies open with a four-column stat strip and no summary table.
 - `homepage-intro-2026-11` — first load of `/` fades the serif VO in matte silver on a fixed `#0B0D12` overlay. The mark is gone by 600ms. The overlay stays solid until 550ms and fades out by 800ms. A head script sets `data-intro="play"` before paint only for that path, skips reduced motion, and writes `sessionStorage` `vo-intro` so the same tab does not play it again. The overlay is `aria-hidden` and `pointer-events: none`. The hero HTML is not gated.
+- `fomo-creators-own-accounts-2026-11` — FOMO’s user growth came from Vo’s creators, about 50%, not from coaching inside FOMO’s own program. How it works, the FAQ, and the ownership block say creators own their accounts.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

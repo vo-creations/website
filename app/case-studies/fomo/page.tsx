@@ -27,12 +27,8 @@ export default function FomoCaseStudy() {
         On August 21, 2026, FOMO ranked #3 in the US App Store&apos;s Top Free Finance chart. That put it behind Capital One and PayPal, and ahead of Cash App (#4), Venmo (#5) and Kalshi (#6).
       </p>
       <h2>What we did</h2>
-      {/* [NEED: Daniel to confirm FOMO creator wording] "inside FOMO's program" vs "all of them ours" */}
       <p>
-        FOMO already had a creator program. We trained and coached the creators inside it: scripts, briefing, weekly coaching, and doubling down on the videos that worked.
-      </p>
-      <p>
-        Between June and August 2026, users grew from 625K to more than 3M. Roughly half of those users came from creators, all of them ours, at under a $4 CPM.
+        Between June and August 2026, users grew from 625K to more than 3M. Roughly half of those users came from Vo&apos;s creators, at under a $4 CPM.
       </p>
       <h2>Why it worked</h2>
       <p>
