@@ -97,7 +97,6 @@ const heroProof = [
   { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
-// [NEED: confirm "dedicated accounts" wording. The site says creators own their accounts.]
 const steps = [
   { num: "01", title: "Brief", desc: "We write the scripts on day 0. Creators are briefed within about 48 hours." },
   { num: "02", title: "Training", desc: "Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week." },
@@ -117,7 +116,7 @@ const results = [
     lines: [
       "users, up from 625K in June",
       "Aug 21, 2026",
-      "~50% of users came from creators",
+      "~50% of users came from Vo's creators",
       "Sub-$4 CPM",
     ],
   },
