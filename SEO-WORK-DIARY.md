@@ -112,3 +112,9 @@ The owner approved publishing client names. The homepage H1 now includes the vis
 ## 2026-11-03: Performance, contrast, dates
 
 Creator and hero mp4s were re-encoded under 1MB. The hero poster is preloaded with a real `fetchpriority="high"`, and the mp4 waits until that image has loaded. Grey labels that failed WCAG AA were darkened within the monochrome palette. Blog publish dates are spread from January through November 2026, and sitemap `lastmod` follows those dates plus the legal pages' updated lines. Daniel Yun's Person schema `sameAs` is his existing LinkedIn URL. Organization `sameAs` stays the footer profiles. The anonymized proof row links "Request case studies" to the current booking URL.
+
+---
+
+## 2026-11-11: Acting-first essay
+
+`/blog/acting-first-ugc` is in the post registry, so the blog index, homepage journal, and sitemap pick it up. Title: “Why we train acting before anything else.” Author: Thienvu Vo. Category: Training. Published November 11, 2026. The Open Graph image is `public/og/blog/acting-first-ugc.png`. `llms.txt` lists the URL. Student figures stay tied to the interview links in the draft. No client brand was added next to creator pay, and the essay does not add a package price or a CPM guarantee.

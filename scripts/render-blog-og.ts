@@ -1,6 +1,7 @@
 /**
  * Renders public/og/blog/<slug>.png from the same CSS as components/blog/BlogCover.tsx.
  * Run: npm run og:blog
+ * One card: npm run og:blog -- <slug>
  * Needs Google Chrome and the Inter Tight files downloaded on first run.
  */
 import { mkdirSync, readFileSync, writeFileSync, rmSync, existsSync } from "node:fs";
@@ -135,7 +136,9 @@ mkdirSync(outDir, { recursive: true });
 const work = join(tmpdir(), "vo-og-html");
 mkdirSync(work, { recursive: true });
 
+const only = process.argv[2];
 for (const post of posts) {
+  if (only && post.slug !== only) continue;
   const htmlPath = join(work, `${post.slug}.html`);
   const rawPath = join(work, `${post.slug}-raw.png`);
   const dest = join(outDir, `${post.slug}.png`);

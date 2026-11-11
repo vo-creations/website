@@ -35,6 +35,7 @@ Not for budgets under $50K/month, one-off videos, or paid-ads-only management. C
 - [Home](https://vocreations.com/): positioning, anonymized results by category, fit, team, how it works, FAQ. Named case studies are linked from the results row and from testimonials.
 - [Our work](https://vocreations.com/case-studies): named case studies for FOMO, Liftoff, Higgsfield, and Krea. Homepage result cards stay anonymized.
 - [Blog](https://vocreations.com/blog): UGC insights, with categories and read times
+- [Why we train acting before anything else](https://vocreations.com/blog/acting-first-ugc): Thienvu Vo, November 11, 2026
 - [UGC agency vs in-house](https://vocreations.com/blog/ugc-agency-vs-in-house): Daniel Yun on who trains, who posts, and what you still have to manage. The old slug redirects here.
 - [UGC agency pricing](https://vocreations.com/blog/ugc-agency-pricing): Daniel Yun on what $50K+/month buys at a target CPM. The old slug redirects here.
 - [UGC vs paid ads for app growth](https://vocreations.com/blog/ugc-vs-paid-ads-app-growth): Daniel Yun, November 3, 2026
