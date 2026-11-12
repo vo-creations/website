@@ -117,6 +117,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `fomo-creators-own-accounts-2026-11` — FOMO’s user growth came from Vo’s creators, about 50%, not from coaching inside FOMO’s own program. How it works, the FAQ, and the ownership block say creators own their accounts.
 - `krea-clip-board-2026-11` — the Krea case study shows eight Launchpoint clips after the stat strip, each labeled with the creator’s name and the rounded view count. Higgsfield’s single clip stays after its story. Simran Batra was not added.
 - `installs-signups-10m-2026-11` — Daniel Yun set the public stat to “10M+ installs and signups” on the hero and in `llms.txt`. The label is unchanged. Daniel’s bio stays “5M+ users”.
+- `trusted-by-logos-2026-11` — nine marks joined the Trusted By marquee: micro1, Decart, Tab, Hedra, Cantina, Teamily, Based Body Works (the official BASED wordmark), Santa Cruz Paleo, and OpenArt AI. Existing logo files stayed byte-identical, including CookSAT. Methods was left off. The new files are 96px-tall dark-ink PNGs, and the strip’s existing invert filter paints them matte silver.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

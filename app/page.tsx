@@ -76,6 +76,8 @@ const heroStats = [
   { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "days to post" },
 ];
 
+// DECISION 2026-11: nine more marks, dark ink on a tight bbox, same box.
+// Sources in docs/DECISIONS.md (topic: trusted-by-logos-2026-11).
 const trustedBrands = [
   { name: "Krea AI", file: "krea.png" },
   { name: "Higgsfield", file: "higgsfield.png" },
@@ -88,6 +90,15 @@ const trustedBrands = [
   { name: "CookSAT", file: "cooksat.svg" },
   { name: "Makon AI", file: "makon.png" },
   { name: "Aonic", file: "aonic.png" },
+  { name: "micro1", file: "micro1.png" },
+  { name: "Decart", file: "decart.png" },
+  { name: "Tab", file: "tab.png" },
+  { name: "Hedra", file: "hedra.png" },
+  { name: "Cantina", file: "cantina.png" },
+  { name: "Teamily", file: "teamily.png" },
+  { name: "Based Body Works", file: "based.png" },
+  { name: "Santa Cruz Paleo", file: "santa-cruz-paleo.png" },
+  { name: "OpenArt AI", file: "openart.png" },
 ];
 
 // DECISION 2026-11: result names are categories. Numbers stay the deck figures.
