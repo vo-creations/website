@@ -20,6 +20,9 @@ import { CONTACT_EMAILS } from "@/lib/site";
 
 const BOOKING = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
 
+// DECISION 2026-11: the 6% edge fade stays a mask. A flat #0B0D12 overlay
+// covered the moving silk and darkened the ends. See docs/DECISIONS.md
+// (topic: trusted-by-strip-2026-11).
 const EDGE_FADE =
   "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)";
 const edgeFadeStyle: CSSProperties = {
@@ -76,8 +79,12 @@ const heroStats = [
   { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "days to post" },
 ];
 
-// DECISION 2026-11: nine more marks, dark ink on a tight bbox, same box.
+// DECISION 2026-11: nine more marks joined this row.
 // Sources in docs/DECISIONS.md (topic: trusted-by-logos-2026-11).
+// DECISION 2026-11: marks are pre-baked white ink. CookSAT is a luminance
+// bake of the official SVG so the panda stays visible. The row uses
+// opacity only and a 72.7s translate3d loop. The 6% edge fade stays a mask.
+// See docs/DECISIONS.md (topic: trusted-by-strip-2026-11).
 const trustedBrands = [
   { name: "Krea AI", file: "krea.png" },
   { name: "Higgsfield", file: "higgsfield.png" },
@@ -87,7 +94,7 @@ const trustedBrands = [
   { name: "Softr", file: "softr.png" },
   { name: "Liftoff", file: "liftoff.png" },
   { name: "fomo.family", file: "fomo.png" },
-  { name: "CookSAT", file: "cooksat.svg" },
+  { name: "CookSAT", file: "cooksat.png" },
   { name: "Makon AI", file: "makon.png" },
   { name: "Aonic", file: "aonic.png" },
   { name: "micro1", file: "micro1.png" },
@@ -444,14 +451,14 @@ export default function Home() {
           <div className="mx-auto grid max-w-[1440px] items-center gap-[18px] px-[22px] py-[26px] md:px-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:px-[72px] xl:py-[34px]">
             <h2 className="lab">Trusted by teams at</h2>
             <div className="overflow-hidden" style={edgeFadeStyle}>
-              <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none [&_img]:brightness-0 [&_img]:invert [&_img]:opacity-80">
+              <div className="flex w-max items-center animate-scroll-logos motion-reduce:animate-none motion-safe:will-change-transform [&_img]:opacity-80">
                 <div className="flex items-center gap-11 pr-11 xl:gap-[72px] xl:pr-[72px]">
                   {trustedBrands.map((brand) => (
                     <LogoImage
                       key={brand.name}
                       src={`/logos/${brand.file}`}
                       alt={`${brand.name} logo`}
-                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                      boxClassName="h-[18px] w-auto xl:h-[21px]"
                     />
                   ))}
                 </div>
@@ -461,7 +468,7 @@ export default function Home() {
                       key={`${brand.name}-2`}
                       src={`/logos/${brand.file}`}
                       alt=""
-                      boxClassName={`h-[18px] w-auto xl:h-[21px]${brand.file === "cooksat.svg" ? " trusted-cooksat" : ""}`}
+                      boxClassName="h-[18px] w-auto xl:h-[21px]"
                     />
                   ))}
                 </div>

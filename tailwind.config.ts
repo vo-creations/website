@@ -87,6 +87,12 @@ const config: Config = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        // Trusted By only. translate3d so the row stays on the compositor.
+        // See docs/DECISIONS.md (topic: trusted-by-strip-2026-11).
+        scrollLogos: {
+          '0%': { transform: 'translate3d(0, 0, 0)' },
+          '100%': { transform: 'translate3d(-50%, 0, 0)' },
+        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
@@ -143,8 +149,11 @@ const config: Config = {
         // Same keyframe as `scroll`, slower — the video showcase row has much
         // wider/taller cards than the logo strip and reads as frantic at 35s.
         'scroll-slow': 'scroll 120s linear infinite',
-        // Editorial trusted-by row. The approved page loops this strip in 40s.
-        'scroll-logos': 'scroll 40s linear infinite',
+        // Trusted By row. 72.7s is 40s times the 20-mark row width over the
+        // old 11-mark row, so the travel speed matches the pre-#77 strip.
+        // The ratio is 1.8165 at 18px/44px and 1.8167 at 21px/72px.
+        // See docs/DECISIONS.md (topic: trusted-by-strip-2026-11).
+        'scroll-logos': 'scrollLogos 72.7s linear infinite',
         float: 'float 5s ease-in-out infinite',
         'phone-entrance': 'phoneEntrance 0.6s cubic-bezier(0.16,1,0.3,1) both',
         'screen-poweron': 'screenPowerOn 650ms ease-out 500ms both',

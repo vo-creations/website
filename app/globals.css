@@ -134,28 +134,6 @@ body {
 }
 
 /* Fine film grain over the silk so the folds do not band. Sits under page content. */
-/* CookSAT's lockup is a colored panda plus a word. The strip's invert
-   filter turns that panda into a solid white disc. Paint the file as one
-   #B4B8BF mask instead, at the same opacity as the other marks.
-   See docs/DECISIONS.md (topic: anonymized-results-2026-11). */
-.trusted-cooksat {
-  background-color: #b4b8bf;
-  opacity: 0.8;
-  -webkit-mask-image: url("/logos/cooksat.svg");
-  mask-image: url("/logos/cooksat.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  mask-mode: alpha;
-}
-.trusted-cooksat img {
-  opacity: 0 !important;
-  filter: none !important;
-}
-
 .film-grain {
   background-image: url("/brand/grain.png");
   background-size: 180px 180px;
