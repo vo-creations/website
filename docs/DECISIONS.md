@@ -3561,3 +3561,9 @@ Display names in `trustedBrands`, which also supply the alt text, are micro1, De
 - **Based Body Works.** Official BASED wordmark from `https://based.com/cdn/shop/t/174/assets/bbw-wordmark-light.svg`, paths filled `#111111`. The dark variant’s inner-shadow filter was not applied, because it extends the canvas past the letters. Alt text is “Based Body Works logo”.
 - **Santa Cruz Paleo.** Official nav logo `https://santacruzpaleo.com/cdn/shop/t/12/assets/shto-scp-mnav-v2-logo-600.png`, trimmed to the ink and scaled to 96px. The rules above and below the words stayed.
 - **OpenArt AI.** Official vector `https://cdn.openart.ai/assets/home/openart_logo_20240529.svg`, white fills rendered as `#111111`. The supplied pageforge raster is the same mark with 38px of content, which would have been soft beside the 96px files.
+
+## topic: fomo-brand-case-2026-11 — _2026-11-12_
+
+Daniel Yun set the written client brand to lowercase fomo. User-facing copy, including sentence starts, titles, meta descriptions, Open Graph, JSON-LD, breadcrumbs, alt text, and `llms.txt`, uses that casing. The slug `/case-studies/fomo`, the logo file, and code identifiers stayed. Claims, dates, quotes, the ~50% creator line, and “Creators own their accounts” were not rewritten. Homepage result cards stayed “Consumer finance app”.
+
+Homepage testimonial bylines were already `text-transform: uppercase`. That treatment would have painted the brand in caps, so the brand word is wrapped in `.keep-case` inside the byline. The class sets `display: inline`, clears the byline span’s margin and padding, and sets `text-transform: none`, so the word stays lowercase on the same line. The rest of each byline stays uppercase.

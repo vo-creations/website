@@ -24,7 +24,7 @@ export default function FomoCaseStudy() {
   return (
     <CaseStudy slug={study.slug} title={study.title} description={study.description}>
       <p>
-        On August 21, 2026, FOMO ranked #3 in the US App Store&apos;s Top Free Finance chart. That put it behind Capital One and PayPal, and ahead of Cash App (#4), Venmo (#5) and Kalshi (#6).
+        On August 21, 2026, fomo ranked #3 in the US App Store&apos;s Top Free Finance chart. That put it behind Capital One and PayPal, and ahead of Cash App (#4), Venmo (#5) and Kalshi (#6).
       </p>
       <h2>What we did</h2>
       <p>
@@ -36,7 +36,7 @@ export default function FomoCaseStudy() {
       </p>
       <blockquote className="case-quote">
         <p>&ldquo;Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;</p>
-        <p>Will Timberlake, UGC Manager, FOMO</p>
+        <p>Will Timberlake, UGC Manager, fomo</p>
       </blockquote>
       <p>Bring your target CPM. We&apos;ll show you the view and user math for your category.</p>
       <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">

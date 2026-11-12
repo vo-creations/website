@@ -53,7 +53,7 @@ export default function UgcVsPaidAdsPage() {
       <p>Run the same arithmetic on your budget. At a $1 CPM, $50K buys 50M organic views. At $4, it buys 12.5M.</p>
       <H2 id="users">Do views turn into users?</H2>
       <p>
-        Fair objection. <Link className={link} href="/case-studies/fomo">FOMO</Link> went from 625K to 3M+ users between June and August 2026. About 50% of its users came from Vo&apos;s creators, at under a $4 CPM. On August 21, 2026, it ranked #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi.
+        Fair objection. <Link className={link} href="/case-studies/fomo">fomo</Link> went from 625K to 3M+ users between June and August 2026. About 50% of its users came from Vo&apos;s creators, at under a $4 CPM. On August 21, 2026, it ranked #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi.
       </p>
       <H2 id="why-organic">Why organic beats polished ads</H2>
       <p>
@@ -76,7 +76,7 @@ export default function UgcVsPaidAdsPage() {
       <p>If you need installs tomorrow, paid is faster. If you need CAC down this quarter, start organic now.</p>
       <blockquote className="border-l border-white/20 pl-4">
         <p>&ldquo;Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.&rdquo;</p>
-        <p>Will Timberlake, UGC Manager, FOMO</p>
+        <p>Will Timberlake, UGC Manager, fomo</p>
       </blockquote>
       <p>
         Bring your current paid CPM. We&apos;ll show you what $50K buys at your target CPM, and we guarantee that CPM.{" "}
