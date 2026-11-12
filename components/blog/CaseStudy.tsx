@@ -1,8 +1,42 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import CaseClipCard from "@/components/blog/CaseClipCard";
 import { authors, formatBlogDate } from "@/lib/blog/posts";
-import { caseStudyBySlug } from "@/lib/case-studies";
+import { caseStudyBySlug, type CaseClip } from "@/lib/case-studies";
+
+function CaseClips({ clips, board }: { clips: readonly CaseClip[]; board?: boolean }) {
+  if (clips.length === 0) return null;
+  return (
+    <>
+      <h2 className={board ? "case-clip-heading" : undefined}>Creator work</h2>
+      <div className={board ? "case-clip-grid is-board" : "case-clip-grid"}>
+        {board
+          ? clips.map((clip) => <CaseClipCard key={clip.src} clip={clip} />)
+          : clips.map((clip) => (
+              <figure key={clip.src} className="wk">
+                <div className="wi">
+                  <img src={clip.poster} alt="" width={540} height={960} />
+                  <video
+                    className="absolute inset-0 h-full w-full object-cover"
+                    controls
+                    playsInline
+                    preload="none"
+                    poster={clip.poster}
+                  >
+                    <source src={clip.src} type="video/mp4" />
+                  </video>
+                  <span className="clip-proof">{clip.proof}</span>
+                </div>
+                <figcaption>
+                  <span>{clip.label}</span>
+                </figcaption>
+              </figure>
+            ))}
+      </div>
+    </>
+  );
+}
 
 const PUBLISHED = "2026-11-03";
 
@@ -20,6 +54,8 @@ export default function CaseStudy({
   const url = `https://vocreations.com/case-studies/${slug}`;
   const author = authors.daniel;
   const date = formatBlogDate(PUBLISHED);
+  const study = caseStudyBySlug(slug);
+  const leadClips = "leadClips" in study && study.leadClips;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -90,7 +126,7 @@ export default function CaseStudy({
           </p>
           <div className="case-body">
             <dl className="case-stats">
-              {caseStudyBySlug(slug).stats.map((stat) => (
+              {study.stats.map((stat) => (
                 <div key={stat.label}>
                   <dt>{stat.label}</dt>
                   <dd>
@@ -100,34 +136,9 @@ export default function CaseStudy({
                 </div>
               ))}
             </dl>
+            {leadClips ? <CaseClips clips={study.clips} board /> : null}
             {children}
-            {caseStudyBySlug(slug).clips.length > 0 ? (
-              <>
-                <h2>Creator work</h2>
-                <div className="case-clip-grid">
-                  {caseStudyBySlug(slug).clips.map((clip) => (
-                    <figure key={clip.src} className="wk">
-                      <div className="wi">
-                        <img src={clip.poster} alt="" width={540} height={960} />
-                        <video
-                          className="absolute inset-0 h-full w-full object-cover"
-                          controls
-                          playsInline
-                          preload="none"
-                          poster={clip.poster}
-                        >
-                          <source src={clip.src} type="video/mp4" />
-                        </video>
-                        <span className="clip-proof">{clip.proof}</span>
-                      </div>
-                      <figcaption>
-                        <span>{clip.label}</span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </>
-            ) : null}
+            {leadClips ? null : <CaseClips clips={study.clips} />}
           </div>
         </article>
       </main>

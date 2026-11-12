@@ -90,8 +90,60 @@ export const caseStudies = [
     logo: "/logos/krea.png",
     figure: "130M+",
     outcome: "under $3 CPM in 12 weeks, still growing",
-    // [NEED: client clips + handles]
-    clips: [] as CaseClip[],
+    // DECISION 2026-11: eight Launchpoint clips, name and rounded view count only.
+    // No handles or post URLs were on file. The board leads the story.
+    // See docs/DECISIONS.md (topic: krea-clip-board-2026-11).
+    leadClips: true,
+    clips: [
+      {
+        src: "/videos/krea-cat-vancity.mp4",
+        poster: "/videos/krea-cat-vancity.jpg",
+        label: "Cat Vancity",
+        proof: "4.8M views",
+      },
+      {
+        src: "/videos/krea-sarah-stiles.mp4",
+        poster: "/videos/krea-sarah-stiles.jpg",
+        label: "Sarah Stiles",
+        proof: "4.0M views",
+      },
+      {
+        src: "/videos/krea-william-pham.mp4",
+        poster: "/videos/krea-william-pham.jpg",
+        label: "William Pham",
+        proof: "1.4M views",
+      },
+      {
+        src: "/videos/krea-enya-cheng.mp4",
+        poster: "/videos/krea-enya-cheng.jpg",
+        label: "Enya Cheng",
+        proof: "1.2M views",
+      },
+      {
+        src: "/videos/krea-leon-song.mp4",
+        poster: "/videos/krea-leon-song.jpg",
+        label: "Leon Song",
+        proof: "1.2M views",
+      },
+      {
+        src: "/videos/krea-ej-mae-palafox.mp4",
+        poster: "/videos/krea-ej-mae-palafox.jpg",
+        label: "EJ Mae Palafox",
+        proof: "1.1M views",
+      },
+      {
+        src: "/videos/krea-zion-raines.mp4",
+        poster: "/videos/krea-zion-raines.jpg",
+        label: "Zion Raines",
+        proof: "1.0M views",
+      },
+      {
+        src: "/videos/krea-claudia-wong.mp4",
+        poster: "/videos/krea-claudia-wong.jpg",
+        label: "Claudia Wong",
+        proof: "1.0M views",
+      },
+    ] as CaseClip[],
     stats: [
       { label: "Client", value: "Krea" },
       { label: "Category", value: "AI creative platform" },

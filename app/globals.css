@@ -2343,6 +2343,77 @@ html.js-motion .hero-mark::after {
   text-transform: none;
   color: #8a8f98;
 }
+/* Krea proof board. Two columns on a phone, four from 768px, wider than
+   the 720px column so the cards can breathe. Stats and story stay put.
+   See docs/DECISIONS.md (topic: krea-clip-board-2026-11). */
+.editorial.case-study .case-body > .case-clip-heading {
+  margin-top: 64px;
+  margin-bottom: 28px;
+}
+.editorial.case-study .case-body > .case-clip-grid.is-board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 16px;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 56px;
+}
+.editorial.case-study .case-clip-grid.is-board .wk {
+  width: auto;
+}
+.editorial.case-study .case-clip-grid.is-board figcaption {
+  padding-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c9cdd4;
+}
+.editorial.case-study .case-clip-hit {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+.editorial.case-study .case-clip-hit:focus-visible {
+  outline: 2px solid #eef0f4;
+  outline-offset: 3px;
+}
+.editorial.case-study .case-clip-play {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(11, 13, 18, 0.82);
+  pointer-events: none;
+}
+.editorial.case-study .case-clip-play::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  border-style: solid;
+  border-width: 7px 0 7px 11px;
+  border-color: transparent transparent transparent #eef0f4;
+}
+@media (min-width: 768px) {
+  .editorial.case-study .case-body > .case-clip-grid.is-board {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 28px;
+    row-gap: 44px;
+    width: min(1080px, calc(100vw - 96px));
+    margin-left: calc((100% - min(1080px, 100vw - 96px)) / 2);
+    margin-right: calc((100% - min(1080px, 100vw - 96px)) / 2);
+  }
+}
 .work-index {
   padding: 48px 0 192px;
 }
