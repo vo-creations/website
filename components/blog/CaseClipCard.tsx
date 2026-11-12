@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CaseClip } from "@/lib/case-studies";
 
-// Poster stays up until play so eight clips do not fetch or show player chrome.
+// Poster stays up until play so a board of clips does not fetch or show player chrome.
 export default function CaseClipCard({ clip }: { clip: CaseClip }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
