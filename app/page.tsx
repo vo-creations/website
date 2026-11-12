@@ -69,7 +69,9 @@ const heroClips = creatorClips;
 
 const heroStats = [
   { target: 1000, format: (n: number) => (n >= 1000 ? "1B+" : `${n}M+`), label: "views generated" },
-  { target: 5, format: (n: number) => `${n}M+`, label: "installs and signups" },
+  // DECISION 2026-11: Daniel set this to 10M+. See docs/DECISIONS.md
+  // (topic: installs-signups-10m-2026-11).
+  { target: 10, format: (n: number) => `${n}M+`, label: "installs and signups" },
   { target: 1000, format: (n: number) => `${n}+`, label: "trained creators" },
   { target: 14, format: (n: number) => (n >= 14 ? "10–14" : `${n}`), label: "days to post" },
 ];
