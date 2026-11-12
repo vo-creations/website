@@ -8,12 +8,12 @@ import { caseStudies } from "@/lib/case-studies";
 export const metadata: Metadata = {
   title: "Our work",
   description:
-    "Named Vo Creations case studies: the headline number and the outcome, for FOMO, Liftoff, Higgsfield, and Krea.",
+    "Named Vo Creations case studies: the headline number and the outcome, for fomo, Liftoff, Higgsfield, and Krea.",
   alternates: { canonical: "/case-studies" },
   openGraph: {
     title: "Our work",
     description:
-      "Named Vo Creations case studies: the headline number and the outcome, for FOMO, Liftoff, Higgsfield, and Krea.",
+      "Named Vo Creations case studies: the headline number and the outcome, for fomo, Liftoff, Higgsfield, and Krea.",
     url: "https://vocreations.com/case-studies",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Vo Creations" }],
   },

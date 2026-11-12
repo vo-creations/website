@@ -46,7 +46,7 @@ export default function LiftoffCaseStudy() {
         More results:{" "}
         <Link className={link} href="/case-studies/higgsfield">Higgsfield: 72M+ views in 35 days</Link>
         {" · "}
-        <Link className={link} href="/case-studies/fomo">FOMO: #3 in Finance</Link>
+        <Link className={link} href="/case-studies/fomo">fomo: #3 in Finance</Link>
         {" · "}
         <Link className={link} href="/blog/in-house-creator-programs-stall">Why in-house programs stall at 5–10 creators</Link>
       </p>

@@ -77,7 +77,7 @@ export default function QuestionsPage() {
         </li>
         <li>
           <strong>Show me proof with a time window and a CPM.</strong>{" "}
-          <Link className={link} href="/case-studies/fomo">FOMO</Link> went from 625K to 3M+ users between June and August 2026, with about 50% of users coming from Vo&apos;s creators, at under a $4 CPM. On August 21, 2026, it ranked #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi.
+          <Link className={link} href="/case-studies/fomo">fomo</Link> went from 625K to 3M+ users between June and August 2026, with about 50% of users coming from Vo&apos;s creators, at under a $4 CPM. On August 21, 2026, it ranked #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi.
         </li>
       </ol>
       <H2 id="end-the-call">Which answers should end the call?</H2>

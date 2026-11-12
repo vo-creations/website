@@ -1547,6 +1547,12 @@ html.js-motion .hero-mark::after {
   text-transform: uppercase;
   color: var(--mid);
 }
+.editorial .tq span .keep-case {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+}
 .editorial .tq a {
   display: inline-block;
   margin-top: 12px;

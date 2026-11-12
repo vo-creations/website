@@ -168,7 +168,7 @@ const quotes = [
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
-    by: "Will Timberlake, UGC Manager, FOMO",
+    by: "Will Timberlake, UGC Manager, fomo",
     study: "/case-studies/fomo",
   },
   {
@@ -518,7 +518,7 @@ export default function Home() {
             <div className="results-cta">
               <p>
                 Every result from our own creators. Named case studies:{" "}
-                <a href="/case-studies/fomo">FOMO</a>
+                <a href="/case-studies/fomo">fomo</a>
                 {" · "}
                 <a href="/case-studies/liftoff">Liftoff</a>
                 {" · "}
@@ -625,7 +625,18 @@ export default function Home() {
               {quotes.map((item) => (
                 <div className="tq" key={item.by + item.quote.slice(0, 12)}>
                   <p>&ldquo;{item.quote}&rdquo;</p>
-                  <span>{item.by}</span>
+                  {/* DECISION 2026-11: bylines stay uppercase. The brand stays lowercase.
+                      See docs/DECISIONS.md (topic: fomo-brand-case-2026-11). */}
+                  <span>
+                    {item.by.endsWith("fomo") ? (
+                      <>
+                        {item.by.slice(0, -4)}
+                        <span className="keep-case">fomo</span>
+                      </>
+                    ) : (
+                      item.by
+                    )}
+                  </span>
                   <a href={item.study}>Read the case study</a>
                 </div>
               ))}

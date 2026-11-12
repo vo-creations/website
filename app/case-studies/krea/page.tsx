@@ -47,7 +47,7 @@ export default function KreaCaseStudy() {
         {" · "}
         <Link className={link} href="/case-studies/liftoff">Liftoff: $0.82 CPM</Link>
         {" · "}
-        <Link className={link} href="/case-studies/fomo">FOMO: #3 in Finance</Link>
+        <Link className={link} href="/case-studies/fomo">fomo: #3 in Finance</Link>
       </p>
     </CaseStudy>
   );

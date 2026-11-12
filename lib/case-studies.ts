@@ -9,10 +9,10 @@ export type CaseClip = {
 export const caseStudies = [
   {
     slug: "fomo",
-    name: "FOMO",
-    title: "FOMO: #3 in US App Store Top Free Finance",
+    name: "fomo",
+    title: "fomo: #3 in US App Store Top Free Finance",
     description:
-      "Trained creators helped FOMO grow from 625K to 3M+ users and reach #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi, at under $4 CPM.",
+      "Trained creators helped fomo grow from 625K to 3M+ users and reach #3 in US App Store Top Free Finance, ahead of Cash App and Kalshi, at under $4 CPM.",
     date: "2026-11-03",
     logo: "/logos/fomo.png",
     figure: "3M+",
@@ -20,7 +20,7 @@ export const caseStudies = [
     // [NEED: client clips + handles]
     clips: [] as CaseClip[],
     stats: [
-      { label: "Client", value: "FOMO" },
+      { label: "Client", value: "fomo" },
       { label: "Category", value: "Consumer finance app" },
       { label: "Duration", value: "June–August 2026" },
       { label: "Business outcome", value: "625K to 3M+ users" },
