@@ -17,8 +17,36 @@ export const caseStudies = [
     logo: "/logos/fomo.png",
     figure: "3M+",
     outcome: "users, up from 625K, under $4 CPM",
-    // [NEED: client clips + handles]
-    clips: [] as CaseClip[],
+    // DECISION 2026-11: four color clips, name and view count only.
+    // No handles or post URLs. The board leads the story.
+    // See docs/DECISIONS.md (topic: fomo-clip-board-2026-11).
+    leadClips: true,
+    clips: [
+      {
+        src: "/videos/fomo-timmy-pham.mp4",
+        poster: "/videos/fomo-timmy-pham.jpg",
+        label: "Timmy Pham",
+        proof: "2.4M views",
+      },
+      {
+        src: "/videos/fomo-bella.mp4",
+        poster: "/videos/fomo-bella.jpg",
+        label: "Bella",
+        proof: "93.4K views",
+      },
+      {
+        src: "/videos/fomo-kat.mp4",
+        poster: "/videos/fomo-kat.jpg",
+        label: "Kat",
+        proof: "25.5K views",
+      },
+      {
+        src: "/videos/fomo-lukas.mp4",
+        poster: "/videos/fomo-lukas.jpg",
+        label: "Lukas",
+        proof: "20.5K views",
+      },
+    ] as CaseClip[],
     stats: [
       { label: "Client", value: "fomo" },
       { label: "Category", value: "Consumer finance app" },
