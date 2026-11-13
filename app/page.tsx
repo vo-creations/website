@@ -12,6 +12,7 @@ import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
+import HeroMarkGloss from "@/components/HeroMarkGloss";
 
 // DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
 // are white on black. The serif VO monogram is the mark, including a large
@@ -415,9 +416,12 @@ export default function Home() {
                 </p>
               </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
-                  lockup, above the CTA row. Hidden under 1024px. */}
+                  lockup, above the CTA row. Hidden under 1024px.
+                  The ring light is the canvas in HeroMarkGloss. The box
+                  size and the silver ink stay put. */}
               <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
                 <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
+                <HeroMarkGloss />
               </div>
               <div className="hb">
                 <p className="hsub">
