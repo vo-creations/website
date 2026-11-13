@@ -2327,9 +2327,10 @@ html.js-motion .hero-mark::after {
   text-transform: none;
   color: #8a8f98;
 }
-/* Proof board for Krea and fomo. Two columns on a phone, four from 768px,
-   wider than the 720px column so the cards can breathe. Stats and story stay put.
-   See docs/DECISIONS.md (topic: krea-clip-board-2026-11, fomo-clip-board-2026-11). */
+/* Proof board for Krea, fomo, and Liftoff. Two columns on a phone, four from 768px,
+   wider than the 720px column so the cards can breathe. A single clip keeps one
+   cell of that grid, in the article column. Stats and story stay put.
+   See docs/DECISIONS.md (topic: krea-clip-board-2026-11, fomo-clip-board-2026-11, liftoff-clip-board-2026-11). */
 .editorial.case-study .case-body > .case-clip-heading {
   margin-top: 64px;
   margin-bottom: 28px;
@@ -2396,6 +2397,13 @@ html.js-motion .hero-mark::after {
     width: min(1080px, calc(100vw - 96px));
     margin-left: calc((100% - min(1080px, 100vw - 96px)) / 2);
     margin-right: calc((100% - min(1080px, 100vw - 96px)) / 2);
+  }
+  /* 84px is three 28px column gaps, so one tile matches a cell of the four-up board. */
+  .editorial.case-study .case-body > .case-clip-grid.is-board.is-one {
+    grid-template-columns: minmax(0, 1fr);
+    width: calc((min(1080px, 100vw - 96px) - 84px) / 4);
+    margin-left: 0;
+    margin-right: auto;
   }
 }
 .work-index {
