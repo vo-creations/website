@@ -31,8 +31,8 @@ void main() {
 `;
 
 // Height lives in the green channel (blurred alpha). Sharp coverage is red.
-// The catch is only the bevel that faces the pointer: a short arc, not a
-// ring around every edge and not a wash across the face. Tint is #F2F5FA.
+// The catch is an arc on the bevel that faces the pointer. A steep core,
+// a narrower band, and a faint shoulder. Tint is #F2F5FA. The face stays silver.
 const FRAG = `
 precision mediump float;
 varying vec2 vUv;
@@ -54,13 +54,17 @@ void main() {
   float hU = texture2D(uMap, vUv + vec2(0.0, uTexel.y)).g;
   vec2 slope = vec2(hL - hR, hD - hU);
   float mag = length(slope);
-  vec2 aim = normalize(uLight + vec2(0.0, 0.12));
+  vec2 aim = normalize(uLight + vec2(0.0, 0.08));
   float facing = dot(slope / max(mag, 0.0008), aim);
-  float lobe = exp(-(1.0 - facing) * (1.0 - facing) * 18.0);
-  float bevel = smoothstep(0.004, 0.028, mag);
-  float gloss = lobe * bevel * uIntensity;
-  float mask = smoothstep(0.0, 0.18, coverage);
-  float alpha = min(gloss, 0.34) * mask;
+  float miss = (1.0 - facing) * (1.0 - facing);
+  float edge = smoothstep(0.02, 0.09, mag);
+  float shoulder = smoothstep(0.004, 0.028, mag);
+  float core = exp(-miss * 110.0) * edge;
+  float band = exp(-miss * 16.0) * shoulder;
+  float soft = exp(-miss * 2.8) * shoulder;
+  float gloss = core * 0.9 + band * 0.16 + soft * 0.1;
+  float mask = smoothstep(0.0, 0.16, coverage);
+  float alpha = min(gloss, 0.9) * uIntensity * mask;
   vec3 tint = vec3(0.94902, 0.96078, 0.98039);
   gl_FragColor = vec4(tint * alpha, alpha);
 }
