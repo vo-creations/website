@@ -3617,3 +3617,13 @@ The Liftoff and Higgsfield proof boards each gained a second clip. Locked story 
 Other accounts and clips were left off. @lifttard.liftoff, @annatradesss, @daniel.liftoff, Tel, Caden, and EJ Mae Palafox were not added. Henry’s 784K gym-meme was left off because it is a hashtag only, with no Liftoff product in frame. Kelly’s 1.2M was left off because that window shows Claude, not the Higgsfield UI. Kelly’s 511K and 498K were left off.
 
 From 768px a two-clip board adds `.is-two`. `.is-one` still applies only when the board has one clip. `.is-two` sets two columns whose width is two four-up cells plus the 28px gap between them: `(min(1080px, 100vw - 96px) - 84px) / 2 + 28px`, with `margin-left: 0`, so the tiles match one cell of the Krea and fomo board and sit under the heading. They do not stretch across the 1080px board. Below 768px they are the two cells of the phone board. The stat strips stay in the 720px measure.
+
+## topic: liftoff-daniel-147k-2026-11 — _2026-11-13_
+
+A third clip was added to the Liftoff board only, between the two Henry clips. Order is Henry, 266K views, then Daniel Yun, 147K views, then Henry, 56K views. Daniel Yun is the Instagram display name of @daniel.liftoff. 147K is the Reels-grid count as displayed, the same source as Henry’s 266K. The handle and any post URL stay off the page. The product in frame is the late OLYMPIAN Bench Press card. Higgsfield, the Liftoff story, the Wassim Bouchelouh quote, and the stat strip were not changed.
+
+The files were copied as supplied: `public/videos/liftoff-daniel-147k.mp4` (962,107 bytes, sha256 `5db16d6c3abeadf31f13b925499a4b90ec450bc13f5f574446491cee51dca8ce`) and `public/videos/liftoff-daniel-147k.jpg` (81,469 bytes, sha256 `03fd46fff19021f70a4734a1516fbdbe18c5df92eed6c5cc2b37617472534e9e`). The window is source 8.25–14.25s. The poster is the encoded 5.70s frame: “i'm ranked Olympian” and the Liftoff card, 301lbs × 31.
+
+The other three @daniel.liftoff reels stayed off: 1.2M lock-screen, 383K calorie-tracker, and 20.5K gym. None shows the Liftoff product. @annatradesss still has no Liftoff footage.
+
+From 768px a three-clip board adds `.is-three`. `.is-two` still applies only when the board has two clips. The row width is three four-up cells plus two 28px gaps, `3 * ((min(1080px, 100vw - 96px) - 84px) / 4) + 56px`, with `margin-left: 0`. At 1440px each tile is 249px and the row is 803px. Below 768px the three tiles are cells of the phone board.

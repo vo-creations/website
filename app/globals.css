@@ -2415,6 +2415,14 @@ html.js-motion .hero-mark::after {
     margin-left: 0;
     margin-right: auto;
   }
+  /* 56px is two 28px gaps. Three tiles stay one four-up cell each, left-aligned.
+     See docs/DECISIONS.md (topic: liftoff-daniel-147k-2026-11). */
+  .editorial.case-study .case-body > .case-clip-grid.is-board.is-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: calc(3 * ((min(1080px, 100vw - 96px) - 84px) / 4) + 56px);
+    margin-left: 0;
+    margin-right: auto;
+  }
 }
 .work-index {
   padding: 48px 0 192px;
