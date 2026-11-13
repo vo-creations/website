@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { supabaseAuthEnv } from "@/lib/supabase/env";
+import AuthUnavailable from "./AuthUnavailable";
 import {
   getCreatorByEmail, getCreatorPrograms, getCreatorHandles, isStaffEmail,
 } from "@/lib/queries/creator-access";
@@ -21,8 +23,18 @@ export default async function LeaderboardPage({
 }: {
   searchParams: { c?: string; w?: string };
 }) {
+  // DECISION 2026-11: missing auth env renders this screen instead of HTTP 500.
+  // See docs/DECISIONS.md (topic: audit-fixes-2026-11-13).
+  if (!supabaseAuthEnv()) return <AuthUnavailable reason="missing" />;
+
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  let user: { email?: string | null } | null = null;
+  try {
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch {
+    return <AuthUnavailable reason="down" />;
+  }
   if (!user?.email) redirect("/leaderboard/login");
 
   // STAFF (Google-authed, allow-listed) get the full dashboard: ALL campaigns,

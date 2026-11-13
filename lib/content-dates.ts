@@ -2,8 +2,8 @@
 // is not a second copy of the date. See docs/DECISIONS.md (topic: perf-a11y-2026-11).
 
 export const privacyUpdated = "2026-11-10";
-export const termsUpdated = "2026-11-03";
-export const refundUpdated = "2026-10-28";
+export const termsUpdated = "2026-11-13";
+export const refundUpdated = "2026-11-13";
 
 export function legalDateLabel(iso: string): string {
   return new Intl.DateTimeFormat("en-US", {

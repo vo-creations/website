@@ -46,6 +46,9 @@ export default function TermsPage() {
               </Link>
               . The CPM guarantee is as defined in the client agreement.
             </p>
+            <p className="mt-3">
+              You do not pay for videos under 1,000 views: they do not count toward your CPM.
+            </p>
           </div>
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">The site itself</h2>

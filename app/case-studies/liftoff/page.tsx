@@ -2,23 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudy from "@/components/blog/CaseStudy";
 import { BOOKING_URL } from "@/lib/blog/posts";
-import { caseStudyBySlug, caseStudyOgImage } from "@/lib/case-studies";
+import { caseStudyBySlug, caseStudyMetadata } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("liftoff");
 const link = "text-text underline decoration-white/30 underline-offset-4";
 
-export const metadata: Metadata = {
-  title: study.title,
-  description: study.description,
-  alternates: { canonical: `/case-studies/${study.slug}` },
-  openGraph: {
-    title: study.title,
-    description: study.description,
-    url: `https://vocreations.com/case-studies/${study.slug}`,
-    type: "article",
-    images: [caseStudyOgImage],
-  },
-};
+export const metadata: Metadata = caseStudyMetadata(study.slug);
 
 export default function LiftoffCaseStudy() {
   return (
