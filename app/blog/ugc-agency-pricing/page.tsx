@@ -82,7 +82,7 @@ export default function UgcAgencyPricingPage() {
       <p>
         <strong>Paid ad spend.</strong> Our rule is to post organically, a lot, and see what people actually watch. If you add paid, you only put money behind what&apos;s already working.
       </p>
-      <p>What you give us: an onboarding survey, free product, promo codes, or app/site access, custom tracking URLs, and ManyChat reimbursements.</p>
+      <p>What you give us: an onboarding survey, free product, promo codes, or app/site access, and custom tracking URLs.</p>
       <H2 id="why-90-days">Why 90 days?</H2>
       <p>
         Scripts are written on day 0 and creators are briefed within about 48 hours. Accounts warm up, and the first videos go live in 10–14 days. After that, we double down every week on the top videos. Ninety days gives that loop several cycles, and after that it&apos;s month to month.
