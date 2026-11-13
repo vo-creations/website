@@ -67,11 +67,23 @@ export const caseStudies = [
     logo: "/logos/liftoff.png",
     figure: "174M+",
     outcome: "$0.82 CPM in 90 days, zero paid ads",
-    // DECISION 2026-11: one color clip, name and view count only.
-    // No handle, last name, or post URL. The board leads the story.
-    // See docs/DECISIONS.md (topic: liftoff-clip-board-2026-11).
+    // DECISION 2026-11: three color clips, name and view count only.
+    // No handle or post URL. The board leads the story.
+    // See docs/DECISIONS.md (topic: liftoff-daniel-147k-2026-11).
     leadClips: true,
     clips: [
+      {
+        src: "/videos/liftoff-henry-266k.mp4",
+        poster: "/videos/liftoff-henry-266k.jpg",
+        label: "Henry",
+        proof: "266K views",
+      },
+      {
+        src: "/videos/liftoff-daniel-147k.mp4",
+        poster: "/videos/liftoff-daniel-147k.jpg",
+        label: "Daniel Yun",
+        proof: "147K views",
+      },
       {
         src: "/videos/liftoff-henry.mp4",
         poster: "/videos/liftoff-henry.jpg",
@@ -99,13 +111,22 @@ export const caseStudies = [
     logo: "/logos/higgsfield.png",
     figure: "72M+",
     outcome: "~$0.96 CPM in 35 days",
-    // Kelly Zhao’s Higgsfield clip from Creator work. No handle is on file.
+    // DECISION 2026-11: two color clips, name and view count only.
+    // Same creator twice. No handle or post URL. The board leads the story.
+    // See docs/DECISIONS.md (topic: liftoff-higgsfield-clips-2026-11).
+    leadClips: true,
     clips: [
       {
         src: "/videos/creator-kelly.mp4",
         poster: "/videos/creator-kelly.jpg",
-        label: "TikTok",
+        label: "Kelly Zhao",
         proof: "2.2M views",
+      },
+      {
+        src: "/videos/higgsfield-kelly-1.1m.mp4",
+        poster: "/videos/higgsfield-kelly-1.1m.jpg",
+        label: "Kelly Zhao",
+        proof: "1.1M views",
       },
     ] as CaseClip[],
     stats: [

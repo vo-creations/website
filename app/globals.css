@@ -2327,10 +2327,12 @@ html.js-motion .hero-mark::after {
   text-transform: none;
   color: #8a8f98;
 }
-/* Proof board for Krea, fomo, and Liftoff. Two columns on a phone, four from 768px,
-   wider than the 720px column so the cards can breathe. A single clip keeps one
-   cell of that grid, in the article column. Stats and story stay put.
-   See docs/DECISIONS.md (topic: krea-clip-board-2026-11, fomo-clip-board-2026-11, liftoff-clip-board-2026-11). */
+/* Proof board for Krea, fomo, Liftoff, and Higgsfield. Two columns on a phone,
+   four from 768px, wider than the 720px column so the cards can breathe. One clip
+   (.is-one) and two clips (.is-two) each keep a four-up cell, in the article column.
+   Stats and story stay put.
+   See docs/DECISIONS.md (topic: krea-clip-board-2026-11, fomo-clip-board-2026-11,
+   liftoff-higgsfield-clips-2026-11). */
 .editorial.case-study .case-body > .case-clip-heading {
   margin-top: 64px;
   margin-bottom: 28px;
@@ -2398,10 +2400,26 @@ html.js-motion .hero-mark::after {
     margin-left: calc((100% - min(1080px, 100vw - 96px)) / 2);
     margin-right: calc((100% - min(1080px, 100vw - 96px)) / 2);
   }
-  /* 84px is three 28px column gaps, so one tile matches a cell of the four-up board. */
+  /* 84px is three 28px column gaps, so one tile matches a cell of the four-up board.
+     Two tiles are that cell twice, plus the one 28px gap between them.
+     See docs/DECISIONS.md (topic: liftoff-higgsfield-clips-2026-11). */
   .editorial.case-study .case-body > .case-clip-grid.is-board.is-one {
     grid-template-columns: minmax(0, 1fr);
     width: calc((min(1080px, 100vw - 96px) - 84px) / 4);
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .editorial.case-study .case-body > .case-clip-grid.is-board.is-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: calc((min(1080px, 100vw - 96px) - 84px) / 2 + 28px);
+    margin-left: 0;
+    margin-right: auto;
+  }
+  /* 56px is two 28px gaps. Three tiles stay one four-up cell each, left-aligned.
+     See docs/DECISIONS.md (topic: liftoff-daniel-147k-2026-11). */
+  .editorial.case-study .case-body > .case-clip-grid.is-board.is-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: calc(3 * ((min(1080px, 100vw - 96px) - 84px) / 4) + 56px);
     margin-left: 0;
     margin-right: auto;
   }

@@ -13,7 +13,15 @@ function CaseClips({ clips, board }: { clips: readonly CaseClip[]; board?: boole
       <div
         className={
           board
-            ? `case-clip-grid is-board${clips.length === 1 ? " is-one" : ""}`
+            ? `case-clip-grid is-board${
+                clips.length === 1
+                  ? " is-one"
+                  : clips.length === 2
+                    ? " is-two"
+                    : clips.length === 3
+                      ? " is-three"
+                      : ""
+              }`
             : "case-clip-grid"
         }
       >
