@@ -3627,3 +3627,11 @@ The files were copied as supplied: `public/videos/liftoff-daniel-147k.mp4` (962,
 The other three @daniel.liftoff reels stayed off: 1.2M lock-screen, 383K calorie-tracker, and 20.5K gym. None shows the Liftoff product. @annatradesss still has no Liftoff footage.
 
 From 768px a three-clip board adds `.is-three`. `.is-two` still applies only when the board has two clips. The row width is three four-up cells plus two 28px gaps, `3 * ((min(1080px, 100vw - 96px) - 84px) / 4) + 56px`, with `margin-left: 0`. At 1440px each tile is 249px and the row is 803px. Below 768px the three tiles are cells of the phone board.
+
+## topic: internal-dashboard-copy-2026-11-12 — _2026-11-13_
+
+Daniel Yun approved a copy rewrite of the homepage `#dashboard` bodies from `internal-dashboard-2026-11` on Nov 12, 2026. Headings stayed “An internal dashboard.” and “Creator tools.” Layout and CSS were not changed. Paid ad spend stayed billed separately.
+
+The left body is now: “Every creator, video, account, and view is tracked live in one dashboard. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.” The right body is now: “Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.”
+
+The reporting FAQ kept the Slack sentences. Only the dashboard sentence changed, to: “We also run campaigns from an internal dashboard, where every creator, video, account, and view is tracked live.” `public/llms.txt` carries the same facts in one bullet. The dashboard still has no product or vendor name.

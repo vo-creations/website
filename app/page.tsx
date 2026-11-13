@@ -196,7 +196,7 @@ const agencyFaqs = [
   { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
   { q: "How long do results take?", a: "First posts go live in 10–14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. The format is organic talking-head UGC." },
-  { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos. We also run campaigns from an internal dashboard." },
+  { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos. We also run campaigns from an internal dashboard, where every creator, video, account, and view is tracked live." },
   { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign. Creators own their accounts." },
   { q: "Who approves videos?", a: "Our core team of four approves every script and video before it posts." },
   { q: "What do I need to provide?", a: "An onboarding survey, free product, promo codes or app access, and custom tracking URLs. We handle scripts, briefing, coaching, posting, editing, creator bonuses, and the daily report." },
@@ -603,20 +603,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* DECISION 2026-11: unnamed internal dashboard and creator tools. Never give the dashboard a product or vendor name — see docs/DECISIONS.md (topic: internal-dashboard-2026-11). */}
+        {/* DECISION 2026-11: unnamed internal dashboard and creator tools. Bodies locked 2026-11-12. Never give the dashboard a product or vendor name. See docs/DECISIONS.md (topic: internal-dashboard-copy-2026-11-12). */}
         <section className="band" id="dashboard">
           <div className="ed-wrap">
             <div className="ops-grid">
               <div>
                 <h2 className="display">An internal dashboard.</h2>
                 <p className="lede mt-7">
-                  We run campaigns from an internal dashboard. It tracks every creator, video, account, and view, and the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run paid ads from the same place.
+                  Every creator, video, account, and view is tracked live in one dashboard. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
                 </p>
               </div>
               <div>
                 <h2 className="display">Creator tools.</h2>
                 <p className="lede mt-7">
-                  Creators get tools to run the work: auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels.
+                  Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
                 </p>
               </div>
             </div>
