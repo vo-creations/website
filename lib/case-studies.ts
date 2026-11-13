@@ -67,8 +67,18 @@ export const caseStudies = [
     logo: "/logos/liftoff.png",
     figure: "174M+",
     outcome: "$0.82 CPM in 90 days, zero paid ads",
-    // [NEED: client clips + handles]
-    clips: [] as CaseClip[],
+    // DECISION 2026-11: one color clip, name and view count only.
+    // No handle, last name, or post URL. The board leads the story.
+    // See docs/DECISIONS.md (topic: liftoff-clip-board-2026-11).
+    leadClips: true,
+    clips: [
+      {
+        src: "/videos/liftoff-henry.mp4",
+        poster: "/videos/liftoff-henry.jpg",
+        label: "Henry",
+        proof: "56K views",
+      },
+    ] as CaseClip[],
     stats: [
       { label: "Client", value: "Liftoff" },
       { label: "Category", value: "Fitness app" },

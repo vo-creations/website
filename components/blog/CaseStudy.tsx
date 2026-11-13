@@ -10,7 +10,13 @@ function CaseClips({ clips, board }: { clips: readonly CaseClip[]; board?: boole
   return (
     <>
       <h2 className={board ? "case-clip-heading" : undefined}>Creator work</h2>
-      <div className={board ? "case-clip-grid is-board" : "case-clip-grid"}>
+      <div
+        className={
+          board
+            ? `case-clip-grid is-board${clips.length === 1 ? " is-one" : ""}`
+            : "case-clip-grid"
+        }
+      >
         {board
           ? clips.map((clip) => <CaseClipCard key={clip.src} clip={clip} />)
           : clips.map((clip) => (
