@@ -998,14 +998,19 @@ html.js-motion .hero-rise.delay-2 > span {
     -webkit-mask-size: contain;
     mask-size: contain;
   }
+  /* Hidden unless the light is live, so a lost WebGL context cannot sit
+     on top of the silver. See docs/DECISIONS.md (topic: hero-ring-light-2026-11). */
   .editorial .hero-mark-face canvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    display: block;
+    display: none;
     background: transparent;
+  }
+  .editorial .hero-mark-face[data-gloss="live"] canvas {
+    display: block;
   }
   .editorial .hero-copy .hb {
     grid-column: 1 / -1;

@@ -17,6 +17,9 @@ const LIGHT_TAU = 0.26;
 const GAIN_TAU = 0.42;
 const DRIFT_GAIN = 0.72;
 const POINTER_GAIN = 1;
+const DRIFT_X_RATE = 0.28;
+const DRIFT_Y_RATE = 0.17;
+const DRIFT_CYCLES = 3;
 
 const VERT = `
 attribute vec2 aPos;
@@ -28,8 +31,8 @@ void main() {
 `;
 
 // Height lives in the green channel (blurred alpha). Sharp coverage is red.
-// The catch is a ring in that slope field, offset by the pointer, so it
-// reads as lacquer reflecting a ring light.
+// The catch is only the bevel that faces the pointer: a short arc, not a
+// ring around every edge and not a wash across the face. Tint is #F2F5FA.
 const FRAG = `
 precision mediump float;
 varying vec2 vUv;
@@ -37,11 +40,10 @@ uniform sampler2D uMap;
 uniform vec2 uTexel;
 uniform vec2 uLight;
 uniform float uIntensity;
-uniform float uBevel;
 
 void main() {
   float coverage = texture2D(uMap, vUv).r;
-  if (coverage < 0.02) {
+  if (coverage < 0.004) {
     gl_FragColor = vec4(0.0);
     return;
   }
@@ -50,31 +52,30 @@ void main() {
   float hR = texture2D(uMap, vUv + vec2(uTexel.x, 0.0)).g;
   float hD = texture2D(uMap, vUv + vec2(0.0, -uTexel.y)).g;
   float hU = texture2D(uMap, vUv + vec2(0.0, uTexel.y)).g;
-  // Slope of the height field. A ring light shows up where that slope
-  // sits on a circle around the light, so the catch slides as the pointer moves.
-  vec2 slope = vec2(hL - hR, hD - hU) * uBevel;
-  vec2 center = uLight * 0.7;
-  float band = length(slope - center) - 0.46;
-  float core = exp(-band * band * 26.0);
-  float halo = exp(-band * band * 6.0);
-  float gloss = (core * 0.82 + halo * 0.2) * uIntensity;
-  float mask = smoothstep(0.16, 0.7, coverage);
-  float alpha = clamp(gloss, 0.0, 0.64) * mask;
-
-  gl_FragColor = vec4(alpha, alpha, alpha, alpha);
+  vec2 slope = vec2(hL - hR, hD - hU);
+  float mag = length(slope);
+  vec2 aim = normalize(uLight + vec2(0.0, 0.12));
+  float facing = dot(slope / max(mag, 0.0008), aim);
+  float lobe = exp(-(1.0 - facing) * (1.0 - facing) * 18.0);
+  float bevel = smoothstep(0.004, 0.028, mag);
+  float gloss = lobe * bevel * uIntensity;
+  float mask = smoothstep(0.0, 0.18, coverage);
+  float alpha = min(gloss, 0.34) * mask;
+  vec3 tint = vec3(0.94902, 0.96078, 0.98039);
+  gl_FragColor = vec4(tint * alpha, alpha);
 }
 `;
 
 type Stoppable = { cancelled: boolean; stop: () => void };
 
 export default function HeroMarkGloss() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const faceRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const face = faceRef.current;
+    if (!face) return;
     const state: Stoppable = { cancelled: false, stop: () => {} };
-    void mountGloss(canvas, state);
+    void mountGloss(face, state);
     return () => {
       state.cancelled = true;
       state.stop();
@@ -82,16 +83,13 @@ export default function HeroMarkGloss() {
   }, []);
 
   return (
-    <div className="hero-mark-face">
+    <div className="hero-mark-face" ref={faceRef}>
       <span className="hero-mark-ink" />
-      <canvas ref={canvasRef} aria-hidden="true" />
     </div>
   );
 }
 
-async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
-  const face = canvas.parentElement;
-  if (!(face instanceof HTMLElement)) return;
+async function mountGloss(face: HTMLElement, state: Stoppable) {
   const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopQuery = window.matchMedia("(min-width: 1024px)");
   let generation = 0;
@@ -137,17 +135,26 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
   await boot();
 
   async function boot() {
-    const mark = canvas.parentElement;
-    if (!(mark instanceof HTMLElement)) return;
+    const mark = face;
     if (state.cancelled || reduceQuery.matches || !desktopQuery.matches) return;
     if (mark.dataset.gloss === "live" || mark.dataset.gloss === "pending") return;
     const token = generation;
     mark.dataset.gloss = "pending";
 
+    const abandon = () => {
+      if (token === generation && mark.dataset.gloss === "pending") delete mark.dataset.gloss;
+    };
+
     await waitForIntro(state);
-    if (stale()) return;
+    if (stale()) {
+      abandon();
+      return;
+    }
     await waitForIdle();
-    if (stale()) return;
+    if (stale()) {
+      abandon();
+      return;
+    }
 
     let map: HeightMap | null = null;
     try {
@@ -155,15 +162,21 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
     } catch {
       map = null;
     }
-    if (stale()) return;
+    if (stale()) {
+      abandon();
+      return;
+    }
     if (!map) {
       mark.dataset.gloss = "fallback";
       return;
     }
 
-    const engine = createEngine(canvas, map);
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    const engine = createEngine(canvas, mark, map);
     if (stale()) {
       engine?.dispose();
+      abandon();
       return;
     }
     if (!engine) {
@@ -175,7 +188,7 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
       return state.cancelled || token !== generation || reduceQuery.matches || !desktopQuery.matches;
     }
 
-    const shellNode = canvas.closest(".hero-shell");
+    const shellNode = mark.closest(".hero-shell");
     const shell = shellNode instanceof HTMLElement ? shellNode : null;
     const fineQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     let pointerInside = false;
@@ -193,17 +206,15 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
     let visible = !document.hidden;
 
     const drift = () => !fineQuery.matches;
+    let driftOrigin = 0;
 
     const placeTarget = () => {
       if (!shell) return;
-      const bounds = mark.getBoundingClientRect();
       const hero = shell.getBoundingClientRect();
-      const cx = bounds.left + bounds.width * 0.5;
-      const cy = bounds.top + bounds.height * 0.5;
-      const sx = Math.max(hero.width, bounds.width) * 0.46;
-      const sy = Math.max(hero.height, bounds.height) * 0.46;
-      targetX = clamp((pointerX - cx) / sx, -1.25, 1.25);
-      targetY = clamp((cy - pointerY) / sy, -1.25, 1.25);
+      const nx = ((pointerX - hero.left) / Math.max(hero.width, 1)) * 2 - 1;
+      const ny = 1 - ((pointerY - hero.top) / Math.max(hero.height, 1)) * 2;
+      targetX = clamp(nx, -1, 1);
+      targetY = clamp(ny, -1, 1);
     };
 
     const tick = (now: number) => {
@@ -212,10 +223,13 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
       last = now;
 
       if (drift()) {
-        const t = now / 1000;
-        targetX = Math.sin(t * 0.28) * 0.66;
-        targetY = Math.sin(t * 0.17 + 1.15) * 0.38;
-        targetGain = DRIFT_GAIN;
+        if (driftOrigin === 0) driftOrigin = now;
+        const t = (now - driftOrigin) / 1000;
+        const cycles = t / ((Math.PI * 2) / DRIFT_X_RATE);
+        const fade = cycles < DRIFT_CYCLES ? 1 : Math.max(0, 1 - (cycles - DRIFT_CYCLES));
+        targetX = Math.sin(t * DRIFT_X_RATE) * 0.66 * fade;
+        targetY = Math.sin(t * DRIFT_Y_RATE + 1.15) * 0.38 * fade;
+        targetGain = DRIFT_GAIN * fade;
       } else if (pointerInside) {
         placeTarget();
         targetGain = POINTER_GAIN;
@@ -228,15 +242,10 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
       gain = damp(gain, targetGain, dt, GAIN_TAU);
       engine.draw(lightX, lightY, gain);
 
-      const idle =
-        !drift() &&
-        targetGain === 0 &&
-        gain < 0.004 &&
+      const settled =
+        Math.abs(gain - targetGain) < 0.004 &&
         Math.hypot(lightX - targetX, lightY - targetY) < 0.004;
-      if (idle) {
-        engine.draw(lightX, lightY, 0);
-        stopLoop();
-      }
+      if (settled && (!drift() || targetGain < 0.004)) stopLoop();
     };
 
     const stopLoop = () => {
@@ -247,8 +256,8 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
 
     const startLoop = () => {
       if (raf || state.cancelled || document.hidden || !inView) return;
-      if (reduceQuery.matches) return;
-      if (canvas.clientWidth < 2 || canvas.clientHeight < 2) return;
+      if (reduceQuery.matches || mark.dataset.gloss !== "live") return;
+      if (mark.clientWidth < 2 || mark.clientHeight < 2) return;
       last = 0;
       raf = requestAnimationFrame(tick);
     };
@@ -275,8 +284,8 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
     };
     const onContextLost = (event: Event) => {
       event.preventDefault();
-      stopLoop();
       mark.dataset.gloss = "fallback";
+      teardownEngine();
     };
 
     shell?.addEventListener("pointermove", onMove, { passive: true });
@@ -310,8 +319,9 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
     };
     fineQuery.addEventListener("change", onFine);
 
-    mark.dataset.gloss = "live";
+    mark.appendChild(canvas);
     engine.resize();
+    mark.dataset.gloss = "live";
     if (drift()) startLoop();
 
     engineStop = () => {
@@ -323,8 +333,10 @@ async function mountGloss(canvas: HTMLCanvasElement, state: Stoppable) {
       fineQuery.removeEventListener("change", onFine);
       viewObserver.disconnect();
       resizeObserver.disconnect();
+      const gloss = mark.dataset.gloss;
+      if (gloss === "live" || gloss === "pending") delete mark.dataset.gloss;
       engine.dispose();
-      if (mark.dataset.gloss === "live") delete mark.dataset.gloss;
+      if (gloss === "fallback" || gloss === "static") mark.dataset.gloss = gloss;
     };
 
     if (stale()) engineStop();
@@ -487,7 +499,7 @@ type Engine = {
   dispose: () => void;
 };
 
-function createEngine(canvas: HTMLCanvasElement, map: HeightMap): Engine | null {
+function createEngine(canvas: HTMLCanvasElement, host: HTMLElement, map: HeightMap): Engine | null {
   let gl: WebGLRenderingContext | null = null;
   try {
     gl = canvas.getContext("webgl", {
@@ -543,10 +555,8 @@ function createEngine(canvas: HTMLCanvasElement, map: HeightMap): Engine | null 
   const uTexel = gl.getUniformLocation(program, "uTexel");
   const uLight = gl.getUniformLocation(program, "uLight");
   const uIntensity = gl.getUniformLocation(program, "uIntensity");
-  const uBevel = gl.getUniformLocation(program, "uBevel");
   gl.uniform1i(uMap, 0);
   gl.uniform2f(uTexel, 1 / map.width, 1 / map.height);
-  gl.uniform1f(uBevel, 9);
   gl.disable(gl.BLEND);
   gl.clearColor(0, 0, 0, 0);
   if (!gl.getContextAttributes()?.alpha) {
@@ -560,8 +570,8 @@ function createEngine(canvas: HTMLCanvasElement, map: HeightMap): Engine | null 
 
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
-    const width = Math.max(1, Math.round(canvas.clientWidth * dpr));
-    const height = Math.max(1, Math.round(canvas.clientHeight * dpr));
+    const width = Math.max(1, Math.round(host.clientWidth * dpr));
+    const height = Math.max(1, Math.round(host.clientHeight * dpr));
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
       canvas.height = height;
@@ -574,7 +584,6 @@ function createEngine(canvas: HTMLCanvasElement, map: HeightMap): Engine | null 
       gl!.bindTexture(gl!.TEXTURE_2D, texture);
       gl!.uniform1i(uMap, 0);
       gl!.uniform2f(uTexel, 1 / map.width, 1 / map.height);
-      gl!.uniform1f(uBevel, 9);
       gl!.disable(gl!.BLEND);
     } else {
       gl!.viewport(0, 0, canvas.width, canvas.height);
@@ -593,12 +602,13 @@ function createEngine(canvas: HTMLCanvasElement, map: HeightMap): Engine | null 
   };
 
   const dispose = () => {
+    canvas.remove();
     if (!gl) return;
+    const lost = gl.isContextLost();
     gl.deleteTexture(texture);
     gl.deleteBuffer(buffer);
     gl.deleteProgram(program);
-    const lose = gl.getExtension("WEBGL_lose_context");
-    lose?.loseContext();
+    if (!lost) gl.getExtension("WEBGL_lose_context")?.loseContext();
     gl = null;
   };
 
