@@ -122,6 +122,7 @@ Next.js 14 (App Router), TypeScript, Tailwind CSS. Hosted on Vercel, git-connect
 - `trusted-by-logos-2026-11` — nine marks joined the Trusted By marquee: micro1, Decart, Tab, Hedra, Cantina, Teamily, Based Body Works (the official BASED wordmark), Santa Cruz Paleo, and OpenArt AI. Methods was left off. The strip’s later paint and motion are `trusted-by-strip-2026-11`.
 - `fomo-brand-case-2026-11` — the written client brand is lowercase fomo, including at the start of a sentence. The logo file and the `/case-studies/fomo` slug stay. Homepage bylines stay uppercase except that word, which uses `.keep-case`.
 - `trusted-by-strip-2026-11` — CookSAT in the Trusted By row is a luminance PNG baked from `cooksat.svg`, so the chef-hat panda stays visible at the same silver as the other marks. The marquee no longer runs a live invert filter. The 6% edge fade stays a mask, because a flat overlay covered the silk. It loops in 72.7s so the travel speed matches the old 11-logo, 40s strip. Reduced motion still stops it.
+- `internal-dashboard-2026-11` — ManyChat reimbursements are no longer something the client provides. The homepage describes an unnamed internal dashboard and named creator tools (auto-DMs, an auto-poster, Doomscroller, an AI editor, trial reels). The dashboard is never given a product or vendor name. Slack daily reports and separate paid-media billing stay.
 
 ## Known-broken
 <!-- Capped ~1 screen. Each entry: what + recheck-by + clearing condition. Past recheck-by → verify against code, don't trust. -->

@@ -2577,6 +2577,21 @@ html.js-motion .hero-mark::after {
   font-size: 18px;
   line-height: 1.45;
 }
+.editorial .ops-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+.editorial .ops-grid .lede {
+  max-width: 38em;
+}
+@media (min-width: 1024px) {
+  .editorial .ops-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    column-gap: 72px;
+    align-items: start;
+  }
+}
 .editorial.case-study .case-body {
   max-width: none;
   font-size: 19px;
