@@ -128,7 +128,7 @@ const results = [
   {
     label: "AI creative platform",
     figure: "130M+",
-    lines: ["views in 12 weeks", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 4.7% rate", "1.8M likes"],
+    lines: ["views in 12 weeks", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 3.6% rate", "1.8M likes"],
   },
   {
     label: "Consumer finance app",

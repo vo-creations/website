@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export type CaseStat = { label: string; value: string; note?: string };
 export type CaseClip = {
   src: string;
@@ -208,7 +210,7 @@ export const caseStudies = [
       { label: "Category", value: "AI creative platform" },
       { label: "Duration", value: "Jul 28 – Oct 18, 2026" },
       { label: "Total views", value: "130M+ (dashboard: 130.6M)" },
-      { label: "Engagements", value: "4.7M (4.7% rate); 1.8M likes" },
+      { label: "Engagements", value: "4.7M (3.6% rate); 1.8M likes" },
       { label: "Status", value: "Still growing" },
       { label: "CPM", value: "Under $3" },
     ] as CaseStat[],
@@ -227,3 +229,30 @@ export const caseStudyOgImage = {
   height: 630,
   alt: "Vo Creations",
 };
+
+// Title and description are the study's existing fields. Twitter is set here
+// because the root layout's twitter title would otherwise win the merge.
+// DECISION 2026-11: see docs/DECISIONS.md (topic: audit-fixes-2026-11-13).
+export function caseStudyMetadata(slug: string): Metadata {
+  const study = caseStudyBySlug(slug);
+  const path = `/case-studies/${study.slug}`;
+  return {
+    title: study.title,
+    description: study.description,
+    alternates: { canonical: path },
+    openGraph: {
+      title: study.title,
+      description: study.description,
+      url: `https://vocreations.com${path}`,
+      type: "article",
+      images: [caseStudyOgImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@VoCreationsUGC",
+      title: study.title,
+      description: study.description,
+      images: [caseStudyOgImage.url],
+    },
+  };
+}

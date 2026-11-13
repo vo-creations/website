@@ -31,6 +31,9 @@ export default function RefundPolicyPage() {
             <p>
               Vo Creations LLC runs in-house UGC programs for AI startups and consumer apps. Campaigns start at $50K+ a month. The fee is all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. Paid media, the ad spend, is outside the fee and billed on top.
             </p>
+            <p className="mt-3">
+              You do not pay for videos under 1,000 views: they do not count toward your CPM.
+            </p>
           </div>
           <div>
             <h2 className="mb-3 text-[20px] font-extrabold tracking-tight text-text md:text-[22px]">

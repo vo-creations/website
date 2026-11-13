@@ -2,23 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CaseStudy from "@/components/blog/CaseStudy";
 import { BOOKING_URL } from "@/lib/blog/posts";
-import { caseStudyBySlug, caseStudyOgImage } from "@/lib/case-studies";
+import { caseStudyBySlug, caseStudyMetadata } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("krea");
 const link = "text-text underline decoration-white/30 underline-offset-4";
 
-export const metadata: Metadata = {
-  title: study.title,
-  description: study.description,
-  alternates: { canonical: `/case-studies/${study.slug}` },
-  openGraph: {
-    title: study.title,
-    description: study.description,
-    url: `https://vocreations.com/case-studies/${study.slug}`,
-    type: "article",
-    images: [caseStudyOgImage],
-  },
-};
+export const metadata: Metadata = caseStudyMetadata(study.slug);
 
 export default function KreaCaseStudy() {
   return (
@@ -29,7 +18,7 @@ export default function KreaCaseStudy() {
       </p>
       <h2>Why it worked</h2>
       <p>
-        The engagement rate. 4.7% across 130M+ views means people weren&apos;t just scrolling past. That&apos;s the comment-section effect that polished ads don&apos;t get.
+        The engagement rate. 3.6% across 130M+ views means people weren&apos;t just scrolling past. That&apos;s the comment-section effect that polished ads don&apos;t get.
       </p>
       <blockquote className="case-quote">
         <p>&ldquo;Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.&rdquo;</p>

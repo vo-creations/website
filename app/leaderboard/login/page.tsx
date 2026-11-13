@@ -1,6 +1,10 @@
 import LoginForm from "./LoginForm";
+import AuthUnavailable from "../AuthUnavailable";
+import { supabaseAuthEnv } from "@/lib/supabase/env";
 
 export default function LoginPage() {
+  if (!supabaseAuthEnv()) return <AuthUnavailable reason="missing" />;
+
   return (
     <div className="screen">
       <div className="cup">
