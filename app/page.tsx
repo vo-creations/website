@@ -123,7 +123,7 @@ const heroProof = [
 const steps = [
   { num: "01", title: "Brief", desc: "We write the scripts on day 0. Creators are briefed within about 48 hours." },
   { num: "02", title: "Training", desc: "Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week." },
-  { num: "03", title: "Posting", desc: "Creators post organically on TikTok, Instagram, YouTube, Facebook, and Snapchat. Creators own their accounts." },
+  { num: "03", title: "Posting", desc: "Creators post organically on TikTok, Instagram, YouTube, Facebook, and Snapchat." },
   { num: "04", title: "Reporting", desc: "Every client gets a daily report in a shared Slack channel. Each week we double down on the top videos." },
 ];
 

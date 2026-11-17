@@ -3711,3 +3711,9 @@ The homepage was tightened without new stats, quotes, or a dashboard vendor name
 **Monochrome.** The green budget squares in `public/proof/slack-report.png` and `.webp` were recolored to `#C4C8CF`. The empty gray squares stayed. The closer dropped `closer-chrome.avif` / `.webp` and the reflection. It now masks `public/brand/vo-logo.svg` in `#C4C8CF`, the same matte ink as the hero. The hero ring light was not copied onto the closer. Blog thumbnails and Open Graph cards still use the chrome monogram.
 
 **Small items.** At 1440px the biggest-numbers line uses a 36em max-width, and a non-breaking space keeps “organic views.” together, so “views.” is not alone on a line. The words were not changed. Every Calendly control on the homepage, the four case studies, and the blog says “Book a call”. “UGC agency vs in-house”, “How the math works”, and the case-study links, including “UGC vs paid ads” and “UGC for AI startups”, use `.text-link` (underline, offset, `#EEF0F4`).
+
+## topic: homepage-finish-2026-11 — _2026-11-17_ (designer pass)
+
+A designer review of the first pass scored 9 out of 10. Two fixes followed. Below 768px `.paths article` padding changed from `28px 0 0` to `28px 0 36px`, so the brand pill clears the hairline under it. `.paths article:last-child` stayed `border-bottom: 0`. From 768px the two-column padding still replaces that rule, so 1440px is unchanged. The closer pill and the $50K line were not moved.
+
+“Creators own their accounts” was in Posting (step 03) and in the Approvals and ownership column. It now stays only in that column. The FAQ ownership answer was left as written. The phone hero was checked at scroll position 0. The eyebrow sits fully below the sticky header, ahead of “make them remember.”
