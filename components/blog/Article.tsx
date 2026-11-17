@@ -83,14 +83,19 @@ export function ArticleTable({
   rows: string[][];
 }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-white/10">
+    <div
+      className="overflow-x-auto rounded-2xl border border-white/10"
+      tabIndex={0}
+      role="region"
+      aria-label={caption}
+    >
       <table className="w-full min-w-[640px] border-collapse text-left text-[15px]">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="border-b border-white/15 bg-white/[0.03] text-text">
-            {headers.map((header) => (
-              <th key={header} scope="col" className="px-4 py-3 font-semibold">
-                {header}
+            {headers.map((header, index) => (
+              <th key={`${index}-${header}`} scope="col" className="px-4 py-3 font-semibold">
+                {header ? header : <span className="sr-only">Feature</span>}
               </th>
             ))}
           </tr>
@@ -256,7 +261,7 @@ export default function Article({
             <p>Campaigns start at $50K+ a month, all-inclusive.</p>
             <div className="ctas">
               <a className="btn-book" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                Book a call ↗
+                Book a call<span aria-hidden="true">&nbsp;↗</span>
               </a>
               <Link href="/case-studies" className="btn-line">
                 Our work

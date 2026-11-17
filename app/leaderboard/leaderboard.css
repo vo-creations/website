@@ -1,4 +1,6 @@
-@import url("https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css");
+/* Tabler Icons load from a link in app/leaderboard/layout.tsx.
+   An @import here is dropped, because the built CSS places it after other rules.
+   See docs/DECISIONS.md (topic: a11y-privacy-2026-11). */
 
 /* Lifted from design/leaderboard-fun-prototype.html. EVERY selector is scoped under
    .lb-root so the dark theme + classes are structurally contained — they cannot
