@@ -79,7 +79,7 @@ export default function NotionToggle({
   const titleId = `${id}-title`;
   const lineId = `${id}-line`;
   const shell = (
-    <div className="notion-shell">
+    <div className={bare ? "notion-shell is-bare" : "notion-shell"}>
       {/* The h2 stays outside the summary so it remains in the heading outline.
           The summary is named with aria-labelledby. Clicks on the title pass
           through to the summary. */}

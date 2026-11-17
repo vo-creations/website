@@ -1915,10 +1915,14 @@ html.js-motion .hero-mark-face {
   padding: 0;
 }
 .editorial .notion-shell {
+  --notion-pad: 18px;
   display: grid;
   grid-template-columns: 15px minmax(0, 1fr);
   column-gap: 11px;
   align-items: start;
+}
+.editorial .notion-shell.is-bare {
+  margin-top: 26px;
 }
 .editorial .notion {
   grid-column: 1 / -1;
@@ -1929,7 +1933,6 @@ html.js-motion .hero-mark-face {
 }
 .editorial .notion.is-bare {
   border-top: 1px solid var(--hair);
-  margin-top: 28px;
 }
 .editorial .notion > summary {
   display: grid;
@@ -1937,7 +1940,7 @@ html.js-motion .hero-mark-face {
   grid-column: 1 / -1;
   row-gap: 6px;
   align-items: start;
-  padding: 18px 0;
+  padding: var(--notion-pad) 0;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -1954,7 +1957,7 @@ html.js-motion .hero-mark-face {
   grid-column: 2;
   grid-row: 1;
   z-index: 1;
-  margin-top: 18px;
+  margin-top: var(--notion-pad);
   color: #eef0f4;
   pointer-events: none;
   transition: color 180ms ease;
@@ -2019,6 +2022,7 @@ html.js-motion .hero-mark-face {
 }
 .editorial .report-line {
   margin-top: 18px;
+  margin-bottom: 0;
 }
 .editorial .notion,
 .editorial .fq {

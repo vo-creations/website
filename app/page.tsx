@@ -350,7 +350,7 @@ function SlackReport() {
           alt="Example of the daily Slack campaign report, with numbers blurred."
           width={1800}
           height={856}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           className="h-auto w-full rounded-[6px] shadow-[0_40px_120px_rgba(0,0,0,0.6)]"
         />
