@@ -171,21 +171,25 @@ const quotes = [
   {
     quote: "Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.",
     by: "Miguel Lara, Growth Marketing, Krea",
+    client: "Krea",
     study: "/case-studies/krea",
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
     by: "Will Timberlake, UGC Manager, fomo",
+    client: "fomo",
     study: "/case-studies/fomo",
   },
   {
     quote: "Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.",
     by: "Shotan Jakupov, Head of Growth, Higgsfield",
+    client: "Higgsfield",
     study: "/case-studies/higgsfield",
   },
   {
     quote: "Vo Creations helped scale our UGC efforts from 0 to 100. One of the best teams in this space.",
     by: "Wassim Bouchelouh, CMO, Liftoff",
+    client: "Liftoff",
     study: "/case-studies/liftoff",
   },
 ];
@@ -535,7 +539,7 @@ export default function Home() {
                 .
               </p>
               <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call ↗
+                Book a call<span aria-hidden="true">&nbsp;↗</span>
               </a>
             </div>
           </div>
@@ -664,7 +668,7 @@ export default function Home() {
                       item.by
                     )}
                   </span>
-                  <a href={item.study}>Read the case study</a>
+                  <a href={item.study} aria-label={`Read the case study, ${item.client}`}>Read the case study</a>
                 </div>
               ))}
             </div>
@@ -798,7 +802,7 @@ export default function Home() {
                   <a href={`/blog/${featured.slug}`}>{featured.title}</a>
                 </h3>
                 <a className="btn-line mt-[26px]" href={`/blog/${featured.slug}`}>
-                  Read the article ↗
+                  Read the article<span aria-hidden="true">&nbsp;↗</span>
                 </a>
               </div>
             </div>
