@@ -3717,3 +3717,25 @@ The homepage was tightened without new stats, quotes, or a dashboard vendor name
 A designer review of the first pass scored 9 out of 10. Two fixes followed. Below 768px `.paths article` padding changed from `28px 0 0` to `28px 0 36px`, so the brand pill clears the hairline under it. `.paths article:last-child` stayed `border-bottom: 0`. From 768px the two-column padding still replaces that rule, so 1440px is unchanged. The closer pill and the $50K line were not moved.
 
 “Creators own their accounts” was in Posting (step 03) and in the Approvals and ownership column. It now stays only in that column. The FAQ ownership answer was left as written. The phone hero was checked at scroll position 0. The eyebrow sits fully below the sticky header, ahead of “make them remember.”
+
+## topic: homepage-notion-2026-11 — _2026-11-17_
+
+The homepage detail blocks became disclosures so the page reads as a short stack, with the long explanations one click away. How it works, Daily reports, Creator tools, and FAQ each use `components/NotionToggle.tsx`: a `<details>` whose summary is a headline plus one line, and a silver chevron that rotates 90 degrees when open. The panel stays in the server HTML. `::details-content` animates height over 200ms. `prefers-reduced-motion: reduce` turns that transition off. Enter and Space toggle the summary. Focus uses the existing 2px outline.
+
+`#quality` stayed on the Approvals and ownership block inside How it works. `#dashboard` stayed on the internal-dashboard copy inside Daily reports. Creator tools moved out of that block into its own disclosure (`#tools`). A hash that points at a disclosure, or at anything inside it, opens that disclosure and scrolls to the target. That covers `#process`, `#quality`, `#reporting`, `#dashboard`, `#tools`, and `#faq`. FAQ questions are nested disclosures and start closed. FAQPage JSON-LD still maps every `agencyFaqs` question and answer. No answer text was rewritten.
+
+The sentence “Campaigns start at $50K+ a month. First posts go live in 10–14 days.” had been in How it works and again in the closer. It now appears once, as the line under “What $50K+/month buys”. The closer keeps the headline, the emails, and “Book a call”. The two-week paid trial and the top 1% line stayed on the Training step and in the pricing Creators column, twice. “Creators own their accounts” stayed in Approvals and ownership and in the ownership FAQ. “Videos under 1,000 views don't count toward your CPM” stayed in the pricing Terms column and in the investment FAQ. The dashboard paragraph was not rewritten and names no vendor. Creator tools keeps the same tool names in the summary. The panel keeps the two claims that followed them: creators use the tools so they can focus on the content itself, and that focus is what produces the quality.
+
+Repeated lead-ins were cut. The stuck columns dropped “Paid keeps getting pricier.”, “In-house creator programs stall.”, and “Agency ads look like ads.” The Creator work line dropped “from our trained creator network”. The pricing included column dropped a second “$50K+ a month.” opener. The terms column dropped a second “90-day minimum, then month to month.” because the Minimum line above it already says that. Hero lines, stats, quotes, result figures, client names, and the four team bios were not changed. fomo stays lowercase. Calendly labels stay “Book a call”.
+
+## topic: homepage-notion-2026-11 — _2026-11-17_ (review)
+
+The chevron moved in front of the title. It is a 15px SVG with an 11px gap, at 60% opacity, rotating 90 degrees when open. Hover turns the title `#fff` and the chevron fully opaque. Focus-visible is a 1px `#C4C8CF` ring, 4px offset, 6px radius. FAQ questions use that same SVG. Reduced motion still drops the transitions.
+
+The section h2 moved out of the summary. The summary’s accessible name is `aria-labelledby` pointing at that h2 and the one-line. Clicks on the title pass through to the summary.
+
+Daily reports stopped being a disclosure. The open section is the headline, the existing Slack card, and “Each week we double down on the top videos.” The metric rows left that section. The dashboard paragraph moved into a disclosure under the card. `#dashboard` is that disclosure, so the hash still opens it. The $50K pricing sentence was not edited.
+
+FAQ joined the same hairline stack, with 64px between its lower hairline and “UGC insights.” Collapsed one-liners were trimmed from words already on the page. At 15.5px, a 390px column fits about 46 characters, so the lines stop short of 60 where a longer line would wrap. The featured UGC insights image was checked after it loaded. It renders the chrome mark and the post title.
+
+The bare dashboard toggle’s 28px offset had been on the details element, so the heading sat above the chevron and the hairline cut the title. That offset moved to `.notion-shell.is-bare`. The details keeps only its top border. Summary padding and the heading’s top margin both read `--notion-pad` (18px). The line under the Slack card has 18px above it and 26px below it, before that hairline. The Slack image loads eager.

@@ -13,6 +13,7 @@ import { posts } from "@/lib/blog/posts";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
 import HeroMarkGloss from "@/components/HeroMarkGloss";
+import NotionToggle, { NotionChevron, useOpenDetailsForHash } from "@/components/NotionToggle";
 
 // DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
 // are white on black. The serif VO monogram is the mark, including a large
@@ -121,10 +122,10 @@ const heroProof = [
 ];
 
 const steps = [
-  { num: "01", title: "Brief", desc: "We write the scripts on day 0. Creators are briefed within about 48 hours." },
+  { num: "01", title: "Brief", desc: "Scripts on day 0. Creators briefed within about 48 hours." },
   { num: "02", title: "Training", desc: "Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week." },
-  { num: "03", title: "Posting", desc: "Creators post organically on TikTok, Instagram, YouTube, Facebook, and Snapchat." },
-  { num: "04", title: "Reporting", desc: "Every client gets a daily report in a shared Slack channel. Each week we double down on the top videos." },
+  { num: "03", title: "Posting", desc: "Organic posts on TikTok, Instagram, YouTube, Facebook, and Snapchat." },
+  { num: "04", title: "Reporting", desc: "A daily Slack report. Each week we double down on the top videos." },
 ];
 
 const results = [
@@ -349,7 +350,7 @@ function SlackReport() {
           alt="Example of the daily Slack campaign report, with numbers blurred."
           width={1800}
           height={856}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           className="h-auto w-full rounded-[6px] shadow-[0_40px_120px_rgba(0,0,0,0.6)]"
         />
@@ -377,6 +378,7 @@ function HeroStats() {
 }
 
 export default function Home() {
+  useOpenDetailsForHash();
   const heroCopyRef = useHeroDrift<HTMLDivElement>(-28);
   const heroMarkRef = useHeroDrift<HTMLDivElement>(18);
   const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
@@ -491,15 +493,15 @@ export default function Home() {
             <div className="pcols">
               <div>
                 <span className="lab">Paid</span>
-                <p>Paid keeps getting pricier. Paid CAC on Meta and TikTok goes up every quarter.</p>
+                <p>Paid CAC on Meta and TikTok goes up every quarter.</p>
               </div>
               <div>
                 <span className="lab">In-house</span>
-                <p>In-house creator programs stall. Nobody has time to recruit and coach, so programs stall at 5–10 creators.</p>
+                <p>Nobody has time to recruit and coach, so programs stall at 5–10 creators.</p>
               </div>
               <div>
                 <span className="lab">Agencies</span>
-                <p>Agency ads look like ads. Agencies hand over 20 polished ads that look like ads, and they flop.</p>
+                <p>Agencies hand over 20 polished ads that look like ads, and they flop.</p>
               </div>
             </div>
             <p className="lede mt-8">
@@ -545,11 +547,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="band" id="process">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">How it works.</h2>
-            </div>
+        {/* DECISION 2026-11: How it works, creator tools, the dashboard, and FAQ
+            are disclosures. Daily reports stays open. #quality and #dashboard
+            still open the right panel. See docs/DECISIONS.md
+            (topic: homepage-notion-2026-11). */}
+        <div className="notion-stack">
+          <NotionToggle
+            id="process"
+            title="How it works."
+            summary="Scripts, training, organic posts, daily Slack."
+          >
             <div className="how-list">
               {steps.map((step) => (
                 <article key={step.num} className="how-step">
@@ -561,8 +568,7 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <p className="how-pack">Campaigns start at $50K+ a month. First posts go live in 10–14 days.</p>
-            <div className="pcols mt-12">
+            <div className="pcols">
               <div>
                 <span className="lab">You give us</span>
                 <p>An onboarding survey, free product, promo codes or app access, and custom tracking URLs.</p>
@@ -571,65 +577,48 @@ export default function Home() {
                 <span className="lab">We handle</span>
                 <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
               </div>
-              {/* DECISION 2026-11: approvals and ownership moved here from the old #quality band.
-                  The trial line stays on the Training step. id="quality" keeps the old hash.
-                  See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
+              {/* id="quality" keeps the old hash. The trial line stays on Training. */}
               <div id="quality">
                 <span className="lab">Approvals and ownership</span>
                 <p>Our core team of four approves every script and video before it posts. We handle all takedowns and re-edits. You own every video. Creators own their accounts.</p>
               </div>
             </div>
+          </NotionToggle>
+        </div>
+
+        <section className="band" id="reporting" aria-labelledby="reporting-title">
+          <div className="ed-wrap">
+            <h2 id="reporting-title" className="display">Daily reports.</h2>
+            <div className="report-shot">
+              <SlackReport />
+            </div>
+            <p className="lede report-line">Each week we double down on top videos.</p>
+            {/* id="dashboard" keeps the old hash and opens this disclosure.
+                Never name a dashboard vendor. */}
+            <NotionToggle
+              bare
+              id="dashboard"
+              title="An internal dashboard."
+              summary="Every creator, video, and view, tracked live."
+            >
+              <p className="lede">
+                Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
+              </p>
+            </NotionToggle>
           </div>
         </section>
 
-        <section className="band band-dark" id="reporting">
-          <div className="ed-wrap">
-            <div className="grid items-center gap-12 xl:grid-cols-12 xl:gap-x-6">
-              <div className="xl:col-span-4">
-                <h2 className="display">
-                  Daily reports
-                  <br />
-                  in your Slack.
-                </h2>
-                <p className="lede mt-7">
-                  Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos.
-                </p>
-                <div className="mt-11 border-t border-white/10">
-                  {[
-                    ["Spend vs budget", "Daily"],
-                    ["Views · posts · CPM · engagement", "Daily"],
-                    ["Top creators, last 7 days", "Daily"],
-                  ].map(([label, when]) => (
-                    <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[15px] text-[#e7e7e4]">
-                      <span>{label}</span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#EEF0F4]/60">{when}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="xl:col-span-7 xl:col-start-6">
-                <SlackReport />
-              </div>
-            </div>
-            {/* DECISION 2026-11: the text-only dashboard band folded in here.
-                id="dashboard" keeps the old hash. Never name a dashboard vendor.
-                See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
-            <div className="ops-grid report-more" id="dashboard">
-              <div>
-                <h3>An internal dashboard.</h3>
-                <p>
-                  Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
-                </p>
-              </div>
-              <div>
-                <h3>Creator tools.</h3>
-                <p>
-                  Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="notion-stack">
+          <NotionToggle
+            id="tools"
+            title="Creator tools."
+            summary="Auto-DMs, auto-poster, AI editor, trial reels."
+          >
+            <p className="lede">
+              Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
+            </p>
+          </NotionToggle>
+        </div>
 
         <section className="band" id="testimonials">
           <div className="ed-wrap">
@@ -661,6 +650,7 @@ export default function Home() {
           <div className="ed-wrap">
             <div className="sh">
               <h2 className="display">What $50K+/month buys</h2>
+              <p className="lede mt-4">Campaigns start at $50K+ a month. First posts go live in 10–14 days.</p>
             </div>
             <div className="pc">
               <p className="ed-price">
@@ -679,13 +669,13 @@ export default function Home() {
               <div>
                 <span className="lab">What&apos;s included</span>
                 <p>
-                  $50K+ a month. At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Everything included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
+                  At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
                   <a className="text-link" href="/blog/ugc-agency-pricing">How the math works</a>
                 </p>
               </div>
               <div>
                 <span className="lab">Terms</span>
-                <p>90-day minimum, then month to month. No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
+                <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
               </div>
             </div>
           </div>
@@ -739,26 +729,25 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="band mid-top" id="faq">
-          <div className="ed-wrap">
-            <div className="faq-grid">
-              <div className="fl">
-                <h2 className="display">Frequently asked questions.</h2>
-              </div>
-              <div className="fqs">
-                {agencyFaqs.map((faq, index) => (
-                  <details key={faq.q} className="fq" {...(index === 0 ? { open: true } : {})}>
-                    <summary className="fh">
-                      <span>{faq.q}</span>
-                      <b aria-hidden="true" />
-                    </summary>
-                    <p className="faq-a">{faq.a}</p>
-                  </details>
-                ))}
-              </div>
+        <div className="notion-stack notion-stack-faq">
+          <NotionToggle
+            id="faq"
+            title="Frequently asked questions."
+            summary="Investment, timing, reporting, ownership."
+          >
+            <div className="fqs">
+              {agencyFaqs.map((faq) => (
+                <details key={faq.q} className="fq">
+                  <summary className="fh">
+                    <NotionChevron />
+                    <span>{faq.q}</span>
+                  </summary>
+                  <p className="faq-a">{faq.a}</p>
+                </details>
+              ))}
             </div>
-          </div>
-        </section>
+          </NotionToggle>
+        </div>
 
         <section className="band tight-top" id="journal">
           <div className="ed-wrap">
@@ -849,7 +838,6 @@ export default function Home() {
             </h2>
             <div className="clb">
               <div>
-                <p>Campaigns start at $50K+ a month. First posts go live in 10–14 days.</p>
                 <div className="mail-row">
                   {CONTACT_EMAILS.map((email) => (
                     <a key={email} href={`mailto:${email}`}>

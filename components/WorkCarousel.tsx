@@ -320,9 +320,7 @@ export default function WorkCarousel() {
         <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between">
           <div>
             <h2 className="display">Creator work.</h2>
-            <p className="lede mt-6">
-              Real UGC from our trained creator network across TikTok, Instagram, YouTube, Facebook, and Snapchat.
-            </p>
+            <p className="lede mt-6">Real UGC across TikTok, Instagram, YouTube, Facebook, and Snapchat.</p>
           </div>
           <div className="ctr">
             <span className="idx" aria-live="polite">
