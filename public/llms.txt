@@ -35,7 +35,7 @@ Not for budgets under $50K/month, one-off videos, or paid-ads-only management. C
 
 ## Pages
 
-- [Home](https://vocreations.com/): positioning, anonymized results by category, fit, team, how it works, FAQ. Named case studies are linked from the results row and from testimonials. `#creators`, above the closer, is two paths: For brands (book a 30-minute fit call) and For creators (join the mentorship, join the Discord community).
+- [Home](https://vocreations.com/): positioning, anonymized results by category, fit, team, how it works, FAQ. Named case studies are linked from the results row and from testimonials. `#creators`, above the closer, is two paths. For brands: tell us about your app, and we'll tell you honestly if we're a fit. Talk to us scrolls to the closer. For creators: learn UGC through Vo's mentorship, then keep building alongside other creators in the Discord. Join the mentorship is the filled action. Join the Discord is the text link.
 - [Our work](https://vocreations.com/case-studies): named case studies for fomo, Liftoff, Higgsfield, and Krea. Homepage result cards stay anonymized.
 - [Blog](https://vocreations.com/blog): UGC insights, with categories and read times
 - [UGC agency vs in-house](https://vocreations.com/blog/ugc-agency-vs-in-house): Daniel Yun on who trains, who posts, and what you still have to manage. The old slug redirects here.
