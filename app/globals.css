@@ -1861,15 +1861,15 @@ html.js-motion .hero-mark-face {
   display: none;
 }
 .editorial .fh {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px;
-  align-items: center;
-  gap: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
   min-height: 44px;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.03em;
+  border-radius: 6px;
 }
 @media (min-width: 1280px) {
   .editorial .fh {
@@ -1882,19 +1882,14 @@ html.js-motion .hero-mark-face {
   font-weight: 400;
   color: var(--dim);
 }
-.editorial .fh b {
-  display: block;
-  width: 8px;
-  height: 8px;
-  margin-right: 8px;
-  border-right: 1.5px solid #c4c8cf;
-  border-bottom: 1.5px solid #c4c8cf;
-  transform: rotate(-45deg);
-  transition: transform 180ms ease;
-  justify-self: end;
+.editorial .fh .notion-chevron {
+  margin-top: 0.28em;
 }
-.editorial .fq[open] .fh b {
-  transform: rotate(45deg);
+.editorial .fq[open] > .fh .notion-chevron {
+  transform: rotate(90deg);
+}
+.editorial .fq > .fh:hover span {
+  color: #fff;
 }
 .editorial .faq-a {
   max-width: 640px;
@@ -1905,74 +1900,125 @@ html.js-motion .hero-mark-face {
 }
 
 /* Notion-style disclosures. The panel stays in the HTML when closed.
+   The h2 sits outside the summary so it stays in the heading outline.
    DECISION 2026-11: see docs/DECISIONS.md (topic: homepage-notion-2026-11). */
 .editorial .notion-stack {
   border-top: 1px solid var(--hair);
 }
+.editorial .notion-stack-faq {
+  margin-bottom: 64px;
+}
+.editorial #journal.band.tight-top {
+  padding-top: 0;
+}
 .editorial .notion-band {
   padding: 0;
 }
-.editorial .notion-band.is-solo {
-  border-top: 1px solid var(--hair);
-  padding: 28px 0;
-}
-@media (min-width: 1280px) {
-  .editorial .notion-band.is-solo {
-    padding: 40px 0;
-  }
+.editorial .notion-shell {
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
+  column-gap: 11px;
+  align-items: start;
 }
 .editorial .notion {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: subgrid;
   border-bottom: 1px solid var(--hair);
 }
+.editorial .notion.is-bare {
+  border-top: 1px solid var(--hair);
+  margin-top: 28px;
+}
 .editorial .notion > summary {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  row-gap: 6px;
+  align-items: start;
   padding: 18px 0;
+  border-radius: 6px;
   cursor: pointer;
 }
-.editorial .notion-copy {
-  min-width: 0;
-  flex: 1;
-}
-.editorial .notion-title {
+.editorial .notion-title,
+.editorial .notion-title-spacer {
   margin: 0;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 600;
   font-size: 22px;
   line-height: 1.2;
   letter-spacing: -0.03em;
+}
+.editorial .notion-title {
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 1;
+  margin-top: 18px;
   color: #eef0f4;
+  pointer-events: none;
+  transition: color 180ms ease;
+}
+.editorial .notion-title-spacer {
+  grid-column: 2;
+  grid-row: 1;
+  visibility: hidden;
 }
 @media (min-width: 1280px) {
-  .editorial .notion-title {
+  .editorial .notion-title,
+  .editorial .notion-title-spacer {
     font-size: 26px;
   }
 }
 .editorial .notion-line {
+  grid-column: 2;
+  grid-row: 2;
   display: block;
   max-width: 68ch;
-  margin-top: 6px;
   color: #c9cdd4;
+  font-family: var(--font-inter), Inter, sans-serif;
   font-size: 15.5px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.45;
 }
 .editorial .notion-chevron {
-  width: 16px;
-  height: 16px;
-  margin-top: 4px;
+  grid-column: 1;
+  grid-row: 1;
+  width: 15px;
+  height: 15px;
+  margin-top: 0.22em;
+  align-self: start;
   flex: none;
   color: #c4c8cf;
-  transition: transform 180ms ease;
+  opacity: 0.6;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .editorial .notion[open] > summary .notion-chevron {
   transform: rotate(90deg);
 }
+.editorial .notion-shell:has(summary:hover) .notion-title {
+  color: #fff;
+}
+.editorial .notion > summary:hover .notion-chevron,
+.editorial .fq > .fh:hover .notion-chevron {
+  opacity: 1;
+}
+.editorial .notion > summary:focus-visible,
+.editorial .fq > .fh:focus-visible {
+  outline: 1px solid #c4c8cf;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
 .editorial .notion-panel {
+  grid-column: 1 / -1;
   padding: 0 0 22px;
+}
+.editorial .report-shot {
+  margin-top: 28px;
+}
+.editorial .report-line {
+  margin-top: 18px;
 }
 .editorial .notion,
 .editorial .fq {
@@ -1980,6 +2026,7 @@ html.js-motion .hero-mark-face {
 }
 .editorial .notion::details-content,
 .editorial .fq::details-content {
+  grid-column: 1 / -1;
   height: 0;
   overflow: clip;
   transition: height 200ms ease, content-visibility 200ms allow-discrete;
@@ -2015,7 +2062,7 @@ html.js-motion .hero-mark-face {
   .editorial .notion::details-content,
   .editorial .fq::details-content,
   .editorial .notion-chevron,
-  .editorial .fh b {
+  .editorial .notion-title {
     transition: none;
   }
 }

@@ -13,7 +13,7 @@ import { posts } from "@/lib/blog/posts";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
 import HeroMarkGloss from "@/components/HeroMarkGloss";
-import NotionToggle, { useOpenDetailsForHash } from "@/components/NotionToggle";
+import NotionToggle, { NotionChevron, useOpenDetailsForHash } from "@/components/NotionToggle";
 
 // DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
 // are white on black. The serif VO monogram is the mark, including a large
@@ -547,15 +547,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* DECISION 2026-11: How it works, Daily reports, creator tools, and FAQ
-            are disclosures. The summary stays visible. The panel stays in the HTML.
-            #quality and #dashboard still open the right panel. See docs/DECISIONS.md
+        {/* DECISION 2026-11: How it works, creator tools, the dashboard, and FAQ
+            are disclosures. Daily reports stays open. #quality and #dashboard
+            still open the right panel. See docs/DECISIONS.md
             (topic: homepage-notion-2026-11). */}
         <div className="notion-stack">
           <NotionToggle
             id="process"
             title="How it works."
-            summary="Day-0 scripts, training, organic posts, and a daily Slack report."
+            summary="Scripts, training, organic posts, daily Slack."
           >
             <div className="how-list">
               {steps.map((step) => (
@@ -584,48 +584,38 @@ export default function Home() {
               </div>
             </div>
           </NotionToggle>
+        </div>
 
-          <NotionToggle
-            id="reporting"
-            title="Daily reports."
-            summary="A shared Slack channel every day: spend, views, posts, creators, CPM, and engagement."
-          >
-            <div className="grid items-center gap-8 xl:grid-cols-12 xl:gap-x-6">
-              <div className="xl:col-span-4">
-                <p className="lede">Each week we double down on the top videos.</p>
-                <div className="mt-6 border-t border-white/10">
-                  {[
-                    ["Spend against budget", "Daily"],
-                    ["Total views, posts, active creators", "Daily"],
-                    ["CPM, engagement rate, top creators, last 7 days", "Daily"],
-                  ].map(([label, when]) => (
-                    <div key={label} className="flex items-center justify-between gap-4 border-b border-white/10 py-[13px] text-[15px] text-[#e7e7e4]">
-                      <span>{label}</span>
-                      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#EEF0F4]/60">{when}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="xl:col-span-7 xl:col-start-6">
-                <SlackReport />
-              </div>
+        <section className="band" id="reporting" aria-labelledby="reporting-title">
+          <div className="ed-wrap">
+            <h2 id="reporting-title" className="display">Daily reports.</h2>
+            <div className="report-shot">
+              <SlackReport />
             </div>
-            {/* id="dashboard" keeps the old hash. Never name a dashboard vendor. */}
-            <div className="report-more" id="dashboard">
-              <h3>An internal dashboard.</h3>
-              <p>
+            <p className="lede report-line">Each week we double down on top videos.</p>
+            {/* id="dashboard" keeps the old hash and opens this disclosure.
+                Never name a dashboard vendor. */}
+            <NotionToggle
+              bare
+              id="dashboard"
+              title="An internal dashboard."
+              summary="Every creator, video, and view, tracked live."
+            >
+              <p className="lede">
                 Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
               </p>
-            </div>
-          </NotionToggle>
+            </NotionToggle>
+          </div>
+        </section>
 
+        <div className="notion-stack">
           <NotionToggle
             id="tools"
             title="Creator tools."
-            summary="Auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels."
+            summary="Auto-DMs, auto-poster, AI editor, trial reels."
           >
             <p className="lede">
-              Creators use these so they can focus on the content itself. That focus is what produces the quality.
+              Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
             </p>
           </NotionToggle>
         </div>
@@ -739,24 +729,25 @@ export default function Home() {
           </div>
         </section>
 
-        <NotionToggle
-          id="faq"
-          solo
-          title="Frequently asked questions."
-          summary="Investment, timing, platforms, reporting, ownership, and approvals."
-        >
-          <div className="fqs">
-            {agencyFaqs.map((faq) => (
-              <details key={faq.q} className="fq">
-                <summary className="fh">
-                  <span>{faq.q}</span>
-                  <b aria-hidden="true" />
-                </summary>
-                <p className="faq-a">{faq.a}</p>
-              </details>
-            ))}
-          </div>
-        </NotionToggle>
+        <div className="notion-stack notion-stack-faq">
+          <NotionToggle
+            id="faq"
+            title="Frequently asked questions."
+            summary="Investment, timing, reporting, ownership."
+          >
+            <div className="fqs">
+              {agencyFaqs.map((faq) => (
+                <details key={faq.q} className="fq">
+                  <summary className="fh">
+                    <NotionChevron />
+                    <span>{faq.q}</span>
+                  </summary>
+                  <p className="faq-a">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </NotionToggle>
+        </div>
 
         <section className="band tight-top" id="journal">
           <div className="ed-wrap">
