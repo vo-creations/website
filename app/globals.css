@@ -1652,6 +1652,69 @@ html.js-motion .hero-mark::after {
   }
 }
 
+/* Two paths above the closer. Monochrome only.
+   DECISION 2026-11: see docs/DECISIONS.md (topic: creator-paths-2026-11). */
+.editorial #creators.band {
+  padding-top: 48px;
+  padding-bottom: 56px;
+}
+.editorial .paths {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hair);
+}
+.editorial .paths article {
+  padding: 28px 0 8px;
+  border-bottom: 1px solid var(--hair);
+}
+.editorial .paths h2 {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #eef0f4;
+}
+.editorial .paths p {
+  max-width: 36em;
+  margin-top: 14px;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.editorial .path-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+@media (min-width: 768px) {
+  .editorial #creators.band {
+    padding-top: 64px;
+    padding-bottom: 72px;
+  }
+  .editorial .paths {
+    grid-template-columns: 1fr 1fr;
+  }
+  .editorial .paths article {
+    border-bottom: 0;
+    padding: 32px 40px 4px 0;
+  }
+  .editorial .paths article + article {
+    border-left: 1px solid var(--hair);
+    padding: 32px 0 4px 40px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial .paths .btn-talk {
+    transition: none;
+  }
+  .editorial .paths .btn-talk:hover {
+    transform: none;
+  }
+}
+
 /* Team. Two equal columns. No staggered offsets. */
 .editorial .tms {
   display: grid;

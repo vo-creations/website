@@ -19,6 +19,8 @@ import { CONTACT_EMAILS } from "@/lib/site";
 // (topic: silk-monogram-2026-11).
 
 const BOOKING = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
+const MENTORSHIP = "https://vocreationsconfirmationportal.com/";
+const DISCORD = "https://discord.gg/sZPxkg2bwW";
 
 // DECISION 2026-11: the 6% edge fade stays a mask. A flat #0B0D12 overlay
 // covered the moving silk and darkened the ends. See docs/DECISIONS.md
@@ -815,6 +817,40 @@ export default function Home() {
                   <span className="bm">{post.readingMinutes} min read</span>
                 </a>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DECISION 2026-11: two paths above the closer. Playkit keeps a second
+            audience as its own block beside the brand close. See docs/DECISIONS.md
+            (topic: creator-paths-2026-11). */}
+        <section className="band" id="creators" aria-label="For brands and creators">
+          <div className="ed-wrap">
+            <div className="paths">
+              <article>
+                <h2>For brands</h2>
+                <p>Book a 30-minute fit call.</p>
+                <div className="path-actions">
+                  <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                    Book a 30-min fit call
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </div>
+              </article>
+              <article>
+                <h2>For creators</h2>
+                <p>Join the mentorship. Join the Discord community.</p>
+                <div className="path-actions">
+                  <a className="btn-talk" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
+                    Join the mentorship
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a className="btn-talk" href={DISCORD} target="_blank" rel="noopener noreferrer">
+                    Join the Discord community
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </div>
+              </article>
             </div>
           </div>
         </section>

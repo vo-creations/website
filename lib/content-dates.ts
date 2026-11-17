@@ -3,7 +3,7 @@
 
 export const privacyUpdated = "2026-11-17";
 export const termsUpdated = "2026-11-13";
-export const refundUpdated = "2026-11-13";
+export const refundUpdated = "2026-11-17";
 
 export function legalDateLabel(iso: string): string {
   return new Intl.DateTimeFormat("en-US", {
