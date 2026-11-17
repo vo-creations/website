@@ -87,7 +87,11 @@ export default function TextOnScreenPost() {
         Talking-head storytelling works because the viewer sees someone who looks like them and hears a problem they have lived. It reads as a conversation, not a product tour.
       </p>
         <p>The job is to get past the ad filter. Storytelling does that. A caption does not.</p>
-      <ClickToPlayYouTube videoId="xL3zWBso9mw" title="Thienvu Vo: the story behind Vo Creations" />
+      <ClickToPlayYouTube
+        videoId="xL3zWBso9mw"
+        title="Thienvu Vo: the story behind Vo Creations"
+        poster="/thumbs/xL3zWBso9mw-hqdefault.jpg"
+      />
       <H2 id="what-can-a-story-do">What can a story do that a caption cannot?</H2>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-white/10 p-5">

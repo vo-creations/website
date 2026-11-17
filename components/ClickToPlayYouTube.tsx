@@ -5,9 +5,11 @@ import { useState } from "react";
 export default function ClickToPlayYouTube({
   videoId,
   title,
+  poster,
 }: {
   videoId: string;
   title: string;
+  poster: string;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -30,7 +32,7 @@ export default function ClickToPlayYouTube({
           aria-label={`Play ${title}`}
         >
           <img
-            src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+            src={poster}
             alt={title}
             className="absolute inset-0 w-full h-full object-cover"
           />

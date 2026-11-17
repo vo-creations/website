@@ -2,7 +2,8 @@
 // to create content for real brands"), deleted in the agency-only redesign.
 // Sending it to the homepage made Google treat an indexed URL as the agency
 // page. 410 tells crawlers the URL is gone on purpose.
-// See docs/DECISIONS.md (topic: seo-aeo-2026-10).
+// DECISION 2026-11: the body says mentorship is active and links /#creators.
+// See docs/DECISIONS.md (topic: seo-aeo-2026-10, topic: creator-paths-2026-11).
 
 const html = `<!doctype html>
 <html lang="en">
@@ -22,8 +23,8 @@ const html = `<!doctype html>
 <body>
   <main>
     <h1>This page was removed.</h1>
-    <p>The creator mentorship signup used to live here. Vo Creations is now the agency site.</p>
-    <p><a href="https://vocreations.com/">Back to Vo Creations</a></p>
+    <p>This URL was the old signup page. Mentorship is active.</p>
+    <p><a href="https://vocreations.com/#creators">For creators</a></p>
   </main>
 </body>
 </html>`;

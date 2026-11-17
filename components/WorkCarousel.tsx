@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type HTMLAttributes, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
 import Image from "next/image";
 import InstagramEmbed from "@/components/InstagramEmbed";
 import TikTokEmbed from "@/components/TikTokEmbed";
@@ -19,6 +19,8 @@ type EmbedClip = {
   poster?: string;
   alt: string;
   proof?: string;
+  /** Creator name, when one is on file for this clip. */
+  creator?: string;
 };
 
 type FileClip = {
@@ -62,6 +64,16 @@ const clips: Clip[] = [
   { type: "instagram", url: "https://www.instagram.com/p/DTRCvh2E1Lu/", label: "Instagram", poster: "/creators/ig/DTRCvh2E1Lu.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "3.7M views" },
   { type: "instagram", url: "https://www.instagram.com/p/DUMI_NwD0Xa/", label: "Instagram", poster: "/creators/ig/DUMI_NwD0Xa.jpg", alt: "A creator speaking to the camera in a vertical Instagram video.", proof: "1.5M views" },
 ];
+
+// Names the creator and the view count when those are on the clip.
+// Otherwise the platform label is the name. See docs/DECISIONS.md (topic: a11y-privacy-2026-11).
+function clipControlLabel(clip: EmbedClip, state: "play" | "playing") {
+  const verb = state === "playing" ? "Playing" : "Play";
+  if (clip.creator && clip.proof) return `${verb} ${clip.creator}, ${clip.proof}`;
+  if (clip.creator) return `${verb} ${clip.creator}`;
+  if (clip.proof) return `${verb} ${clip.label}, ${clip.proof}`;
+  return `${verb} ${clip.label} video`;
+}
 
 function Player({ clip }: { clip: EmbedClip }) {
   if (clip.type === "instagram") return <InstagramEmbed url={clip.url} startLoaded />;
@@ -128,6 +140,31 @@ function FileCard({ clip, size }: { clip: FileClip; size: (typeof SIZES)[number]
         <span>{clip.label}</span>
       </figcaption>
     </figure>
+  );
+}
+
+// DECISION 2026-11: React 18 drops a boolean `inert` prop, so the duplicate
+// (aria-hidden) clip set sets the attribute as an empty string and again on
+// the node. See docs/DECISIONS.md (topic: a11y-privacy-2026-11).
+function DuplicateClipSet({ children }: { children: ReactNode }) {
+  const localRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    localRef.current?.setAttribute("inert", "");
+  }, []);
+
+  return (
+    <div
+      className="wks-set"
+      aria-hidden="true"
+      ref={(node) => {
+        localRef.current = node;
+        if (node) node.setAttribute("inert", "");
+      }}
+      {...({ inert: "" } as unknown as HTMLAttributes<HTMLDivElement>)}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -257,7 +294,7 @@ export default function WorkCarousel() {
 
   const total = String(clips.length).padStart(2, "0");
   const current = String(index + 1).padStart(2, "0");
-  const playingLabel = clips.find((clip) => clip.type !== "file" && clip.url === playing)?.label;
+  const playingClip = clips.find((clip) => clip.type !== "file" && clip.url === playing);
 
   return (
     <section
@@ -292,7 +329,7 @@ export default function WorkCarousel() {
               {current} / {total}
             </span>
             <span className="sr-only" aria-live="polite">
-              {playingLabel ? `Playing ${playingLabel}` : ""}
+              {playingClip && playingClip.type !== "file" ? clipControlLabel(playingClip, "playing") : ""}
             </span>
             <button type="button" aria-label="Previous videos" onClick={() => step(-1)}>
               ←
@@ -319,14 +356,9 @@ export default function WorkCarousel() {
           event.stopPropagation();
         }}
       >
-        {[0, 1].map((copy) => (
-          <div
-            key={copy}
-            className="wks-set"
-            ref={copy === 0 ? setRef : undefined}
-            aria-hidden={copy === 1 ? true : undefined}
-            inert={copy === 1 ? true : undefined}
-          >
+        {[0, 1].map((copy) => {
+          const set = (
+            <>
             {clips.map((clip, i) => {
               const size = SIZES[i % SIZES.length];
               if (clip.type === "file") {
@@ -337,14 +369,14 @@ export default function WorkCarousel() {
                 <figure key={`${copy}-${clip.url}`} className={`wk ${size}`} data-clip>
                   <div className="wi">
                     {open ? (
-                      <div className="absolute inset-0" aria-label={`Playing ${clip.label} video`}>
+                      <div className="absolute inset-0" aria-label={clipControlLabel(clip, "playing")}>
                         <Player clip={clip} />
                       </div>
                     ) : (
                       <button
                         type="button"
                         className="absolute inset-0"
-                        aria-label={`Play ${clip.label} video`}
+                        aria-label={clipControlLabel(clip, "play")}
                         onClick={() => setPlaying(clip.url)}
                       >
                         {clip.poster ? (
@@ -367,8 +399,16 @@ export default function WorkCarousel() {
                 </figure>
               );
             })}
-          </div>
-        ))}
+            </>
+          );
+          return copy === 0 ? (
+            <div key={copy} className="wks-set" ref={setRef}>
+              {set}
+            </div>
+          ) : (
+            <DuplicateClipSet key={copy}>{set}</DuplicateClipSet>
+          );
+        })}
       </div>
       <div className="prog" aria-hidden="true">
         <span style={{ width: `${progress}%` }} />

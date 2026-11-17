@@ -20,6 +20,8 @@ import HeroMarkGloss from "@/components/HeroMarkGloss";
 // (topic: silk-monogram-2026-11).
 
 const BOOKING = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
+const MENTORSHIP = "https://vocreationsconfirmationportal.com/";
+const DISCORD = "https://discord.gg/sZPxkg2bwW";
 
 // DECISION 2026-11: the 6% edge fade stays a mask. A flat #0B0D12 overlay
 // covered the moving silk and darkened the ends. See docs/DECISIONS.md
@@ -172,21 +174,25 @@ const quotes = [
   {
     quote: "Vo Creations helped Krea go from 1→100 with UGC. One of the best agencies in the space.",
     by: "Miguel Lara, Growth Marketing, Krea",
+    client: "Krea",
     study: "/case-studies/krea",
   },
   {
     quote: "Great engagement. You guys are doing a great job keeping your team engaged, and we love the quality of your creators and coaches.",
     by: "Will Timberlake, UGC Manager, fomo",
+    client: "fomo",
     study: "/case-studies/fomo",
   },
   {
     quote: "Really appreciate the responsiveness you guys have shown. Overall, the experience has been very great.",
     by: "Shotan Jakupov, Head of Growth, Higgsfield",
+    client: "Higgsfield",
     study: "/case-studies/higgsfield",
   },
   {
     quote: "Vo Creations helped scale our UGC efforts from 0 to 100. One of the best teams in this space.",
     by: "Wassim Bouchelouh, CMO, Liftoff",
+    client: "Liftoff",
     study: "/case-studies/liftoff",
   },
 ];
@@ -539,7 +545,7 @@ export default function Home() {
                 .
               </p>
               <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call ↗
+                Book a call<span aria-hidden="true">&nbsp;↗</span>
               </a>
             </div>
           </div>
@@ -668,7 +674,7 @@ export default function Home() {
                       item.by
                     )}
                   </span>
-                  <a href={item.study}>Read the case study</a>
+                  <a href={item.study} aria-label={`Read the case study, ${item.client}`}>Read the case study</a>
                 </div>
               ))}
             </div>
@@ -802,7 +808,7 @@ export default function Home() {
                   <a href={`/blog/${featured.slug}`}>{featured.title}</a>
                 </h3>
                 <a className="btn-line mt-[26px]" href={`/blog/${featured.slug}`}>
-                  Read the article ↗
+                  Read the article<span aria-hidden="true">&nbsp;↗</span>
                 </a>
               </div>
             </div>
@@ -819,7 +825,43 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="closer">
+        {/* DECISION 2026-11: two paths above the closer. The brand side is a
+            text link into #closer, so it does not repeat that filled pill.
+            See docs/DECISIONS.md (topic: creator-paths-2026-11). */}
+        <section className="band" id="creators" aria-label="For brands and creators">
+          <div className="ed-wrap">
+            <div className="sh">
+              <p className="lab">Two paths</p>
+            </div>
+            <div className="paths">
+              <article>
+                <h2 className="display">For brands</h2>
+                <p>Tell us about your app, and we&apos;ll tell you honestly if we&apos;re a fit.</p>
+                <div className="path-actions">
+                  <a className="btn-line" href="#closer">
+                    Talk to us
+                  </a>
+                </div>
+              </article>
+              <article>
+                <h2 className="display">For creators</h2>
+                <p>Learn UGC through Vo&apos;s mentorship, then keep building alongside other creators in the Discord.</p>
+                <div className="path-actions">
+                  <a className="btn-talk" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
+                    Join the mentorship
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a className="btn-line" href={DISCORD} target="_blank" rel="noopener noreferrer">
+                    Join the Discord
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="closer" id="closer">
           <div className="ed-wrap relative">
             <CloserMark />
             <p className="lab">Ready to scale?</p>
