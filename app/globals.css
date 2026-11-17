@@ -682,6 +682,16 @@ html.js-motion .budget-wipe.is-in {
 .editorial .btn-line {
   border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
+.editorial a.text-link {
+  color: #eef0f4;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.editorial a.text-link:hover {
+  text-decoration-color: #fff;
+}
 .editorial .band-dark .btn-book,
 .editorial .closer .btn-book {
   border-bottom-color: rgba(255, 255, 255, 0.88);
@@ -790,6 +800,14 @@ html.js-motion .budget-wipe.is-in {
   line-height: 1.35;
   letter-spacing: -0.01em;
   color: #c9cdd4;
+}
+/* DECISION 2026-11: at 1440 the 28em cap left "views." on its own line.
+   A wider cap plus the non-breaking space in app/page.tsx keeps it with
+   "organic". See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
+@media (min-width: 1440px) {
+  .editorial .hlead-rest {
+    max-width: 36em;
+  }
 }
 .editorial h1 .l3 {
   margin-top: 8px;
@@ -1700,6 +1718,33 @@ html.js-motion .hero-mark-face {
   gap: 12px 22px;
   margin-top: 22px;
 }
+/* Mentorship is an outline pill. Discord stays quieter than that pill. */
+.editorial .paths .btn-line {
+  justify-content: center;
+  padding: 13px 22px;
+  border: 1px solid rgba(238, 240, 244, 0.55);
+  border-radius: 999px;
+  background: transparent;
+  color: #eef0f4;
+}
+.editorial .paths .btn-line:hover {
+  border-color: #eef0f4;
+}
+.editorial .path-quiet {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--mid);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 4px;
+}
+.editorial .path-quiet:hover {
+  color: var(--ink);
+  text-decoration-color: rgba(255, 255, 255, 0.7);
+}
 @media (min-width: 768px) {
   .editorial .paths {
     grid-template-columns: 1fr 1fr;
@@ -2002,41 +2047,30 @@ html.js-motion .hero-mark-face {
   right: 22px;
   top: -28px;
   width: 84px;
+  aspect-ratio: 2835 / 3298;
   z-index: 1;
 }
-.editorial .closer-mark picture,
-.editorial .closer-mark picture img {
+/* DECISION 2026-11: same matte silver mask as the hero ink. No chrome, no reflection.
+   See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
+.editorial .closer-mark-ink {
   display: block;
   width: 100%;
-  height: auto;
-}
-.editorial .closer-mark picture img {
-  filter: brightness(0.88) contrast(0.95);
-}
-.editorial .closer-reflect {
-  width: 92%;
-  height: 18px;
-  margin: -2px auto 0;
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 72%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 72%);
-}
-.editorial .closer-reflect img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transform: scaleY(-1);
-  filter: brightness(0.88) contrast(0.95) blur(0.6px);
+  height: 100%;
+  background-color: #c4c8cf;
+  -webkit-mask-image: url("/brand/vo-logo.svg");
+  mask-image: url("/brand/vo-logo.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 @media (min-width: 1280px) {
   .editorial .closer-mark {
     right: 72px;
     top: 38px;
     width: 220px;
-  }
-  .editorial .closer-reflect {
-    height: 36px;
   }
 }
 .editorial .mail-row {
@@ -2672,6 +2706,23 @@ html.js-motion .hero-mark-face {
 }
 .editorial .ops-grid .lede {
   max-width: 38em;
+}
+.editorial .report-more {
+  margin-top: 64px;
+}
+.editorial .report-more h3 {
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.editorial .report-more p {
+  max-width: 38em;
+  margin-top: 16px;
+  color: #c9cdd4;
+  font-size: 17px;
+  line-height: 1.55;
 }
 @media (min-width: 1024px) {
   .editorial .ops-grid {

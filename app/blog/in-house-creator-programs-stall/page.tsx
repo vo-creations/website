@@ -79,7 +79,7 @@ export default function InHouseStallPage() {
       <p>
         Stuck at 10 creators? We&apos;ll show you what a 50-creator roster looks like for your app.{" "}
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
+          Book a call
         </a>
       </p>
     </Article>

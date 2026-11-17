@@ -93,7 +93,7 @@ export default function UgcAgencyVsInHousePage() {
       <p>
         See what a 50-creator roster looks like for your app.{" "}
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
+          Book a call
         </a>
       </p>
     </Article>

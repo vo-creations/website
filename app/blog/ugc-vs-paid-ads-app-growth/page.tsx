@@ -81,7 +81,7 @@ export default function UgcVsPaidAdsPage() {
       <p>
         Bring your current paid CPM. We&apos;ll show you what $50K buys at your target CPM, and we guarantee that CPM.{" "}
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
+          Book a call
         </a>
       </p>
     </Article>

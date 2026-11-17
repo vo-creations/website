@@ -99,7 +99,7 @@ export default function QuestionsPage() {
       <p>
         Ask us all 12 on a call. We&apos;ll answer with numbers.{" "}
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
+          Book a call
         </a>
       </p>
       <p>

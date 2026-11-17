@@ -104,7 +104,7 @@ export default function UgcAgencyPricingPage() {
       <p>
         Bring your target CPM. On a call we&apos;ll work out your monthly view number.{" "}
         <a className={link} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-          Book a 30-min fit call
+          Book a call
         </a>
       </p>
     </Article>

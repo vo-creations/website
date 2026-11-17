@@ -5,7 +5,7 @@ import { BOOKING_URL } from "@/lib/blog/posts";
 import { caseStudyBySlug, caseStudyMetadata } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("fomo");
-const link = "text-text underline decoration-white/30 underline-offset-4";
+const link = "text-link";
 
 export const metadata: Metadata = caseStudyMetadata(study.slug);
 
@@ -29,7 +29,7 @@ export default function FomoCaseStudy() {
       </blockquote>
       <p>Bring your target CPM. We&apos;ll show you the view and user math for your category.</p>
       <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-        Book a 30-min fit call
+        Book a call
       </a>
       <p>
         More results:{" "}

@@ -330,16 +330,10 @@ function CloserMark() {
     };
   }, []);
   return (
-    <div ref={ref} className="closer-mark">
-      {/* DECISION 2026-11: closer uses the blog chrome VO. Hero stays the silver serif.
-          See docs/DECISIONS.md (topic: closer-chrome-2026-11). */}
-      <picture>
-        <source srcSet="/brand/closer-chrome.avif" type="image/avif" />
-        <img src="/brand/closer-chrome.webp" alt="Vo Creations" width={640} height={764} decoding="async" loading="lazy" />
-      </picture>
-      <div className="closer-reflect" aria-hidden="true">
-        <img src="/brand/closer-chrome.webp" alt="" width={640} height={764} decoding="async" />
-      </div>
+    <div ref={ref} className="closer-mark" role="img" aria-label="Vo Creations">
+      {/* DECISION 2026-11: closer uses the hero's matte silver mask, not the chrome render.
+          See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
+      <span className="closer-mark-ink" aria-hidden="true" />
     </div>
   );
 }
@@ -418,7 +412,7 @@ export default function Home() {
                 </h1>
                 <p className="hlead">
                   <span className="hlead-offer">Organic UGC for AI and tech apps.</span>
-                  <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic views.</span>
+                  <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic&nbsp;views.</span>
                 </p>
               </div>
               {/* DECISION 2026-11: serif VO sits in the open space beside the
@@ -445,7 +439,7 @@ export default function Home() {
                 </ul>
                 <div className="hcta">
                   <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                    Book a 30-min fit call
+                    Book a call
                   </a>
                 </div>
               </div>
@@ -509,7 +503,7 @@ export default function Home() {
               </div>
             </div>
             <p className="lede mt-8">
-              <a href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
+              <a className="text-link" href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
             </p>
           </div>
         </section>
@@ -577,6 +571,13 @@ export default function Home() {
                 <span className="lab">We handle</span>
                 <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
               </div>
+              {/* DECISION 2026-11: approvals and ownership moved here from the old #quality band.
+                  The trial line stays on the Training step. id="quality" keeps the old hash.
+                  See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
+              <div id="quality">
+                <span className="lab">Approvals and ownership</span>
+                <p>Our core team of four approves every script and video before it posts. We handle all takedowns and re-edits. You own every video. Creators own their accounts.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -610,46 +611,21 @@ export default function Home() {
                 <SlackReport />
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* DECISION 2026-11: unnamed internal dashboard and creator tools. Bodies locked 2026-11-12. Never give the dashboard a product or vendor name. See docs/DECISIONS.md (topic: internal-dashboard-copy-2026-11-12). */}
-        <section className="band" id="dashboard">
-          <div className="ed-wrap">
-            <div className="ops-grid">
+            {/* DECISION 2026-11: the text-only dashboard band folded in here.
+                id="dashboard" keeps the old hash. Never name a dashboard vendor.
+                See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
+            <div className="ops-grid report-more" id="dashboard">
               <div>
-                <h2 className="display">An internal dashboard.</h2>
-                <p className="lede mt-7">
-                  Every creator, video, account, and view is tracked live in one dashboard. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
+                <h3>An internal dashboard.</h3>
+                <p>
+                  Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
                 </p>
               </div>
               <div>
-                <h2 className="display">Creator tools.</h2>
-                <p className="lede mt-7">
+                <h3>Creator tools.</h3>
+                <p>
                   Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="band" id="quality">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">Approvals, quality, and ownership.</h2>
-            </div>
-            <div className="pcols">
-              <div>
-                <span className="lab">Approvals</span>
-                <p>Our core team of four approves every script and video before it posts.</p>
-              </div>
-              <div>
-                <span className="lab">Creator quality</span>
-                <p>Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week.</p>
-              </div>
-              <div>
-                <span className="lab">If a video misses</span>
-                <p>We handle all takedowns and re-edits. You own every video. Creators own their accounts.</p>
               </div>
             </div>
           </div>
@@ -704,7 +680,7 @@ export default function Home() {
                 <span className="lab">What&apos;s included</span>
                 <p>
                   $50K+ a month. At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Everything included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
-                  <a href="/blog/ugc-agency-pricing">How the math works</a>
+                  <a className="text-link" href="/blog/ugc-agency-pricing">How the math works</a>
                 </p>
               </div>
               <div>
@@ -825,9 +801,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* DECISION 2026-11: two paths above the closer. The brand side is a
-            text link into #closer, so it does not repeat that filled pill.
-            See docs/DECISIONS.md (topic: creator-paths-2026-11). */}
+        {/* DECISION 2026-11: brands lead with the filled booking pill.
+            Mentorship is the outline link. Discord stays a quiet text link.
+            See docs/DECISIONS.md (topic: homepage-finish-2026-11). */}
         <section className="band" id="creators" aria-label="For brands and creators">
           <div className="ed-wrap">
             <div className="sh">
@@ -838,8 +814,9 @@ export default function Home() {
                 <h2 className="display">For brands</h2>
                 <p>Tell us about your app, and we&apos;ll tell you honestly if we&apos;re a fit.</p>
                 <div className="path-actions">
-                  <a className="btn-line" href="#closer">
-                    Talk to us
+                  <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                    Book a call
+                    <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </div>
               </article>
@@ -847,11 +824,11 @@ export default function Home() {
                 <h2 className="display">For creators</h2>
                 <p>Learn UGC through Vo&apos;s mentorship, then keep building alongside other creators in the Discord.</p>
                 <div className="path-actions">
-                  <a className="btn-talk" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
+                  <a className="btn-line" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
                     Join the mentorship
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
-                  <a className="btn-line" href={DISCORD} target="_blank" rel="noopener noreferrer">
+                  <a className="path-quiet" href={DISCORD} target="_blank" rel="noopener noreferrer">
                     Join the Discord
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
@@ -883,7 +860,7 @@ export default function Home() {
               </div>
               <div className="ctas">
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                  Book a 30-min fit call
+                  Book a call
                 </a>
               </div>
             </div>

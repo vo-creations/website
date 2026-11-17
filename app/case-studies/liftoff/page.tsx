@@ -5,7 +5,7 @@ import { BOOKING_URL } from "@/lib/blog/posts";
 import { caseStudyBySlug, caseStudyMetadata } from "@/lib/case-studies";
 
 const study = caseStudyBySlug("liftoff");
-const link = "text-text underline decoration-white/30 underline-offset-4";
+const link = "text-link";
 
 export const metadata: Metadata = caseStudyMetadata(study.slug);
 
@@ -29,7 +29,7 @@ export default function LiftoffCaseStudy() {
         <Link className={link} href="/blog/ugc-agency-pricing">See pricing</Link>.
       </p>
       <a className="btn-talk case-cta" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-        Book a 30-min fit call
+        Book a call
       </a>
       <p>
         More results:{" "}
