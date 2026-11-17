@@ -19,6 +19,8 @@ import { CONTACT_EMAILS } from "@/lib/site";
 // (topic: silk-monogram-2026-11).
 
 const BOOKING = "https://calendly.com/vocreations/vo-creations-agency-discovery-call";
+const MENTORSHIP = "https://vocreationsconfirmationportal.com/";
+const DISCORD = "https://discord.gg/sZPxkg2bwW";
 
 // DECISION 2026-11: the 6% edge fade stays a mask. A flat #0B0D12 overlay
 // covered the moving silk and darkened the ends. See docs/DECISIONS.md
@@ -819,7 +821,43 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="closer">
+        {/* DECISION 2026-11: two paths above the closer. The brand side is a
+            text link into #closer, so it does not repeat that filled pill.
+            See docs/DECISIONS.md (topic: creator-paths-2026-11). */}
+        <section className="band" id="creators" aria-label="For brands and creators">
+          <div className="ed-wrap">
+            <div className="sh">
+              <p className="lab">Two paths</p>
+            </div>
+            <div className="paths">
+              <article>
+                <h2 className="display">For brands</h2>
+                <p>Tell us about your app, and we&apos;ll tell you honestly if we&apos;re a fit.</p>
+                <div className="path-actions">
+                  <a className="btn-line" href="#closer">
+                    Talk to us
+                  </a>
+                </div>
+              </article>
+              <article>
+                <h2 className="display">For creators</h2>
+                <p>Learn UGC through Vo&apos;s mentorship, then keep building alongside other creators in the Discord.</p>
+                <div className="path-actions">
+                  <a className="btn-talk" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
+                    Join the mentorship
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a className="btn-line" href={DISCORD} target="_blank" rel="noopener noreferrer">
+                    Join the Discord
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="closer" id="closer">
           <div className="ed-wrap relative">
             <CloserMark />
             <p className="lab">Ready to scale?</p>

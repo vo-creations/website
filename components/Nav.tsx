@@ -93,6 +93,7 @@ const navLinks = [
   { href: "/#team", label: "Our Team" },
   { href: "/blog", label: "Blog" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/#creators", label: "For creators" },
 ];
 
 // Shared with the hero (app/page.tsx) so its content's left edge always lines up
@@ -245,8 +246,8 @@ function BarNav() {
         ref={menuRef}
         aria-hidden={open ? undefined : true}
         {...(open ? {} : ({ inert: "" } as unknown as HTMLAttributes<HTMLDivElement>))}
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-          open ? "max-h-80 opacity-100 mt-2" : "max-h-0 opacity-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-out motion-reduce:transition-none ${
+          open ? "max-h-[28rem] opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-bg/95 backdrop-blur-[20px] border border-white/20 rounded-3xl px-6 py-4 flex flex-col">

@@ -52,10 +52,11 @@ const nextConfig = {
         destination: "/blog/ugc-agency-vs-in-house",
         statusCode: 301,
       },
-      // /mentorship is a 410 from app/mentorship/route.ts (retired creator
-      // funnel). Do not redirect it here. /pre-call was only the booking
-      // step of that funnel and was not a content page.
-      // See docs/DECISIONS.md (topic: seo-aeo-2026-10).
+      // /mentorship is a 410 from app/mentorship/route.ts (the old signup
+      // URL). Mentorship itself is active. Do not redirect this URL here.
+      // /pre-call was only the booking step of that funnel and was not a
+      // content page. See docs/DECISIONS.md (topic: seo-aeo-2026-10,
+      // topic: creator-paths-2026-11).
       {
         source: "/pre-call",
         destination: "/",

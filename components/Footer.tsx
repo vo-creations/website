@@ -7,6 +7,7 @@ const footerLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/#team", label: "Our Team" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/#creators", label: "For creators" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
   { href: "/refund-policy", label: "Refund policy" },
@@ -38,6 +39,7 @@ function EditorialFooter() {
             <a className="flnk" href="/blog">Blog</a>
             <a className="flnk" href="/#team">Our Team</a>
             <a className="flnk" href="/#faq">FAQ</a>
+            <a className="flnk" href="/#creators">For creators</a>
           </div>
           <div className="c3">
             <div className="lab">Legal</div>
