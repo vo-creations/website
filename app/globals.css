@@ -625,18 +625,14 @@ html.js-motion .budget-wipe.is-in {
 .editorial .band.mid-top {
   padding-top: 60px;
 }
-/* Steps, fit, pricing, and FAQ share one block rhythm. */
-.editorial #process,
+/* Fit and pricing share one block rhythm. Process and FAQ are disclosures. */
 .editorial #fit,
-.editorial #pricing,
-.editorial #faq {
+.editorial #pricing {
   padding-block: 96px;
 }
 @media (min-width: 1280px) {
-  .editorial #process,
   .editorial #fit,
-  .editorial #pricing,
-  .editorial #faq {
+  .editorial #pricing {
     padding-block: 160px;
   }
 }
@@ -1887,17 +1883,18 @@ html.js-motion .hero-mark-face {
   color: var(--dim);
 }
 .editorial .fh b {
-  font-weight: 300;
-  text-align: right;
-}
-.editorial .fh b::before {
-  content: "+";
-}
-.editorial .fq[open] .fh b::before {
-  content: "−";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-right: 1.5px solid #c4c8cf;
+  border-bottom: 1.5px solid #c4c8cf;
+  transform: rotate(-45deg);
+  transition: transform 180ms ease;
+  justify-self: end;
 }
 .editorial .fq[open] .fh b {
-  color: #f4f4f2;
+  transform: rotate(45deg);
 }
 .editorial .faq-a {
   max-width: 640px;
@@ -1905,6 +1902,122 @@ html.js-motion .hero-mark-face {
   color: #c9cdd4;
   font-size: 17px;
   line-height: 1.6;
+}
+
+/* Notion-style disclosures. The panel stays in the HTML when closed.
+   DECISION 2026-11: see docs/DECISIONS.md (topic: homepage-notion-2026-11). */
+.editorial .notion-stack {
+  border-top: 1px solid var(--hair);
+}
+.editorial .notion-band {
+  padding: 0;
+}
+.editorial .notion-band.is-solo {
+  border-top: 1px solid var(--hair);
+  padding: 28px 0;
+}
+@media (min-width: 1280px) {
+  .editorial .notion-band.is-solo {
+    padding: 40px 0;
+  }
+}
+.editorial .notion {
+  border-bottom: 1px solid var(--hair);
+}
+.editorial .notion > summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0;
+  cursor: pointer;
+}
+.editorial .notion-copy {
+  min-width: 0;
+  flex: 1;
+}
+.editorial .notion-title {
+  margin: 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #eef0f4;
+}
+@media (min-width: 1280px) {
+  .editorial .notion-title {
+    font-size: 26px;
+  }
+}
+.editorial .notion-line {
+  display: block;
+  max-width: 68ch;
+  margin-top: 6px;
+  color: #c9cdd4;
+  font-size: 15.5px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+.editorial .notion-chevron {
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  flex: none;
+  color: #c4c8cf;
+  transition: transform 180ms ease;
+}
+.editorial .notion[open] > summary .notion-chevron {
+  transform: rotate(90deg);
+}
+.editorial .notion-panel {
+  padding: 0 0 22px;
+}
+.editorial .notion,
+.editorial .fq {
+  interpolate-size: allow-keywords;
+}
+.editorial .notion::details-content,
+.editorial .fq::details-content {
+  height: 0;
+  overflow: clip;
+  transition: height 200ms ease, content-visibility 200ms allow-discrete;
+}
+.editorial .notion[open]::details-content,
+.editorial .fq[open]::details-content {
+  height: auto;
+  overflow: visible;
+}
+.editorial .notion-panel .how-list {
+  margin-top: 2px;
+}
+.editorial .notion-panel .how-step {
+  padding: 16px 0;
+}
+.editorial .notion-panel .pcols {
+  margin-top: 8px;
+}
+@media (min-width: 1280px) {
+  .editorial .notion-panel .pcols {
+    margin-top: 16px;
+    column-gap: 36px;
+  }
+}
+.editorial .notion-panel .fqs {
+  margin-top: 0;
+  border-top: 0;
+}
+.editorial .notion-panel .lede {
+  max-width: 62ch;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial .notion::details-content,
+  .editorial .fq::details-content,
+  .editorial .notion-chevron,
+  .editorial .fh b {
+    transition: none;
+  }
 }
 
 /* Journal */
