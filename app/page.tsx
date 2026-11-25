@@ -540,9 +540,8 @@ export default function Home() {
                 <a href="/case-studies/krea">Krea</a>
                 .
               </p>
-              <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call
-                <span className="sr-only"> (opens in a new tab)</span>
+              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Book a call<span aria-hidden="true">&nbsp;↗</span>
               </a>
             </div>
           </div>
@@ -623,7 +622,7 @@ export default function Home() {
                 <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
               </div>
               <div>
-                <span className="lab">Approvals and ownership</span>
+                <span className="lab">Ownership</span>
                 <p>Creators own their accounts.</p>
               </div>
             </div>
@@ -833,12 +832,10 @@ export default function Home() {
                   </a>
                 </div>
               </article>
-              <article>
+              <article id="tools">
                 <h2 className="display">For creators</h2>
                 <p>Learn UGC through Vo&apos;s mentorship, then keep building alongside other creators in the Discord.</p>
-                <p id="tools">
-                  Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
-                </p>
+                <p className="path-tools">Auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels.</p>
                 <div className="path-actions">
                   <a className="btn-line" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
                     Join the mentorship

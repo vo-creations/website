@@ -3750,6 +3750,10 @@ How it works, the internal dashboard, and FAQ now share one `.notion-stack`. One
 
 The underlined “Book a call” after Results became the hero’s filled `btn-talk` pill. `#pricing` ends with the same pill, after the three columns. Both open `https://calendly.com/vocreations/vo-creations-agency-discovery-call` in a new tab. The visible label is “Book a call”. The $50K+ pricing copy was not edited. Hero copy was not edited. No stat, quote, client name, or figure changed. fomo stays lowercase. `public/llms.txt` was left as written, because the facts did not change.
 
+## topic: homepage-rebalance-2026-11 — _2026-11-25_ (review)
+
+A design review of that pass asked for six layout fixes. `.report-band` padding became `28px 0 48px`, and `36px 0 64px` from 1024px, so the Slack image no longer sits on the How it works hairline. The approvals strip stays one column until 1024px, then three. The How it works column that only says “Creators own their accounts.” is labelled “Ownership”. The For creators tools line is “Auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels.” `#tools` is that article. From 768px each path card is a column and the action row uses `margin-top: auto`, so the buttons share a baseline. The Results booking control went back to the underlined `btn-book` link. The filled pill stayed at the end of `#pricing`. `.editorial [id]` scroll margin moved from 88px to 112px. The $50K+ copy and the hero copy were not edited.
+
 ## topic: next-font-ci-retry-2026-11 — _2026-11-25_
 
 The GitHub `build` check failed on `f3048a8` with `TypeError: Cannot read properties of null (reading '1')` in `next/font`'s Google loader. The homepage change was not the cause. Google Fonts sometimes returns an extensionless `/l/font?kit=` URL, and Next.js 14.2.35 assumes every font URL ends in `.woff2`. That is [vercel/next.js#99114](https://github.com/vercel/next.js/issues/99114). The Vercel preview for the same commit built. `.github/workflows/build.yml` now retries `npm run build` up to three times and deletes `.next` between attempts. The Next.js version was not upgraded.

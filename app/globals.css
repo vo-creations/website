@@ -541,7 +541,7 @@ html.js-motion .budget-wipe.is-in {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .editorial [id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 112px;
 }
 .editorial ::selection {
   background: rgba(238, 240, 244, 0.28);
@@ -1714,6 +1714,8 @@ html.js-motion .hero-mark-face {
   /* DECISION 2026-11: 36px under the pill so it clears the hairline below 768px.
      The 768px rule replaces this padding. See docs/DECISIONS.md
      (topic: homepage-finish-2026-11). */
+  display: flex;
+  flex-direction: column;
   padding: 28px 0 36px;
   border-bottom: 1px solid var(--hair);
 }
@@ -1726,6 +1728,9 @@ html.js-motion .hero-mark-face {
   color: #c9cdd4;
   font-size: 17px;
   line-height: 1.5;
+}
+.editorial .path-tools {
+  max-width: 36em;
 }
 .editorial .path-actions {
   display: flex;
@@ -1772,6 +1777,10 @@ html.js-motion .hero-mark-face {
   .editorial .paths article + article {
     border-left: 1px solid var(--hair);
     padding: 32px 0 0 40px;
+  }
+  .editorial .paths .path-actions {
+    margin-top: auto;
+    padding-top: 22px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2062,18 +2071,9 @@ html.js-motion .hero-mark-face {
   .editorial .quality-strip {
     padding: 8px 0 32px;
   }
-  .editorial .quality-cols {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 40px;
-    margin-top: 22px;
-  }
-  .editorial .quality-cols p {
-    border-bottom: 0;
-    padding: 18px 0 0;
-  }
 }
 .editorial .report-band {
-  padding: 28px 0 8px;
+  padding: 28px 0 48px;
 }
 .editorial .report-split {
   display: grid;
@@ -2111,8 +2111,17 @@ html.js-motion .hero-mark-face {
   min-width: 0;
 }
 @media (min-width: 1024px) {
+  .editorial .quality-cols {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 40px;
+    margin-top: 22px;
+  }
+  .editorial .quality-cols p {
+    border-bottom: 0;
+    padding: 18px 0 0;
+  }
   .editorial .report-band {
-    padding: 36px 0 12px;
+    padding: 36px 0 64px;
   }
   .editorial .report-split {
     /* 55% is the image column itself. The copy takes what the gap leaves. */
