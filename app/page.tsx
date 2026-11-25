@@ -540,17 +540,62 @@ export default function Home() {
                 <a href="/case-studies/krea">Krea</a>
                 .
               </p>
-              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call<span aria-hidden="true">&nbsp;↗</span>
+              <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Book a call
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
           </div>
         </section>
 
-        {/* DECISION 2026-11: How it works, creator tools, the dashboard, and FAQ
-            are disclosures. Daily reports stays open. #quality and #dashboard
-            still open the right panel. See docs/DECISIONS.md
-            (topic: homepage-notion-2026-11). */}
+        {/* DECISION 2026-11: the three approval lines are visible here.
+            #quality lands on this strip. Creators own their accounts stays
+            in How it works. See docs/DECISIONS.md
+            (topic: homepage-rebalance-2026-11). */}
+        <section className="quality-strip" id="quality" aria-labelledby="quality-title">
+          <div className="ed-wrap">
+            <h2 id="quality-title" className="display">Approvals and ownership.</h2>
+            <div className="quality-cols">
+              <p>Our core team of four approves every script and video before it posts.</p>
+              <p>You own every video.</p>
+              <p>We handle all takedowns and re-edits.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="report-band" id="reporting" aria-labelledby="reporting-title">
+          <div className="ed-wrap">
+            <div className="report-split">
+              <div>
+                <h2 id="reporting-title" className="display">
+                  Daily reports
+                  <br />
+                  in your Slack.
+                </h2>
+                <ul className="report-rows">
+                  {[
+                    ["Spend vs budget", "Daily"],
+                    ["Views · posts · CPM · engagement", "Daily"],
+                    ["Top creators, last 7 days", "Daily"],
+                  ].map(([label, when]) => (
+                    <li key={label}>
+                      <span>{label}</span>
+                      <span>{when}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="report-shot">
+                <SlackReport />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DECISION 2026-11: How it works, the dashboard, and FAQ share one
+            hairline stack. #dashboard still opens that toggle. Creator tools
+            moved into #creators. See docs/DECISIONS.md
+            (topic: homepage-rebalance-2026-11). */}
         <div className="notion-stack">
           <NotionToggle
             id="process"
@@ -577,46 +622,39 @@ export default function Home() {
                 <span className="lab">We handle</span>
                 <p>Scripts, creator briefing and coaching, posting, in-house editing, creator bonuses, and daily reporting.</p>
               </div>
-              {/* id="quality" keeps the old hash. The trial line stays on Training. */}
-              <div id="quality">
+              <div>
                 <span className="lab">Approvals and ownership</span>
-                <p>Our core team of four approves every script and video before it posts. We handle all takedowns and re-edits. You own every video. Creators own their accounts.</p>
+                <p>Creators own their accounts.</p>
               </div>
             </div>
           </NotionToggle>
-        </div>
-
-        <section className="band" id="reporting" aria-labelledby="reporting-title">
-          <div className="ed-wrap">
-            <h2 id="reporting-title" className="display">Daily reports.</h2>
-            <div className="report-shot">
-              <SlackReport />
-            </div>
-            <p className="lede report-line">Each week we double down on top videos.</p>
-            {/* id="dashboard" keeps the old hash and opens this disclosure.
-                Never name a dashboard vendor. */}
-            <NotionToggle
-              bare
-              id="dashboard"
-              title="An internal dashboard."
-              summary="Every creator, video, and view, tracked live."
-            >
-              <p className="lede">
-                Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
-              </p>
-            </NotionToggle>
-          </div>
-        </section>
-
-        <div className="notion-stack">
+          {/* id="dashboard" keeps the old hash and opens this disclosure.
+              Never name a dashboard vendor. */}
           <NotionToggle
-            id="tools"
-            title="Creator tools."
-            summary="Auto-DMs, auto-poster, AI editor, trial reels."
+            id="dashboard"
+            title="An internal dashboard."
+            summary="Every creator, video, and view, tracked live."
           >
             <p className="lede">
-              Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
+              Every creator, video, account, and view is tracked live in one dashboard, along with the rest of the metrics. We pay creators from it, target Tier 1 countries, turn organic posts into paid, and run the ads, all from there.
             </p>
+          </NotionToggle>
+          <NotionToggle
+            id="faq"
+            title="Frequently asked questions."
+            summary="Investment, timing, reporting, ownership."
+          >
+            <div className="fqs">
+              {agencyFaqs.map((faq) => (
+                <details key={faq.q} className="fq">
+                  <summary className="fh">
+                    <NotionChevron />
+                    <span>{faq.q}</span>
+                  </summary>
+                  <p className="faq-a">{faq.a}</p>
+                </details>
+              ))}
+            </div>
           </NotionToggle>
         </div>
 
@@ -678,6 +716,12 @@ export default function Home() {
                 <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
               </div>
             </div>
+            <div className="section-cta">
+              <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Book a call
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -728,26 +772,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <div className="notion-stack notion-stack-faq">
-          <NotionToggle
-            id="faq"
-            title="Frequently asked questions."
-            summary="Investment, timing, reporting, ownership."
-          >
-            <div className="fqs">
-              {agencyFaqs.map((faq) => (
-                <details key={faq.q} className="fq">
-                  <summary className="fh">
-                    <NotionChevron />
-                    <span>{faq.q}</span>
-                  </summary>
-                  <p className="faq-a">{faq.a}</p>
-                </details>
-              ))}
-            </div>
-          </NotionToggle>
-        </div>
 
         <section className="band tight-top" id="journal">
           <div className="ed-wrap">
@@ -812,6 +836,9 @@ export default function Home() {
               <article>
                 <h2 className="display">For creators</h2>
                 <p>Learn UGC through Vo&apos;s mentorship, then keep building alongside other creators in the Discord.</p>
+                <p id="tools">
+                  Creators get auto-DMs, an auto-poster, Doomscroller, an AI editor, and trial reels, so they can focus on the content itself. That focus is what produces the quality.
+                </p>
                 <div className="path-actions">
                   <a className="btn-line" href={MENTORSHIP} target="_blank" rel="noopener noreferrer">
                     Join the mentorship
