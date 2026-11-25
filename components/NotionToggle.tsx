@@ -3,8 +3,9 @@
 import { useEffect, type ReactNode } from "react";
 
 // Opens a disclosure when the URL hash points at it or at anything inside it.
-// #quality sits inside How it works. #dashboard sits inside Daily reports.
-// DECISION 2026-11: see docs/DECISIONS.md (topic: homepage-notion-2026-11).
+// #dashboard sits on the internal-dashboard disclosure. #quality is the
+// approvals strip, outside any disclosure, so the hash only scrolls.
+// DECISION 2026-11: see docs/DECISIONS.md (topic: homepage-rebalance-2026-11).
 export function useOpenDetailsForHash() {
   useEffect(() => {
     const open = () => {
@@ -19,14 +20,11 @@ export function useOpenDetailsForHash() {
         if (node instanceof HTMLDetailsElement) chain.push(node);
         node = node.parentElement;
       }
-      let opened = false;
       for (const details of chain) {
-        if (!details.open) {
-          details.open = true;
-          opened = true;
-        }
+        if (!details.open) details.open = true;
       }
-      if (!opened) return;
+      // Scroll even when nothing had to open. A late layout (posters, the
+      // Slack image) can leave the browser's first hash jump short.
       requestAnimationFrame(() => {
         requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
       });
