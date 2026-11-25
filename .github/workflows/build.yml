@@ -18,4 +18,21 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build
+      # Google Fonts sometimes answers with an extensionless /l/font?kit= URL.
+      # next/font 14 then throws "Cannot read properties of null (reading '1')".
+      # A fresh attempt usually gets a normal .woff2 URL. See docs/DECISIONS.md
+      # (topic: next-font-ci-retry-2026-11) and vercel/next.js#99114.
+      - name: build
+        run: |
+          set -eu
+          for attempt in 1 2 3; do
+            if npm run build; then
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              exit 1
+            fi
+            echo "next build failed on attempt ${attempt}, retrying"
+            rm -rf .next
+            sleep 5
+          done
