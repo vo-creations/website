@@ -12,7 +12,6 @@ import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
-import HeroMarkGloss from "@/components/HeroMarkGloss";
 import NotionToggle, { NotionChevron, useOpenDetailsForHash } from "@/components/NotionToggle";
 
 // DECISION 2026-11: the field is grainy black-and-white silk. Filled buttons
@@ -118,7 +117,6 @@ const heroProof = [
   { name: "AI creative platform", line: "130M+ views in 12 weeks, under $3 CPM" },
   { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
   { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
 const steps = [
@@ -215,14 +213,14 @@ const quotes = [
 ];
 
 const agencyFaqs = [
-  { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
+  { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM, then optimize every video for installs and lower CAC, not just views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
   { q: "Is paid media included?", a: "Paid media, the ad spend, is outside the fee and billed on top. The monthly fee already includes creator bonuses." },
   { q: "Do you offer refunds?", a: "No refunds after launch. The minimum is 90 days, then month to month." },
   { q: "How long do results take?", a: "First posts go live in 10–14 days. The minimum is 90 days so accounts can warm up and a few testing cycles can find the format. After that it is month to month." },
   { q: "Where do the videos post?", a: "TikTok, Instagram, YouTube, Facebook, and Snapchat. The format is organic talking-head UGC." },
   { q: "How do you report results?", a: "Every client gets a daily report in a shared Slack channel: spend against budget, total views, posts, active creators, CPM, engagement rate, and the top creators from the last 7 days. Each week we double down on the top videos. We also run campaigns from an internal dashboard, where every creator, video, account, and view is tracked live." },
   { q: "Who owns the videos?", a: "You do. You own every video we make for your campaign. Creators own their accounts." },
-  { q: "Who approves videos?", a: "Our core team of four approves every script and video before it posts." },
+  { q: "Who approves videos?", a: "The founders approve every script and video before it posts." },
   { q: "What do I need to provide?", a: "An onboarding survey, free product, promo codes or app access, and custom tracking URLs. We handle scripts, briefing, coaching, posting, editing, creator bonuses, and the daily report." },
 ];
 
@@ -260,18 +258,6 @@ const team: TeamMember[] = [
     image: "/videos/team-thienvu.jpg",
     webp: "/videos/team-thienvu.webp",
     slot: "t1",
-  },
-  {
-    name: "Chad Parian",
-    role: "Head of Strategy",
-    bio: "Built UGC creator programs driving 300M+ views, and leads coaching and community for every creator we train.",
-    slot: "t2",
-  },
-  {
-    name: "Adam Chen",
-    role: "Head of Creators",
-    bio: "100M+ views across his campaigns, with brands like Based Body Works and Santa Cruz Paleo.",
-    slot: "t3",
   },
 ];
 
@@ -459,7 +445,6 @@ function HeroStats() {
 export default function Home() {
   useOpenDetailsForHash();
   const heroCopyRef = useHeroDrift<HTMLDivElement>(-28);
-  const heroMarkRef = useHeroDrift<HTMLDivElement>(18);
   const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
   return (
     <div className="editorial">
@@ -468,17 +453,6 @@ export default function Home() {
       <main id="main">
         <section className="hero-shell" aria-label="Introduction">
           <div className="hero-frame">
-            <div className="hmeta">
-              <span className="lab">The in-house UGC agency backed by elite mentorship</span>
-              <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
-            </div>
-            {/* DECISION 2026-11: the mark sits in the meta row, not in the
-                gap between the lockup and the fan. See docs/DECISIONS.md
-                (topic: homepage-impact-2026-11). */}
-            <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
-              <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
-              <HeroMarkGloss />
-            </div>
             <div className="hero-copy" ref={heroCopyRef}>
               {/* DECISION 2026-11: one headline. The offer stays a step down.
                   The clip fan sits beside this lockup from 1280px, and under
@@ -504,9 +478,7 @@ export default function Home() {
             </div>
             <div className="hb">
               <p className="hsub">
-                1000+ vetted in-house creators.
-                <br />
-                We guarantee your target CPM.
+                We guarantee your target CPM, then optimize every video for installs and lower CAC, not just views.
               </p>
               <div className="hcta">
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
@@ -579,7 +551,7 @@ export default function Home() {
         <section className="guarantee-band" aria-labelledby="guarantee-title">
           <div className="ed-wrap">
             <h2 id="guarantee-title">Your target CPM, guaranteed.</h2>
-            <p>Videos under 1,000 views do not count toward your CPM.</p>
+            <p>We guarantee your target CPM, then optimize every video for installs and lower CAC, not just views. Videos under 1,000 views do not count toward your CPM.</p>
           </div>
         </section>
 
@@ -623,7 +595,7 @@ export default function Home() {
           <div className="ed-wrap">
             <h2 id="quality-title" className="display">Approvals and ownership.</h2>
             <div className="quality-cols">
-              <p>Our core team of four approves every script and video before it posts.</p>
+              <p>The founders approve every script and video before it posts.</p>
               <p>You own every video.</p>
               <p>We handle all takedowns and re-edits.</p>
             </div>
@@ -786,7 +758,7 @@ export default function Home() {
                 </div>
                 <div>
                   <span className="lab">Terms</span>
-                  <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
+                  <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM, then optimize every video for installs and lower CAC, not just views. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
                 </div>
               </div>
             </NotionToggle>

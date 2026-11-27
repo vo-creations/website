@@ -406,17 +406,17 @@ html.js-motion .budget-wipe.is-in {
 }
 .clip-proof {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 8px;
+  bottom: 8px;
   z-index: 2;
-  max-width: calc(100% - 20px);
-  padding: 5px 8px;
+  max-width: calc(100% - 56px);
+  padding: 3px 7px;
   border-radius: 999px;
-  background: rgba(11, 13, 18, 0.82);
-  color: #eef0f4;
+  background: rgba(11, 13, 18, 0.42);
+  color: #c4c8cf;
   font-family: var(--font-inter), Inter, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0;
   pointer-events: none;
@@ -443,8 +443,8 @@ html.js-motion .budget-wipe.is-in {
 }
 .hero-pause {
   position: absolute;
-  right: 10px;
-  bottom: 8px;
+  right: 4px;
+  bottom: 2px;
   left: auto;
   display: inline-flex;
   align-items: center;
@@ -452,9 +452,10 @@ html.js-motion .budget-wipe.is-in {
   width: 44px;
   height: 44px;
   padding: 0;
+  border: 1px solid rgba(196, 200, 207, 0.28);
   border-radius: 999px;
-  background: rgba(11, 13, 18, 0.72);
-  color: #eef0f4;
+  background: transparent;
+  color: rgba(196, 200, 207, 0.72);
 }
 .hero-pause:hover {
   color: #eef0f4;
@@ -743,11 +744,10 @@ html.js-motion .budget-wipe.is-in {
     display: grid;
     grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
     grid-template-areas:
-      "meta meta"
       "copy stage"
       "hb stage"
       "stats stats";
-    column-gap: 28px;
+    column-gap: 48px;
     row-gap: 8px;
     align-items: start;
     height: auto;
@@ -766,21 +766,6 @@ html.js-motion .budget-wipe.is-in {
   .editorial .hero-frame > .hero-copy {
     display: block;
   }
-  .editorial .hero-frame > .hero-mark {
-    display: block;
-    position: relative;
-    grid-area: meta;
-    justify-self: end;
-    align-self: center;
-    font-size: 56px;
-    margin: 0;
-    width: calc(1.638em * 2835 / 3297.751756);
-    height: 1.638em;
-    z-index: 1;
-  }
-  .editorial .hero-frame > .hmeta {
-    padding-right: 108px;
-  }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
   .editorial .hero-lockup .l1,
@@ -791,9 +776,15 @@ html.js-motion .budget-wipe.is-in {
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
-    grid-template-columns: minmax(0, 1.32fr) minmax(320px, 0.68fr);
+    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+    column-gap: 64px;
     padding-left: 64px;
     padding-right: 64px;
+  }
+  .editorial .hero-visual .hero-carousel {
+    --card: 220px;
+    --spread: 0.42;
+    --spread-2: 0.76;
   }
 }
 .editorial .hmeta {
@@ -968,9 +959,9 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 18px;
   }
   .editorial .hero-visual .hero-carousel {
-    --card: 232px;
-    --spread: 0.46;
-    --spread-2: 0.86;
+    --card: 208px;
+    --spread: 0.4;
+    --spread-2: 0.72;
   }
   .editorial .hero-lockup .l3 {
     margin-top: 10px;
@@ -986,7 +977,7 @@ html.js-motion .hero-rise.delay-2 > span {
   }
   .editorial .hsub {
     font-size: 18px;
-    max-width: 280px;
+    max-width: 36em;
   }
   .editorial .hcta {
     margin-top: 14px;
@@ -1015,19 +1006,15 @@ html.js-motion .hero-rise.delay-2 > span {
 }
 @media (min-width: 1024px) {
   .editorial .hero-copy {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 32px;
-    align-items: start;
-  }
-  .editorial .hero-lockup {
-    grid-column: 1;
-    grid-row: 1;
+    display: block;
     min-width: 0;
   }
-  /* DECISION 2026-11: ~40% smaller than 132px, matte silver. See docs/DECISIONS.md */
+  .editorial .hero-lockup {
+    min-width: 0;
+  }
+  /* The large hero monogram is off the fold. The nav mark stays. */
   .editorial .hero-mark {
-    display: block;
+    display: none;
     position: relative;
     grid-column: 2;
     grid-row: 1;
@@ -1132,18 +1119,19 @@ html.js-motion .hero-rise.delay-2 > span {
 }
 .hero-proof .hp-name {
   display: block;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mid);
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #c4c8cf;
 }
 .hero-proof .hp-line {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.4;
   letter-spacing: -0.011em;
+  color: var(--ink);
 }
 @media (min-width: 768px) {
   .hero-proof {
@@ -1152,8 +1140,10 @@ html.js-motion .hero-rise.delay-2 > span {
 }
 @media (min-width: 1280px) {
   .hero-proof {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 26px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 40px;
+    margin-top: 32px;
+    padding-top: 24px;
   }
 }
 
@@ -3542,6 +3532,10 @@ html[data-intro="done"] .intro-overlay {
   .story-clip {
     width: 260px;
   }
+  .story-row.is-flip .story-copy {
+    align-items: flex-end;
+    text-align: right;
+  }
 }
 @media (min-width: 1100px) {
   .story-clips {
@@ -3705,22 +3699,9 @@ html[data-intro="done"] .intro-overlay {
 @media (max-width: 767px) {
   .story-band { padding-top: 16px; }
   .story-row { gap: 12px; padding: 18px 0; }
-  .editorial .tms,
   .editorial .journal-scroller {
     -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
     mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
-  }
-  .editorial .tms {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin-top: 28px;
-    padding-bottom: 8px;
-  }
-  .editorial .tms .tm {
-    flex: 0 0 78%;
-    scroll-snap-align: start;
   }
   .editorial .journal-scroller {
     display: flex;
