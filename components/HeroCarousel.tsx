@@ -5,7 +5,8 @@ import type { CreatorClip } from "@/lib/creator-clips";
 
 // DECISION 2026-11: CSS coverflow, no 3D library. Only the front clip mounts
 // a video, and only after its poster has loaded and the carousel is in view.
-// Every video is preload="none". See docs/DECISIONS.md (topic: perf-a11y-2026-11).
+// The front file uses preload="metadata". Side slides stay posters.
+// See docs/DECISIONS.md (topic: perf-a11y-2026-11, topic: homepage-impact-2026-11).
 
 const STEP_MS = 3600;
 
@@ -46,8 +47,9 @@ export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  // The poster is the LCP image. The mp4 stays unloaded until that image
-  // has painted, the carousel is on screen, and the browser is idle.
+  // The poster is the LCP image. The mp4 waits until that image has
+  // painted, the carousel is on screen, and the window load event has
+  // fired, so the file does not share the poster's connection.
   useEffect(() => {
     if (reduced || !posterReady || !inView) {
       setMotionOK(false);
@@ -55,13 +57,21 @@ export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
     }
     let idle = 0;
     let timer = 0;
-    const start = () => setMotionOK(true);
-    if (typeof window.requestIdleCallback === "function") {
-      idle = window.requestIdleCallback(start, { timeout: 1200 });
-    } else {
-      timer = window.setTimeout(start, 600);
+    let loaded = false;
+    const start = () => {
+      if (typeof window.requestIdleCallback === "function") {
+        idle = window.requestIdleCallback(() => setMotionOK(true), { timeout: 800 });
+      } else {
+        timer = window.setTimeout(() => setMotionOK(true), 400);
+      }
+    };
+    if (document.readyState === "complete") start();
+    else {
+      loaded = true;
+      window.addEventListener("load", start, { once: true });
     }
     return () => {
+      if (loaded) window.removeEventListener("load", start);
       if (idle) window.cancelIdleCallback(idle);
       if (timer) window.clearTimeout(timer);
     };
@@ -150,13 +160,15 @@ export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
                 }}
               >
                 <div className="hero-slide-face">
+                  {Math.abs(pos) <= 1 && (
                   <img
                     src={clip.poster}
                     alt=""
                     width={540}
                     height={960}
-                    // Lowercase on purpose. React 18 emits fetchPriority as
-                    // camelCase, which browsers ignore. See docs/DECISIONS.md.
+                    // React's fetchPriority prop is what the server preload link
+                    // copies. The lowercase attribute is what the img itself needs.
+                    fetchPriority={index === 0 ? "high" : "low"}
                     {...{ fetchpriority: index === 0 ? "high" : "low" }}
                     loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
@@ -170,6 +182,7 @@ export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
                         : undefined
                     }
                   />
+                  )}
                   {front && motionOK && (
                     <video
                       className="absolute inset-0 h-full w-full object-cover"
@@ -177,7 +190,7 @@ export default function HeroCarousel({ clips }: { clips: CreatorClip[] }) {
                       muted
                       loop
                       playsInline
-                      preload="none"
+                      preload="metadata"
                       poster={clip.poster}
                     >
                       <source src={clip.src} type="video/mp4" />

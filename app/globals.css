@@ -77,9 +77,9 @@ body {
 }
 
 /* DECISION 2026-11: the silk gradient drifts on the compositor. Grain stays
-   still. The field is absolute and as tall as the page, so a tall section
-   does not fall off onto flat #0B0D12. See docs/DECISIONS.md
-   (topic: silk-drift-2026-11, case-study-wall-2026-11). */
+   still. The wrapper is fixed to the viewport, so a tall page does not fall
+   off onto flat #0B0D12 and the sheen does not resize with the document.
+   See docs/DECISIONS.md (topic: silk-drift-2026-11, topic: homepage-impact-2026-11). */
 .silk-field {
   position: absolute;
   inset: 0;
@@ -98,7 +98,6 @@ body {
     radial-gradient(ellipse 34% 26% at 48% 44%, rgba(238, 240, 244, 0.1), transparent 68%),
     linear-gradient(122deg, #0b0d12 0%, #25272c 22%, #0b0d12 41%, #393b40 58%, #12151c 74%, #212328 100%);
   background-repeat: no-repeat;
-  will-change: transform;
 }
 .silk-sheen {
   position: absolute;
@@ -106,7 +105,6 @@ body {
   pointer-events: none;
   background: radial-gradient(ellipse 45% 35% at 50% 50%, rgba(200, 206, 216, 0.16), transparent 70%);
   mix-blend-mode: screen;
-  will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
   .silk-sheet {
@@ -540,6 +538,12 @@ html.js-motion .budget-wipe.is-in {
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
+.editorial .site-header.is-scrolled {
+  background: rgba(11, 13, 18, 0.94);
+}
+.editorial .site-header .nav-book {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
 .editorial [id] {
   scroll-margin-top: 112px;
 }
@@ -731,24 +735,34 @@ html.js-motion .budget-wipe.is-in {
   }
 }
 .editorial .hero-visual {
-  margin-top: 28px;
+  margin-top: 12px;
   min-width: 0;
 }
 @media (min-width: 1280px) {
+  /* DECISION 2026-11: the clip fan sits in the right column, beside the
+     lockup, so a video is inside the first 900px at 1440. See
+     docs/DECISIONS.md (topic: homepage-impact-2026-11). */
   .editorial .hero-frame {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
     grid-template-areas:
       "meta meta"
-      "copy copy"
-      "stage stage"
-      "stats stats";
-    column-gap: 28px;
-    row-gap: 20px;
-    align-items: end;
+      "copy stage"
+      "hb stage"
+      "stats stats"
+      "stuck stuck";
+    column-gap: 36px;
+    row-gap: 10px;
+    align-items: start;
     height: auto;
-    padding: 32px 56px 56px;
+    padding: 16px 56px 36px;
   }
+  .editorial .hero-frame .hmeta { grid-area: meta; }
+  .editorial .hero-frame .hero-copy { grid-area: copy; }
+  .editorial .hero-frame .hero-visual { grid-area: stage; }
+  .editorial .hero-frame .hb { grid-area: hb; }
+  .editorial .hero-frame .hst { grid-area: stats; }
+  .editorial .hero-frame .stuck-line { grid-area: stuck; }
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
@@ -798,20 +812,20 @@ html.js-motion .budget-wipe.is-in {
 .editorial .hlead-rest {
   display: block;
   margin-top: 16px;
-  max-width: 28em;
+  max-width: 22em;
   font-family: var(--font-inter), Inter, sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: #c9cdd4;
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #eef0f4;
 }
 /* DECISION 2026-11: at 1440 the 28em cap left "views." on its own line.
    A wider cap plus the non-breaking space in app/page.tsx keeps it with
    "organic". See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
 @media (min-width: 1440px) {
   .editorial .hlead-rest {
-    max-width: 36em;
+    max-width: 16em;
   }
 }
 .editorial h1 .l3 {
@@ -852,14 +866,15 @@ html.js-motion .budget-wipe.is-in {
 .editorial .sn {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 .editorial .sl {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--mid);
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #d5d8e0;
 }
 .hero-rise {
   display: block;
@@ -916,35 +931,39 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 36px;
   }
   .editorial .hlead-offer {
-    max-width: 18em;
+    max-width: 11em;
     font-size: clamp(48px, 3.75vw, 58px);
   }
   .editorial .hlead-rest {
     margin-top: 18px;
+    max-width: 16em;
+  }
+  .editorial .hero-visual {
+    overflow: hidden;
+  }
+  .editorial .hero-visual .hero-carousel {
+    --card: 232px;
+    --spread: 0.46;
+    --spread-2: 0.86;
   }
   .editorial .hero-lockup .l3 {
     margin-top: 10px;
   }
   .editorial .hero-visual {
-    grid-area: stage;
-    margin-top: 40px;
+    margin-top: 8px;
   }
   .editorial .hb {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 32px;
+    column-gap: 24px;
     align-items: end;
-    margin-top: 40px;
+    margin-top: 8px;
   }
   .editorial .hsub {
     grid-column: 1;
     grid-row: 1;
     font-size: 18px;
     max-width: 280px;
-  }
-  .editorial .hb .hero-proof {
-    grid-column: 1 / -1;
-    grid-row: 2;
   }
   .editorial .hcta {
     grid-column: 2;
@@ -953,15 +972,11 @@ html.js-motion .hero-rise.delay-2 > span {
     justify-self: end;
   }
   .editorial .hst {
-    grid-area: stats;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 32px;
+    margin-top: 18px;
     border-top: 0;
     padding-top: 0;
     gap: 16px;
-  }
-  .editorial .sn {
-    font-size: 28px;
   }
 }
 
@@ -1045,6 +1060,10 @@ html.js-motion .hero-rise.delay-2 > span {
     font-size: clamp(68px, 6.2vw, 96px);
     margin-top: calc(28px + 0.092em);
   }
+  /* The fan fills the column the mark used to sit in. */
+  .editorial .hero-frame .hero-mark {
+    display: none;
+  }
 }
 .hero-proof {
   display: grid;
@@ -1074,10 +1093,10 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 14px;
   }
   .editorial .hlead {
-    margin-top: 40px;
+    margin-top: 16px;
   }
   .editorial .hlead-rest {
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .editorial .hb {
     margin-top: 12px;
@@ -1818,7 +1837,7 @@ html.js-motion .hero-mark-face {
   grid-column: 1 / -1;
   width: 100%;
   max-width: none;
-  margin: 0;
+  margin: 28px 0 0;
   color: #c9cdd4;
   font-size: 17px;
   line-height: 1.55;
@@ -3243,9 +3262,10 @@ html.js-motion .hero-mark-face {
 
 /* DECISION 2026-11: homepage intro. Hidden unless the head script set
    data-intro="play" before paint. The mark fades in over 0-500ms, holds
-   through 1100ms, and is fully gone at 1400ms. The overlay stays solid
-   through 1500ms (100ms after the mark is gone) and fades out by 1900ms.
-   See docs/DECISIONS.md (topic: homepage-intro-2026-11). */
+   through 1100ms, and is fully gone at 1400ms. The overlay itself is
+   transparent so the hero poster can paint as LCP. The mark still fades
+   out with the overlay by 1900ms.
+   See docs/DECISIONS.md (topic: homepage-intro-2026-11, topic: homepage-impact-2026-11). */
 .intro-overlay {
   display: none;
 }
@@ -3256,7 +3276,7 @@ html[data-intro="play"] .intro-overlay {
   z-index: 70;
   align-items: center;
   justify-content: center;
-  background: #0b0d12;
+  background: transparent;
   pointer-events: none;
   animation: intro-overlay-out 1900ms linear forwards;
   animation-delay: var(--intro-seek, 0ms);
@@ -3321,5 +3341,333 @@ html[data-intro="done"] .intro-overlay {
   100% {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+/* Homepage impact. Off-white is #E6E8EC, the existing cool gray, on #0B0D12.
+   No accent hue. See docs/DECISIONS.md (topic: homepage-impact-2026-11). */
+.stuck-line {
+  margin: 16px 0 0;
+  max-width: 68em;
+  color: var(--mid);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.proof-band {
+  background: #e6e8ec;
+  color: #0b0d12;
+  padding: 56px 0 36px;
+}
+.proof-band .billion {
+  margin: 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(96px, 20vw, 360px);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+}
+.proof-band .billion-label {
+  margin: 8px 0 0;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: clamp(16px, 2vw, 28px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(11, 13, 18, 0.62);
+}
+.receipt-scroller {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 22px;
+  margin-top: 28px;
+  padding: 4px 22px 12px;
+  scrollbar-width: thin;
+}
+.receipt {
+  flex: 0 0 min(84vw, 520px);
+  scroll-snap-align: start;
+  min-height: 280px;
+  border: 1px solid rgba(11, 13, 18, 0.14);
+  border-radius: 18px;
+  background: #f4f5f7;
+  padding: 22px 22px 8px;
+}
+.receipt-label {
+  margin: 0;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #3a3e46;
+}
+.receipt-figure {
+  margin: 14px 0 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(64px, 9vw, 112px);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+}
+.receipt ul {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.receipt li {
+  border-top: 1px solid rgba(11, 13, 18, 0.12);
+  padding: 10px 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.proof-band .notion {
+  border-color: rgba(11, 13, 18, 0.16);
+}
+.proof-band .notion.is-bare {
+  border-top-color: rgba(11, 13, 18, 0.16);
+}
+.proof-band .notion-title {
+  color: #0b0d12;
+}
+.proof-band .notion-line {
+  color: rgba(11, 13, 18, 0.68);
+}
+.proof-band .notion-chevron {
+  color: #0b0d12;
+}
+.proof-band .notion-shell:has(summary:hover) .notion-title {
+  color: #0b0d12;
+}
+.proof-band .result-grid {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.proof-band .result-card,
+.proof-band .result-card:nth-child(n) {
+  grid-column: auto;
+  border-color: rgba(11, 13, 18, 0.14);
+  background: #f4f5f7;
+  color: #0b0d12;
+  padding: 16px 16px 6px;
+}
+.proof-band .result-mark {
+  color: rgba(11, 13, 18, 0.55);
+}
+.proof-band .result-card li,
+.proof-band .result-card ul {
+  border-color: rgba(11, 13, 18, 0.12);
+  color: rgba(11, 13, 18, 0.78);
+}
+.proof-band .result-card li:nth-child(n + 4) {
+  display: list-item;
+}
+.proof-band .results-cta p {
+  color: #3a3e46;
+}
+.proof-band a.btn-book {
+  color: #0b0d12;
+  border-bottom-color: #0b0d12;
+}
+.guarantee-band {
+  background: #0b0d12;
+  color: #eef0f4;
+  padding: 88px 0;
+}
+.guarantee-band h2 {
+  margin: 0;
+  max-width: 11em;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 7.4vw, 120px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+.guarantee-band p {
+  max-width: 18em;
+  margin: 22px 0 0;
+  color: #e6e8ec;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.35;
+}
+.study-band {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #0b0d12;
+}
+.study-media {
+  position: relative;
+  margin: 0;
+  min-height: 420px;
+  aspect-ratio: 9 / 16;
+  max-height: 72vh;
+  overflow: hidden;
+  background: #141820;
+}
+.study-media img,
+.study-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.study-media figcaption {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(11, 13, 18, 0.82);
+  color: #eef0f4;
+  font-size: 13px;
+  font-weight: 600;
+}
+.study-copy {
+  background: #e6e8ec;
+  color: #0b0d12;
+  padding: 36px 22px 48px;
+}
+.study-copy .lab {
+  color: #3a3e46;
+}
+.study-copy h2 {
+  margin: 10px 0 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(72px, 12vw, 140px);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+}
+.study-lines {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.study-lines li {
+  border-top: 1px solid rgba(11, 13, 18, 0.14);
+  padding: 10px 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.study-copy blockquote {
+  margin: 28px 0 0;
+}
+.study-copy blockquote p {
+  margin: 0;
+  max-width: 18em;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.study-copy cite {
+  display: block;
+  margin-top: 16px;
+  color: #3a3e46;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.study-copy a.text-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: #0b0d12;
+  text-decoration-color: rgba(11, 13, 18, 0.55);
+}
+@media (min-width: 768px) {
+  .receipt-scroller {
+    scroll-padding-inline: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .study-copy {
+    padding: 56px 40px;
+  }
+  .proof-band .result-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .study-band {
+    grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+    align-items: stretch;
+  }
+  .study-media {
+    max-height: none;
+    aspect-ratio: auto;
+    min-height: 680px;
+  }
+  .study-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px;
+  }
+}
+@media (min-width: 1280px) {
+  .proof-band {
+    padding: 80px 0 56px;
+  }
+  .receipt-scroller {
+    gap: 20px;
+    scroll-padding-inline: 72px;
+    padding-left: 72px;
+    padding-right: 72px;
+  }
+  .receipt {
+    flex-basis: min(42vw, 520px);
+  }
+  .guarantee-band {
+    padding: 120px 0;
+  }
+}
+@media (max-width: 767px) {
+  .editorial .tms {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-top: 28px;
+    padding-bottom: 8px;
+  }
+  .editorial .tms .tm {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+  .editorial .journal-scroller {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-right: -22px;
+    padding-right: 22px;
+    padding-bottom: 6px;
+  }
+  .editorial .journal-scroller .bls {
+    display: contents;
+  }
+  .editorial .journal-scroller .feat,
+  .editorial .journal-scroller .bl {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .editorial .journal-scroller .feat {
+    margin-top: 28px;
+  }
+  .editorial .journal-scroller .bl {
+    align-content: start;
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .editorial .journal-scroller .bt2 {
+    font-size: 26px;
   }
 }

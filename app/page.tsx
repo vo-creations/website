@@ -10,6 +10,7 @@ import WorkCarousel from "@/components/WorkCarousel";
 import { useCountUp } from "@/components/useCountUp";
 import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
+import { caseStudyBySlug } from "@/lib/case-studies";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
 import HeroMarkGloss from "@/components/HeroMarkGloss";
@@ -64,7 +65,7 @@ function StatCounter({
   trigger: boolean;
   format: (n: number) => string;
 }) {
-  const value = useCountUp(target, trigger, 2200, { ssrFinal: true });
+  const value = useCountUp(target, trigger, 800, { ssrFinal: true });
   return <>{format(value)}</>;
 }
 
@@ -110,15 +111,6 @@ const trustedBrands = [
   { name: "Based Body Works", file: "based.png" },
   { name: "Santa Cruz Paleo", file: "santa-cruz-paleo.png" },
   { name: "OpenArt AI", file: "openart.png" },
-];
-
-// DECISION 2026-11: result names are categories. Numbers stay the deck figures.
-// See docs/DECISIONS.md (topic: anonymized-results-2026-11).
-const heroProof = [
-  { name: "AI creative platform", line: "130M+ views in 12 weeks, under $3 CPM" },
-  { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
-  { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
-  { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
 ];
 
 const steps = [
@@ -169,6 +161,15 @@ const results = [
   },
 ];
 
+// Indexes into `results[].lines`. The strings stay the card copy.
+// Order is the three view totals, then the finance users total.
+const receiptSpecs: { label: string; indexes: number[] }[] = [
+  { label: "Fitness social app", indexes: [0, 2, 3] },
+  { label: "AI creative platform", indexes: [0, 1, 3] },
+  { label: "AI video generation app", indexes: [0, 2, 3] },
+  { label: "Consumer finance app", indexes: [0, 3, 1] },
+];
+
 // DECISION 2026-11: four quotes, one per person. Miguel's shorter line was removed.
 // See docs/DECISIONS.md (topic: testimonials-four-2026-11).
 const quotes = [
@@ -197,6 +198,10 @@ const quotes = [
     study: "/case-studies/liftoff",
   },
 ];
+
+const kreaQuote = quotes.find((item) => item.client === "Krea");
+const kreaClip = caseStudyBySlug("krea").clips[0];
+const kreaResult = results.find((row) => row.label === "AI creative platform");
 
 const agencyFaqs = [
   { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
@@ -350,13 +355,64 @@ function SlackReport() {
           alt="Example of the daily Slack campaign report, with numbers blurred."
           width={1800}
           height={856}
-          loading="eager"
+          loading="lazy"
           decoding="async"
           className="h-auto w-full rounded-[6px] shadow-[0_40px_120px_rgba(0,0,0,0.6)]"
         />
       </picture>
       <span aria-hidden="true" className={`budget-wipe ${on ? "is-in" : ""}`} />
     </div>
+  );
+}
+
+function StudyClip() {
+  const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [near, setNear] = useState(false);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setNear(true);
+        if (!reduced) setOn(entry.isIntersecting);
+      },
+      { rootMargin: "240px", threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node) return;
+    node.muted = true;
+    const pending = node.play();
+    if (pending) pending.catch(() => {});
+  }, [on]);
+  return (
+    <figure ref={ref} className="study-media">
+      {near && (
+        <img src={kreaClip.poster} alt="" width={540} height={960} loading="lazy" decoding="async" />
+      )}
+      {on && (
+        <video
+          ref={videoRef}
+          className="study-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={kreaClip.poster}
+        >
+          <source src={kreaClip.src} type="video/mp4" />
+        </video>
+      )}
+      <span className="clip-proof">{kreaClip.proof}</span>
+      <figcaption>{kreaClip.label}</figcaption>
+    </figure>
   );
 }
 
@@ -384,12 +440,6 @@ export default function Home() {
   const heroStageRef = useHeroDrift<HTMLDivElement>(-12);
   return (
     <div className="editorial">
-      <link
-        rel="preload"
-        as="image"
-        href={heroClips[0].poster}
-        {...{ fetchpriority: "high" }}
-      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Nav variant="editorial" />
       <main id="main">
@@ -400,9 +450,10 @@ export default function Home() {
               <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
             <div className="hero-copy" ref={heroCopyRef}>
-              {/* DECISION 2026-11: one 89px headline. The offer is a step down
-                  (about 54px at 1440, 32px on a phone). See docs/DECISIONS.md
-                  (topic: hero-offer-mark-2026-11). */}
+              {/* DECISION 2026-11: one headline. The offer stays a step down.
+                  The clip fan sits beside this lockup from 1280px, and under
+                  it on a phone. See docs/DECISIONS.md
+                  (topic: hero-offer-mark-2026-11, topic: homepage-impact-2026-11). */}
               <div className="hero-lockup">
                 <h1>
                   <span className="hero-rise l1">
@@ -417,41 +468,112 @@ export default function Home() {
                   <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic&nbsp;views.</span>
                 </p>
               </div>
-              {/* DECISION 2026-11: serif VO sits in the open space beside the
-                  lockup, above the CTA row. Hidden under 1024px.
+              {/* DECISION 2026-11: serif VO sits beside the lockup from 1024px.
                   The ring light is the canvas in HeroMarkGloss. The box
                   size and the silver ink stay put. */}
               <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
                 <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
                 <HeroMarkGloss />
               </div>
-              <div className="hb">
-                <p className="hsub">
-                  1000+ vetted in-house creators.
-                  <br />
-                  We guarantee your target CPM.
-                </p>
-                <ul className="hero-proof">
-                  {heroProof.map((item) => (
-                    <li key={item.name}>
-                      <span className="hp-name">{item.name}</span>
-                      <span className="hp-line">{item.line}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="hcta">
-                  <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                    Book a call
-                  </a>
-                </div>
-              </div>
             </div>
             <div className="hero-visual" ref={heroStageRef}>
               <HeroCarousel clips={heroClips} />
             </div>
+            <div className="hb">
+              <p className="hsub">1000+ vetted in-house creators.</p>
+              <div className="hcta">
+                <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                  Book a call
+                </a>
+              </div>
+            </div>
             <HeroStats />
+            <p className="stuck-line" id="stuck">
+              Paid CAC on Meta and TikTok goes up every quarter, in-house programs stall at 5–10 creators, and agencies hand over 20 polished ads that look like ads.{" "}
+              <a className="text-link" href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
+            </p>
           </div>
         </section>
+
+        <section className="proof-band" id="results" aria-labelledby="results-title">
+          <div className="ed-wrap">
+            <h2 id="results-title" className="billion">1B+</h2>
+            <p className="billion-label">organic views</p>
+          </div>
+          <div className="receipt-scroller" role="region" aria-label="Campaign results" tabIndex={0}>
+            {receiptSpecs.map((spec) => {
+              const item = results.find((row) => row.label === spec.label);
+              if (!item) return null;
+              const lines = spec.indexes.map((index) => item.lines[index]).filter(Boolean);
+              return (
+                <article className="receipt" key={item.label}>
+                  <h3 className="receipt-label">{item.label}</h3>
+                  <p className="receipt-figure">{item.figure}</p>
+                  <ul>
+                    {lines.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
+          </div>
+          <div className="ed-wrap">
+            <NotionToggle
+              bare
+              id="results-all"
+              title="See all the numbers."
+              summary="Five campaigns, every line."
+            >
+              <div className="result-grid">
+                {results.map((item) => (
+                  <article className="result-card" key={item.label}>
+                    <h3 className="result-mark">{item.label}</h3>
+                    <p className="result-figure">{item.figure}</p>
+                    <ul>
+                      {item.lines.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </NotionToggle>
+            <div className="results-cta">
+              <p>Every result from our own creators.</p>
+              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
+                Book a call<span aria-hidden="true">&nbsp;↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="guarantee-band" aria-labelledby="guarantee-title">
+          <div className="ed-wrap">
+            <h2 id="guarantee-title">Your target CPM, guaranteed.</h2>
+            <p>Videos under 1,000 views do not count toward your CPM.</p>
+          </div>
+        </section>
+
+        {kreaQuote && kreaResult ? (
+          <section className="study-band" aria-labelledby="study-title">
+            <StudyClip />
+            <div className="study-copy">
+              <p className="lab">Krea</p>
+              <h2 id="study-title">{kreaResult.figure}</h2>
+              <ul className="study-lines">
+                {[0, 1, 4].map((index) => (
+                  <li key={kreaResult.lines[index]}>{kreaResult.lines[index]}</li>
+                ))}
+              </ul>
+              <blockquote>
+                <p>&ldquo;{kreaQuote.quote}&rdquo;</p>
+                <cite>{kreaQuote.by}</cite>
+              </blockquote>
+              <a className="text-link" href={kreaQuote.study}>Read the case study</a>
+            </div>
+          </section>
+        ) : null}
 
         <section className="border-b border-white/10" aria-label="Trusted by teams at">
           <div className="mx-auto grid max-w-[1440px] items-center gap-[18px] px-[22px] py-[26px] md:px-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:px-[72px] xl:py-[34px]">
@@ -484,68 +606,6 @@ export default function Home() {
         </section>
 
         <WorkCarousel />
-
-        <section className="band mid-top" id="stuck">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">Where app growth gets stuck.</h2>
-            </div>
-            <div className="pcols">
-              <div>
-                <span className="lab">Paid</span>
-                <p>Paid CAC on Meta and TikTok goes up every quarter.</p>
-              </div>
-              <div>
-                <span className="lab">In-house</span>
-                <p>Nobody has time to recruit and coach, so programs stall at 5–10 creators.</p>
-              </div>
-              <div>
-                <span className="lab">Agencies</span>
-                <p>Agencies hand over 20 polished ads that look like ads, and they flop.</p>
-              </div>
-            </div>
-            <p className="lede mt-8">
-              <a className="text-link" href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
-            </p>
-          </div>
-        </section>
-
-        <section className="band tight-top" id="results">
-          <div className="ed-wrap">
-            <div className="sh">
-              <h2 className="display">Results.</h2>
-            </div>
-            <div className="result-grid">
-              {results.map((item) => (
-                <article className="result-card" key={item.label}>
-                  <h3 className="result-mark">{item.label}</h3>
-                  <p className="result-figure">{item.figure}</p>
-                  <ul>
-                    {item.lines.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-            <div className="results-cta">
-              <p>
-                Every result from our own creators. Named case studies:{" "}
-                <a href="/case-studies/fomo">fomo</a>
-                {" · "}
-                <a href="/case-studies/liftoff">Liftoff</a>
-                {" · "}
-                <a href="/case-studies/higgsfield">Higgsfield</a>
-                {" · "}
-                <a href="/case-studies/krea">Krea</a>
-                .
-              </p>
-              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call<span aria-hidden="true">&nbsp;↗</span>
-              </a>
-            </div>
-          </div>
-        </section>
 
         {/* DECISION 2026-11: the three approval lines are visible here.
             #quality lands on this strip. Creators own their accounts stays
@@ -686,8 +746,7 @@ export default function Home() {
         <section className="band border-t border-white/10" id="pricing">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">What $50K+/month buys</h2>
-              <p className="lede mt-4">Campaigns start at $50K+ a month. First posts go live in 10–14 days.</p>
+              <h2 className="display">What the month buys</h2>
             </div>
             <div className="pc">
               <p className="ed-price">
@@ -698,23 +757,30 @@ export default function Home() {
                 90-day minimum, then month to month.
               </p>
             </div>
-            <div className="pcols">
-              <div>
-                <span className="lab">Creators</span>
-                <p>1,000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1% of applicants. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.</p>
+            <NotionToggle
+              bare
+              id="pricing-detail"
+              title="What's in the fee."
+              summary="Creators, the math, and the terms."
+            >
+              <div className="pcols">
+                <div>
+                  <span className="lab">Creators</span>
+                  <p>1,000+ vetted in-house creators trained through mentorship. They finish a two-week paid trial before they touch a brand account. We keep the top 1% of applicants. They post talking-head video on TikTok, Instagram, YouTube, Facebook, and Snapchat.</p>
+                </div>
+                <div>
+                  <span className="lab">What&apos;s included</span>
+                  <p>
+                    At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
+                    <a className="text-link" href="/blog/ugc-agency-pricing">How the math works</a>
+                  </p>
+                </div>
+                <div>
+                  <span className="lab">Terms</span>
+                  <p>No refunds after launch. We take 10 new campaigns a month. You own every video. Videos under 1,000 views don&apos;t count toward your CPM.</p>
+                </div>
               </div>
-              <div>
-                <span className="lab">What&apos;s included</span>
-                <p>
-                  At a $1 target CPM that is 50M organic views. At $4 it is 12.5M. Included: trained creators, scripts, in-house editing, posting, creator bonuses, and daily reporting. Paid ad spend is billed separately.{" "}
-                  <a className="text-link" href="/blog/ugc-agency-pricing">How the math works</a>
-                </p>
-              </div>
-              <div>
-                <span className="lab">Terms</span>
-                <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
-              </div>
-            </div>
+            </NotionToggle>
             <div className="section-cta">
               <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
                 Book a call
@@ -736,14 +802,14 @@ export default function Home() {
                 <h3>Good fit</h3>
                 <ul>
                   <li>AI and tech consumer apps.</li>
-                  <li>Ready for $50K+ a month.</li>
+                  <li>Ready for the monthly fee.</li>
                   <li>Want organic short-form at scale, with a CPM target.</li>
                 </ul>
               </article>
               <article>
                 <h3>Not a fit</h3>
                 <ul>
-                  <li>Budgets under $50K a month.</li>
+                  <li>Budgets under the monthly fee.</li>
                   <li>One-off videos.</li>
                   <li>Paid-ads-only management.</li>
                 </ul>
@@ -757,7 +823,7 @@ export default function Home() {
             <div className="sh">
               <h2 className="display">The team behind 1B+ views.</h2>
             </div>
-            <div className="tms">
+            <div className="tms" role="region" aria-label="Team" tabIndex={0}>
               {team.map((member) => (
                 <figure key={member.name} className={`tm ${member.slot}`}>
                   <figcaption>
@@ -767,8 +833,8 @@ export default function Home() {
                   </figcaption>
                 </figure>
               ))}
-              <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
             </div>
+            <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
           </div>
         </section>
 
@@ -777,6 +843,7 @@ export default function Home() {
             <div className="sh">
               <h2 className="display">UGC insights.</h2>
             </div>
+            <div className="journal-scroller" role="region" aria-label="UGC insights" tabIndex={0}>
             <div className="feat">
               <a className="feat-media" href={`/blog/${featured.slug}`} aria-label={featured.title}>
                 <Image
@@ -809,6 +876,7 @@ export default function Home() {
                   <span className="bm">{post.readingMinutes} min read</span>
                 </a>
               ))}
+            </div>
             </div>
           </div>
         </section>

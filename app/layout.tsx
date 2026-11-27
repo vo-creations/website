@@ -11,18 +11,24 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["200", "300", "400", "500", "600", "700"],
+  // The hero LCP is the poster. Preloading every weight made Lighthouse
+  // queue that image behind the font files. See docs/DECISIONS.md
+  // (topic: homepage-impact-2026-11).
+  preload: false,
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "500"],
+  preload: false,
 });
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-inter-tight",
   weight: ["500", "600", "700", "800"],
+  preload: false,
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -30,6 +36,7 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
   weight: "400",
   style: ["normal", "italic"],
+  preload: false,
 });
 
 const SITE_DESCRIPTION =
@@ -194,7 +201,7 @@ export default function RootLayout({
         />
         <style
           dangerouslySetInnerHTML={{
-            __html: `.intro-overlay{display:none}html[data-intro="play"] .intro-overlay{display:flex;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;background:#0B0D12;pointer-events:none}html[data-intro="done"] .intro-overlay{display:none!important;animation:none!important}@media (prefers-reduced-motion: reduce){.intro-overlay{display:none!important;animation:none!important}}`,
+            __html: `.intro-overlay{display:none}html[data-intro="play"] .intro-overlay{display:flex;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;background:transparent;pointer-events:none}html[data-intro="done"] .intro-overlay{display:none!important;animation:none!important}@media (prefers-reduced-motion: reduce){.intro-overlay{display:none!important;animation:none!important}}`,
           }}
         />
         <script
@@ -228,7 +235,7 @@ export default function RootLayout({
         </Script>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+          className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
         >
           {/* Silver silk. The sheet drifts in CSS. Grain stays still.
               See docs/DECISIONS.md (topic: silk-drift-2026-11). */}

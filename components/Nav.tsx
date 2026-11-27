@@ -107,9 +107,16 @@ export const NAV_INNER_PADDING = "px-5 md:px-6";
 
 function EditorialNav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { toggleRef, menuRef } = useMenuFocus(open, setOpen);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <div className="mx-auto flex min-h-[72px] max-w-[1440px] items-center justify-between gap-4 px-[22px] md:px-10 xl:h-[76px] xl:px-16">
         <a href="/" className="brand-link" aria-label="Vo Creations">
           <BrandLockup />
@@ -122,7 +129,7 @@ function EditorialNav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href="https://calendly.com/vocreations/vo-creations-agency-discovery-call" target="_blank" rel="noopener noreferrer" className="btn-talk whitespace-nowrap">
+          <a href="https://calendly.com/vocreations/vo-creations-agency-discovery-call" target="_blank" rel="noopener noreferrer" className="btn-talk nav-book whitespace-nowrap">
             Book a call
           </a>
           <MenuToggle
