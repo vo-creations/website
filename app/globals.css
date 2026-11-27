@@ -77,9 +77,9 @@ body {
 }
 
 /* DECISION 2026-11: the silk gradient drifts on the compositor. Grain stays
-   still. The field is absolute and as tall as the page, so a tall section
-   does not fall off onto flat #0B0D12. See docs/DECISIONS.md
-   (topic: silk-drift-2026-11, case-study-wall-2026-11). */
+   still. The wrapper is fixed to the viewport, so a tall page does not fall
+   off onto flat #0B0D12 and the sheen does not resize with the document.
+   See docs/DECISIONS.md (topic: silk-drift-2026-11, topic: homepage-impact-2026-11). */
 .silk-field {
   position: absolute;
   inset: 0;
@@ -98,7 +98,6 @@ body {
     radial-gradient(ellipse 34% 26% at 48% 44%, rgba(238, 240, 244, 0.1), transparent 68%),
     linear-gradient(122deg, #0b0d12 0%, #25272c 22%, #0b0d12 41%, #393b40 58%, #12151c 74%, #212328 100%);
   background-repeat: no-repeat;
-  will-change: transform;
 }
 .silk-sheen {
   position: absolute;
@@ -106,7 +105,6 @@ body {
   pointer-events: none;
   background: radial-gradient(ellipse 45% 35% at 50% 50%, rgba(200, 206, 216, 0.16), transparent 70%);
   mix-blend-mode: screen;
-  will-change: transform;
 }
 @media (prefers-reduced-motion: no-preference) {
   .silk-sheet {
@@ -445,21 +443,18 @@ html.js-motion .budget-wipe.is-in {
 }
 .hero-pause {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-start;
+  right: 10px;
+  bottom: 8px;
+  left: auto;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 44px;
   height: 44px;
-  padding: 10px 12px 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.55);
-  font-family: var(--font-inter), Inter, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(11, 13, 18, 0.72);
+  color: #eef0f4;
 }
 .hero-pause:hover {
   color: #eef0f4;
@@ -539,6 +534,12 @@ html.js-motion .budget-wipe.is-in {
   background: rgba(11, 13, 18, 0.72);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.editorial .site-header.is-scrolled {
+  background: rgba(11, 13, 18, 0.94);
+}
+.editorial .site-header .nav-book {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 .editorial [id] {
   scroll-margin-top: 112px;
@@ -731,27 +732,66 @@ html.js-motion .budget-wipe.is-in {
   }
 }
 .editorial .hero-visual {
-  margin-top: 28px;
+  margin-top: 12px;
   min-width: 0;
 }
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
+  /* DECISION 2026-11: the clip fan sits in the right column, beside the
+     lockup, so a video is inside the first screen. See docs/DECISIONS.md
+     (topic: homepage-impact-2026-11). */
   .editorial .hero-frame {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
     grid-template-areas:
       "meta meta"
-      "copy copy"
-      "stage stage"
+      "copy stage"
+      "hb stage"
       "stats stats";
     column-gap: 28px;
-    row-gap: 20px;
-    align-items: end;
+    row-gap: 8px;
+    align-items: start;
     height: auto;
-    padding: 32px 56px 56px;
+    padding: 16px 40px 28px;
+  }
+  .editorial .hero-frame .hmeta { grid-area: meta; }
+  .editorial .hero-frame .hero-copy { grid-area: copy; }
+  .editorial .hero-frame .hero-visual { grid-area: stage; overflow: hidden; }
+  .editorial .hero-frame .hb { grid-area: hb; }
+  .editorial .hero-frame .hst { grid-area: stats; }
+  .editorial .hero-visual .hero-carousel {
+    --card: 188px;
+    --spread: 0.42;
+    --spread-2: 0.78;
+  }
+  .editorial .hero-frame > .hero-copy {
+    display: block;
+  }
+  .editorial .hero-frame > .hero-mark {
+    display: block;
+    position: relative;
+    grid-area: meta;
+    justify-self: end;
+    align-self: center;
+    font-size: 56px;
+    margin: 0;
+    width: calc(1.638em * 2835 / 3297.751756);
+    height: 1.638em;
+    z-index: 1;
+  }
+  .editorial .hero-frame > .hmeta {
+    padding-right: 108px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .editorial .hero-lockup .l1,
+  .editorial .hero-lockup .l2,
+  .editorial .hero-mark {
+    font-size: 48px;
   }
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
+    grid-template-columns: minmax(0, 1.32fr) minmax(320px, 0.68fr);
     padding-left: 64px;
     padding-right: 64px;
   }
@@ -811,7 +851,8 @@ html.js-motion .budget-wipe.is-in {
    "organic". See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
 @media (min-width: 1440px) {
   .editorial .hlead-rest {
-    max-width: 36em;
+    max-width: none;
+    white-space: nowrap;
   }
 }
 .editorial h1 .l3 {
@@ -852,14 +893,15 @@ html.js-motion .budget-wipe.is-in {
 .editorial .sn {
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 .editorial .sl {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--mid);
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #d5d8e0;
 }
 .hero-rise {
   display: block;
@@ -888,6 +930,9 @@ html.js-motion .hero-rise.delay-2 > span {
   }
 }
 @media (min-width: 1280px) {
+  .editorial .hero-frame {
+    padding: 16px 56px 28px;
+  }
   .editorial .hmeta {
     grid-area: meta;
     position: static;
@@ -922,46 +967,40 @@ html.js-motion .hero-rise.delay-2 > span {
   .editorial .hlead-rest {
     margin-top: 18px;
   }
+  .editorial .hero-visual .hero-carousel {
+    --card: 232px;
+    --spread: 0.46;
+    --spread-2: 0.86;
+  }
   .editorial .hero-lockup .l3 {
     margin-top: 10px;
   }
   .editorial .hero-visual {
-    grid-area: stage;
-    margin-top: 40px;
+    margin-top: 8px;
   }
   .editorial .hb {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 32px;
-    align-items: end;
-    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 8px;
   }
   .editorial .hsub {
-    grid-column: 1;
-    grid-row: 1;
     font-size: 18px;
     max-width: 280px;
   }
-  .editorial .hb .hero-proof {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
   .editorial .hcta {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: 0;
-    justify-self: end;
+    margin-top: 14px;
+    justify-self: start;
+  }
+  .editorial .hero-frame .hero-proof {
+    grid-template-columns: 1fr 1fr;
   }
   .editorial .hst {
-    grid-area: stats;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 32px;
+    margin-top: 18px;
     border-top: 0;
     padding-top: 0;
     gap: 16px;
-  }
-  .editorial .sn {
-    font-size: 28px;
   }
 }
 
@@ -1074,10 +1113,10 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 14px;
   }
   .editorial .hlead {
-    margin-top: 40px;
+    margin-top: 16px;
   }
   .editorial .hlead-rest {
-    margin-top: 10px;
+    margin-top: 8px;
   }
   .editorial .hb {
     margin-top: 12px;
@@ -1818,7 +1857,7 @@ html.js-motion .hero-mark-face {
   grid-column: 1 / -1;
   width: 100%;
   max-width: none;
-  margin: 0;
+  margin: 28px 0 0;
   color: #c9cdd4;
   font-size: 17px;
   line-height: 1.55;
@@ -3243,9 +3282,10 @@ html.js-motion .hero-mark-face {
 
 /* DECISION 2026-11: homepage intro. Hidden unless the head script set
    data-intro="play" before paint. The mark fades in over 0-500ms, holds
-   through 1100ms, and is fully gone at 1400ms. The overlay stays solid
-   through 1500ms (100ms after the mark is gone) and fades out by 1900ms.
-   See docs/DECISIONS.md (topic: homepage-intro-2026-11). */
+   through 1100ms, and is fully gone at 1400ms. The overlay itself is
+   transparent so the hero poster can paint as LCP. The mark still fades
+   out with the overlay by 1900ms.
+   See docs/DECISIONS.md (topic: homepage-intro-2026-11, topic: homepage-impact-2026-11). */
 .intro-overlay {
   display: none;
 }
@@ -3321,5 +3361,382 @@ html[data-intro="done"] .intro-overlay {
   100% {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+/* Homepage impact. Off-white is #E6E8EC, the existing cool gray, on #0B0D12.
+   No accent hue. See docs/DECISIONS.md (topic: homepage-impact-2026-11). */
+.editorial #results {
+  scroll-margin-top: 112px;
+}
+.story-band {
+  padding: 28px 0 8px;
+}
+#results-title {
+  margin: 0 0 4px;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.story-row {
+  display: grid;
+  grid-template-areas: "figure" "clips" "meta";
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 18px 0;
+  border-top: 1px solid var(--hair);
+}
+.story-copy { display: contents; }
+.story-figure { grid-area: figure; }
+.story-clips { grid-area: clips; }
+.story-meta { grid-area: meta; }
+.story-num {
+  margin: 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(96px, 10vw, 168px);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  color: #c4c8cf;
+}
+.story-kicker {
+  margin: 8px 0 0;
+  color: var(--dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.story-clips {
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent);
+}
+.story-clip {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  max-height: 460px;
+  margin: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  background: #141820;
+  object-position: 50% 20%;
+}
+.story-clip img,
+.story-clip video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+.story-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  color: inherit;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.story-logo {
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  justify-content: flex-start;
+  filter: grayscale(1);
+}
+.story-logo.is-krea { width: 19px; }
+.story-logo.is-higgs { width: 30px; }
+.story-logo.is-lift { width: 27px; }
+.story-logo.is-word {
+  width: auto;
+  height: 26px;
+  overflow: visible;
+}
+.story-logo.is-word img {
+  height: 26px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+}
+.story-support {
+  font-size: 19px;
+  line-height: 1.45;
+  color: rgba(238, 240, 244, 0.82);
+  max-width: 22em;
+  margin-top: 10px;
+}
+.story-foot {
+  margin: 8px 0 0;
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1.4;
+}
+@media (min-width: 768px) {
+  .story-band {
+    padding: 36px 0 8px;
+  }
+  .story-row {
+    grid-template-areas: "figure" "meta" "clips";
+    row-gap: 14px;
+    padding: 20px 0;
+  }
+  .story-clips {
+    display: grid;
+    grid-template-columns: 220px 220px;
+    justify-content: start;
+    gap: 12px;
+    overflow: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .story-clip {
+    flex: none;
+    width: 220px;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 9 / 16;
+  }
+}
+@media (min-width: 1100px) {
+  .story-copy {
+    display: block;
+    grid-area: copy;
+  }
+  .story-row {
+    grid-template-areas: "copy clips";
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 28px;
+    padding: 16px 0;
+  }
+  .story-row.is-flip {
+    grid-template-areas: "clips copy";
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .story-clips {
+    grid-template-columns: 300px 300px;
+  }
+  .story-clip {
+    width: 300px;
+  }
+}
+@media (min-width: 1440px) {
+  .story-clips {
+    grid-template-columns: 320px 320px;
+  }
+  .story-clip {
+    width: 320px;
+  }
+}
+.guarantee-band {
+  background: #0b0d12;
+  color: #eef0f4;
+  padding: 48px 0;
+}
+.guarantee-band h2 {
+  margin: 0;
+  max-width: 12em;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+.guarantee-band p {
+  max-width: 22em;
+  margin: 16px 0 0;
+  color: #e6e8ec;
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.35;
+}
+.study-band {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #0b0d12;
+  color: #eef0f4;
+}
+.study-media {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  aspect-ratio: auto;
+  height: min(72svh, 560px);
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  background: #141820;
+}
+.study-media img,
+.study-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.study-media figcaption {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(11, 13, 18, 0.82);
+  color: #eef0f4;
+  font-size: 13px;
+  font-weight: 600;
+}
+.study-copy {
+  background: transparent;
+  color: #eef0f4;
+  padding: 28px 22px 36px;
+}
+.study-copy h2 {
+  margin: 0;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.study-lines {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.study-lines li {
+  border-top: 1px solid rgba(11, 13, 18, 0.14);
+  padding: 10px 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.study-copy blockquote {
+  margin: 28px 0 0;
+}
+.study-copy blockquote p {
+  margin: 0;
+  max-width: 18em;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.study-copy cite {
+  display: block;
+  margin-top: 16px;
+  color: #c4c8cf;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.study-copy a.text-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: #eef0f4;
+  text-decoration-color: rgba(238, 240, 244, 0.55);
+}
+@media (min-width: 768px) {
+  .study-copy {
+    padding: 56px 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .study-band {
+    grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+    align-items: stretch;
+  }
+  .study-media {
+    height: auto;
+    min-height: 520px;
+    max-height: none;
+  }
+  .study-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px;
+  }
+}
+@media (min-width: 1280px) {
+  .guarantee-band {
+    padding: 80px 0;
+  }
+}
+.stuck-line {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 22px 8px;
+  color: var(--mid);
+  font-size: 17px;
+  line-height: 1.45;
+}
+@media (max-width: 767px) {
+  .story-band { padding-top: 16px; }
+  .story-row { gap: 8px; padding: 4px 0; }
+  .editorial .tms,
+  .editorial .journal-scroller {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
+  }
+  .editorial .tms {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-top: 28px;
+    padding-bottom: 8px;
+  }
+  .editorial .tms .tm {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+  .editorial .journal-scroller {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-right: -22px;
+    padding-right: 22px;
+    padding-bottom: 6px;
+  }
+  .editorial .journal-scroller .bls {
+    display: contents;
+  }
+  .editorial .journal-scroller .feat,
+  .editorial .journal-scroller .bl {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .editorial .journal-scroller .feat {
+    margin-top: 28px;
+  }
+  .editorial .journal-scroller .bl {
+    align-content: start;
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .editorial .journal-scroller .bt2 {
+    font-size: 26px;
   }
 }

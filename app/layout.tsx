@@ -11,18 +11,24 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["200", "300", "400", "500", "600", "700"],
+  // The hero LCP is the poster. Preloading every weight made Lighthouse
+  // queue that image behind the font files. See docs/DECISIONS.md
+  // (topic: homepage-impact-2026-11).
+  preload: false,
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "500"],
+  preload: false,
 });
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-inter-tight",
   weight: ["500", "600", "700", "800"],
+  preload: false,
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -30,6 +36,7 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
   weight: "400",
   style: ["normal", "italic"],
+  preload: false,
 });
 
 const SITE_DESCRIPTION =
@@ -90,7 +97,7 @@ const organizationJsonLd = {
   },
   logo: "https://vocreations.com/brand/vo-mark.png",
   description:
-    "UGC agency that trains its own creators in-house. Talking-head storytelling for AI startups and consumer apps. Results: an AI creative platform, 130M+ views in 12 weeks, under $3 CPM. A fitness social app, 174M+ views in 90 days, $0.82 average CPM, 50 creators. An AI video generation app, 72M+ views in 35 days, ~$0.96 CPM, 45 creators. A consumer finance app, 3M+ users up from 625K in June, sub-$4 CPM. A test prep app, $968K ARR from organic UGC, 55M views, 32 creators tracked, Feb–Sep 2026.",
+    "UGC agency that trains its own creators in-house. Talking-head storytelling for AI startups and consumer apps. Results: Krea, 130M+ views in 12 weeks, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 CPM, 50 creators. Higgsfield, 72M+ views in 35 days, about $0.96 CPM, 45 creators. fomo, 3M+ users up from 625K in June, under $4 CPM. CookSAT, $968K ARR from organic UGC, 55M views, 32 creators tracked, Feb–Sep 2026.",
   founder: [
     {
       "@type": "Person",
@@ -148,7 +155,7 @@ const serviceJsonLd = {
   provider: { "@id": "https://vocreations.com/#organization" },
   areaServed: "US",
   description:
-    "Organic UGC for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat. Results: an AI creative platform, 130M+ views in 12 weeks, under $3 CPM. A fitness social app, 174M+ views in 90 days, $0.82 average CPM. An AI video generation app, 72M+ views in 35 days, ~$0.96 CPM. A consumer finance app, 3M+ users, sub-$4 CPM. A test prep app, $968K ARR from organic UGC and 55M views.",
+    "Organic UGC for AI startups and consumer apps, made by creators trained in-house. Talking-head videos across TikTok, Instagram, YouTube, Facebook, and Snapchat. Results: Krea, 130M+ views in 12 weeks, under $3 CPM. Liftoff, 174M+ views in 90 days, $0.82 CPM. Higgsfield, 72M+ views in 35 days, about $0.96 CPM. fomo, 3M+ users, under $4 CPM. CookSAT, $968K ARR from organic UGC and 55M views.",
   offers: {
     "@type": "Offer",
     priceCurrency: "USD",
@@ -228,7 +235,7 @@ export default function RootLayout({
         </Script>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+          className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
         >
           {/* Silver silk. The sheet drifts in CSS. Grain stays still.
               See docs/DECISIONS.md (topic: silk-drift-2026-11). */}
