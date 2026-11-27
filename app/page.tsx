@@ -149,7 +149,7 @@ const storyRows = [
     href: "/case-studies/higgsfield",
     figure: "72M+",
     kicker: "views in 35 days",
-    support: "About $0.96 CPM, from 45 creators.",
+    support: "~$0.96 CPM, from 45 creators.",
     logo: "/logos/higgsfield.png",
     mark: "is-higgs",
     clips: [
@@ -162,7 +162,7 @@ const storyRows = [
     href: "/case-studies/fomo",
     figure: "#3",
     kicker: "US App Store Top Free Finance",
-    support: "3M+ users, up from 625K in June, at under $4 CPM.",
+    support: "3M+ users, up from 625K in June, at a Sub-$4 CPM.",
     logo: "/logos/fomo.png",
     mark: "is-word",
     clips: [
@@ -175,7 +175,7 @@ const storyRows = [
     href: "/case-studies/liftoff",
     figure: "174M+",
     kicker: "views in 90 days",
-    support: "$0.82 CPM, from 50 creators, with zero paid ads.",
+    support: "$0.82 avg CPM, from 50 creators, with zero paid ads.",
     logo: "/logos/liftoff.png",
     mark: "is-lift",
     clips: [
@@ -528,13 +528,31 @@ export default function Home() {
 
         <section className="story-band" id="results" aria-labelledby="results-title">
           <div className="ed-wrap">
-            <h2 id="results-title" className="display">Results.</h2>
+            <h2 id="results-title">Results.</h2>
             <div className="story-rows">
               {storyRows.map((row, index) => (
                 <article className={index % 2 === 1 ? "story-row is-flip" : "story-row"} key={row.href}>
-                  <div className="story-figure">
-                    <p className="story-num">{row.figure}</p>
-                    <p className="story-kicker">{row.kicker}</p>
+                  <div className="story-copy">
+                    <div className="story-figure">
+                      <p className="story-num">{row.figure}</p>
+                      <p className="story-kicker">{row.kicker}</p>
+                    </div>
+                    <div className="story-meta">
+                      <a className="story-brand" href={row.href}>
+                        <LogoImage
+                          src={row.logo}
+                          alt=""
+                          boxClassName={`story-logo ${row.mark}`}
+                          crop={row.mark !== "is-word"}
+                        />
+                        {row.mark === "is-word" ? (
+                          <span className="sr-only keep-case">{row.name}</span>
+                        ) : (
+                          <span>{row.name}</span>
+                        )}
+                      </a>
+                      <p className="story-support">{row.support}</p>
+                    </div>
                   </div>
                   <div className="story-clips">
                     {row.clips.map((clip, clipIndex) => (
@@ -545,22 +563,6 @@ export default function Home() {
                         name={`${row.name} ${clipIndex + 1}`}
                       />
                     ))}
-                  </div>
-                  <div className="story-meta">
-                    <a className="story-brand" href={row.href}>
-                      <LogoImage
-                        src={row.logo}
-                        alt=""
-                        boxClassName={`story-logo ${row.mark}`}
-                        crop={row.mark !== "is-word"}
-                      />
-                      {row.mark === "is-word" ? (
-                        <span className="sr-only keep-case">{row.name}</span>
-                      ) : (
-                        <span>{row.name}</span>
-                      )}
-                    </a>
-                    <p className="story-support">{row.support}</p>
                   </div>
                 </article>
               ))}

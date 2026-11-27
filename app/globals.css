@@ -3369,31 +3369,29 @@ html[data-intro="done"] .intro-overlay {
 .editorial #results {
   scroll-margin-top: 112px;
 }
-.proof-band {
-  background: #e6e8ec;
-  color: #0b0d12;
-  padding: 28px 0 16px;
-}
-.proof-band .billion {
-  margin: 0;
-  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 800;
-  font-size: clamp(120px, 16vw, 280px);
-  line-height: 0.8;
-  letter-spacing: -0.06em;
-}
 .story-band {
   padding: 28px 0 8px;
+}
+#results-title {
+  margin: 0 0 4px;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--dim);
 }
 .story-row {
   display: grid;
   grid-template-areas: "figure" "clips" "meta";
   grid-template-columns: minmax(0, 1fr);
   gap: 12px;
-  align-items: center;
+  align-items: start;
   padding: 18px 0;
   border-top: 1px solid var(--hair);
 }
+.story-copy { display: contents; }
 .story-figure { grid-area: figure; }
 .story-clips { grid-area: clips; }
 .story-meta { grid-area: meta; }
@@ -3401,7 +3399,7 @@ html[data-intro="done"] .intro-overlay {
   margin: 0;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 800;
-  font-size: clamp(64px, 8vw, 140px);
+  font-size: clamp(96px, 10vw, 168px);
   line-height: 0.84;
   letter-spacing: -0.055em;
   color: #c4c8cf;
@@ -3428,12 +3426,15 @@ html[data-intro="done"] .intro-overlay {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
-  height: 300px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  max-height: 460px;
   margin: 0;
   overflow: hidden;
   scroll-snap-align: start;
   border-radius: 18px;
   background: #141820;
+  object-position: 50% 20%;
 }
 .story-clip img,
 .story-clip video {
@@ -3442,6 +3443,7 @@ html[data-intro="done"] .intro-overlay {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 20%;
 }
 .story-brand {
   display: inline-flex;
@@ -3476,11 +3478,11 @@ html[data-intro="done"] .intro-overlay {
   max-height: none;
 }
 .story-support {
-  max-width: 28em;
-  margin: 6px 0 0;
-  color: var(--mid);
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 19px;
+  line-height: 1.45;
+  color: rgba(238, 240, 244, 0.82);
+  max-width: 22em;
+  margin-top: 10px;
 }
 .story-foot {
   margin: 8px 0 0;
@@ -3493,12 +3495,14 @@ html[data-intro="done"] .intro-overlay {
     padding: 36px 0 8px;
   }
   .story-row {
+    grid-template-areas: "figure" "meta" "clips";
     row-gap: 14px;
     padding: 20px 0;
   }
   .story-clips {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 220px 220px;
+    justify-content: start;
     gap: 12px;
     overflow: visible;
     mask-image: none;
@@ -3506,23 +3510,27 @@ html[data-intro="done"] .intro-overlay {
   }
   .story-clip {
     flex: none;
-    width: 100%;
+    width: 220px;
     height: auto;
+    max-height: none;
     aspect-ratio: 9 / 16;
   }
 }
 @media (min-width: 1100px) {
+  .story-copy {
+    display: block;
+    grid-area: copy;
+  }
   .story-row {
-    grid-template-areas: "figure clips" "meta clips";
+    grid-template-areas: "copy clips";
     grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
     column-gap: 28px;
-    align-items: center;
     padding: 16px 0;
   }
-  .story-figure { align-self: end; }
-  .story-meta { align-self: start; }
   .story-row.is-flip {
-    grid-template-areas: "clips figure" "clips meta";
+    grid-template-areas: "clips copy";
+    grid-template-columns: auto minmax(0, 1fr);
   }
   .story-clips {
     grid-template-columns: 300px 300px;
@@ -3538,113 +3546,6 @@ html[data-intro="done"] .intro-overlay {
   .story-clip {
     width: 320px;
   }
-}
-.proof-band .billion-label {
-  margin: 8px 0 0;
-  font-family: var(--font-inter), Inter, sans-serif;
-  font-size: clamp(16px, 2vw, 28px);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1;
-  text-transform: uppercase;
-  color: rgba(11, 13, 18, 0.62);
-}
-.receipt-scroller {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 22px;
-  margin-top: 28px;
-  padding: 4px 22px 12px;
-  scrollbar-width: thin;
-}
-.receipt {
-  flex: 0 0 min(84vw, 520px);
-  scroll-snap-align: start;
-  min-height: 0;
-  border: 1px solid rgba(11, 13, 18, 0.14);
-  border-radius: 18px;
-  background: #f4f5f7;
-  padding: 22px 22px 8px;
-}
-.receipt-label {
-  margin: 0;
-  font-family: var(--font-inter), Inter, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.3;
-  text-transform: uppercase;
-  color: #3a3e46;
-}
-.receipt-figure {
-  margin: 14px 0 0;
-  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 800;
-  font-size: clamp(64px, 9vw, 112px);
-  line-height: 0.86;
-  letter-spacing: -0.055em;
-}
-.receipt ul {
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.receipt li {
-  border-top: 1px solid rgba(11, 13, 18, 0.12);
-  padding: 10px 0;
-  font-size: 18px;
-  line-height: 1.35;
-}
-.proof-band .notion {
-  border-color: rgba(11, 13, 18, 0.16);
-}
-.proof-band .notion.is-bare {
-  border-top-color: rgba(11, 13, 18, 0.16);
-}
-.proof-band .notion-title {
-  color: #0b0d12;
-}
-.proof-band .notion-line {
-  color: rgba(11, 13, 18, 0.68);
-}
-.proof-band .notion-chevron {
-  color: #0b0d12;
-}
-.proof-band .notion-shell:has(summary:hover) .notion-title {
-  color: #0b0d12;
-}
-.proof-band .result-grid {
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 8px;
-}
-.proof-band .result-card,
-.proof-band .result-card:nth-child(n) {
-  grid-column: auto;
-  border-color: rgba(11, 13, 18, 0.14);
-  background: #f4f5f7;
-  color: #0b0d12;
-  padding: 16px 16px 6px;
-}
-.proof-band .result-mark {
-  color: rgba(11, 13, 18, 0.55);
-}
-.proof-band .result-card li,
-.proof-band .result-card ul {
-  border-color: rgba(11, 13, 18, 0.12);
-  color: rgba(11, 13, 18, 0.78);
-}
-.proof-band .result-card li:nth-child(n + 4) {
-  display: list-item;
-}
-.proof-band .results-cta p {
-  color: #3a3e46;
-}
-.proof-band a.btn-book {
-  color: #0b0d12;
-  border-bottom-color: #0b0d12;
 }
 .guarantee-band {
   background: #0b0d12;
@@ -3755,16 +3656,8 @@ html[data-intro="done"] .intro-overlay {
   text-decoration-color: rgba(238, 240, 244, 0.55);
 }
 @media (min-width: 768px) {
-  .receipt-scroller {
-    scroll-padding-inline: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
   .study-copy {
     padding: 56px 40px;
-  }
-  .proof-band .result-grid {
-    grid-template-columns: 1fr 1fr;
   }
 }
 @media (min-width: 1024px) {
@@ -3785,56 +3678,9 @@ html[data-intro="done"] .intro-overlay {
   }
 }
 @media (min-width: 1280px) {
-  .proof-band {
-    padding: 24px 0 12px;
-  }
-  .proof-band .billion-label {
-    margin-top: 4px;
-    font-size: 16px;
-  }
-  .receipt-scroller {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    overflow: visible;
-    gap: 16px;
-    margin-top: 20px;
-    padding: 0 72px;
-    scroll-snap-type: none;
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-  .receipt {
-    flex: none;
-    padding: 14px 14px 4px;
-  }
-  .receipt-figure {
-    font-size: 52px;
-    margin-top: 8px;
-  }
-  .receipt ul {
-    margin-top: 8px;
-  }
-  .receipt li {
-    padding: 5px 0;
-    font-size: 14px;
-  }
-  .proof-band .results-cta {
-    margin-top: 12px;
-    gap: 8px;
-  }
-  .receipt-cue {
-    display: none;
-  }
   .guarantee-band {
     padding: 80px 0;
   }
-}
-.receipt-cue {
-  margin: 8px 22px 0;
-  color: #3a3e46;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
 }
 .stuck-line {
   max-width: 1440px;
@@ -3844,13 +3690,9 @@ html[data-intro="done"] .intro-overlay {
   font-size: 17px;
   line-height: 1.45;
 }
-@media (max-width: 1279px) {
-  .receipt-scroller {
-    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent);
-    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent);
-  }
-}
 @media (max-width: 767px) {
+  .story-band { padding-top: 16px; }
+  .story-row { gap: 8px; padding: 4px 0; }
   .editorial .tms,
   .editorial .journal-scroller {
     -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
