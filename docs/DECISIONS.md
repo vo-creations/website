@@ -3786,4 +3786,14 @@ The hero subline is “1000+ vetted in-house creators.” and “We guarantee yo
 
 From 1280px the four receipt tiles are one grid. Under that they scroll, with a right-edge fade and a “n / 4” cue. The 1B+ band stays `#E6E8EC` and the type is capped so the band is about 560px. The guarantee band is about 360px. The Krea block is `#0B0D12` with the clip, the Miguel Lara quote, and “Read the case study”. It does not repeat 130M+, the 12 weeks, the CPM, or the engagement line, and it does not label the creator. Under 1024px the clip is `min(72svh, 560px)` tall. The intro overlay is solid `#0B0D12` again. Mobile team and journal scrollers fade at the right edge.
 
+## topic: homepage-impact-2026-11 — _2026-11-27_ (second review)
+
+A second review scored the pass 7.6. The VO mark moved into the meta row of `.hero-frame` (`grid-area: meta`, 56px, no margin) so it no longer sits between the lockup and the fan. At 1440 the biggest-numbers line is `white-space: nowrap` so it does not break after `1B+`. The words and the 20px `#C9CDD4` styling stayed.
+
+The four receipt tiles left `#results`. They repeated the hero proof strip. The band keeps `1B+`, `organic views`, and the “See all the numbers.” disclosure. The booking link under that disclosure came off. The figure scale is `clamp(120px, 16vw, 280px)`.
+
+The Krea clip no longer shows its view-count chip. The stat dots (`.ed-dot`) came off the hero counters.
+
+The pricing heading and both fit lines were already the same characters as `17b0f7a`: “What $50K+/month buys”, “Ready for $50K+ a month.”, and “Budgets under $50K a month.” They were not edited again.
+
 **Polish.** The biggest-numbers line matches main again (20px, `#C9CDD4`). The words are unchanged. Hero counters are `clamp(40px, 4.2vw, 64px)` with 16px labels. `useCountUp` still paints the final value on the server. The replay runs for 800ms. Below 768px the team figures and the journal row scroll sideways. The editorial header already had a “Book a call” pill. After 8px of scroll it adds `.is-scrolled` so the bar is solid and the pill stays readable. Every Calendly control still says “Book a call” and still uses `https://calendly.com/vocreations/vo-creations-agency-discovery-call`. fomo stays lowercase. The dashboard is still unnamed. `public/llms.txt` was left as written.

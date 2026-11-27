@@ -763,9 +763,23 @@ html.js-motion .budget-wipe.is-in {
     --spread: 0.42;
     --spread-2: 0.78;
   }
-  .editorial .hero-copy .hlead-offer,
-  .editorial .hero-copy .hlead-rest {
-    max-width: 100%;
+  .editorial .hero-frame > .hero-copy {
+    display: block;
+  }
+  .editorial .hero-frame > .hero-mark {
+    display: block;
+    position: relative;
+    grid-area: meta;
+    justify-self: end;
+    align-self: center;
+    font-size: 56px;
+    margin: 0;
+    width: calc(1.638em * 2835 / 3297.751756);
+    height: 1.638em;
+    z-index: 1;
+  }
+  .editorial .hero-frame > .hmeta {
+    padding-right: 108px;
   }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
@@ -777,6 +791,7 @@ html.js-motion .budget-wipe.is-in {
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
+    grid-template-columns: minmax(0, 1.32fr) minmax(320px, 0.68fr);
     padding-left: 64px;
     padding-right: 64px;
   }
@@ -836,7 +851,8 @@ html.js-motion .budget-wipe.is-in {
    "organic". See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
 @media (min-width: 1440px) {
   .editorial .hlead-rest {
-    max-width: 36em;
+    max-width: none;
+    white-space: nowrap;
   }
 }
 .editorial h1 .l3 {
@@ -3362,9 +3378,15 @@ html[data-intro="done"] .intro-overlay {
   margin: 0;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 800;
-  font-size: clamp(72px, 8vw, 112px);
+  font-size: clamp(120px, 16vw, 280px);
   line-height: 0.8;
   letter-spacing: -0.06em;
+}
+.proof-band .results-note {
+  margin: 18px 0 4px;
+  color: #3a3e46;
+  font-size: 17px;
+  line-height: 1.45;
 }
 .proof-band .billion-label {
   margin: 8px 0 0;

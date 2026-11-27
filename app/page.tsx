@@ -170,15 +170,6 @@ const results = [
   },
 ];
 
-// Indexes into `results[].lines`. The strings stay the card copy.
-// Order is the three view totals, then the finance users total.
-const receiptSpecs: { label: string; indexes: number[] }[] = [
-  { label: "Fitness social app", indexes: [0, 2, 3] },
-  { label: "AI creative platform", indexes: [0, 1, 3] },
-  { label: "AI video generation app", indexes: [0, 2, 3] },
-  { label: "Consumer finance app", indexes: [0, 3, 1] },
-];
-
 // DECISION 2026-11: four quotes, one per person. Miguel's shorter line was removed.
 // See docs/DECISIONS.md (topic: testimonials-four-2026-11).
 const quotes = [
@@ -418,7 +409,6 @@ function StudyClip() {
           <source src={kreaClip.src} type="video/mp4" />
         </video>
       )}
-      <span className="clip-proof">{kreaClip.proof}</span>
     </figure>
   );
 }
@@ -431,58 +421,10 @@ function HeroStats() {
         <div key={stat.label} className="st">
           <div className="sn">
             <StatCounter target={stat.target} trigger={statsInView} format={stat.format} />
-            <span className="ed-dot" aria-hidden="true" />
           </div>
           <div className="sl">{stat.label}</div>
         </div>
       ))}
-    </div>
-  );
-}
-
-function ReceiptRow() {
-  const scroller = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const el = scroller.current;
-    if (!el) return;
-    const onScroll = () => {
-      const tiles = Array.from(el.querySelectorAll<HTMLElement>(".receipt"));
-      if (tiles.length === 0) return;
-      const left = el.scrollLeft;
-      let next = 0;
-      tiles.forEach((tile, i) => {
-        if (tile.offsetLeft - (tiles[0]?.offsetLeft ?? 0) <= left + tile.clientWidth * 0.4) next = i;
-      });
-      setIndex(next);
-    };
-    onScroll();
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div className="receipt-wrap">
-      <div className="receipt-scroller" ref={scroller} role="region" aria-label="Campaign results" tabIndex={0}>
-        {receiptSpecs.map((spec) => {
-          const item = results.find((row) => row.label === spec.label);
-          if (!item) return null;
-          const lines = spec.indexes.map((i) => item.lines[i]).filter(Boolean);
-          return (
-            <article className="receipt" key={item.label}>
-              <h3 className="receipt-label">{item.label}</h3>
-              <p className="receipt-figure">{item.figure}</p>
-              <ul>
-                {lines.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </article>
-          );
-        })}
-      </div>
-      <p className="receipt-cue" aria-hidden="true">
-        {index + 1} / {receiptSpecs.length}
-      </p>
     </div>
   );
 }
@@ -503,6 +445,13 @@ export default function Home() {
               <span className="lab">The in-house UGC agency backed by elite mentorship</span>
               <span className="lab hmeta-aside">UGC for AI startups &amp; tech consumer apps</span>
             </div>
+            {/* DECISION 2026-11: the mark sits in the meta row, not in the
+                gap between the lockup and the fan. See docs/DECISIONS.md
+                (topic: homepage-impact-2026-11). */}
+            <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
+              <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
+              <HeroMarkGloss />
+            </div>
             <div className="hero-copy" ref={heroCopyRef}>
               {/* DECISION 2026-11: one headline. The offer stays a step down.
                   The clip fan sits beside this lockup from 1280px, and under
@@ -521,13 +470,6 @@ export default function Home() {
                   <span className="hlead-offer">Organic UGC for AI and tech apps.</span>
                   <span className="hlead-rest">That&apos;s why we have the biggest numbers: 1B+ organic&nbsp;views.</span>
                 </p>
-              </div>
-              {/* DECISION 2026-11: serif VO sits beside the lockup from 1024px.
-                  The ring light is the canvas in HeroMarkGloss. The box
-                  size and the silver ink stay put. */}
-              <div className="hero-mark" ref={heroMarkRef} aria-hidden="true">
-                <img src="/brand/vo-logo.svg" alt="" width={2835} height={3298} />
-                <HeroMarkGloss />
               </div>
             </div>
             <div className="hero-visual" ref={heroStageRef}>
@@ -562,7 +504,6 @@ export default function Home() {
             <h2 id="results-title" className="billion">1B+</h2>
             <p className="billion-label">organic views</p>
           </div>
-          <ReceiptRow />
           <div className="ed-wrap">
             <NotionToggle
               bare
@@ -584,12 +525,7 @@ export default function Home() {
                 ))}
               </div>
             </NotionToggle>
-            <div className="results-cta">
-              <p>Every result from our own creators.</p>
-              <a className="btn-book" href={BOOKING} target="_blank" rel="noopener noreferrer">
-                Book a call<span aria-hidden="true">&nbsp;↗</span>
-              </a>
-            </div>
+            <p className="results-note">Every result from our own creators.</p>
           </div>
         </section>
 
