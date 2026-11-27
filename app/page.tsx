@@ -10,7 +10,6 @@ import WorkCarousel from "@/components/WorkCarousel";
 import { useCountUp } from "@/components/useCountUp";
 import { Reveal, useOnceVisible } from "@/components/motion";
 import { posts } from "@/lib/blog/posts";
-import { caseStudyBySlug } from "@/lib/case-studies";
 import { creatorClips } from "@/lib/creator-clips";
 import { CONTACT_EMAILS } from "@/lib/site";
 import HeroMarkGloss from "@/components/HeroMarkGloss";
@@ -129,44 +128,36 @@ const steps = [
   { num: "04", title: "Reporting", desc: "A daily Slack report. Each week we double down on the top videos." },
 ];
 
-const results = [
+// Named rows use figures already on the case-study pages. Clips are the
+// lead file for each study. See docs/DECISIONS.md (topic: named-stories-2026-11).
+const storyRows = [
   {
-    label: "AI creative platform",
-    figure: "130M+",
-    lines: ["views in 12 weeks", "Under $3 CPM", "still growing", "Jul 28 – Oct 18, 2026", "4.7M engagements, 3.6% rate", "1.8M likes"],
+    name: "Krea",
+    href: "/case-studies/krea",
+    line: "130M+ views in 12 weeks at under $3 CPM, with 4.7M engagements, and still growing.",
+    src: "/videos/krea-cat-vancity.mp4",
+    poster: "/videos/krea-cat-vancity.jpg",
   },
   {
-    label: "Consumer finance app",
-    figure: "3M+",
-    lines: [
-      "users, up from 625K in June",
-      "Aug 21, 2026",
-      "~50% of users came from Vo's creators",
-      "Sub-$4 CPM",
-    ],
+    name: "Higgsfield",
+    href: "/case-studies/higgsfield",
+    line: "72M+ views in 35 days from 45 creators, at about $0.96 CPM.",
+    src: "/videos/creator-kelly.mp4",
+    poster: "/videos/creator-kelly.jpg",
   },
   {
-    label: "AI video generation app",
-    figure: "72M+",
-    lines: ["views in 35 days", "45 creators", "~$0.96 CPM", "Jun 29 – Aug 3, 2026", "502K likes", "336K shares", "228K comments"],
+    name: "fomo",
+    href: "/case-studies/fomo",
+    line: "#3 in US App Store Top Free Finance, with 3M+ users, up from 625K in June, at under $4 CPM.",
+    src: "/videos/fomo-timmy-pham.mp4",
+    poster: "/videos/fomo-timmy-pham.jpg",
   },
   {
-    label: "Fitness social app",
-    figure: "174M+",
-    lines: ["views in 90 days", "50 creators", "$0.82 average CPM", "May 1 – Jul 31, 2026", "8.5K posts", "11.4M engagements", "Zero paid ads", "4.8★ App Store, 101K ratings"],
-  },
-  {
-    label: "Test prep app",
-    figure: "$968K",
-    lines: [
-      "ARR from organic UGC",
-      "Zero ad spend",
-      "100K+ users from paid creators posting organic UGC",
-      "55M views",
-      "32 creators tracked",
-      "Feb–Sep 2026",
-      "63% of views from one creator",
-    ],
+    name: "Liftoff",
+    href: "/case-studies/liftoff",
+    line: "174M+ views in 90 days at a $0.82 CPM, from 50 creators, with zero paid ads.",
+    src: "/videos/liftoff-henry-266k.mp4",
+    poster: "/videos/liftoff-henry-266k.jpg",
   },
 ];
 
@@ -198,9 +189,6 @@ const quotes = [
     study: "/case-studies/liftoff",
   },
 ];
-
-const kreaQuote = quotes.find((item) => item.client === "Krea");
-const kreaClip = caseStudyBySlug("krea").clips[0];
 
 const agencyFaqs = [
   { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
@@ -364,21 +352,24 @@ function SlackReport() {
   );
 }
 
-function StudyClip() {
+function StoryClip({ src, poster, name }: { src: string; poster: string; name: string }) {
   const ref = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [near, setNear] = useState(false);
-  const [on, setOn] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setReduced(true);
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setNear(true);
-        if (!reduced) setOn(entry.isIntersecting);
+        setPlaying(entry.isIntersecting);
       },
-      { rootMargin: "240px", threshold: 0 },
+      { rootMargin: "160px", threshold: 0.35 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -387,27 +378,39 @@ function StudyClip() {
     const node = videoRef.current;
     if (!node) return;
     node.muted = true;
-    const pending = node.play();
-    if (pending) pending.catch(() => {});
-  }, [on]);
+    if (playing && !paused) {
+      const pending = node.play();
+      if (pending) pending.catch(() => {});
+    } else {
+      node.pause();
+    }
+  }, [playing, paused]);
   return (
-    <figure ref={ref} className="study-media">
-      {near && (
-        <img src={kreaClip.poster} alt="" width={540} height={960} loading="lazy" decoding="async" />
-      )}
-      {on && (
-        <video
-          ref={videoRef}
-          className="study-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={kreaClip.poster}
-        >
-          <source src={kreaClip.src} type="video/mp4" />
+    <figure ref={ref} className="story-clip">
+      <img src={poster} alt="" width={540} height={960} loading="lazy" decoding="async" />
+      {playing && (
+        <video ref={videoRef} autoPlay muted loop playsInline preload="none" poster={poster}>
+          <source src={src} type="video/mp4" />
         </video>
+      )}
+      {!reduced && (
+      <button
+        type="button"
+        className="hero-pause story-pause"
+        aria-pressed={paused}
+        aria-label={paused ? `Play ${name} video` : `Pause ${name} video`}
+        onClick={() => setPaused((value) => !value)}
+      >
+        {paused ? (
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path d="M5 3.2v9.6L13 8 5 3.2z" fill="currentColor" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+            <path d="M4 3h3v10H4V3zm5 0h3v10H9V3z" fill="currentColor" />
+          </svg>
+        )}
+      </button>
       )}
     </figure>
   );
@@ -499,33 +502,24 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="proof-band" id="results" aria-labelledby="results-title">
+        <section className="story-band" id="results" aria-labelledby="results-title">
           <div className="ed-wrap">
-            <h2 id="results-title" className="billion">1B+</h2>
-            <p className="billion-label">organic views</p>
-          </div>
-          <div className="ed-wrap">
-            <NotionToggle
-              bare
-              id="results-all"
-              title="See all the numbers."
-              summary="Five campaigns, every line."
-            >
-              <div className="result-grid">
-                {results.map((item) => (
-                  <article className="result-card" key={item.label}>
-                    <h3 className="result-mark">{item.label}</h3>
-                    <p className="result-figure">{item.figure}</p>
-                    <ul>
-                      {item.lines.map((line) => (
-                        <li key={line}>{line}</li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
-              </div>
-            </NotionToggle>
-            <p className="results-note">Every result from our own creators.</p>
+            <h2 id="results-title" className="display">Results.</h2>
+            <div className="story-rows">
+              {storyRows.map((row, index) => (
+                <article className={index % 2 === 1 ? "story-row is-flip" : "story-row"} key={row.href}>
+                  <p className="story-line">
+                    <a href={row.href}>
+                      {row.name === "fomo" ? <span className="keep-case">fomo</span> : row.name}
+                      .
+                    </a>{" "}
+                    {row.line}
+                  </p>
+                  <StoryClip src={row.src} poster={row.poster} name={row.name} />
+                </article>
+              ))}
+            </div>
+            <p className="story-foot">Figures from Vo Creations campaign data, Nov 2026.</p>
           </div>
         </section>
 
@@ -540,20 +534,6 @@ export default function Home() {
             <p>Videos under 1,000 views do not count toward your CPM.</p>
           </div>
         </section>
-
-        {kreaQuote ? (
-          <section className="study-band" aria-labelledby="study-title">
-            <StudyClip />
-            <div className="study-copy">
-              <h2 id="study-title">Krea</h2>
-              <blockquote>
-                <p>&ldquo;{kreaQuote.quote}&rdquo;</p>
-                <cite>{kreaQuote.by}</cite>
-              </blockquote>
-              <a className="text-link" href={kreaQuote.study}>Read the case study</a>
-            </div>
-          </section>
-        ) : null}
 
         <section className="border-b border-white/10" aria-label="Trusted by teams at">
           <div className="mx-auto grid max-w-[1440px] items-center gap-[18px] px-[22px] py-[26px] md:px-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:px-[72px] xl:py-[34px]">
