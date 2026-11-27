@@ -443,21 +443,18 @@ html.js-motion .budget-wipe.is-in {
 }
 .hero-pause {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-start;
+  right: 10px;
+  bottom: 8px;
+  left: auto;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 44px;
   height: 44px;
-  padding: 10px 12px 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.55);
-  font-family: var(--font-inter), Inter, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(11, 13, 18, 0.72);
+  color: #eef0f4;
 }
 .hero-pause:hover {
   color: #eef0f4;
@@ -738,31 +735,45 @@ html.js-motion .budget-wipe.is-in {
   margin-top: 12px;
   min-width: 0;
 }
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   /* DECISION 2026-11: the clip fan sits in the right column, beside the
-     lockup, so a video is inside the first 900px at 1440. See
-     docs/DECISIONS.md (topic: homepage-impact-2026-11). */
+     lockup, so a video is inside the first screen. See docs/DECISIONS.md
+     (topic: homepage-impact-2026-11). */
   .editorial .hero-frame {
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
     grid-template-areas:
       "meta meta"
       "copy stage"
       "hb stage"
-      "stats stats"
-      "stuck stuck";
-    column-gap: 36px;
-    row-gap: 10px;
+      "stats stats";
+    column-gap: 28px;
+    row-gap: 8px;
     align-items: start;
     height: auto;
-    padding: 16px 56px 36px;
+    padding: 16px 40px 28px;
   }
   .editorial .hero-frame .hmeta { grid-area: meta; }
   .editorial .hero-frame .hero-copy { grid-area: copy; }
-  .editorial .hero-frame .hero-visual { grid-area: stage; }
+  .editorial .hero-frame .hero-visual { grid-area: stage; overflow: hidden; }
   .editorial .hero-frame .hb { grid-area: hb; }
   .editorial .hero-frame .hst { grid-area: stats; }
-  .editorial .hero-frame .stuck-line { grid-area: stuck; }
+  .editorial .hero-visual .hero-carousel {
+    --card: 188px;
+    --spread: 0.42;
+    --spread-2: 0.78;
+  }
+  .editorial .hero-copy .hlead-offer,
+  .editorial .hero-copy .hlead-rest {
+    max-width: 100%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .editorial .hero-lockup .l1,
+  .editorial .hero-lockup .l2,
+  .editorial .hero-mark {
+    font-size: 48px;
+  }
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
@@ -812,20 +823,20 @@ html.js-motion .budget-wipe.is-in {
 .editorial .hlead-rest {
   display: block;
   margin-top: 16px;
-  max-width: 22em;
+  max-width: 28em;
   font-family: var(--font-inter), Inter, sans-serif;
-  font-weight: 600;
-  font-size: clamp(22px, 2.4vw, 34px);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: #eef0f4;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #c9cdd4;
 }
 /* DECISION 2026-11: at 1440 the 28em cap left "views." on its own line.
    A wider cap plus the non-breaking space in app/page.tsx keeps it with
    "organic". See docs/DECISIONS.md (topic: homepage-finish-2026-11). */
 @media (min-width: 1440px) {
   .editorial .hlead-rest {
-    max-width: 16em;
+    max-width: 36em;
   }
 }
 .editorial h1 .l3 {
@@ -903,6 +914,9 @@ html.js-motion .hero-rise.delay-2 > span {
   }
 }
 @media (min-width: 1280px) {
+  .editorial .hero-frame {
+    padding: 16px 56px 28px;
+  }
   .editorial .hmeta {
     grid-area: meta;
     position: static;
@@ -931,15 +945,11 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 36px;
   }
   .editorial .hlead-offer {
-    max-width: 11em;
+    max-width: 18em;
     font-size: clamp(48px, 3.75vw, 58px);
   }
   .editorial .hlead-rest {
     margin-top: 18px;
-    max-width: 16em;
-  }
-  .editorial .hero-visual {
-    overflow: hidden;
   }
   .editorial .hero-visual .hero-carousel {
     --card: 232px;
@@ -953,23 +963,21 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 8px;
   }
   .editorial .hb {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 24px;
-    align-items: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-top: 8px;
   }
   .editorial .hsub {
-    grid-column: 1;
-    grid-row: 1;
     font-size: 18px;
     max-width: 280px;
   }
   .editorial .hcta {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: 0;
-    justify-self: end;
+    margin-top: 14px;
+    justify-self: start;
+  }
+  .editorial .hero-frame .hero-proof {
+    grid-template-columns: 1fr 1fr;
   }
   .editorial .hst {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1059,10 +1067,6 @@ html.js-motion .hero-rise.delay-2 > span {
   .editorial .hero-mark {
     font-size: clamp(68px, 6.2vw, 96px);
     margin-top: calc(28px + 0.092em);
-  }
-  /* The fan fills the column the mark used to sit in. */
-  .editorial .hero-frame .hero-mark {
-    display: none;
   }
 }
 .hero-proof {
@@ -3276,7 +3280,7 @@ html[data-intro="play"] .intro-overlay {
   z-index: 70;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: #0b0d12;
   pointer-events: none;
   animation: intro-overlay-out 1900ms linear forwards;
   animation-delay: var(--intro-seek, 0ms);
@@ -3346,23 +3350,19 @@ html[data-intro="done"] .intro-overlay {
 
 /* Homepage impact. Off-white is #E6E8EC, the existing cool gray, on #0B0D12.
    No accent hue. See docs/DECISIONS.md (topic: homepage-impact-2026-11). */
-.stuck-line {
-  margin: 16px 0 0;
-  max-width: 68em;
-  color: var(--mid);
-  font-size: 15px;
-  line-height: 1.45;
+.editorial #results {
+  scroll-margin-top: 112px;
 }
 .proof-band {
   background: #e6e8ec;
   color: #0b0d12;
-  padding: 56px 0 36px;
+  padding: 28px 0 16px;
 }
 .proof-band .billion {
   margin: 0;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 800;
-  font-size: clamp(96px, 20vw, 360px);
+  font-size: clamp(72px, 8vw, 112px);
   line-height: 0.8;
   letter-spacing: -0.06em;
 }
@@ -3389,7 +3389,7 @@ html[data-intro="done"] .intro-overlay {
 .receipt {
   flex: 0 0 min(84vw, 520px);
   scroll-snap-align: start;
-  min-height: 280px;
+  min-height: 0;
   border: 1px solid rgba(11, 13, 18, 0.14);
   border-radius: 18px;
   background: #f4f5f7;
@@ -3476,35 +3476,38 @@ html[data-intro="done"] .intro-overlay {
 .guarantee-band {
   background: #0b0d12;
   color: #eef0f4;
-  padding: 88px 0;
+  padding: 48px 0;
 }
 .guarantee-band h2 {
   margin: 0;
-  max-width: 11em;
+  max-width: 12em;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
   font-weight: 800;
-  font-size: clamp(52px, 7.4vw, 120px);
-  line-height: 0.92;
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 0.94;
   letter-spacing: -0.045em;
 }
 .guarantee-band p {
-  max-width: 18em;
-  margin: 22px 0 0;
+  max-width: 22em;
+  margin: 16px 0 0;
   color: #e6e8ec;
-  font-size: clamp(18px, 2vw, 26px);
+  font-size: clamp(17px, 1.6vw, 22px);
   line-height: 1.35;
 }
 .study-band {
   display: grid;
   grid-template-columns: 1fr;
   background: #0b0d12;
+  color: #eef0f4;
 }
 .study-media {
   position: relative;
   margin: 0;
-  min-height: 420px;
-  aspect-ratio: 9 / 16;
-  max-height: 72vh;
+  width: 100%;
+  aspect-ratio: auto;
+  height: min(72svh, 560px);
+  min-height: 0;
+  max-height: none;
   overflow: hidden;
   background: #141820;
 }
@@ -3529,20 +3532,17 @@ html[data-intro="done"] .intro-overlay {
   font-weight: 600;
 }
 .study-copy {
-  background: #e6e8ec;
-  color: #0b0d12;
-  padding: 36px 22px 48px;
-}
-.study-copy .lab {
-  color: #3a3e46;
+  background: transparent;
+  color: #eef0f4;
+  padding: 28px 22px 36px;
 }
 .study-copy h2 {
-  margin: 10px 0 0;
+  margin: 0;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 800;
-  font-size: clamp(72px, 12vw, 140px);
-  line-height: 0.86;
-  letter-spacing: -0.055em;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 .study-lines {
   margin: 18px 0 0;
@@ -3570,7 +3570,7 @@ html[data-intro="done"] .intro-overlay {
 .study-copy cite {
   display: block;
   margin-top: 16px;
-  color: #3a3e46;
+  color: #c4c8cf;
   font-style: normal;
   font-size: 14px;
   letter-spacing: 0.04em;
@@ -3578,8 +3578,8 @@ html[data-intro="done"] .intro-overlay {
 .study-copy a.text-link {
   display: inline-block;
   margin-top: 22px;
-  color: #0b0d12;
-  text-decoration-color: rgba(11, 13, 18, 0.55);
+  color: #eef0f4;
+  text-decoration-color: rgba(238, 240, 244, 0.55);
 }
 @media (min-width: 768px) {
   .receipt-scroller {
@@ -3600,9 +3600,9 @@ html[data-intro="done"] .intro-overlay {
     align-items: stretch;
   }
   .study-media {
+    height: auto;
+    min-height: 520px;
     max-height: none;
-    aspect-ratio: auto;
-    min-height: 680px;
   }
   .study-copy {
     display: flex;
@@ -3613,22 +3613,76 @@ html[data-intro="done"] .intro-overlay {
 }
 @media (min-width: 1280px) {
   .proof-band {
-    padding: 80px 0 56px;
+    padding: 24px 0 12px;
+  }
+  .proof-band .billion-label {
+    margin-top: 4px;
+    font-size: 16px;
   }
   .receipt-scroller {
-    gap: 20px;
-    scroll-padding-inline: 72px;
-    padding-left: 72px;
-    padding-right: 72px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 0 72px;
+    scroll-snap-type: none;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
   .receipt {
-    flex-basis: min(42vw, 520px);
+    flex: none;
+    padding: 14px 14px 4px;
+  }
+  .receipt-figure {
+    font-size: 52px;
+    margin-top: 8px;
+  }
+  .receipt ul {
+    margin-top: 8px;
+  }
+  .receipt li {
+    padding: 5px 0;
+    font-size: 14px;
+  }
+  .proof-band .results-cta {
+    margin-top: 12px;
+    gap: 8px;
+  }
+  .receipt-cue {
+    display: none;
   }
   .guarantee-band {
-    padding: 120px 0;
+    padding: 80px 0;
+  }
+}
+.receipt-cue {
+  margin: 8px 22px 0;
+  color: #3a3e46;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.stuck-line {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 22px 8px;
+  color: var(--mid);
+  font-size: 17px;
+  line-height: 1.45;
+}
+@media (max-width: 1279px) {
+  .receipt-scroller {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent);
   }
 }
 @media (max-width: 767px) {
+  .editorial .tms,
+  .editorial .journal-scroller {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 36px), transparent);
+  }
   .editorial .tms {
     display: flex;
     gap: 16px;

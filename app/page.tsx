@@ -113,6 +113,15 @@ const trustedBrands = [
   { name: "OpenArt AI", file: "openart.png" },
 ];
 
+// DECISION 2026-11: result names are categories. Numbers stay the deck figures.
+// See docs/DECISIONS.md (topic: anonymized-results-2026-11).
+const heroProof = [
+  { name: "AI creative platform", line: "130M+ views in 12 weeks, under $3 CPM" },
+  { name: "Fitness social app", line: "174M+ views in 90 days, $0.82 avg CPM" },
+  { name: "AI video generation app", line: "72M+ views in 35 days, ~$0.96 CPM" },
+  { name: "Consumer finance app", line: "3M+ users, Sub-$4 CPM" },
+];
+
 const steps = [
   { num: "01", title: "Brief", desc: "Scripts on day 0. Creators briefed within about 48 hours." },
   { num: "02", title: "Training", desc: "Every creator finishes a two-week paid trial before touching a brand account. We keep the top 1% of applicants and coach them every week." },
@@ -201,7 +210,6 @@ const quotes = [
 
 const kreaQuote = quotes.find((item) => item.client === "Krea");
 const kreaClip = caseStudyBySlug("krea").clips[0];
-const kreaResult = results.find((row) => row.label === "AI creative platform");
 
 const agencyFaqs = [
   { q: "What is the investment?", a: "Campaigns start at $50K+ a month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. CPM means cost per 1,000 organic views. We guarantee your target CPM. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. The minimum is 90 days, then month to month. No refunds after launch." },
@@ -411,7 +419,6 @@ function StudyClip() {
         </video>
       )}
       <span className="clip-proof">{kreaClip.proof}</span>
-      <figcaption>{kreaClip.label}</figcaption>
     </figure>
   );
 }
@@ -429,6 +436,53 @@ function HeroStats() {
           <div className="sl">{stat.label}</div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function ReceiptRow() {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const onScroll = () => {
+      const tiles = Array.from(el.querySelectorAll<HTMLElement>(".receipt"));
+      if (tiles.length === 0) return;
+      const left = el.scrollLeft;
+      let next = 0;
+      tiles.forEach((tile, i) => {
+        if (tile.offsetLeft - (tiles[0]?.offsetLeft ?? 0) <= left + tile.clientWidth * 0.4) next = i;
+      });
+      setIndex(next);
+    };
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="receipt-wrap">
+      <div className="receipt-scroller" ref={scroller} role="region" aria-label="Campaign results" tabIndex={0}>
+        {receiptSpecs.map((spec) => {
+          const item = results.find((row) => row.label === spec.label);
+          if (!item) return null;
+          const lines = spec.indexes.map((i) => item.lines[i]).filter(Boolean);
+          return (
+            <article className="receipt" key={item.label}>
+              <h3 className="receipt-label">{item.label}</h3>
+              <p className="receipt-figure">{item.figure}</p>
+              <ul>
+                {lines.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
+      </div>
+      <p className="receipt-cue" aria-hidden="true">
+        {index + 1} / {receiptSpecs.length}
+      </p>
     </div>
   );
 }
@@ -480,18 +534,26 @@ export default function Home() {
               <HeroCarousel clips={heroClips} />
             </div>
             <div className="hb">
-              <p className="hsub">1000+ vetted in-house creators.</p>
+              <p className="hsub">
+                1000+ vetted in-house creators.
+                <br />
+                We guarantee your target CPM.
+              </p>
               <div className="hcta">
                 <a className="btn-talk" href={BOOKING} target="_blank" rel="noopener noreferrer">
                   Book a call
                 </a>
               </div>
+              <ul className="hero-proof">
+                {heroProof.map((item) => (
+                  <li key={item.name}>
+                    <span className="hp-name">{item.name}</span>
+                    <span className="hp-line">{item.line}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
             <HeroStats />
-            <p className="stuck-line" id="stuck">
-              Paid CAC on Meta and TikTok goes up every quarter, in-house programs stall at 5–10 creators, and agencies hand over 20 polished ads that look like ads.{" "}
-              <a className="text-link" href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
-            </p>
           </div>
         </section>
 
@@ -500,24 +562,7 @@ export default function Home() {
             <h2 id="results-title" className="billion">1B+</h2>
             <p className="billion-label">organic views</p>
           </div>
-          <div className="receipt-scroller" role="region" aria-label="Campaign results" tabIndex={0}>
-            {receiptSpecs.map((spec) => {
-              const item = results.find((row) => row.label === spec.label);
-              if (!item) return null;
-              const lines = spec.indexes.map((index) => item.lines[index]).filter(Boolean);
-              return (
-                <article className="receipt" key={item.label}>
-                  <h3 className="receipt-label">{item.label}</h3>
-                  <p className="receipt-figure">{item.figure}</p>
-                  <ul>
-                    {lines.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
-                </article>
-              );
-            })}
-          </div>
+          <ReceiptRow />
           <div className="ed-wrap">
             <NotionToggle
               bare
@@ -548,6 +593,11 @@ export default function Home() {
           </div>
         </section>
 
+        <p className="stuck-line" id="stuck">
+          Where app growth gets stuck. Paid CAC on Meta and TikTok goes up every quarter, in-house programs stall at 5–10 creators, and agencies hand over 20 polished ads that look like ads.{" "}
+          <a className="text-link" href="/blog/ugc-agency-vs-in-house">UGC agency vs in-house</a>
+        </p>
+
         <section className="guarantee-band" aria-labelledby="guarantee-title">
           <div className="ed-wrap">
             <h2 id="guarantee-title">Your target CPM, guaranteed.</h2>
@@ -555,17 +605,11 @@ export default function Home() {
           </div>
         </section>
 
-        {kreaQuote && kreaResult ? (
+        {kreaQuote ? (
           <section className="study-band" aria-labelledby="study-title">
             <StudyClip />
             <div className="study-copy">
-              <p className="lab">Krea</p>
-              <h2 id="study-title">{kreaResult.figure}</h2>
-              <ul className="study-lines">
-                {[0, 1, 4].map((index) => (
-                  <li key={kreaResult.lines[index]}>{kreaResult.lines[index]}</li>
-                ))}
-              </ul>
+              <h2 id="study-title">Krea</h2>
               <blockquote>
                 <p>&ldquo;{kreaQuote.quote}&rdquo;</p>
                 <cite>{kreaQuote.by}</cite>
@@ -746,7 +790,8 @@ export default function Home() {
         <section className="band border-t border-white/10" id="pricing">
           <div className="ed-wrap">
             <div className="sh">
-              <h2 className="display">What the month buys</h2>
+              <h2 className="display">What $50K+/month buys</h2>
+              <p className="lede mt-4">First posts go live in 10–14 days.</p>
             </div>
             <div className="pc">
               <p className="ed-price">
@@ -777,7 +822,7 @@ export default function Home() {
                 </div>
                 <div>
                   <span className="lab">Terms</span>
-                  <p>No refunds after launch. We take 10 new campaigns a month. You own every video. Videos under 1,000 views don&apos;t count toward your CPM.</p>
+                  <p>No refunds after launch. We take 10 new campaigns a month. You own every video. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views don&apos;t count toward your CPM.</p>
                 </div>
               </div>
             </NotionToggle>
@@ -802,14 +847,14 @@ export default function Home() {
                 <h3>Good fit</h3>
                 <ul>
                   <li>AI and tech consumer apps.</li>
-                  <li>Ready for the monthly fee.</li>
+                  <li>Ready for $50K+ a month.</li>
                   <li>Want organic short-form at scale, with a CPM target.</li>
                 </ul>
               </article>
               <article>
                 <h3>Not a fit</h3>
                 <ul>
-                  <li>Budgets under the monthly fee.</li>
+                  <li>Budgets under $50K a month.</li>
                   <li>One-off videos.</li>
                   <li>Paid-ads-only management.</li>
                 </ul>

@@ -201,7 +201,7 @@ export default function RootLayout({
         />
         <style
           dangerouslySetInnerHTML={{
-            __html: `.intro-overlay{display:none}html[data-intro="play"] .intro-overlay{display:flex;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;background:transparent;pointer-events:none}html[data-intro="done"] .intro-overlay{display:none!important;animation:none!important}@media (prefers-reduced-motion: reduce){.intro-overlay{display:none!important;animation:none!important}}`,
+            __html: `.intro-overlay{display:none}html[data-intro="play"] .intro-overlay{display:flex;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;background:#0B0D12;pointer-events:none}html[data-intro="done"] .intro-overlay{display:none!important;animation:none!important}@media (prefers-reduced-motion: reduce){.intro-overlay{display:none!important;animation:none!important}}`,
           }}
         />
         <script
