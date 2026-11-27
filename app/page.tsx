@@ -814,8 +814,8 @@ export default function Home() {
                   </figcaption>
                 </figure>
               ))}
+              <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
             </div>
-            <p className="team-coaches">Plus a team of in-house coaches working with every creator.</p>
           </div>
         </section>
 

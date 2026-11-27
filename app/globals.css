@@ -766,6 +766,9 @@ html.js-motion .budget-wipe.is-in {
   .editorial .hero-frame > .hero-copy {
     display: block;
   }
+  .editorial .hero-frame .hero-proof {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
   .editorial .hero-lockup .l1,
@@ -984,13 +987,18 @@ html.js-motion .hero-rise.delay-2 > span {
     justify-self: start;
   }
   .editorial .hero-frame .hero-proof {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 28px;
+    width: 100%;
+    margin-top: 28px;
+    padding-top: 0;
+    border-top: 0;
   }
   .editorial .hst {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 18px;
-    border-top: 0;
-    padding-top: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--hair);
+    padding-top: 28px;
     gap: 16px;
   }
 }
@@ -1085,6 +1093,19 @@ html.js-motion .hero-rise.delay-2 > span {
 /* The named proof strip sits above the fit-call button. On a phone the
    extra rows would push that button past 844px, so the stack tightens
    only below 768px. Desktop spacing stays. */
+@media (max-width: 1023px) {
+  .editorial .hero-frame {
+    display: flex;
+    flex-direction: column;
+  }
+  .editorial .hero-copy { order: 1; }
+  .editorial .hb { display: contents; }
+  .editorial .hsub { order: 2; }
+  .editorial .hcta { order: 3; margin-top: 16px; }
+  .editorial .hero-visual { order: 4; margin-top: 18px; }
+  .editorial .hero-proof { order: 5; }
+  .editorial .hst { order: 6; }
+}
 @media (max-width: 767px) {
   .editorial .hmeta-aside {
     display: none;
@@ -1847,7 +1868,9 @@ html.js-motion .hero-mark-face {
   grid-column: 1 / -1;
   width: 100%;
   max-width: none;
-  margin: 28px 0 0;
+  margin: 8px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid #23272f;
   color: #c9cdd4;
   font-size: 17px;
   line-height: 1.55;
@@ -1868,7 +1891,7 @@ html.js-motion .hero-mark-face {
   color: var(--mid);
 }
 .editorial .tm p {
-  max-width: 420px;
+  max-width: none;
   margin-top: 14px;
   color: var(--mid);
   font-size: 15px;
