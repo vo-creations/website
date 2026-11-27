@@ -134,30 +134,54 @@ const storyRows = [
   {
     name: "Krea",
     href: "/case-studies/krea",
-    line: "130M+ views in 12 weeks at under $3 CPM, with 4.7M engagements, and still growing.",
-    src: "/videos/krea-cat-vancity.mp4",
-    poster: "/videos/krea-cat-vancity.jpg",
+    figure: "130M+",
+    kicker: "views in 12 weeks",
+    support: "Under $3 CPM, with 4.7M engagements, and still growing.",
+    logo: "/logos/krea.png",
+    mark: "is-krea",
+    clips: [
+      { src: "/videos/krea-cat-vancity.mp4", poster: "/videos/krea-cat-vancity.jpg" },
+      { src: "/videos/krea-sarah-stiles.mp4", poster: "/videos/krea-sarah-stiles.jpg" },
+    ],
   },
   {
     name: "Higgsfield",
     href: "/case-studies/higgsfield",
-    line: "72M+ views in 35 days from 45 creators, at about $0.96 CPM.",
-    src: "/videos/creator-kelly.mp4",
-    poster: "/videos/creator-kelly.jpg",
+    figure: "72M+",
+    kicker: "views in 35 days",
+    support: "About $0.96 CPM, from 45 creators.",
+    logo: "/logos/higgsfield.png",
+    mark: "is-higgs",
+    clips: [
+      { src: "/videos/creator-kelly.mp4", poster: "/videos/creator-kelly.jpg" },
+      { src: "/videos/higgsfield-kelly-1.1m.mp4", poster: "/videos/higgsfield-kelly-1.1m.jpg" },
+    ],
   },
   {
     name: "fomo",
     href: "/case-studies/fomo",
-    line: "#3 in US App Store Top Free Finance, with 3M+ users, up from 625K in June, at under $4 CPM.",
-    src: "/videos/fomo-timmy-pham.mp4",
-    poster: "/videos/fomo-timmy-pham.jpg",
+    figure: "#3",
+    kicker: "US App Store Top Free Finance",
+    support: "3M+ users, up from 625K in June, at under $4 CPM.",
+    logo: "/logos/fomo.png",
+    mark: "is-word",
+    clips: [
+      { src: "/videos/fomo-timmy-pham.mp4", poster: "/videos/fomo-timmy-pham.jpg" },
+      { src: "/videos/fomo-bella.mp4", poster: "/videos/fomo-bella.jpg" },
+    ],
   },
   {
     name: "Liftoff",
     href: "/case-studies/liftoff",
-    line: "174M+ views in 90 days at a $0.82 CPM, from 50 creators, with zero paid ads.",
-    src: "/videos/liftoff-henry-266k.mp4",
-    poster: "/videos/liftoff-henry-266k.jpg",
+    figure: "174M+",
+    kicker: "views in 90 days",
+    support: "$0.82 CPM, from 50 creators, with zero paid ads.",
+    logo: "/logos/liftoff.png",
+    mark: "is-lift",
+    clips: [
+      { src: "/videos/liftoff-henry-266k.mp4", poster: "/videos/liftoff-henry-266k.jpg" },
+      { src: "/videos/liftoff-daniel-147k.mp4", poster: "/videos/liftoff-daniel-147k.jpg" },
+    ],
   },
 ];
 
@@ -508,14 +532,36 @@ export default function Home() {
             <div className="story-rows">
               {storyRows.map((row, index) => (
                 <article className={index % 2 === 1 ? "story-row is-flip" : "story-row"} key={row.href}>
-                  <p className="story-line">
-                    <a href={row.href}>
-                      {row.name === "fomo" ? <span className="keep-case">fomo</span> : row.name}
-                      .
-                    </a>{" "}
-                    {row.line}
-                  </p>
-                  <StoryClip src={row.src} poster={row.poster} name={row.name} />
+                  <div className="story-figure">
+                    <p className="story-num">{row.figure}</p>
+                    <p className="story-kicker">{row.kicker}</p>
+                  </div>
+                  <div className="story-clips">
+                    {row.clips.map((clip, clipIndex) => (
+                      <StoryClip
+                        key={clip.src}
+                        src={clip.src}
+                        poster={clip.poster}
+                        name={`${row.name} ${clipIndex + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="story-meta">
+                    <a className="story-brand" href={row.href}>
+                      <LogoImage
+                        src={row.logo}
+                        alt=""
+                        boxClassName={`story-logo ${row.mark}`}
+                        crop={row.mark !== "is-word"}
+                      />
+                      {row.mark === "is-word" ? (
+                        <span className="sr-only keep-case">{row.name}</span>
+                      ) : (
+                        <span>{row.name}</span>
+                      )}
+                    </a>
+                    <p className="story-support">{row.support}</p>
+                  </div>
                 </article>
               ))}
             </div>

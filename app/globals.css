@@ -3383,35 +3383,55 @@ html[data-intro="done"] .intro-overlay {
   letter-spacing: -0.06em;
 }
 .story-band {
-  padding: 36px 0 12px;
+  padding: 28px 0 8px;
 }
 .story-row {
   display: grid;
+  grid-template-areas: "figure" "clips" "meta";
   grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
+  gap: 12px;
   align-items: center;
-  padding: 28px 0;
+  padding: 18px 0;
   border-top: 1px solid var(--hair);
 }
-.story-line {
+.story-figure { grid-area: figure; }
+.story-clips { grid-area: clips; }
+.story-meta { grid-area: meta; }
+.story-num {
   margin: 0;
-  max-width: 16em;
   font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
-  font-weight: 600;
-  font-size: clamp(22px, 2.5vw, 36px);
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-size: clamp(64px, 8vw, 140px);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  color: #c4c8cf;
 }
-.story-line a {
-  color: inherit;
-  font-weight: 700;
+.story-kicker {
+  margin: 8px 0 0;
+  color: var(--dim);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.story-clips {
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent);
 }
 .story-clip {
   position: relative;
-  width: 168px;
-  height: 298px;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 300px;
   margin: 0;
   overflow: hidden;
+  scroll-snap-align: start;
   border-radius: 18px;
   background: #141820;
 }
@@ -3423,31 +3443,100 @@ html[data-intro="done"] .intro-overlay {
   height: 100%;
   object-fit: cover;
 }
-.story-foot {
+.story-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  color: inherit;
+  font-family: var(--font-inter-tight), "Inter Tight", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.story-logo {
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  justify-content: flex-start;
+  filter: grayscale(1);
+}
+.story-logo.is-krea { width: 19px; }
+.story-logo.is-higgs { width: 30px; }
+.story-logo.is-lift { width: 27px; }
+.story-logo.is-word {
+  width: auto;
+  height: 26px;
+  overflow: visible;
+}
+.story-logo.is-word img {
+  height: 26px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+}
+.story-support {
+  max-width: 28em;
   margin: 6px 0 0;
-  padding-top: 8px;
+  color: var(--mid);
+  font-size: 16px;
+  line-height: 1.4;
+}
+.story-foot {
+  margin: 8px 0 0;
   color: var(--dim);
   font-size: 13px;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
   .story-band {
-    padding: 56px 0 20px;
+    padding: 36px 0 8px;
   }
   .story-row {
-    grid-template-columns: minmax(0, 1fr) 200px;
-    gap: 56px;
-    padding: 40px 0;
+    row-gap: 14px;
+    padding: 20px 0;
   }
-  .story-row.is-flip {
-    grid-template-columns: 200px minmax(0, 1fr);
-  }
-  .story-row.is-flip .story-line {
-    order: 2;
+  .story-clips {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
   .story-clip {
-    width: 200px;
-    height: 356px;
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+}
+@media (min-width: 1100px) {
+  .story-row {
+    grid-template-areas: "figure clips" "meta clips";
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 28px;
+    align-items: center;
+    padding: 16px 0;
+  }
+  .story-figure { align-self: end; }
+  .story-meta { align-self: start; }
+  .story-row.is-flip {
+    grid-template-areas: "clips figure" "clips meta";
+  }
+  .story-clips {
+    grid-template-columns: 300px 300px;
+  }
+  .story-clip {
+    width: 300px;
+  }
+}
+@media (min-width: 1440px) {
+  .story-clips {
+    grid-template-columns: 320px 320px;
+  }
+  .story-clip {
+    width: 320px;
   }
 }
 .proof-band .billion-label {

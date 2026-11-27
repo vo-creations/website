@@ -2,6 +2,7 @@ interface LogoImageProps {
   src: string;
   alt: string;
   boxClassName: string;
+  crop?: boolean;
 }
 
 // DECISION: the one place logo sizing is implemented — a box (caller
@@ -39,7 +40,7 @@ interface LogoImageProps {
 // downscaled (display height is 30px; files now top out near 96px tall)
 // and the img is loading=lazy. The box sizing is unchanged. See
 // docs/DECISIONS.md (topic: seo-aeo-2026-10).
-export default function LogoImage({ src, alt, boxClassName }: LogoImageProps) {
+export default function LogoImage({ src, alt, boxClassName, crop = false }: LogoImageProps) {
   return (
     <div className={`flex items-center justify-center shrink-0 ${boxClassName}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -48,7 +49,7 @@ export default function LogoImage({ src, alt, boxClassName }: LogoImageProps) {
         alt={alt}
         loading="lazy"
         decoding="async"
-        className="max-w-full max-h-full w-auto h-auto object-contain"
+        className={crop ? "h-full w-auto max-w-none" : "max-w-full max-h-full w-auto h-auto object-contain"}
       />
     </div>
   );
