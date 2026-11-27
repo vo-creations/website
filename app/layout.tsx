@@ -40,7 +40,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_DESCRIPTION =
-  "Organic UGC for AI and consumer apps: 1B+ views since Jan 2026, 1,000+ trained creators, your target CPM guaranteed.";
+  "Organic UGC for AI and consumer apps: 1B+ views since Jan 2026, 1,000+ trained creators. We guarantee your target CPM, then optimize for installs and lower CAC.";
 
 export const metadata: Metadata = {
   title: {
@@ -172,7 +172,7 @@ const serviceJsonLd = {
       },
     },
     description:
-      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. We guarantee your target CPM. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
+      "Campaigns start at $50K+/month, all-inclusive: trained creators, scripts, posting, creator bonuses, and daily Slack reporting. We guarantee your target CPM, then optimize every video for installs and lower CAC, not just views. CPM means cost per 1,000 organic views. Videos under 1,000 views do not count toward your CPM. Paid media, the ad spend, is outside the fee and billed on top. 90-day minimum, then month to month. No refunds after launch.",
     url: "https://vocreations.com/#faq",
   },
 };
