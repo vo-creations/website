@@ -162,7 +162,7 @@ const storyRows = [
     href: "/case-studies/fomo",
     figure: "#3",
     kicker: "US App Store Top Free Finance",
-    support: "3M+ users, up from 625K in June, at a Sub-$4 CPM.",
+    support: "3M+ users, up from 625K in June, at under $4 CPM.",
     logo: "/logos/fomo.png",
     mark: "is-word",
     clips: [
