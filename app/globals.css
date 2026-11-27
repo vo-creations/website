@@ -458,9 +458,13 @@ html.js-motion .budget-wipe.is-in {
   color: rgba(196, 200, 207, 0.72);
 }
 .hero-carousel > .hero-pause {
-  right: 8px;
-  bottom: 8px;
-  z-index: 3;
+  left: 50%;
+  right: auto;
+  top: 44%;
+  bottom: auto;
+  z-index: 6;
+  margin-left: calc(var(--card) / 2 - 45px);
+  margin-top: calc(var(--card) * 16 / 9 / 2 - 52px);
 }
 .hero-pause:hover {
   color: #eef0f4;
@@ -790,6 +794,9 @@ html.js-motion .budget-wipe.is-in {
   .editorial .hlead-offer {
     font-size: 32px;
   }
+  .editorial .hero-frame > .hero-proof {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
 @media (min-width: 1440px) {
   .editorial .hero-frame {
@@ -877,6 +884,15 @@ html.js-motion .budget-wipe.is-in {
 }
 .editorial .hb {
   margin-top: 32px;
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .editorial .hb {
+    margin-top: 8px;
+  }
+  .editorial .hlead-rest {
+    font-size: 17px;
+    max-width: none;
+  }
 }
 .editorial .hsub {
   font-size: 17px;
