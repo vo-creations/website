@@ -257,7 +257,7 @@ html.js-motion .budget-wipe.is-in {
   --spread: 0.52;
   --spread-2: 1.02;
   position: relative;
-  height: calc(var(--card) * 2.12 + 52px);
+  height: calc(var(--card) * 2.12);
   margin-inline: auto;
   width: 100%;
   max-width: 100%;
@@ -300,7 +300,7 @@ html.js-motion .budget-wipe.is-in {
 }
 .hero-stage {
   position: absolute;
-  inset: 0 0 48px 0;
+  inset: 0;
   perspective: 1400px;
   perspective-origin: 50% 42%;
 }
@@ -456,6 +456,11 @@ html.js-motion .budget-wipe.is-in {
   border-radius: 999px;
   background: transparent;
   color: rgba(196, 200, 207, 0.72);
+}
+.hero-carousel > .hero-pause {
+  right: 8px;
+  bottom: 8px;
+  z-index: 3;
 }
 .hero-pause:hover {
   color: #eef0f4;
@@ -746,6 +751,7 @@ html.js-motion .budget-wipe.is-in {
     grid-template-areas:
       "copy stage"
       "hb stage"
+      "proof proof"
       "stats stats";
     column-gap: 48px;
     row-gap: 8px;
@@ -766,15 +772,23 @@ html.js-motion .budget-wipe.is-in {
   .editorial .hero-frame > .hero-copy {
     display: block;
   }
-  .editorial .hero-frame .hero-proof {
+  .editorial .hero-frame > .hero-proof {
+    grid-area: proof;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 20px 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hair);
   }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
   .editorial .hero-lockup .l1,
-  .editorial .hero-lockup .l2,
-  .editorial .hero-mark {
-    font-size: 48px;
+  .editorial .hero-lockup .l2 {
+    font-size: 72px;
+  }
+  .editorial .hlead-offer {
+    font-size: 32px;
   }
 }
 @media (min-width: 1440px) {
@@ -852,7 +866,7 @@ html.js-motion .budget-wipe.is-in {
 .editorial h1 .l3 {
   margin-top: 8px;
 }
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .editorial h1 .l1,
   .editorial h1 .l2 {
     font-size: 76px;
@@ -956,7 +970,7 @@ html.js-motion .hero-rise.delay-2 > span {
   }
   .editorial .hlead-offer {
     max-width: 18em;
-    font-size: clamp(48px, 3.75vw, 58px);
+    font-size: clamp(32px, 2.6vw, 40px);
   }
   .editorial .hlead-rest {
     margin-top: 18px;
@@ -985,14 +999,6 @@ html.js-motion .hero-rise.delay-2 > span {
   .editorial .hcta {
     margin-top: 14px;
     justify-self: start;
-  }
-  .editorial .hero-frame .hero-proof {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px 28px;
-    width: 100%;
-    margin-top: 28px;
-    padding-top: 0;
-    border-top: 0;
   }
   .editorial .hst {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1124,7 +1130,10 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 16px;
   }
   .editorial .hlead-rest {
-    margin-top: 8px;
+    margin-top: 16px;
+  }
+  .editorial .hsub {
+    margin-top: 16px;
   }
   .editorial .hb {
     margin-top: 12px;
@@ -1133,7 +1142,7 @@ html.js-motion .hero-rise.delay-2 > span {
     margin-top: 10px;
   }
   .hero-proof {
-    gap: 8px 28px;
+    gap: 16px 28px;
     margin-top: 10px;
     padding-top: 8px;
   }
@@ -1153,6 +1162,7 @@ html.js-motion .hero-rise.delay-2 > span {
   line-height: 1.4;
   letter-spacing: -0.011em;
   color: var(--ink);
+  white-space: nowrap;
 }
 @media (min-width: 768px) {
   .hero-proof {
@@ -1848,12 +1858,14 @@ html.js-motion .hero-mark-face {
   grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 48px;
+  border-top: 1px solid #23272f;
+  padding-top: 24px;
 }
 .editorial .tm {
   width: auto;
   margin: 0;
-  border-top: 1px solid #23272f;
-  padding-top: 24px;
+  border-top: 0;
+  padding-top: 0;
 }
 .editorial .tph {
   position: relative;

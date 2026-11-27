@@ -485,15 +485,15 @@ export default function Home() {
                   Book a call
                 </a>
               </div>
-              <ul className="hero-proof">
-                {heroProof.map((item) => (
-                  <li key={item.name}>
-                    <span className="hp-name">{item.name}</span>
-                    <span className="hp-line">{item.line}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
+            <ul className="hero-proof">
+              {heroProof.map((item) => (
+                <li key={item.name}>
+                  <span className="hp-name">{item.name}</span>
+                  <span className="hp-line">{item.line}</span>
+                </li>
+              ))}
+            </ul>
             <HeroStats />
           </div>
         </section>
